@@ -5,7 +5,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { Github, Twitter, Linkedin } from 'lucide-react';
+import { Linkedin, Facebook } from 'lucide-react';
 
 import MegiLanceLogo from '@/app/components/MegiLanceLogo/MegiLanceLogo';
 
@@ -43,10 +43,23 @@ const footerSections = {
   ],
 };
 
+const MediumIcon = ({ size = 18 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42S14.2 15.54 14.2 12s1.52-6.42 3.38-6.42 3.38 2.88 3.38 6.42zm2.94 0c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75c.66 0 1.19 2.58 1.19 5.75z"/>
+  </svg>
+);
+
+const ProductHuntIcon = ({ size = 18 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M13.604 8.4h-3.405V12h3.405a1.8 1.8 0 000-3.6zM12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm1.604 14.4h-3.405V18H7.801V6h5.804a4.2 4.2 0 010 8.4z"/>
+  </svg>
+);
+
 const socialLinks = [
-  { name: 'Twitter', href: 'https://twitter.com/megilance', icon: Twitter },
-  { name: 'GitHub', href: 'https://github.com/megilance', icon: Github },
-  { name: 'LinkedIn', href: 'https://www.linkedin.com/company/megilance', icon: Linkedin },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/company/megilance/', icon: Linkedin },
+  { name: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61587532270843', icon: Facebook },
+  { name: 'Medium', href: 'https://medium.com/@megilanceofficial', icon: MediumIcon },
+  { name: 'ProductHunt', href: 'https://www.producthunt.com/@megilance', icon: ProductHuntIcon },
 ];
 
 const Footer = () => {
@@ -93,7 +106,7 @@ const Footer = () => {
           </div>
           <div className={commonStyles.socialLinks}>
             {socialLinks.map((link) => (
-              <a key={link.name} href={link.href} aria-label={link.name} className={cn(commonStyles.socialLink, styles.socialLink)}>
+              <a key={link.name} href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.name} className={cn(commonStyles.socialLink, styles.socialLink)}>
                 <link.icon size={18} />
               </a>
             ))}

@@ -36,12 +36,10 @@ export const SITE_DESCRIPTION = 'MegiLance is the #1 AI-powered freelance market
 export const SITE_TAGLINE = 'The Future of Freelancing';
 export const SITE_LOGO = `${BASE_URL}/icon-512.png`;
 export const SOCIAL_LINKS = [
-  'https://www.linkedin.com/company/megilance',
-  'https://twitter.com/megilance',
-  'https://github.com/megilance',
-  'https://www.facebook.com/megilance',
-  'https://www.instagram.com/megilance',
-  'https://www.youtube.com/@megilance',
+  'https://www.linkedin.com/company/megilance/',
+  'https://www.facebook.com/profile.php?id=61587532270843',
+  'https://medium.com/@megilanceofficial',
+  'https://www.producthunt.com/@megilance',
 ];
 
 // ─── SEO Keyword Taxonomy ─────────────────────────────────────────────────────
