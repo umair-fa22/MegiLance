@@ -21,37 +21,37 @@
 
 .textareaField {
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  border: 1px solid var(--input-border);
+  border: 1px solid #334155;
   background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
 }
 
 .textareaField:hover:not(:disabled) {
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  border: 1px solid var(--input-border-hover);
+  border: 1px solid #475569;
   background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
 }
 
 .textareaField:focus {
   box-shadow: 0 0 0 4px rgba(69, 115, 223, 0.3);
-  border: 1px solid var(--input-border-focus);
+  border: 1px solid #6b8de6;
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
 }
 
 .textareaWrapperError .textareaField {
   box-shadow: 0 0 0 4px rgba(232, 17, 35, 0.2);
-  border: 1px solid var(--input-border-error);
+  border: 1px solid #f87171;
 }
 
 .textareaWrapperError .textareaField:focus {
   box-shadow: 0 0 0 4px rgba(232, 17, 35, 0.3);
-  border: 1px solid var(--input-border-error-focus);
+  border: 1px solid #ef4444;
 }
 
 .textareaIcon {
   position: absolute;
-  right: var(--spacing-4);
-  top: var(--spacing-4);
-  color: var(--input-icon);
+  right: 1rem;
+  top: 1rem;
+  color: #94a3b8;
 }
 
 .suggestionsList {

@@ -1,38 +1,26 @@
-.label { color: var(--text-primary); }
+.label { color: #0f172a; }
 
 .slider {
-  background-color: var(--color-background-secondary-light);
-  border: 1px solid var(--border);
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
 }
 
 .helpText {
-  color: var(--color-text-secondary-light);
+  color: #64748b;
 }
 
 .slider:before {
-  background-color: var(--surface);
-  border: 1px solid var(--border);
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
 }
 
 .input:checked + .slider {
-  background-color: var(--primary);
-  /* Fallback */
-  border-color: var(--primary);
-}
-@supports (color: color-mix(in oklab, white, black)) {
-  .input:checked + .slider {
-    border-color: color-mix(in oklab, var(--primary) 60%, var(--border));
-  }
+  background-color: #4573df;
+  border-color: #4573df;
 }
 
 .input:focus + .slider {
-  /* Fallback ring */
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.25);
-}
-@supports (color: color-mix(in oklab, white, black)) {
-  .input:focus + .slider {
-    box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 25%, transparent);
-  }
 }
 
 /* Hover/active polish */

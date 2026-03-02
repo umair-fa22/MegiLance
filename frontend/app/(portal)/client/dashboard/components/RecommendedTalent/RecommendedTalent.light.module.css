@@ -1,26 +1,26 @@
-/* RecommendedTalent.light.module.css */
+﻿/* RecommendedTalent.light.module.css */
 .card {
-  background: var(--surface, #f8f9fa);
-  border: 1px solid var(--border, #e9ecef);
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
 }
 
 .card:hover {
-  background: var(--surface-hover, #e9ecef);
-  border-color: var(--primary, #4573DF);
+  background: #e9ecef;
+  border-color: #4573DF;
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.1);
 }
 
 .name {
-  color: var(--text-primary, #1a1a1a);
+  color: #1a1a1a;
 }
 
 .title {
-  color: var(--text-secondary, #6c757d);
+  color: #6c757d;
 }
 
 .skill {
   background: rgba(0,0,0,0.05);
-  color: var(--text-secondary, #6c757d);
+  color: #6c757d;
 }
 
 .matchBadge {

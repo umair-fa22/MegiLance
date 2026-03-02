@@ -1,36 +1,36 @@
-/* @AI-HINT: Dark theme styles for enterprise PortalFooter */
+﻿/* @AI-HINT: Dark theme styles for enterprise PortalFooter */
 
 .footer {
-  border-top: 1px solid var(--border-dark, #1e293b);
+  border-top: 1px solid #1e293b;
   background-color: transparent;
 }
 
 .statusText {
-  color: var(--text-tertiary-dark, #64748b);
+  color: #64748b;
 }
 
 .copyright {
-  color: var(--text-tertiary-dark, #475569);
+  color: #475569;
 }
 
 .versionBadge {
   background-color: rgba(255, 255, 255, 0.04);
-  color: var(--text-tertiary-dark, #64748b);
+  color: #64748b;
 }
 
 .shortcutHint {
   background-color: rgba(255, 255, 255, 0.04);
-  color: var(--text-tertiary-dark, #64748b);
+  color: #64748b;
 }
 
 .link {
-  color: var(--text-tertiary-dark, #64748b);
+  color: #64748b;
 }
 
 .link:hover {
-  color: var(--primary-4573df, #7aa5f5);
+  color: #7aa5f5;
 }
 
 .separator {
-  color: var(--text-tertiary-dark, #475569);
+  color: #475569;
 }

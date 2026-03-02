@@ -1,4 +1,4 @@
-/* AI-HINT: Dark theme overrides for MegaLoader. Minimal deltas on top of common. */
+﻿/* AI-HINT: Dark theme overrides for MegaLoader. Minimal deltas on top of common. */
 
 .theme .backdrop {
   /* Fallback for older browsers */
@@ -24,21 +24,17 @@
 }
 
 /* Modern color overrides guarded by support check */
-@supports (color: color-mix(in oklab, white, black)) {
-  .theme .backdrop {
-    background: color-mix(in oklab, var(--ml-bg, #0b1020) 82%, transparent);
-  }
 
   .theme .container {
-    background: linear-gradient(180deg, color-mix(in oklab, #0f162e 88%, transparent), color-mix(in oklab, #0b1226 92%, transparent));
-    border-color: color-mix(in oklab, #1e2a52 70%, transparent);
+    background: linear-gradient(180deg, #4573df, #4573df);
+    border-color: #4573df;
   }
 
-  .theme .title { color: color-mix(in oklab, #eaf1ff 92%, transparent); }
-  .theme .subtitle { color: color-mix(in oklab, #a7b4d6 85%, transparent); }
+  .theme .title { color: #4573df; }
+  .theme .subtitle { color: #4573df; }
 
   .theme .progressBar {
-    background: color-mix(in oklab, #0d1530 70%, transparent);
-    border-color: color-mix(in oklab, #1e2a52 70%, transparent);
+    background: #4573df;
+    border-color: #4573df;
   }
 }

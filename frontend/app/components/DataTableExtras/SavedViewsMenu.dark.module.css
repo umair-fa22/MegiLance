@@ -1,6 +1,6 @@
 /* AI-HINT: Dark theme styles for SavedViewsMenu */
-.input { background: #0f172a; color: var(--color-text); border-color: var(--color-border); }
-.button { color: var(--color-text); border-color: var(--color-border); }
-.item { background: #0f172a; border-color: var(--color-border); }
-.smallButton { color: var(--color-text); border-color: var(--color-border); }
+.input { background: #0f172a; color: #f8fafc; border-color: #334155; }
+.button { color: #f8fafc; border-color: #334155; }
+.item { background: #0f172a; border-color: #334155; }
+.smallButton { color: #f8fafc; border-color: #334155; }
 .smallDanger { background: #0f172a; }

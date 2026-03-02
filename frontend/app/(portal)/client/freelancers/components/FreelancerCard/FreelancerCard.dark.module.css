@@ -1,42 +1,42 @@
 /* AI-HINT: Dark theme styles for the FreelancerCard. */
 
 .card {
-  background-color: var(--surface-elev-dark);
-  border-color: var(--border-dark);
-  box-shadow: var(--shadow-sm-dark);
+  background-color: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .card:hover {
-  border-color: var(--border-hover-dark);
-  box-shadow: var(--shadow-md-dark);
+  border-color: #475569;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .name {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .title {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .ratingValue {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .infoIcon {
-  color: var(--text-tertiary-dark);
+  color: #64748b;
 }
 
 .infoText {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .skillsTitle {
-  color: var(--text-tertiary-dark);
+  color: #64748b;
 }
 
 .cardFooter {
-  border-top-color: var(--border-dark);
+  border-top-color: #334155;
 }
 
 .matchBadge {

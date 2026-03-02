@@ -1,17 +1,17 @@
-.theme {
-  background-color: var(--color-background-secondary-light);
+﻿.theme {
+  background-color: #f8fafc;
   border: 1px solid /* @AI-HINT: Light theme styles for ProjectStatusChart tooltip and legend. */
 }
 
 .chartTitle {
-  color: var(--color-text-primary-light);
+  color: #0f172a;
 }
 
 .customTooltip {
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid #eef2f7;
   color: #1e293b;
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
 }
 
 .legendList {

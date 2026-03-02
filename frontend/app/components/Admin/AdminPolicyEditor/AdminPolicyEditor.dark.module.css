@@ -1,49 +1,49 @@
 /* AI-HINT: Dark theme styles for the AdminPolicyEditor. */
 
 .editorLayout {
-  background-color: var(--color-background-dark);
-  border: 1px solid var(--color-border-dark);
+  background-color: #0f172a;
+  border: 1px solid #334155;
 }
 
 .sidebar {
-  background-color: var(--color-background-secondary-dark);
-  border-right: 1px solid var(--color-border-dark);
+  background-color: #1e293b;
+  border-right: 1px solid #334155;
 }
 
 .sidebarTitle {
-  color: var(--color-text-primary-dark);
+  color: #f8fafc;
 }
 
 .navItem {
-  color: var(--color-text-secondary-dark);
+  color: #cbd5e1;
 }
 
 .navItem:hover {
-  background-color: var(--color-background-tertiary-dark);
-  color: var(--color-text-primary-dark);
+  background-color: rgba(255,255,255,0.04);
+  color: #f8fafc;
 }
 
 .navItemActive {
-  background-color: var(--color-primary-muted-dark);
-  color: var(--color-primary);
+  background-color: rgba(107,141,230,0.20);
+  color: #6b8de6;
 }
 
 .mainContent {
-  background-color: var(--color-background-dark);
+  background-color: #0f172a;
 }
 
 .editorHeader {
-  border-bottom: 1px solid var(--color-border-dark);
+  border-bottom: 1px solid #334155;
 }
 
 .editorTitle {
-  color: var(--color-text-primary-dark);
+  color: #f8fafc;
 }
 
 .saveConfirmation {
-  color: var(--color-success);
+  color: #22c55e;
 }
 
 .editorTextarea {
-  color: var(--color-text-secondary-dark);
+  color: #cbd5e1;
 }

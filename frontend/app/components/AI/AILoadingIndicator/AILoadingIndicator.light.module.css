@@ -1,99 +1,99 @@
-/* @AI-HINT: AI Loading Indicator - Light theme */
+﻿/* @AI-HINT: AI Loading Indicator - Light theme */
 
 .spinnerRing {
-  border-color: var(--neutral-200, #e2e8f0);
-  border-top-color: var(--ml-blue, #4573df);
+  border-color: #e2e8f0;
+  border-top-color: #4573df;
 }
 
 .aiBrainIcon {
-  color: var(--ml-blue, #4573df);
+  color: #4573df;
 }
 
 .aiBrainGlow {
-  background: linear-gradient(135deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(135deg, #4573df, #9b59b6);
 }
 
 .dot {
-  background: var(--ml-blue, #4573df);
+  background: #4573df;
 }
 
 .progressBar {
-  background: var(--neutral-200, #e2e8f0);
+  background: #e2e8f0;
 }
 
 .progressBarIndeterminate::after {
-  background: linear-gradient(90deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(90deg, #4573df, #9b59b6);
 }
 
 .progressFill {
-  background: linear-gradient(90deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(90deg, #4573df, #9b59b6);
 }
 
 .label {
-  color: var(--neutral-700, #334155);
+  color: #334155;
 }
 
 .sublabel {
-  color: var(--neutral-500, #64748b);
+  color: #64748b;
 }
 
 .statusProcessing .spinnerRing {
-  border-top-color: var(--ml-blue, #4573df);
+  border-top-color: #4573df;
 }
 
 .statusProcessing .label {
-  color: var(--ml-blue, #4573df);
+  color: #4573df;
 }
 
 .statusSuccess .successCheck {
-  background: var(--ml-green, #27AE60);
+  background: #27AE60;
   color: #ffffff;
 }
 
 .statusSuccess .label {
-  color: var(--ml-green-dark, #1e8449);
+  color: #1e8449;
 }
 
 .statusWarning .spinnerRing {
-  border-top-color: var(--ml-warning, #F2C94C);
+  border-top-color: #F2C94C;
 }
 
 .statusWarning .label {
-  color: var(--ml-warning-dark, #d4a500);
+  color: #d4a500;
 }
 
 .statusError .label {
-  color: var(--ml-red, #e81123);
+  color: #e81123;
 }
 
 .confidenceLabel {
-  color: var(--neutral-500, #64748b);
+  color: #64748b;
 }
 
 .confidenceValue {
-  color: var(--neutral-900, #0f172a);
+  color: #0f172a;
 }
 
 .confidenceBar {
-  background: var(--neutral-200, #e2e8f0);
+  background: #e2e8f0;
 }
 
 .confidenceFill {
-  background: linear-gradient(90deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(90deg, #4573df, #9b59b6);
 }
 
 .confidenceFillLow {
-  background: var(--ml-red, #e81123);
+  background: #e81123;
 }
 
 .confidenceFillMedium {
-  background: var(--ml-warning, #F2C94C);
+  background: #F2C94C;
 }
 
 .confidenceFillHigh {
-  background: var(--ml-green, #27AE60);
+  background: #27AE60;
 }
 
 .skeleton {
-  background: var(--neutral-200, #e2e8f0);
+  background: #e2e8f0;
 }

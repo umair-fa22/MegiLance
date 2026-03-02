@@ -1,3 +1,9 @@
 /* @AI-HINT: Dark theme colors for legal pages */
-.page { background: var(--background); color: var(--text-primary); }
-.page a { color: var(--primary); }
+.page {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+.page a {
+  color: #6b8de6;
+}

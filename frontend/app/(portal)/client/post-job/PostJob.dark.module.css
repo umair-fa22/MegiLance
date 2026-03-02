@@ -1,68 +1,95 @@
 /* AI-HINT: Dark theme overrides for Client Post Job page. */
 
-.themeWrapper { background: var(--surface); color: var(--text-primary); }
-.subtitle { color: var(--text-secondary); }
+.themeWrapper {
+  background: #0f172a;
+  color: #f8fafc;
+}
 
-.section { background: var(--surface-elev); border: 1px solid var(--border); }
-.sectionTitle { color: var(--text-primary); }
+.section {
+  background: #1e293b;
+  border: 1px solid #334155;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
 
-.input, .select, .textarea { background: var(--surface); border: 1px solid var(--border); color: var(--text-primary); }
-.help { color: var(--text-secondary); }
+.sectionTitle {
+  color: #f8fafc;
+}
 
-.button.primary { background: var(--primary); color: white; border: 1px solid rgba(0,0,0,0.2); }
-.button.secondary { background: var(--surface-elev); color: var(--text-primary); border: 1px solid var(--border); }
+.input,
+.select,
+.textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #334155;
+  color: #f8fafc;
+}
+
+.help {
+  color: #94a3b8;
+}
+
+.button.primary {
+  background: #4573df;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.button.secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+  border: 1px solid #334155;
+}
 
 .main {
-  background-color: var(--color-background-dark-primary);
+  background-color: #0f172a;
 }
 
 .title {
-  color: var(--color-text-dark-primary);
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: var(--color-text-dark-secondary);
+  color: #94a3b8;
 }
 
 .footer {
-  border-top-color: var(--color-border-dark-primary);
+  border-top-color: #334155;
   background-color: rgba(17, 24, 39, 0.7);
 }
 
 /* Result Card */
 .centered_container {
-  background-color: var(--color-background-dark-secondary);
+  background-color: #1e293b;
 }
 
 .result_card {
-  background-color: var(--color-background-dark-primary);
-  border: 1px solid var(--color-border-dark-primary);
+  background-color: #0f172a;
+  border: 1px solid #334155;
 }
 
 .result_title {
-  color: var(--color-text-dark-primary);
+  color: #f8fafc;
 }
 
 .result_message {
-  color: var(--color-text-dark-secondary);
+  color: #94a3b8;
 }
 
 .success_icon {
-  color: var(--color-success, #22c55e);
+  color: #22c55e;
 }
 
 .error_icon {
-  color: var(--color-error, #ef4444);
+  color: #ef4444;
 }
 
 .progressLabel {
-  color: var(--color-text-dark-primary);
+  color: #f8fafc;
 }
 
 .savedIndicator {
-  color: var(--color-text-dark-secondary);
+  color: #94a3b8;
 }
 
 .progressFill {
-  background: linear-gradient(90deg, var(--primary, #4573df) 0%, #3b82f6 100%);
+  background: linear-gradient(90deg, #4573df 0%, #3b82f6 100%);
 }

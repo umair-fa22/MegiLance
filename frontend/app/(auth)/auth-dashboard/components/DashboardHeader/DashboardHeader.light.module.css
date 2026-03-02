@@ -1,9 +1,9 @@
 /* AI-HINT: Light theme for the redesigned premium Dashboard Header. */
 
 .headerTitle h1 {
-  color: var(--text-primary-23272f); /* A strong, dark gray for text */
+  color: #23272f; /* A strong, dark gray for text */
 }
 
 .headerTitle p {
-  color: var(--text-secondary-333333); /* A softer gray for subtitles */
+  color: #333333; /* A softer gray for subtitles */
 }

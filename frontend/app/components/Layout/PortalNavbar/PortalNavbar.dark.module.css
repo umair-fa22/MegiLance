@@ -1,100 +1,100 @@
-/* @AI-HINT: Dark theme styles for the PortalNavbar with breadcrumbs and dropdowns */
+﻿/* @AI-HINT: Dark theme styles for the PortalNavbar with breadcrumbs and dropdowns */
 
 .navbar {
   background-color: rgba(15, 23, 42, 0.85);
-  border-bottom: 1px solid var(--border-dark, #1e293b);
+  border-bottom: 1px solid #1e293b;
 }
 
 /* Breadcrumb */
 .breadcrumbLink {
-  color: var(--text-tertiary-dark, #64748b);
+  color: #64748b;
 }
 
 .breadcrumbLink:hover {
-  color: var(--primary-4573df, #7aa5f5);
+  color: #7aa5f5;
 }
 
 .breadcrumbSeparator {
-  color: var(--text-tertiary-dark, #475569);
+  color: #475569;
 }
 
 .breadcrumbCurrent {
-  color: var(--text-primary-dark, #f8fafc);
+  color: #f8fafc;
 }
 
 .pageTitle {
-  color: var(--text-primary-dark, #f8fafc);
+  color: #f8fafc;
 }
 
 .actionButton {
-  color: var(--text-secondary-dark, #94a3b8);
+  color: #94a3b8;
 }
 
 .actionButton:hover {
-  background-color: var(--background-hover-dark, #1e293b);
-  color: var(--text-primary-dark, #f8fafc);
+  background-color: #1e293b;
+  color: #f8fafc;
 }
 
 .searchContainer {
-  background-color: var(--background-secondary-dark, #0f172a);
-  border-color: var(--border-dark, #1e293b);
+  background-color: #0f172a;
+  border-color: #1e293b;
 }
 
 .searchContainer:focus-within {
-  border-color: var(--primary-4573df, #4573df);
+  border-color: #4573df;
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
   background-color: #1e293b;
 }
 
 .searchInput {
-  color: var(--text-primary-dark, #f8fafc);
+  color: #f8fafc;
   background: transparent;
 }
 
 .searchInput::placeholder {
-  color: var(--text-tertiary-dark, #64748b);
+  color: #64748b;
 }
 
 /* Dropdown Theme Colors */
 .searchDropdown {
   background: #1e293b;
-  border: 1px solid var(--border-dark, #334155);
+  border: 1px solid #334155;
 }
 
 .searchItem {
-  color: var(--text-primary-dark, #f8fafc);
+  color: #f8fafc;
 }
 
 .notificationDropdown {
   background: #1e293b;
-  border: 1px solid var(--border-dark, #334155);
+  border: 1px solid #334155;
 }
 
 .notificationItem {
-  color: var(--text-primary-dark, #f8fafc);
+  color: #f8fafc;
 }
 
 .notificationItemTitle {
-  color: var(--text-primary-dark, #f8fafc);
+  color: #f8fafc;
 }
 
 .notificationDesc {
-  color: var(--text-secondary-dark, #94a3b8);
+  color: #94a3b8;
 }
 
 .helpDropdown {
   background: #1e293b;
-  border: 1px solid var(--border-dark, #334155);
+  border: 1px solid #334155;
 }
 
 .helpItem {
-  color: var(--text-primary-dark, #f8fafc);
+  color: #f8fafc;
 }
 
 .helpItemLabel {
-  color: var(--text-primary-dark, #f8fafc);
+  color: #f8fafc;
 }
 
 .helpItemDesc {
-  color: var(--text-tertiary-dark, #64748b);
+  color: #64748b;
 }

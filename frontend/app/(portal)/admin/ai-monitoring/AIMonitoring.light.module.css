@@ -1,24 +1,79 @@
 /* AI-HINT: Light theme overrides for Admin AI Monitoring page. */
 
-.themeWrapper { background: var(--surface); color: var(--text-primary); }
-.subtitle { color: var(--text-secondary); }
+.themeWrapper {
+  background: #f8fafc;
+  color: #0f172a;
+}
 
-.input, .select { background: var(--surface-elev); border: 1px solid var(--border); color: var(--text-primary); }
-.button { background: var(--primary); color: white; border: 1px solid rgba(0,0,0,0.12); }
-.button.secondary { background: var(--surface-elev); color: var(--text-primary); border: 1px solid var(--border); }
+.subtitle {
+  color: #64748b;
+}
 
-.card, .panel { background: var(--surface-elev); border: 1px solid var(--border); }
-.cardTitle { color: var(--text-primary); }
-.metric { color: var(--text-primary); }
+.input,
+.select {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+}
 
-.list .item { background: var(--surface); border: 1px solid var(--border); }
-.item:hover { background: rgba(69, 115, 223, 0.04); }
-.meta { color: var(--text-secondary); }
+.button {
+  background: #4573df;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
 
-.chipActive { background: rgba(69, 115, 223, 0.1); color: var(--primary); opacity: 1; }
+.button.secondary {
+  background: #ffffff;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
 
-.th { border-bottom-color: var(--border); color: var(--text-secondary); }
-.tr { border-bottom-color: var(--border); }
-.tr:hover { background: rgba(0,0,0,0.02); }
+.card,
+.panel {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
 
-.accuracyFill { background: linear-gradient(90deg, var(--primary), var(--success, #27AE60)); }
+.cardTitle {
+  color: #0f172a;
+}
+
+.metric {
+  color: #0f172a;
+}
+
+.list .item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.item:hover {
+  background: rgba(69, 115, 223, 0.04);
+}
+
+.meta {
+  color: #64748b;
+}
+
+.chipActive {
+  background: rgba(69, 115, 223, 0.1);
+  color: #4573df;
+  opacity: 1;
+}
+
+.th {
+  border-bottom-color: #e2e8f0;
+  color: #64748b;
+}
+
+.tr {
+  border-bottom-color: #e2e8f0;
+}
+
+.tr:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.accuracyFill {
+  background: linear-gradient(90deg, #4573df, #27AE60);
+}

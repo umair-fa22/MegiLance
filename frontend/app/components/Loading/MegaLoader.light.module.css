@@ -1,4 +1,4 @@
-/* AI-HINT: Light theme overrides for MegaLoader. Minimal deltas on top of common. */
+﻿/* AI-HINT: Light theme overrides for MegaLoader. Minimal deltas on top of common. */
 
 .theme .backdrop {
   /* Fallback for older browsers */
@@ -13,7 +13,7 @@
   box-shadow: 0 16px 48px rgba(20, 38, 95, 0.12), inset 0 1px 0 rgba(255,255,255,0.6);
 }
 
-.theme .wordLeft { color: var(--ml-blue, #4573df); }
+.theme .wordLeft { color: #4573df; }
 .theme .title { color: #0d1530; }
 .theme .subtitle { color: #334268; }
 
@@ -25,21 +25,17 @@
 }
 
 /* Modern color overrides guarded by support check */
-@supports (color: color-mix(in oklab, white, black)) {
-  .theme .backdrop {
-    background: color-mix(in oklab, var(--ml-bg-light, #f6f8fc) 80%, transparent);
-  }
 
   .theme .container {
-    background: linear-gradient(180deg, color-mix(in oklab, #ffffff 86%, transparent), color-mix(in oklab, #f2f5fb 90%, transparent));
-    border-color: color-mix(in oklab, #cfd8ea 65%, transparent);
+    background: linear-gradient(180deg, #4573df, #4573df);
+    border-color: #4573df;
   }
 
-  .theme .title { color: color-mix(in oklab, #0d1530 92%, transparent); }
-  .theme .subtitle { color: color-mix(in oklab, #334268 85%, transparent); }
+  .theme .title { color: #4573df; }
+  .theme .subtitle { color: #4573df; }
 
   .theme .progressBar {
-    background: color-mix(in oklab, #e8eefc 70%, transparent);
-    border-color: color-mix(in oklab, #cfd8ea 65%, transparent);
+    background: #4573df;
+    border-color: #4573df;
   }
 }

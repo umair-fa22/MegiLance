@@ -1,8 +1,8 @@
-/* @AI-HINT: Light theme styles for the PublicHeader. */
+﻿/* @AI-HINT: Light theme styles for the PublicHeader. */
 
 .header {
   background-color: rgba(255, 255, 255, 0.8);
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .header.scrolled {
@@ -11,24 +11,24 @@
 }
 
 .navLink {
-  color: var(--text-secondary-light);
+  color: #64748b;
 }
 
 .navLink:hover {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .signInButton {
-  color: var(--text-secondary-light);
+  color: #64748b;
 }
 
 .signInButton:hover {
-  background-color: var(--background-hover-light);
-  color: var(--text-primary-light);
+  background-color: #f1f5f9;
+  color: #0f172a;
 }
 
 .mobileMenuButton {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .mobileMenuButton:hover {
@@ -36,52 +36,52 @@
 }
 
 .mobileMenu {
-  background-color: var(--background-light);
+  background-color: #ffffff;
 }
 
 .mobileNavLink {
-  color: var(--text-primary-light);
-  border-bottom-color: var(--border-light);
+  color: #0f172a;
+  border-bottom-color: #e2e8f0;
 }
 
 .mobileNavLink:hover {
-  color: var(--primary-4573df);
-  background-color: var(--background-hover-light);
+  color: #4573df;
+  background-color: #f1f5f9;
 }
 
 /* Dropdown Styles */
 .dropdown {
   background-color: rgba(255, 255, 255, 0.95);
-  border: 1px solid var(--border-light);
+  border: 1px solid #e2e8f0;
 }
 
 .dropdownItem {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .dropdownItem:hover {
-  background-color: var(--background-hover-light);
+  background-color: #f1f5f9;
 }
 
 .dropdownItemIcon {
   background-color: rgba(69, 115, 223, 0.1);
-  color: var(--primary-4573df);
+  color: #4573df;
 }
 
 .dropdownItemTitle {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .dropdownItemDesc {
-  color: var(--text-secondary-light);
+  color: #64748b;
 }
 
 .mobileNavCategory {
-  color: var(--text-secondary-light);
+  color: #64748b;
 }
 
 .mobileNavLinkDesc {
-  color: var(--text-secondary-light);
+  color: #64748b;
 }
 
 .exploreLink {

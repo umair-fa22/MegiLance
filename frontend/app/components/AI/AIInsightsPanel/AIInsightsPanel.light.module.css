@@ -1,157 +1,157 @@
-/* @AI-HINT: AI Insights Panel - Light theme colors */
+﻿/* @AI-HINT: AI Insights Panel - Light theme colors */
 
 .panel {
   background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-  border: 1px solid var(--neutral-200, #e2e8f0);
-  box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 0, 0, 0.1));
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .header {
   background: linear-gradient(90deg, rgba(69, 115, 223, 0.05) 0%, rgba(155, 89, 182, 0.05) 100%);
-  border-bottom-color: var(--neutral-200, #e2e8f0);
+  border-bottom-color: #e2e8f0;
 }
 
 .aiIcon {
-  background: linear-gradient(135deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(135deg, #4573df, #9b59b6);
   color: #ffffff;
-  box-shadow: var(--shadow-primary, 0 10px 40px -10px rgba(69, 115, 223, 0.4));
+  box-shadow: 0 10px 40px -10px rgba(69, 115, 223, 0.4);
 }
 
 .headerTitle {
-  color: var(--neutral-900, #0f172a);
+  color: #0f172a;
 }
 
 .headerSubtitle {
-  color: var(--neutral-500, #64748b);
+  color: #64748b;
 }
 
 .statusBadge {
   background: rgba(39, 174, 96, 0.1);
-  color: var(--ml-green-dark, #1e8449);
+  color: #1e8449;
 }
 
 .statusDot {
-  background: var(--ml-green, #27AE60);
+  background: #27AE60;
 }
 
 .insightCard {
-  background: var(--neutral-50, #f8fafc);
-  border: 1px solid var(--neutral-200, #e2e8f0);
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
 }
 
 .insightCard:hover {
-  background: var(--neutral-100, #f1f5f9);
-  border-color: var(--neutral-300, #cbd5e1);
+  background: #f1f5f9;
+  border-color: #cbd5e1;
 }
 
 .insightIconWrapper {
   background: linear-gradient(135deg, rgba(69, 115, 223, 0.1) 0%, rgba(155, 89, 182, 0.1) 100%);
-  color: var(--ml-blue, #4573df);
+  color: #4573df;
 }
 
 .insightIconWrapperSuccess {
   background: rgba(39, 174, 96, 0.1);
-  color: var(--ml-green, #27AE60);
+  color: #27AE60;
 }
 
 .insightIconWrapperWarning {
   background: rgba(255, 152, 0, 0.1);
-  color: var(--ml-orange, #ff9800);
+  color: #ff9800;
 }
 
 .insightIconWrapperInfo {
   background: rgba(0, 206, 201, 0.1);
-  color: var(--ml-teal, #00cec9);
+  color: #00cec9;
 }
 
 .insightTitle {
-  color: var(--neutral-900, #0f172a);
+  color: #0f172a;
 }
 
 .insightDescription {
-  color: var(--neutral-600, #475569);
+  color: #475569;
 }
 
 .insightMeta {
-  color: var(--neutral-500, #64748b);
+  color: #64748b;
 }
 
 .insightTag {
-  background: var(--neutral-200, #e2e8f0);
-  color: var(--neutral-700, #334155);
+  background: #e2e8f0;
+  color: #334155;
 }
 
 .insightTagSuccess {
   background: rgba(39, 174, 96, 0.1);
-  color: var(--ml-green-dark, #1e8449);
+  color: #1e8449;
 }
 
 .recommendationsSection {
-  border-top-color: var(--neutral-200, #e2e8f0);
+  border-top-color: #e2e8f0;
 }
 
 .sectionLabel {
-  color: var(--neutral-500, #64748b);
+  color: #64748b;
 }
 
 .recommendationChip {
-  background: var(--neutral-100, #f1f5f9);
-  color: var(--neutral-700, #334155);
-  border: 1px solid var(--neutral-200, #e2e8f0);
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
 }
 
 .recommendationChip:hover {
-  background: var(--ml-blue, #4573df);
+  background: #4573df;
   color: #ffffff;
-  border-color: var(--ml-blue, #4573df);
+  border-color: #4573df;
 }
 
 .statCard {
-  background: var(--neutral-50, #f8fafc);
-  border: 1px solid var(--neutral-200, #e2e8f0);
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
 }
 
 .statValue {
-  background: linear-gradient(135deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(135deg, #4573df, #9b59b6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .statLabel {
-  color: var(--neutral-500, #64748b);
+  color: #64748b;
 }
 
 .actions {
-  background: var(--neutral-50, #f8fafc);
-  border-top-color: var(--neutral-200, #e2e8f0);
+  background: #f8fafc;
+  border-top-color: #e2e8f0;
 }
 
 .actionBtnPrimary {
-  background: linear-gradient(135deg, var(--ml-blue, #4573df) 0%, var(--ml-blue-dark, #2952b8) 100%);
+  background: linear-gradient(135deg, #4573df 0%, #2952b8 100%);
   color: #ffffff;
-  box-shadow: var(--shadow-primary, 0 10px 40px -10px rgba(69, 115, 223, 0.4));
+  box-shadow: 0 10px 40px -10px rgba(69, 115, 223, 0.4);
 }
 
 .actionBtnPrimary:hover {
-  box-shadow: var(--shadow-primary-lg, 0 20px 60px -15px rgba(69, 115, 223, 0.5));
+  box-shadow: 0 20px 60px -15px rgba(69, 115, 223, 0.5);
 }
 
 .actionBtnSecondary {
   background: #ffffff;
-  color: var(--neutral-700, #334155);
-  border: 1px solid var(--neutral-300, #cbd5e1);
+  color: #334155;
+  border: 1px solid #cbd5e1;
 }
 
 .actionBtnSecondary:hover {
-  background: var(--neutral-100, #f1f5f9);
+  background: #f1f5f9;
 }
 
 .loading {
-  color: var(--neutral-500, #64748b);
+  color: #64748b;
 }
 
 .loadingSpinner {
-  border-color: var(--neutral-200, #e2e8f0);
-  border-top-color: var(--ml-blue, #4573df);
+  border-color: #e2e8f0;
+  border-top-color: #4573df;
 }

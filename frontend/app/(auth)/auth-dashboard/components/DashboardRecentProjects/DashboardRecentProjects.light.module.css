@@ -1,35 +1,35 @@
 /* AI-HINT: Premium light theme for the Recent Projects table. Features refined typography, subtle row highlighting, and clear, colorful status badges. */
 
 .recentProjectsCard {
-  background: var(--surface);
-  border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-sm);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .cardTitle {
-  color: var(--text-primary);
+  color: #0f172a;
 }
 
 .viewAllLink {
-  color: var(--primary);
+  color: #4573df;
 }
 
 .viewAllLink:hover {
-  color: var(--primary-light-hover);
+  color: #3560c0;
 }
 
 .table th {
-  color: var(--text-secondary);
-  border-bottom: 1px solid var(--border-light);
+  color: #64748b;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .table td {
-  color: var(--text-primary);
-  border-bottom: 1px solid var(--border-light);
+  color: #0f172a;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .table tr:hover td {
-  background-color: var(--surface-hover);
+  background-color: #f8fafc;
 }
 
 /* Status Badge Colors */

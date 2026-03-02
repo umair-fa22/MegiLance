@@ -1,4 +1,4 @@
-/* @AI-HINT: Enhanced AI Chatbot - Dark theme colors */
+﻿/* @AI-HINT: Enhanced AI Chatbot - Dark theme colors */
 
 .chatbotAgent {
   background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
@@ -11,7 +11,7 @@
 }
 
 .aiAvatar {
-  background: linear-gradient(135deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(135deg, #4573df, #9b59b6);
   color: #ffffff;
   box-shadow: 0 10px 40px -10px rgba(69, 115, 223, 0.5);
 }
@@ -29,7 +29,7 @@
 }
 
 .statusDot {
-  background: var(--ml-green, #27AE60);
+  background: #27AE60;
 }
 
 .closeButton {
@@ -57,7 +57,7 @@
 }
 
 .messageUser .messageBubble {
-  background: linear-gradient(135deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(135deg, #4573df, #9b59b6);
   color: #ffffff;
   box-shadow: 0 10px 40px -10px rgba(69, 115, 223, 0.5);
 }
@@ -72,7 +72,7 @@
 }
 
 .typingDot {
-  background: var(--ml-blue-light, #6b93e8);
+  background: #6b93e8;
 }
 
 .suggestedAction {
@@ -82,7 +82,7 @@
 }
 
 .suggestedAction:hover {
-  background: linear-gradient(135deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(135deg, #4573df, #9b59b6);
   color: #ffffff;
   border-color: transparent;
   box-shadow: 0 10px 40px -10px rgba(69, 115, 223, 0.5);
@@ -90,7 +90,7 @@
 
 .sentimentBadge {
   background: rgba(39, 174, 96, 0.2);
-  color: var(--ml-green-light, #4cd787);
+  color: #4cd787;
 }
 
 .sentimentBadgeNeutral {
@@ -114,7 +114,7 @@
 }
 
 .inputWrapper:focus-within {
-  border-color: var(--ml-blue, #4573df);
+  border-color: #4573df;
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.3);
 }
 
@@ -127,7 +127,7 @@
 }
 
 .sendButton {
-  background: linear-gradient(135deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(135deg, #4573df, #9b59b6);
   color: #ffffff;
   box-shadow: 0 10px 40px -10px rgba(69, 115, 223, 0.5);
 }
@@ -156,11 +156,11 @@
 }
 
 .toggleButton::before {
-  background: linear-gradient(135deg, var(--ml-purple, #9b59b6), var(--ml-blue, #4573df));
+  background: linear-gradient(135deg, #9b59b6, #4573df);
 }
 
 .notificationBadge {
-  background: var(--ml-red, #e81123);
+  background: #e81123;
   color: #ffffff;
   border: 2px solid #1a1a2e;
   box-shadow: 0 2px 8px rgba(232, 17, 35, 0.4);

@@ -1,26 +1,64 @@
 /* AI-HINT: Dark theme overrides for portal Help page. */
 
-.themeWrapper { 
-  background: linear-gradient(170deg, #0f172a 0%, #0f172a 40%, #0f1225 100%); 
-  color: #f8fafc; 
+.themeWrapper {
+  background: linear-gradient(170deg, #0f172a 0%, #0f172a 40%, #0f1225 100%);
+  color: #f8fafc;
 }
-.subtitle { color: #cbd5e1; }
 
-.card { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(51, 65, 85, 0.5); }
-.card:hover { box-shadow: 0 8px 24px rgba(69, 115, 223, 0.15); transform: translateY(-3px); }
-.cardTitle { color: #f8fafc; }
-.cardDesc { color: #cbd5e1; }
-.item { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(51, 65, 85, 0.5); }
-.item:hover { background: rgba(51, 65, 85, 0.6); }
+.subtitle {
+  color: #cbd5e1;
+}
 
-.button { 
-  background: linear-gradient(135deg, #4573df 0%, #2563eb 100%); 
-  color: #ffffff; 
-  text-decoration: none;
-  display: inline-block;
+.card {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.card:hover {
+  box-shadow: 0 8px 24px rgba(69, 115, 223, 0.15);
+  border-color: rgba(69, 115, 223, 0.25);
+}
+
+.cardTitle {
+  color: #f8fafc;
+}
+
+.cardDesc {
+  color: #cbd5e1;
+}
+
+.item {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+.item:hover {
+  background: rgba(51, 65, 85, 0.6);
+  border-color: rgba(69, 115, 223, 0.2);
+}
+
+.button {
+  background: linear-gradient(135deg, #4573df 0%, #2563eb 100%);
+  color: #ffffff;
   box-shadow: 0 4px 14px rgba(69, 115, 223, 0.3);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(69, 115, 223, 0.4); }
-.buttonSecondary { color: #f8fafc; border: 1px solid #334155; }
-.buttonSecondary:hover { background: #1e293b; }
+
+.button:hover {
+  box-shadow: 0 6px 20px rgba(69, 115, 223, 0.4);
+}
+
+.buttonSecondary {
+  color: #f8fafc;
+  border-color: #334155;
+  background: rgba(30, 41, 59, 0.3);
+}
+
+.buttonSecondary:hover {
+  background: rgba(30, 41, 59, 0.7);
+  border-color: #475569;
+}

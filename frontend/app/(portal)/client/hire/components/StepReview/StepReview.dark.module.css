@@ -1,31 +1,27 @@
 /* AI-HINT: Dark theme styles for the StepReview component. */
 
 .section {
-  background-color: var(--surface-elev-dark);
-  border: 1px solid var(--border-dark);
+  background-color: #1e293b;
+  border: 1px solid #334155;
 }
 
 .title {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: var(--text-secondary-dark);
-}
-
-.reviewList {
-  /* No specific theme styles needed for the list container itself */
+  color: #94a3b8;
 }
 
 .reviewItem {
-  background-color: var(--surface-dark);
-  border-color: var(--border-dark);
+  background-color: rgba(255, 255, 255, 0.04);
+  border-color: #334155;
 }
 
 .itemTitle {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .itemValue {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }

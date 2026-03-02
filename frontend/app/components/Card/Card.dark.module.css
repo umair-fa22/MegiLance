@@ -1,4 +1,4 @@
-/* @AI-HINT: Premium 2025 Card component - Dark theme with glassmorphism */
+﻿/* @AI-HINT: Premium 2025 Card component - Dark theme with glassmorphism */
 
 .card {
   --card-bg: rgba(30, 41, 59, 0.8);
@@ -38,7 +38,7 @@
 }
 
 .cardTitle {
-  color: var(--text-primary, #f8fafc);
+  color: #f8fafc;
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -46,7 +46,7 @@
 }
 
 .cardIcon {
-  color: var(--primary, #6b93f5);
+  color: #6b93f5;
   filter: drop-shadow(0 2px 4px rgba(69, 115, 223, 0.3));
 }
 

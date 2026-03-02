@@ -1,13 +1,13 @@
-/* @AI-HINT: Dark theme styles for the NotificationOption component. */
+﻿/* @AI-HINT: Dark theme styles for the NotificationOption component. */
 
 .container {
-  border-bottom-color: var(--border-dark);
+  border-bottom-color: #334155;
 }
 
 .title {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .description {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }

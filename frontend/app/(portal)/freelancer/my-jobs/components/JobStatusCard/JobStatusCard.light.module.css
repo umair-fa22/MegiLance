@@ -1,29 +1,29 @@
-/* @AI-HINT: Light theme styles for the JobStatusCard component. */
+﻿/* @AI-HINT: Light theme styles for the JobStatusCard component. */
 .card {
-  background-color: var(--bg-secondary-light);
-  border-color: var(--border-light);
+  background-color: #f8fafc;
+  border-color: #e2e8f0;
 }
 
 .card:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md-light);
-  border-color: var(--border-light-hover);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+  border-color: #cbd5e1;
 }
 
 .title {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .client {
-  color: var(--text-tertiary-light);
+  color: #94a3b8;
 }
 
 .statusLabel {
-  color: var(--text-secondary-light);
+  color: #64748b;
 }
 
 .statusValue {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .statusValue.completed {
@@ -37,35 +37,35 @@
 }
 
 .progressBarWrapper {
-  background-color: var(--bg-secondary-light);
+  background-color: #f8fafc;
 }
 
 .progressBar {
-  background-color: var(--color-primary-megilance);
+  background-color: #4573df;
 }
 
 .progress {
-  background-color: var(--bg-tertiary-light);
+  background-color: #f8fafc;
 }
 
 .progress::-webkit-progress-bar {
-  background-color: var(--bg-tertiary-light);
+  background-color: #f8fafc;
 }
 
 .progress::-webkit-progress-value {
-  background-color: var(--brand-primary);
+  background-color: #4573df;
   transition: width 180ms cubic-bezier(.2,.6,.2,1);
 }
 
 .progress::-moz-progress-bar {
-  background-color: var(--brand-primary);
+  background-color: #4573df;
   transition: width 180ms cubic-bezier(.2,.6,.2,1);
 }
 
 .progressText {
-  color: var(--text-secondary-light);
+  color: #64748b;
 }
 
 .completionDate {
-    color: var(--text-tertiary-light);
+    color: #94a3b8;
 }

@@ -1,1 +1,27 @@
-.wrapper{background:#1e293b;border-color:#334155}.thead{border-color:#475569;background:#0f172a}.th{color:#e2e8f0}.tr{border-color:#334155}.tr:hover{background:#334155}.td{color:#f8fafc}
+/* @AI-HINT: Dark theme styles for DataTable component. */
+
+.wrapper {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.thead {
+  border-color: #475569;
+  background: rgba(15, 23, 42, 0.6);
+}
+
+.th {
+  color: #cbd5e1;
+}
+
+.tr {
+  border-color: rgba(51, 65, 85, 0.5);
+}
+
+.tr:hover {
+  background: rgba(51, 65, 85, 0.4);
+}
+
+.td {
+  color: #e2e8f0;
+}

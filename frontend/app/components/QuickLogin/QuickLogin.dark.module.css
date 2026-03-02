@@ -1,4 +1,4 @@
-/* @AI-HINT: Dev-only quick login button - dark theme colors */
+﻿/* @AI-HINT: Dev-only quick login button - dark theme colors */
 
 .card {
   background-color: rgba(30, 30, 30, 0.95);
@@ -7,17 +7,17 @@
 }
 
 .footer {
-  color: var(--muted-foreground, #94a3b8);
+  color: #94a3b8;
 }
 
 .toggleButtonOpen {
-  background-color: var(--muted, #334155);
-  color: var(--muted-foreground, #94a3b8);
+  background-color: #334155;
+  color: #94a3b8;
 }
 
 .toggleButtonClosed {
-  background-color: var(--primary, #4573df);
-  color: var(--primary-foreground, #ffffff);
+  background-color: #4573df;
+  color: #ffffff;
 }
 
 .adminButton {

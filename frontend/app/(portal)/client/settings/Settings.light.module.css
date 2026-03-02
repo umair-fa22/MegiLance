@@ -1,47 +1,47 @@
 /* AI-HINT: Light theme styles for the Client Settings page. */
 
 .title {
-    color: var(--color-text-primary-light);
+    color: #0f172a;
 }
 
 .subtitle {
-  color: var(--color-text-secondary-light);
+  color: #475569;
 }
 
 .navButton {
-  color: var(--color-text-secondary-light);
+  color: #475569;
 }
 
 .navButton:hover {
-  background-color: var(--color-background-secondary-light);
-  color: var(--color-text-primary-light);
+  background-color: #f8fafc;
+  color: #0f172a;
 }
 
 .navButtonActive {
-  background-color: var(--color-primary-light-accent);
-  color: var(--color-primary-deep);
-  font-weight: var(--font-weight-semibold);
+  background-color: rgba(69,115,223,0.10);
+  color: #2a4a9e;
+  font-weight: 600;
 }
 
 .navButtonActive .navIcon {
-    color: var(--color-primary-deep);
+    color: #2a4a9e;
 }
 
 .actionRow {
-    background-color: var(--color-background-secondary-light);
-    border: 1px solid var(--color-border-light);
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
 }
 
 .actionDescription {
-    color: var(--color-text-secondary-light);
+    color: #475569;
 }
 
 .link {
-    color: var(--color-primary-light);
+    color: #4573df;
 }
 
 .link:hover {
-    color: var(--color-primary-deep);
+    color: #2a4a9e;
 }
 
 .alertSuccess { background-color: #dcfce7; color: #166534; }

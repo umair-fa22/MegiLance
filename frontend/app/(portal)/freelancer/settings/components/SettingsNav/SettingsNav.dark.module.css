@@ -1,20 +1,20 @@
-/* @AI-HINT: Dark theme styles for the SettingsNav component. */
+﻿/* @AI-HINT: Dark theme styles for the SettingsNav component. */
 
 .navLink {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .navLink:hover {
-  background-color: var(--bg-tertiary-dark);
-  color: var(--text-primary-dark);
+  background-color: #1e293b;
+  color: #f8fafc;
 }
 
 .active {
-  background-color: var(--brand-primary-dark-active-faded);
-  color: var(--brand-primary-dark-active);
+  background-color: rgba(107,141,230,0.20);
+  color: #5a8af2;
   font-weight: 600;
 }
 
 .active .navIcon {
-  color: var(--brand-primary-dark-active);
+  color: #5a8af2;
 }

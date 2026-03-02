@@ -1,18 +1,67 @@
 /* AI-HINT: Dark theme overrides for Teams page. */
 
-.themeWrapper { background: linear-gradient(170deg, #0f172a 0%, #0f172a 40%, #0f1225 100%); color: var(--text-primary); }
-.subtitle { color: var(--text-secondary); }
+.themeWrapper {
+  background: linear-gradient(170deg, #0f172a 0%, #0f172a 40%, #0f1225 100%);
+  color: #f8fafc;
+}
 
-.card { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(51, 65, 85, 0.5); }
-.card:hover { box-shadow: 0 8px 24px rgba(69, 115, 223, 0.15); }
-.name { color: var(--text-primary); }
-.role, .bio { color: var(--text-secondary); }
+.subtitle {
+  color: #94a3b8;
+}
 
-.valueCard { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(51, 65, 85, 0.5); }
-.valueCard:hover { box-shadow: 0 8px 20px rgba(69, 115, 223, 0.12); }
-.valueTitle { color: var(--text-primary); }
+.card {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+}
 
-.button { background: linear-gradient(135deg, #4573df 0%, #2563eb 100%); color: var(--text-on-primary); box-shadow: 0 4px 14px rgba(69, 115, 223, 0.3); }
-.button:hover { filter: brightness(1.06); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(69, 115, 223, 0.4); }
-.buttonSecondary { color: var(--text-primary); border: 1px solid rgba(51, 65, 85, 0.5); backdrop-filter: blur(8px); }
-.buttonSecondary:hover { background: rgba(30, 41, 59, 0.5); }
+.card:hover {
+  box-shadow: 0 8px 24px rgba(69, 115, 223, 0.15);
+}
+
+.name {
+  color: #f8fafc;
+}
+
+.role,
+.bio {
+  color: #94a3b8;
+}
+
+.valueCard {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+.valueCard:hover {
+  box-shadow: 0 8px 20px rgba(69, 115, 223, 0.12);
+}
+
+.valueTitle {
+  color: #f8fafc;
+}
+
+.button {
+  background: linear-gradient(135deg, #4573df 0%, #2563eb 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(69, 115, 223, 0.3);
+}
+
+.button:hover {
+  filter: brightness(1.06);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(69, 115, 223, 0.4);
+}
+
+.buttonSecondary {
+  color: #cbd5e1;
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+.buttonSecondary:hover {
+  background: rgba(30, 41, 59, 0.5);
+}

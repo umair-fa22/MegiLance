@@ -1,22 +1,22 @@
 /* AI-HINT: Light theme styles for the ActionMenu component. */
 
 .menu {
-  background-color: var(--color-background-secondary-light);
-  border-color: var(--color-border-light);
+  background-color: #f8fafc;
+  border-color: #e2e8f0;
 }
 
 .menuItem {
-  color: var(--color-text-primary-light);
+  color: #0f172a;
 }
 
 .menuItem:hover:not(:disabled) {
-  background-color: var(--color-background-tertiary-light);
+  background-color: #f1f5f9;
 }
 
 .itemIcon {
-  color: var(--color-icon-secondary-light);
+  color: #64748b;
 }
 
 .separator {
-  background-color: var(--color-border-light);
+  background-color: #e2e8f0;
 }

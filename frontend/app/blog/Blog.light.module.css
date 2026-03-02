@@ -1,4 +1,4 @@
-/* @AI-HINT: Light theme — hero, filters, trending, newsletter */
+﻿/* @AI-HINT: Light theme â€” hero, filters, trending, newsletter */
 .hero {
   background: linear-gradient(135deg, rgba(69,115,223,0.06) 0%, rgba(255,152,0,0.04) 100%);
   border: 1px solid rgba(0,0,0,0.05);
@@ -7,29 +7,29 @@
   background: rgba(69,115,223,0.1);
   color: #4573df;
 }
-.heroTitle { color: var(--text-light-primary, #1a1a2e); }
-.heroSubtitle { color: var(--text-light-secondary, #555); }
+.heroTitle { color: #1a1a2e; }
+.heroSubtitle { color: #555; }
 
 /* Search */
 .searchBar {
-  background: var(--surface-light, #fff);
+  background: #fff;
   border: 1px solid rgba(0,0,0,0.08);
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
-.searchInput { color: var(--text-light-primary, #1a1a2e); }
+.searchInput { color: #1a1a2e; }
 .searchInput::placeholder { color: rgba(0,0,0,0.35); }
 
 /* Filters */
 .filterChip {
   background: rgba(0,0,0,0.03);
-  color: var(--text-light-secondary, #555);
+  color: #555;
 }
 .filterChip:hover { background: rgba(69,115,223,0.08); color: #4573df; }
 .filterActive { background: #4573df !important; color: #fff !important; }
 
 /* Trending */
 .trendingCard {
-  background: var(--surface-light, #fff);
+  background: #fff;
   border: 1px solid rgba(0,0,0,0.05);
   box-shadow: 0 1px 3px rgba(0,0,0,0.03);
 }
@@ -43,7 +43,7 @@
   border: 1px solid rgba(0,0,0,0.05);
 }
 .newsletterInput {
-  background: var(--surface-light, #fff);
+  background: #fff;
   border-color: rgba(0,0,0,0.08);
-  color: var(--text-light-primary, #1a1a2e);
+  color: #1a1a2e;
 }

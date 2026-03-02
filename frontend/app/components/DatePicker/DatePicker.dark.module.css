@@ -1,20 +1,20 @@
-/* @AI-HINT: Dark theme styles for the DatePicker component with enhanced visual effects. */
+﻿/* @AI-HINT: Dark theme styles for the DatePicker component with enhanced visual effects. */
 
 .datePickerWrapper {
-  color: var(--text-primary-f5f7fa);
+  color: #f8fafc;
 }
 
 .label {
-  color: var(--text-primary-f5f7fa);
+  color: #f8fafc;
 }
 
 .required {
-  color: var(--error-e81123);
+  color: #f87171;
 }
 
 .inputContainer {
   border-color: rgba(55, 65, 81, 0.7);
-  background-color: var(--surface-272b32);
+  background-color: #1e293b;
 }
 
 .inputContainer:hover:not(.disabled) {
@@ -22,15 +22,15 @@
 }
 
 .inputIcon {
-  color: var(--text-secondary-a9b1bd);
+  color: #94a3b8;
 }
 
 .inputText {
-  color: var(--text-primary-f5f7fa);
+  color: #f8fafc;
 }
 
 .placeholder {
-  color: var(--text-secondary-a9b1bd);
+  color: #94a3b8;
 }
 
 .clearIcon:hover {
@@ -38,7 +38,7 @@
 }
 
 .calendarContainer {
-  background-color: var(--surface-272b32);
+  background-color: #1e293b;
   border: 1px solid rgba(55, 65, 81, 0.7);
 }
 
@@ -48,7 +48,7 @@
 
 .presetButton {
   border-color: rgba(55, 65, 81, 0.7);
-  color: var(--text-primary-f5f7fa);
+  color: #f8fafc;
 }
 
 .presetButton:hover {
@@ -65,7 +65,7 @@
 }
 
 .monthYear {
-  color: var(--text-primary-f5f7fa);
+  color: #f8fafc;
 }
 
 .dayNames {
@@ -73,19 +73,19 @@
 }
 
 .dayName {
-  color: var(--text-secondary-a9b1bd);
+  color: #94a3b8;
 }
 
 .calendarDay {
-  color: var(--text-primary-f5f7fa);
+  color: #f8fafc;
 }
 
 .today::after {
-  background-color: var(--primary-4573df);
+  background-color: #6b8de6;
 }
 
 .otherMonth {
-  color: var(--text-secondary-a9b1bd);
+  color: #94a3b8;
 }
 
 .calendarFooter {
@@ -94,7 +94,7 @@
 
 .clearButton {
   border-color: rgba(55, 65, 81, 0.7);
-  color: var(--text-primary-f5f7fa);
+  color: #f8fafc;
 }
 
 .clearButton:hover {
@@ -103,26 +103,26 @@
 
 .timeSelect {
   border-color: rgba(55, 65, 81, 0.7);
-  color: var(--text-primary-f5f7fa);
-  background-color: var(--surface-272b32);
+  color: #f8fafc;
+  background-color: #1e293b;
 }
 
 .timeSelect:focus {
-  outline: 2px solid var(--primary-4573df);
+  outline: 2px solid #6b8de6;
   outline-offset: 2px;
 }
 
 .errorMessage {
-  color: var(--error-e81123);
+  color: #f87171;
 }
 
 /* Focus states */
 .inputContainer:focus-within {
-  border-color: var(--primary-4573df);
-  outline-color: var(--primary-4573df);
+  border-color: #6b8de6;
+  outline-color: #6b8de6;
 }
 
 /* Error states */
 .error {
-  border-color: var(--error-e81123);
+  border-color: #f87171;
 }

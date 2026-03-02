@@ -1,86 +1,86 @@
-.container {
-  background-color: var(--bg-primary-dark);
+﻿.container {
+  background-color: #1e293b;
 }
 
 .title {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .description {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .toggleAllRow {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .toggleAllButton {
-  background-color: var(--bg-tertiary-dark);
-  color: var(--text-secondary-dark);
+  background-color: #1e293b;
+  color: #94a3b8;
 }
 
 .toggleAllButton:hover {
-  background-color: var(--primary-dark);
+  background-color: #6b8de6;
   color: white;
 }
 
 .termsSection {
-  background-color: var(--bg-secondary-dark);
-  border: 1px solid var(--border-dark);
+  background-color: #0f172a;
+  border: 1px solid #334155;
 }
 
 .sectionHeader {
-  background-color: var(--bg-secondary-dark);
-  color: var(--text-primary-dark);
+  background-color: #0f172a;
+  color: #f8fafc;
 }
 
 .sectionHeader:hover {
-  background-color: var(--bg-tertiary-dark);
+  background-color: #1e293b;
 }
 
 .sectionTitleWrapper {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .sectionIcon {
-  color: var(--primary-dark);
+  color: #6b8de6;
 }
 
 .sectionTitle {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .termsList {
-  background-color: var(--bg-secondary-dark);
+  background-color: #0f172a;
 }
 
 .termsItem {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .itemIcon {
-  color: var(--primary-dark);
+  color: #6b8de6;
 }
 
 .agreement {
-  background-color: var(--bg-secondary-dark);
-  border: 1px solid var(--border-dark);
+  background-color: #0f172a;
+  border: 1px solid #334155;
 }
 
 .agreementAccepted {
   background-color: rgba(39, 174, 96, 0.15);
-  border-color: var(--success-dark);
+  border-color: #22c55e;
 }
 
 .agreementLabel {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .error {
-  color: var(--error-dark);
+  color: #f87171;
 }
 
 .successMessage {
   background-color: rgba(39, 174, 96, 0.15);
-  color: var(--success-dark);
+  color: #22c55e;
 }

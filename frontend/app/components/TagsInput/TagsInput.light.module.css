@@ -1,30 +1,30 @@
-/* AI-HINT: Light theme styles for the TagsInput component. */
+﻿/* AI-HINT: Light theme styles for the TagsInput component. */
 
 .label {
-  color: var(--text-secondary);
+  color: #64748b;
 }
 
 .input_wrapper {
-  background-color: var(--surface);
-  border-color: var(--border);
+  background-color: #ffffff;
+  border-color: #e2e8f0;
 }
 
 .input_wrapper:focus-within {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px var(--primary-focus-shadow);
+  border-color: #4573df;
+  box-shadow: 0 0 0 2px rgba(69,115,223,0.25);
 }
 
 .error_border {
-  border-color: var(--error) !important;
+  border-color: #e81123 !important;
 }
 
 .tag {
-  background-color: var(--primary-light-bg);
-  color: var(--primary);
+  background-color: rgba(69,115,223,0.08);
+  color: #4573df;
 }
 
 .remove_button {
-  color: var(--primary);
+  color: #4573df;
 }
 
 .remove_button:hover {
@@ -32,13 +32,13 @@
 }
 
 .input {
-  color: var(--text-primary);
+  color: #0f172a;
 }
 
 .input::placeholder {
-  color: var(--text-tertiary);
+  color: #94a3b8;
 }
 
 .error_message {
-  color: var(--error);
+  color: #e81123;
 }

@@ -1,18 +1,18 @@
 /* AI-HINT: Dark theme overrides for Admin Payments page. */
 
-.themeWrapper { background: var(--surface); color: var(--text-primary); }
-.subtitle { color: var(--text-secondary); }
+.themeWrapper { background: #1e293b; color: #f8fafc; }
+.subtitle { color: #94a3b8; }
 
-.input, .select { background: var(--surface-elev); border: 1px solid var(--border); color: var(--text-primary); }
-.button { background: var(--primary); color: white; border: 1px solid rgba(0,0,0,0.2); }
-.button.secondary { background: var(--surface-elev); color: var(--text-primary); border: 1px solid var(--border); }
+.input, .select { background: #0f172a; border: 1px solid #334155; color: #f8fafc; }
+.button { background: #6b8de6; color: white; border: 1px solid rgba(0,0,0,0.2); }
+.button.secondary { background: #0f172a; color: #f8fafc; border: 1px solid #334155; }
 
-.card { background: var(--surface-elev); border: 1px solid var(--border); }
-.cardTitle { color: var(--text-primary); }
-.metric { color: var(--text-primary); }
+.card { background: #0f172a; border: 1px solid #334155; }
+.cardTitle { color: #f8fafc; }
+.metric { color: #f8fafc; }
 
-.table { background: var(--surface-elev); }
-.th { color: var(--text-secondary); border-bottom-color: var(--border); }
-.td { color: var(--text-primary); border-bottom-color: var(--border); }
+.table { background: #0f172a; }
+.th { color: #94a3b8; border-bottom-color: #334155; }
+.td { color: #f8fafc; border-bottom-color: #334155; }
 
-.badge { background: var(--surface); border-color: var(--border); color: var(--text-primary); }
+.badge { background: #1e293b; border-color: #334155; color: #f8fafc; }

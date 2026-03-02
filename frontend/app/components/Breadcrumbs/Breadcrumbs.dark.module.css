@@ -1,11 +1,11 @@
 .link {
-  color: var(--text-secondary);
+  color: #94a3b8;
 }
 
 .link:hover {
-  color: var(--primary);
+  color: #6b8de6;
 }
 
 .current {
-  color: var(--text-primary);
+  color: #f8fafc;
 }

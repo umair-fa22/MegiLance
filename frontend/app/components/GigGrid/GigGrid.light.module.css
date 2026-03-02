@@ -1,75 +1,75 @@
-/* @AI-HINT: Light theme colors for GigGrid component */
+﻿/* @AI-HINT: Light theme colors for GigGrid component */
 .theme {
-  color: var(--color-text-primary-light, #1f2937);
+  color: #1f2937;
 }
 
 .title {
-  color: var(--color-text-primary-light, #1f2937);
+  color: #1f2937;
 }
 
 .subtitle {
-  color: var(--color-text-secondary-light, #64748b);
+  color: #64748b;
 }
 
 .resultsCount {
-  color: var(--color-text-secondary-light, #64748b);
+  color: #64748b;
 }
 
 .sortDropdown {
-  background-color: var(--color-background-light, #ffffff);
-  border: 1px solid var(--color-border-light, #e2e8f0);
-  color: var(--color-text-primary-light, #1f2937);
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #1f2937;
 }
 
 .sortDropdown:focus {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid #4573df;
   outline-offset: 2px;
 }
 
 .viewButton {
-  background-color: var(--color-background-alt-light, #f1f5f9);
-  color: var(--color-text-secondary-light, #64748b);
+  background-color: #f1f5f9;
+  color: #64748b;
 }
 
 .viewButton.active {
-  background-color: var(--color-primary, #4573df);
+  background-color: #4573df;
   color: #ffffff;
 }
 
 .viewButton:hover:not(.active) {
-  background-color: var(--color-background-hover-light, #e2e8f0);
+  background-color: #e2e8f0;
 }
 
 .emptyIcon {
-  background-color: var(--color-background-alt-light, #f1f5f9);
-  color: var(--color-text-secondary-light, #94a3b8);
+  background-color: #f1f5f9;
+  color: #94a3b8;
 }
 
 .emptyTitle {
-  color: var(--color-text-primary-light, #1f2937);
+  color: #1f2937;
 }
 
 .emptyDescription {
-  color: var(--color-text-secondary-light, #64748b);
+  color: #64748b;
 }
 
 .skeletonCard {
-  background-color: var(--color-background-alt-light, #f1f5f9);
+  background-color: #f1f5f9;
 }
 
 .pageButton {
-  background-color: var(--color-background-light, #ffffff);
-  border: 1px solid var(--color-border-light, #e2e8f0);
-  color: var(--color-text-primary-light, #1f2937);
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #1f2937;
 }
 
 .pageButton:hover:not(:disabled) {
-  border-color: var(--color-primary, #4573df);
-  color: var(--color-primary, #4573df);
+  border-color: #4573df;
+  color: #4573df;
 }
 
 .pageButton.active {
-  background-color: var(--color-primary, #4573df);
-  border-color: var(--color-primary, #4573df);
+  background-color: #4573df;
+  border-color: #4573df;
   color: #ffffff;
 }

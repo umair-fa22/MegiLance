@@ -1,22 +1,22 @@
-/* @AI-HINT: Dark theme styles for Proposals page. */
+﻿/* @AI-HINT: Dark theme styles for Proposals page. */
 
 /* @AI-HINT: Dark theme styles for the Proposals page. */
 
 .container {
-  background-color: var(--bg-primary-dark);
+  background-color: #1e293b;
 }
 
 .title {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .toolbarContainer {
-  background-color: var(--bg-secondary-dark);
-  border: 1px solid var(--border-dark);
+  background-color: #0f172a;
+  border: 1px solid #334155;
 }
 
 .input { background: #0b1220; border-color: #1e293b; color: #e2e8f0; }
@@ -29,20 +29,20 @@
 .table tbody tr + tr td { border-top: 1px solid #0f172a; }
 
 .emptyState {
-  background-color: var(--bg-secondary-dark);
-  border: 1px dashed var(--border-dark);
+  background-color: #0f172a;
+  border: 1px dashed #334155;
 }
 
 .emptyTitle {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .emptyText {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .modalText {
-    color: var(--text-secondary-dark);
+    color: #94a3b8;
 }
 
 .status { background: #1e293b; color: #c7d2fe; }

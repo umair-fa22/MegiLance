@@ -1,57 +1,57 @@
 /* AI-HINT: Dark theme styles for the UserSearchTable component. */
 
 .container {
-  background-color: var(--color-background-primary-dark);
+  background-color: #0f172a;
 }
 
 .title {
-  color: var(--color-text-primary-dark);
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: var(--color-text-secondary-dark);
+  color: #cbd5e1;
 }
 
 .userCard {
-  background-color: var(--color-background-secondary-dark);
-  border-color: var(--color-border-dark);
-  box-shadow: var(--shadow-sm-dark);
+  background-color: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .userCard:hover {
-  border-color: var(--color-border-hover-dark);
-  box-shadow: var(--shadow-md-dark);
+  border-color: #475569;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.2);
 }
 
 .userName {
-  color: var(--color-text-primary-dark);
+  color: #f8fafc;
 }
 
 .userEmail {
-  color: var(--color-text-tertiary-dark);
+  color: #64748b;
 }
 
 .infoRow {
-  color: var(--color-text-secondary-dark);
+  color: #cbd5e1;
 }
 
 .infoIcon {
-  color: var(--color-icon-secondary-dark);
+  color: #94a3b8;
 }
 
 .emptyState {
-  background-color: var(--color-background-secondary-dark);
-  border-color: var(--color-border-dark);
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
 .emptyIcon {
-  color: var(--color-icon-secondary-dark);
+  color: #94a3b8;
 }
 
 .emptyTitle {
-  color: var(--color-text-primary-dark);
+  color: #f8fafc;
 }
 
 .emptyText {
-  color: var(--color-text-secondary-dark);
+  color: #cbd5e1;
 }

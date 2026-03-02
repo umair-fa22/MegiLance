@@ -1,21 +1,63 @@
 /* AI-HINT: Dark theme overrides for Client Project Detail page. */
 
-.themeWrapper { background: var(--surface); color: var(--text-primary); }
-.subtitle { color: var(--text-secondary); }
-.meta { color: var(--text-secondary); }
-.badge { background: var(--surface); border-color: var(--border); color: var(--text-primary); }
+.themeWrapper {
+  background: #0f172a;
+  color: #f8fafc;
+}
 
-.section { background: var(--surface-elev); border: 1px solid var(--border); }
-.sectionTitle { color: var(--text-primary); }
+.subtitle {
+  color: #94a3b8;
+}
 
-.item { background: var(--surface); border: 1px solid var(--border); }
+.meta {
+  color: #94a3b8;
+}
 
-.button.primary { background: var(--primary); color: white; border: 1px solid rgba(0,0,0,0.2); }
-.button.secondary { background: var(--surface-elev); color: var(--text-primary); border: 1px solid var(--border); }
+.badge {
+  background: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
+}
 
-.proposalCard { background: var(--surface-elev); border-color: var(--border); }
-.proposalCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-.emptyState { color: var(--text-secondary); }
+.section {
+  background: #1e293b;
+  border: 1px solid #334155;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.sectionTitle {
+  color: #f8fafc;
+}
+
+.item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid #334155;
+}
+
+.button.primary {
+  background: #4573df;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.button.secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+  border: 1px solid #334155;
+}
+
+.proposalCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #334155;
+}
+
+.proposalCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.emptyState {
+  color: #94a3b8;
+}
 
 /* Toast */
 .toast {

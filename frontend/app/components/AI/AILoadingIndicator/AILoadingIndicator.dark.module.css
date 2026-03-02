@@ -1,20 +1,20 @@
-/* @AI-HINT: AI Loading Indicator - Dark theme */
+﻿/* @AI-HINT: AI Loading Indicator - Dark theme */
 
 .spinnerRing {
   border-color: rgba(255, 255, 255, 0.1);
-  border-top-color: var(--ml-blue-light, #6b93e8);
+  border-top-color: #6b93e8;
 }
 
 .aiBrainIcon {
-  color: var(--ml-blue-light, #6b93e8);
+  color: #6b93e8;
 }
 
 .aiBrainGlow {
-  background: linear-gradient(135deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(135deg, #4573df, #9b59b6);
 }
 
 .dot {
-  background: var(--ml-blue-light, #6b93e8);
+  background: #6b93e8;
 }
 
 .progressBar {
@@ -22,11 +22,11 @@
 }
 
 .progressBarIndeterminate::after {
-  background: linear-gradient(90deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(90deg, #4573df, #9b59b6);
 }
 
 .progressFill {
-  background: linear-gradient(90deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(90deg, #4573df, #9b59b6);
 }
 
 .label {
@@ -38,28 +38,28 @@
 }
 
 .statusProcessing .spinnerRing {
-  border-top-color: var(--ml-blue-light, #6b93e8);
+  border-top-color: #6b93e8;
 }
 
 .statusProcessing .label {
-  color: var(--ml-blue-light, #6b93e8);
+  color: #6b93e8;
 }
 
 .statusSuccess .successCheck {
-  background: var(--ml-green, #27AE60);
+  background: #27AE60;
   color: #ffffff;
 }
 
 .statusSuccess .label {
-  color: var(--ml-green-light, #4cd787);
+  color: #4cd787;
 }
 
 .statusWarning .spinnerRing {
-  border-top-color: var(--ml-warning, #F2C94C);
+  border-top-color: #F2C94C;
 }
 
 .statusWarning .label {
-  color: var(--ml-warning, #F2C94C);
+  color: #F2C94C;
 }
 
 .statusError .label {
@@ -79,7 +79,7 @@
 }
 
 .confidenceFill {
-  background: linear-gradient(90deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(90deg, #4573df, #9b59b6);
 }
 
 .confidenceFillLow {
@@ -87,11 +87,11 @@
 }
 
 .confidenceFillMedium {
-  background: var(--ml-warning, #F2C94C);
+  background: #F2C94C;
 }
 
 .confidenceFillHigh {
-  background: var(--ml-green-light, #4cd787);
+  background: #4cd787;
 }
 
 .skeleton {

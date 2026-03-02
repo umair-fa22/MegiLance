@@ -1,16 +1,46 @@
 /* AI-HINT: Light theme overrides for Admin Settings page. */
 
-.themeWrapper { background: var(--surface); color: var(--text-primary); }
-.subtitle { color: var(--text-secondary); }
+.themeWrapper {
+  background: #f8fafc;
+  color: #0f172a;
+}
 
-.section { background: var(--surface-elev); border: 1px solid var(--border); }
-.sectionTitle { color: var(--text-primary); }
+.subtitle {
+  color: #64748b;
+}
 
-.input, .select, .textarea { background: var(--surface); border: 1px solid var(--border); color: var(--text-primary); }
-.help { color: var(--text-secondary); }
+.section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
 
-.button.primary { background: var(--primary); color: white; border: 1px solid rgba(0,0,0,0.12); }
-.button.secondary { background: var(--surface-elev); color: var(--text-primary); border: 1px solid var(--border); }
+.sectionTitle {
+  color: #0f172a;
+}
+
+.input,
+.select,
+.textarea {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+}
+
+.help {
+  color: #64748b;
+}
+
+.button.primary {
+  background: #4573df;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.button.secondary {
+  background: #ffffff;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
 
 /* Toast */
 .toast {

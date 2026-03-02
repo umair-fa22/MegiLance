@@ -1,7 +1,14 @@
-/* @AI-HINT: New Message page layout */
+/* @AI-HINT: New Message page layout — container for MessagingWizard. */
 
 .pageContainer {
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  min-height: calc(100vh - 200px);
+  animation: fadeInUp 0.4s ease-out;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }

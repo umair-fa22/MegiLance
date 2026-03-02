@@ -1,83 +1,83 @@
-/* @AI-HINT: Dark theme styles for Button component. */
+﻿/* @AI-HINT: Dark theme styles for Button component. */
 .primary {
-  background-color: var(--primary-4573df);
-  color: var(--text-on-primary-ffffff);
-  border-color: var(--primary-4573df);
+  background-color: #6b8de6;
+  color: #ffffff;
+  border-color: #6b8de6;
 }
 
 .primary:hover:not(:disabled) {
-  background-color: color-mix(in oklab, var(--primary-4573df) 90%, white);
-  border-color: color-mix(in oklab, var(--primary-4573df) 90%, white);
+  background-color: #4573df 90%, white);
+  border-color: #4573df 90%, white);
 }
 
 .secondary {
-  background-color: var(--background-1d2127);
-  color: var(--text-primary-f5f7fa);
-  border-color: var(--border-3a414a);
+  background-color: #1d2127;
+  color: #f8fafc;
+  border-color: #334155;
 }
 
 .secondary:hover:not(:disabled) {
-  background-color: var(--surface-272b32);
-  border-color: color-mix(in oklab, var(--border-3a414a) 80%, white);
+  background-color: #1e293b;
+  border-color: #4573df 80%, white);
 }
 
 .accent {
-  background-color: var(--accent-ff9800);
-  color: var(--text-on-accent-ffffff);
-  border-color: var(--accent-ff9800);
+  background-color: #ff9800;
+  color: #ffffff;
+  border-color: #ff9800;
 }
 
 .accent:hover:not(:disabled) {
-  background-color: color-mix(in oklab, var(--accent-ff9800) 90%, white);
-  border-color: color-mix(in oklab, var(--accent-ff9800) 90%, white);
+  background-color: #4573df 90%, white);
+  border-color: #4573df 90%, white);
 }
 
 .destructive {
-  background-color: var(--error-e81123);
-  color: var(--text-on-primary-ffffff);
-  border-color: var(--error-e81123);
+  background-color: #f87171;
+  color: #ffffff;
+  border-color: #f87171;
 }
 
 .destructive:hover:not(:disabled) {
-  background-color: color-mix(in oklab, var(--error-e81123) 90%, white);
-  border-color: color-mix(in oklab, var(--error-e81123) 90%, white);
+  background-color: #4573df 90%, white);
+  border-color: #4573df 90%, white);
 }
 
 .ghost {
   background-color: transparent;
-  color: var(--text-primary-f5f7fa);
+  color: #f8fafc;
   border-color: transparent;
 }
 
 .ghost:hover:not(:disabled) {
-  background-color: var(--surface-272b32);
+  background-color: #1e293b;
 }
 
 .link {
   background-color: transparent;
-  color: var(--primary-4573df);
+  color: #6b8de6;
   border-color: transparent;
   text-decoration: none;
 }
 
 .link:hover:not(:disabled) {
   background-color: transparent;
-  color: color-mix(in oklab, var(--primary-4573df) 80%, white);
+  color: #4573df 80%, white);
 }
 
 .outline {
   background-color: transparent;
-  color: var(--text-primary-f5f7fa);
-  border-color: var(--border-3a414a);
+  color: #f8fafc;
+  border-color: #334155;
 }
 
 .outline:hover:not(:disabled) {
-  background-color: var(--surface-272b32);
-  border-color: color-mix(in oklab, var(--border-3a414a) 80%, white);
+  background-color: #1e293b;
+  border-color: #4573df 80%, white);
 }
 
 .disabled {
-  background-color: var(--surface-272b32);
-  color: var(--text-secondary-a9b1bd);
-  border-color: var(--border-3a414a);
+  background-color: #1e293b;
+  color: #94a3b8;
+  border-color: #334155;
 }

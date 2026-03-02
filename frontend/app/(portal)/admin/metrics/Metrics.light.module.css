@@ -1,4 +1,4 @@
-/* @AI-HINT: Admin metrics dashboard light theme colors */
+﻿/* @AI-HINT: Admin metrics dashboard light theme colors */
 
 .container {
   background-color: #f8fafc;
@@ -112,8 +112,6 @@
 .healthItem {
   background: #f8fafc;
 }
-
-
 
 .serviceName {
   color: #0f172a;

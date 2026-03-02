@@ -1,4 +1,4 @@
-/* @AI-HINT: Light theme styles for Settings page */
+﻿/* @AI-HINT: Light theme styles for Settings page */
 
 .page {
   background-color: transparent;
@@ -6,39 +6,39 @@
 
 .headerIcon {
   background-color: rgba(69, 115, 223, 0.08);
-  color: var(--color-primary, #4573df);
+  color: #4573df;
 }
 
 .title {
-  color: var(--text-primary-light, #0f172a);
+  color: #0f172a;
 }
 
 .subtitle {
-  color: var(--text-secondary-light, #64748b);
+  color: #64748b;
 }
 
 .searchBox {
-  background-color: var(--neutral-50, #f8fafc);
+  background-color: #f8fafc;
   border-radius: 10px;
 }
 
 .searchInput {
   background: transparent;
-  color: var(--text-primary-light, #0f172a);
-  border-color: var(--border-light, #e2e8f0);
+  color: #0f172a;
+  border-color: #e2e8f0;
 }
 
 .searchInput::placeholder {
-  color: var(--text-tertiary-light, #94a3b8);
+  color: #94a3b8;
 }
 
 .categoryLabel {
-  color: var(--text-tertiary-light, #94a3b8);
+  color: #94a3b8;
 }
 
 .card {
   background-color: #ffffff;
-  border-color: var(--border-light, #e2e8f0);
+  border-color: #e2e8f0;
 }
 
 .card:hover {
@@ -47,27 +47,27 @@
 }
 
 .cardIcon {
-  background-color: var(--neutral-50, #f8fafc);
-  color: var(--color-primary, #4573df);
+  background-color: #f8fafc;
+  color: #4573df;
 }
 
 .cardTitle {
-  color: var(--text-primary-light, #0f172a);
+  color: #0f172a;
 }
 
 .cardDesc {
-  color: var(--text-secondary-light, #64748b);
+  color: #64748b;
 }
 
 .cardArrow {
-  color: var(--text-tertiary-light, #94a3b8);
+  color: #94a3b8;
 }
 
 .cardBadge {
   background-color: rgba(69, 115, 223, 0.1);
-  color: var(--color-primary, #4573df);
+  color: #4573df;
 }
 
 .emptyState {
-  color: var(--text-tertiary-light, #94a3b8);
+  color: #94a3b8;
 }

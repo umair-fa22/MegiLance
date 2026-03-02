@@ -1,69 +1,91 @@
 .root {
-  color: var(--ml-fg, #0b1220);
+  color: #0b1220;
 }
 
 .hero {
-  color: var(--ml-fg-muted, rgba(11,18,32,0.8));
+  color: rgba(11, 18, 32, 0.8);
 }
 
 .title {
-  color: var(--ml-fg, #0b1220);
+  color: #0b1220;
 }
 
 .subtitle {
-  color: var(--ml-fg-muted, rgba(11,18,32,0.8));
+  color: rgba(11, 18, 32, 0.8);
 }
 
 .card {
-  background: var(--ml-surface, #ffffff);
-  box-shadow: 0 1px 2px rgba(16,24,40,0.06), 0 1px 1px rgba(16,24,40,0.04);
-  --outline-fallback: var(--brand, #4573df);
-  outline-color: var(--brand, #4573df);
-  outline: 2px solid var(--brand, #4573df);
-  outline: 2px solid color-mix(in srgb, var(--brand, #4573df) 60%, white);
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06), 0 1px 2px rgba(16, 24, 40, 0.04);
+  outline: 2px solid rgba(69, 115, 223, 0.25);
 }
 
 .card:hover {
-  box-shadow: 0 8px 28px rgba(16,24,40,0.08);
+  box-shadow: 0 8px 28px rgba(16, 24, 40, 0.1);
+  outline-color: rgba(69, 115, 223, 0.45);
 }
 
 .card:focus-within {
-  outline: 2px solid color-mix(in srgb, var(--brand, #4573df) 60%, white);
+  outline: 2px solid #4573df;
 }
 
 .cardTitle {
-  color: var(--ml-fg, #0b1220);
+  color: #0b1220;
 }
 
 .cardBody {
-  color: var(--ml-fg-muted, rgba(11,18,32,0.8));
+  color: rgba(11, 18, 32, 0.8);
 }
 
 .valueItem {
-  background: color-mix(in srgb, var(--brand, #4573df) 10%, white);
+  background: rgba(69, 115, 223, 0.08);
 }
 
 .timeline {
-  color: var(--ml-fg, #0b1220);
+  color: #0b1220;
 }
 
 .milestone {
   background: #ffffff;
-  box-shadow: 0 1px 2px rgba(16,24,40,0.06);
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
 }
 
 .ctaBtn {
-  background: var(--brand, #4573df);
-  color: white;
-  box-shadow: 0 6px 16px rgba(69,115,223,0.35);
+  background: #4573df;
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(69, 115, 223, 0.35);
 }
 
 .ctaBtn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(69,115,223,0.45);
+  box-shadow: 0 10px 24px rgba(69, 115, 223, 0.45);
 }
 
 .ctaBtn:active {
   transform: translateY(0);
-  box-shadow: 0 4px 12px rgba(69,115,223,0.25);
+  box-shadow: 0 4px 12px rgba(69, 115, 223, 0.25);
+}
+
+.sectionTitle {
+  color: #0b1220;
+}
+
+.sectionNote {
+  color: #64748b;
+}
+
+.valueTitle {
+  color: #0f172a;
+}
+
+.valueDesc {
+  color: #475569;
+}
+
+.milestoneTitle {
+  color: #0f172a;
+}
+
+.acknowledgementText {
+  color: #475569;
 }

@@ -1,7 +1,7 @@
 /* @AI-HINT: Defines light theme variables for the InstallAppBanner. These are applied to the .installAppBanner class. */
 
 .installAppBanner {
-  --banner-bg-color: var(--surface-primary);
-  --banner-border-color: var(--border-subtle);
-  --banner-text-color: var(--text-primary);
+  --banner-bg-color: #ffffff;
+  --banner-border-color: #e2e8f0;
+  --banner-text-color: #0f172a;
 }

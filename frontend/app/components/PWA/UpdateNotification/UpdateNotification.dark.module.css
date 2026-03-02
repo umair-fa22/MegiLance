@@ -1,7 +1,7 @@
 /* @AI-HINT: Defines dark theme variables for the UpdateNotification. These are applied to the .updateNotification class. */
 
 .updateNotification {
-  --notification-bg-color: var(--surface-info-subtle);
-  --notification-border-color: var(--border-info);
-  --notification-text-color: var(--text-info);
+  --notification-bg-color: rgba(107,141,230,0.10);
+  --notification-border-color: #6b8de6;
+  --notification-text-color: #6b8de6;
 }

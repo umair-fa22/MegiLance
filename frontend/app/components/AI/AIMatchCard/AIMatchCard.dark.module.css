@@ -1,38 +1,38 @@
-/* @AI-HINT: AI Match Card - Dark theme colors */
+﻿/* @AI-HINT: AI Match Card - Dark theme colors */
 
 .card {
   background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
-  border: 1px solid var(--neutral-700, #334155);
-  box-shadow: var(--shadow-lg, 0 10px 24px rgba(0, 0, 0, 0.15));
+  border: 1px solid #334155;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
 }
 
 .card:hover {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(69, 115, 223, 0.15);
-  border-color: var(--ml-blue, #4573df);
+  border-color: #4573df;
 }
 
 .aiBadge {
-  background: linear-gradient(135deg, var(--ml-purple, #9b59b6), var(--ml-blue, #4573df));
+  background: linear-gradient(135deg, #9b59b6, #4573df);
   color: #ffffff;
   box-shadow: 0 2px 12px rgba(155, 89, 182, 0.4);
 }
 
 .avatar {
-  background: linear-gradient(135deg, var(--neutral-700, #334155), var(--neutral-800, #1e293b));
-  color: var(--neutral-300, #cbd5e1);
-  border: 2px solid var(--neutral-600, #475569);
+  background: linear-gradient(135deg, #334155, #1e293b);
+  color: #cbd5e1;
+  border: 2px solid #475569;
 }
 
 .name {
-  color: var(--neutral-50, #f8fafc);
+  color: #f8fafc;
 }
 
 .title {
-  color: var(--neutral-400, #94a3b8);
+  color: #94a3b8;
 }
 
 .meta {
-  color: var(--neutral-500, #64748b);
+  color: #64748b;
 }
 
 .scoreSection {
@@ -41,7 +41,7 @@
 }
 
 .scoreCircleTrack {
-  stroke: var(--neutral-700, #334155);
+  stroke: #334155;
 }
 
 .scoreCircleProgress {
@@ -49,19 +49,19 @@
 }
 
 .scoreCircleProgressExcellent {
-  stroke: var(--ml-green, #27AE60);
+  stroke: #27AE60;
 }
 
 .scoreCircleProgressGood {
-  stroke: var(--ml-blue-light, #6b93f5);
+  stroke: #6b93f5;
 }
 
 .scoreCircleProgressFair {
-  stroke: var(--ml-orange, #ff9800);
+  stroke: #ff9800;
 }
 
 .scoreValue {
-  color: var(--neutral-50, #f8fafc);
+  color: #f8fafc;
 }
 
 .qualityBadge {
@@ -70,44 +70,44 @@
 
 .fitReason {
   background: rgba(69, 115, 223, 0.1);
-  color: var(--neutral-300, #cbd5e1);
+  color: #cbd5e1;
 }
 
 .scoreLabel {
-  color: var(--neutral-400, #94a3b8);
+  color: #94a3b8;
 }
 
 .scoreConfidence {
-  color: var(--neutral-300, #cbd5e1);
+  color: #cbd5e1;
 }
 
 .confidenceBar {
-  background: var(--neutral-700, #334155);
+  background: #334155;
 }
 
 .confidenceFill {
-  background: linear-gradient(90deg, var(--ml-blue-light, #6b93f5), var(--ml-purple-light, #bb6bd9));
+  background: linear-gradient(90deg, #6b93f5, #bb6bd9);
 }
 
 .sectionTitle {
-  color: var(--neutral-400, #94a3b8);
+  color: #94a3b8;
 }
 
 .skill {
-  background: var(--neutral-800, #1e293b);
-  color: var(--neutral-300, #cbd5e1);
-  border: 1px solid var(--neutral-600, #475569);
+  background: #1e293b;
+  color: #cbd5e1;
+  border: 1px solid #475569;
 }
 
 .skill:hover {
-  background: var(--neutral-700, #334155);
-  border-color: var(--neutral-500, #64748b);
+  background: #334155;
+  border-color: #64748b;
 }
 
 .skillMatched {
   background: linear-gradient(135deg, rgba(39, 174, 96, 0.2) 0%, rgba(39, 174, 96, 0.3) 100%);
-  color: var(--ml-green-light, #4cdc8a);
-  border-color: var(--ml-green, #27AE60);
+  color: #4cdc8a;
+  border-color: #27AE60;
 }
 
 .insightsSection {
@@ -116,19 +116,19 @@
 }
 
 .insightItem {
-  color: var(--neutral-300, #cbd5e1);
+  color: #cbd5e1;
 }
 
 .insightIcon {
-  color: var(--ml-green-light, #4cdc8a);
+  color: #4cdc8a;
 }
 
 .actions {
-  border-top-color: var(--neutral-700, #334155);
+  border-top-color: #334155;
 }
 
 .primaryBtn {
-  background: linear-gradient(135deg, var(--ml-blue, #4573df) 0%, var(--ml-purple, #9b59b6) 100%);
+  background: linear-gradient(135deg, #4573df 0%, #9b59b6 100%);
   color: #ffffff;
   box-shadow: 0 10px 40px -10px rgba(69, 115, 223, 0.5);
 }
@@ -138,12 +138,12 @@
 }
 
 .secondaryBtn {
-  background: var(--neutral-800, #1e293b);
-  color: var(--neutral-200, #e2e8f0);
-  border: 1px solid var(--neutral-600, #475569);
+  background: #1e293b;
+  color: #e2e8f0;
+  border: 1px solid #475569;
 }
 
 .secondaryBtn:hover {
-  background: var(--neutral-700, #334155);
-  border-color: var(--neutral-500, #64748b);
+  background: #334155;
+  border-color: #64748b;
 }

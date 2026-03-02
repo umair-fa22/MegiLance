@@ -1,18 +1,18 @@
-/* @AI-HINT: Light theme styles for the reusable Select component. */
+﻿/* @AI-HINT: Light theme styles for the reusable Select component. */
 .label {
-  color: var(--text-secondary-light);
+  color: #64748b;
 }
 
 .select {
-  background-color: var(--bg-primary-light);
-  border-color: var(--border-light);
-  color: var(--text-primary-light);
+  background-color: #ffffff;
+  border-color: #e2e8f0;
+  color: #0f172a;
 }
 
 .select:focus {
-  background-color: var(--bg-primary-light);
+  background-color: #ffffff;
 }
 
 .chevron {
-  color: var(--text-tertiary-light);
+  color: #94a3b8;
 }

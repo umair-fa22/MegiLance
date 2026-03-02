@@ -1,33 +1,33 @@
-/* @AI-HINT: Light theme styles for the PublicFooter. Premium color palette for clean, professional, brand-aligned light mode. */
+﻿/* @AI-HINT: Light theme styles for the PublicFooter. Premium color palette for clean, professional, brand-aligned light mode. */
 
 .footer {
-  background-color: var(--color-surface-alt, #f9fafb);
+  background-color: #f9fafb;
 }
 
 .tagline {
-  color: var(--color-text-secondary, #4b5563);
+  color: #4b5563;
 }
 
 .newsletterLabel {
-  color: var(--color-text-primary, #111827);
+  color: #111827;
 }
 
 .newsletterInput {
   background: #ffffff;
-  border-color: var(--color-border-subtle, #e2e8f0);
-  color: var(--color-text-primary, #111827);
+  border-color: #e2e8f0;
+  color: #111827;
 }
 
 .newsletterInput::placeholder {
-  color: var(--color-text-tertiary, #94a3b8);
+  color: #94a3b8;
 }
 
 .newsletterInput:focus {
-  border-color: var(--color-brand-primary, #4573df);
+  border-color: #4573df;
 }
 
 .newsletterButton {
-  background: var(--color-brand-primary, #4573df);
+  background: #4573df;
   color: #ffffff;
 }
 
@@ -36,31 +36,31 @@
 }
 
 .linksTitle {
-  color: var(--color-text-tertiary, #64748b);
+  color: #64748b;
 }
 
 .linkItem {
-  color: var(--color-text-secondary, #4b5563);
+  color: #4b5563;
 }
 
 .linkItem:hover {
-  color: var(--color-brand-primary, #4573df);
+  color: #4573df;
 }
 
 .bottomBar {
-  border-top-color: var(--color-border-subtle, #e2e8f0);
+  border-top-color: #e2e8f0;
 }
 
 .copyright {
-  color: var(--color-text-tertiary, #64748b);
+  color: #64748b;
 }
 
 .socialLink {
-  color: var(--color-text-tertiary, #64748b);
+  color: #64748b;
   background: transparent;
 }
 
 .socialLink:hover {
-  color: var(--color-brand-primary, #4573df);
+  color: #4573df;
   background: rgba(69, 115, 223, 0.08);
 }

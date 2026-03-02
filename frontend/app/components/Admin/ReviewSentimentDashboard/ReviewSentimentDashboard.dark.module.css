@@ -1,4 +1,4 @@
-/* AI-HINT: Dark theme styles for the ReviewSentimentDashboard. Creates a sleek, modern, and focused experience with a dark palette, vibrant brand colors, and carefully managed contrast for readability. */
+﻿/* AI-HINT: Dark theme styles for the ReviewSentimentDashboard. Creates a sleek, modern, and focused experience with a dark palette, vibrant brand colors, and carefully managed contrast for readability. */
 
 .dashboardContainer {
   background-color: #0f172a; /* Deep blue-gray background */
@@ -30,7 +30,7 @@
 }
 
 .cardMetricPositive {
-  color: var(--megilance-success, #27AE60);
+  color: #27AE60;
 }
 
 .cardDescription {

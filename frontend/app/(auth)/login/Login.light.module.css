@@ -3,7 +3,7 @@
 .loginPage {
   /* Branding Panel */
   --branding-panel-bg: linear-gradient(135deg, #f0f4ff 0%, #e6f0ff 100%);
-  --brand-icon-color: var(--color-primary);
+  --brand-icon-color: #4573df;
   --brand-title-color: #1a2b4d; /* Darker blue for contrast */
   --brand-text-color: #4a5568; /* Slate gray */
 

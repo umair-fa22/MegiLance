@@ -1,19 +1,58 @@
 /* AI-HINT: Light theme overrides for Portal Analytics page. */
 
-.themeWrapper { background: var(--surface); color: var(--text-primary); }
-.subtitle { color: var(--text-secondary); }
+.themeWrapper {
+  background: #f8fafc;
+  color: #0f172a;
+}
 
-.select { background: var(--surface-elev); border: 1px solid var(--border); color: var(--text-primary); }
+.subtitle {
+  color: #64748b;
+}
 
-.kpi { background: var(--surface-elev); border: 1px solid var(--border); }
-.kpiLabel { color: var(--text-secondary); }
-.kpiDelta { color: var(--success); }
+.select {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+}
 
-.card { background: var(--surface-elev); border: 1px solid var(--border); }
-.cardTitle { color: var(--text-primary); }
+.kpi {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
 
-.bar { background: color-mix(in oklab, var(--primary) 80%, white); }
-.point { background: var(--accent, #ff9800); }
+.kpiLabel {
+  color: #64748b;
+}
 
-.th { color: var(--text-secondary); border-bottom-color: var(--border); }
-.td { color: var(--text-primary); border-bottom-color: var(--border); }
+.kpiDelta {
+  color: #27AE60;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.cardTitle {
+  color: #0f172a;
+}
+
+.bar {
+  background: #5a8de8;
+}
+
+.point {
+  background: #ff9800;
+}
+
+.th {
+  color: #64748b;
+  border-bottom-color: #e2e8f0;
+}
+
+.td {
+  color: #0f172a;
+  border-bottom-color: #f1f5f9;
+}

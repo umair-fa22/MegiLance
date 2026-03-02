@@ -1,20 +1,61 @@
 /* AI-HINT: Dark theme overrides for Admin Support page. */
 
-.themeWrapper { background: var(--surface); color: var(--text-primary); }
-.subtitle { color: var(--text-secondary); }
+.themeWrapper {
+  background: #0f172a;
+  color: #f8fafc;
+}
 
-.input, .select { background: var(--surface-elev); border: 1px solid var(--border); color: var(--text-primary); }
-.button { background: var(--primary); color: white; border: 1px solid rgba(0,0,0,0.2); }
-.button.secondary { background: var(--surface-elev); color: var(--text-primary); border: 1px solid var(--border); }
+.subtitle {
+  color: #94a3b8;
+}
 
-.listCard, .detailsCard { background: var(--surface-elev); border: 1px solid var(--border); }
-.cardTitle { color: var(--text-primary); }
+.input,
+.select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #334155;
+  color: #f8fafc;
+}
 
-.item { background: var(--surface); border-color: var(--border); }
-.meta { color: var(--text-secondary); }
-.badge { background: var(--surface); border-color: var(--border); color: var(--text-primary); }
+.button {
+  background: #4573df;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
 
-.kv { color: var(--text-primary); }
+.button.secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+  border: 1px solid #334155;
+}
+
+.listCard,
+.detailsCard {
+  background: #1e293b;
+  border: 1px solid #334155;
+}
+
+.cardTitle {
+  color: #f8fafc;
+}
+
+.item {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: #334155;
+}
+
+.meta {
+  color: #94a3b8;
+}
+
+.badge {
+  background: #0f172a;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+
+.kv {
+  color: #f8fafc;
+}
 
 /* Toast */
 .toast {

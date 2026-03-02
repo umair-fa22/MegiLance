@@ -1,85 +1,57 @@
-/* AI-HINT: Dark theme styles for the Alert component. Uses brand tokens via CSS variables for cohesive theming in dark mode. */
+/* AI-HINT: Dark theme styles for the Alert component. */
 
 .alert {
-  background-color: var(--surface);
-  color: var(--text-secondary);
-  border-color: var(--border);
+  background-color: #1e293b;
+  color: #94a3b8;
+  border-color: #334155;
 }
 
 .alertDescription {
-  color: var(--text-secondary);
+  color: #94a3b8;
 }
 
 .alertCloseButton {
-  color: var(--text-secondary);
+  color: #94a3b8;
 }
 
 .alertCloseButton:hover {
-  background-color: var(--surface-alt);
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
 /* --- Variants --- */
 
 .info {
-  /* Fallbacks */
   background-color: rgba(69, 115, 223, 0.12);
-  border-color: var(--primary);
-  color: var(--primary);
+  border-color: #6b8de6;
+  color: #6b8de6;
 }
-@supports (color: color-mix(in oklab, white, black)) {
-  .info {
-    background-color: color-mix(in oklab, var(--primary) 12%, var(--surface));
-    border-color: color-mix(in oklab, var(--primary) 45%, var(--border));
-  }
-}
-.info .alertTitle { color: var(--text-primary); }
-.info .alertDescription { color: var(--primary); opacity: 0.9; }
-.info .alertCloseButton:hover { background-color: var(--surface-alt); }
+.info .alertTitle { color: #f8fafc; }
+.info .alertDescription { color: #6b8de6; opacity: 0.9; }
+.info .alertCloseButton:hover { background-color: rgba(107, 141, 230, 0.12); }
 
 .success {
-  /* Fallbacks */
   background-color: rgba(39, 174, 96, 0.12);
-  border-color: var(--success);
-  color: var(--success);
+  border-color: #27AE60;
+  color: #27AE60;
 }
-@supports (color: color-mix(in oklab, white, black)) {
-  .success {
-    background-color: color-mix(in oklab, var(--success) 12%, var(--surface));
-    border-color: color-mix(in oklab, var(--success) 45%, var(--border));
-  }
-}
-.success .alertTitle { color: var(--text-primary); }
-.success .alertDescription { color: var(--success); opacity: 0.9; }
-.success .alertCloseButton:hover { background-color: var(--surface-alt); }
+.success .alertTitle { color: #f8fafc; }
+.success .alertDescription { color: #27AE60; opacity: 0.9; }
+.success .alertCloseButton:hover { background-color: rgba(39, 174, 96, 0.12); }
 
 .warning {
-  /* Fallbacks */
   background-color: rgba(242, 201, 76, 0.12);
-  border-color: var(--warning);
-  color: var(--warning);
+  border-color: #F2C94C;
+  color: #F2C94C;
 }
-@supports (color: color-mix(in oklab, white, black)) {
-  .warning {
-    background-color: color-mix(in oklab, var(--warning) 12%, var(--surface));
-    border-color: color-mix(in oklab, var(--warning) 45%, var(--border));
-  }
-}
-.warning .alertTitle { color: var(--text-primary); }
-.warning .alertDescription { color: var(--warning); opacity: 0.9; }
-.warning .alertCloseButton:hover { background-color: var(--surface-alt); }
+.warning .alertTitle { color: #f8fafc; }
+.warning .alertDescription { color: #F2C94C; opacity: 0.9; }
+.warning .alertCloseButton:hover { background-color: rgba(242, 201, 76, 0.12); }
 
 .danger {
-  /* Fallbacks */
   background-color: rgba(232, 17, 35, 0.12);
-  border-color: var(--danger);
-  color: var(--danger);
+  border-color: #e81123;
+  color: #e81123;
 }
-@supports (color: color-mix(in oklab, white, black)) {
-  .danger {
-    background-color: color-mix(in oklab, var(--danger) 12%, var(--surface));
-    border-color: color-mix(in oklab, var(--danger) 45%, var(--border));
-  }
-}
-.danger .alertTitle { color: var(--text-primary); }
-.danger .alertDescription { color: var(--danger); opacity: 0.9; }
-.danger .alertCloseButton:hover { background-color: var(--surface-alt); }
+.danger .alertTitle { color: #f8fafc; }
+.danger .alertDescription { color: #e81123; opacity: 0.9; }
+.danger .alertCloseButton:hover { background-color: rgba(232, 17, 35, 0.12); }

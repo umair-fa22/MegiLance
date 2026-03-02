@@ -5,5 +5,5 @@
   --brand-icon-color: #4573df;
   --brand-title-color: #1a2b4d; /* Darker blue for contrast */
   --brand-text-color: #4a5568; /* Slate gray */
-  background-color: var(--branding-panel-bg);
+  background-color: #4573df;
 }

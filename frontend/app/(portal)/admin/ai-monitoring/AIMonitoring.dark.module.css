@@ -1,24 +1,79 @@
 /* AI-HINT: Dark theme overrides for Admin AI Monitoring page. */
 
-.themeWrapper { background: var(--surface); color: var(--text-primary); }
-.subtitle { color: var(--text-secondary); }
+.themeWrapper {
+  background: #0f172a;
+  color: #f8fafc;
+}
 
-.input, .select { background: var(--surface-elev); border: 1px solid var(--border); color: var(--text-primary); }
-.button { background: var(--primary); color: white; border: 1px solid rgba(0,0,0,0.2); }
-.button.secondary { background: var(--surface-elev); color: var(--text-primary); border: 1px solid var(--border); }
+.subtitle {
+  color: #94a3b8;
+}
 
-.card, .panel { background: var(--surface-elev); border: 1px solid var(--border); }
-.cardTitle { color: var(--text-primary); }
-.metric { color: var(--text-primary); }
+.input,
+.select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #334155;
+  color: #f8fafc;
+}
 
-.list .item { background: var(--surface); border: 1px solid var(--border); }
-.item:hover { background: rgba(69, 115, 223, 0.08); }
-.meta { color: var(--text-secondary); }
+.button {
+  background: #4573df;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
 
-.chipActive { background: rgba(69, 115, 223, 0.15); color: var(--primary); opacity: 1; }
+.button.secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+  border: 1px solid #334155;
+}
 
-.th { border-bottom-color: var(--border); color: var(--text-secondary); }
-.tr { border-bottom-color: var(--border); }
-.tr:hover { background: rgba(255,255,255,0.03); }
+.card,
+.panel {
+  background: #1e293b;
+  border: 1px solid #334155;
+}
 
-.accuracyFill { background: linear-gradient(90deg, var(--primary), var(--success, #27AE60)); }
+.cardTitle {
+  color: #f8fafc;
+}
+
+.metric {
+  color: #f8fafc;
+}
+
+.list .item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid #334155;
+}
+
+.item:hover {
+  background: rgba(69, 115, 223, 0.08);
+}
+
+.meta {
+  color: #94a3b8;
+}
+
+.chipActive {
+  background: rgba(69, 115, 223, 0.15);
+  color: #6b8de6;
+  opacity: 1;
+}
+
+.th {
+  border-bottom-color: #334155;
+  color: #94a3b8;
+}
+
+.tr {
+  border-bottom-color: #334155;
+}
+
+.tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.accuracyFill {
+  background: linear-gradient(90deg, #6b8de6, #27AE60);
+}

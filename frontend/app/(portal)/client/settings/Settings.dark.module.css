@@ -1,47 +1,47 @@
 /* AI-HINT: Dark theme styles for the Client Settings page. */
 
 .title {
-    color: var(--color-text-primary-dark);
+    color: #f8fafc;
 }
 
 .subtitle {
-  color: var(--color-text-secondary-dark);
+  color: #cbd5e1;
 }
 
 .navButton {
-  color: var(--color-text-secondary-dark);
+  color: #cbd5e1;
 }
 
 .navButton:hover {
-  background-color: var(--color-background-secondary-dark);
-  color: var(--color-text-primary-dark);
+  background-color: #1e293b;
+  color: #f8fafc;
 }
 
 .navButtonActive {
-  background-color: var(--color-primary-dark-accent);
-  color: var(--color-primary-light);
-  font-weight: var(--font-weight-semibold);
+  background-color: rgba(107,141,230,0.15);
+  color: #6b8de6;
+  font-weight: 600;
 }
 
 .navButtonActive .navIcon {
-    color: var(--color-primary-light);
+    color: #6b8de6;
 }
 
 .actionRow {
-    background-color: var(--color-background-secondary-dark);
-    border: 1px solid var(--color-border-dark);
+    background-color: #1e293b;
+    border: 1px solid #334155;
 }
 
 .actionDescription {
-    color: var(--color-text-secondary-dark);
+    color: #cbd5e1;
 }
 
 .link {
-    color: var(--color-primary-dark);
+    color: #6b8de6;
 }
 
 .link:hover {
-    color: var(--color-primary-light);
+    color: #6b8de6;
 }
 
 .alertSuccess { background-color: rgba(39, 174, 96, 0.15); color: #4ade80; }

@@ -1,33 +1,33 @@
 /* AI-HINT: Dark theme styles for the StepScope component. */
 
 .section {
-  background-color: var(--surface-elev-dark);
-  border: 1px solid var(--border-dark);
+  background-color: #1e293b;
+  border: 1px solid #334155;
 }
 
 .title {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .label {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .textarea {
-  background-color: var(--surface-dark);
-  border-color: var(--border-dark);
-  color: var(--text-primary-dark);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: #334155;
+  color: #f8fafc;
 }
 
 .textarea:hover {
-  border-color: var(--border-hover-dark);
+  border-color: #475569;
 }
 
 .textarea:focus {
-  border-color: var(--primary-dark);
-  box-shadow: 0 0 0 2px var(--primary-focus-dark);
+  border-color: #6b8de6;
+  box-shadow: 0 0 0 2px rgba(107, 141, 230, 0.2);
 }

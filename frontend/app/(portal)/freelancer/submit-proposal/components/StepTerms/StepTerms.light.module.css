@@ -1,86 +1,86 @@
-.container {
-  background-color: var(--bg-primary-light);
+﻿.container {
+  background-color: #ffffff;
 }
 
 .title {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .description {
-  color: var(--text-secondary-light);
+  color: #64748b;
 }
 
 .toggleAllRow {
-  color: var(--text-secondary-light);
+  color: #64748b;
 }
 
 .toggleAllButton {
-  background-color: var(--bg-tertiary-light);
-  color: var(--text-secondary-light);
+  background-color: #f8fafc;
+  color: #64748b;
 }
 
 .toggleAllButton:hover {
-  background-color: var(--primary-light);
+  background-color: rgba(69,115,223,0.3);
   color: white;
 }
 
 .termsSection {
-  background-color: var(--bg-secondary-light);
-  border: 1px solid var(--border-light);
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
 }
 
 .sectionHeader {
-  background-color: var(--bg-secondary-light);
-  color: var(--text-primary-light);
+  background-color: #f8fafc;
+  color: #0f172a;
 }
 
 .sectionHeader:hover {
-  background-color: var(--bg-tertiary-light);
+  background-color: #f8fafc;
 }
 
 .sectionTitleWrapper {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .sectionIcon {
-  color: var(--primary-light);
+  color: rgba(69,115,223,0.3);
 }
 
 .sectionTitle {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .termsList {
-  background-color: var(--bg-secondary-light);
+  background-color: #f8fafc;
 }
 
 .termsItem {
-  color: var(--text-secondary-light);
+  color: #64748b;
 }
 
 .itemIcon {
-  color: var(--primary-light);
+  color: rgba(69,115,223,0.3);
 }
 
 .agreement {
-  background-color: var(--bg-secondary-light);
-  border: 1px solid var(--border-light);
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
 }
 
 .agreementAccepted {
   background-color: rgba(39, 174, 96, 0.1);
-  border-color: var(--success-light);
+  border-color: #27AE60;
 }
 
 .agreementLabel {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .error {
-  color: var(--error-light);
+  color: #e81123;
 }
 
 .successMessage {
   background-color: rgba(39, 174, 96, 0.1);
-  color: var(--success-light);
+  color: #27AE60;
 }

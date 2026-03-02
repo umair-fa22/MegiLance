@@ -1,16 +1,49 @@
 /* AI-HINT: Light theme overrides for Support page. */
 
-.themeWrapper { background: var(--surface); color: var(--text-primary); }
-.subtitle { color: var(--text-secondary); }
+.themeWrapper {
+  background: #f8fafc;
+  color: #0f172a;
+}
 
-.card { background: var(--surface-elev); border: 1px solid var(--border); }
-.cardTitle { color: var(--text-primary); }
-.cardDesc { color: var(--text-secondary); }
+.subtitle {
+  color: #64748b;
+}
 
-.link { color: var(--primary); }
-.link:hover { background: var(--primary-ghost); }
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
 
-.button { background: var(--primary); color: var(--text-on-primary); }
-.button:hover { filter: brightness(1.05); }
-.buttonSecondary { color: var(--text-primary); border-color: var(--border); }
-.buttonSecondary:hover { background: var(--surface); }
+.cardTitle {
+  color: #0f172a;
+}
+
+.cardDesc {
+  color: #64748b;
+}
+
+.link {
+  color: #4573df;
+}
+
+.link:hover {
+  background: rgba(69, 115, 223, 0.06);
+}
+
+.button {
+  background: #4573df;
+  color: #ffffff;
+}
+
+.button:hover {
+  filter: brightness(1.05);
+}
+
+.buttonSecondary {
+  color: #475569;
+  border-color: #e2e8f0;
+}
+
+.buttonSecondary:hover {
+  background: #f8fafc;
+}

@@ -1,16 +1,16 @@
 /* AI-HINT: Dark theme styles for the enhanced StepScope component. */
 
 .container {
-  background-color: var(--background-dark);
-  border-color: var(--border-dark);
+  background-color: #0f172a;
+  border-color: #334155;
 }
 
 .title {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .tipButton {
@@ -31,11 +31,11 @@
 }
 
 .progressFill {
-  background: linear-gradient(90deg, var(--primary) 0%, #3b82f6 100%);
+  background: linear-gradient(90deg, #6b8de6 0%, #3b82f6 100%);
 }
 
 .suggestionsLabel {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .suggestionChip {
@@ -46,10 +46,10 @@
 
 .suggestionChip:hover {
   background-color: rgba(99, 102, 241, 0.15);
-  border-color: var(--primary);
-  color: var(--primary);
+  border-color: #6b8de6;
+  color: #6b8de6;
 }
 
 .help {
-  color: var(--text-tertiary-dark);
+  color: #64748b;
 }

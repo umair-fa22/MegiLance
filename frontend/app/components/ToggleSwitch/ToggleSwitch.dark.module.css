@@ -1,43 +1,30 @@
-.label { color: var(--text-primary); }
+.label { color: #f8fafc; }
 
 .slider {
-  background-color: var(--color-background-secondary-dark);
-  border: 1px solid var(--border);
+  background-color: #334155;
+  border: 1px solid #475569;
 }
 
 .helpText {
-  color: var(--color-text-secondary-dark);
+  color: #94a3b8;
 }
 
 .slider:before {
-  background-color: var(--surface);
-  border: 1px solid var(--border);
+  background-color: #1e293b;
+  border: 1px solid #475569;
 }
 
 .input:checked + .slider {
-  background-color: var(--primary);
-  /* Fallback */
-  border-color: var(--primary);
-}
-@supports (color: color-mix(in oklab, white, black)) {
-  .input:checked + .slider {
-    border-color: color-mix(in oklab, var(--primary) 60%, var(--border));
-  }
+  background-color: #6b8de6;
+  border-color: #6b8de6;
 }
 
 .input:checked + .slider:before {
-  background-color: var(--surface);
+  background-color: #1e293b;
 }
 
 .input:focus + .slider {
-  /* Fallback ring */
-  box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.30);
-}
-
-@supports (color: color-mix(in oklab, white, black)) {
-  .input:focus + .slider {
-    box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 25%, transparent);
-  }
+  box-shadow: 0 0 0 3px rgba(107, 141, 230, 0.3);
 }
 
 /* Hover/active polish */

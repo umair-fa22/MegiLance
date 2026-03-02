@@ -1,19 +1,19 @@
 /* AI-HINT: Light theme styles for SettingsSection. */
 
 .theme {
-  background-color: var(--color-background-light);
-  border-color: var(--color-border-light);
+  background-color: #ffffff;
+  border-color: #e2e8f0;
 }
 
 .title {
-  color: var(--color-text-primary-light);
+  color: #0f172a;
 }
 
 .description {
-  color: var(--color-text-secondary-light);
+  color: #475569;
 }
 
 .footer {
-  background-color: var(--color-background-alt-light);
-  border-top: 1px solid var(--color-border-light);
+  background-color: #f8fafc;
+  border-top: 1px solid #e2e8f0;
 }

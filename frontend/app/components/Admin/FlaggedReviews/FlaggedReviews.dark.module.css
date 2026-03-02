@@ -1,36 +1,36 @@
 /* AI-HINT: Dark theme styles for the FlaggedReviews component. */
 
 .flaggedReviewsContainer {
-  background-color: var(--color-background-dark-secondary);
+  background-color: #1e293b;
 }
 
 .flaggedReviewsTitle {
-  color: var(--color-text-dark-primary);
+  color: #f8fafc;
 }
 
 .flaggedReviewsItem {
-  background-color: var(--color-background-dark-primary);
-  border: 1px solid var(--color-border-dark-primary);
+  background-color: #0f172a;
+  border: 1px solid #334155;
 }
 
 .flaggedReviewsItemHeader strong {
-  color: var(--color-text-dark-secondary);
+  color: #cbd5e1;
 }
 
 .flaggedReviewsRating {
-  color: var(--color-brand-accent); /* yellow-400 */
+  color: #ff9800; /* yellow-400 */
 }
 
 .flaggedReviewsContent {
-  color: var(--color-text-dark-secondary);
+  color: #cbd5e1;
 }
 
 .flaggedReviewsActions small {
-  color: var(--color-text-dark-tertiary);
+  color: #64748b;
 }
 
 .flaggedReviewsEmpty {
-  background-color: var(--color-background-dark-tertiary);
-  border: 2px dashed var(--color-border-dark-secondary);
-  color: var(--color-text-dark-secondary);
+  background-color: rgba(255,255,255,0.04);
+  border: 2px dashed #475569;
+  color: #cbd5e1;
 }

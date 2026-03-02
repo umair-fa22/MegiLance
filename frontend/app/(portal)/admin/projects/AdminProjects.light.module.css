@@ -1,17 +1,58 @@
 /* AI-HINT: Light theme overrides for Admin Projects page. */
 
-.themeWrapper { background: var(--surface); color: var(--text-primary); }
-.subtitle { color: var(--text-secondary); }
+.themeWrapper {
+  background: #f8fafc;
+  color: #0f172a;
+}
 
-.input, .select { background: var(--surface-elev); border: 1px solid var(--border); color: var(--text-primary); }
-.button { background: var(--primary); color: white; border: 1px solid rgba(0,0,0,0.12); }
-.button.secondary { background: var(--surface-elev); color: var(--text-primary); border: 1px solid var(--border); }
+.subtitle {
+  color: #64748b;
+}
 
-.table { background: var(--surface-elev); }
-.th { color: var(--text-secondary); border-bottom-color: var(--border); }
-.td { color: var(--text-primary); border-bottom-color: var(--border); }
+.input,
+.select {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+}
 
-.badge { background: var(--surface); border-color: var(--border); color: var(--text-primary); }
-.badgeDot { background: var(--success); }
+.button {
+  background: #4573df;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
 
-.empty { background: var(--surface-elev); color: var(--text-secondary); }
+.button.secondary {
+  background: #ffffff;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.table {
+  background: #ffffff;
+}
+
+.th {
+  color: #64748b;
+  border-bottom-color: #e2e8f0;
+}
+
+.td {
+  color: #0f172a;
+  border-bottom-color: #e2e8f0;
+}
+
+.badge {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #475569;
+}
+
+.badgeDot {
+  background: #27AE60;
+}
+
+.empty {
+  background: #ffffff;
+  color: #64748b;
+}

@@ -1,26 +1,90 @@
 /* AI-HINT: Light theme overrides for Portal Wallet page. */
 
-.themeWrapper { background: var(--surface); color: var(--text-primary); }
-.subtitle { color: var(--text-secondary); }
+.themeWrapper {
+  background: #f8fafc;
+  color: #0f172a;
+}
 
-.input, .select { background: var(--surface-elev); border: 1px solid var(--border); color: var(--text-primary); }
-.button { background: var(--primary); color: white; border: 1px solid rgba(0,0,0,0.12); }
-.button.secondary { background: var(--surface-elev); color: var(--text-primary); border: 1px solid var(--border); }
+.subtitle {
+  color: #64748b;
+}
 
-.card { background: var(--surface-elev); border: 1px solid var(--border); }
-.cardTitle { color: var(--text-primary); }
-.amount { color: var(--text-primary); }
+.input,
+.select {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+}
 
-.th { color: var(--text-secondary); border-bottom-color: var(--border); }
-.td { color: var(--text-primary); border-bottom-color: var(--border); }
+.input:focus,
+.select:focus {
+  border-color: #4573df;
+  box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.12);
+}
 
-.toast { background: var(--surface-elev); border: 1px solid var(--border); color: var(--text-primary); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-.toastSuccess { border-left: 4px solid var(--success); }
-.toastError { border-left: 4px solid var(--error); }
+.button {
+  background: #4573df;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 3px rgba(69, 115, 223, 0.2);
+}
+
+.button:hover {
+  filter: brightness(1.05);
+}
+
+.button.secondary {
+  background: #ffffff;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.button.secondary:hover {
+  background: #f1f5f9;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.cardTitle {
+  color: #0f172a;
+}
+
+.amount {
+  color: #0f172a;
+}
+
+.th {
+  color: #64748b;
+  border-bottom-color: #e2e8f0;
+}
+
+.td {
+  color: #0f172a;
+  border-bottom-color: #f1f5f9;
+}
+
+.toast {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.toastSuccess {
+  border-left: 4px solid #27AE60;
+}
+
+.toastError {
+  border-left: 4px solid #e81123;
+}
 
 /* Loading and Error States */
 .loadingState {
-  color: var(--primary);
+  color: #4573df;
 }
 
 .errorBanner {

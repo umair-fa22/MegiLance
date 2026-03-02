@@ -1,21 +1,21 @@
-/* @AI-HINT: Dark theme styles for the Tabs component using brand tokens. */
+﻿/* @AI-HINT: Dark theme styles for the Tabs component using brand tokens. */
 
 .tabsList {
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid #334155;
 }
 
 .tabsTab {
-  color: var(--text-secondary);
+  color: #94a3b8;
 }
 
 .tabsTab:hover {
-  color: var(--text-primary);
-  background-color: var(--surface-alt);
+  color: #f8fafc;
+  background-color: #0f172a;
 }
 
 .tabsTabSelected {
-  color: var(--primary);
-  border-color: var(--primary);
+  color: #6b8de6;
+  border-color: #6b8de6;
 }
 
 .tabsTab:focus-visible {
@@ -23,13 +23,10 @@
   /* Fallback ring */
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.30);
 }
-@supports (color: color-mix(in oklab, white, black)) {
-  .tabsTab:focus-visible {
-    box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 28%, transparent);
-  }
+
 }
 
 /* Animated indicator color */
 .tabsIndicator {
-  background-color: var(--primary);
+  background-color: #6b8de6;
 }

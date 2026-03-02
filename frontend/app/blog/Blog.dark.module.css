@@ -1,4 +1,4 @@
-/* @AI-HINT: Dark theme — hero, filters, trending, newsletter */
+﻿/* @AI-HINT: Dark theme â€” hero, filters, trending, newsletter */
 .hero {
   background: linear-gradient(135deg, rgba(69,115,223,0.08) 0%, rgba(255,152,0,0.04) 100%);
   border: 1px solid rgba(255,255,255,0.06);
@@ -7,21 +7,21 @@
   background: rgba(69,115,223,0.18);
   color: #6b93e8;
 }
-.heroTitle { color: var(--text-dark-primary, #f0f0f5); }
-.heroSubtitle { color: var(--text-dark-secondary, #a0a0b5); }
+.heroTitle { color: #f0f0f5; }
+.heroSubtitle { color: #a0a0b5; }
 
 /* Search */
 .searchBar {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.08);
 }
-.searchInput { color: var(--text-dark-primary, #f0f0f5); }
+.searchInput { color: #f0f0f5; }
 .searchInput::placeholder { color: rgba(255,255,255,0.3); }
 
 /* Filters */
 .filterChip {
   background: rgba(255,255,255,0.04);
-  color: var(--text-dark-secondary, #a0a0b5);
+  color: #a0a0b5;
 }
 .filterChip:hover { background: rgba(69,115,223,0.12); color: #6b93e8; }
 .filterActive { background: #4573df !important; color: #fff !important; }
@@ -43,5 +43,5 @@
 .newsletterInput {
   background: rgba(255,255,255,0.05);
   border-color: rgba(255,255,255,0.08);
-  color: var(--text-dark-primary, #f0f0f5);
+  color: #f0f0f5;
 }

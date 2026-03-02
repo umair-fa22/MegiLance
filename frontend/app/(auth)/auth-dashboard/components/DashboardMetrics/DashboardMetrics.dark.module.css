@@ -1,33 +1,33 @@
 /* AI-HINT: Premium dark theme for Dashboard Metrics. Uses rich, deep backgrounds, glowing hover effects, and vibrant, high-contrast text for a polished, modern feel. */
 
 .metricCard {
-  background: linear-gradient(145deg, var(--surface-272b32) 0%, var(--surface-alt-2c323a) 100%);
-  border: 1px solid var(--border-3a414a);
-  box-shadow: var(--shadow-sm);
+  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid #334155;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .metricCard:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: color-mix(in oklab, var(--primary-4573df) 90%, white);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.2);
+  border-color: #6b8de6;
 }
 
 .metricIcon {
-  color: var(--primary-4573df);
+  color: #6b8de6;
 }
 
 .metricHeader span {
-  color: var(--text-secondary-a9b1bd);
+  color: #94a3b8;
 }
 
 .metricValue {
-  color: var(--text-primary-f5f7fa);
+  color: #f8fafc;
 }
 
 .positiveChange {
-  color: var(--success-27AE60);
+  color: #22c55e;
 }
 
 .negativeChange {
-  color: var(--error-e81123);
+  color: #f87171;
 }

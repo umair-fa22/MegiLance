@@ -1,11 +1,11 @@
-/* AI-HINT: Light theme styles for the Trend component. */
+﻿/* AI-HINT: Light theme styles for the Trend component. */
 
 .up {
-  color: var(--color-success-dark, #1E8E3E);
-  background-color: var(--color-success-light, #E6F4EA);
+  color: #1E8E3E;
+  background-color: #E6F4EA;
 }
 
 .down {
-  color: var(--color-danger-dark, #A50E0E);
-  background-color: var(--color-danger-light, #FCE8E6);
+  color: #A50E0E;
+  background-color: #FCE8E6;
 }

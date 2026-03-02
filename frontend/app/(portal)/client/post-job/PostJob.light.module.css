@@ -1,68 +1,95 @@
 /* AI-HINT: Light theme overrides for Client Post Job page. */
 
-.themeWrapper { background: var(--surface); color: var(--text-primary); }
-.subtitle { color: var(--text-secondary); }
+.themeWrapper {
+  background: #f8fafc;
+  color: #0f172a;
+}
 
-.section { background: var(--surface-elev); border: 1px solid var(--border); }
-.sectionTitle { color: var(--text-primary); }
+.section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
 
-.input, .select, .textarea { background: var(--surface); border: 1px solid var(--border); color: var(--text-primary); }
-.help { color: var(--text-secondary); }
+.sectionTitle {
+  color: #0f172a;
+}
 
-.button.primary { background: var(--primary); color: white; border: 1px solid rgba(0,0,0,0.12); }
-.button.secondary { background: var(--surface-elev); color: var(--text-primary); border: 1px solid var(--border); }
+.input,
+.select,
+.textarea {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+}
+
+.help {
+  color: #64748b;
+}
+
+.button.primary {
+  background: #4573df;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.button.secondary {
+  background: #ffffff;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
 
 .main {
-  background-color: var(--color-background-light-primary);
+  background-color: #f8fafc;
 }
 
 .title {
-  color: var(--color-text-light-primary);
+  color: #0f172a;
 }
 
 .subtitle {
-  color: var(--color-text-light-secondary);
+  color: #64748b;
 }
 
 .footer {
-  border-top-color: var(--color-border-light-primary);
+  border-top-color: #e2e8f0;
   background-color: rgba(249, 250, 251, 0.7);
 }
 
 /* Result Card */
 .centered_container {
-  background-color: var(--color-background-light-secondary);
+  background-color: #f1f5f9;
 }
 
 .result_card {
-  background-color: var(--color-background-light-primary);
-  border: 1px solid var(--color-border-light-primary);
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
 }
 
 .result_title {
-  color: var(--color-text-light-primary);
+  color: #0f172a;
 }
 
 .result_message {
-  color: var(--color-text-light-secondary);
+  color: #64748b;
 }
 
 .success_icon {
-  color: var(--color-success, #22c55e);
+  color: #22c55e;
 }
 
 .error_icon {
-  color: var(--color-error, #ef4444);
+  color: #ef4444;
 }
 
 .progressLabel {
-  color: var(--color-text-light-primary);
+  color: #0f172a;
 }
 
 .savedIndicator {
-  color: var(--color-text-light-secondary);
+  color: #64748b;
 }
 
 .progressFill {
-  background: linear-gradient(90deg, var(--primary, #4573df) 0%, #60a5fa 100%);
+  background: linear-gradient(90deg, #4573df 0%, #60a5fa 100%);
 }

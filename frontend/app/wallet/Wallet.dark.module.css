@@ -20,7 +20,7 @@
 }
 
 .balanceCardPrimary {
-  background: linear-gradient(135deg, var(--primary) 0%, #6b8de8 100%);
+  background: linear-gradient(135deg, #6b8de6 0%, #6b8de8 100%);
   border: none;
   box-shadow: 0 4px 16px rgba(69, 115, 223, 0.35);
 }
@@ -52,7 +52,7 @@
 }
 
 .tabActive {
-  background: var(--primary);
+  background: #6b8de6;
   color: #ffffff;
 }
 
@@ -76,8 +76,8 @@
 
 .actionButton:hover {
   background: #1e293b;
-  border-color: var(--primary);
-  color: var(--primary);
+  border-color: #6b8de6;
+  color: #6b8de6;
 }
 
 /* Transactions */
@@ -137,7 +137,7 @@
 }
 
 .filterSelect:focus {
-  border-color: var(--primary);
+  border-color: #6b8de6;
   outline: none;
 }
 
@@ -157,7 +157,7 @@
 }
 
 .formInput:focus {
-  border-color: var(--primary);
+  border-color: #6b8de6;
   background: #1e293b;
 }
 
@@ -169,8 +169,8 @@
 }
 
 .quickAmountBtn:hover {
-  background: var(--primary);
-  border-color: var(--primary);
+  background: #6b8de6;
+  border-color: #6b8de6;
   color: #ffffff;
 }
 
@@ -186,7 +186,7 @@
 
 .payoutMethodSelected {
   background: rgba(69, 115, 223, 0.15);
-  border-color: var(--primary);
+  border-color: #6b8de6;
 }
 
 .payoutName {
@@ -199,7 +199,7 @@
 
 /* Submit Button */
 .submitButton {
-  background: var(--primary);
+  background: #6b8de6;
   color: #ffffff;
 }
 
@@ -243,8 +243,8 @@
 }
 
 .addMethodButton:hover {
-  border-color: var(--primary);
-  color: var(--primary);
+  border-color: #6b8de6;
+  color: #6b8de6;
   background: rgba(69, 115, 223, 0.1);
 }
 

@@ -1,4 +1,4 @@
-/* @AI-HINT: Light theme for Profile page. Premium glassmorphism design. */
+﻿/* @AI-HINT: Light theme for Profile page. Premium glassmorphism design. */
 
 .page {
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
@@ -7,17 +7,17 @@
 .loadingContainer {
   background: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  color: var(--text-secondary, #64748b);
+  color: #64748b;
 }
 
 .errorContainer {
   background: rgba(232, 17, 35, 0.05);
   border: 1px solid rgba(232, 17, 35, 0.2);
-  color: var(--text-primary, #1f2937);
+  color: #1f2937;
 }
 
 .retryButton {
-  background: var(--primary, #4573df);
+  background: #4573df;
   color: white;
 }
 
@@ -43,25 +43,25 @@
 }
 
 .bio {
-  color: var(--text-secondary, #64748b);
+  color: #64748b;
 }
 
 .role {
   background: linear-gradient(135deg, rgba(69, 115, 223, 0.1), rgba(69, 115, 223, 0.05));
-  color: var(--primary, #4573df);
+  color: #4573df;
   border: 1px solid rgba(69, 115, 223, 0.2);
 }
 
 .sectionTitle {
-  color: var(--text-primary, #1f2937);
+  color: #1f2937;
 }
 
 .emptyState {
   background: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  color: var(--text-secondary, #64748b);
+  color: #64748b;
 }
 
 .emptyState h3 {
-  color: var(--text-primary, #1f2937);
+  color: #1f2937;
 }

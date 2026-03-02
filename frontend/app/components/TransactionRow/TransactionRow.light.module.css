@@ -1,30 +1,30 @@
-/* @AI-HINT: Light theme styles for the TransactionRow component. */
+﻿/* @AI-HINT: Light theme styles for the TransactionRow component. */
 .row {
-  background-color: var(--surface-f5f7fa);
-  border-color: var(--border-e0e0e0);
+  background-color: #f5f7fa;
+  border-color: #e0e0e0;
 }
 
 .row:hover {
-  background-color: var(--surface-alt-f4f6f8);
-  border-color: color-mix(in oklab, var(--border-e0e0e0) 80%, black);
+  background-color: #f4f6f8;
+  border-color: #4573df 80%, black);
 }
 
 .date {
-  color: var(--text-secondary-333333);
+  color: #333333;
 }
 
 .description {
-  color: var(--text-primary-23272f);
+  color: #23272f;
 }
 
 .amount {
-  color: var(--text-secondary-333333);
+  color: #333333;
 }
 
 .positive {
-  color: var(--success-27AE60) !important;
+  color: #27AE60 !important;
 }
 
 .negative {
-  color: var(--error-e81123) !important;
+  color: #e81123 !important;
 }

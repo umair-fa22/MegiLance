@@ -1,68 +1,68 @@
-.main {
-  background-color: var(--bg-primary-light);
+﻿.main {
+  background-color: #ffffff;
 }
 
 .progressBar {
-  background-color: var(--bg-tertiary-light);
+  background-color: #f8fafc;
 }
 
 .progressFill {
-  background: linear-gradient(90deg, var(--primary-light), var(--accent-light));
+  background: linear-gradient(90deg, rgba(69,115,223,0.3), #ff9800);
 }
 
 .headerTop {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .title {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .subtitle {
-  color: var(--text-secondary-light);
+  color: #64748b;
 }
 
 .savedIndicator {
-  background-color: var(--success-light);
+  background-color: #27AE60;
   color: white;
 }
 
 .estimatedTotal {
-  background-color: var(--bg-secondary-light);
-  border: 1px solid var(--border-light);
-  color: var(--text-primary-light);
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
 }
 
 .footer {
-  border-top-color: var(--border-light);
+  border-top-color: #e2e8f0;
 }
 
 .footerLeft,
 .footerRight {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .result_card {
-  background-color: var(--bg-secondary-light);
-  border: 1px solid var(--border-light);
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
 }
 
 .result_title {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .result_message {
-  color: var(--text-secondary-light);
+  color: #64748b;
 }
 
 .result_actions {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .success_icon {
-  color: var(--success-light);
+  color: #27AE60;
 }
 
 .error_icon {
-  color: var(--error-light);
+  color: #e81123;
 }

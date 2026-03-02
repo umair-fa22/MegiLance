@@ -1,19 +1,19 @@
 /* AI-HINT: Dark theme styles for SettingsSection. */
 
 .theme {
-  background-color: var(--color-background-alt-dark);
-  border-color: var(--color-border-dark);
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
 .title {
-  color: var(--color-text-primary-dark);
+  color: #f8fafc;
 }
 
 .description {
-  color: var(--color-text-secondary-dark);
+  color: #cbd5e1;
 }
 
 .footer {
   background-color: rgba(255, 255, 255, 0.03);
-  border-top: 1px solid var(--color-border-dark);
+  border-top: 1px solid #334155;
 }

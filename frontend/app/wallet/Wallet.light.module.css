@@ -51,7 +51,7 @@
 }
 
 .tabActive {
-  background: var(--primary);
+  background: #4573df;
   color: #ffffff;
 }
 
@@ -75,8 +75,8 @@
 
 .actionButton:hover {
   background: #f1f5f9;
-  border-color: var(--primary);
-  color: var(--primary);
+  border-color: #4573df;
+  color: #4573df;
 }
 
 /* Transactions */
@@ -121,7 +121,7 @@
 
 /* View All Button */
 .viewAllButton {
-  color: var(--primary);
+  color: #4573df;
 }
 
 .viewAllButton:hover {
@@ -136,7 +136,7 @@
 }
 
 .filterSelect:focus {
-  border-color: var(--primary);
+  border-color: #4573df;
   outline: none;
 }
 
@@ -156,7 +156,7 @@
 }
 
 .formInput:focus {
-  border-color: var(--primary);
+  border-color: #4573df;
   background: #ffffff;
 }
 
@@ -168,8 +168,8 @@
 }
 
 .quickAmountBtn:hover {
-  background: var(--primary);
-  border-color: var(--primary);
+  background: #4573df;
+  border-color: #4573df;
   color: #ffffff;
 }
 
@@ -185,7 +185,7 @@
 
 .payoutMethodSelected {
   background: #eff6ff;
-  border-color: var(--primary);
+  border-color: #4573df;
 }
 
 .payoutName {
@@ -198,7 +198,7 @@
 
 /* Submit Button */
 .submitButton {
-  background: var(--primary);
+  background: #4573df;
   color: #ffffff;
 }
 
@@ -229,7 +229,7 @@
 }
 
 .actionLink {
-  color: var(--primary);
+  color: #4573df;
 }
 
 .actionLink:hover {
@@ -242,8 +242,8 @@
 }
 
 .addMethodButton:hover {
-  border-color: var(--primary);
-  color: var(--primary);
+  border-color: #4573df;
+  color: #4573df;
   background: #eff6ff;
 }
 

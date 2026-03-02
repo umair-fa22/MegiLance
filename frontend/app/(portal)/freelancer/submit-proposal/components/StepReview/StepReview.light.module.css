@@ -1,37 +1,37 @@
-.title {
-  color: var(--text-primary-light);
+﻿.title {
+  color: #0f172a;
 }
 
 .description {
-  color: var(--text-secondary-light);
+  color: #64748b;
 }
 
 .sectionTitle {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .reviewItem {
-  background-color: var(--bg-secondary-light);
-  border: 1px solid var(--border-light);
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
 }
 
 .reviewValue {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .attachmentsList {
-  color: var(--text-secondary-light);
+  color: #64748b;
 }
 
 .termsSection {
-  border-top-color: var(--border-light);
+  border-top-color: #e2e8f0;
 }
 
 .termsIcon {
-  background-color: var(--success-light);
+  background-color: #27AE60;
   color: white;
 }
 
 .termsText {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }

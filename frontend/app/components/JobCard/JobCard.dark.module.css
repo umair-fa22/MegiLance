@@ -1,20 +1,20 @@
-/* JobCard.dark.module.css */
+﻿/* JobCard.dark.module.css */
 .card {
-  background: var(--surface, #1e293b);
-  border: 1px solid var(--border, #333);
+  background: #1e293b;
+  border: 1px solid #333;
 }
 
 .card:hover {
-  border-color: var(--primary, #4573DF);
+  border-color: #4573DF;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .title {
-  color: var(--text-primary, #fff);
+  color: #fff;
 }
 
 .clientName {
-  color: var(--text-secondary, #a0a0a0);
+  color: #a0a0a0;
 }
 
 .verifiedBadge {
@@ -27,21 +27,21 @@
 }
 
 .budget {
-  color: var(--text-primary, #fff);
+  color: #fff;
 }
 
 .description {
-  color: var(--text-secondary, #a0a0a0);
+  color: #a0a0a0;
 }
 
 .tag {
   background: rgba(255, 255, 255, 0.05);
-  color: var(--text-secondary, #a0a0a0);
+  color: #a0a0a0;
   border: 1px solid transparent;
 }
 
 .footer {
-  border-top-color: var(--border, #333);
+  border-top-color: #333;
 }
 
 .saveButton {
@@ -62,6 +62,6 @@
 }
 
 .matchBadge {
-  background: var(--primary, #4573DF);
+  background: #4573DF;
   color: white;
 }

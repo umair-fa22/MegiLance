@@ -1,1 +1,5 @@
 /* @AI-HINT: Add Funds page - dark theme */
+
+.pageContainer {
+  color: #f8fafc;
+}

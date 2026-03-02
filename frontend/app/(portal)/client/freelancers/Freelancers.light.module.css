@@ -3,40 +3,40 @@
 /* AI-HINT: Light theme styles for the Freelancers page. */
 
 .page {
-  background-color: var(--background-ffffff);
+  background-color: #ffffff;
 }
 
 .title {
-  color: var(--text-primary-23272f);
+  color: #23272f;
 }
 
 .subtitle {
-  color: var(--text-secondary-333333);
+  color: #333333;
 }
 
 .controlsSection {
-  background-color: var(--surface-f5f7fa);
-  border: 1px solid var(--border-e0e0e0);
+  background-color: #f5f7fa;
+  border: 1px solid #e0e0e0;
 }
 
 .emptyState {
-  background-color: var(--surface-f5f7fa);
-  border: 1px dashed var(--border-e0e0e0);
+  background-color: #f5f7fa;
+  border: 1px dashed #e0e0e0;
 }
 
 .emptyState h3 {
-  color: var(--text-primary-23272f);
+  color: #23272f;
 }
 
 .emptyState p {
-  color: var(--text-secondary-333333);
+  color: #333333;
 }
 
 .paginationInfo {
-  color: var(--text-secondary-333333);
+  color: #333333;
 }
 
 .skeletonCard {
-  background-color: var(--surface-f5f7fa);
-  border: 1px solid var(--border-e0e0e0);
+  background-color: #f5f7fa;
+  border: 1px solid #e0e0e0;
 }

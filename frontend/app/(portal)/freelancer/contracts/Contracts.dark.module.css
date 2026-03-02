@@ -1,66 +1,66 @@
-/* @AI-HINT: Dark theme styles for the refactored Contracts page. */
+﻿/* @AI-HINT: Dark theme styles for the refactored Contracts page. */
 .title {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .tableContainer {
-  background-color: var(--bg-primary-dark);
-  border-color: var(--border-dark);
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
 .table th {
-  color: var(--text-tertiary-dark);
-  background-color: var(--bg-secondary-dark);
+  color: #64748b;
+  background-color: #0f172a;
 }
 
 .table td {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .table tbody tr {
-  border-color: var(--border-dark);
+  border-color: #334155;
 }
 
 .table tbody tr:hover {
-  background-color: var(--bg-secondary-dark);
+  background-color: #0f172a;
 }
 
 .projectTitle {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .value {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .link {
-  color: var(--primary-dark);
+  color: #6b8de6;
 }
 
 .link:hover {
-  color: var(--primary-dark-hover);
+  color: #5a8af2;
 }
 
 .sortBtn {
-  color: var(--text-tertiary-dark);
+  color: #64748b;
 }
 
 .sortBtn:hover {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .emptyState {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .loadingState {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .errorState {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }

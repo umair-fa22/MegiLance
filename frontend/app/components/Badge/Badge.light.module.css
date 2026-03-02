@@ -1,50 +1,50 @@
 /* Default Variant */
 .badgeDefault,
 .default {
-  --badge-bg: var(--surface-alt);
-  --badge-text: var(--text-secondary);
+  --badge-bg: #f8fafc;
+  --badge-text: #64748b;
 }
 
 /* Primary Variant */
 .badgePrimary,
 .primary {
-  --badge-bg: var(--primary-soft);
-  --badge-text: var(--primary-stronger);
+  --badge-bg: rgba(69,115,223,0.10);
+  --badge-text: #3b63c4;
 }
 
 /* Secondary Variant */
 .badgeSecondary,
 .secondary {
-  --badge-bg: var(--surface-alt);
-  --badge-text: var(--text-secondary);
+  --badge-bg: #f8fafc;
+  --badge-text: #64748b;
 }
 
 /* Success Variant */
 .badgeSuccess,
 .success {
-  --badge-bg: var(--success-soft);
-  --badge-text: var(--success-stronger);
+  --badge-bg: rgba(39,174,96,0.10);
+  --badge-text: #1a7a42;
 }
 
 /* Warning Variant */
 .badgeWarning,
 .warning {
-  --badge-bg: var(--warning-soft);
-  --badge-text: var(--warning-stronger);
+  --badge-bg: rgba(242,201,76,0.15);
+  --badge-text: #c79a2a;
 }
 
 /* Danger Variant */
 .badgeDanger,
 .danger {
-  --badge-bg: var(--error-soft);
-  --badge-text: var(--error-stronger);
+  --badge-bg: rgba(232,17,35,0.10);
+  --badge-text: #c00f1e;
 }
 
 /* Info Variant */
 .badgeInfo,
 .info {
-  --badge-bg: var(--info-soft);
-  --badge-text: var(--info-stronger);
+  --badge-bg: rgba(59,130,246,0.10);
+  --badge-text: #2563eb;
 }
 
 /* Subtle hover polish when inside interactive contexts */

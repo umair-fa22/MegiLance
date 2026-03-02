@@ -1,49 +1,49 @@
 /* AI-HINT: Light theme styles for the StepIndicator component. */
 
 .nav {
-  background-color: var(--surface-translucent);
-  border: 1px solid var(--border);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #e2e8f0;
 }
 
 .stepLink {
-  color: var(--text-secondary);
+  color: #64748b;
 }
 
 .indicator {
-  background-color: var(--surface-elev);
-  border-color: var(--border);
-  color: var(--text-secondary);
+  background-color: #ffffff;
+  border-color: #e2e8f0;
+  color: #64748b;
 }
 
 .stepName {
-  color: var(--text-secondary);
+  color: #64748b;
 }
 
 .separator {
-  background-color: var(--border);
+  background-color: #e2e8f0;
 }
 
 /* State styles */
 .completed .indicator {
-  background-color: var(--primary-success);
-  border-color: var(--primary-success);
-  color: var(--white);
+  background-color: #27AE60;
+  border-color: #27AE60;
+  color: #ffffff;
 }
 
 .completed .stepName {
-  color: var(--text-primary);
+  color: #0f172a;
 }
 
 .completed + .separator {
-  background-color: var(--primary-success);
+  background-color: #27AE60;
 }
 
 .current .indicator {
-  border-color: var(--primary);
-  background-color: var(--primary-focus);
-  color: var(--primary);
+  border-color: #4573df;
+  background-color: rgba(69, 115, 223, 0.1);
+  color: #4573df;
 }
 
 .current .stepName {
-  color: var(--primary);
+  color: #4573df;
 }

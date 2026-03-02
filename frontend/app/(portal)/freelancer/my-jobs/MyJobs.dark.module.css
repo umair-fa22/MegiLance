@@ -1,12 +1,12 @@
-/* @AI-HINT: Dark theme styles for the MyJobs page. */
+﻿/* @AI-HINT: Dark theme styles for the MyJobs page. */
 .container {
-  background-color: var(--bg-primary-dark);
+  background-color: #1e293b;
 }
 
 .title {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }

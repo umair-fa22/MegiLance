@@ -1,40 +1,40 @@
-/* AI-HINT: Dark theme styles for the PricingCard component. Defines colors for the card background, border, text, and icons in dark mode. */
+﻿/* AI-HINT: Dark theme styles for the PricingCard component. Defines colors for the card background, border, text, and icons in dark mode. */
 
 .card {
-  background-color: var(--surface-272b32);
-  border-color: var(--border-3a414a);
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
 .card:hover {
-  box-shadow: var(--shadow-lg);
-  border-color: var(--surface-alt-2c323a);
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+  border-color: #0f172a;
 }
 
 .popularBadge {
-  background-color: var(--primary-4573df);
-  color: var(--text-on-primary-ffffff);
-  border-color: color-mix(in oklab, var(--primary-4573df) 90%, white);
+  background-color: #6b8de6;
+  color: #ffffff;
+  border-color: #4573df 90%, white);
 }
 
 .card.popular {
-  border-color: var(--primary-4573df);
-  background-color: var(--surface-272b32);
+  border-color: #6b8de6;
+  background-color: #1e293b;
   box-shadow: 0 0 40px rgba(69, 115, 223, 0.2);
 }
 
 .card.popular:hover {
-  border-color: color-mix(in oklab, var(--primary-4573df) 90%, white);
+  border-color: #4573df 90%, white);
   box-shadow: 0 0 50px rgba(69, 115, 223, 0.3);
 }
 
-.cardTier { color: var(--text-primary-f5f7fa); }
-.cardDescription { color: var(--text-secondary-a9b1bd); }
-.priceAmount { color: var(--text-primary-f5f7fa); }
-.pricePeriod { color: var(--text-secondary-a9b1bd); }
+.cardTier { color: #f8fafc; }
+.cardDescription { color: #94a3b8; }
+.priceAmount { color: #f8fafc; }
+.pricePeriod { color: #94a3b8; }
 
 .features {
-  border-color: var(--border-3a414a);
+  border-color: #334155;
 }
 
-.featureItem { color: var(--text-secondary-a9b1bd); }
-.featureIcon { color: color-mix(in oklab, var(--primary-4573df) 90%, white); }
+.featureItem { color: #94a3b8; }
+.featureIcon { color: #4573df 90%, white); }

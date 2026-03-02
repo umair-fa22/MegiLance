@@ -1,29 +1,92 @@
 /* AI-HINT: Light theme overrides for Notifications page. */
 
-.themeWrapper { background: var(--surface); color: var(--text-primary); }
-.subtitle { color: var(--text-secondary); }
+.themeWrapper {
+  background: #f8fafc;
+  color: #0f172a;
+}
 
-.chip { background: var(--surface-elev); border: 1px solid var(--border); color: var(--text-primary); }
-.chip:hover { background: var(--surface); }
+.subtitle {
+  color: #64748b;
+}
 
-.item { background: var(--surface-elev); border: 1px solid var(--border); }
-.itemTitle { color: var(--text-primary); }
-.itemBody { color: var(--text-secondary); }
-.meta { color: var(--text-tertiary); }
-.dot { background: var(--primary); }
+.chip {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+}
 
-.button { background: var(--primary); color: var(--text-on-primary); }
-.button:hover { filter: brightness(1.05); }
-.buttonSecondary { color: var(--text-primary); border: 1px solid var(--border); }
-.buttonSecondary:hover { background: var(--surface); }
+.chip:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
 
-/* Loading and Error States */
+.chip[aria-pressed="true"] {
+  background: rgba(69, 115, 223, 0.08);
+  border-color: #4573df;
+  color: #4573df;
+}
+
+.item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.itemTitle {
+  color: #0f172a;
+}
+
+.itemBody {
+  color: #475569;
+}
+
+.meta {
+  color: #94a3b8;
+}
+
+.dot {
+  background: #4573df;
+}
+
+.button {
+  background: #4573df;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(69, 115, 223, 0.2);
+}
+
+.button:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 2px 6px rgba(69, 115, 223, 0.3);
+}
+
+.buttonSecondary {
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.buttonSecondary:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
 .loadingState {
-  color: var(--primary);
+  color: #4573df;
 }
 
 .errorBanner {
   background: #fef2f2;
   border: 1px solid #fecaca;
   color: #991b1b;
+}
+
+.spinner {
+  border-color: #e2e8f0;
+  border-top-color: #4573df;
 }

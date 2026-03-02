@@ -1,11 +1,11 @@
 .themeWrapper {
-  --dropdown-bg: var(--surface);
-  --dropdown-border-color: var(--border);
-  --dropdown-border-color-hover: var(--primary);
-  --dropdown-shadow-focus: 0 0 0 3px var(--primary-focus-shadow);
-  --dropdown-text-color: var(--text-primary);
-  --dropdown-caret-color: var(--text-secondary);
-  --dropdown-option-hover-bg: var(--surface-hover);
-  --dropdown-option-focused-bg: var(--primary-bg-hover);
-  --dropdown-option-focused-text: var(--primary-strong);
+  --dropdown-bg: #1e293b;
+  --dropdown-border-color: #334155;
+  --dropdown-border-color-hover: #6b8de6;
+  --dropdown-shadow-focus: 0 0 0 3px rgba(107,141,230,0.3);
+  --dropdown-text-color: #f8fafc;
+  --dropdown-caret-color: #94a3b8;
+  --dropdown-option-hover-bg: rgba(255,255,255,0.06);
+  --dropdown-option-focused-bg: rgba(107,141,230,0.12);
+  --dropdown-option-focused-text: #93b0f0;
 }

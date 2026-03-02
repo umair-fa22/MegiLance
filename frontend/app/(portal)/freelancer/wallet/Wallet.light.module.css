@@ -1,23 +1,23 @@
-/* AI-HINT: Light theme styles for the refactored Wallet page. */
+﻿/* AI-HINT: Light theme styles for the refactored Wallet page. */
 
 .title {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .subtitle {
-  color: var(--text-secondary-light);
+  color: #64748b;
 }
 
 .balanceCard,
 .transactionsCard {
-  background-color: var(--bg-primary-light);
-  border-color: var(--border-light);
+  background-color: #ffffff;
+  border-color: #e2e8f0;
 }
 
 .cardTitle {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .balanceAmount {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }

@@ -9,16 +9,16 @@
   /* Premium light theme color palette */
   --dashboard-bg-primary: #f9fafb;
   --dashboard-bg-secondary: #f7f7f7;
-  --dashboard-text-primary: var(--text-primary);
-  --dashboard-text-secondary: var(--text-secondary);
-  --dashboard-border-color: var(--border);
-  --dashboard-card-bg: var(--surface-alt);
-  --dashboard-hover-bg: var(--surface-alt);
+  --dashboard-text-primary: #0f172a;
+  --dashboard-text-secondary: #64748b;
+  --dashboard-border-color: #e2e8f0;
+  --dashboard-card-bg: #f1f5f9;
+  --dashboard-hover-bg: #f1f5f9;
   
   /* Premium light theme specific styling */
   background: linear-gradient(135deg, 
-    var(--surface) 0%, 
-    var(--surface-alt) 100%);
+    #ffffff 0%, 
+    #f1f5f9 100%);
   
   /* Light theme shadows */
   --dashboard-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -26,40 +26,40 @@
   --dashboard-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   
   /* Light theme borders */
-  --dashboard-border-light: var(--border);
-  --dashboard-border-medium: var(--border-alt);
-  --dashboard-border-strong: var(--border-strong);
+  --dashboard-border-light: #e2e8f0;
+  --dashboard-border-medium: #cbd5e1;
+  --dashboard-border-strong: #94a3b8;
 }
 
 /* Status Badges */
 .Dashboard .status-badge--completed {
-  background: var(--primary-subtle);
-  color: var(--primary-strong);
-  border: 1px solid var(--primary-border);
+  background: rgba(69, 115, 223, 0.08);
+  color: #3560c0;
+  border: 1px solid rgba(69, 115, 223, 0.25);
   box-shadow: 0 1px 2px 0 rgba(69, 115, 223, 0.1);
   
   /* Premium badge styling */
   font-weight: 600;
-  font-size: var(--font-size-xs);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--border-radius-full);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .Dashboard .status-badge--active {
   background: linear-gradient(135deg, 
-    color-mix(in srgb, var(--success) 10%, white) 0%, 
-    color-mix(in srgb, var(--success) 20%, white) 100%);
-  color: var(--success);
-  border: 1px solid color-mix(in srgb, var(--success) 40%, white);
+    rgba(39, 174, 96, 0.10) 0%, 
+    rgba(39, 174, 96, 0.20) 100%);
+  color: #27AE60;
+  border: 1px solid rgba(39, 174, 96, 0.40);
   box-shadow: 0 1px 2px 0 rgba(39, 174, 96, 0.1);
   
   /* Premium badge styling */
   font-weight: 600;
-  font-size: var(--font-size-xs);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--border-radius-full);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }

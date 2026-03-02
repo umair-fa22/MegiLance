@@ -1,14 +1,14 @@
-/* @AI-HINT: Dark theme styles for Withdraw page */
+﻿/* @AI-HINT: Dark theme styles for Withdraw page */
 
 .container {
-  background-color: var(--surface-primary-dark, #0f172a);
-  color: var(--text-primary-dark, #f1f5f9);
+  background-color: #0f172a;
+  color: #f1f5f9;
 }
 
 .title {
-  color: var(--text-primary-dark, #f1f5f9);
+  color: #f1f5f9;
 }
 
 .subtitle {
-  color: var(--text-secondary-dark, #94a3b8);
+  color: #94a3b8;
 }

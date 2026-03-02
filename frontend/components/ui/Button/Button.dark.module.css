@@ -1,43 +1,57 @@
 /* AI-HINT: This file contains the dark theme styles for the Button component. */
 
 .primary {
-  background-color: #4573df; /* Primary Blue */
-  color: #ffffff; /* Text on Primary */
+  background-color: #4573df;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(69, 115, 223, 0.25);
 }
 .primary:hover {
-  background-color: #5a84e8; /* Lighter shade for hover */
+  background-color: #5a84e8;
+  box-shadow: 0 4px 12px rgba(69, 115, 223, 0.35);
+  transform: translateY(-1px);
+}
+.primary:active {
+  box-shadow: 0 1px 3px rgba(69, 115, 223, 0.2);
 }
 
 .secondary {
   background-color: transparent;
-  color: #5a84e8; /* Lighter Primary Blue */
-  border-color: #5a84e8;
+  color: #6b93f5;
+  border-color: rgba(107, 147, 245, 0.4);
 }
 .secondary:hover {
-  background-color: rgba(90, 132, 232, 0.1);
+  background-color: rgba(69, 115, 223, 0.1);
+  border-color: rgba(107, 147, 245, 0.6);
+  transform: translateY(-1px);
 }
 
 .accent {
-  background-color: #ff9800; /* Accent Orange */
+  background-color: #ff9800;
   color: #ffffff;
+  box-shadow: 0 2px 6px rgba(255, 152, 0, 0.25);
 }
 .accent:hover {
   background-color: #ffac33;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.35);
+  transform: translateY(-1px);
 }
 
 .destructive {
-  background-color: #e81123; /* Error Red */
+  background-color: #e81123;
   color: #ffffff;
+  box-shadow: 0 2px 6px rgba(232, 17, 35, 0.25);
 }
 .destructive:hover {
   background-color: #f7525f;
+  box-shadow: 0 4px 12px rgba(232, 17, 35, 0.35);
+  transform: translateY(-1px);
 }
 
 .ghost {
-  color: #ffffff;
+  color: #e2e8f0;
 }
 .ghost:hover {
-  background-color: #2c323a; /* Container Dark */
+  background-color: rgba(51, 65, 85, 0.5);
   color: #ffffff;
 }
 

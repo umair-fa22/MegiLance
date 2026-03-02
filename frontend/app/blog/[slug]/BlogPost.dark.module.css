@@ -1,11 +1,11 @@
-/* @AI-HINT: Dark theme — hero overlay, meta bar, share, author bio, content prose, related, tags */
-.title { color: var(--text-dark-primary, #f0f0f5); }
-.meta { color: var(--text-dark-secondary, #a0a0b5); }
+﻿/* @AI-HINT: Dark theme — hero overlay, meta bar, share, author bio, content prose, related, tags */
+.title { color: #f0f0f5; }
+.meta { color: #a0a0b5; }
 
 .heroOverlay {
   background: linear-gradient(180deg, transparent 25%, rgba(0,0,0,0.7) 100%);
 }
-.backLink { color: var(--primary-light, #6b93e8); }
+.backLink { color: #6b93e8; }
 
 /* Meta bar */
 .metaBar {
@@ -14,29 +14,29 @@
 }
 .metaAvatar {
   background: rgba(69,115,223,0.15);
-  color: var(--primary-light, #6b93e8);
+  color: #6b93e8;
 }
 
 /* Share */
 .shareBtn {
   background: rgba(255,255,255,0.06);
-  color: var(--text-dark-secondary, #a0a0b5);
+  color: #a0a0b5;
 }
 .shareBtn:hover { background: rgba(69,115,223,0.15); color: #6b93e8; }
 
 /* Content */
-.content { color: var(--text-dark-primary, #f0f0f5); }
-.content h2, .content h3, .content h4 { color: var(--text-dark-primary, #f0f0f5); }
-.content p { color: var(--text-dark-secondary, #b0b0c5); }
-.content a { color: var(--primary-light, #6b93e8); }
+.content { color: #f0f0f5; }
+.content h2, .content h3, .content h4 { color: #f0f0f5; }
+.content p { color: #b0b0c5; }
+.content a { color: #6b93e8; }
 .content a:hover { color: #8aaef0; }
-.content blockquote { background: rgba(69,115,223,0.06); color: var(--text-dark-secondary, #b0b0c5); }
+.content blockquote { background: rgba(69,115,223,0.06); color: #b0b0c5; }
 .content pre { background: #161b22; color: #c9d1d9; }
 .content code { background: rgba(255,255,255,0.06); }
-.content th { color: var(--text-dark-tertiary, #6b6b80); }
+.content th { color: #6b6b80; }
 
 /* Tags */
-.tagsFooter { border-top-color: rgba(255,255,255,0.06); border-bottom-color: rgba(255,255,255,0.06); color: var(--text-dark-secondary, #a0a0b5); }
+.tagsFooter { border-top-color: rgba(255,255,255,0.06); border-bottom-color: rgba(255,255,255,0.06); color: #a0a0b5; }
 .footerTag { background: rgba(69,115,223,0.12); color: #6b93e8; }
 
 /* Author bio */

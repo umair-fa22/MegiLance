@@ -1,15 +1,15 @@
-/* @AI-HINT: Light theme styles for PublicLayout. Uses shared theme variables for brand alignment. */
-.root { background: var(--background); color: var(--text-primary); }
-.skipLink { background: var(--primary); color: #fff; box-shadow: var(--shadow-md); }
-.header { background: color-mix(in oklab, var(--surface) 92%, transparent); border-bottom: 1px solid var(--border); }
-.nav { color: var(--text-primary); }
-.navBrand { color: var(--text-primary); }
-.navLink { color: var(--text-secondary); }
-.navLink:hover { color: var(--primary); }
-.navLinkActive { color: var(--primary); }
-.mobileToggle { color: var(--text-secondary); }
-.mobileNav { background: color-mix(in oklab, var(--surface) 97%, transparent); border-bottom: 1px solid var(--border); }
-.main { background: var(--background); }
-.footer { background: var(--surface); color: var(--text-secondary); }
-.footerMeta .navLink { color: var(--text-secondary); }
-.footerMeta .navLink:hover { color: var(--primary); }
+/* @AI-HINT: Light theme styles for PublicLayout. */
+.root { background: #f8fafc; color: #0f172a; }
+.skipLink { background: #4573df; color: #fff; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
+.header { background: rgba(255, 255, 255, 0.92); border-bottom: 1px solid #e2e8f0; }
+.nav { color: #0f172a; }
+.navBrand { color: #0f172a; }
+.navLink { color: #64748b; }
+.navLink:hover { color: #4573df; }
+.navLinkActive { color: #4573df; }
+.mobileToggle { color: #64748b; }
+.mobileNav { background: rgba(255, 255, 255, 0.97); border-bottom: 1px solid #e2e8f0; }
+.main { background: #f8fafc; }
+.footer { background: #ffffff; color: #64748b; }
+.footerMeta .navLink { color: #64748b; }
+.footerMeta .navLink:hover { color: #4573df; }

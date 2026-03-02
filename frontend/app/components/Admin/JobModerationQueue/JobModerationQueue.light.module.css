@@ -1,69 +1,69 @@
 /* AI-HINT: Light theme styles for JobModerationQueue. Sets colors for text, backgrounds, borders, and interactive elements. */
 
 .container {
-  background-color: var(--color-background-secondary-light);
+  background-color: #f8fafc;
 }
 
 .title {
-  color: var(--color-text-primary-light);
+  color: #0f172a;
 }
 
 .description {
-  color: var(--color-text-secondary-light);
+  color: #475569;
 }
 
 .toolbar {
-  background-color: var(--color-background-light);
+  background-color: #ffffff;
   padding: 1rem;
-  border-radius: var(--border-radius-lg);
-  border: 1px solid var(--color-border-light);
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
 }
 
 .jobCard {
-  border-color: var(--color-border-light);
+  border-color: #e2e8f0;
 }
 
 .jobTitle {
-  color: var(--color-text-primary-light);
+  color: #0f172a;
 }
 
 .metaItem {
-  color: var(--color-text-secondary-light);
+  color: #475569;
 }
 
 .metaItem svg {
-  color: var(--color-text-tertiary-light);
+  color: #94a3b8;
 }
 
 .description p {
-  color: var(--color-text-secondary-light);
+  color: #475569;
 }
 
 .expandButton {
-  color: var(--color-primary);
+  color: #4573df;
 }
 
 .expandButton:hover {
-  color: var(--color-primary-hover);
+  color: #3b63c4;
 }
 
 .cardActions {
-  border-color: var(--color-border-light);
+  border-color: #e2e8f0;
 }
 
 .emptyState {
-  background-color: var(--color-background-light);
-  border: 1px dashed var(--color-border-light);
+  background-color: #ffffff;
+  border: 1px dashed #e2e8f0;
 }
 
 .emptyState svg {
-  color: var(--color-text-tertiary-light);
+  color: #94a3b8;
 }
 
 .emptyState h3 {
-  color: var(--color-text-primary-light);
+  color: #0f172a;
 }
 
 .emptyState p {
-  color: var(--color-text-secondary-light);
+  color: #475569;
 }

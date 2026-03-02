@@ -1,7 +1,7 @@
-/* @AI-HINT: Defines the light theme styles for the DashboardLayout, including theme-specific scrollbar colors. */
+﻿/* @AI-HINT: Defines the light theme styles for the DashboardLayout, including theme-specific scrollbar colors. */
 
 .mainContent {
-  background-color: var(--background);
+  background-color: #ffffff;
   --scrollbar-thumb-color: rgba(0, 0, 0, 0.2);
   --scrollbar-thumb-hover-color: rgba(0, 0, 0, 0.3);
 }

@@ -1,45 +1,78 @@
 /* AI-HINT: Dark theme overrides for Client Projects page. */
 
 .theme .subtitle {
-  color: var(--color-text-secondary-dark);
+  color: #94a3b8;
 }
 
-.themeWrapper { background: var(--surface); color: var(--text-primary); }
+.themeWrapper {
+  background: #0f172a;
+  color: #f8fafc;
+}
 
-.input, .select { background: var(--surface-elev); border: 1px solid var(--border); color: var(--text-primary); }
-.button { background: var(--primary); color: white; border: 1px solid rgba(0,0,0,0.2); }
-.button.secondary { background: var(--surface-elev); color: var(--text-primary); border: 1px solid var(--border); }
+.input,
+.select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #334155;
+  color: #f8fafc;
+}
 
-.card { background: var(--surface-elev); border: 1px solid var(--border); }
-.cardTitle { color: var(--text-primary); }
-.meta { color: var(--text-secondary); }
-.badge { background: var(--surface); border-color: var(--border); color: var(--text-primary); }
+.button {
+  background: #4573df;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.button.secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+  border: 1px solid #334155;
+}
+
+.card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.cardTitle {
+  color: #f8fafc;
+}
+
+.meta {
+  color: #94a3b8;
+}
+
+.badge {
+  background: #0f172a;
+  border-color: #334155;
+  color: #cbd5e1;
+}
 
 .skeletonCard {
-  background-color: var(--color-background-secondary-dark);
+  background-color: #1e293b;
 }
 
 .kpiStrip {
-  background-color: var(--neutral-800, #1e293b);
-  border-color: var(--color-border-dark, #334155);
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
 .kpiValue {
-  color: var(--color-text-primary-dark, #f1f5f9);
+  color: #f1f5f9;
 }
 
 .kpiLabel {
-  color: var(--color-text-secondary-dark, #94a3b8);
+  color: #94a3b8;
 }
 
 .kpiDivider {
-  background-color: var(--color-border-dark, #334155);
+  background-color: #334155;
 }
 
 .resultsCount {
-  color: var(--color-text-secondary-dark, #94a3b8);
+  color: #94a3b8;
 }
 
 .footer {
-  border-color: var(--color-border-dark);
+  border-color: #334155;
 }

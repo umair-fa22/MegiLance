@@ -1,15 +1,15 @@
 /* @AI-HINT: Light theme styles for the DatePicker component with enhanced visual effects. */
 
 .datePickerWrapper {
-  color: var(--text-primary-23272f);
+  color: #23272f;
 }
 
 .label {
-  color: var(--text-primary-23272f);
+  color: #23272f;
 }
 
 .required {
-  color: var(--error-e81123);
+  color: #e81123;
 }
 
 .inputContainer {
@@ -22,15 +22,15 @@
 }
 
 .inputIcon {
-  color: var(--text-secondary-333333);
+  color: #333333;
 }
 
 .inputText {
-  color: var(--text-primary-23272f);
+  color: #23272f;
 }
 
 .placeholder {
-  color: var(--text-secondary-333333);
+  color: #333333;
 }
 
 .clearIcon:hover {
@@ -48,7 +48,7 @@
 
 .presetButton {
   border-color: rgba(229, 231, 235, 0.7);
-  color: var(--text-primary-23272f);
+  color: #23272f;
 }
 
 .presetButton:hover {
@@ -65,7 +65,7 @@
 }
 
 .monthYear {
-  color: var(--text-primary-23272f);
+  color: #23272f;
 }
 
 .dayNames {
@@ -73,19 +73,19 @@
 }
 
 .dayName {
-  color: var(--text-secondary-333333);
+  color: #333333;
 }
 
 .calendarDay {
-  color: var(--text-primary-23272f);
+  color: #23272f;
 }
 
 .today::after {
-  background-color: var(--primary-4573df);
+  background-color: #4573df;
 }
 
 .otherMonth {
-  color: var(--text-secondary-333333);
+  color: #333333;
 }
 
 .calendarFooter {
@@ -94,7 +94,7 @@
 
 .clearButton {
   border-color: rgba(229, 231, 235, 0.7);
-  color: var(--text-primary-23272f);
+  color: #23272f;
 }
 
 .clearButton:hover {
@@ -103,26 +103,26 @@
 
 .timeSelect {
   border-color: rgba(229, 231, 235, 0.7);
-  color: var(--text-primary-23272f);
+  color: #23272f;
   background-color: white;
 }
 
 .timeSelect:focus {
-  outline: 2px solid var(--primary-4573df);
+  outline: 2px solid #4573df;
   outline-offset: 2px;
 }
 
 .errorMessage {
-  color: var(--error-e81123);
+  color: #e81123;
 }
 
 /* Focus states */
 .inputContainer:focus-within {
-  border-color: var(--primary-4573df);
-  outline-color: var(--primary-4573df);
+  border-color: #4573df;
+  outline-color: #4573df;
 }
 
 /* Error states */
 .error {
-  border-color: var(--error-e81123);
+  border-color: #e81123;
 }

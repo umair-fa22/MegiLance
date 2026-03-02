@@ -1,111 +1,111 @@
-.container {
-  background-color: var(--bg-primary-dark);
+﻿.container {
+  background-color: #1e293b;
 }
 
 .title {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .description {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .labelRow {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .tipButton {
-  background-color: var(--bg-tertiary-dark);
-  color: var(--text-secondary-dark);
+  background-color: #1e293b;
+  color: #94a3b8;
 }
 
 .tipButton:hover {
-  background-color: var(--primary-dark);
+  background-color: #6b8de6;
   color: white;
 }
 
 .tipsCard {
-  background-color: var(--bg-tertiary-dark);
-  border: 1px solid var(--border-dark);
+  background-color: #1e293b;
+  border: 1px solid #334155;
 }
 
 .tipsTitle {
-  color: var(--primary-dark);
+  color: #6b8de6;
 }
 
 .tipsList {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .templatesCard {
-  background-color: var(--bg-tertiary-dark);
-  border: 1px solid var(--border-dark);
+  background-color: #1e293b;
+  border: 1px solid #334155;
 }
 
 .templatesTitle {
-  color: var(--accent-dark);
+  color: #ff9800;
 }
 
 .templateItem {
-  background-color: var(--bg-secondary-dark);
-  border-color: var(--border-dark);
+  background-color: #0f172a;
+  border-color: #334155;
 }
 
 .templateItem:hover {
-  background-color: var(--bg-primary-dark);
-  border-color: var(--primary-dark);
+  background-color: #1e293b;
+  border-color: #6b8de6;
 }
 
 .templateName {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .templatePreview {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .charProgress {
-  background-color: var(--bg-tertiary-dark);
+  background-color: #1e293b;
 }
 
 .charProgressFill {
-  background-color: var(--primary-dark);
+  background-color: #6b8de6;
 }
 
 .charCount {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .pricingSection {
-  background-color: var(--bg-secondary-dark);
-  border: 1px solid var(--border-dark);
+  background-color: #0f172a;
+  border: 1px solid #334155;
 }
 
 .sectionTitle {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .estimatedCard {
-  background-color: var(--bg-tertiary-dark);
-  border: 1px solid var(--border-dark);
+  background-color: #1e293b;
+  border: 1px solid #334155;
 }
 
 .estimatedRow {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .estimatedTotal {
-  color: var(--success-dark);
+  color: #22c55e;
 }
 
 .estimatedBreakdown {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .hint {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .error {
-  color: var(--error-dark);
+  color: #f87171;
 }

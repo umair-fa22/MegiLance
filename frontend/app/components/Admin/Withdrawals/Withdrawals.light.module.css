@@ -1,4 +1,4 @@
-.withdrawalsContainer {
+﻿.withdrawalsContainer {
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
 }
@@ -34,49 +34,49 @@
 
 /* AI-HINT: Light theme styles for the Withdrawals component. */
 
-.headerTitle { color: var(--color-text-primary-light); }
-.filterTabs { border-color: var(--color-border-light); }
+.headerTitle { color: #0f172a; }
+.filterTabs { border-color: #e2e8f0; }
 
 .filterTab {
-  color: var(--color-text-secondary-light);
+  color: #475569;
 }
 
 .filterTab:hover {
-  color: var(--color-text-primary-light);
+  color: #0f172a;
 }
 
 .activeTab {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
+  color: #4573df;
+  border-bottom-color: #4573df;
 }
 
 .requestCard {
-  background-color: var(--color-background-secondary-light);
-  border: 1px solid var(--color-border-light);
-  box-shadow: var(--shadow-sm);
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 .requestCard:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--color-border-hover-light);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+  border-color: #cbd5e1;
 }
 
-.freelancerName { color: var(--color-text-primary-light); }
-.requestDate { color: var(--color-text-tertiary-light); }
-.amount { color: var(--color-text-primary-light); }
-.addressLabel { color: var(--color-text-secondary-light); }
-.address { color: var(--color-text-secondary-light); }
-.cardFooter { border-color: var(--color-border-light); }
+.freelancerName { color: #0f172a; }
+.requestDate { color: #94a3b8; }
+.amount { color: #0f172a; }
+.addressLabel { color: #475569; }
+.address { color: #475569; }
+.cardFooter { border-color: #e2e8f0; }
 
 .emptyState {
-  background-color: var(--color-background-secondary-light);
-  border: 1px dashed var(--color-border-light);
+  background-color: #f8fafc;
+  border: 1px dashed #e2e8f0;
 }
 
-.emptyStateIcon { color: var(--color-icon-secondary-light); }
-.emptyStateTitle { color: var(--color-text-primary-light); }
-.emptyStateText { color: var(--color-text-secondary-light); }
+.emptyStateIcon { color: #64748b; }
+.emptyStateTitle { color: #0f172a; }
+.emptyStateText { color: #475569; }
 
 /* Loading and Error States */
-.loadingState { color: var(--color-text-secondary-light); }
-.errorState { color: var(--color-error); }
+.loadingState { color: #475569; }
+.errorState { color: #e81123; }

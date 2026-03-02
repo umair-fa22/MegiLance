@@ -1,7 +1,7 @@
-/* @AI-HINT: Premium RecommendedFreelancers - Dark theme */
+﻿/* @AI-HINT: Premium RecommendedFreelancers - Dark theme */
 
 .aiIcon {
-  background: linear-gradient(135deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(135deg, #4573df, #9b59b6);
   color: #ffffff;
   box-shadow: 0 8px 24px -8px rgba(69, 115, 223, 0.5);
 }
@@ -35,7 +35,7 @@
 }
 
 .card::before {
-  background: linear-gradient(90deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(90deg, #4573df, #9b59b6);
 }
 
 .card:hover {
@@ -59,7 +59,7 @@
 }
 
 .onlineIndicator {
-  background: var(--ml-green, #27AE60);
+  background: #27AE60;
   border-color: #1a1a2e;
 }
 
@@ -80,7 +80,7 @@
 }
 
 .matchPercent {
-  color: var(--ml-blue-light, #6b93e8);
+  color: #6b93e8;
 }
 
 .matchLabel {
@@ -110,7 +110,7 @@
 
 .skillMatched {
   background: rgba(69, 115, 223, 0.2);
-  color: var(--ml-blue-light, #6b93e8);
+  color: #6b93e8;
   border: 1px solid rgba(69, 115, 223, 0.3);
 }
 
@@ -120,11 +120,11 @@
 
 .reason {
   background: rgba(39, 174, 96, 0.15);
-  color: var(--ml-green-light, #4cd787);
+  color: #4cd787;
 }
 
 .primaryAction {
-  background: linear-gradient(135deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(135deg, #4573df, #9b59b6);
   color: #ffffff;
   box-shadow: 0 8px 24px -8px rgba(69, 115, 223, 0.5);
 }
@@ -144,7 +144,7 @@
 
 .loadingSpinner {
   border-color: rgba(255, 255, 255, 0.1);
-  border-top-color: var(--ml-blue, #4573df);
+  border-top-color: #4573df;
 }
 
 .loadingText {

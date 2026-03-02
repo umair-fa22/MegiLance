@@ -1,4 +1,4 @@
-.sidebar {
+﻿.sidebar {
   background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
   border-right: 1px solid rgba(58, 65, 74, 0.7);
   backdrop-filter: blur(10px);
@@ -11,7 +11,7 @@
 }
 
 .logo {
-  color: var(--text-on-primary-ffffff);
+  color: #ffffff;
   background: linear-gradient(90deg, #e0f2fe, #bae6fd);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -19,11 +19,11 @@
 }
 
 .userName {
-  color: var(--text-primary-f5f7fa);
+  color: #f8fafc;
 }
 
 .userEmail {
-  color: var(--text-secondary-a9b1bd);
+  color: #94a3b8;
 }
 
 .userProfile {
@@ -42,7 +42,7 @@
 }
 
 .navItem {
-  color: var(--text-secondary-a9b1bd);
+  color: #94a3b8;
   background: rgba(15, 23, 42, 0.7);
   border: 1px solid rgba(55, 65, 81, 0.7);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -50,26 +50,26 @@
 
 .navItem:hover {
   background: rgba(30, 41, 59, 0.9);
-  color: var(--primary-4573df);
+  color: #6b8de6;
   border: 1px solid rgba(75, 85, 99, 0.7);
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.2);
   transform: translateX(5px);
 }
 
 .navItem.active {
-  background: linear-gradient(90deg, var(--primary-4573df), #3a66c7);
+  background: linear-gradient(90deg, #6b8de6, #3a66c7);
   color: white;
   border: 1px solid rgba(69, 115, 223, 0.5);
   box-shadow: 0 4px 6px rgba(69, 115, 223, 0.3);
 }
 
 .navBadge {
-  background: linear-gradient(135deg, var(--accent-ff9800), #e68900);
+  background: linear-gradient(135deg, #ff9800, #e68900);
   box-shadow: 0 2px 4px rgba(255, 152, 0, 0.3);
 }
 
 .logoutButton {
-  color: var(--text-secondary-a9b1bd);
+  color: #94a3b8;
   background: rgba(15, 23, 42, 0.7);
   border: 1px solid rgba(55, 65, 81, 0.7);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -87,12 +87,12 @@
 
 .themeToggle {
   background: rgba(30, 41, 59, 0.7);
-  color: var(--text-secondary-a9b1bd);
+  color: #94a3b8;
   border: 1px solid rgba(55, 65, 81, 0.7);
 }
 
 .themeToggle:hover {
-  background: var(--primary-4573df);
+  background: #6b8de6;
   color: white;
   border: 1px solid rgba(69, 115, 223, 0.5);
 }

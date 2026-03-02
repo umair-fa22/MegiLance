@@ -1,15 +1,15 @@
-.theme {
-  background-color: var(--color-background-secondary-light);
-  border: 1px solid var(--color-border-light);
+﻿.theme {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
 }
 
 .chartTitle {
-  color: var(--color-text-primary-light);
+  color: #0f172a;
 }
 
 /* @AI-HINT: Light theme styles for SpendingChart grid, axes, and tooltip. */
 .customTooltip {
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid #eef2f7;
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
 }

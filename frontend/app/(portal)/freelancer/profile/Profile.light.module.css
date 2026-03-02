@@ -1,11 +1,11 @@
-/* @AI-HINT: Light theme styles for the enhanced Profile page with sections, arrays, social, share modal. */
+﻿/* @AI-HINT: Light theme styles for the enhanced Profile page with sections, arrays, social, share modal. */
 
 .profileContainer {
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
 }
 
 .loadingState {
-  color: var(--text-secondary, #64748b);
+  color: #64748b;
 }
 
 .header, .actions {
@@ -13,7 +13,7 @@
 }
 
 .name {
-  color: var(--text-primary, #1f2937);
+  color: #1f2937;
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -21,61 +21,61 @@
 }
 
 .title {
-  color: var(--primary, #4573df);
+  color: #4573df;
 }
 
 .tagline {
-  color: var(--text-secondary, #64748b);
+  color: #64748b;
 }
 
 .rank {
   background: linear-gradient(135deg, rgba(69, 115, 223, 0.1), rgba(69, 115, 223, 0.05));
-  color: var(--primary, #4573df);
+  color: #4573df;
   border-color: rgba(69, 115, 223, 0.2);
 }
 
 .metaBadge {
   background: rgba(0, 0, 0, 0.04);
-  color: var(--text-secondary, #64748b);
+  color: #64748b;
   border-color: rgba(0, 0, 0, 0.08);
 }
 
 /* Section Nav */
 .navBtn {
-  color: var(--text-secondary, #64748b);
+  color: #64748b;
 }
 
 .navBtn:hover {
   background: rgba(69, 115, 223, 0.06);
-  color: var(--primary, #4573df);
+  color: #4573df;
 }
 
 .navBtnActive {
   background: rgba(69, 115, 223, 0.1);
-  color: var(--primary, #4573df);
+  color: #4573df;
   border-color: rgba(69, 115, 223, 0.2);
 }
 
 .status {
   background: rgba(69, 115, 223, 0.08);
-  color: var(--primary, #4573df);
+  color: #4573df;
   border: 1px solid rgba(69, 115, 223, 0.15);
 }
 
 .sectionTitle {
-  color: var(--text-primary, #1f2937);
+  color: #1f2937;
 }
 
 .sectionDescription {
-  color: var(--text-secondary, #64748b);
+  color: #64748b;
 }
 
 .fieldLabel {
-  color: var(--text-primary, #1f2937);
+  color: #1f2937;
 }
 
 .skillsInfo {
-  color: var(--text-secondary, #64748b);
+  color: #64748b;
 }
 
 /* Array cards */
@@ -85,7 +85,7 @@
 }
 
 .arrayCardTitle {
-  color: var(--primary, #4573df);
+  color: #4573df;
 }
 
 .removeBtn {
@@ -95,7 +95,7 @@
 .emptyArrayState {
   background: rgba(0, 0, 0, 0.02);
   border-color: rgba(0, 0, 0, 0.12);
-  color: var(--text-secondary, #64748b);
+  color: #64748b;
 }
 
 /* Media cards */
@@ -105,7 +105,7 @@
 }
 
 .mediaCardContent h3 {
-  color: var(--text-primary, #1f2937);
+  color: #1f2937;
 }
 
 /* Settings */
@@ -115,11 +115,11 @@
 }
 
 .settingRow h3 {
-  color: var(--text-primary, #1f2937);
+  color: #1f2937;
 }
 
 .settingRow p {
-  color: var(--text-secondary, #64748b);
+  color: #64748b;
 }
 
 .toggleSwitch {
@@ -127,7 +127,7 @@
 }
 
 .toggleInput:checked + .toggleSwitch {
-  background: var(--primary, #4573df);
+  background: #4573df;
 }
 
 /* Share */
@@ -137,22 +137,22 @@
 }
 
 .shareTitle {
-  color: var(--text-primary, #1f2937);
+  color: #1f2937;
 }
 
 .shareDesc {
-  color: var(--text-secondary, #64748b);
+  color: #64748b;
 }
 
 .shareUrlInput {
   background: rgba(255, 255, 255, 0.8);
   border-color: rgba(0, 0, 0, 0.12);
-  color: var(--text-primary, #1f2937);
+  color: #1f2937;
 }
 
 .shareHints {
   background: rgba(0, 0, 0, 0.03);
-  color: var(--text-secondary, #64748b);
+  color: #64748b;
 }
 
 /* Modal */
@@ -172,15 +172,15 @@
 }
 
 .shareModalHeader h2 {
-  color: var(--text-primary, #1f2937);
+  color: #1f2937;
 }
 
 .closeBtn {
-  color: var(--text-secondary, #64748b);
+  color: #64748b;
 }
 
 .closeBtn:hover {
-  color: var(--text-primary, #1f2937);
+  color: #1f2937;
 }
 
 .errors {

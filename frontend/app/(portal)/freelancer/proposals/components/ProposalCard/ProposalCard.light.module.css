@@ -1,38 +1,38 @@
-/* @AI-HINT: Light theme styles for the ProposalCard. */
+﻿/* @AI-HINT: Light theme styles for the ProposalCard. */
 
 .card {
   background-color: #ffffff;
-  border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-sm-light);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 .card:hover {
-  border-color: var(--brand-primary-light-hover);
-  box-shadow: var(--shadow-md-light);
+  border-color: rgba(69,115,223,0.08);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
 }
 
 .cardHeader, .cardFooter {
-    border-color: var(--border-light);
+    border-color: #e2e8f0;
 }
 
 .jobTitle {
-  color: var(--text-primary-light);
+  color: #0f172a;
 }
 
 .clientInfo {
-    color: var(--text-secondary-light);
+    color: #64748b;
 }
 
 .icon {
-    color: var(--brand-primary);
+    color: #4573df;
 }
 
 .detailValue {
-    color: var(--text-primary-light);
+    color: #0f172a;
 }
 
 .detailLabel {
-    color: var(--text-tertiary-light);
+    color: #94a3b8;
 }
 
 .matchBadge {

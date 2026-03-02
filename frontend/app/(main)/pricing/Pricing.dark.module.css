@@ -1,23 +1,23 @@
-/* AI-HINT: Dark theme styles for the main pricing page. Defines colors for text, the billing toggle, and badges in dark mode. */
+﻿/* AI-HINT: Dark theme styles for the main pricing page. Defines colors for text, the billing toggle, and badges in dark mode. */
 
 .title {
-  color: var(--text-primary-f5f7fa);
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: var(--text-secondary-a9b1bd);
+  color: #94a3b8;
 }
 
 .toggleLabel {
-  color: var(--text-secondary-a9b1bd);
+  color: #94a3b8;
 }
 
 .toggleLabel.activeLabel {
-  color: var(--primary-4573df);
+  color: #6b8de6;
 }
 
 .toggleSwitch {
-  background-color: var(--surface-272b32);
+  background-color: #1e293b;
 }
 
 .toggleSwitch[aria-label*='annual'] {
@@ -25,14 +25,14 @@
 }
 
 .toggleHandle {
-  background-color: var(--background-1d2127);
+  background-color: #1d2127;
 }
 
 .discountBadge {
-  background-color: color-mix(in oklab, var(--success-27AE60) 20%, black);
-  color: var(--text-on-primary-ffffff);
+  background-color: #4573df 20%, black);
+  color: #ffffff;
 }
 
 .note {
-  color: var(--text-secondary-a9b1bd);
+  color: #94a3b8;
 }

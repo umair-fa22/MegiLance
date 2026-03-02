@@ -1,24 +1,61 @@
 /* AI-HINT: Dark theme overrides for Portal Projects page. */
 
-.themeWrapper { background: var(--surface); color: var(--text-primary); }
-.subtitle { color: var(--text-secondary); }
+.themeWrapper {
+  background: #0f172a;
+  color: #f8fafc;
+}
 
-.input, .select { background: var(--surface-elev); border: 1px solid var(--border); color: var(--text-primary); }
-.button { background: var(--primary); color: white; border: 1px solid rgba(0,0,0,0.2); }
-.button.secondary { background: var(--surface-elev); color: var(--text-primary); border: 1px solid var(--border); }
+.subtitle {
+  color: #94a3b8;
+}
 
-.card { background: var(--surface-elev); border: 1px solid var(--border); }
-.progressWrap { background: var(--surface); border-color: var(--border); }
-.progressBar { background: var(--primary); }
-.chip { background: rgba(69, 115, 223, 0.18); border: 1px solid var(--border); color: var(--text-primary); }
+.input,
+.select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #334155;
+  color: #f8fafc;
+}
+
+.button {
+  background: #4573df;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.button.secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+  border: 1px solid #334155;
+}
+
+.card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.progressWrap {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+.progressBar {
+  background: #6b8de6;
+}
+
+.chip {
+  background: rgba(69, 115, 223, 0.18);
+  border: 1px solid #334155;
+  color: #cbd5e1;
+}
 
 /* Loading and Error States */
 .loadingState {
-  color: #6b9aff;
+  color: #6b8de6;
 }
 
 .errorBanner {
-  background: #2d1b1b;
-  border: 1px solid #5c2626;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
   color: #fca5a5;
 }

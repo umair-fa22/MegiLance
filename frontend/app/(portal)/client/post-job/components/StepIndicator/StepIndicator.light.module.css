@@ -1,43 +1,43 @@
 /* AI-HINT: Light theme styles for the StepIndicator component. */
 
 .indicator {
-  background-color: var(--surface);
-  border-color: var(--border);
+  background-color: #ffffff;
+  border-color: #e2e8f0;
 }
 
 .indicator.completed {
-  background-color: var(--success);
-  border-color: var(--success);
+  background-color: #27AE60;
+  border-color: #27AE60;
 }
 
 .indicator.active {
-  border-color: var(--primary);
+  border-color: #4573df;
 }
 
 .icon {
-  color: var(--primary-contrast);
+  color: #ffffff;
 }
 
 .stepNumber {
-  color: var(--text-tertiary);
+  color: #94a3b8;
 }
 
 .active .stepNumber {
-  color: var(--primary);
+  color: #4573df;
 }
 
 .stepName {
-  color: var(--text-secondary);
+  color: #64748b;
 }
 
 .stepNameActive {
-  color: var(--text-primary);
+  color: #0f172a;
 }
 
 .progressBarContainer {
-  background-color: var(--border);
+  background-color: #e2e8f0;
 }
 
 .progressBar {
-  background-color: var(--primary);
+  background-color: #4573df;
 }

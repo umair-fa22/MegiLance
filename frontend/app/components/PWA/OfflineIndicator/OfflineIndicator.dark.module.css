@@ -1,8 +1,8 @@
 /* @AI-HINT: Defines dark theme variables for the OfflineIndicator. These are applied to the .offlineIndicator class. */
 
 .offlineIndicator {
-  --offline-bg-color: var(--surface-warning-subtle);
-  --offline-border-color: var(--border-warning);
-  --offline-text-color: var(--text-warning);
-  --offline-icon-color: var(--icon-warning);
+  --offline-bg-color: rgba(242,201,76,0.10);
+  --offline-border-color: #F2C94C;
+  --offline-text-color: #F2C94C;
+  --offline-icon-color: #F2C94C;
 }

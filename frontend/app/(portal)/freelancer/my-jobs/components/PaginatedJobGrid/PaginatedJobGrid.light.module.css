@@ -1,16 +1,16 @@
-/* @AI-HINT: Light theme styles for the PaginatedJobGrid component. */
+﻿/* @AI-HINT: Light theme styles for the PaginatedJobGrid component. */
 .section {
   background-color: #ffffff;
-  border: 1px solid var(--border-light);
+  border: 1px solid #e2e8f0;
 }
 
 .sectionTitle {
-  color: var(--text-primary-light);
-  border-bottom-color: var(--border-light);
+  color: #0f172a;
+  border-bottom-color: #e2e8f0;
 }
 
 .emptyState {
-  background-color: var(--bg-secondary-light);
-  color: var(--text-secondary-light);
-  border: 1px dashed var(--border-light);
+  background-color: #f8fafc;
+  color: #64748b;
+  border: 1px dashed #e2e8f0;
 }

@@ -1,28 +1,28 @@
 /* AI-HINT: Light theme styles for the Hire page. */
 
 .page {
-  background-color: var(--background);
+  background-color: #f8fafc;
 }
 
 .title {
-  color: var(--text-primary);
+  color: #0f172a;
 }
 
 .subtitle {
-  color: var(--text-secondary);
+  color: #64748b;
 }
 
 .form {
-  background-color: var(--surface);
-  border-color: var(--border);
+  background-color: #ffffff;
+  border-color: #e2e8f0;
 }
 
 .liveRegion {
-  background-color: var(--surface-elev);
-  color: var(--text-secondary);
-  border: 1px solid var(--border);
+  background-color: #ffffff;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
 }
 
 .actions {
-  border-top-color: var(--border);
+  border-top-color: #e2e8f0;
 }

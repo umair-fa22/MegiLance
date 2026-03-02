@@ -1,20 +1,20 @@
 /* AI-HINT: Dark theme styles for the enhanced StepDetails component. */
 
 .container {
-  background-color: var(--background-dark);
-  border-color: var(--border-dark);
+  background-color: #0f172a;
+  border-color: #334155;
 }
 
 .title {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .label {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .exampleButton {
@@ -35,14 +35,14 @@
 
 .exampleItem {
   background-color: rgba(255, 255, 255, 0.05);
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .exampleItem:hover {
   background-color: rgba(99, 102, 241, 0.15);
-  color: var(--primary);
+  color: #6b8de6;
 }
 
 .help {
-  color: var(--text-tertiary-dark);
+  color: #64748b;
 }

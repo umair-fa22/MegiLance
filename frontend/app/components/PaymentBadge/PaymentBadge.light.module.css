@@ -1,10 +1,10 @@
 /* @AI-HINT: Defines light theme variables for the PaymentBadge. These are applied to the .paymentBadge class. */
 
 .paymentBadge {
-  --badge-paid-bg: var(--surface-success-subtle);
-  --badge-paid-text: var(--text-success);
-  --badge-pending-bg: var(--surface-warning-subtle);
-  --badge-pending-text: var(--text-warning);
-  --badge-failed-bg: var(--surface-danger-subtle);
-  --badge-failed-text: var(--text-danger);
+  --badge-paid-bg: rgba(39,174,96,0.06);
+  --badge-paid-text: #27AE60;
+  --badge-pending-bg: rgba(242,201,76,0.10);
+  --badge-pending-text: #F2C94C;
+  --badge-failed-bg: rgba(232,17,35,0.06);
+  --badge-failed-text: #e81123;
 }

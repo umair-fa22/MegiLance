@@ -1,28 +1,28 @@
-/* @AI-HINT: Dark theme styles for the Settings pages. */
+﻿/* @AI-HINT: Dark theme styles for the Settings pages. */
 
 .header {
-  border-bottom: 1px solid var(--border-dark);
+  border-bottom: 1px solid #334155;
 }
 
 .title {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .section {
-  border-color: var(--border-dark);
-  background-color: var(--bg-secondary-dark);
+  border-color: #334155;
+  background-color: #0f172a;
 }
 
 .sectionTitle {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .sectionDescription {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .input {
@@ -30,37 +30,37 @@
 }
 
 .inputHint {
-  color: var(--text-tertiary-dark);
+  color: #64748b;
 }
 
 .formFooter {
-  border-top: 1px solid var(--border-dark);
+  border-top: 1px solid #334155;
 }
 
-.formContainer { color: var(--text-primary-dark); }
-.formHeader { border-bottom-color: var(--border-dark); }
-.formTitle { color: var(--text-primary-dark); }
-.formDescription { color: var(--text-secondary-dark); }
+.formContainer { color: #f8fafc; }
+.formHeader { border-bottom-color: #334155; }
+.formTitle { color: #f8fafc; }
+.formDescription { color: #94a3b8; }
 
 .switchDescription {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .radioLabel {
-  border-color: var(--border-dark);
-  background-color: var(--bg-primary-dark);
+  border-color: #334155;
+  background-color: #1e293b;
 }
 
 .radioLabel:hover {
-  border-color: var(--primary);
-  background-color: var(--bg-hover-dark);
+  border-color: #6b8de6;
+  background-color: rgba(255,255,255,0.06);
 }
 
 .radioDescription {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .accountRow {
-  border-color: var(--border-dark);
-  background-color: var(--bg-primary-dark);
+  border-color: #334155;
+  background-color: #1e293b;
 }

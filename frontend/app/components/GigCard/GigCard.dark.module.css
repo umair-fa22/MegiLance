@@ -1,13 +1,13 @@
-/* @AI-HINT: Dark theme colors for GigCard component */
+﻿/* @AI-HINT: Dark theme colors for GigCard component */
 .theme {
-  background-color: var(--color-background-dark, #1e293b);
-  border: 1px solid var(--color-border-dark, #334155);
+  background-color: #1e293b;
+  border: 1px solid #334155;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .theme:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-  border-color: var(--color-border-hover-dark, #475569);
+  border-color: #475569;
 }
 
 .proLabel {
@@ -17,7 +17,7 @@
 
 .levelBadge {
   background-color: rgba(30, 30, 30, 0.95);
-  color: var(--color-text-primary-dark, #f3f4f6);
+  color: #f3f4f6;
 }
 
 .levelBadge.bronze {
@@ -55,15 +55,15 @@
 }
 
 .sellerName {
-  color: var(--color-text-primary-dark, #f3f4f6);
+  color: #f3f4f6;
 }
 
 .sellerName:hover {
-  color: var(--color-primary, #4573df);
+  color: #4573df;
 }
 
 .sellerLevel {
-  color: var(--color-text-secondary-dark, #94a3b8);
+  color: #94a3b8;
 }
 
 .sellerLevel.topRated {
@@ -71,15 +71,15 @@
 }
 
 .title {
-  color: var(--color-text-primary-dark, #e2e8f0);
+  color: #e2e8f0;
 }
 
 .title:hover {
-  color: var(--color-primary, #4573df);
+  color: #4573df;
 }
 
 .ratingRow {
-  color: var(--color-text-primary-dark, #f3f4f6);
+  color: #f3f4f6;
 }
 
 .starIcon {
@@ -87,24 +87,24 @@
 }
 
 .ratingCount {
-  color: var(--color-text-secondary-dark, #94a3b8);
+  color: #94a3b8;
 }
 
 .footer {
-  border-top: 1px solid var(--color-border-dark, #334155);
+  border-top: 1px solid #334155;
 }
 
 .priceLabel {
-  color: var(--color-text-secondary-dark, #94a3b8);
+  color: #94a3b8;
 }
 
 .priceValue {
-  color: var(--color-text-primary-dark, #f3f4f6);
+  color: #f3f4f6;
 }
 
 .tag {
-  background-color: var(--color-background-alt-dark, #334155);
-  color: var(--color-text-secondary-dark, #94a3b8);
+  background-color: #334155;
+  color: #94a3b8;
 }
 
 .quickActions {
@@ -112,14 +112,14 @@
 }
 
 .quickActionBtn {
-  background-color: var(--color-primary, #4573df);
+  background-color: #4573df;
   color: #ffffff;
 }
 
 .quickActionBtn.secondary {
   background-color: #334155;
-  color: var(--color-text-primary-dark, #f3f4f6);
-  border: 1px solid var(--color-border-dark, #475569);
+  color: #f3f4f6;
+  border: 1px solid #475569;
 }
 
 .sellerAvatarFallback {

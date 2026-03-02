@@ -1,18 +1,67 @@
 /* AI-HINT: Light theme overrides for Teams page. */
 
-.themeWrapper { background: linear-gradient(170deg, #f0f4ff 0%, #f8fafc 40%, #faf8ff 100%); color: var(--text-primary); }
-.subtitle { color: var(--text-secondary); }
+.themeWrapper {
+  background: linear-gradient(170deg, #f0f4ff 0%, #f8fafc 40%, #faf8ff 100%);
+  color: #0f172a;
+}
 
-.card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(226, 232, 240, 0.5); }
-.card:hover { box-shadow: 0 8px 24px rgba(69, 115, 223, 0.12); }
-.name { color: var(--text-primary); }
-.role, .bio { color: var(--text-secondary); }
+.subtitle {
+  color: #64748b;
+}
 
-.valueCard { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(226, 232, 240, 0.5); }
-.valueCard:hover { box-shadow: 0 8px 20px rgba(69, 115, 223, 0.1); }
-.valueTitle { color: var(--text-primary); }
+.card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(226, 232, 240, 0.5);
+}
 
-.button { background: linear-gradient(135deg, #4573df 0%, #2563eb 100%); color: var(--text-on-primary); box-shadow: 0 4px 14px rgba(69, 115, 223, 0.3); }
-.button:hover { filter: brightness(1.05); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(69, 115, 223, 0.4); }
-.buttonSecondary { color: var(--text-primary); border: 1px solid var(--border); backdrop-filter: blur(8px); }
-.buttonSecondary:hover { background: rgba(255, 255, 255, 0.5); }
+.card:hover {
+  box-shadow: 0 8px 24px rgba(69, 115, 223, 0.12);
+}
+
+.name {
+  color: #0f172a;
+}
+
+.role,
+.bio {
+  color: #64748b;
+}
+
+.valueCard {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+.valueCard:hover {
+  box-shadow: 0 8px 20px rgba(69, 115, 223, 0.1);
+}
+
+.valueTitle {
+  color: #0f172a;
+}
+
+.button {
+  background: linear-gradient(135deg, #4573df 0%, #2563eb 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(69, 115, 223, 0.3);
+}
+
+.button:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(69, 115, 223, 0.4);
+}
+
+.buttonSecondary {
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  backdrop-filter: blur(8px);
+}
+
+.buttonSecondary:hover {
+  background: rgba(255, 255, 255, 0.5);
+}

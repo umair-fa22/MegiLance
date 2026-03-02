@@ -1,22 +1,22 @@
 /* AI-HINT: Dark theme styles for the ActionMenu component. */
 
 .menu {
-  background-color: var(--color-background-secondary-dark);
-  border-color: var(--color-border-dark);
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
 .menuItem {
-  color: var(--color-text-primary-dark);
+  color: #f8fafc;
 }
 
 .menuItem:hover:not(:disabled) {
-  background-color: var(--color-background-tertiary-dark);
+  background-color: rgba(255,255,255,0.04);
 }
 
 .itemIcon {
-  color: var(--color-icon-secondary-dark);
+  color: #94a3b8;
 }
 
 .separator {
-  background-color: var(--color-border-dark);
+  background-color: #334155;
 }

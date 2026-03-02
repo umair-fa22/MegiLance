@@ -1,10 +1,10 @@
-.header { border-bottom-color: var(--border-light); }
-.header h1 { color: var(--text-primary-light); }
-.header p { color: var(--text-secondary-light); }
+﻿.header { border-bottom-color: #e2e8f0; }
+.header h1 { color: #0f172a; }
+.header p { color: #64748b; }
 
 .card {
-  background-color: var(--bg-secondary-light);
-  border-color: var(--border-light);
+  background-color: #f8fafc;
+  border-color: #e2e8f0;
 }
 
-.cardTitle { color: var(--text-primary-light); }
+.cardTitle { color: #0f172a; }

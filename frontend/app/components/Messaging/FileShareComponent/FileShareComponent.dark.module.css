@@ -1,15 +1,15 @@
 /* @AI-HINT: Defines the dark theme for the file sharing component using global CSS variables. */
 
 .container {
-  background-color: var(--surface);
-  border-color: var(--border);
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
 .preview {
-  background-color: var(--surface-accent);
-  border-color: var(--border-light);
+  background-color: rgba(255,255,255,0.04);
+  border-color: #334155;
 }
 
 .fileName {
-  color: var(--text-primary);
+  color: #f8fafc;
 }

@@ -1,30 +1,30 @@
-.header { border-bottom-color: var(--border-dark); }
-.header h1 { color: var(--text-primary-dark); }
-.header p { color: var(--text-secondary-dark); }
+﻿.header { border-bottom-color: #334155; }
+.header h1 { color: #f8fafc; }
+.header p { color: #94a3b8; }
 
 .summaryCard {
-  background-color: var(--bg-secondary-dark);
-  border-color: var(--border-dark);
+  background-color: #0f172a;
+  border-color: #334155;
 }
 
-.summaryCard h2 { color: var(--text-secondary-dark); }
-.summaryRatingScore { color: var(--brand-primary); }
-.summaryCard .reviewCount { color: var(--text-tertiary-dark); }
+.summaryCard h2 { color: #94a3b8; }
+.summaryRatingScore { color: #6b8de6; }
+.summaryCard .reviewCount { color: #64748b; }
 
 .reviewItem {
-  background-color: var(--bg-secondary-dark);
-  border-color: var(--border-dark);
+  background-color: #0f172a;
+  border-color: #334155;
 }
 
 .reviewItem:hover {
-  border-color: var(--brand-primary);
-  box-shadow: var(--shadow-md-dark);
+  border-color: #6b8de6;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.2);
 }
 
-.reviewItemInfo .clientName { color: var(--text-primary-dark); }
-.reviewItemInfo .projectName { color: var(--text-secondary-dark); }
-.reviewItemRating .date { color: var(--text-tertiary-dark); }
-.reviewItemComment { color: var(--text-secondary-dark); }
+.reviewItemInfo .clientName { color: #f8fafc; }
+.reviewItemInfo .projectName { color: #94a3b8; }
+.reviewItemRating .date { color: #64748b; }
+.reviewItemComment { color: #94a3b8; }
 
-.star { color: var(--brand-warning); }
-.star.empty { color: var(--border-dark); }
+.star { color: #F2C94C; }
+.star.empty { color: #334155; }

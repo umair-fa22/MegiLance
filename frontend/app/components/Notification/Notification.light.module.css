@@ -1,31 +1,31 @@
 /* @AI-HINT: Defines light theme variables for the Notification component. These are applied to the .notification class. */
 .notification {
-  --notification-title-color: var(--text-primary);
-  --notification-message-color: var(--text-secondary);
-  --notification-close-bg-hover: var(--surface-hover);
-  --notification-focus-ring: var(--brand-secondary-light);
+  --notification-title-color: #0f172a;
+  --notification-message-color: #64748b;
+  --notification-close-bg-hover: #f1f5f9;
+  --notification-focus-ring: rgba(69,115,223,0.25);
 }
 
 .success {
-  --notification-bg: var(--green-50);
-  --notification-border: var(--green-200);
-  --notification-icon-color: var(--green-600);
+  --notification-bg: #f0fdf4;
+  --notification-border: #bbf7d0;
+  --notification-icon-color: #16a34a;
 }
 
 .error {
-  --notification-bg: var(--red-50);
-  --notification-border: var(--red-200);
-  --notification-icon-color: var(--red-600);
+  --notification-bg: #fef2f2;
+  --notification-border: #fecaca;
+  --notification-icon-color: #dc2626;
 }
 
 .warning {
-  --notification-bg: var(--amber-50);
-  --notification-border: var(--amber-200);
-  --notification-icon-color: var(--amber-600);
+  --notification-bg: #fffbeb;
+  --notification-border: #fde68a;
+  --notification-icon-color: #d97706;
 }
 
 .info {
-  --notification-bg: var(--blue-50);
-  --notification-border: var(--blue-200);
-  --notification-icon-color: var(--blue-600);
+  --notification-bg: #eff6ff;
+  --notification-border: #bfdbfe;
+  --notification-icon-color: #2563eb;
 }

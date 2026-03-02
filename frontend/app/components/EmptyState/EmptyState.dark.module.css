@@ -1,15 +1,12 @@
 /* @AI-HINT: Dark theme styles for EmptyState using brand tokens. */
 
 .wrapper {
-  background: var(--surface);
-  border-color: var(--border);
+  background: #1e293b;
+  border-color: #334155;
 }
 .iconWrap {
-  background: rgba(69,115,223,0.18);
-  color: var(--primary);
+  background: rgba(107,141,230,0.18);
+  color: #6b8de6;
 }
-@supports (color: color-mix(in oklab, white, black)) {
-  .iconWrap { background: color-mix(in oklab, var(--primary) 22%, var(--surface)); }
-}
-.title { color: var(--text-primary); }
-.description { color: var(--text-secondary); }
+.title { color: #f8fafc; }
+.description { color: #94a3b8; }

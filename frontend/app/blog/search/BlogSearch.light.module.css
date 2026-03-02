@@ -1,27 +1,27 @@
 /* BlogSearch.light.module.css */
 .page {
-  background: var(--background-primary);
+  background: #f8fafc;
 }
 
 .title {
-  color: var(--text-primary);
+  color: #0f172a;
 }
 
 .searchInput {
-  background: var(--surface-elevated);
-  border-color: var(--border-subtle);
-  color: var(--text-primary);
+  background: #ffffff;
+  border-color: #e2e8f0;
+  color: #0f172a;
 }
 
 .searchInput:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 4px var(--primary-transparent);
+  border-color: #4573df;
+  box-shadow: 0 0 0 4px rgba(69, 115, 223, 0.12);
 }
 
 .searchIcon {
-  color: var(--text-secondary);
+  color: #64748b;
 }
 
 .emptyState {
-  color: var(--text-secondary);
+  color: #64748b;
 }

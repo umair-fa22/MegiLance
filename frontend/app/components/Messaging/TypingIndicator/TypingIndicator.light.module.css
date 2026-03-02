@@ -1,9 +1,9 @@
 /* @AI-HINT: Defines the light theme for the typing indicator using global CSS variables. */
 
 .container {
-  background-color: var(--surface-accent);
+  background-color: #f1f5f9;
 }
 
 .dot {
-  background-color: var(--text-secondary);
+  background-color: #64748b;
 }

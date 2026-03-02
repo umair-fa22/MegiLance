@@ -1,7 +1,7 @@
-/* @AI-HINT: Premium RecommendedFreelancers - Light theme */
+﻿/* @AI-HINT: Premium RecommendedFreelancers - Light theme */
 
 .aiIcon {
-  background: linear-gradient(135deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(135deg, #4573df, #9b59b6);
   color: #ffffff;
   box-shadow: 0 8px 24px -8px rgba(69, 115, 223, 0.4);
 }
@@ -11,31 +11,31 @@
 }
 
 .title {
-  color: var(--neutral-900, #0f172a);
+  color: #0f172a;
 }
 
 .subtitle {
-  color: var(--neutral-500, #64748b);
+  color: #64748b;
 }
 
 .refreshButton {
-  background: var(--neutral-100, #f1f5f9);
-  color: var(--neutral-700, #334155);
+  background: #f1f5f9;
+  color: #334155;
 }
 
 .refreshButton:hover {
-  background: var(--neutral-200, #e2e8f0);
+  background: #e2e8f0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .card {
   background: #ffffff;
-  border-color: var(--neutral-200, #e2e8f0);
+  border-color: #e2e8f0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
 .card::before {
-  background: linear-gradient(90deg, var(--ml-blue, #4573df), var(--ml-purple, #9b59b6));
+  background: linear-gradient(90deg, #4573df, #9b59b6);
 }
 
 .card:hover {
@@ -49,29 +49,29 @@
 
 .fitReason {
   background: rgba(69, 115, 223, 0.06);
-  color: var(--neutral-700, #334155);
+  color: #334155;
 }
 
 .avatar {
-  background: linear-gradient(135deg, var(--neutral-200, #e2e8f0), var(--neutral-300, #cbd5e1));
-  color: var(--neutral-600, #475569);
+  background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+  color: #475569;
 }
 
 .onlineIndicator {
-  background: var(--ml-green, #27AE60);
+  background: #27AE60;
   border-color: #ffffff;
 }
 
 .name {
-  color: var(--neutral-900, #0f172a);
+  color: #0f172a;
 }
 
 .titleRole {
-  color: var(--neutral-600, #475569);
+  color: #475569;
 }
 
 .matchScoreBg {
-  stroke: var(--neutral-200, #e2e8f0);
+  stroke: #e2e8f0;
 }
 
 .matchScoreProgress {
@@ -79,51 +79,51 @@
 }
 
 .matchPercent {
-  color: var(--ml-blue, #4573df);
+  color: #4573df;
 }
 
 .matchLabel {
-  color: var(--neutral-500, #64748b);
+  color: #64748b;
 }
 
 .statsRow {
-  border-color: var(--neutral-100, #f1f5f9);
+  border-color: #f1f5f9;
 }
 
 .stat {
-  color: var(--neutral-600, #475569);
+  color: #475569;
 }
 
 .statValue {
-  color: var(--neutral-900, #0f172a);
+  color: #0f172a;
 }
 
 .skill {
-  background: var(--neutral-100, #f1f5f9);
-  color: var(--neutral-700, #334155);
+  background: #f1f5f9;
+  color: #334155;
 }
 
 .skill:hover {
-  background: var(--neutral-200, #e2e8f0);
+  background: #e2e8f0;
 }
 
 .skillMatched {
   background: rgba(69, 115, 223, 0.1);
-  color: var(--ml-blue, #4573df);
+  color: #4573df;
   border: 1px solid rgba(69, 115, 223, 0.2);
 }
 
 .aiReasonsLabel {
-  color: var(--ml-purple, #9b59b6);
+  color: #9b59b6;
 }
 
 .reason {
   background: rgba(39, 174, 96, 0.08);
-  color: var(--ml-green-dark, #1e8449);
+  color: #1e8449;
 }
 
 .primaryAction {
-  background: linear-gradient(135deg, var(--ml-blue, #4573df), var(--ml-blue-dark, #2952b8));
+  background: linear-gradient(135deg, #4573df, #2952b8);
   color: #ffffff;
   box-shadow: 0 8px 24px -8px rgba(69, 115, 223, 0.4);
 }
@@ -133,36 +133,36 @@
 }
 
 .secondaryAction {
-  background: var(--neutral-100, #f1f5f9);
-  color: var(--neutral-700, #334155);
+  background: #f1f5f9;
+  color: #334155;
 }
 
 .secondaryAction:hover {
-  background: var(--neutral-200, #e2e8f0);
+  background: #e2e8f0;
 }
 
 .loadingSpinner {
-  border-color: var(--neutral-200, #e2e8f0);
-  border-top-color: var(--ml-blue, #4573df);
+  border-color: #e2e8f0;
+  border-top-color: #4573df;
 }
 
 .loadingText {
-  color: var(--neutral-800, #1e293b);
+  color: #1e293b;
 }
 
 .loadingSubtext {
-  color: var(--neutral-500, #64748b);
+  color: #64748b;
 }
 
 .emptyIcon {
-  background: var(--neutral-100, #f1f5f9);
-  color: var(--neutral-400, #94a3b8);
+  background: #f1f5f9;
+  color: #94a3b8;
 }
 
 .emptyTitle {
-  color: var(--neutral-700, #334155);
+  color: #334155;
 }
 
 .emptyDescription {
-  color: var(--neutral-500, #64748b);
+  color: #64748b;
 }

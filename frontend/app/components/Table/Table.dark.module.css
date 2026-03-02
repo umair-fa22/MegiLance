@@ -1,43 +1,43 @@
-/* @AI-HINT: Dark theme styles for the Table component using brand tokens. */
+﻿/* @AI-HINT: Dark theme styles for the Table component using brand tokens. */
 
 .tableContainer {
-  border: 1px solid var(--border);
-  background: var(--surface);
+  border: 1px solid #334155;
+  background: #1e293b;
 }
 
 .caption {
-  background-color: var(--surface-alt);
-  color: var(--text-primary);
+  background-color: #0f172a;
+  color: #f8fafc;
 }
 
 .tableThead {
-  background-color: var(--surface-alt);
-  border-bottom: 1px solid var(--border);
+  background-color: #0f172a;
+  border-bottom: 1px solid #334155;
 }
 
 .tableTh {
-  color: var(--text-secondary);
+  color: #94a3b8;
 }
 
 .tableTbodyTr {
-  background-color: var(--surface);
-  border-bottom: 1px solid var(--border);
+  background-color: #1e293b;
+  border-bottom: 1px solid #334155;
 }
 
 .tableTbodyTr:hover {
-  background-color: var(--surface-alt);
+  background-color: #0f172a;
 }
 
 /* Zebra striping */
 .tableTbodyTr:nth-child(odd) {
-  background-color: var(--surface);
+  background-color: #1e293b;
 }
 .tableTbodyTr:nth-child(even) {
-  background-color: var(--surface-alt);
+  background-color: #0f172a;
 }
 
 .tableTd {
-  color: var(--text-secondary);
+  color: #94a3b8;
 }
 
 /* Sticky header option */

@@ -1,28 +1,28 @@
-/* @AI-HINT: Light theme styles for the ProjectCard component, using CSS variables for consistency. */
+﻿/* @AI-HINT: Light theme styles for the ProjectCard component, using CSS variables for consistency. */
 .theme {
-  background-color: var(--color-background-secondary-light);
-  border: 1px solid var(--color-border-light);
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
 }
 
 .theme:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--color-primary-light-hover);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+  border-color: #3b63c4;
 }
 
 .title {
-  color: var(--color-text-primary-light);
+  color: #0f172a;
 }
 
 .titleLink {
-  color: var(--color-text-primary-light);
+  color: #0f172a;
 }
 
 .titleLink:hover {
-  color: var(--color-primary, #4573df);
+  color: #4573df;
 }
 
 .financials {
-  color: var(--color-text-primary-light);
+  color: #0f172a;
 }
 
 .paid {
@@ -31,19 +31,19 @@
 }
 
 .budget {
-  color: var(--color-text-secondary-light);
+  color: #475569;
 }
 
 .avatarStack > * {
-  border-color: var(--color-background-secondary-light) !important;
+  border-color: #f8fafc !important;
 }
 
 .moreAvatars {
-  background-color: var(--color-background-alt-light);
-  color: var(--color-text-secondary-light);
-  border-color: var(--color-border-light) !important;
+  background-color: #f8fafc;
+  color: #475569;
+  border-color: #e2e8f0 !important;
 }
 
 .updatedAt {
-  color: var(--color-text-secondary-light);
+  color: #475569;
 }

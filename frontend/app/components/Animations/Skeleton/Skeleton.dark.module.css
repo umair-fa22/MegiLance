@@ -1,16 +1,8 @@
-/* AI-HINT: Dark theme overrides for Skeleton */
+﻿/* AI-HINT: Dark theme overrides for Skeleton */
 
 .block {
   /* Dark fallback */
   background: linear-gradient(180deg, #111a36, #0c142c);
 }
 
-@supports (color: color-mix(in oklab, white, black)) {
-  .block {
-    background: linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--ml-surface, #0f162e) 86%, transparent),
-      color-mix(in oklab, var(--ml-surface-2, #0b1226) 92%, transparent)
-    );
-  }
 }

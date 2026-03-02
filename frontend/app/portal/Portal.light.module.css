@@ -1,7 +1,7 @@
-/* @AI-HINT: Portal redirect page – light theme */
+﻿/* @AI-HINT: Portal redirect page â€“ light theme */
 
 .loadingWrapper {
-  background: var(--bg-primary, #f8fafc);
+  background: #f8fafc;
 }
 
 .loadingSpinner {

@@ -1,92 +1,92 @@
 /* AI-HINT: Dark theme styles for the Withdrawals component. */
 
 .withdrawalsContainer {
-  background-color: var(--color-background-primary-dark);
-  border: 1px solid var(--color-border-dark);
+  background-color: #0f172a;
+  border: 1px solid #334155;
 }
 
 .withdrawalsTitle {
-  color: var(--color-text-primary-dark);
+  color: #f8fafc;
 }
 
 .headerTitle { 
-  color: var(--color-text-primary-dark); 
+  color: #f8fafc; 
 }
 
 .filterTabs { 
-  border-color: var(--color-border-dark); 
+  border-color: #334155; 
 }
 
 .filterTab {
-  color: var(--color-text-secondary-dark);
+  color: #cbd5e1;
 }
 
 .filterTab:hover {
-  color: var(--color-text-primary-dark);
+  color: #f8fafc;
 }
 
 .activeTab {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
+  color: #6b8de6;
+  border-bottom-color: #6b8de6;
 }
 
 .requestCard {
-  background-color: var(--color-background-secondary-dark);
-  border: 1px solid var(--color-border-dark);
-  box-shadow: var(--shadow-sm-dark);
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .requestCard:hover {
-  box-shadow: var(--shadow-md-dark);
-  border-color: var(--color-border-hover-dark);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.2);
+  border-color: #475569;
 }
 
 .freelancerName { 
-  color: var(--color-text-primary-dark); 
+  color: #f8fafc; 
 }
 
 .requestDate { 
-  color: var(--color-text-tertiary-dark); 
+  color: #64748b; 
 }
 
 .amount { 
-  color: var(--color-text-primary-dark); 
+  color: #f8fafc; 
 }
 
 .addressLabel { 
-  color: var(--color-text-secondary-dark); 
+  color: #cbd5e1; 
 }
 
 .address { 
-  color: var(--color-text-secondary-dark); 
+  color: #cbd5e1; 
 }
 
 .cardFooter { 
-  border-color: var(--color-border-dark); 
+  border-color: #334155; 
 }
 
 .emptyState {
-  background-color: var(--color-background-secondary-dark);
-  border: 1px dashed var(--color-border-dark);
+  background-color: #1e293b;
+  border: 1px dashed #334155;
 }
 
 .emptyStateIcon { 
-  color: var(--color-icon-secondary-dark); 
+  color: #94a3b8; 
 }
 
 .emptyStateTitle { 
-  color: var(--color-text-primary-dark); 
+  color: #f8fafc; 
 }
 
 .emptyStateText { 
-  color: var(--color-text-secondary-dark); 
+  color: #cbd5e1; 
 }
 
 /* Loading and Error States */
 .loadingState { 
-  color: var(--color-text-secondary-dark); 
+  color: #cbd5e1; 
 }
 
 .errorState { 
-  color: var(--color-error-dark); 
+  color: #f87171; 
 }

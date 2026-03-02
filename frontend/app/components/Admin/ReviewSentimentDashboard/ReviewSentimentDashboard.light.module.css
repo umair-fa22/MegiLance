@@ -1,4 +1,4 @@
-/* AI-HINT: Light theme styles for the ReviewSentimentDashboard. Provides a clean, bright, and professional look with high-contrast text and brand-aligned colors for data visualization. */
+﻿/* AI-HINT: Light theme styles for the ReviewSentimentDashboard. Provides a clean, bright, and professional look with high-contrast text and brand-aligned colors for data visualization. */
 
 .dashboardContainer {
   background-color: #f9fafb; /* Lighter gray for background */
@@ -30,7 +30,7 @@
 }
 
 .cardMetricPositive {
-  color: var(--megilance-success, #27AE60);
+  color: #27AE60;
 }
 
 .cardDescription {

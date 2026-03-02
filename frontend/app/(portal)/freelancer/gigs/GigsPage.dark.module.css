@@ -1,1 +1,10 @@
 /* @AI-HINT: Dark theme styles for gigs page loading spinner */
+
+.loadingWrapper {
+  background: #0f172a;
+}
+
+.loadingSpinner {
+  border-color: #334155;
+  border-top-color: #6b8de6;
+}

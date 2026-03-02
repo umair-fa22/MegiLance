@@ -1,72 +1,72 @@
 /* AI-HINT: Dark theme styles for the modernized Client Reviews page. */
 
 .page {
-  background-color: var(--surface);
+  background-color: #0f172a;
 }
 
 .title {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .controlsSection {
-  background-color: var(--surface-elev-dark);
-  border: 1px solid var(--border-dark);
+  background-color: #1e293b;
+  border: 1px solid #334155;
 }
 
 .card {
-  background-color: var(--surface-elev-dark);
-  border-color: var(--border-dark);
-  box-shadow: var(--shadow-sm-dark);
+  background-color: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .card:hover {
-  border-color: var(--border-hover-dark);
-  box-shadow: var(--shadow-md-dark);
+  border-color: #475569;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .freelancerName {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .projectName {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .reviewText {
-  color: var(--text-primary-dark);
+  color: #e2e8f0;
 }
 
 .cardFooter {
-  color: var(--text-tertiary-dark);
-  border-top-color: var(--border-dark);
+  color: #64748b;
+  border-top-color: #334155;
 }
 
 .emptyState {
-  background-color: var(--surface-elev-dark);
-  border: 1px dashed var(--border-dark);
+  background-color: #1e293b;
+  border: 1px dashed #334155;
 }
 
 .emptyState h3 {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
 
 .emptyState p {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .paginationInfo {
-  color: var(--text-secondary-dark);
+  color: #94a3b8;
 }
 
 .editor {
-  background-color: var(--surface-elev-dark);
-  border: 1px solid var(--border-dark);
+  background-color: #1e293b;
+  border: 1px solid #334155;
 }
 
 .sectionTitle {
-  color: var(--text-primary-dark);
+  color: #f8fafc;
 }
