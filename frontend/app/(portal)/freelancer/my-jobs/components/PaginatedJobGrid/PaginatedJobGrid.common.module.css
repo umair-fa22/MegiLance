@@ -10,7 +10,7 @@
 .sectionTitle {
   font-size: 1.5rem; /* 24px */
   font-weight: 600;
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   padding-bottom: 0.75rem;
   border-bottom: 1px solid;
 }

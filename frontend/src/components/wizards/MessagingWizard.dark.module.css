@@ -5,18 +5,18 @@
 }
 
 .searchInput {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
   color: #f7fafc;
 }
 
 .recipientCard {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .recipientCard:hover {
-  background: #374151;
+  background: #334155;
 }
 
 .recipientCardSelected {
@@ -25,7 +25,7 @@
 }
 
 .noResults {
-  background: #1a202c;
+  background: #0f172a;
   border-radius: 8px;
 }
 
@@ -39,12 +39,12 @@
 }
 
 .purposeCard {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .purposeCard:hover {
-  background: #374151;
+  background: #334155;
 }
 
 .purposeCardSelected {
@@ -60,8 +60,8 @@
 
 .formGroup input,
 .formGroup textarea {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
   color: #f7fafc;
 }
 
@@ -80,8 +80,8 @@
 }
 
 .attachmentItem {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .attachmentIcon {
@@ -89,11 +89,11 @@
 }
 
 .previewBox {
-  background: #1a202c;
-  border-color: #4a5568;
+  background: #0f172a;
+  border-color: #475569;
 }
 
 .previewMessage {
-  background: #2d3748;
+  background: #1e293b;
   color: #f7fafc;
 }

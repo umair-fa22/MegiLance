@@ -23,7 +23,7 @@
   font-size: 2.75rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #4573df 0%, #27AE60 50%, #ff9800 100%);
+  background: linear-gradient(135deg, var(--color-primary, #4573df) 0%, var(--color-success, #27AE60) 50%, var(--color-accent, #ff9800) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -75,7 +75,7 @@
 }
 
 .statSuccess {
-  color: #27AE60 !important;
+  color: var(--color-success, #27AE60) !important;
 }
 
 .statLabel {
@@ -107,7 +107,12 @@
   font-weight: 500;
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   white-space: nowrap;
 }
 
@@ -137,7 +142,12 @@
 .moduleCard {
   border-radius: 1rem;
   padding: 1.5rem;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .moduleCard:hover {
@@ -218,7 +228,12 @@
   border-radius: 0.375rem;
   text-decoration: none;
   font-weight: 500;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .demoLink:hover {
@@ -254,15 +269,15 @@
 .progressFill[data-width="50"] { width: 50%; }
 
 .progressHigh {
-  background: linear-gradient(90deg, #27AE60, #2ECC71);
+  background: linear-gradient(90deg, var(--color-success, #27AE60), #2ECC71);
 }
 
 .progressMedium {
-  background: linear-gradient(90deg, #F2C94C, #F39C12);
+  background: linear-gradient(90deg, var(--color-warning, #F2C94C), #F39C12);
 }
 
 .progressLow {
-  background: linear-gradient(90deg, #e74c3c, #E81123);
+  background: linear-gradient(90deg, #e74c3c, var(--color-error, #e81123));
 }
 
 .progressLabel {
@@ -286,7 +301,12 @@
   font-size: 0.8125rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 /* Feature List */
@@ -331,7 +351,7 @@
 
 .statusComplete {
   background: rgba(39, 174, 96, 0.15);
-  color: #27AE60;
+  color: var(--color-success, #27AE60);
 }
 
 .statusWorking {
@@ -346,7 +366,7 @@
 
 .statusInProgress {
   background: rgba(69, 115, 223, 0.15);
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 .statusPlanned {
@@ -384,7 +404,12 @@
   font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .quickLink:hover {

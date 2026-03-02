@@ -1,12 +1,12 @@
 /* @AI-HINT: External Projects page - dark theme colors */
 
 .page {
-  background-color: #0a0a0c;
-  color: #f9fafb;
+  background-color: #0f172a;
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .scrapeBtn {
@@ -29,7 +29,7 @@
 }
 
 .statValue {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .statLabel {
@@ -48,7 +48,7 @@
 .searchInput {
   background-color: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .searchInput::placeholder {
@@ -58,18 +58,18 @@
 .filterSelect {
   background-color: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 /* Category Tabs */
 .categoryTab {
   background-color: rgba(255, 255, 255, 0.05);
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .categoryTab:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .categoryTabActive {
@@ -89,7 +89,7 @@
 
 .sourceBadge {
   background-color: rgba(255, 255, 255, 0.08);
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .sourceBadge:hover {
@@ -129,11 +129,11 @@
 }
 
 .projectTitle {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .companyName {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .trustBadgeHigh {
@@ -152,12 +152,12 @@
 }
 
 .projectDescription {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .tag {
   background-color: rgba(255, 255, 255, 0.08);
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .moreTags {
@@ -194,7 +194,7 @@
 .pageBtn {
   background-color: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .pageBtn:hover:not(:disabled) {
@@ -203,7 +203,7 @@
 }
 
 .pageInfo {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 /* Loading */
@@ -212,7 +212,7 @@
 }
 
 .loadingText {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 /* Empty */
@@ -221,11 +221,11 @@
 }
 
 .emptyIcon {
-  color: #4b5563;
+  color: #475569;
 }
 
 .emptyText {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 /* Last Updated */
@@ -235,11 +235,11 @@
 
 /* Scrape Result */
 .scrapeResult {
-  background-color: #1f2937;
+  background-color: #1e293b;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .scrapeResultDetails {
-  color: #9ca3af;
+  color: #94a3b8;
 }

@@ -1,7 +1,7 @@
 /* Dark theme overrides */
 .projectInfo {
-  background: #1a202c;
-  border-color: #4a5568;
+  background: #0f172a;
+  border-color: #475569;
 }
 
 .tipBox {
@@ -11,13 +11,13 @@
 }
 
 .typeButton {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
   color: #f7fafc;
 }
 
 .typeButton:hover {
-  background: #374151;
+  background: #334155;
 }
 
 .typeButtonActive {
@@ -34,18 +34,18 @@
 .formGroup input,
 .formGroup textarea,
 .formGroup select {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
   color: #f7fafc;
 }
 
 .summaryCard {
-  background: #1a202c;
-  border-color: #4a5568;
+  background: #0f172a;
+  border-color: #475569;
 }
 
 .summaryRow {
-  border-bottom-color: #374151;
+  border-bottom-color: #334155;
 }
 
 .infoBox {
@@ -71,14 +71,14 @@
 }
 
 .criterionInput {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
   color: #f7fafc;
 }
 
 .removeButton {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .removeButton:hover {
@@ -87,30 +87,30 @@
 }
 
 .settingsSection {
-  background: #1a202c;
-  border-color: #4a5568;
+  background: #0f172a;
+  border-color: #475569;
 }
 
 .checkboxLabel:hover {
-  background: #2d3748;
+  background: #1e293b;
 }
 
 .autoReleaseInput {
-  background: #2d3748;
+  background: #1e293b;
 }
 
 .reviewCard {
-  background: #1a202c;
-  border-color: #4a5568;
+  background: #0f172a;
+  border-color: #475569;
 }
 
 .reviewSection {
-  border-bottom-color: #374151;
+  border-bottom-color: #334155;
 }
 
 .settingBadge {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .settingBadgeActive {

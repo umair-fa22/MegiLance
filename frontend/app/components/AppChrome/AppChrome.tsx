@@ -2,7 +2,7 @@
 
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
@@ -24,7 +24,9 @@ import darkStyles from './AppChrome.dark.module.css';
 const AppChromeClient: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname();
   const { resolvedTheme } = useTheme();
-  const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const themeStyles = (mounted && resolvedTheme === 'dark') ? darkStyles : lightStyles;
 
   /**
    * Determines if a given route should have minimal chrome.

@@ -1,8 +1,8 @@
 /* @AI-HINT: Dark theme styles for Module Showcase page */
 
 .themeWrapper {
-  background: linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 100%);
-  color: #e8e8e8;
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  color: #e2e8f0;
 }
 
 .subtitle {

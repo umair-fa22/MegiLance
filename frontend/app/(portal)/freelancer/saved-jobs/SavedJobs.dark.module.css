@@ -1,52 +1,52 @@
 /* Dark Theme */
 .container {
-  background: #0f0f0f;
+  background: #0f172a;
 }
 
 .title {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .emptyState {
-  background: #161616;
-  color: #9ca3af;
+  background: #1e293b;
+  color: #94a3b8;
 }
 
 .emptyState h3 {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .jobCard {
-  background: #161616;
-  border: 1px solid #2d2d2d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .jobCard:hover {
   border-color: #4573df;
-  background: #1a1a1a;
+  background: #1e293b;
 }
 
 .jobTitle {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .savedTime {
-  color: #9ca3af;
-  background: #1f1f1f;
+  color: #94a3b8;
+  background: #334155;
   padding: 2px 8px;
   border-radius: 4px;
 }
 
 .clientName {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .description {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .skill {
@@ -55,18 +55,18 @@
 }
 
 .budget {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .budgetType {
-  background: #1f1f1f;
-  color: #9ca3af;
+  background: #334155;
+  color: #94a3b8;
 }
 
 .proposals {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .jobFooter {
-  border-color: #2d2d2d;
+  border-color: #334155;
 }

@@ -41,11 +41,16 @@
   font-weight: 500;
   border-bottom: 2px solid transparent;
   margin-bottom: -1px;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .tabActive {
-  border-bottom-color: #4573df;
+  border-bottom-color: var(--color-primary, #4573df);
 }
 
 .badge {
@@ -101,7 +106,12 @@
   border: 1px solid;
   text-align: left;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   position: relative;
 }
 
@@ -208,7 +218,12 @@
   cursor: pointer;
   font-size: 0.8125rem;
   text-transform: capitalize;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .fieldOption input {

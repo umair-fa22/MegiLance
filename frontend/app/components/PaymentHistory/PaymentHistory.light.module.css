@@ -7,7 +7,7 @@
 .searchContainer {
   background-color: #ffffff;
   border-color: #e5e5e5;
-  color: #6b7280;
+  color: #64748b;
 }
 
 .searchInput {
@@ -15,7 +15,7 @@
 }
 
 .searchInput::placeholder {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .select {
@@ -26,7 +26,7 @@
 
 .totals {
   background-color: #f9fafb;
-  border-color: #d1d5db;
+  border-color: #cbd5e1;
 }
 
 .loading,
@@ -47,7 +47,7 @@
 }
 
 .paymentCard:hover {
-  border-color: #d1d5db;
+  border-color: #cbd5e1;
 }
 
 .statusCompleted {

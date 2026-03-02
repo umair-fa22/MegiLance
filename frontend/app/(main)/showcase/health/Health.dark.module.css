@@ -1,26 +1,26 @@
 /* @AI-HINT: Dark theme for System Health Dashboard */
 
 .themeWrapper {
-  background: linear-gradient(180deg, #0d1117 0%, #161b22 100%);
-  color: #e6edf3;
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: #8b949e;
+  color: #94a3b8;
 }
 
 .refreshBtn {
-  background: #58a6ff;
-  color: #0d1117;
+  background: #60a5fa;
+  color: #0f172a;
 }
 
 .refreshBtn:hover {
-  background: #79b8ff;
+  background: #93c5fd;
 }
 
 .healthCard {
-  background: #21262d;
-  border: 1px solid #30363d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .healthCard:hover {
@@ -28,16 +28,16 @@
 }
 
 .metric {
-  background: #30363d;
+  background: #334155;
 }
 
 .metricValue {
-  color: #58a6ff;
+  color: #60a5fa;
 }
 
 .apiCard {
-  background: #21262d;
-  border: 1px solid #30363d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .apiCard:hover {
@@ -45,22 +45,22 @@
 }
 
 .apiCount {
-  color: #58a6ff;
+  color: #60a5fa;
 }
 
 .endpointList {
-  background: #161b22;
-  border: 1px solid #30363d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .endpointItem {
-  background: #21262d;
-  border: 1px solid #30363d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .techCard {
-  background: #21262d;
-  border: 1px solid #30363d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .techCard:hover {
@@ -68,27 +68,27 @@
 }
 
 .techIcon {
-  background: linear-gradient(135deg, #58a6ff 0%, #4573df 100%);
+  background: linear-gradient(135deg, #60a5fa 0%, #4573df 100%);
   color: #fff;
 }
 
 .actionBtn {
-  background: #58a6ff;
-  color: #0d1117;
+  background: #60a5fa;
+  color: #0f172a;
 }
 
 .actionBtn:hover {
-  background: #79b8ff;
-  box-shadow: 0 4px 12px rgba(88, 166, 255, 0.3);
+  background: #93c5fd;
+  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
 }
 
 .actionBtnSecondary {
-  background: #21262d;
-  color: #58a6ff;
-  border: 2px solid #58a6ff;
+  background: #1e293b;
+  color: #60a5fa;
+  border: 2px solid #60a5fa;
 }
 
 .actionBtnSecondary:hover {
-  background: #58a6ff;
-  color: #0d1117;
+  background: #60a5fa;
+  color: #0f172a;
 }

@@ -2,9 +2,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.75rem;
+  border-radius: var(--radius-lg, 0.75rem);
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--duration-normal, 0.3s) var(--ease-smooth, cubic-bezier(0.4, 0, 0.2, 1)),
+    box-shadow var(--duration-normal, 0.3s) var(--ease-smooth, cubic-bezier(0.4, 0, 0.2, 1)),
+    border-color var(--duration-normal, 0.3s) var(--ease-smooth, cubic-bezier(0.4, 0, 0.2, 1)),
+    background-color var(--duration-normal, 0.3s) var(--ease-smooth, cubic-bezier(0.4, 0, 0.2, 1)),
+    color var(--duration-normal, 0.3s) var(--ease-smooth, cubic-bezier(0.4, 0, 0.2, 1)),
+    opacity var(--duration-normal, 0.3s) var(--ease-smooth, cubic-bezier(0.4, 0, 0.2, 1));
   cursor: pointer;
   border: 1px solid transparent;
   position: relative;
@@ -15,13 +20,27 @@
 }
 
 .button:focus-visible {
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  box-shadow: var(--focus-ring, 0 0 0 3px rgba(69, 115, 223, 0.3));
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.97);
+  transition-duration: 0.1s;
 }
 
 .button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
   pointer-events: none;
+  box-shadow: none;
+  transform: none;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Sizes */

@@ -3,7 +3,7 @@
 .accordionRoot {
   width: 100%;
   border-radius: 0.5rem; /* 8px */
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-body);
   overflow: hidden;
 }
 
@@ -35,7 +35,8 @@
 }
 
 .accordionTrigger:focus {
-  outline: none;
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .accordionTrigger:focus-visible {

@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  font-family: var(--font-inter);
+  font-family: var(--font-family-body);
 }
 
 .header {
@@ -22,7 +22,7 @@
 }
 
 .title {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 1.75rem;
   font-weight: 600;
   margin: 0;
@@ -68,7 +68,7 @@
 }
 
 .jobTitle {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0;
@@ -111,7 +111,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-family: var(--font-inter);
+  font-family: var(--font-family-body);
   font-weight: 500;
   font-size: 0.875rem;
   padding: 0.25rem 0;
@@ -197,7 +197,7 @@
 }
 
 .emptyState h3 {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 1.25rem;
   font-weight: 600;
   margin: 1.5rem 0 0 0;

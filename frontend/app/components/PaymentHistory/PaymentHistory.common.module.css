@@ -62,11 +62,16 @@
   font-size: 0.875rem;
   cursor: pointer;
   outline: none;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .select:focus {
-  border-color: #4573df;
+  border-color: var(--color-primary, #4573df);
 }
 
 /* Totals */
@@ -92,11 +97,11 @@
 }
 
 .totalPositive {
-  color: #27ae60;
+  color: var(--color-success, #27ae60);
 }
 
 .totalNegative {
-  color: #e81123;
+  color: var(--color-error, #e81123);
 }
 
 /* Loading & Error */
@@ -151,7 +156,12 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   position: relative;
 }
 
@@ -224,11 +234,11 @@
 }
 
 .amountPositive {
-  color: #27ae60;
+  color: var(--color-success, #27ae60);
 }
 
 .amountNegative {
-  color: #e81123;
+  color: var(--color-error, #e81123);
 }
 
 .currency {
@@ -295,4 +305,14 @@
     position: static;
     width: fit-content;
   }
+}
+
+.searchInput:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
+}
+
+.select:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }

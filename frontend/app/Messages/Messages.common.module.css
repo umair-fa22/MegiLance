@@ -185,3 +185,8 @@
   border-radius: 9999px;
   flex-shrink: 0;
 }
+
+.searchInput:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
+}

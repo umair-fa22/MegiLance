@@ -9,7 +9,7 @@
 }
 
 .header h1 {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 32px;
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -42,7 +42,7 @@
 }
 
 .summaryCard h2 {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -58,7 +58,7 @@
 }
 
 .summaryRatingScore {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 2.75rem;
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -82,7 +82,12 @@
   border-radius: 16px;
   border: 1.5px solid;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reviewItem:hover {
@@ -102,7 +107,7 @@
 }
 
 .reviewItemInfo .clientName {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-weight: 600;
   font-size: var(--font-size-md);
   display: block;

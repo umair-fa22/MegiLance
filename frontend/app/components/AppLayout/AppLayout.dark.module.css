@@ -6,16 +6,19 @@
 
 .pageContent {
   background-color: #0f172a;
+  /* Subtle top-glow for visual continuity */
+  background-image:
+    linear-gradient(180deg, rgba(59, 130, 246, 0.02) 0%, transparent 120px);
 }
 
 .skipLink {
   background-color: #3b82f6;
   color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
 }
 
 .skipLink:focus {
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
 }
 
 .skipLink:hover {
@@ -23,9 +26,9 @@
 }
 
 .mobileOverlay {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .mobileOverlayVisible {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.5);
 }

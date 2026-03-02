@@ -1,6 +1,6 @@
 /* AI-HINT: Dark theme overrides for Teams page. */
 
-.themeWrapper { background: linear-gradient(170deg, #0a0f1a 0%, #0f172a 40%, #0f1225 100%); color: var(--text-primary); }
+.themeWrapper { background: linear-gradient(170deg, #0f172a 0%, #0f172a 40%, #0f1225 100%); color: var(--text-primary); }
 .subtitle { color: var(--text-secondary); }
 
 .card { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(51, 65, 85, 0.5); }

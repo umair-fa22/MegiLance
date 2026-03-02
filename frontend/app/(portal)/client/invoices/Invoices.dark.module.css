@@ -13,7 +13,7 @@
 
 .statCard {
   background: #1a1f2e;
-  border: 1px solid #2d3748;
+  border: 1px solid #1e293b;
 }
 
 .statValue {
@@ -22,24 +22,24 @@
 
 .filters {
   background: #1a1f2e;
-  border: 1px solid #2d3748;
+  border: 1px solid #1e293b;
 }
 
 .searchInput {
   background: #0f1419;
   color: #f1f5f9;
-  border-color: #2d3748;
+  border-color: #1e293b;
 }
 
 .filterSelect {
   background: #0f1419;
   color: #f1f5f9;
-  border-color: #2d3748;
+  border-color: #1e293b;
 }
 
 .tableWrapper {
   background: #1a1f2e;
-  border: 1px solid #2d3748;
+  border: 1px solid #1e293b;
 }
 
 .tableRow:hover {
@@ -53,5 +53,5 @@
 
 .table td {
   color: #f1f5f9;
-  border-color: #2d3748;
+  border-color: #1e293b;
 }

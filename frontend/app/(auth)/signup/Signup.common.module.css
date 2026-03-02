@@ -15,6 +15,16 @@
   50% { opacity: 0.8; }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .brandingIconWrapper,
+  .brandingContent,
+  .formContainer,
+  .socialAuth,
+  .signupForm {
+    animation: none !important;
+  }
+}
+
 .loginPage {
   display: grid;
   grid-template-columns: 1fr; /* Mobile single column */
@@ -23,7 +33,7 @@
   width: 100%;
   min-height: 100dvh;
   min-height: 100vh; /* fallback */
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-body);
   align-items: stretch;
   overflow-x: hidden;
   overflow-y: auto;
@@ -84,7 +94,7 @@
 }
 
 .brandingTitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
   font-size: 2.25rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -149,7 +159,7 @@
 
 .formContainer {
   width: 100%;
-  max-width: 480px;
+  max-width: min(480px, calc(100vw - 2rem));
   animation: fadeIn 0.6s ease-out 0.2s backwards;
   position: relative;
   z-index: 1;
@@ -166,7 +176,7 @@
 }
 
 .formTitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
   font-size: 32px;
   font-weight: 700;
   color: var(--text-primary);
@@ -205,7 +215,12 @@
   border: 1.5px solid var(--border-color);
   background-color: transparent;
   color: var(--text-secondary);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
@@ -306,7 +321,12 @@
   padding: 0.5rem;
   font-size: 1.1rem;
   color: var(--text-tertiary);
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   border-radius: 8px;
 }
 
@@ -343,7 +363,12 @@
   font-weight: 500;
   color: var(--color-primary);
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   border-radius: 4px;
   padding: 0.25rem 0.5rem;
 }
@@ -356,7 +381,12 @@
 
 .submitButton {
   margin-top: 0.5rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .submitButton:hover {
@@ -388,7 +418,12 @@
   margin-left: 0.25rem;
   color: var(--color-primary);
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   border-radius: 4px;
   padding: 0.25rem 0.5rem;
 }

@@ -3,26 +3,26 @@
 .theme {}
 
 .toggleLabel {
-  color: var(--color-gray-400);
+  color: #94a3b8;
 }
 
 .toggleLabelActive {
-  color: var(--color-gray-100);
+  color: #f1f5f9;
 }
 
 .toggleSlider {
-  background-color: var(--color-gray-700);
+  background-color: #334155;
 }
 
 .toggleSlider::before {
-  background-color: var(--color-gray-300);
+  background-color: #cbd5e1;
 }
 
 .toggleCheckbox:checked + .toggleSlider {
-  background-color: var(--color-primary-lighter);
+  background-color: #6b93f5;
 }
 
 .toggleDiscount {
-  color: var(--color-green-300);
+  color: #86efac;
   background-color: rgba(46, 160, 67, 0.15);
 }

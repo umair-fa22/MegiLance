@@ -9,7 +9,7 @@
 
 .customTooltip {
   background-color: rgba(26, 34, 53, 0.8);
-  border: 1px solid #2d3748;
+  border: 1px solid #1e293b;
   color: #f7fafc;
   box-shadow: var(--shadow-lg-dark);
 }

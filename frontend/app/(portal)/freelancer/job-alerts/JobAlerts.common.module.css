@@ -122,7 +122,12 @@
   padding: var(--space-5);
   border-radius: var(--radius-md);
   border: 1px solid transparent; /* Theme handles color */
-  transition: all 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out,
+    border-color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out,
+    opacity 0.2s ease-in-out;
 }
 
 .alertContent {

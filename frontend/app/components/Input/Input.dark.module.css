@@ -17,6 +17,7 @@
   --input-placeholder-text: #cbd5e1;
   --input-icon: #cbd5e1;
   --input-label-text: #cbd5e1;
+  --input-icon-hover-bg: rgba(255, 255, 255, 0.08);
 }
 
 .inputField {

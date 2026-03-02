@@ -8,6 +8,7 @@ import { Cpu, ShieldCheck, Globe, Wallet } from 'lucide-react';
 import FeatureCard from './FeatureCard';
 import { StaggerContainer, StaggerItem } from '../../components/Animations/StaggerContainer';
 import { LottieAnimation, aiSparkleAnimation } from '../../components/Animations/LottieAnimation';
+import SectionGlobe from '../../components/Animations/SectionGlobe/SectionGlobe';
 import commonStyles from './Features.common.module.css';
 import lightStyles from './Features.light.module.css';
 import darkStyles from './Features.dark.module.css';
@@ -43,6 +44,7 @@ const Features: React.FC = () => {
 
   return (
     <section className={cn(commonStyles.featuresSection, themeStyles.featuresSection)}>
+      <SectionGlobe variant="blue" size="sm" position="right" />
       <div className={cn(commonStyles.container)}>
         <div className={cn(commonStyles.header)}>
           <span className={cn(commonStyles.tagline, themeStyles.tagline)}>Why MegiLance?</span>

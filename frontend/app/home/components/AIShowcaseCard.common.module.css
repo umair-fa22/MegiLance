@@ -17,24 +17,29 @@
   z-index: 10;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .statusLive {
   background: rgba(39, 174, 96, 0.2);
-  color: #27AE60;
+  color: var(--color-success, #27AE60);
   border: 1px solid rgba(39, 174, 96, 0.4);
 }
 
 .statusBeta {
   background: rgba(69, 115, 223, 0.2);
-  color: #4573df;
+  color: var(--color-primary, #4573df);
   border: 1px solid rgba(69, 115, 223, 0.4);
 }
 
 .statusSmart {
   background: rgba(255, 152, 0, 0.2);
-  color: #ff9800;
+  color: var(--color-accent, #ff9800);
   border: 1px solid rgba(255, 152, 0, 0.4);
 }
 
@@ -69,7 +74,12 @@
     0 10px 30px -5px rgba(0, 0, 0, 0.05),
     0 4px 10px -2px rgba(0, 0, 0, 0.02),
     inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-  transition: all 0.4s ease;
+  transition: transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease,
+    background-color 0.4s ease,
+    color 0.4s ease,
+    opacity 0.4s ease;
   transform-style: preserve-3d;
 }
 
@@ -109,7 +119,12 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   transform: translateZ(20px);
 }
@@ -172,7 +187,12 @@
   letter-spacing: 0.05em;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .card:hover .stats {
@@ -186,7 +206,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   transform: rotate(-45deg);
 }

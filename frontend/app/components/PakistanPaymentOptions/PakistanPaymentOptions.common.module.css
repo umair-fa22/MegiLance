@@ -71,7 +71,12 @@
   padding: 1.25rem 1rem;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   border: 2px solid transparent;
 }
 
@@ -126,7 +131,7 @@
   top: 0.5rem;
   right: 0.5rem;
   font-size: 1rem;
-  color: #27ae60;
+  color: var(--color-success, #27ae60);
 }
 
 /* Details Section */
@@ -196,7 +201,12 @@
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .walletConnected {
@@ -209,7 +219,7 @@
 }
 
 .walletConnected svg {
-  color: #27ae60;
+  color: var(--color-success, #27ae60);
 }
 
 .paymentAddress {
@@ -306,7 +316,12 @@
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   margin-bottom: 0.75rem;
 }
 
@@ -324,7 +339,12 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 /* Responsive */

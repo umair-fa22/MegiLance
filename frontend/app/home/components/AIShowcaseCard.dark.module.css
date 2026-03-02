@@ -1,11 +1,11 @@
 /* @AI-HINT: Dark theme styles for AIShowcaseCard. */
 
 .cardContent {
-  background: rgba(30, 30, 30, 0.6);
+  background: rgba(30, 41, 59, 0.4);
 }
 
 .card:hover .cardContent {
-  background: rgba(40, 40, 40, 0.8);
+  background: rgba(30, 41, 59, 0.6);
 }
 
 .iconWrapper {
@@ -23,7 +23,7 @@
 }
 
 .description {
-  color: #cccccc;
+  color: #cbd5e1;
 }
 
 .stats {

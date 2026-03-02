@@ -1,76 +1,76 @@
 /* @AI-HINT: Overhauled dark theme for Sidebar - modern, clean, polished design */
 
 .sidebar {
-  background-color: #0f1419;
-  border-right-color: #1e2530;
-  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.15);
+  background-color: #0f172a;
+  border-right-color: #1e293b;
+  box-shadow: 1px 0 8px rgba(0, 0, 0, 0.12);
 }
 
 .sidebarHeader {
-  background-color: #0f1419;
-  border-bottom-color: #1e2530;
+  background-color: #0f172a;
+  border-bottom-color: #1e293b;
 }
 
 .logoText {
-  color: #f1f3f5;
+  color: #f8fafc;
 }
 
 .toggleButton {
-  color: #8b95a5;
-  background-color: #1a2029;
+  color: #94a3b8;
+  background-color: #1e293b;
   border-color: transparent;
 }
 
 .toggleButton:hover {
-  background-color: #242d3a;
+  background-color: #334155;
   color: #60a5fa;
 }
 
 .sidebarNavContainer {
-  background-color: #0f1419;
+  background-color: #0f172a;
 }
 
 .sidebarNavContainer::-webkit-scrollbar-thumb {
-  background-color: #2a3340;
+  background-color: #334155;
 }
 
 .sidebarNavContainer::-webkit-scrollbar-thumb:hover {
-  background-color: #3a4555;
+  background-color: #475569;
 }
 
 .divider {
-  background-color: #1e2530;
+  background-color: #1e293b;
 }
 
 .sidebarFooter {
-  background-color: #0c1017;
-  border-top-color: #1e2530;
+  background-color: #0f172a;
+  border-top-color: #1e293b;
 }
 
 .userInfo {
-  background-color: #1a2029;
-  border: 1px solid #2a3340;
+  background-color: #1e293b;
+  border: 1px solid #334155;
 }
 
 .userInfo:hover {
-  background-color: #1a2d4a;
-  border-color: #3b7ddb;
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+  background-color: #1e3a5f;
+  border-color: #2d5cb8;
+  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.08);
 }
 
 .avatar {
-  border-color: #2a3340;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  border-color: #334155;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
 }
 
 .onlineDot {
-  border-color: #0f1419;
+  border-color: #0f172a;
 }
 
 .userName {
-  color: #f1f3f5;
+  color: #f8fafc;
 }
 
 .userRole {
-  color: #8b95a5;
+  color: #94a3b8;
 }

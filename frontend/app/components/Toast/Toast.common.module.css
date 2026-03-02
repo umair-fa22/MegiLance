@@ -37,7 +37,7 @@
 
 .toastBody { flex: 1; min-width: 0; }
 .toastTitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
   font-weight: 600;
   font-size: 0.95rem;
   line-height: 1.45;
@@ -79,7 +79,8 @@
 }
 
 .toastClose:focus-visible {
-  outline: none;
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
   /* Fallback */
   box-shadow: 0 0 0 3px rgba(69,115,223,0.28);
 }

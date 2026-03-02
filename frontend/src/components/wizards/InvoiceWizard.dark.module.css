@@ -4,18 +4,18 @@
 }
 
 .searchInput {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
   color: #f7fafc;
 }
 
 .clientCard {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .clientCard:hover {
-  background: #374151;
+  background: #334155;
 }
 
 .clientCardSelected {
@@ -24,50 +24,50 @@
 }
 
 .tableHeader {
-  background: #1a202c;
-  border-bottom-color: #4a5568;
+  background: #0f172a;
+  border-bottom-color: #475569;
 }
 
 .lineItemRow {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .lineItemRow input {
-  background: #374151;
-  border-color: #4a5568;
+  background: #334155;
+  border-color: #475569;
   color: #f7fafc;
 }
 
 .removeButton {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .formGroup input,
 .formGroup textarea,
 .formGroup select {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
   color: #f7fafc;
 }
 
 .subtotalBox {
-  background: #1a202c;
-  border-color: #4a5568;
+  background: #0f172a;
+  border-color: #475569;
 }
 
 .totalsBox {
-  background: #1a202c;
-  border-color: #4a5568;
+  background: #0f172a;
+  border-color: #475569;
 }
 
 .totalRow {
-  border-bottom-color: #374151;
+  border-bottom-color: #334155;
 }
 
 .grandTotal {
-  border-top-color: #4a5568;
+  border-top-color: #475569;
 }
 
 .infoBox {
@@ -80,33 +80,33 @@
 }
 
 .previewBox {
-  background: #1a202c;
-  border-color: #4a5568;
+  background: #0f172a;
+  border-color: #475569;
 }
 
 .previewHeader {
-  border-bottom-color: #4a5568;
+  border-bottom-color: #475569;
 }
 
 .previewInvoice {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
   color: #f7fafc;
 }
 
 .previewTop {
-  border-bottom-color: #4a5568;
+  border-bottom-color: #475569;
 }
 
 .previewItems th {
-  background: #1a202c;
-  border-bottom-color: #4a5568;
+  background: #0f172a;
+  border-bottom-color: #475569;
 }
 
 .previewItems td {
-  border-bottom-color: #374151;
+  border-bottom-color: #334155;
 }
 
 .previewTotal {
-  border-top-color: #4a5568;
+  border-top-color: #475569;
 }

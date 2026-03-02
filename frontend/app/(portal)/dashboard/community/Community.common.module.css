@@ -33,7 +33,12 @@
 
 /* Categories */
 .categoryList { display: flex; flex-direction: column; gap: 0.25rem; }
-.categoryBtn { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.85rem; font-weight: 500; width: 100%; text-align: left; transition: all 0.15s; background: none; }
+.categoryBtn { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.85rem; font-weight: 500; width: 100%; text-align: left; transition: transform 0.15s,
+    box-shadow 0.15s,
+    border-color 0.15s,
+    background-color 0.15s,
+    color 0.15s,
+    opacity 0.15s; background: none; }
 .categoryIcon { display: flex; flex-shrink: 0; }
 .categoryLabel { flex: 1; }
 .categoryCount { font-size: 0.72rem; padding: 0.1rem 0.4rem; border-radius: 8px; font-weight: 600; }
@@ -41,11 +46,21 @@
 
 /* Trending Tags */
 .trendingTags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.trendTag { font-size: 0.78rem; padding: 0.3rem 0.6rem; border-radius: 20px; border: 1px solid transparent; cursor: pointer; font-weight: 500; transition: all 0.15s; background: none; }
+.trendTag { font-size: 0.78rem; padding: 0.3rem 0.6rem; border-radius: 20px; border: 1px solid transparent; cursor: pointer; font-weight: 500; transition: transform 0.15s,
+    box-shadow 0.15s,
+    border-color 0.15s,
+    background-color 0.15s,
+    color 0.15s,
+    opacity 0.15s; background: none; }
 
 /* Sort */
 .sortList { display: flex; flex-direction: column; gap: 0.25rem; }
-.sortBtn { padding: 0.4rem 0.75rem; border-radius: 6px; border: none; cursor: pointer; font-size: 0.82rem; text-align: left; transition: all 0.15s; background: none; }
+.sortBtn { padding: 0.4rem 0.75rem; border-radius: 6px; border: none; cursor: pointer; font-size: 0.82rem; text-align: left; transition: transform 0.15s,
+    box-shadow 0.15s,
+    border-color 0.15s,
+    background-color 0.15s,
+    color 0.15s,
+    opacity 0.15s; background: none; }
 
 /* Composer */
 .composerCard { border-radius: 12px; padding: 1.25rem; border: 1px solid transparent; }
@@ -57,9 +72,14 @@
 
 /* Thread List */
 .threadList { display: flex; flex-direction: column; gap: 0.5rem; }
-.thread { border: 1px solid transparent; border-radius: 12px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; cursor: pointer; transition: all 0.2s; }
+.thread { border: 1px solid transparent; border-radius: 12px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; cursor: pointer; transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s; }
 .thread:hover { transform: translateX(2px); }
-.pinned { border-left: 3px solid #4573df; }
+.pinned { border-left: 3px solid var(--color-primary, #4573df); }
 
 /* Thread Badges */
 .threadBadges { display: flex; gap: 0.4rem; }
@@ -83,7 +103,12 @@
 .threadFooter { display: flex; align-items: center; justify-content: space-between; margin-top: 0.25rem; }
 .threadStats { display: flex; align-items: center; gap: 0.75rem; }
 .threadActionsRight { display: flex; align-items: center; gap: 0.25rem; }
-.threadAction { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; padding: 0.3rem 0.5rem; border-radius: 6px; border: none; cursor: pointer; transition: all 0.15s; background: none; }
+.threadAction { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; padding: 0.3rem 0.5rem; border-radius: 6px; border: none; cursor: pointer; transition: transform 0.15s,
+    box-shadow 0.15s,
+    border-color 0.15s,
+    background-color 0.15s,
+    color 0.15s,
+    opacity 0.15s; background: none; }
 .threadStat { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.78rem; }
 
 /* Empty State */
@@ -95,7 +120,7 @@
 .srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 /* Focus outlines */
-.input:focus-visible, .textarea:focus-visible, .composerInput:focus-visible, .thread:focus-visible { outline: 2px solid #4573df; outline-offset: 2px; }
+.input:focus-visible, .textarea:focus-visible, .composerInput:focus-visible, .thread:focus-visible { outline: 2px solid var(--color-primary, #4573df); outline-offset: 2px; }
 
 @media (max-width: 640px) {
   .page { padding: 1rem; }

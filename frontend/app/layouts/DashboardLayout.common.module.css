@@ -2,10 +2,12 @@
 
 .layout {
   display: flex;
+  min-height: 100dvh;
   min-height: 100vh;
+  isolation: isolate;
 }
 
 .main {
-  flex-grow: 1;
+  flex: 1 1 auto;
   overflow-y: auto;
 }

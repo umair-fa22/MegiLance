@@ -35,7 +35,12 @@
   color: var(--input-label-text);
   margin-bottom: var(--spacing-2);
   display: block;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   /* Ensure label has sufficient contrast and readability */
   line-height: 1.4;
@@ -114,6 +119,18 @@
   100% { box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.25); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .inputField:focus {
+    animation: none;
+  }
+  .inputField:hover:not(:disabled) {
+    transform: none;
+  }
+  .inputField:focus {
+    transform: none;
+  }
+}
+
 /* High contrast focus indicator for forced colors mode */
 @media (forced-colors: active) {
   .inputField:focus {
@@ -139,7 +156,12 @@
   transform: translateY(-50%);
   color: var(--input-icon);
   font-size: var(--font-size-lg);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 2;
   /* Ensure icons have sufficient contrast */
 }
@@ -183,6 +205,12 @@
 .inputIcon button:focus {
   outline: 2px solid var(--input-border-focus);
   outline-offset: 2px;
+}
+
+.inputIcon button:focus-visible {
+  outline: 2px solid var(--input-border-focus);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.25);
 }
 
 .inputFieldWithIconBefore {
@@ -278,7 +306,12 @@
   pointer-events: none;
   z-index: 1;
   transform-origin: left;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background: transparent;
   padding: 0;
 }
@@ -338,7 +371,12 @@
   height: 4px;
   border-radius: 2px;
   margin-top: var(--spacing-2);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
   background: var(--surface);
   position: relative;
   overflow: hidden;
@@ -414,7 +452,12 @@
   color: var(--input-icon);
   font-size: var(--font-size-base);
   white-space: nowrap;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   /* Ensure sufficient touch target size */
   min-height: 44px;
 }

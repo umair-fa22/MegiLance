@@ -1,73 +1,73 @@
 /* AI-HINT: Dark theme overrides for Portal Community page. */
 
-.themeWrapper { background: #0f0f0f; color: #f9fafb; }
-.subtitle { color: #9ca3af; }
+.themeWrapper { background: #0f172a; color: #f8fafc; }
+.subtitle { color: #94a3b8; }
 
-.input, .textarea, .composerInput { background: #161616; border-color: #2d2d2d; color: #f9fafb; }
-.searchWrap { background: #161616; border-radius: 8px; }
+.input, .textarea, .composerInput { background: #1e293b; border-color: #334155; color: #f8fafc; }
+.searchWrap { background: #1e293b; border-radius: 8px; }
 
 /* Stats Banner */
-.statsBanner { background: #161616; border: 1px solid #2d2d2d; }
-.statValue { color: #f9fafb; }
+.statsBanner { background: #1e293b; border: 1px solid #334155; }
+.statValue { color: #f8fafc; }
 .statLabel { color: #6b7280; }
 
 /* Side Cards */
-.sideCard { background: #161616; border-color: #2d2d2d; }
-.sideCardTitle { color: #f9fafb; }
+.sideCard { background: #1e293b; border-color: #334155; }
+.sideCardTitle { color: #f8fafc; }
 
 /* Categories */
-.categoryBtn { color: #9ca3af; }
-.categoryBtn:hover { background: #1e1e1e; color: #f9fafb; }
+.categoryBtn { color: #94a3b8; }
+.categoryBtn:hover { background: #1e293b; color: #f8fafc; }
 .categoryActive { background: rgba(69,115,223,0.15) !important; color: #6b9bff !important; }
-.categoryCount { background: #1e1e1e; color: #9ca3af; }
+.categoryCount { background: #1e293b; color: #94a3b8; }
 
 /* Trending Tags */
-.trendTag { background: #1e1e1e; color: #9ca3af; border-color: #2d2d2d; }
-.trendTag:hover { background: #2d2d2d; color: #f9fafb; }
+.trendTag { background: #1e293b; color: #94a3b8; border-color: #334155; }
+.trendTag:hover { background: #334155; color: #f8fafc; }
 
 /* Sort */
-.sortBtn { color: #9ca3af; }
-.sortBtn:hover { background: #1e1e1e; }
+.sortBtn { color: #94a3b8; }
+.sortBtn:hover { background: #1e293b; }
 .sortBtnActive { background: rgba(69,115,223,0.15); color: #6b9bff; font-weight: 600; }
 
 /* Composer */
-.composerCard { background: #161616; border-color: #2d2d2d; }
-.composerTitle { color: #f9fafb; }
+.composerCard { background: #1e293b; border-color: #334155; }
+.composerTitle { color: #f8fafc; }
 
 /* Threads */
-.thread { background: #161616; border-color: #2d2d2d; }
-.thread:hover { background: #1a1a1a; }
-.pinned { background: #111827; border-color: #1e3a5f; }
+.thread { background: #1e293b; border-color: #334155; }
+.thread:hover { background: #1e293b; }
+.pinned { background: #0f172a; border-color: #1e3a5f; }
 
 /* Badges */
 .badgePinned { background: rgba(69,115,223,0.15); color: #6b9bff; }
 .badgeHot { background: rgba(239,68,68,0.15); color: #f87171; }
 
 /* Avatar */
-.avatar { background: #2d2d2d; color: #d1d5db; }
+.avatar { background: #334155; color: #cbd5e1; }
 
 /* Author */
-.authorName { color: #f9fafb; }
+.authorName { color: #f8fafc; }
 .threadTime { color: #6b7280; }
 
 /* Level badges */
 .levelExpert { background: rgba(251,191,36,0.15); color: #fbbf24; }
 .levelPro { background: rgba(139,92,246,0.15); color: #a78bfa; }
 .levelContributor { background: rgba(52,211,153,0.15); color: #34d399; }
-.levelNew { background: #1e1e1e; color: #6b7280; }
+.levelNew { background: #1e293b; color: #6b7280; }
 
 /* Thread content */
-.threadTitle { color: #f9fafb; }
-.threadPreview { color: #9ca3af; }
+.threadTitle { color: #f8fafc; }
+.threadPreview { color: #94a3b8; }
 
 /* Tags */
-.tag { background: #1e1e1e; border-color: #2d2d2d; color: #d1d5db; }
+.tag { background: #1e293b; border-color: #334155; color: #cbd5e1; }
 
 /* Thread actions */
 .threadAction { color: #6b7280; }
-.threadAction:hover { background: #1e1e1e; color: #d1d5db; }
+.threadAction:hover { background: #1e293b; color: #cbd5e1; }
 .threadActionActive { color: #6b9bff !important; }
 .threadStat { color: #6b7280; }
 
 /* Empty State */
-.emptyState { background: #161616; color: #9ca3af; }
+.emptyState { background: #1e293b; color: #94a3b8; }

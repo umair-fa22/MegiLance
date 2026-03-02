@@ -15,6 +15,8 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 100%;
+  hanging-punctuation: first last;
 }
 
 html, body, #__next {
@@ -26,6 +28,7 @@ body {
   overflow-y: auto;
   font-family: var(--font-family-body);
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  line-height: 1.5;
 }
 
 /* Remove default underlines from links */
@@ -50,8 +53,8 @@ a {
 /*   SCROLLBAR STYLING                          */
 /* ============================================= */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
@@ -59,12 +62,14 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(128, 128, 128, 0.3);
+  background: rgba(128, 128, 128, 0.25);
   border-radius: 100px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(128, 128, 128, 0.5);
+  background: rgba(128, 128, 128, 0.4);
 }
 
 /* Firefox scrollbar */
@@ -77,8 +82,8 @@ a {
 /*   ACCESSIBILITY                              */
 /* ============================================= */
 :focus-visible {
-  outline: 2.5px solid var(--primary-4573df, #4573df);
-  outline-offset: 3px;
+  outline: 2px solid var(--primary-4573df, #4573df);
+  outline-offset: 2px;
   border-radius: 4px;
 }
 
@@ -147,7 +152,7 @@ a {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -159,7 +164,7 @@ a {
 @keyframes fadeInDown {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-12px);
   }
   to {
     opacity: 1;
@@ -183,7 +188,7 @@ a {
 @keyframes slideInRight {
   from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(16px);
   }
   to {
     opacity: 1;
@@ -195,7 +200,7 @@ a {
 @keyframes slideInLeft {
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-16px);
   }
   to {
     opacity: 1;
@@ -279,12 +284,12 @@ a {
 /* ============================================= */
 /*   UTILITY CLASSES                            */
 /* ============================================= */
-.animate-fadeIn { animation: fadeIn 0.3s ease-out forwards; }
-.animate-fadeInUp { animation: fadeInUp 0.4s ease-out forwards; }
-.animate-fadeInDown { animation: fadeInDown 0.4s ease-out forwards; }
-.animate-scaleIn { animation: scaleIn 0.3s ease-out forwards; }
-.animate-slideInRight { animation: slideInRight 0.4s ease-out forwards; }
-.animate-slideInLeft { animation: slideInLeft 0.4s ease-out forwards; }
+.animate-fadeIn { animation: fadeIn 0.25s ease-out forwards; }
+.animate-fadeInUp { animation: fadeInUp 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-fadeInDown { animation: fadeInDown 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-scaleIn { animation: scaleIn 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-slideInRight { animation: slideInRight 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-slideInLeft { animation: slideInLeft 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 .animate-float { animation: float 3s ease-in-out infinite; }
 .animate-shimmer { 
   animation: shimmer 2s ease-in-out infinite;
@@ -302,15 +307,15 @@ a {
 
 /* Glass morphism utility */
 .glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 [data-theme="dark"] .glass {
-  background: rgba(17, 24, 39, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(17, 24, 39, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* Text gradient utility */

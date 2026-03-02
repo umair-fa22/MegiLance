@@ -60,7 +60,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s;
+  transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s;
 }
 
 .nav_button:hover {
@@ -105,7 +110,12 @@
   align-items: center;
   justify-content: flex-start;
   padding: 0.5rem;
-  transition: all 0.2s;
+  transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s;
   position: relative;
   min-height: 60px;
 }

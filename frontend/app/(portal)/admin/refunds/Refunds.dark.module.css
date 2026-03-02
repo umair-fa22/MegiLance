@@ -1,33 +1,33 @@
 /* @AI-HINT: Dark theme for Admin Refunds */
 
 .container { background: transparent; }
-.title { color: #f9fafb; }
-.subtitle { color: #9ca3af; }
+.title { color: #f8fafc; }
+.subtitle { color: #94a3b8; }
 
 /* Stats */
-.statCard { background: #1a1d2e; border: 1px solid #2a2d3e; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+.statCard { background: #0f172a; border: 1px solid #2a2d3e; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
 .statCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-.statValue { color: #f9fafb; }
-.statLabel { color: #9ca3af; }
+.statValue { color: #f8fafc; }
+.statLabel { color: #94a3b8; }
 
 /* Toolbar */
-.toolbar { background: #1a1d2e; border: 1px solid #2a2d3e; }
-.searchInput { background: #0f1117; color: #f9fafb; border-color: #2a2d3e; }
+.toolbar { background: #0f172a; border: 1px solid #2a2d3e; }
+.searchInput { background: #0f1117; color: #f8fafc; border-color: #2a2d3e; }
 .searchIcon { color: #6b7280; }
-.filterTab { background: transparent; color: #9ca3af; }
-.filterTab:hover { background: #2a2d3e; color: #d1d5db; }
+.filterTab { background: transparent; color: #94a3b8; }
+.filterTab:hover { background: #2a2d3e; color: #cbd5e1; }
 .filterTabActive { background: #4573df !important; color: #fff !important; }
 
 /* Refund Cards */
-.refundCard { background: #1a1d2e; border: 1px solid #2a2d3e; }
+.refundCard { background: #0f172a; border: 1px solid #2a2d3e; }
 .refundCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
 .userAvatar { background: rgba(69, 115, 223, 0.15); color: #6b8de6; }
-.userName { color: #f9fafb; }
+.userName { color: #f8fafc; }
 .refundDate { color: #6b7280; }
-.amountValue { color: #f9fafb; }
-.refundReason { color: #9ca3af; }
-.contractRef { background: #2a2d3e; color: #9ca3af; }
+.amountValue { color: #f8fafc; }
+.refundReason { color: #94a3b8; }
+.contractRef { background: #2a2d3e; color: #94a3b8; }
 
 /* Detail Modal */
-.detailLabel { color: #9ca3af; }
-.detailValue { color: #f9fafb; }
+.detailLabel { color: #94a3b8; }
+.detailValue { color: #f8fafc; }

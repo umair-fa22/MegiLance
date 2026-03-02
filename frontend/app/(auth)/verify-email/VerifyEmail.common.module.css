@@ -24,16 +24,16 @@
 }
 
 .spinIcon {
-  color: #4573df;
+  color: var(--color-primary, #4573df);
   animation: spin 1s linear infinite;
 }
 
 .successIcon {
-  color: #27AE60;
+  color: var(--color-success, #27AE60);
 }
 
 .errorIcon {
-  color: #e81123;
+  color: var(--color-error, #e81123);
 }
 
 @keyframes spin {
@@ -46,14 +46,14 @@
 }
 
 .title {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-headings, 'Poppins', sans-serif);
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 1rem;
 }
 
 .message {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-body);
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 2rem;

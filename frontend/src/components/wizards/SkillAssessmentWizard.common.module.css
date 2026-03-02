@@ -14,7 +14,7 @@
 
 .icon {
   font-size: 2.5rem;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 /* Level Selection Grid */
@@ -30,8 +30,13 @@
   border-radius: 12px;
   border: 2px solid;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
   text-align: center;
+}
+
+.levelCard:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .levelCard:hover {
@@ -64,7 +69,7 @@
 .levelCard li::before {
   content: "✓ ";
   margin-right: 0.5rem;
-  color: #27AE60;
+  color: var(--color-success, #27AE60);
 }
 
 .levelCardSelected {
@@ -88,7 +93,7 @@
   gap: 0.5rem;
   font-size: 1.125rem;
   font-weight: 600;
-  color: #e81123;
+  color: var(--color-error, #e81123);
 }
 
 .questionProgress {
@@ -115,7 +120,7 @@
 .questionNumber {
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  background: #4573df;
+  background: var(--color-primary, #4573df);
   color: white;
   border-radius: 20px;
   font-size: 0.875rem;
@@ -144,7 +149,12 @@
   border-radius: 8px;
   border: 2px solid;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.optionCard:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .optionCard:hover {
@@ -164,7 +174,7 @@
 }
 
 .optionSelected .optionLetter {
-  background: #4573df;
+  background: var(--color-primary, #4573df);
   color: white;
 }
 
@@ -176,7 +186,7 @@
 }
 
 .trophyIcon {
-  font-size: 4rem;
+  font-size: clamp(2rem, 5vw, 4rem);
   margin-bottom: 1rem;
   color: #FFD700;
 }
@@ -196,7 +206,7 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  border: 8px solid #4573df;
+  border: 8px solid var(--color-primary, #4573df);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -206,7 +216,7 @@
 .scoreNumber {
   font-size: 3.5rem;
   font-weight: 700;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 .scoreLabel {
@@ -227,7 +237,7 @@
 }
 
 .passedCard .statusBadge {
-  background: #27AE60;
+  background: var(--color-success, #27AE60);
   color: white;
 }
 
@@ -244,7 +254,7 @@
 .statValue {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 .statLabel {
@@ -259,12 +269,12 @@
   padding: 1.5rem;
   border-radius: 12px;
   margin-top: 2rem;
-  border: 2px dashed #27AE60;
+  border: 2px dashed var(--color-success, #27AE60);
 }
 
 .certificateBox h4 {
   margin: 0 0 0.5rem 0;
-  color: #27AE60;
+  color: var(--color-success, #27AE60);
   font-size: 1.25rem;
 }
 
@@ -324,7 +334,7 @@
   padding: 8px 16px;
   border-radius: 6px;
   border: none;
-  background: #4573df;
+  background: var(--color-primary, #4573df);
   color: #fff;
   cursor: pointer;
 }

@@ -27,7 +27,7 @@
   font-size: 2rem;
   font-weight: 700;
   margin: 0 0 0.5rem 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
 }
 
 .subtitle {
@@ -79,7 +79,7 @@
 }
 
 .emptyCard span {
-  font-size: 5rem;
+  font-size: clamp(3rem, 6vw, 5rem);
   display: block;
   margin-bottom: 1rem;
 }
@@ -183,11 +183,11 @@
 }
 
 .includeItem span {
-  color: #27ae60;
+  color: var(--color-success, #27ae60);
 }
 
 .excludeItem span {
-  color: #e81123;
+  color: var(--color-error, #e81123);
 }
 
 .cardActions {
@@ -297,12 +297,12 @@
 
 .includeTag {
   background: rgba(39, 174, 96, 0.1);
-  color: #27ae60;
+  color: var(--color-success, #27ae60);
 }
 
 .excludeTag {
   background: rgba(232, 17, 35, 0.1);
-  color: #e81123;
+  color: var(--color-error, #e81123);
 }
 
 .checkboxLabel {

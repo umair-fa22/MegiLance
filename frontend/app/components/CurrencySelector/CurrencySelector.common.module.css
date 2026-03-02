@@ -20,7 +20,12 @@
   border-radius: 0.375rem;
   font-size: 0.875rem;
   font-weight: 500;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   cursor: pointer;
   border: none;
   background: transparent;
@@ -47,7 +52,12 @@
   font-weight: 500;
   cursor: pointer;
   border: 1px solid;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   position: relative;
 }
 
@@ -147,7 +157,12 @@
   cursor: pointer;
   border: none;
   background: transparent;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   text-align: left;
 }
 
@@ -214,4 +229,9 @@
   .currencyName {
     display: none;
   }
+}
+
+.searchInput:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }

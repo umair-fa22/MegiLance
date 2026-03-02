@@ -10,7 +10,7 @@
 }
 
 .title {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0 0 0.5rem 0;
@@ -43,7 +43,12 @@
   border: none;
   border-radius: var(--border-radius-sm);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .toggleAllButton:hover {
@@ -64,7 +69,12 @@
   padding: 1rem;
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .sectionTitleWrapper {
@@ -78,7 +88,7 @@
 }
 
 .sectionTitle {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 1rem;
   font-weight: 600;
   margin: 0;
@@ -114,7 +124,12 @@
   padding: 1.25rem;
   border-radius: var(--border-radius-md);
   margin-top: 1rem;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .agreementAccepted {

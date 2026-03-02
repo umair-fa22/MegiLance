@@ -1,22 +1,22 @@
 /* AI-HINT: Light theme styles for the FaqItem component. Defines colors for the question text, answer text, and border. */
 
 .item {
-  border-color: var(--color-gray-200);
+  border-color: #e2e8f0;
 }
 
 .question {
-  color: var(--color-gray-800);
+  color: #1e293b;
 }
 
 .question:hover {
-  color: var(--color-primary);
+  color: #4573df;
 }
 
 .chevron {
-  color: var(--color-gray-500);
+  color: #64748b;
 }
 
 .answerContent {
-  color: var(--color-gray-600);
+  color: #475569;
 }
 

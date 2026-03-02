@@ -5,7 +5,7 @@
 }
 
 .loadingState {
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-secondary, #94a3b8);
 }
 
 .header, .actions {
@@ -24,7 +24,7 @@
 }
 
 .tagline {
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-secondary, #94a3b8);
 }
 
 .rank {
@@ -36,13 +36,13 @@
 
 .metaBadge {
   background: rgba(255, 255, 255, 0.06);
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-secondary, #94a3b8);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Section Nav */
 .navBtn {
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-secondary, #94a3b8);
 }
 
 .navBtn:hover {
@@ -68,7 +68,7 @@
 }
 
 .sectionDescription {
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-secondary, #94a3b8);
 }
 
 .fieldLabel {
@@ -76,7 +76,7 @@
 }
 
 .skillsInfo {
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-secondary, #94a3b8);
 }
 
 /* Array cards */
@@ -96,7 +96,7 @@
 .emptyArrayState {
   background: rgba(255, 255, 255, 0.02);
   border-color: rgba(255, 255, 255, 0.1);
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-secondary, #94a3b8);
 }
 
 /* Media cards */
@@ -120,11 +120,11 @@
 }
 
 .settingRow p {
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-secondary, #94a3b8);
 }
 
 .toggleSwitch {
-  background: #4b5563;
+  background: #475569;
 }
 
 .toggleInput:checked + .toggleSwitch {
@@ -142,7 +142,7 @@
 }
 
 .shareDesc {
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-secondary, #94a3b8);
 }
 
 .shareUrlInput {
@@ -153,7 +153,7 @@
 
 .shareHints {
   background: rgba(255, 255, 255, 0.04);
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-secondary, #94a3b8);
 }
 
 /* Modal */
@@ -177,7 +177,7 @@
 }
 
 .closeBtn {
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-secondary, #94a3b8);
 }
 
 .closeBtn:hover {

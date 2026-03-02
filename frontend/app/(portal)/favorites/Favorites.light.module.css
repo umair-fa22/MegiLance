@@ -2,26 +2,26 @@
 .container { color: #111827; }
 .subtitle { color: #4b5563; }
 .error { background-color: #fef2f2; border-color: #ef4444; color: #991b1b; }
-.statCard { background-color: #ffffff; border-color: #e5e7eb; }
+.statCard { background-color: #ffffff; border-color: #e2e8f0; }
 .statIcon { color: #4573df; }
-.filterSelect { background-color: #ffffff; border-color: #e5e7eb; color: #111827; }
+.filterSelect { background-color: #ffffff; border-color: #e2e8f0; color: #111827; }
 .filterSelect:focus { outline: none; border-color: #4573df; box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1); }
-.searchIcon { color: #9ca3af; }
-.searchInput { background-color: #ffffff; border-color: #e5e7eb; color: #111827; }
-.searchInput::placeholder { color: #9ca3af; }
+.searchIcon { color: #94a3b8; }
+.searchInput { background-color: #ffffff; border-color: #e2e8f0; color: #111827; }
+.searchInput::placeholder { color: #94a3b8; }
 .searchInput:focus { outline: none; border-color: #4573df; box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1); }
-.loading, .empty, .emptyText { color: #6b7280; }
-.favoriteCard { background-color: #ffffff; border-color: #e5e7eb; }
+.loading, .empty, .emptyText { color: #64748b; }
+.favoriteCard { background-color: #ffffff; border-color: #e2e8f0; }
 .favoriteCard:hover { border-color: #4573df; }
 .typeIcon { background-color: #eff6ff; color: #4573df; }
 .typeBadge { background-color: #eff6ff; color: #4573df; }
 .typeBadge[data-type="project"] { background-color: #dbeafe; color: #1e40af; }
 .typeBadge[data-type="freelancer"] { background-color: #dcfce7; color: #166534; }
 .typeBadge[data-type="client"] { background-color: #fef3c7; color: #92400e; }
-.cardActions { border-color: #f3f4f6; }
+.cardActions { border-color: #f1f5f9; }
 .viewBtn { background-color: #4573df; color: #ffffff; }
 .viewBtn:hover { background-color: #3461d1; }
-.removeBtn { background-color: #f3f4f6; color: #6b7280; }
+.removeBtn { background-color: #f1f5f9; color: #64748b; }
 .removeBtn:hover { background-color: #fef2f2; color: #ef4444; }
 
 /* Toast */

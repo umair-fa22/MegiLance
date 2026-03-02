@@ -2,7 +2,7 @@
 
 .container {
   padding: 2rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-body);
 }
 
 .header {
@@ -20,7 +20,7 @@
 .title {
   font-size: 1.75rem;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
   margin: 0;
 }
 
@@ -190,7 +190,7 @@
   font-size: 1.25rem;
   font-weight: 600;
   margin: 1rem 0 0 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
 }
 
 .emptyState p {

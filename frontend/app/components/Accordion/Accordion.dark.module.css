@@ -1,12 +1,12 @@
 /* AI-HINT: Dark theme styles for the Accordion. Provides high-contrast colors and refined interaction states for a premium dark mode experience. */
 
 .accordionRoot {
-  background-color: #1a202c; /* Charcoal */
-  border: 1px solid #2d3748; /* Dark Gray 800 */
+  background-color: #0f172a; /* Charcoal */
+  border: 1px solid #1e293b; /* Dark Gray 800 */
 }
 
 .accordionItem {
-  border-color: #2d3748; /* Dark Gray 800 */
+  border-color: #1e293b; /* Dark Gray 800 */
 }
 
 .accordionTrigger {
@@ -14,18 +14,18 @@
 }
 
 .accordionTrigger:hover {
-  background-color: #2d3748; /* Dark Gray 800 */
+  background-color: #1e293b; /* Dark Gray 800 */
 }
 
 .accordionTrigger:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px #1a202c, 0 0 0 4px #4573df; /* Charcoal inner, MegiLance Blue outer */
+  box-shadow: 0 0 0 2px #0f172a, 0 0 0 4px #4573df; /* Charcoal inner, MegiLance Blue outer */
   z-index: 1;
   position: relative;
 }
 
 .accordionIcon::before {
-  border-color: #d1d5db; /* Gray 300 */
+  border-color: #cbd5e1; /* Gray 300 */
 }
 
 .accordionContentText {

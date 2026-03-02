@@ -5,33 +5,33 @@
 }
 
 .dropdown {
-  background-color: #1f2937;
-  border: 1px solid #374151;
+  background-color: #1e293b;
+  border: 1px solid #334155;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
 }
 
 .header {
-  border-bottom: 1px solid #374151;
+  border-bottom: 1px solid #334155;
 }
 
 .userName {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .userEmail {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .item {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .item:hover,
 .item:focus-visible {
-  background-color: #374151;
+  background-color: #334155;
   color: #ffffff;
 }
 
 .itemIcon {
-  color: #d1d5db;
+  color: #cbd5e1;
 }

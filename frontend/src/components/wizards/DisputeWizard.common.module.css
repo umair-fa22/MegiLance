@@ -77,8 +77,13 @@
   border-radius: 8px;
   border: 2px solid #cbd5e0;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   text-align: center;
+}
+
+.typeCard:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .typeCard:hover {
@@ -87,13 +92,13 @@
 }
 
 .typeCardSelected {
-  border-color: #4573df;
+  border-color: var(--color-primary, #4573df);
 }
 
 .typeIcon {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 .typeCard h4 {
@@ -135,8 +140,9 @@
 .formGroup input:focus,
 .formGroup textarea:focus,
 .formGroup select:focus {
-  outline: none;
-  border-color: #4573df;
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: -2px;
+  border-color: var(--color-primary, #4573df);
 }
 
 .formGroup small {
@@ -156,7 +162,7 @@
 
 .infoBox svg {
   font-size: 1.25rem;
-  color: #3b82f6;
+  color: var(--color-primary, #3b82f6);
   flex-shrink: 0;
   margin-top: 0.125rem;
 }
@@ -200,13 +206,18 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.25rem;
-  background: #4573df;
+  background: var(--color-primary, #4573df);
   color: white;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 500;
   transition: background 0.2s;
   white-space: nowrap;
+}
+
+.uploadButton:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .uploadButton:hover {
@@ -248,7 +259,7 @@
 
 .evidenceIcon svg {
   font-size: 1.5rem;
-  color: #3b82f6;
+  color: var(--color-primary, #3b82f6);
 }
 
 .evidenceInfo {
@@ -276,7 +287,7 @@
   padding: 0.5rem;
   background: transparent;
   border: none;
-  color: #e81123;
+  color: var(--color-error, #e81123);
   cursor: pointer;
   border-radius: 4px;
   transition: background 0.2s;
@@ -342,8 +353,13 @@
   border-radius: 8px;
   border: 2px solid #cbd5e0;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   text-align: center;
+}
+
+.resolutionCard:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .resolutionCard:hover {
@@ -352,13 +368,13 @@
 }
 
 .resolutionCardSelected {
-  border-color: #27ae60;
+  border-color: var(--color-success, #27ae60);
 }
 
 .resolutionIcon {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: #27ae60;
+  color: var(--color-success, #27ae60);
 }
 
 .resolutionCard h4 {

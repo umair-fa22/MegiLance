@@ -4,7 +4,7 @@
 import React from 'react';
 import styles from './ScrollReveal.module.css';
 
-interface ScrollRevealProps {
+interface ScrollRevealProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   width?: 'fit-content' | '100%';
   delay?: number;
@@ -24,12 +24,19 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   width = 'fit-content',
   className = '',
   overflow = 'visible',
+  delay: _delay,
+  duration: _duration,
+  direction: _direction,
+  distance: _distance,
+  once: _once,
+  threshold: _threshold,
+  ...rest
 }) => {
   const widthClass = width === '100%' ? styles.widthFull : styles.widthFit;
   const overflowClass = overflow === 'hidden' ? styles.overflowHidden : styles.overflowVisible;
   
   return (
-    <div className={`${widthClass} ${overflowClass} ${className}`}>
+    <div className={`${widthClass} ${overflowClass} ${className}`} {...rest}>
       {children}
     </div>
   );

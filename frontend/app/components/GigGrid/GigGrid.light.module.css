@@ -8,16 +8,16 @@
 }
 
 .subtitle {
-  color: var(--color-text-secondary-light, #6b7280);
+  color: var(--color-text-secondary-light, #64748b);
 }
 
 .resultsCount {
-  color: var(--color-text-secondary-light, #6b7280);
+  color: var(--color-text-secondary-light, #64748b);
 }
 
 .sortDropdown {
   background-color: var(--color-background-light, #ffffff);
-  border: 1px solid var(--color-border-light, #e5e7eb);
+  border: 1px solid var(--color-border-light, #e2e8f0);
   color: var(--color-text-primary-light, #1f2937);
 }
 
@@ -27,8 +27,8 @@
 }
 
 .viewButton {
-  background-color: var(--color-background-alt-light, #f3f4f6);
-  color: var(--color-text-secondary-light, #6b7280);
+  background-color: var(--color-background-alt-light, #f1f5f9);
+  color: var(--color-text-secondary-light, #64748b);
 }
 
 .viewButton.active {
@@ -37,12 +37,12 @@
 }
 
 .viewButton:hover:not(.active) {
-  background-color: var(--color-background-hover-light, #e5e7eb);
+  background-color: var(--color-background-hover-light, #e2e8f0);
 }
 
 .emptyIcon {
-  background-color: var(--color-background-alt-light, #f3f4f6);
-  color: var(--color-text-secondary-light, #9ca3af);
+  background-color: var(--color-background-alt-light, #f1f5f9);
+  color: var(--color-text-secondary-light, #94a3b8);
 }
 
 .emptyTitle {
@@ -50,16 +50,16 @@
 }
 
 .emptyDescription {
-  color: var(--color-text-secondary-light, #6b7280);
+  color: var(--color-text-secondary-light, #64748b);
 }
 
 .skeletonCard {
-  background-color: var(--color-background-alt-light, #f3f4f6);
+  background-color: var(--color-background-alt-light, #f1f5f9);
 }
 
 .pageButton {
   background-color: var(--color-background-light, #ffffff);
-  border: 1px solid var(--color-border-light, #e5e7eb);
+  border: 1px solid var(--color-border-light, #e2e8f0);
   color: var(--color-text-primary-light, #1f2937);
 }
 

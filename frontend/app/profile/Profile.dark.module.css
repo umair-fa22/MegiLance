@@ -7,7 +7,7 @@
 .loadingContainer {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-secondary, #94a3b8);
 }
 
 .errorContainer {
@@ -44,7 +44,7 @@
 }
 
 .bio {
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-secondary, #94a3b8);
 }
 
 .role {
@@ -60,7 +60,7 @@
 .emptyState {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--text-secondary, #9ca3af);
+  color: var(--text-secondary, #94a3b8);
 }
 
 .emptyState h3 {

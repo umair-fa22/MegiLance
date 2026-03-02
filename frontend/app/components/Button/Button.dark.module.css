@@ -1,27 +1,27 @@
 /* Variants */
 .variant-primary {
-  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
-  color: #020617;
-  box-shadow: 0 4px 15px rgba(74, 222, 128, 0.4);
+  background: linear-gradient(135deg, #6b93f5 0%, #4573df 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(69, 115, 223, 0.4);
   text-shadow: none;
 }
 
 .variant-primary:hover {
-  box-shadow: 0 8px 25px rgba(74, 222, 128, 0.5);
+  box-shadow: 0 8px 25px rgba(69, 115, 223, 0.5);
   filter: brightness(1.1);
 }
 
 .variant-secondary {
   background: rgba(30, 41, 59, 0.5);
-  color: #4ade80;
-  border-color: rgba(74, 222, 128, 0.5);
+  color: #6b93f5;
+  border-color: rgba(69, 115, 223, 0.5);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .variant-secondary:hover {
   background: rgba(30, 41, 59, 0.8);
-  border-color: #4ade80;
-  box-shadow: 0 4px 15px rgba(74, 222, 128, 0.2);
+  border-color: #6b93f5;
+  box-shadow: 0 4px 15px rgba(69, 115, 223, 0.2);
 }
 
 .variant-ghost {
@@ -47,13 +47,14 @@
 }
 
 .variant-danger {
-  background: #ef4444;
+  background: #ff4757;
   color: #ffffff;
+  box-shadow: 0 4px 15px rgba(232, 17, 35, 0.4);
 }
 
 .variant-danger:hover {
-  background: #dc2626;
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+  background: #e81123;
+  box-shadow: 0 8px 25px rgba(232, 17, 35, 0.5);
 }
 
 .variant-social {
@@ -65,4 +66,38 @@
 .variant-social:hover {
   background: #334155;
   border-color: rgba(255, 255, 255, 0.2);
+}
+
+.variant-success {
+  background: linear-gradient(135deg, #22c55e 0%, #4ade80 100%);
+  color: #0f172a;
+  box-shadow: 0 4px 15px rgba(74, 222, 128, 0.4);
+}
+
+.variant-success:hover {
+  box-shadow: 0 8px 25px rgba(74, 222, 128, 0.5);
+  filter: brightness(1.1);
+}
+
+.variant-warning {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: #0f172a;
+  box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+}
+
+.variant-warning:hover {
+  box-shadow: 0 8px 25px rgba(251, 191, 36, 0.5);
+  filter: brightness(1.1);
+}
+
+.variant-link {
+  background: transparent;
+  color: #60a5fa;
+  padding: 0;
+  height: auto;
+}
+
+.variant-link:hover {
+  text-decoration: underline;
+  filter: brightness(1.2);
 }

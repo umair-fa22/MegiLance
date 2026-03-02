@@ -1,7 +1,7 @@
 /* Wizard Container - Dark Theme */
 
 .container {
-  background: #1a202c;
+  background: #0f172a;
   color: #e2e8f0;
 }
 
@@ -14,16 +14,16 @@
 }
 
 .progressBar {
-  background: #2d3748;
+  background: #1e293b;
 }
 
 .stepsIndicator::before {
-  background: #4a5568;
+  background: #475569;
 }
 
 .stepCircle {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
   color: #a0aec0;
 }
 
@@ -43,10 +43,10 @@
 }
 
 .contentArea {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .navigation {
-  border-color: #4a5568;
+  border-color: #475569;
 }

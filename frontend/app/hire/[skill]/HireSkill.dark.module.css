@@ -1,15 +1,15 @@
 /* @AI-HINT: Hire skill directory page - dark theme colors */
 
 .page {
-  background-color: #111827;
+  background-color: #0f172a;
 }
 
 .hero {
-  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
 }
 
 .breadcrumbLink {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .breadcrumbLink:hover {
@@ -17,12 +17,12 @@
 }
 
 .breadcrumbCurrent {
-  color: #f9fafb;
+  color: #f8fafc;
   font-weight: 500;
 }
 
 .heroTitle {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .heroHighlight {
@@ -30,32 +30,32 @@
 }
 
 .heroSubtitle {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .statItem {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .statLabel {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .section {
-  background-color: #111827;
+  background-color: #0f172a;
 }
 
 .sectionTitle {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .industryCard {
-  background-color: #1f2937;
-  border-color: #374151;
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
 .industryName {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .industryGrowth {
@@ -63,11 +63,11 @@
 }
 
 .relatedCard {
-  background-color: #1f2937;
+  background-color: #1e293b;
 }
 
 .relatedName {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .relatedRate {
@@ -76,13 +76,13 @@
 }
 
 .ctaSection {
-  background-color: #1f2937;
+  background-color: #1e293b;
 }
 
 .ctaTitle {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .ctaSubtitle {
-  color: #d1d5db;
+  color: #cbd5e1;
 }

@@ -1,36 +1,36 @@
 /* AI-HINT: Dark theme styles for the Contact page. */
 
 .page {
-  background-color: var(--color-gray-950);
+  background-color: #0f172a;
 }
 
 .title {
-  color: var(--color-white);
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: var(--color-gray-400);
+  color: #94a3b8;
 }
 
 .infoPanel {
-  background-color: var(--color-gray-900);
-  border: 1px solid var(--color-gray-800);
+  background-color: #1e293b;
+  border: 1px solid #334155;
 }
 
 .infoItem {
-  color: var(--color-gray-300);
+  color: #cbd5e1;
 }
 
 .infoItem:hover {
-  color: var(--color-primary-light);
+  color: #6b93f5;
 }
 
 .infoIcon {
-  color: var(--color-primary-light);
+  color: #6b93f5;
 }
 
 .formPanel {
-  background-color: var(--color-gray-900);
-  border: 1px solid var(--color-gray-800);
+  background-color: #1e293b;
+  border: 1px solid #334155;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.25);
 }

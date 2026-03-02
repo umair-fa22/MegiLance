@@ -28,6 +28,7 @@
 .cta { margin-top: var(--spacing-10); display: flex; gap: var(--spacing-4); justify-content: center; flex-wrap: wrap; }
 .button { padding: 12px 20px; border: none; border-radius: var(--border-radius-md); font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
 .button:hover { transform: translateY(-2px); }
+.button:focus-visible { outline: 2px solid var(--color-primary, #4573df); outline-offset: 2px; }
 .buttonSecondary { background: transparent; border: 1px solid transparent; }
 
 .isNotVisible { opacity: 0; transform: translateY(16px); }

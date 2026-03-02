@@ -58,14 +58,14 @@
 }
 
 .modalTitle {
-  background: linear-gradient(135deg, #f9fafb 0%, #60a5fa 50%, #a78bfa 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #60a5fa 50%, #a78bfa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .closeButton {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .closeButton:hover {
@@ -84,7 +84,7 @@
 }
 
 .modalBody {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .modalFooter {

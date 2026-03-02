@@ -12,7 +12,12 @@
 
 .field { display: grid; gap: 8px; }
 .label { font-weight: 600; font-size: 14px; letter-spacing: 0.01em; }
-.input, .select, .textarea { padding: 10px 14px; border-radius: 10px; border: 1.5px solid transparent; resize: vertical; font-size: 14px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+.input, .select, .textarea { padding: 10px 14px; border-radius: 10px; border: 1.5px solid transparent; resize: vertical; font-size: 14px; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
 .help { font-size: 12px; opacity: 0.85; letter-spacing: 0.01em; }
 
 .row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4); }
@@ -22,7 +27,12 @@
 .toggle input { width: 40px; height: 22px; }
 
 .saveBar { position: sticky; bottom: 16px; display: flex; gap: var(--spacing-2); justify-content: flex-end; margin-top: var(--spacing-2); }
-.button { padding: 10px 16px; border-radius: 10px; border: 1.5px solid transparent; cursor: pointer; font-weight: 600; letter-spacing: 0.01em; font-size: 14px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+.button { padding: 10px 16px; border-radius: 10px; border: 1.5px solid transparent; cursor: pointer; font-weight: 600; letter-spacing: 0.01em; font-size: 14px; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
 .button:hover { transform: translateY(-1px); }
 
 .isNotVisible { opacity: 0; transform: translateY(16px); }

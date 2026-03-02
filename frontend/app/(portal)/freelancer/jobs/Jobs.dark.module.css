@@ -1,6 +1,6 @@
 /* Dark theme for Freelancer Jobs Page */
 .container {
-  background-color: #111827;
+  background-color: #0f172a;
 }
 
 .title {
@@ -12,8 +12,8 @@
 }
 
 .searchBar {
-  background-color: #1f2937;
-  border: 1px solid #374151;
+  background-color: #1e293b;
+  border: 1px solid #334155;
 }
 
 .searchInput {
@@ -21,8 +21,8 @@
 }
 
 .filters {
-  background-color: #1f2937;
-  border-color: #374151;
+  background-color: #1e293b;
+  border-color: #334155;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -35,7 +35,7 @@
 }
 
 .tabs {
-  border-bottom-color: #374151;
+  border-bottom-color: #334155;
 }
 
 .tab {
@@ -43,7 +43,7 @@
 }
 
 .tab:hover {
-  background-color: #374151;
+  background-color: #334155;
   color: #e2e8f0;
 }
 
@@ -58,8 +58,8 @@
 
 /* Skeleton theme */
 .skeletonCard {
-  background-color: #1f2937;
-  border: 1px solid #374151;
+  background-color: #1e293b;
+  border: 1px solid #334155;
 }
 
 .skeletonTitle,
@@ -68,7 +68,7 @@
 .skeletonChip,
 .skeletonBudget,
 .skeletonDate {
-  background: linear-gradient(90deg, #374151 0%, #4b5563 50%, #374151 100%);
+  background: linear-gradient(90deg, #334155 0%, #475569 50%, #334155 100%);
   background-size: 200% 100%;
   animation: skeleton-shine 1.5s ease-in-out infinite;
 }

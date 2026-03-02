@@ -7,23 +7,23 @@
 }
 
 .description {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .filterToolbar {
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .itemCard {
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 .itemCard:hover {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  border-color: #d1d5db;
+  border-color: #cbd5e1;
 }
 
 .identifier {
@@ -39,20 +39,20 @@
 }
 
 .cardFooter {
-  border-top: 1px solid #f3f4f6;
+  border-top: 1px solid #f1f5f9;
 }
 
 .date {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .emptyState {
   background-color: #ffffff;
-  border: 1px dashed #d1d5db;
+  border: 1px dashed #cbd5e1;
 }
 
 .emptyState svg {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .emptyState h3 {
@@ -60,12 +60,12 @@
 }
 
 .emptyState p {
-  color: #6b7280;
+  color: #64748b;
 }
 
 /* Loading and Error States */
 .loadingState {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .errorState {

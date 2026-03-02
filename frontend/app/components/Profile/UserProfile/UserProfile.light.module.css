@@ -42,7 +42,7 @@
 }
 
 .emptyText {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .sectionTitle {
@@ -85,7 +85,7 @@
 }
 
 .portfolioTag {
-  background: #f3f4f6;
+  background: #f1f5f9;
   color: #4b5563;
 }
 
@@ -99,7 +99,7 @@
 }
 
 .reviewProject {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .criteriaLabel {
@@ -111,7 +111,7 @@
 }
 
 .reviewDate {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .contactItem {

@@ -84,7 +84,12 @@
   justify-content: center;
   font-weight: 600;
   font-size: 0.875rem;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .stepLabel {
@@ -158,7 +163,8 @@
 }
 
 .input:focus {
-  outline: none;
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
@@ -185,7 +191,7 @@
 }
 
 .charWarning {
-  color: #e81123;
+  color: var(--color-error, #e81123);
 }
 
 /* Select */
@@ -203,7 +209,8 @@
 }
 
 .select:focus {
-  outline: none;
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
@@ -255,7 +262,12 @@
   padding: 2rem;
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .imageUpload:hover {
@@ -331,7 +343,12 @@
   padding: 1.25rem;
   border-radius: 0.75rem;
   border: 2px solid transparent;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .packageCard:hover {
@@ -383,7 +400,8 @@
 }
 
 .packageInput:focus {
-  outline: none;
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
   border-color: var(--color-primary);
 }
 
@@ -432,7 +450,12 @@
   justify-content: center;
   cursor: pointer;
   flex-shrink: 0;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .featureCheckbox.checked {
@@ -506,7 +529,8 @@
 }
 
 .faqInput:focus {
-  outline: none;
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
   border-color: var(--color-primary);
 }
 
@@ -525,7 +549,12 @@
   border: 2px dashed transparent;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .addFaq:hover {
@@ -570,7 +599,12 @@
   border-radius: 0.5rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .navButton:hover {
@@ -603,7 +637,12 @@
   border-radius: 0.75rem;
   border: 2px solid transparent;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .publishOption:hover {
@@ -697,4 +736,9 @@
   border-radius: 0.5rem;
   margin-bottom: 1.5rem;
   font-size: 0.875rem;
+}
+
+.tagInputField:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }

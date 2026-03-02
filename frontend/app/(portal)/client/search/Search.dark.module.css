@@ -2,10 +2,10 @@
 .container { background: #0f1419; }
 .title { color: #f1f5f9; }
 .subtitle { color: #94a3b8; }
-.searchSection { background: #1a1f2e; border: 1px solid #2d3748; }
-.searchInput { background: #0f1419; color: #f1f5f9; border-color: #2d3748; }
-.filterInput { background: #0f1419; color: #f1f5f9; border-color: #2d3748; }
-.freelancerCard { background: #1a1f2e; border: 1px solid #2d3748; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+.searchSection { background: #1a1f2e; border: 1px solid #1e293b; }
+.searchInput { background: #0f1419; color: #f1f5f9; border-color: #1e293b; }
+.filterInput { background: #0f1419; color: #f1f5f9; border-color: #1e293b; }
+.freelancerCard { background: #1a1f2e; border: 1px solid #1e293b; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
 .freelancerCard:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
 .name { color: #f1f5f9; }
 .titleText { color: #94a3b8; }

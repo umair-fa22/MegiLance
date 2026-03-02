@@ -1,6 +1,6 @@
 /* Community Page Dark Theme */
 .themeWrapper {
-  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
   color: #f8fafc;
 }
 
@@ -10,14 +10,14 @@
 
 /* Community Cards */
 .communityCard {
-  background: rgba(30, 27, 75, 0.6);
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .communityCard:hover {
-  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.2);
-  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 8px 30px rgba(69, 115, 223, 0.2);
+  border-color: rgba(69, 115, 223, 0.4);
 }
 
 .cardIcon {
@@ -45,14 +45,14 @@
 
 /* Social Cards */
 .socialCard {
-  background: rgba(30, 27, 75, 0.6);
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .socialCard:hover {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-  border-color: rgba(99, 102, 241, 0.4);
+  border-color: rgba(69, 115, 223, 0.4);
 }
 
 .socialIcon {

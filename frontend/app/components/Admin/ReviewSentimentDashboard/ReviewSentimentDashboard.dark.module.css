@@ -1,32 +1,32 @@
 /* AI-HINT: Dark theme styles for the ReviewSentimentDashboard. Creates a sleek, modern, and focused experience with a dark palette, vibrant brand colors, and carefully managed contrast for readability. */
 
 .dashboardContainer {
-  background-color: #111827; /* Deep blue-gray background */
+  background-color: #0f172a; /* Deep blue-gray background */
 }
 
 .dashboardTitle {
-  color: #f9fafb; /* Off-white for main title */
+  color: #f8fafc; /* Off-white for main title */
 }
 
 .timeRangeTrigger {
-  background-color: #1f2937;
+  background-color: #1e293b;
   border-color: #4b5567;
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .metricCard,
 .chartCard,
 .reviewsCard {
-  background-color: #1f2937; /* Slightly lighter card background */
-  border: 1px solid #374151;
+  background-color: #1e293b; /* Slightly lighter card background */
+  border: 1px solid #334155;
 }
 
 .cardTitle {
-  color: #d1d5db; /* Lighter gray for titles */
+  color: #cbd5e1; /* Lighter gray for titles */
 }
 
 .cardMetric {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .cardMetricPositive {
@@ -34,11 +34,11 @@
 }
 
 .cardDescription {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .reviewItem {
-  background-color: #374151;
+  background-color: #334155;
   border: 1px solid #4b5567;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .reviewText {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .sentimentPositive {

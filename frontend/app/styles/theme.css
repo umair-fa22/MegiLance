@@ -11,6 +11,13 @@
   --font-family-code: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
   --font-family-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 
+  /* Typography Aliases (for components using alternate naming) */
+  --font-family-headings: var(--font-family-heading);
+  --font-heading: var(--font-family-heading);
+  --font-body: var(--font-family-body);
+  --font-mono: var(--font-family-code);
+  --font-display: var(--font-family-display);
+
   /* Fluid Typography Scale (clamp-based for perfect scaling) */
   --font-size-xxs: clamp(0.625rem, 0.6rem + 0.125vw, 0.6875rem);  /* 10-11px */
   --font-size-xs: clamp(0.6875rem, 0.65rem + 0.1875vw, 0.75rem);  /* 11-12px */
@@ -41,7 +48,16 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
   --font-weight-extrabold: 800;
-  
+
+  /* Opacity Tokens */
+  --opacity-disabled: 0.5;
+
+  /* Semantic Color Aliases */
+  --color-danger-default: #e81123;
+  --color-success-default: #27AE60;
+  --color-warning-default: #F2C94C;
+  --color-primary-default: #4573df;
+
   /* Line Heights */
   --line-height-none: 1;
   --line-height-tight: 1.2;
@@ -85,6 +101,20 @@
   --spacing-28: calc(28 * var(--spacing-unit));    /* 112px */
   --spacing-32: calc(32 * var(--spacing-unit));    /* 128px */
 
+  /* Space Aliases (for components using --space-* naming from tokens.css) */
+  --space-1: var(--spacing-1);
+  --space-2: var(--spacing-2);
+  --space-3: var(--spacing-3);
+  --space-4: var(--spacing-4);
+  --space-5: var(--spacing-5);
+  --space-6: var(--spacing-6);
+  --space-8: var(--spacing-8);
+  --space-10: var(--spacing-10);
+  --space-12: var(--spacing-12);
+  --space-16: var(--spacing-16);
+  --space-20: var(--spacing-20);
+  --space-24: var(--spacing-24);
+
   /* ============================================= */
   /*   BORDERS & RADIUS - Modern Curves           */
   /* ============================================= */
@@ -98,7 +128,19 @@
   --radius-3xl: 1.5rem;    /* 24px */
   --radius-4xl: 2rem;      /* 32px */
   --radius-full: 9999px;
-  
+
+  /* Border Radius Aliases (for components using --border-radius-* naming) */
+  --border-radius-none: var(--radius-none);
+  --border-radius-xs: var(--radius-xs);
+  --border-radius-sm: var(--radius-sm);
+  --border-radius-md: var(--radius-md);
+  --border-radius-lg: var(--radius-lg);
+  --border-radius-xl: var(--radius-xl);
+  --border-radius-2xl: var(--radius-2xl);
+  --border-radius-3xl: var(--radius-3xl);
+  --border-radius-4xl: var(--radius-4xl);
+  --border-radius-full: var(--radius-full);
+
   --border-width-thin: 1px;
   --border-width-base: 1.5px;
   --border-width-sm: 1px;

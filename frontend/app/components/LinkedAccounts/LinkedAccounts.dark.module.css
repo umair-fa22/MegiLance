@@ -1,23 +1,23 @@
 /* @AI-HINT: Dark theme colors for LinkedAccounts component */
 .section {
-  background: #1f2937;
-  border-color: #374151;
+  background: #1e293b;
+  border-color: #334155;
 }
 
 .sectionTitle {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .accountRow {
-  background: #111827;
+  background: #0f172a;
 }
 
 .providerName {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .accountEmail {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .emptyState {

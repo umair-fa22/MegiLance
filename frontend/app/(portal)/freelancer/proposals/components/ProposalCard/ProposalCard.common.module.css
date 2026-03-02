@@ -5,7 +5,12 @@
   flex-direction: column;
   border-radius: 16px;
   padding: 1.5rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   border: 1.5px solid;
@@ -45,7 +50,7 @@
 .jobTitle {
   font-size: 18px;
   font-weight: 600;
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   line-height: 1.4;
   letter-spacing: -0.01em;
 }
@@ -60,7 +65,7 @@
 }
 
 .verifiedBadge {
-  color: #3b82f6;
+  color: var(--color-primary, #3b82f6);
   display: flex;
   align-items: center;
 }
@@ -92,7 +97,7 @@
   font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.01em;
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
 }
 
 .detailLabel {

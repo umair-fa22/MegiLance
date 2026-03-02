@@ -22,7 +22,7 @@
 .title {
   font-size: 2rem; /* 32px */
   font-weight: 700;
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   letter-spacing: -0.025em;
 }
 

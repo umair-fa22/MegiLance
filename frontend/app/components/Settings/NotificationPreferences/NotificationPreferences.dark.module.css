@@ -1,7 +1,7 @@
 /* Notification Preferences - Dark Theme */
 
 .container {
-  background: #1a202c;
+  background: #0f172a;
   color: #e2e8f0;
 }
 
@@ -14,8 +14,8 @@
 }
 
 .section {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .sectionTitle {
@@ -23,17 +23,17 @@
 }
 
 .tableHeader {
-  background: #1a202c;
-  border-color: #4a5568;
+  background: #0f172a;
+  border-color: #475569;
   color: #e2e8f0;
 }
 
 .tableRow {
-  background: #2d3748;
+  background: #1e293b;
 }
 
 .tableRow:hover {
-  background: #374151;
+  background: #334155;
 }
 
 .categoryCell strong {
@@ -45,8 +45,8 @@
 }
 
 .timeInput {
-  border-color: #4a5568;
-  background: #2d3748;
+  border-color: #475569;
+  background: #1e293b;
   color: #e2e8f0;
 }
 

@@ -1,10 +1,10 @@
 /* @AI-HINT: Dark theme styles for ErrorBoundary fallback */
-.container { background: #1b1f2a; color: #e5e7eb; border-color: #3f2a2a; }
+.container { background: #0f172a; color: #e2e8f0; border-color: #3f2a2a; }
 .icon { color: #f87171; }
-.title { color: #f9fafb; }
-.message { color: #d1d5db; }
-.detailsSummary { background: #2a3142; color: #94a3b8; }
-.errorStack { background: #111827; color: #e5e7eb; border: 1px solid #2a3142; }
+.title { color: #f8fafc; }
+.message { color: #cbd5e1; }
+.detailsSummary { background: #1e293b; color: #94a3b8; }
+.errorStack { background: #0f172a; color: #e2e8f0; border: 1px solid #1e293b; }
 
 .tryAgainButton {
   background: #4573df;
@@ -15,11 +15,11 @@
 }
 
 .refreshButton {
-  background: #2a3142;
-  color: #e5e7eb;
+  background: #1e293b;
+  color: #e2e8f0;
 }
 .refreshButton:hover {
-  background: #374151;
+  background: #334155;
 }
 
 .homeButton {

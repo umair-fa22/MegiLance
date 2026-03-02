@@ -7,7 +7,7 @@
 }
 
 .tagline {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .linksTitle {
@@ -16,7 +16,7 @@
 }
 
 .linkItem {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .linkItem:hover {
@@ -33,7 +33,7 @@
 }
 
 .socialLink {
-  color: #9ca3af;
+  color: #94a3b8;
   background-color: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.05);
 }

@@ -11,13 +11,13 @@
   gap: 1.5rem;
   padding: 1.5rem;
   border-radius: 8px;
-  border: 2px solid #27ae60;
+  border: 2px solid var(--color-success, #27ae60);
   align-items: center;
 }
 
 .selectedClient .icon {
   font-size: 3rem;
-  color: #27ae60;
+  color: var(--color-success, #27ae60);
 }
 
 .selectedClient h3 {
@@ -58,8 +58,13 @@
   border-radius: 8px;
   border: 2px solid #cbd5e0;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
   align-items: center;
+}
+
+.clientCard:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .clientCard:hover {
@@ -68,7 +73,7 @@
 }
 
 .clientCardSelected {
-  border-color: #27ae60;
+  border-color: var(--color-success, #27ae60);
 }
 
 .clientCard svg {
@@ -111,13 +116,18 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.625rem 1rem;
-  background: #4573df;
+  background: var(--color-primary, #4573df);
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 500;
   transition: background 0.2s;
+}
+
+.addButton:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .addButton:hover {
@@ -187,7 +197,7 @@
 .amountDisplay {
   font-weight: 600;
   text-align: right;
-  color: #27ae60;
+  color: var(--color-success, #27ae60);
 }
 
 .removeButton {
@@ -199,14 +209,19 @@
   background: transparent;
   border: 1px solid #e2e8f0;
   border-radius: 4px;
-  color: #e81123;
+  color: var(--color-error, #e81123);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s;
 }
 
 .removeButton:hover {
   background: #fff5f5;
-  border-color: #e81123;
+  border-color: var(--color-error, #e81123);
 }
 
 /* Form elements */
@@ -292,7 +307,7 @@
 }
 
 .discount {
-  color: #27ae60;
+  color: var(--color-success, #27ae60);
 }
 
 .grandTotal {
@@ -314,7 +329,7 @@
 
 .infoBox svg {
   font-size: 1.25rem;
-  color: #3b82f6;
+  color: var(--color-primary, #3b82f6);
   flex-shrink: 0;
 }
 
@@ -342,7 +357,7 @@
 
 .previewIcon {
   font-size: 2rem;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 .previewHeader h3 {

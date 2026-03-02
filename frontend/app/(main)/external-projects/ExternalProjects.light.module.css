@@ -1,12 +1,12 @@
 /* @AI-HINT: External Projects page - light theme colors */
 
 .page {
-  background-color: #f9fafb;
-  color: #111827;
+  background-color: #f8fafc;
+  color: #0f172a;
 }
 
 .subtitle {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .scrapeBtn {
@@ -34,7 +34,7 @@
 }
 
 .statLabel {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 /* Toolbar */
@@ -44,33 +44,33 @@
 }
 
 .searchIcon {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .searchInput {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
   color: #111827;
 }
 
 .searchInput::placeholder {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .filterSelect {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
   color: #111827;
 }
 
 /* Category Tabs */
 .categoryTab {
-  background-color: #f3f4f6;
-  color: #6b7280;
+  background-color: #f1f5f9;
+  color: #64748b;
 }
 
 .categoryTab:hover {
-  background-color: #e5e7eb;
+  background-color: #e2e8f0;
   color: #374151;
 }
 
@@ -86,16 +86,16 @@
 
 /* Source badges */
 .sourceLabel {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .sourceBadge {
-  background-color: #f3f4f6;
+  background-color: #f1f5f9;
   color: #374151;
 }
 
 .sourceBadge:hover {
-  background-color: #e5e7eb;
+  background-color: #e2e8f0;
 }
 
 .sourceBadgeActive {
@@ -118,11 +118,11 @@
 /* Project Card */
 .projectCard {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .projectCard:hover {
-  border-color: #d1d5db;
+  border-color: #cbd5e1;
 }
 
 .companyLogoPlaceholder {
@@ -135,7 +135,7 @@
 }
 
 .companyName {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .trustBadgeHigh {
@@ -154,24 +154,24 @@
 }
 
 .projectDescription {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .tag {
-  background-color: #f3f4f6;
+  background-color: #f1f5f9;
   color: #4b5563;
 }
 
 .moreTags {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .cardFooter {
-  border-top-color: #f3f4f6;
+  border-top-color: #f1f5f9;
 }
 
 .metaItem {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .budget {
@@ -195,17 +195,17 @@
 /* Pagination */
 .pageBtn {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
   color: #374151;
 }
 
 .pageBtn:hover:not(:disabled) {
-  background-color: #f3f4f6;
-  border-color: #d1d5db;
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
 }
 
 .pageInfo {
-  color: #6b7280;
+  color: #64748b;
 }
 
 /* Loading */
@@ -214,7 +214,7 @@
 }
 
 .loadingText {
-  color: #6b7280;
+  color: #64748b;
 }
 
 /* Empty */
@@ -223,25 +223,25 @@
 }
 
 .emptyIcon {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .emptyText {
-  color: #6b7280;
+  color: #64748b;
 }
 
 /* Last Updated */
 .lastUpdated {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 /* Scrape Result */
 .scrapeResult {
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   color: #111827;
 }
 
 .scrapeResultDetails {
-  color: #6b7280;
+  color: #64748b;
 }

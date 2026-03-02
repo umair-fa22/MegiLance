@@ -15,7 +15,7 @@
 }
 
 .cardTitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
   font-size: 1.25rem; /* 20px */
   font-weight: 600;
 }

@@ -25,12 +25,12 @@
 
 .formCard {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .closeBtn {
-  border-color: #e5e7eb;
-  color: #6b7280;
+  border-color: #e2e8f0;
+  color: #64748b;
 }
 
 .closeBtn:hover {
@@ -44,7 +44,7 @@
 .textarea,
 .filterSelect {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
   color: #111827;
 }
 
@@ -70,7 +70,7 @@
 .lineItemQty,
 .lineItemPrice {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
   color: #111827;
 }
 
@@ -79,7 +79,7 @@
 }
 
 .removeItemBtn {
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
   color: #ef4444;
 }
 
@@ -88,7 +88,7 @@
 }
 
 .totalRow {
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .totalAmount {
@@ -96,12 +96,12 @@
 }
 
 .cancelBtn {
-  background-color: #f3f4f6;
+  background-color: #f1f5f9;
   color: #374151;
 }
 
 .cancelBtn:hover {
-  background-color: #e5e7eb;
+  background-color: #e2e8f0;
 }
 
 .submitBtn {
@@ -115,7 +115,7 @@
 
 .loading,
 .empty {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .emptyBtn {
@@ -129,18 +129,18 @@
 
 .table {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .tableElement th {
   background-color: #f9fafb;
   color: #374151;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .tableElement td {
   color: #111827;
-  border-color: #f3f4f6;
+  border-color: #f1f5f9;
 }
 
 .tableElement tbody tr:hover {
@@ -160,7 +160,7 @@
 }
 
 .badge[data-status="draft"] {
-  background-color: #9ca3af;
+  background-color: #94a3b8;
 }
 
 .badge[data-status="sent"] {
@@ -180,7 +180,7 @@
 }
 
 .iconBtn {
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
   color: #4b5563;
 }
 
@@ -209,8 +209,8 @@
 }
 
 .iconBtn[data-action="delete"] {
-  color: #6b7280;
-  border-color: #d1d5db;
+  color: #64748b;
+  border-color: #cbd5e1;
 }
 
 .iconBtn[data-action="delete"]:hover {
@@ -228,11 +228,11 @@
 }
 
 .detailRow {
-  border-color: #f3f4f6;
+  border-color: #f1f5f9;
 }
 
 .detailLabel {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .detailLineItem {
@@ -240,7 +240,7 @@
 }
 
 .lineItemMeta {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .lineItemTotal {
@@ -253,7 +253,7 @@
 }
 
 .notesSection {
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .notes {

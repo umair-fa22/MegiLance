@@ -1,11 +1,11 @@
 /* Dark theme colors for Time Tracking */
 
 .container {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .error {
@@ -18,9 +18,9 @@
 .input,
 .inputSmall,
 .filterSelect {
-  background-color: #1f2937;
-  border-color: #374151;
-  color: #f9fafb;
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #f8fafc;
 }
 
 .select:focus,
@@ -33,8 +33,8 @@
 }
 
 .summaryCard {
-  background-color: #1f2937;
-  border-color: #374151;
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
 .summaryCard:hover {
@@ -48,16 +48,16 @@
 }
 
 .summaryLabel {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .summaryValue {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .timerSection {
-  background-color: #1f2937;
-  border-color: #374151;
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
 .activeTimer {
@@ -66,27 +66,27 @@
 }
 
 .timerTime {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .table {
-  background-color: #1f2937;
-  border-color: #374151;
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
 .tableElement th {
-  background-color: #111827;
-  color: #d1d5db;
-  border-color: #374151;
+  background-color: #0f172a;
+  color: #cbd5e1;
+  border-color: #334155;
 }
 
 .tableElement td {
-  color: #f9fafb;
-  border-color: #374151;
+  color: #f8fafc;
+  border-color: #334155;
 }
 
 .tableElement tbody tr:hover {
-  background-color: #374151;
+  background-color: #334155;
 }
 
 .badge {
@@ -110,12 +110,12 @@
 }
 
 .iconBtn {
-  border-color: #374151;
-  color: #d1d5db;
+  border-color: #334155;
+  color: #cbd5e1;
 }
 
 .iconBtn:hover {
-  background-color: #374151;
+  background-color: #334155;
   border-color: #4573df;
   color: #60a5fa;
 }
@@ -139,19 +139,19 @@
 }
 
 .iconBtn[data-action="delete"] {
-  color: #9ca3af;
-  border-color: #4b5563;
+  color: #94a3b8;
+  border-color: #475569;
 }
 
 .iconBtn[data-action="delete"]:hover {
-  background-color: #374151;
+  background-color: #334155;
   color: #f87171;
   border-color: #dc2626;
 }
 
 .loading,
 .empty {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .checkbox input {

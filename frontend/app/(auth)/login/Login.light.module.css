@@ -10,11 +10,11 @@
   /* Form Panel */
   --form-bg-color: rgba(255, 255, 255, 0.85);
   --form-container-bg: rgba(255, 255, 255, 0.7);
-  --form-container-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --form-container-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
   --text-primary: #111827;
-  --text-secondary: #6b7280;
-  --text-tertiary: #6b7280;
-  --border-color: #e5e7eb;
+  --text-secondary: #64748b;
+  --text-tertiary: #64748b;
+  --border-color: #e2e8f0;
   
   /* Interactive Elements */
   --color-primary: #4573df;

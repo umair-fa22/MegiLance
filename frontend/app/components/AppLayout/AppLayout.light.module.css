@@ -6,16 +6,19 @@
 
 .pageContent {
   background-color: #f8fafc;
+  /* Subtle top-glow to visually separate from navbar */
+  background-image:
+    linear-gradient(180deg, rgba(69, 115, 223, 0.015) 0%, transparent 120px);
 }
 
 .skipLink {
   background-color: #4573df;
   color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 16px rgba(69, 115, 223, 0.25);
 }
 
 .skipLink:focus {
-  box-shadow: 0 4px 12px rgba(69, 115, 223, 0.3);
+  box-shadow: 0 4px 16px rgba(69, 115, 223, 0.3);
 }
 
 .skipLink:hover {
@@ -23,9 +26,9 @@
 }
 
 .mobileOverlay {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(15, 23, 42, 0.2);
 }
 
 .mobileOverlayVisible {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(15, 23, 42, 0.2);
 }

@@ -8,16 +8,16 @@
 }
 
 .subtitle {
-  color: var(--color-text-secondary-dark, #9ca3af);
+  color: var(--color-text-secondary-dark, #94a3b8);
 }
 
 .resultsCount {
-  color: var(--color-text-secondary-dark, #9ca3af);
+  color: var(--color-text-secondary-dark, #94a3b8);
 }
 
 .sortDropdown {
-  background-color: var(--color-background-dark, #1e1e1e);
-  border: 1px solid var(--color-border-dark, #2d2d2d);
+  background-color: var(--color-background-dark, #1e293b);
+  border: 1px solid var(--color-border-dark, #334155);
   color: var(--color-text-primary-dark, #f3f4f6);
 }
 
@@ -27,8 +27,8 @@
 }
 
 .viewButton {
-  background-color: var(--color-background-alt-dark, #2d2d2d);
-  color: var(--color-text-secondary-dark, #9ca3af);
+  background-color: var(--color-background-alt-dark, #334155);
+  color: var(--color-text-secondary-dark, #94a3b8);
 }
 
 .viewButton.active {
@@ -41,7 +41,7 @@
 }
 
 .emptyIcon {
-  background-color: var(--color-background-alt-dark, #2d2d2d);
+  background-color: var(--color-background-alt-dark, #334155);
   color: var(--color-text-secondary-dark, #6b7280);
 }
 
@@ -50,16 +50,16 @@
 }
 
 .emptyDescription {
-  color: var(--color-text-secondary-dark, #9ca3af);
+  color: var(--color-text-secondary-dark, #94a3b8);
 }
 
 .skeletonCard {
-  background-color: var(--color-background-alt-dark, #2d2d2d);
+  background-color: var(--color-background-alt-dark, #334155);
 }
 
 .pageButton {
-  background-color: var(--color-background-dark, #1e1e1e);
-  border: 1px solid var(--color-border-dark, #2d2d2d);
+  background-color: var(--color-background-dark, #1e293b);
+  border: 1px solid var(--color-border-dark, #334155);
   color: var(--color-text-primary-dark, #f3f4f6);
 }
 

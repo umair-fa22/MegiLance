@@ -17,7 +17,12 @@
   border: 2px solid;
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s;
 }
 
 .templateCard:hover {
@@ -26,7 +31,7 @@
 }
 
 .templateCardSelected {
-  border-color: #4573df;
+  border-color: var(--color-primary, #4573df);
   background: rgba(69, 115, 223, 0.1);
 }
 

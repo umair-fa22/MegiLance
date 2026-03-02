@@ -1,54 +1,54 @@
 /* Dark Theme */
 .container {
-  background: #0f0f0f;
+  background: #0f172a;
 }
 
 .title {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .loadingState {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .rankCard {
-  background: linear-gradient(135deg, #1a1a1a 0%, #161616 100%);
-  border: 1px solid #2d2d2d;
+  background: linear-gradient(135deg, #1e293b 0%, #1e293b 100%);
+  border: 1px solid #334155;
 }
 
 .rankPoints {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .progressLabel {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .progressValue {
-  color: #d1d5db;
+  color: #cbd5e1;
   font-weight: 600;
 }
 
 .progressBar {
-  background: #2d2d2d;
+  background: #334155;
 }
 
 .section {
-  background: #161616;
-  border: 1px solid #2d2d2d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .sectionTitle {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .tierCard {
-  background: #1a1a1a;
-  border: 1px solid #2d2d2d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .tierCurrent {
@@ -57,20 +57,20 @@
 }
 
 .tierName {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .tierPoints {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .tierUnlocked {
-  background: #1f1f1f;
+  background: #334155;
 }
 
 .statCard {
-  background: #1a1a1a;
-  border: 1px solid #2d2d2d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .statCard:hover {
@@ -83,24 +83,24 @@
 }
 
 .statValue {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .statLabel {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .badgeCard {
-  background: #1a1a1a;
-  border: 1px solid #2d2d2d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .badgeName {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .badgeDesc {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .badge_epic {
@@ -109,5 +109,5 @@
 
 .badge_legendary {
   border-color: rgba(245, 158, 11, 0.4);
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, #1a1a1a 100%);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, #1e293b 100%);
 }

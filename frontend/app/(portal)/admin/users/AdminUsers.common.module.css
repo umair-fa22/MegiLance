@@ -8,7 +8,12 @@
 .subtitle { font-size: 14px; opacity: 0.85; letter-spacing: 0.01em; }
 
 .controls { display: flex; gap: var(--spacing-2); flex-wrap: wrap; }
-.input, .select, .button { padding: 10px 14px; border-radius: 10px; border: 1.5px solid transparent; font-size: 14px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+.input, .select, .button { padding: 10px 14px; border-radius: 10px; border: 1.5px solid transparent; font-size: 14px; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
 .button { cursor: pointer; font-weight: 600; letter-spacing: 0.01em; }
 .button:hover { transform: translateY(-1px); }
 
@@ -16,7 +21,12 @@
 .table { width: 100%; border-collapse: collapse; }
 .th, .td { text-align: left; padding: 12px 14px; border-bottom: 1.5px solid transparent; white-space: nowrap; font-size: 14px; }
 .th { font-weight: 600; letter-spacing: 0.02em; }
-.row:hover { filter: brightness(1.02); transform: translateY(-1px); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+.row:hover { filter: brightness(1.02); transform: translateY(-1px); transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
 
 /* Sortable header button */
 .sortBtn { 

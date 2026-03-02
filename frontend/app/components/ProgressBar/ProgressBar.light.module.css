@@ -1,11 +1,11 @@
 /* AI-HINT: This file defines the light theme styles for the ProgressBar component. It uses brand-specific colors for a cohesive and premium look. */
 
 .progressBarLight .progressElement::-webkit-progress-bar {
-  background-color: #f3f4f6; /* Softer Gray 100 */
+  background-color: #f1f5f9; /* Softer Gray 100 */
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 .progressBarLight .progressElement {
-  background-color: #f3f4f6; /* Firefox track */
+  background-color: #f1f5f9; /* Firefox track */
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 

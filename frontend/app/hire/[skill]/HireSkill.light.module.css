@@ -9,7 +9,7 @@
 }
 
 .breadcrumbLink {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .breadcrumbLink:hover {
@@ -17,12 +17,12 @@
 }
 
 .breadcrumbCurrent {
-  color: #111827;
+  color: #0f172a;
   font-weight: 500;
 }
 
 .heroTitle {
-  color: #111827;
+  color: #0f172a;
 }
 
 .heroHighlight {
@@ -30,15 +30,15 @@
 }
 
 .heroSubtitle {
-  color: #4b5563;
+  color: #475569;
 }
 
 .statItem {
-  color: #111827;
+  color: #0f172a;
 }
 
 .statLabel {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .section {
@@ -46,16 +46,16 @@
 }
 
 .sectionTitle {
-  color: #111827;
+  color: #0f172a;
 }
 
 .industryCard {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .industryName {
-  color: #111827;
+  color: #0f172a;
 }
 
 .industryGrowth {
@@ -63,11 +63,11 @@
 }
 
 .relatedCard {
-  background-color: #f9fafb;
+  background-color: #f8fafc;
 }
 
 .relatedName {
-  color: #111827;
+  color: #0f172a;
 }
 
 .relatedRate {
@@ -76,13 +76,13 @@
 }
 
 .ctaSection {
-  background-color: #f9fafb;
+  background-color: #f8fafc;
 }
 
 .ctaTitle {
-  color: #111827;
+  color: #0f172a;
 }
 
 .ctaSubtitle {
-  color: #4b5563;
+  color: #475569;
 }

@@ -1,5 +1,5 @@
 .sliderTrack {
-  background-color: #2d3748;
+  background-color: #1e293b;
 }
 
 .sliderRange {
@@ -7,7 +7,7 @@
 }
 
 .sliderThumb {
-  background-color: #1a202c;
+  background-color: #0f172a;
   border: 2px solid #4573df; /* MegiLance Blue */
 }
 

@@ -6,11 +6,11 @@
 
 .card {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .header {
-  border-bottom-color: #e5e7eb;
+  border-bottom-color: #e2e8f0;
 }
 
 .title {
@@ -31,16 +31,16 @@
 
 .qrWrapper {
   background: #f8f9fa;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .backupCodes {
   background: #f8f9fa;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .codeItem {
   background: #ffffff;
   color: #1a1a1a;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }

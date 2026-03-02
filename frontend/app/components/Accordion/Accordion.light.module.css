@@ -25,7 +25,7 @@
 }
 
 .accordionIcon::before {
-  border-color: #6b7280; /* Gray 500 */
+  border-color: #64748b; /* Gray 500 */
 }
 
 .accordionContentText {

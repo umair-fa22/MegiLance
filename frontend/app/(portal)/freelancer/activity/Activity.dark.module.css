@@ -1,7 +1,7 @@
 /* @AI-HINT: Activity Feed - dark theme colors */
 
 .container {
-  background: linear-gradient(170deg, #0a0f1a 0%, #0f172a 40%, #0f1225 100%);
+  background: linear-gradient(170deg, #0f172a 0%, #0f172a 40%, #0f1225 100%);
   color: #f1f5f9;
 }
 

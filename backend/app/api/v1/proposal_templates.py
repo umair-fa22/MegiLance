@@ -1,31 +1,34 @@
-# @AI-HINT: Proposal templates API - Reusable proposal templates
+# @AI-HINT: Proposal templates API - Reusable proposal templates (Turso-backed)
+import json
+import re
 from fastapi import APIRouter, Depends, HTTPException, status, Query
-from sqlalchemy.orm import Session
 from typing import List, Optional
 from pydantic import BaseModel
 from datetime import datetime, timezone
-from app.db.session import get_db
+
+from app.db.turso_http import execute_query, parse_rows, to_int
 from app.core.security import get_current_active_user
 from app.services.db_utils import paginate_params
 
 router = APIRouter(prefix="/proposal-templates")
 
 
-class ProposalTemplate(BaseModel):
-    id: str
-    user_id: str
+class CreateTemplateBody(BaseModel):
     name: str
+    content: str
     description: Optional[str] = None
-    cover_letter: str
-    milestones_template: Optional[List[dict]] = None
-    default_rate: Optional[float] = None
-    rate_type: Optional[str] = None
-    attachments: Optional[List[str]] = None
-    tags: List[str] = []
-    use_count: int = 0
+    category: str = "general"
+    tags: Optional[List[str]] = None
     is_public: bool = False
-    created_at: datetime
-    updated_at: Optional[datetime] = None
+
+
+class UpdateTemplateBody(BaseModel):
+    name: Optional[str] = None
+    content: Optional[str] = None
+    description: Optional[str] = None
+    category: Optional[str] = None
+    tags: Optional[List[str]] = None
+    is_public: Optional[bool] = None
 
 
 class TemplateVariable(BaseModel):
@@ -34,199 +37,65 @@ class TemplateVariable(BaseModel):
     default_value: Optional[str] = None
 
 
-@router.get("/", response_model=List[ProposalTemplate])
-async def get_my_templates(
-    tag: Optional[str] = None,
-    page: int = Query(1, ge=1),
-    page_size: int = Query(20, ge=1, le=100),
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Get user's proposal templates"""
-    offset, limit = paginate_params(page, page_size)
-    return [
-        ProposalTemplate(
-            id="template-1",
-            user_id=str(current_user.id),
-            name="Web Development Proposal",
-            description="Standard template for web development projects",
-            cover_letter="Dear {{client_name}},\n\nI'm excited to submit my proposal for your {{project_type}} project...",
-            milestones_template=[
-                {"title": "Discovery & Planning", "percentage": 20},
-                {"title": "Development", "percentage": 50},
-                {"title": "Testing & Launch", "percentage": 30}
-            ],
-            default_rate=75.0,
-            rate_type="hourly",
-            tags=["web", "development"],
-            use_count=15,
-            is_public=False,
-            created_at=datetime.now(timezone.utc)
-        ),
-        ProposalTemplate(
-            id="template-2",
-            user_id=str(current_user.id),
-            name="Mobile App Proposal",
-            description="Template for mobile app development",
-            cover_letter="Hello {{client_name}},\n\nThank you for considering me for your mobile app project...",
-            default_rate=85.0,
-            rate_type="hourly",
-            tags=["mobile", "app"],
-            use_count=8,
-            is_public=False,
-            created_at=datetime.now(timezone.utc)
-        )
-    ]
+def _uid(cu) -> int:
+    return cu.id if hasattr(cu, "id") else cu.get("user_id") or cu.get("id")
 
 
-@router.post("/", response_model=ProposalTemplate)
-async def create_template(
-    name: str,
-    cover_letter: str,
-    description: Optional[str] = None,
-    milestones_template: Optional[List[dict]] = None,
-    default_rate: Optional[float] = None,
-    rate_type: Optional[str] = None,
-    tags: List[str] = [],
-    is_public: bool = False,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Create a proposal template"""
-    return ProposalTemplate(
-        id="template-new",
-        user_id=str(current_user.id),
-        name=name,
-        description=description,
-        cover_letter=cover_letter,
-        milestones_template=milestones_template,
-        default_rate=default_rate,
-        rate_type=rate_type,
-        tags=tags,
-        use_count=0,
-        is_public=is_public,
-        created_at=datetime.now(timezone.utc)
-    )
+def _is_public(val) -> bool:
+    """Convert Turso boolean (0/1 as string or int) to Python bool."""
+    if isinstance(val, bool):
+        return val
+    return str(val) in ("1", "True", "true")
 
 
-@router.get("/{template_id}", response_model=ProposalTemplate)
-async def get_template(
-    template_id: str,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Get a specific template"""
-    return ProposalTemplate(
-        id=template_id,
-        user_id=str(current_user.id),
-        name="Web Development Proposal",
-        cover_letter="Dear {{client_name}}...",
-        tags=["web"],
-        use_count=15,
-        created_at=datetime.now(timezone.utc)
-    )
+def _normalize(row: dict) -> dict:
+    """Normalize a parsed row: parse tags JSON, cast types."""
+    # Parse tags
+    tags = row.get("tags")
+    if isinstance(tags, str):
+        try:
+            row["tags"] = json.loads(tags)
+        except (json.JSONDecodeError, TypeError):
+            row["tags"] = []
+    elif tags is None:
+        row["tags"] = []
+    # Cast integer fields
+    for int_field in ("id", "user_id", "use_count"):
+        if int_field in row and row[int_field] is not None:
+            row[int_field] = to_int(row[int_field])
+    # Cast boolean
+    if "is_public" in row:
+        row["is_public"] = _is_public(row["is_public"])
+    # Cast float
+    if "success_rate" in row and row["success_rate"] is not None:
+        try:
+            row["success_rate"] = float(row["success_rate"])
+        except (ValueError, TypeError):
+            row["success_rate"] = 0.0
+    return row
 
 
-@router.put("/{template_id}", response_model=ProposalTemplate)
-async def update_template(
-    template_id: str,
-    name: Optional[str] = None,
-    description: Optional[str] = None,
-    cover_letter: Optional[str] = None,
-    milestones_template: Optional[List[dict]] = None,
-    default_rate: Optional[float] = None,
-    tags: Optional[List[str]] = None,
-    is_public: Optional[bool] = None,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Update a template"""
-    return ProposalTemplate(
-        id=template_id,
-        user_id=str(current_user.id),
-        name=name or "Updated Template",
-        cover_letter=cover_letter or "Updated content",
-        tags=tags or [],
-        use_count=15,
-        is_public=is_public if is_public is not None else False,
-        created_at=datetime.now(timezone.utc),
-        updated_at=datetime.now(timezone.utc)
-    )
+def _parse_one(result) -> Optional[dict]:
+    """Parse a single row from execute_query result, or None."""
+    if not result or not result.get("rows"):
+        return None
+    rows = parse_rows(result)
+    return _normalize(rows[0]) if rows else None
 
 
-@router.delete("/{template_id}")
-async def delete_template(
-    template_id: str,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Delete a template"""
-    return {"message": f"Template {template_id} deleted"}
+def _parse_all(result) -> list:
+    """Parse all rows from execute_query result."""
+    if not result or not result.get("rows"):
+        return []
+    return [_normalize(r) for r in parse_rows(result)]
 
 
-@router.post("/{template_id}/duplicate", response_model=ProposalTemplate)
-async def duplicate_template(
-    template_id: str,
-    new_name: Optional[str] = None,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Duplicate a template"""
-    return ProposalTemplate(
-        id="template-duplicate",
-        user_id=str(current_user.id),
-        name=new_name or "Copy of Template",
-        cover_letter="Duplicated content...",
-        tags=[],
-        use_count=0,
-        created_at=datetime.now(timezone.utc)
-    )
-
-
-@router.get("/public/browse", response_model=List[ProposalTemplate])
-async def browse_public_templates(
-    category: Optional[str] = None,
-    search: Optional[str] = None,
-    page: int = Query(1, ge=1),
-    page_size: int = Query(20, ge=1, le=100),
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Browse public templates"""
-    offset, limit = paginate_params(page, page_size)
-    return [
-        ProposalTemplate(
-            id="public-1",
-            user_id="user-other",
-            name="Professional Web Development",
-            description="Highly-rated template for web projects",
-            cover_letter="Dear Client...",
-            tags=["web", "professional"],
-            use_count=250,
-            is_public=True,
-            created_at=datetime.now(timezone.utc)
-        )
-    ]
-
-
-@router.post("/public/{template_id}/use")
-async def use_public_template(
-    template_id: str,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Copy a public template to user's templates"""
-    return {
-        "new_template_id": "template-copied",
-        "message": "Template copied to your templates"
-    }
+COLS = "id, user_id, name, content, description, category, tags, is_public, use_count, success_rate, created_at, updated_at"
 
 
 @router.get("/variables", response_model=List[TemplateVariable])
-async def get_available_variables(
-    current_user=Depends(get_current_active_user)
-):
-    """Get available template variables"""
+async def get_available_variables(current_user=Depends(get_current_active_user)):
+    """Get available template variables (static config)."""
     return [
         TemplateVariable(name="client_name", description="Client's full name"),
         TemplateVariable(name="project_title", description="Project title"),
@@ -235,64 +104,254 @@ async def get_available_variables(
         TemplateVariable(name="deadline", description="Project deadline"),
         TemplateVariable(name="my_name", description="Your full name"),
         TemplateVariable(name="my_title", description="Your professional title"),
-        TemplateVariable(name="hourly_rate", description="Your hourly rate")
+        TemplateVariable(name="hourly_rate", description="Your hourly rate"),
     ]
 
 
-@router.post("/{template_id}/preview")
-async def preview_template(
-    template_id: str,
-    variables: dict,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Preview template with variables replaced"""
-    return {
-        "preview": f"Dear {variables.get('client_name', 'Client')},\n\nI'm excited to submit my proposal...",
-        "variables_used": list(variables.keys()),
-        "missing_variables": []
-    }
-
-
 @router.get("/analytics")
-async def get_template_analytics(
+async def get_template_analytics(current_user=Depends(get_current_active_user)):
+    """Get template usage analytics from real data."""
+    uid = _uid(current_user)
+    total = execute_query("SELECT COUNT(*) as cnt, COALESCE(SUM(use_count), 0) as total_uses FROM proposal_templates WHERE user_id = ?", [uid])
+    total_row = _parse_one(total)
+    total_templates = to_int(total_row["cnt"]) if total_row else 0
+    total_uses = to_int(total_row["total_uses"]) if total_row else 0
+    most_used = execute_query(
+        "SELECT id, name, use_count FROM proposal_templates WHERE user_id = ? ORDER BY use_count DESC LIMIT 1",
+        [uid]
+    )
+    most_used_template = None
+    mu = _parse_one(most_used)
+    if mu:
+        most_used_template = {"id": to_int(mu["id"]), "name": mu["name"], "uses": to_int(mu["use_count"])}
+    return {"total_templates": total_templates, "total_uses": total_uses, "most_used_template": most_used_template}
+
+
+@router.get("/public/browse", response_model=list)
+async def browse_public_templates(
+    category: Optional[str] = None,
+    search: Optional[str] = None,
+    page: int = Query(1, ge=1),
+    page_size: int = Query(20, ge=1, le=100),
     current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
 ):
-    """Get template usage analytics"""
+    """Browse public templates."""
+    offset, limit = paginate_params(page, page_size)
+    conditions = ["is_public = 1"]
+    params: list = []
+    if category:
+        conditions.append("category = ?")
+        params.append(category)
+    if search:
+        conditions.append("(name LIKE ? OR description LIKE ?)")
+        params.extend([f"%{search}%", f"%{search}%"])
+    where = " AND ".join(conditions)
+    params.extend([limit, offset])
+    result = execute_query(
+        f"SELECT {COLS} FROM proposal_templates WHERE {where} ORDER BY use_count DESC LIMIT ? OFFSET ?",
+        params
+    )
+    return _parse_all(result)
+
+
+@router.get("/", response_model=list)
+async def get_my_templates(
+    tag: Optional[str] = None,
+    page: int = Query(1, ge=1),
+    page_size: int = Query(20, ge=1, le=100),
+    current_user=Depends(get_current_active_user),
+):
+    """Get user's proposal templates."""
+    uid = _uid(current_user)
+    offset, limit = paginate_params(page, page_size)
+    if tag:
+        result = execute_query(
+            f"SELECT {COLS} FROM proposal_templates WHERE user_id = ? AND tags LIKE ? ORDER BY use_count DESC LIMIT ? OFFSET ?",
+            [uid, f"%{tag}%", limit, offset]
+        )
+    else:
+        result = execute_query(
+            f"SELECT {COLS} FROM proposal_templates WHERE user_id = ? ORDER BY use_count DESC LIMIT ? OFFSET ?",
+            [uid, limit, offset]
+        )
+    return _parse_all(result)
+
+
+@router.post("/", status_code=status.HTTP_201_CREATED)
+async def create_template(body: CreateTemplateBody, current_user=Depends(get_current_active_user)):
+    """Create a proposal template."""
+    uid = _uid(current_user)
+    now = datetime.now(timezone.utc).isoformat()
+    tags_json = json.dumps(body.tags) if body.tags else "[]"
+    result = execute_query(
+        "INSERT INTO proposal_templates (user_id, name, content, description, category, tags, is_public, use_count, success_rate, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0.0, ?, ?) RETURNING id",
+        [uid, body.name, body.content, body.description, body.category, tags_json, 1 if body.is_public else 0, now, now]
+    )
+    row = _parse_one(result)
+    new_id = to_int(row["id"]) if row else None
     return {
-        "total_templates": 5,
-        "total_uses": 45,
-        "most_used_template": {"id": "template-1", "name": "Web Development", "uses": 15},
-        "conversion_rates": {
-            "template-1": 35.0,
-            "template-2": 28.0
-        },
-        "avg_response_time_hours": 4.5
+        "id": new_id, "user_id": uid, "name": body.name, "content": body.content,
+        "description": body.description, "category": body.category, "tags": body.tags or [],
+        "is_public": body.is_public, "use_count": 0, "created_at": now,
     }
+
+
+@router.get("/{template_id}")
+async def get_template(template_id: int, current_user=Depends(get_current_active_user)):
+    """Get a specific template."""
+    uid = _uid(current_user)
+    result = execute_query(f"SELECT {COLS} FROM proposal_templates WHERE id = ?", [template_id])
+    t = _parse_one(result)
+    if not t:
+        raise HTTPException(status_code=404, detail="Template not found")
+    if t["user_id"] != uid and not t["is_public"]:
+        raise HTTPException(status_code=403, detail="Access denied")
+    return t
+
+
+@router.put("/{template_id}")
+async def update_template(template_id: int, body: UpdateTemplateBody, current_user=Depends(get_current_active_user)):
+    """Update a template."""
+    uid = _uid(current_user)
+    existing = execute_query(f"SELECT {COLS} FROM proposal_templates WHERE id = ?", [template_id])
+    old = _parse_one(existing)
+    if not old:
+        raise HTTPException(status_code=404, detail="Template not found")
+    if old["user_id"] != uid:
+        raise HTTPException(status_code=403, detail="Not your template")
+    now = datetime.now(timezone.utc).isoformat()
+    tags_json = json.dumps(body.tags) if body.tags is not None else json.dumps(old.get("tags", []))
+    new_is_public = body.is_public if body.is_public is not None else old.get("is_public", False)
+    execute_query(
+        "UPDATE proposal_templates SET name=?, content=?, description=?, category=?, tags=?, is_public=?, updated_at=? WHERE id=?",
+        [
+            body.name or old["name"], body.content or old["content"],
+            body.description if body.description is not None else old.get("description"),
+            body.category or old.get("category", "general"), tags_json,
+            1 if new_is_public else 0,
+            now, template_id
+        ]
+    )
+    return {"id": template_id, "updated_at": now, "message": "Template updated"}
+
+
+@router.delete("/{template_id}")
+async def delete_template(template_id: int, current_user=Depends(get_current_active_user)):
+    """Delete a template."""
+    uid = _uid(current_user)
+    existing = execute_query("SELECT user_id FROM proposal_templates WHERE id = ?", [template_id])
+    owner = _parse_one(existing)
+    if not owner:
+        raise HTTPException(status_code=404, detail="Template not found")
+    if to_int(owner["user_id"]) != uid:
+        raise HTTPException(status_code=403, detail="Not your template")
+    execute_query("DELETE FROM proposal_templates WHERE id = ?", [template_id])
+    return {"message": "Template deleted"}
+
+
+@router.post("/{template_id}/duplicate", status_code=status.HTTP_201_CREATED)
+async def duplicate_template(template_id: int, new_name: Optional[str] = None, current_user=Depends(get_current_active_user)):
+    """Duplicate a template."""
+    uid = _uid(current_user)
+    result = execute_query(f"SELECT {COLS} FROM proposal_templates WHERE id = ?", [template_id])
+    src = _parse_one(result)
+    if not src:
+        raise HTTPException(status_code=404, detail="Template not found")
+    if src["user_id"] != uid and not src["is_public"]:
+        raise HTTPException(status_code=403, detail="Access denied")
+    now = datetime.now(timezone.utc).isoformat()
+    dup_name = new_name or f"Copy of {src['name']}"
+    tags_json = json.dumps(src.get("tags", []))
+    ins = execute_query(
+        "INSERT INTO proposal_templates (user_id, name, content, description, category, tags, is_public, use_count, success_rate, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, 0, 0, 0.0, ?, ?) RETURNING id",
+        [uid, dup_name, src["content"], src.get("description"), src.get("category", "general"), tags_json, now, now]
+    )
+    row = _parse_one(ins)
+    new_id = to_int(row["id"]) if row else None
+    return {"id": new_id, "name": dup_name, "message": "Template duplicated"}
+
+
+@router.post("/public/{template_id}/use")
+async def use_public_template(template_id: int, current_user=Depends(get_current_active_user)):
+    """Copy a public template to user's templates."""
+    result = execute_query(f"SELECT {COLS} FROM proposal_templates WHERE id = ? AND is_public = 1", [template_id])
+    src = _parse_one(result)
+    if not src:
+        raise HTTPException(status_code=404, detail="Public template not found")
+    uid = _uid(current_user)
+    now = datetime.now(timezone.utc).isoformat()
+    tags_json = json.dumps(src.get("tags", []))
+    ins = execute_query(
+        "INSERT INTO proposal_templates (user_id, name, content, description, category, tags, is_public, use_count, success_rate, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, 0, 0, 0.0, ?, ?) RETURNING id",
+        [uid, src["name"], src["content"], src.get("description"), src.get("category", "general"), tags_json, now, now]
+    )
+    # Increment use_count on source
+    execute_query("UPDATE proposal_templates SET use_count = use_count + 1 WHERE id = ?", [template_id])
+    row = _parse_one(ins)
+    new_id = to_int(row["id"]) if row else None
+    return {"new_template_id": new_id, "message": "Template copied to your templates"}
+
+
+@router.post("/{template_id}/preview")
+async def preview_template(template_id: int, variables: dict, current_user=Depends(get_current_active_user)):
+    """Preview template with variables replaced."""
+    uid = _uid(current_user)
+    result = execute_query("SELECT content, user_id, is_public FROM proposal_templates WHERE id = ?", [template_id])
+    t = _parse_one(result)
+    if not t:
+        raise HTTPException(status_code=404, detail="Template not found")
+    if to_int(t["user_id"]) != uid and not _is_public(t.get("is_public")):
+        raise HTTPException(status_code=403, detail="Access denied")
+    content = t.get("content") or ""
+    missing = []
+    for match in re.finditer(r"\{\{(\w+)\}\}", content):
+        var_name = match.group(1)
+        if var_name in variables:
+            content = content.replace(f"{{{{{var_name}}}}}", str(variables[var_name]))
+        else:
+            missing.append(var_name)
+    return {"preview": content, "variables_used": list(variables.keys()), "missing_variables": missing}
+
+
+@router.get("/{template_id}/analytics-detail")
+async def get_template_analytics_detail(template_id: int, current_user=Depends(get_current_active_user)):
+    """Get analytics for a specific template."""
+    uid = _uid(current_user)
+    result = execute_query("SELECT id, name, use_count, success_rate, user_id FROM proposal_templates WHERE id = ?", [template_id])
+    t = _parse_one(result)
+    if not t:
+        raise HTTPException(status_code=404, detail="Template not found")
+    if to_int(t["user_id"]) != uid:
+        raise HTTPException(status_code=403, detail="Not your template")
+    return {"id": to_int(t["id"]), "name": t["name"], "use_count": to_int(t["use_count"]), "success_rate": float(t.get("success_rate") or 0)}
 
 
 @router.post("/{template_id}/generate")
 async def generate_proposal_from_template(
-    template_id: str,
-    project_id: str,
+    template_id: int,
+    project_id: int,
     variables: Optional[dict] = None,
     customize: bool = False,
     current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
 ):
-    """Generate a proposal from template"""
+    """Generate a proposal from template."""
+    uid = _uid(current_user)
+    result = execute_query("SELECT content, user_id, is_public FROM proposal_templates WHERE id = ?", [template_id])
+    t = _parse_one(result)
+    if not t:
+        raise HTTPException(status_code=404, detail="Template not found")
+    if to_int(t["user_id"]) != uid and not _is_public(t.get("is_public")):
+        raise HTTPException(status_code=403, detail="Access denied")
+    content = t.get("content") or ""
+    if variables:
+        for k, v in variables.items():
+            content = content.replace(f"{{{{{k}}}}}", str(v))
+    # Increment template use count
+    execute_query("UPDATE proposal_templates SET use_count = use_count + 1 WHERE id = ?", [template_id])
     return {
-        "proposal_draft": {
-            "cover_letter": "Generated cover letter content...",
-            "milestones": [
-                {"title": "Phase 1", "amount": 500},
-                {"title": "Phase 2", "amount": 1000}
-            ],
-            "total_amount": 1500
-        },
+        "proposal_draft": {"cover_letter": content},
         "template_id": template_id,
         "project_id": project_id,
-        "requires_review": customize
+        "requires_review": customize,
     }
 

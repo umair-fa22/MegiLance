@@ -1,12 +1,12 @@
 /* @AI-HINT: Dark theme styles for Explore page */
 
 .themeWrapper {
-  background: linear-gradient(180deg, #0d1117 0%, #161b22 100%);
-  color: #e6edf3;
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: #8b949e;
+  color: #94a3b8;
 }
 
 /* Hero Stats */
@@ -15,32 +15,32 @@
 }
 
 .heroStatCard {
-  background: rgba(33, 38, 45, 0.6);
+  background: rgba(30, 41, 59, 0.6);
   border-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .heroStatCard:hover {
-  border-color: #58a6ff;
+  border-color: #60a5fa;
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
 }
 
 .heroStatValue {
-  color: #e6edf3;
+  color: #f8fafc;
 }
 
 .heroStatLabel {
-  color: #8b949e;
+  color: #94a3b8;
 }
 
 .statCard {
-  background: #21262d;
+  background: #1e293b;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  border: 1px solid #30363d;
+  border: 1px solid #334155;
 }
 
 .statValue {
-  color: #58a6ff;
+  color: #60a5fa;
 }
 
 .quickLink {
@@ -54,9 +54,9 @@
 }
 
 .quickLinkSecondary {
-  background: #21262d;
-  color: #58a6ff;
-  border: 2px solid #58a6ff;
+  background: #1e293b;
+  color: #60a5fa;
+  border: 2px solid #60a5fa;
 }
 
 .quickLinkSecondary:hover {
@@ -65,12 +65,12 @@
 }
 
 .filterTab {
-  color: #8b949e;
-  background: #21262d;
+  color: #94a3b8;
+  background: #1e293b;
 }
 
 .filterTab:hover {
-  background: #30363d;
+  background: #334155;
 }
 
 .filterTabActive {
@@ -79,50 +79,50 @@
 }
 
 .searchInput {
-  background: #21262d;
-  color: #e6edf3;
-  border-color: #30363d;
+  background: #1e293b;
+  color: #f8fafc;
+  border-color: #334155;
 }
 
 .searchInput:focus {
-  border-color: #58a6ff;
-  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);
 }
 
 .searchInput::placeholder {
-  color: #6e7681;
+  color: #64748b;
 }
 
 .sectionTitle {
-  color: #e6edf3;
+  color: #f8fafc;
 }
 
 .featureCard {
-  background: #21262d;
-  border: 1px solid #30363d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .featureCard:hover {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  border-color: #58a6ff;
+  border-color: #60a5fa;
 }
 
 .featureRoute {
-  background: #30363d;
-  color: #58a6ff;
+  background: #334155;
+  color: #60a5fa;
 }
 
 .featureLink {
-  color: #58a6ff;
+  color: #60a5fa;
 }
 
 .featureLink:hover {
-  color: #79b8ff;
+  color: #93c5fd;
 }
 
 .moduleCard {
-  background: #21262d;
-  border: 1px solid #30363d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .moduleCard:hover {
@@ -130,124 +130,124 @@
 }
 
 .moduleIcon {
-  background: linear-gradient(135deg, #58a6ff 0%, #4573df 100%);
+  background: linear-gradient(135deg, #60a5fa 0%, #4573df 100%);
   color: #fff;
 }
 
 .progressBar {
-  background: #30363d;
+  background: #334155;
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #58a6ff 0%, #3fb950 100%);
+  background: linear-gradient(90deg, #60a5fa 0%, #4ade80 100%);
 }
 
 /* URL Cards */
 .urlCard {
-  background: #21262d;
-  border: 1px solid #30363d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .urlCard:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  border-color: #58a6ff;
+  border-color: #60a5fa;
 }
 
 .urlValue {
-  background: #0d1117;
-  color: #e6edf3;
+  background: #0f172a;
+  color: #f8fafc;
 }
 
 /* API Endpoints */
 .categoryHeader {
-  border-color: rgba(88, 166, 255, 0.2);
+  border-color: rgba(96, 165, 250, 0.2);
 }
 
 .endpoint {
-  background: #161b22;
-  border: 1px solid #30363d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .endpoint:hover {
-  background: #21262d;
-  border-color: #58a6ff;
+  background: #1e293b;
+  border-color: #60a5fa;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Database Tables */
 .tableCard {
-  background: #21262d;
-  border: 1px solid #30363d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .tableCard:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  border-color: #58a6ff;
+  border-color: #60a5fa;
 }
 
 .column {
-  background: #0d1117;
-  color: #58a6ff;
+  background: #0f172a;
+  color: #60a5fa;
 }
 
 /* API Card */
 .apiCard {
-  background: #161b22;
-  border: 1px solid #30363d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .apiCard:hover {
-  background: #21262d;
-  border-color: #58a6ff;
+  background: #1e293b;
+  border-color: #60a5fa;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Terminal */
 .terminalBox {
-  background: #0d1117;
-  border: 1px solid #30363d;
+  background: #0f172a;
+  border: 1px solid #334155;
 }
 
 .terminal {
-  background: #0d1117;
-  border: 1px solid #30363d;
+  background: #0f172a;
+  border: 1px solid #334155;
 }
 
 .terminalHeader {
-  background: #161b22;
-  color: #e6edf3;
+  background: #1e293b;
+  color: #f8fafc;
 }
 
 .terminalContent {
-  background: #0d1117;
-  color: #e6edf3;
+  background: #0f172a;
+  color: #f8fafc;
 }
 
 .commandList {
-  background: #0d1117;
+  background: #0f172a;
 }
 
 .commandText {
-  background: #21262d;
-  color: #e6edf3;
+  background: #1e293b;
+  color: #f8fafc;
 }
 
 /* Pages List */
 .pageItem {
-  background: #21262d;
-  border: 1px solid #30363d;
-  color: #e6edf3;
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #f8fafc;
 }
 
 .pageItem:hover {
-  background: #30363d;
-  border-color: #58a6ff;
+  background: #334155;
+  border-color: #60a5fa;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .pageStatus {
-  background: #3fb950;
-  color: #0d1117;
+  background: #4ade80;
+  color: #0f172a;
 }
 
 /* API Documentation Card */
@@ -261,11 +261,11 @@
 }
 
 .apiDocDesc {
-  color: #cbd5e0;
+  color: #cbd5e1;
 }
 
 .apiDocButtonSecondary {
-  color: #cbd5e0;
+  color: #cbd5e1;
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
 }
@@ -275,30 +275,30 @@
 }
 
 .toggleButton {
-  background: linear-gradient(145deg, #2d333b 0%, #21262d 100%);
-  color: #58a6ff;
-  border-color: rgba(88, 166, 255, 0.3);
+  background: linear-gradient(145deg, #1e293b 0%, #1e293b 100%);
+  color: #60a5fa;
+  border-color: rgba(96, 165, 250, 0.3);
   box-shadow: 
-    0 4px 15px rgba(88, 166, 255, 0.15),
+    0 4px 15px rgba(96, 165, 250, 0.15),
     0 2px 4px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .toggleButton:hover {
-  background: linear-gradient(145deg, #58a6ff 0%, #4573df 100%);
+  background: linear-gradient(145deg, #60a5fa 0%, #4573df 100%);
   color: #fff;
-  border-color: #58a6ff;
+  border-color: #60a5fa;
   box-shadow: 
-    0 8px 25px rgba(88, 166, 255, 0.35),
+    0 8px 25px rgba(96, 165, 250, 0.35),
     0 4px 8px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .toggleButtonActive {
-  background: linear-gradient(145deg, #58a6ff 0%, #4573df 100%);
+  background: linear-gradient(145deg, #60a5fa 0%, #4573df 100%);
   color: #fff;
-  border-color: #58a6ff;
+  border-color: #60a5fa;
   box-shadow: 
-    0 4px 15px rgba(88, 166, 255, 0.3),
+    0 4px 15px rgba(96, 165, 250, 0.3),
     inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }

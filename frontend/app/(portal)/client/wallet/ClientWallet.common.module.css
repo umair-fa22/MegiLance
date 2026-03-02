@@ -46,7 +46,7 @@
 
 .error {
   text-align: center;
-  color: #e81123;
+  color: var(--color-error, #e81123);
   padding: 2rem 0;
   font-size: 1rem;
 }
@@ -83,7 +83,7 @@
   height: 44px;
   border-radius: 12px;
   background: rgba(69, 115, 223, 0.12);
-  color: #4573df;
+  color: var(--color-primary, #4573df);
   flex-shrink: 0;
 }
 
@@ -94,7 +94,7 @@
 
 .balanceIconSuccess {
   background: rgba(39, 174, 96, 0.12);
-  color: #27AE60;
+  color: var(--color-success, #27AE60);
 }
 
 .balanceTitle {

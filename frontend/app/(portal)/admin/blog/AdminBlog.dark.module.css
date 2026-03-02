@@ -2,18 +2,18 @@
 .container { background: #0f1117; }
 .title { color: #f1f5f9; }
 .subtitle { color: #94a3b8; }
-.statCard { background: #1a1d2e; border: 1px solid #2a2d3e; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+.statCard { background: #0f172a; border: 1px solid #2a2d3e; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
 .statCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
 .statValue { color: #f1f5f9; }
 .statLabel { color: #94a3b8; }
-.toolbar { background: #1a1d2e; border: 1px solid #2a2d3e; }
+.toolbar { background: #0f172a; border: 1px solid #2a2d3e; }
 .searchInput { background: #252836; color: #f1f5f9; }
 .searchInput::placeholder { color: #64748b; }
 .searchIcon { color: #64748b; }
 .filterTab { color: #94a3b8; }
 .filterTab:hover { color: #f1f5f9; background: rgba(255,255,255,0.04); }
 .filterTabActive { background: #252836; color: #f1f5f9; }
-.postCard { background: #1a1d2e; border: 1px solid #2a2d3e; box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+.postCard { background: #0f172a; border: 1px solid #2a2d3e; box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
 .postCard:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.25); }
 .postTitle { color: #f1f5f9; }
 .postSlug { color: #64748b; }

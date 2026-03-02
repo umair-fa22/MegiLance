@@ -17,6 +17,7 @@ import {
 import commonStyles from './WhyMegiLance.common.module.css';
 import lightStyles from './WhyMegiLance.light.module.css';
 import darkStyles from './WhyMegiLance.dark.module.css';
+import SectionGlobe from '@/app/components/Animations/SectionGlobe/SectionGlobe';
 
 interface ValueProp {
   id: string;
@@ -201,6 +202,7 @@ const WhyMegiLance: React.FC = () => {
         <div className={cn(commonStyles.bgBlob, commonStyles.bgBlob2)} />
         <div className={cn(commonStyles.bgBlob, commonStyles.bgBlob3)} />
       </div>
+      <SectionGlobe variant="orange" size="sm" position="right" />
 
       <div className={commonStyles.container}>
         {/* Section Header */}

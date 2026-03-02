@@ -40,7 +40,7 @@
 }
 
 .verifiedBadge {
-  color: #3b82f6;
+  color: var(--color-primary, #3b82f6);
   display: flex;
   align-items: center;
 }
@@ -63,7 +63,12 @@
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 50%;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -6,8 +6,8 @@
 }
 
 .navButton:hover:not(:disabled) {
-  background: #f3f4f6;
-  border-color: #d1d5db;
+  background: #f1f5f9;
+  border-color: #cbd5e1;
 }
 
 .pageButton {
@@ -16,7 +16,7 @@
 }
 
 .pageButton:hover:not(:disabled) {
-  background: #f3f4f6;
+  background: #f1f5f9;
 }
 
 .pageButtonActive {
@@ -30,9 +30,9 @@
 }
 
 .ellipsis {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .paginationInfo {
-  color: #6b7280;
+  color: #64748b;
 }

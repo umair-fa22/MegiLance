@@ -5,13 +5,18 @@
   border-radius: 12px;
   border-width: 1.5px;
   border-style: solid;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-body);
   align-items: flex-start;
   background-color: var(--surface);
   color: var(--text-secondary);
   border-color: var(--border);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 250ms,
+    box-shadow 250ms,
+    border-color 250ms,
+    background-color 250ms,
+    color 250ms,
+    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .alertIcon {
@@ -29,7 +34,7 @@
 
 .alertTitle {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
   font-size: 15px;
   font-weight: 600;
   line-height: 1.5;
@@ -93,7 +98,8 @@
 }
 
 .alertCloseButton:focus-visible {
-  outline: none;
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
   /* Fallback ring */
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.28);
 }

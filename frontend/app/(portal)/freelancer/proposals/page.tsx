@@ -113,8 +113,8 @@ const ProposalsPage: React.FC = () => {
       
       const projectsData = await Promise.all(projectPromises);
       const projectMap = new Map<number, APIProject>();
-      projectsData.filter(Boolean).forEach((project: APIProject) => {
-        if (project) projectMap.set(project.id, project);
+      projectsData.filter((p): p is APIProject => p !== null).forEach((project) => {
+        projectMap.set(project.id, project);
       });
       
       // Transform API data to UI format

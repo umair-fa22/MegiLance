@@ -2,31 +2,31 @@
 
 .container { background: transparent; }
 .title { color: #1a1a1a; }
-.subtitle { color: #6b7280; }
+.subtitle { color: #64748b; }
 
 /* Stats */
-.statCard { background: #fff; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.statCard { background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
 .statCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 .statValue { color: #1a1a1a; }
-.statLabel { color: #6b7280; }
+.statLabel { color: #64748b; }
 
 /* Toolbar */
-.toolbar { background: #fff; border: 1px solid #e5e7eb; }
-.searchInput { background: #f3f4f6; color: #1a1a1a; }
-.searchIcon { color: #9ca3af; }
-.filterTab { background: transparent; color: #6b7280; }
-.filterTab:hover { background: #f3f4f6; color: #374151; }
+.toolbar { background: #fff; border: 1px solid #e2e8f0; }
+.searchInput { background: #f1f5f9; color: #1a1a1a; }
+.searchIcon { color: #94a3b8; }
+.filterTab { background: transparent; color: #64748b; }
+.filterTab:hover { background: #f1f5f9; color: #374151; }
 .filterTabActive { background: #4573df !important; color: #fff !important; }
 
 /* Dispute Cards */
-.disputeCard { background: #fff; border: 1px solid #e5e7eb; }
+.disputeCard { background: #fff; border: 1px solid #e2e8f0; }
 .disputeCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
 .disputeId { color: #4573df; }
 .disputeName { color: #1a1a1a; }
-.disputeDesc { color: #6b7280; }
-.metaItem { color: #9ca3af; }
+.disputeDesc { color: #64748b; }
+.metaItem { color: #94a3b8; }
 
 /* Detail */
-.detailLabel { color: #6b7280; }
+.detailLabel { color: #64748b; }
 .detailValue { color: #1a1a1a; }
 .detailText { color: #374151; }

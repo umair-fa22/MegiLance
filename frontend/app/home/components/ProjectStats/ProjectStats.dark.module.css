@@ -1,7 +1,7 @@
 /* Dark theme for ProjectStats */
 
 .statsSection {
-  background: linear-gradient(180deg, #0b0f19 0%, #0f172a 100%);
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
   --glow-color: rgba(69, 115, 223, 0.15);
   --grid-color: rgba(255, 255, 255, 0.03);
 }

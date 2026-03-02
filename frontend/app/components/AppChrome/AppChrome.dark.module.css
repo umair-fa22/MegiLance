@@ -3,4 +3,7 @@
 .wrapper {
   background-color: var(--background);
   color: var(--text-primary);
+  /* Subtle top radiance for depth */
+  background-image:
+    radial-gradient(ellipse 80% 40% at 50% -10%, rgba(69, 115, 223, 0.04), transparent);
 }

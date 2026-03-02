@@ -46,7 +46,7 @@
 .clearAllBtn:hover { color: #3461c7; }
 
 /* Cards */
-.card { background: #ffffff; border: 1px solid #e5e7eb; color: #1e293b; }
+.card { background: #ffffff; border: 1px solid #e2e8f0; color: #1e293b; }
 .card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-color: #cbd5e1; }
 .name { color: #0f172a; }
 .role { color: #64748b; }
@@ -58,7 +58,7 @@
 .locationWrapper { color: #64748b; }
 
 /* Skeleton */
-.skeletonCard { background: #ffffff; border: 1px solid #e5e7eb; }
+.skeletonCard { background: #ffffff; border: 1px solid #e2e8f0; }
 .skeletonAvatar { background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%); background-size: 400px 100%; animation: shimmer 1.5s infinite; }
 .skeletonLine { background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%); background-size: 400px 100%; animation: shimmer 1.5s infinite; }
 .skeletonTag { background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%); background-size: 400px 100%; animation: shimmer 1.5s infinite; }

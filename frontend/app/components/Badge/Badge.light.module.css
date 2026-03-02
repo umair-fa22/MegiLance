@@ -49,5 +49,5 @@
 
 /* Subtle hover polish when inside interactive contexts */
 .badge:hover {
-  filter: brightness(0.98);
+  filter: brightness(1.03);
 }

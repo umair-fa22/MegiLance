@@ -32,7 +32,7 @@
   font-weight: 800;
   letter-spacing: -0.02em;
   margin-bottom: 8px;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
 }
 
 .subtitle {
@@ -69,7 +69,12 @@
   justify-content: center;
   font-size: 0.8rem;
   font-weight: 700;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .stepDotActive { transform: scale(1.15); }
@@ -101,7 +106,12 @@
   border-radius: 16px;
   padding: 32px;
   margin-bottom: 24px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .splitCards {
@@ -114,7 +124,7 @@
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 24px;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
 }
 
 .formGroup {
@@ -146,10 +156,10 @@
   border-radius: 10px;
   border: 1.5px solid;
   font-size: 0.9rem;
-  transition: all 0.2s;
-  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   font-family: inherit;
 }
+.textInput:focus-visible { outline: 2px solid var(--color-primary, #4573df); outline-offset: -2px; }
 
 .numberInput {
   width: 100%;
@@ -157,10 +167,10 @@
   border-radius: 10px;
   border: 1.5px solid;
   font-size: 0.9rem;
-  transition: all 0.2s;
-  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   font-family: inherit;
 }
+.numberInput:focus-visible { outline: 2px solid var(--color-primary, #4573df); outline-offset: -2px; }
 
 .select {
   width: 100%;
@@ -168,8 +178,7 @@
   border-radius: 10px;
   border: 1.5px solid;
   font-size: 0.9rem;
-  transition: all 0.2s;
-  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
   appearance: none;
   background-repeat: no-repeat;
@@ -178,6 +187,7 @@
   padding-right: 36px;
   font-family: inherit;
 }
+.select:focus-visible { outline: 2px solid var(--color-primary, #4573df); outline-offset: -2px; }
 
 .textarea {
   width: 100%;
@@ -185,12 +195,12 @@
   border-radius: 10px;
   border: 1.5px solid;
   font-size: 0.9rem;
-  transition: all 0.2s;
-  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   resize: vertical;
   min-height: 80px;
   font-family: inherit;
 }
+.textarea:focus-visible { outline: 2px solid var(--color-primary, #4573df); outline-offset: -2px; }
 
 .checkboxRow {
   display: flex;
@@ -215,7 +225,12 @@
   border-radius: 14px;
   border: 2px solid transparent;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease,
+    opacity 0.25s ease;
   text-align: center;
   background: none;
   font-family: inherit;
@@ -270,7 +285,12 @@
   border: 2px solid transparent;
   cursor: pointer;
   text-align: left;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   background: none;
   font-family: inherit;
 }
@@ -308,7 +328,12 @@
   font-weight: 600;
   border: none;
   cursor: pointer;
-  transition: all 0.25s;
+  transition: transform 0.25s,
+    box-shadow 0.25s,
+    border-color 0.25s,
+    background-color 0.25s,
+    color 0.25s,
+    opacity 0.25s;
   font-family: inherit;
 }
 
@@ -416,7 +441,7 @@
 .priceHeroValue {
   font-size: 1.8rem;
   font-weight: 800;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
   margin-bottom: 16px;
 }
 
@@ -513,9 +538,9 @@
   border-left: 3px solid;
 }
 
-.risk_high { border-left-color: #e81123; }
+.risk_high { border-left-color: var(--color-error, #e81123); }
 .risk_medium { border-left-color: #f39c12; }
-.risk_low { border-left-color: #27ae60; }
+.risk_low { border-left-color: var(--color-success, #27ae60); }
 
 .riskTitle {
   font-size: 0.85rem;
@@ -625,7 +650,12 @@
   font-weight: 600;
   border: none;
   cursor: pointer;
-  transition: all 0.25s;
+  transition: transform 0.25s,
+    box-shadow 0.25s,
+    border-color 0.25s,
+    background-color 0.25s,
+    color 0.25s,
+    opacity 0.25s;
   font-family: inherit;
 }
 

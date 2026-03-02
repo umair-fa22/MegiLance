@@ -105,7 +105,7 @@
   inset: -2px;
   border-radius: inherit;
   padding: 2px;
-  background: linear-gradient(135deg, var(--gradient-primary, #4573df), #6366f1, #ff9800);
+  background: linear-gradient(135deg, var(--gradient-primary, #4573df), #6366f1, var(--color-accent, #ff9800));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -160,7 +160,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s var(--transition-easing-spring, cubic-bezier(0.175, 0.885, 0.32, 1.275));
+  transition: transform 0.2s var(--transition-easing-spring, cubic-bezier(0.175, 0.885, 0.32, 1.275)),
+    box-shadow 0.2s var(--transition-easing-spring, cubic-bezier(0.175, 0.885, 0.32, 1.275)),
+    border-color 0.2s var(--transition-easing-spring, cubic-bezier(0.175, 0.885, 0.32, 1.275)),
+    background-color 0.2s var(--transition-easing-spring, cubic-bezier(0.175, 0.885, 0.32, 1.275)),
+    color 0.2s var(--transition-easing-spring, cubic-bezier(0.175, 0.885, 0.32, 1.275)),
+    opacity 0.2s var(--transition-easing-spring, cubic-bezier(0.175, 0.885, 0.32, 1.275));
 }
 
 .iconButton:hover {
@@ -319,7 +324,12 @@
   font-weight: 500;
   cursor: pointer;
   border: none;
-  transition: all 0.2s var(--transition-easing-spring);
+  transition: transform 0.2s var(--transition-easing-spring),
+    box-shadow 0.2s var(--transition-easing-spring),
+    border-color 0.2s var(--transition-easing-spring),
+    background-color 0.2s var(--transition-easing-spring),
+    color 0.2s var(--transition-easing-spring),
+    opacity 0.2s var(--transition-easing-spring);
 }
 
 .suggestionChip:hover {
@@ -355,13 +365,20 @@
   font-size: var(--font-size-base, 1rem);
   font-family: inherit;
   resize: none;
-  transition: all 0.2s var(--transition-easing-standard);
+  transition: transform 0.2s var(--transition-easing-standard),
+    box-shadow 0.2s var(--transition-easing-standard),
+    border-color 0.2s var(--transition-easing-standard),
+    background-color 0.2s var(--transition-easing-standard),
+    color 0.2s var(--transition-easing-standard),
+    opacity 0.2s var(--transition-easing-standard);
   line-height: 1.5;
   flex-grow: 1;
 }
 
 .input:focus {
-  outline: none;
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: -2px;
+  border-radius: 8px;
 }
 
 .inputActions {
@@ -382,7 +399,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .sendButton {
@@ -394,7 +416,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s var(--transition-easing-spring);
+  transition: transform 0.2s var(--transition-easing-spring),
+    box-shadow 0.2s var(--transition-easing-spring),
+    border-color 0.2s var(--transition-easing-spring),
+    background-color 0.2s var(--transition-easing-spring),
+    color 0.2s var(--transition-easing-spring),
+    opacity 0.2s var(--transition-easing-spring);
   flex-shrink: 0;
 }
 
@@ -460,7 +487,12 @@
   font-weight: 500;
   cursor: pointer;
   border: 1px solid;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .modelSelector:hover {

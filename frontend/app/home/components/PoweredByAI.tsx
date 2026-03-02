@@ -21,6 +21,7 @@ import {
 import commonStyles from './PoweredByAI.common.module.css';
 import lightStyles from './PoweredByAI.light.module.css';
 import darkStyles from './PoweredByAI.dark.module.css';
+import SectionGlobe from '@/app/components/Animations/SectionGlobe/SectionGlobe';
 
 // --- SVG Logo Components for Tech Stack (Actual technologies used) ---
 const HuggingFaceIcon = () => (
@@ -260,6 +261,7 @@ const PoweredByAI: React.FC = () => {
         <div className={commonStyles.gradientOrb2} />
         <div className={commonStyles.gradientOrb3} />
       </div>
+      <SectionGlobe variant="purple" size="md" position="right" />
 
       <div className={commonStyles.container}>
         {/* Section Header */}

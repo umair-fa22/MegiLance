@@ -1,380 +1,176 @@
-# @AI-HINT: Rate cards API - Freelancer pricing structures
-from fastapi import APIRouter, Depends, HTTPException, status, Query
-from sqlalchemy.orm import Session
+# @AI-HINT: Rate cards API - Freelancer pricing structures (Turso-backed)
+import json
+from fastapi import APIRouter, Depends, HTTPException, Query
 from typing import List, Optional
-from pydantic import BaseModel
 from datetime import datetime, timezone
-from enum import Enum
-from app.db.session import get_db
+
+from app.db.turso_http import execute_query
 from app.core.security import get_current_active_user
 
 router = APIRouter(prefix="/rate-cards")
 
 
-class RateType(str, Enum):
-    HOURLY = "hourly"
-    DAILY = "daily"
-    WEEKLY = "weekly"
-    FIXED = "fixed"
-    RETAINER = "retainer"
+def _uid(cu):
+    return cu.id if hasattr(cu, "id") else cu.get("user_id")
 
 
-class RateCard(BaseModel):
-    id: str
-    user_id: str
-    name: str
-    description: Optional[str] = None
-    rate_type: RateType
-    base_rate: float
-    currency: str
-    min_hours: Optional[int] = None
-    max_hours: Optional[int] = None
-    is_negotiable: bool = True
-    is_default: bool = False
-    created_at: datetime
-    updated_at: Optional[datetime] = None
+def _val(cell):
+    return cell.get("value") if isinstance(cell, dict) else cell
 
 
-class ServicePackage(BaseModel):
-    id: str
-    rate_card_id: str
-    name: str
-    description: str
-    price: float
-    deliverables: List[str]
-    estimated_duration: str
-    revisions: int
-    is_popular: bool = False
+def _row_dict(row, cols):
+    names = [c.get("name", c) if isinstance(c, dict) else c for c in cols]
+    vals = [_val(c) for c in row]
+    return dict(zip(names, vals))
 
 
-class RateModifier(BaseModel):
-    id: str
-    rate_card_id: str
-    name: str
-    type: str  # percentage, fixed
-    value: float
-    conditions: Optional[dict] = None
+RC_COLS = "id, user_id, name, description, base_rate, currency, rate_type, packages, extras, is_default, is_active, created_at, updated_at"
 
 
-@router.get("/my-cards", response_model=List[RateCard])
-async def get_my_rate_cards(
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Get current user's rate cards"""
-    return [
-        RateCard(
-            id="rate-1",
-            user_id=str(current_user.id),
-            name="Standard Hourly",
-            description="My standard hourly rate for development work",
-            rate_type=RateType.HOURLY,
-            base_rate=75.0,
-            currency="USD",
-            min_hours=1,
-            is_negotiable=True,
-            is_default=True,
-            created_at=datetime.now(timezone.utc)
-        ),
-        RateCard(
-            id="rate-2",
-            user_id=str(current_user.id),
-            name="Daily Rate",
-            description="Full day engagement rate",
-            rate_type=RateType.DAILY,
-            base_rate=500.0,
-            currency="USD",
-            min_hours=8,
-            is_negotiable=True,
-            is_default=False,
-            created_at=datetime.now(timezone.utc)
-        )
-    ]
+@router.get("/my-cards")
+async def get_my_rate_cards(current_user=Depends(get_current_active_user)):
+    uid = _uid(current_user)
+    result = execute_query(f"SELECT {RC_COLS} FROM rate_cards WHERE user_id = ? AND is_active = 1 ORDER BY is_default DESC, created_at DESC", [uid])
+    cols = result.get("columns", result.get("cols", []))
+    cards = []
+    for r in result.get("rows", []):
+        d = _row_dict(r, cols)
+        if d.get("packages"):
+            try:
+                d["packages"] = json.loads(d["packages"])
+            except Exception:
+                pass
+        if d.get("extras"):
+            try:
+                d["extras"] = json.loads(d["extras"])
+            except Exception:
+                pass
+        cards.append(d)
+    return cards
 
 
-@router.post("/", response_model=RateCard)
+@router.post("/")
 async def create_rate_card(
     name: str,
-    rate_type: RateType,
-    base_rate: float,
+    rate_type: str = "hourly",
+    base_rate: float = 0,
     currency: str = "USD",
     description: Optional[str] = None,
-    min_hours: Optional[int] = None,
-    max_hours: Optional[int] = None,
-    is_negotiable: bool = True,
     is_default: bool = False,
     current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
 ):
-    """Create a new rate card"""
-    return RateCard(
-        id="rate-new",
-        user_id=str(current_user.id),
-        name=name,
-        description=description,
-        rate_type=rate_type,
-        base_rate=base_rate,
-        currency=currency,
-        min_hours=min_hours,
-        max_hours=max_hours,
-        is_negotiable=is_negotiable,
-        is_default=is_default,
-        created_at=datetime.now(timezone.utc)
+    uid = _uid(current_user)
+    now = datetime.now(timezone.utc).isoformat()
+    if is_default:
+        execute_query("UPDATE rate_cards SET is_default = 0 WHERE user_id = ?", [uid])
+    execute_query(
+        "INSERT INTO rate_cards (user_id, name, description, base_rate, currency, rate_type, is_default, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, 1, ?, ?)",
+        [uid, name, description, base_rate, currency, rate_type, int(is_default), now, now],
     )
+    rid = _val(execute_query("SELECT last_insert_rowid()")["rows"][0][0])
+    return {"id": rid, "user_id": uid, "name": name, "rate_type": rate_type, "base_rate": base_rate, "currency": currency, "is_default": is_default, "created_at": now}
 
 
-@router.get("/{rate_card_id}", response_model=RateCard)
-async def get_rate_card(
-    rate_card_id: str,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Get a specific rate card"""
-    return RateCard(
-        id=rate_card_id,
-        user_id=str(current_user.id),
-        name="Standard Hourly",
-        rate_type=RateType.HOURLY,
-        base_rate=75.0,
-        currency="USD",
-        is_default=True,
-        created_at=datetime.now(timezone.utc)
-    )
+@router.get("/{rate_card_id}")
+async def get_rate_card(rate_card_id: int, current_user=Depends(get_current_active_user)):
+    uid = _uid(current_user)
+    result = execute_query(f"SELECT {RC_COLS} FROM rate_cards WHERE id = ? AND user_id = ?", [rate_card_id, uid])
+    cols = result.get("columns", result.get("cols", []))
+    if not result.get("rows"):
+        raise HTTPException(status_code=404, detail="Rate card not found")
+    d = _row_dict(result["rows"][0], cols)
+    for field in ("packages", "extras"):
+        if d.get(field):
+            try:
+                d[field] = json.loads(d[field])
+            except Exception:
+                pass
+    return d
 
 
-@router.put("/{rate_card_id}", response_model=RateCard)
+@router.put("/{rate_card_id}")
 async def update_rate_card(
-    rate_card_id: str,
+    rate_card_id: int,
     name: Optional[str] = None,
     description: Optional[str] = None,
     base_rate: Optional[float] = None,
-    is_negotiable: Optional[bool] = None,
+    rate_type: Optional[str] = None,
     is_default: Optional[bool] = None,
+    packages: Optional[str] = None,
+    extras: Optional[str] = None,
     current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
 ):
-    """Update a rate card"""
-    return RateCard(
-        id=rate_card_id,
-        user_id=str(current_user.id),
-        name=name or "Updated Rate",
-        rate_type=RateType.HOURLY,
-        base_rate=base_rate or 75.0,
-        currency="USD",
-        is_negotiable=is_negotiable if is_negotiable is not None else True,
-        is_default=is_default if is_default is not None else False,
-        created_at=datetime.now(timezone.utc),
-        updated_at=datetime.now(timezone.utc)
-    )
+    uid = _uid(current_user)
+    existing = execute_query("SELECT id FROM rate_cards WHERE id = ? AND user_id = ?", [rate_card_id, uid])
+    if not existing.get("rows"):
+        raise HTTPException(status_code=404, detail="Rate card not found")
+    now = datetime.now(timezone.utc).isoformat()
+    sets = ["updated_at = ?"]
+    params: list = [now]
+    if name is not None:
+        sets.append("name = ?"); params.append(name)
+    if description is not None:
+        sets.append("description = ?"); params.append(description)
+    if base_rate is not None:
+        sets.append("base_rate = ?"); params.append(base_rate)
+    if rate_type is not None:
+        sets.append("rate_type = ?"); params.append(rate_type)
+    if packages is not None:
+        sets.append("packages = ?"); params.append(packages)
+    if extras is not None:
+        sets.append("extras = ?"); params.append(extras)
+    if is_default is not None:
+        if is_default:
+            execute_query("UPDATE rate_cards SET is_default = 0 WHERE user_id = ?", [uid])
+        sets.append("is_default = ?"); params.append(int(is_default))
+    params.append(rate_card_id)
+    execute_query(f"UPDATE rate_cards SET {', '.join(sets)} WHERE id = ?", params)
+    return {"id": rate_card_id, "updated": True, "updated_at": now}
 
 
 @router.delete("/{rate_card_id}")
-async def delete_rate_card(
-    rate_card_id: str,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Delete a rate card"""
-    return {"message": f"Rate card {rate_card_id} deleted"}
-
-
-@router.get("/{rate_card_id}/packages", response_model=List[ServicePackage])
-async def get_service_packages(
-    rate_card_id: str,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Get service packages for a rate card"""
-    return [
-        ServicePackage(
-            id="pkg-1",
-            rate_card_id=rate_card_id,
-            name="Basic",
-            description="Basic development package",
-            price=500.0,
-            deliverables=["Source code", "Documentation"],
-            estimated_duration="1 week",
-            revisions=2,
-            is_popular=False
-        ),
-        ServicePackage(
-            id="pkg-2",
-            rate_card_id=rate_card_id,
-            name="Standard",
-            description="Standard development package",
-            price=1500.0,
-            deliverables=["Source code", "Documentation", "Testing", "Deployment"],
-            estimated_duration="2 weeks",
-            revisions=3,
-            is_popular=True
-        ),
-        ServicePackage(
-            id="pkg-3",
-            rate_card_id=rate_card_id,
-            name="Premium",
-            description="Premium development package with support",
-            price=3000.0,
-            deliverables=["Source code", "Documentation", "Testing", "Deployment", "30-day support"],
-            estimated_duration="3 weeks",
-            revisions=5,
-            is_popular=False
-        )
-    ]
-
-
-@router.post("/{rate_card_id}/packages", response_model=ServicePackage)
-async def create_service_package(
-    rate_card_id: str,
-    name: str,
-    description: str,
-    price: float,
-    deliverables: List[str],
-    estimated_duration: str,
-    revisions: int = 2,
-    is_popular: bool = False,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Create a service package"""
-    return ServicePackage(
-        id="pkg-new",
-        rate_card_id=rate_card_id,
-        name=name,
-        description=description,
-        price=price,
-        deliverables=deliverables,
-        estimated_duration=estimated_duration,
-        revisions=revisions,
-        is_popular=is_popular
-    )
-
-
-@router.put("/packages/{package_id}", response_model=ServicePackage)
-async def update_service_package(
-    package_id: str,
-    name: Optional[str] = None,
-    description: Optional[str] = None,
-    price: Optional[float] = None,
-    deliverables: Optional[List[str]] = None,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Update a service package"""
-    return ServicePackage(
-        id=package_id,
-        rate_card_id="rate-1",
-        name=name or "Updated Package",
-        description=description or "Updated description",
-        price=price or 1000.0,
-        deliverables=deliverables or ["Deliverable 1"],
-        estimated_duration="1 week",
-        revisions=3
-    )
-
-
-@router.delete("/packages/{package_id}")
-async def delete_service_package(
-    package_id: str,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Delete a service package"""
-    return {"message": f"Package {package_id} deleted"}
-
-
-@router.get("/{rate_card_id}/modifiers", response_model=List[RateModifier])
-async def get_rate_modifiers(
-    rate_card_id: str,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Get rate modifiers for a rate card"""
-    return [
-        RateModifier(
-            id="mod-1",
-            rate_card_id=rate_card_id,
-            name="Rush Fee",
-            type="percentage",
-            value=25.0,
-            conditions={"deadline": "less_than_3_days"}
-        ),
-        RateModifier(
-            id="mod-2",
-            rate_card_id=rate_card_id,
-            name="Long-term Discount",
-            type="percentage",
-            value=-10.0,
-            conditions={"duration": "more_than_1_month"}
-        )
-    ]
-
-
-@router.post("/{rate_card_id}/modifiers", response_model=RateModifier)
-async def create_rate_modifier(
-    rate_card_id: str,
-    name: str,
-    type: str,
-    value: float,
-    conditions: Optional[dict] = None,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Create a rate modifier"""
-    return RateModifier(
-        id="mod-new",
-        rate_card_id=rate_card_id,
-        name=name,
-        type=type,
-        value=value,
-        conditions=conditions
-    )
+async def delete_rate_card(rate_card_id: int, current_user=Depends(get_current_active_user)):
+    uid = _uid(current_user)
+    existing = execute_query("SELECT id FROM rate_cards WHERE id = ? AND user_id = ?", [rate_card_id, uid])
+    if not existing.get("rows"):
+        raise HTTPException(status_code=404, detail="Rate card not found")
+    execute_query("DELETE FROM rate_cards WHERE id = ?", [rate_card_id])
+    return {"message": "Rate card deleted", "id": rate_card_id}
 
 
 @router.get("/user/{user_id}")
-async def get_user_rate_cards(
-    user_id: str,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Get rate cards for a specific user (public view)"""
-    return {
-        "user_id": user_id,
-        "rate_cards": [
-            {
-                "id": "rate-1",
-                "name": "Standard Hourly",
-                "rate_type": "hourly",
-                "base_rate": 75.0,
-                "currency": "USD",
-                "is_negotiable": True
-            }
-        ],
-        "packages": [
-            {
-                "name": "Basic",
-                "price": 500.0,
-                "deliverables": ["Source code", "Documentation"]
-            }
-        ]
-    }
+async def get_user_rate_cards(user_id: int, current_user=Depends(get_current_active_user)):
+    result = execute_query(
+        "SELECT id, name, description, base_rate, currency, rate_type, packages, is_default FROM rate_cards WHERE user_id = ? AND is_active = 1 ORDER BY is_default DESC",
+        [user_id],
+    )
+    cols = result.get("columns", result.get("cols", []))
+    cards = []
+    for r in result.get("rows", []):
+        d = _row_dict(r, cols)
+        if d.get("packages"):
+            try:
+                d["packages"] = json.loads(d["packages"])
+            except Exception:
+                pass
+        cards.append(d)
+    return {"user_id": user_id, "rate_cards": cards}
 
 
 @router.post("/calculate")
 async def calculate_project_rate(
-    rate_card_id: str,
+    rate_card_id: int,
     hours: Optional[int] = None,
-    package_id: Optional[str] = None,
-    modifiers: Optional[List[str]] = None,
     current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
 ):
-    """Calculate project cost based on rate card"""
-    return {
-        "base_rate": 75.0,
-        "hours": hours or 0,
-        "subtotal": 75.0 * (hours or 0),
-        "modifiers_applied": [],
-        "total": 75.0 * (hours or 0),
-        "currency": "USD"
-    }
+    result = execute_query("SELECT base_rate, currency, rate_type FROM rate_cards WHERE id = ?", [rate_card_id])
+    if not result.get("rows"):
+        raise HTTPException(status_code=404, detail="Rate card not found")
+    row = result["rows"][0]
+    base_rate = _val(row[0]) or 0
+    currency = _val(row[1]) or "USD"
+    rate_type = _val(row[2]) or "hourly"
+    h = hours or 0
+    total = base_rate * h if rate_type == "hourly" else base_rate
+    return {"base_rate": base_rate, "hours": h, "rate_type": rate_type, "subtotal": base_rate * h, "total": total, "currency": currency}
 

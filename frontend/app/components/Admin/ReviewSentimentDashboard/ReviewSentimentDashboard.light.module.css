@@ -10,7 +10,7 @@
 
 .timeRangeTrigger {
   background-color: #ffffff;
-  border-color: #d1d5db;
+  border-color: #cbd5e1;
   color: #374151;
 }
 
@@ -18,11 +18,11 @@
 .chartCard,
 .reviewsCard {
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .cardTitle {
-  color: #6b7280; /* Muted gray for titles */
+  color: #64748b; /* Muted gray for titles */
 }
 
 .cardMetric {
@@ -34,16 +34,16 @@
 }
 
 .cardDescription {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .reviewItem {
   background-color: #f9fafb;
-  border: 1px solid #f3f4f6;
+  border: 1px solid #f1f5f9;
 }
 
 .reviewItem:hover {
-  background-color: #f3f4f6;
+  background-color: #f1f5f9;
 }
 
 .reviewUser {

@@ -1,7 +1,7 @@
 /* @AI-HINT: Hire directory page - dark theme colors */
 
 .page {
-  background: linear-gradient(170deg, #0a0f1a 0%, #111827 40%, #0f1225 100%);
+  background: linear-gradient(170deg, #0f172a 0%, #0f172a 40%, #0f1225 100%);
 }
 
 .hero {
@@ -11,19 +11,19 @@
 }
 
 .heroTitle {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .heroSubtitle {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .skillsSectionTitle {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .categoryTitle {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .skillCard {
@@ -40,7 +40,7 @@
 }
 
 .skillName {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .skillRate {
@@ -48,11 +48,11 @@
 }
 
 .industriesSection {
-  background-color: #1f2937;
+  background-color: #1e293b;
 }
 
 .industriesSectionTitle {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .industryCard {
@@ -68,15 +68,15 @@
 }
 
 .industryName {
-  color: #e5e7eb;
+  color: #e2e8f0;
 }
 
 .ctaTitle {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .ctaText {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .ctaButton {

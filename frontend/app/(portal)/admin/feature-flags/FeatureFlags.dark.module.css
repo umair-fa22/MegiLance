@@ -1,16 +1,16 @@
 /* @AI-HINT: Admin Feature Flags - dark theme */
-.container { background: #0f0f0f; }
+.container { background: #0f172a; }
 .title { color: #f0f0f0; }
-.subtitle { color: #9ca3af; }
-.stat { background: #1a1a1a; border-color: #2d2d2d; }
+.subtitle { color: #94a3b8; }
+.stat { background: #1e293b; border-color: #334155; }
 .statValue { color: #f0f0f0; }
 .statLabel { color: #6b7280; }
-.searchInput { background: #1a1a1a; border-color: #2d2d2d; color: #f0f0f0; }
+.searchInput { background: #1e293b; border-color: #334155; color: #f0f0f0; }
 .searchInput::placeholder { color: #6b7280; }
-.flagCard { background: #1a1a1a; border-color: #2d2d2d; }
+.flagCard { background: #1e293b; border-color: #334155; }
 .flagCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
 .flagName { color: #f0f0f0; }
-.flagDesc { color: #9ca3af; }
+.flagDesc { color: #94a3b8; }
 .flagMeta { color: #6b7280; }
 .emptyTitle { color: #f0f0f0; }
-.emptyDesc { color: #9ca3af; }
+.emptyDesc { color: #94a3b8; }

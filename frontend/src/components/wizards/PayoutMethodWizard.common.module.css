@@ -17,7 +17,12 @@
   border-radius: 12px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.methodCard:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .methodCard:hover {
@@ -26,13 +31,13 @@
 }
 
 .methodCardSelected {
-  border-color: #4573df !important;
+  border-color: var(--color-primary, #4573df) !important;
 }
 
 .methodIcon {
   font-size: 3rem;
   margin-bottom: 1rem;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 .methodCard h3 {
@@ -84,8 +89,9 @@
 
 .formGroup input:focus,
 .formGroup select:focus {
-  outline: none;
-  border-color: #4573df;
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: -2px;
+  border-color: var(--color-primary, #4573df);
 }
 
 .formGroup small {
@@ -118,7 +124,7 @@
 .verificationIcon {
   font-size: 3rem;
   margin-bottom: 1rem;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 .verificationBox h3 {
@@ -141,12 +147,17 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background: #4573df;
+  background: var(--color-primary, #4573df);
   color: white;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
   transition: background 0.2s;
+}
+
+.uploadButton:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .uploadButton:hover {
@@ -162,7 +173,7 @@
   padding: 0.75rem;
   border-radius: 8px;
   background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 .infoBox {
@@ -178,7 +189,7 @@
 .infoBox svg {
   flex-shrink: 0;
   margin-top: 0.125rem;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 .successBox {
@@ -194,7 +205,7 @@
 .successBox svg {
   flex-shrink: 0;
   margin-top: 0.125rem;
-  color: #27AE60;
+  color: var(--color-success, #27AE60);
 }
 
 .warningBox {
@@ -210,7 +221,7 @@
 .warningBox svg {
   flex-shrink: 0;
   margin-top: 0.125rem;
-  color: #F2C94C;
+  color: var(--color-warning, #F2C94C);
 }
 
 .amountInput {
@@ -305,7 +316,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #F2C94C;
+  color: var(--color-warning, #F2C94C);
   font-weight: 600;
 }
 
@@ -341,7 +352,7 @@
   padding: 8px 16px;
   border-radius: 6px;
   border: none;
-  background: #e81123;
+  background: var(--color-error, #e81123);
   color: #fff;
   cursor: pointer;
 }

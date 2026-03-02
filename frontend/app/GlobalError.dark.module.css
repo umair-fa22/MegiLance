@@ -1,5 +1,5 @@
 .page {
-  background-color: #111827; /* bg-gray-900 */
+  background-color: #0f172a; /* bg-gray-900 */
   color: #ffffff; /* text-white */
 }
 
@@ -8,11 +8,11 @@
 }
 
 .description {
-  color: #9ca3af; /* text-gray-400 */
+  color: #94a3b8; /* text-gray-400 */
 }
 
 .link {
-  color: #9ca3af; /* text-gray-400 */
+  color: #94a3b8; /* text-gray-400 */
 }
 
 .link:hover {

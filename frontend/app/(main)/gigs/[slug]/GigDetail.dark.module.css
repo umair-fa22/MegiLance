@@ -1,7 +1,7 @@
 /* @AI-HINT: Dark theme styles for gig detail page */
 
 .themeWrapper {
-  background-color: #0f0f1a;
+  background-color: #0f172a;
   color: #e4e4e7;
 }
 
@@ -43,17 +43,17 @@
 
 .levelBadge.silver {
   background: linear-gradient(135deg, #c0c0c0 0%, #a8a8a8 100%);
-  color: #1a1a2e;
+  color: #0f172a;
 }
 
 .levelBadge.gold {
   background: linear-gradient(135deg, #ffd700 0%, #f0b300 100%);
-  color: #1a1a2e;
+  color: #0f172a;
 }
 
 .levelBadge.platinum {
   background: linear-gradient(135deg, #e5e5e5 0%, #ffffff 50%, #e5e5e5 100%);
-  color: #1a1a2e;
+  color: #0f172a;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 

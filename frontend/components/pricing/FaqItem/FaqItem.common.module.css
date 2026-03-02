@@ -13,7 +13,7 @@
   background: none;
   border: none;
   text-align: left;
-  font-family: var(--font-inter);
+  font-family: var(--font-family-body);
   font-size: 1.125rem;
   font-weight: 500;
   cursor: pointer;
@@ -43,7 +43,7 @@
 
 .answerContent {
   padding-bottom: 24px;
-  font-family: var(--font-inter);
+  font-family: var(--font-family-body);
   font-size: 1rem;
   line-height: 1.7;
 }

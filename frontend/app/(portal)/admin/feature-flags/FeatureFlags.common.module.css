@@ -46,10 +46,10 @@
   justify-content: center;
   flex-shrink: 0;
 }
-.iconGreen { background: rgba(39,174,96,0.12); color: #27AE60; }
-.iconBlue { background: rgba(69,115,223,0.12); color: #4573df; }
-.iconOrange { background: rgba(255,152,0,0.12); color: #ff9800; }
-.iconRed { background: rgba(232,17,35,0.12); color: #e81123; }
+.iconGreen { background: rgba(39,174,96,0.12); color: var(--color-success, #27AE60); }
+.iconBlue { background: rgba(69,115,223,0.12); color: var(--color-primary, #4573df); }
+.iconOrange { background: rgba(255,152,0,0.12); color: var(--color-accent, #ff9800); }
+.iconRed { background: rgba(232,17,35,0.12); color: var(--color-error, #e81123); }
 .statValue {
   font-size: 1.25rem;
   font-weight: 700;
@@ -84,7 +84,12 @@
   border-radius: 12px;
   border: 1px solid;
   padding: 1.25rem;
-  transition: all 0.2s;
+  transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s;
 }
 .flagCard:hover { transform: translateY(-1px); }
 .flagHeader {
@@ -129,7 +134,7 @@
 }
 .toggleOff { background: #ccc; }
 .toggleOff .toggleKnob { left: 3px; }
-.toggleOn { background: #27AE60; }
+.toggleOn { background: var(--color-success, #27AE60); }
 .toggleOn .toggleKnob { left: 23px; }
 .flagDesc {
   font-size: 0.875rem;
@@ -159,7 +164,7 @@
 .rolloutFill {
   height: 100%;
   border-radius: 3px;
-  background: #4573df;
+  background: var(--color-primary, #4573df);
   transition: width 0.3s;
 }
 .emptyState { text-align: center; padding: 3rem; }
@@ -180,4 +185,9 @@
   .container { padding: 1rem; }
   .header { flex-direction: column; }
   .statsRow { grid-template-columns: 1fr 1fr; }
+}
+
+.searchInput:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }

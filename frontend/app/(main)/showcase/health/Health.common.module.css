@@ -50,7 +50,12 @@
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   border: none;
   margin-top: 1rem;
 }
@@ -74,22 +79,22 @@
 }
 
 .statusHealthy {
-  background: linear-gradient(135deg, #27AE60 0%, #2ecc71 100%);
+  background: linear-gradient(135deg, var(--color-success, #27AE60) 0%, #2ecc71 100%);
   color: #fff;
 }
 
 .statusDegraded {
-  background: linear-gradient(135deg, #F2C94C 0%, #f1c40f 100%);
+  background: linear-gradient(135deg, var(--color-warning, #F2C94C) 0%, #f1c40f 100%);
   color: #333;
 }
 
 .statusUnhealthy {
-  background: linear-gradient(135deg, #e81123 0%, #ff4444 100%);
+  background: linear-gradient(135deg, var(--color-error, #e81123) 0%, #ff4444 100%);
   color: #fff;
 }
 
 .statusLoading {
-  background: linear-gradient(135deg, #4573df 0%, #6b8ceb 100%);
+  background: linear-gradient(135deg, var(--color-primary, #4573df) 0%, #6b8ceb 100%);
   color: #fff;
 }
 
@@ -104,7 +109,12 @@
 .healthCard {
   padding: 1.5rem;
   border-radius: 1rem;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .healthCard:hover {
@@ -135,7 +145,7 @@
 
 .healthyStatus {
   background: rgba(39, 174, 96, 0.15);
-  color: #27AE60;
+  color: var(--color-success, #27AE60);
 }
 
 .warningStatus {
@@ -145,7 +155,7 @@
 
 .errorStatus {
   background: rgba(232, 17, 35, 0.15);
-  color: #e81123;
+  color: var(--color-error, #e81123);
 }
 
 .healthCardMetrics {
@@ -196,7 +206,12 @@
   padding: 1.25rem;
   border-radius: 0.75rem;
   text-align: center;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .apiCard:hover {
@@ -242,10 +257,10 @@
   font-weight: 600;
 }
 
-.methodGet { background: #27AE60; color: #fff; }
-.methodPost { background: #4573df; color: #fff; }
-.methodPut { background: #ff9800; color: #fff; }
-.methodDelete { background: #e81123; color: #fff; }
+.methodGet { background: var(--color-success, #27AE60); color: #fff; }
+.methodPost { background: var(--color-primary, #4573df); color: #fff; }
+.methodPut { background: var(--color-accent, #ff9800); color: #fff; }
+.methodDelete { background: var(--color-error, #e81123); color: #fff; }
 
 /* Tech Stack */
 .techGrid {
@@ -260,7 +275,12 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .techCard:hover {
@@ -303,7 +323,12 @@
   border-radius: 0.5rem;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   border: none;
   cursor: pointer;
 }

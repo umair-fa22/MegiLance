@@ -16,7 +16,7 @@
 }
 
 .pageHeader h1 {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: var(--font-size-2xl);
   font-weight: 600;
   color: var(--text-primary-23272f);
@@ -79,7 +79,7 @@
 .balanceAmount {
   font-size: 2.5rem; /* 40px */
   font-weight: 600;
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   color: var(--text-primary-23272f);
 }
 
@@ -204,7 +204,7 @@
 }
 
 .paymentMethods h3, .transactionsSection h3 {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: var(--font-size-lg);
   font-weight: 600;
   margin-bottom: var(--spacing-4);
@@ -296,7 +296,7 @@
 
 .emptyState h4 {
   margin: 0 0 0.5rem 0;
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   color: var(--text-primary-23272f);
 }
 
@@ -356,7 +356,7 @@
   border-radius: var(--radius-md);
   padding: 0.5rem 2rem 0.5rem 0.75rem;
   color: var(--text-primary-23272f);
-  font-family: var(--font-inter);
+  font-family: var(--font-family-body);
   background-image: linear-gradient(45deg, transparent 50%, var(--text-secondary-333333) 50%),
     linear-gradient(135deg, var(--text-secondary-333333) 50%, transparent 50%);
   background-position: calc(100% - 16px) calc(1.05em), calc(100% - 11px) calc(1.05em);

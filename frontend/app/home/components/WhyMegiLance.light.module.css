@@ -1,7 +1,7 @@
 /* @AI-HINT: Light theme specific styles for WhyMegiLance component. Defines color palette, text colors, backgrounds, and visual elements for light mode. */
 
 .section {
-  background: radial-gradient(circle at 50% 50%, #ffffff, #f0f4f8);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
 }
 
 .bgBlob1 {

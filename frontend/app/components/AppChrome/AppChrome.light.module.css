@@ -3,4 +3,7 @@
 .wrapper {
   background-color: var(--background);
   color: var(--text-primary);
+  /* Subtle warm-neutral grain for depth */
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(69, 115, 223, 0.03), transparent);
 }

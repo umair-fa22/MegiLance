@@ -9,7 +9,7 @@
 }
 
 .toggleButton {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .toggleButton:hover {
@@ -40,7 +40,7 @@
 
 .searchContainer {
   border-color: #e5e5e5;
-  color: #6b7280;
+  color: #64748b;
 }
 
 .searchInput {
@@ -48,7 +48,7 @@
 }
 
 .searchInput::placeholder {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .currencyItem {
@@ -65,7 +65,7 @@
 }
 
 .emptyState {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .conversionContainer {

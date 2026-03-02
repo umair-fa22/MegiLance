@@ -1,7 +1,7 @@
 /* @AI-HINT: Light theme styles for the MultiStepForm component */
 
 .progressBarTrack {
-  background: #e5e7eb;
+  background: #e2e8f0;
 }
 
 .progressBarFill {
@@ -9,9 +9,9 @@
 }
 
 .stepCircle {
-  background: #f3f4f6;
-  color: #9ca3af;
-  border-color: #e5e7eb;
+  background: #f1f5f9;
+  color: #94a3b8;
+  border-color: #e2e8f0;
 }
 
 .stepCircleActive {
@@ -28,7 +28,7 @@
 }
 
 .stepLabel {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .stepLabelActive {
@@ -41,7 +41,7 @@
 }
 
 .stepConnector {
-  background: #e5e7eb;
+  background: #e2e8f0;
 }
 
 .stepConnectorFill {
@@ -53,7 +53,7 @@
 }
 
 .stepCounter {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .validationSummary {
@@ -81,5 +81,5 @@
 }
 
 .successMessage {
-  color: #6b7280;
+  color: #64748b;
 }

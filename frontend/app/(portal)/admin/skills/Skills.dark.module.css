@@ -5,11 +5,11 @@
 }
 
 .title {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .pendingBadge {
@@ -23,7 +23,7 @@
 
 .tab {
   background: transparent;
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .tab:hover {
@@ -32,7 +32,7 @@
 
 .tabActive {
   background: rgba(255, 255, 255, 0.1);
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .filterBar {
@@ -42,7 +42,7 @@
 .searchInput {
   background: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.1);
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .searchInput:focus {
@@ -53,16 +53,16 @@
 .select {
   background: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.1);
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .checkbox {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .emptyState {
   background: rgba(255, 255, 255, 0.03);
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .skillCard {
@@ -76,7 +76,7 @@
 }
 
 .skillName {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .featuredBadge {
@@ -85,7 +85,7 @@
 }
 
 .skillDesc {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .skillMeta {
@@ -94,7 +94,7 @@
 
 .iconBtn {
   background: rgba(255, 255, 255, 0.05);
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .iconBtn:hover {
@@ -111,11 +111,11 @@
 }
 
 .categoryName {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .categoryDesc {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .categoryMeta {
@@ -133,12 +133,12 @@
 
 .modalHeader {
   border-color: rgba(255, 255, 255, 0.05);
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .closeBtn {
   background: rgba(255, 255, 255, 0.05);
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .closeBtn:hover {
@@ -149,7 +149,7 @@
 .textarea {
   background: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.1);
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .input:focus,
@@ -167,7 +167,7 @@
 }
 
 .confirmText {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .toast {

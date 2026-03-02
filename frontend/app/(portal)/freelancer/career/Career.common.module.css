@@ -19,7 +19,7 @@
   font-size: 2rem;
   font-weight: 700;
   margin: 0 0 0.5rem 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
 }
 
 .subtitle {
@@ -237,7 +237,7 @@
 }
 
 .emptyCard span {
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
   display: block;
   margin-bottom: 1rem;
 }

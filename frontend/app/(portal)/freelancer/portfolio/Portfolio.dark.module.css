@@ -5,16 +5,16 @@
 }
 
 .title {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .settingsBtn {
   background: rgba(255, 255, 255, 0.05);
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .settingsBtn:hover {
@@ -32,7 +32,7 @@
 
 .publicUrl {
   background: rgba(255, 255, 255, 0.05);
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .publicUrl a {
@@ -41,7 +41,7 @@
 
 .categoryBtn {
   background: rgba(255, 255, 255, 0.05);
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .categoryBtn:hover {
@@ -59,26 +59,26 @@
 
 .layoutBtn {
   background: transparent;
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .layoutBtn:hover,
 .layoutActive {
   background: rgba(255, 255, 255, 0.1);
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .loading {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .emptyState {
   background: rgba(255, 255, 255, 0.03);
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .emptyTitle {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .emptyBtn {
@@ -87,7 +87,7 @@
 }
 
 .sectionTitle {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .featuredCard,
@@ -112,24 +112,24 @@
 }
 
 .cardTitle {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .cardDesc {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .tag {
   background: rgba(255, 255, 255, 0.05);
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .stat {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .likeBtn {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .liked {
@@ -146,7 +146,7 @@
 }
 
 .closeButton {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .closeButton:hover {
@@ -158,7 +158,7 @@
 .textarea {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .input:focus,
@@ -170,7 +170,7 @@
 
 .addTagBtn {
   background: rgba(255, 255, 255, 0.05);
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .selectedTag {
@@ -184,7 +184,7 @@
 
 .cancelBtn {
   background: rgba(255, 255, 255, 0.05);
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .cancelBtn:hover {
@@ -200,4 +200,4 @@
   box-shadow: 0 4px 20px rgba(69, 115, 223, 0.4);
 }
 
-.confirmText { color: #9ca3af; }
+.confirmText { color: #94a3b8; }

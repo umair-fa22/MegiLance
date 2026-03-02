@@ -20,7 +20,12 @@
   gap: var(--space-3, 12px);
   padding: var(--space-3, 12px);
   border-radius: var(--radius-lg, 12px);
-  transition: all 0.2s var(--ease-spring, cubic-bezier(0.34, 1.56, 0.64, 1));
+  transition: transform 0.2s var,
+    box-shadow 0.2s var,
+    border-color 0.2s var,
+    background-color 0.2s var,
+    color 0.2s var,
+    opacity 0.2s var(--ease-spring, cubic-bezier(0.34, 1.56, 0.64, 1));
   text-decoration: none;
   position: relative;
   overflow: hidden;
@@ -93,7 +98,12 @@
 .action {
   opacity: 0;
   transform: translateX(10px);
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .card:hover .action {

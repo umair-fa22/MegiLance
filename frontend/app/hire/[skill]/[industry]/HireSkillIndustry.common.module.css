@@ -62,7 +62,7 @@
 }
 
 .heroTitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   line-height: 1.2;
@@ -117,7 +117,7 @@
 }
 
 .sectionTitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
   font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 600;
   text-align: center;
@@ -272,7 +272,7 @@
 }
 
 .ctaTitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 600;
   margin-bottom: 0.75rem;

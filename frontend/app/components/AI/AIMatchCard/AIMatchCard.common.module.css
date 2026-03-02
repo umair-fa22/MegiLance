@@ -12,7 +12,12 @@
   padding: var(--space-5, 1.25rem);
   position: relative;
   overflow: hidden;
-  transition: all var(--duration-normal, 300ms) var(--ease-premium, cubic-bezier(0.22, 1, 0.36, 1));
+  transition: transform var(--duration-normal, 300ms) var(--ease-premium, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow var(--duration-normal, 300ms) var(--ease-premium, cubic-bezier(0.22, 1, 0.36, 1)),
+    border-color var(--duration-normal, 300ms) var(--ease-premium, cubic-bezier(0.22, 1, 0.36, 1)),
+    background-color var(--duration-normal, 300ms) var(--ease-premium, cubic-bezier(0.22, 1, 0.36, 1)),
+    color var(--duration-normal, 300ms) var(--ease-premium, cubic-bezier(0.22, 1, 0.36, 1)),
+    opacity var(--duration-normal, 300ms) var(--ease-premium, cubic-bezier(0.22, 1, 0.36, 1));
 }
 
 .card:hover {
@@ -312,7 +317,12 @@
   font-weight: 600;
   cursor: pointer;
   border: none;
-  transition: all var(--duration-fast, 200ms) var(--ease-smooth, cubic-bezier(0.25, 0.1, 0.25, 1));
+  transition: transform var(--duration-fast, 200ms) var(--ease-smooth, cubic-bezier(0.25, 0.1, 0.25, 1)),
+    box-shadow var(--duration-fast, 200ms) var(--ease-smooth, cubic-bezier(0.25, 0.1, 0.25, 1)),
+    border-color var(--duration-fast, 200ms) var(--ease-smooth, cubic-bezier(0.25, 0.1, 0.25, 1)),
+    background-color var(--duration-fast, 200ms) var(--ease-smooth, cubic-bezier(0.25, 0.1, 0.25, 1)),
+    color var(--duration-fast, 200ms) var(--ease-smooth, cubic-bezier(0.25, 0.1, 0.25, 1)),
+    opacity var(--duration-fast, 200ms) var(--ease-smooth, cubic-bezier(0.25, 0.1, 0.25, 1));
   display: flex;
   align-items: center;
   justify-content: center;

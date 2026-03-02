@@ -9,7 +9,7 @@
 }
 
 .cardTitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
   font-size: 1.75rem;
   font-weight: 600;
   margin: 0;

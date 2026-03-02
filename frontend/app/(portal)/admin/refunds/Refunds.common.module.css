@@ -58,9 +58,9 @@
   flex-shrink: 0;
 }
 
-.statIconTotal { background: rgba(69, 115, 223, 0.12); color: #4573df; }
+.statIconTotal { background: rgba(69, 115, 223, 0.12); color: var(--color-primary, #4573df); }
 .statIconPending { background: rgba(242, 201, 76, 0.15); color: #e6a800; }
-.statIconApproved { background: rgba(39, 174, 96, 0.12); color: #27AE60; }
+.statIconApproved { background: rgba(39, 174, 96, 0.12); color: var(--color-success, #27AE60); }
 .statIconAmount { background: rgba(155, 89, 182, 0.12); color: #9b59b6; }
 
 .statContent {
@@ -115,7 +115,7 @@
 }
 
 .searchInput:focus {
-  border-color: #4573df;
+  border-color: var(--color-primary, #4573df);
 }
 
 .filterTabs {
@@ -143,7 +143,7 @@
   padding: 1px 6px;
   border-radius: 10px;
   background: rgba(69, 115, 223, 0.15);
-  color: #4573df;
+  color: var(--color-primary, #4573df);
   font-weight: 600;
 }
 
@@ -294,11 +294,11 @@
 }
 
 .confirmIconApprove {
-  color: #27AE60;
+  color: var(--color-success, #27AE60);
 }
 
 .confirmIconReject {
-  color: #e81123;
+  color: var(--color-error, #e81123);
 }
 
 .confirmText {
@@ -313,4 +313,9 @@
   justify-content: flex-end;
   gap: 0.75rem;
   margin-top: 1rem;
+}
+
+.searchInput:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }

@@ -5,7 +5,7 @@
 }
 
 .subtitle {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .toolbar {
@@ -14,17 +14,17 @@
 }
 
 .searchIcon {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .searchInput {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
   color: #111827;
 }
 
 .searchInput::placeholder {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .searchInput:focus {
@@ -33,7 +33,7 @@
 
 /* Filter Tabs */
 .filterTab {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .filterTab:hover {
@@ -48,17 +48,17 @@
 }
 
 .filterCount {
-  background-color: #e5e7eb;
+  background-color: #e2e8f0;
   color: #374151;
 }
 
 .projectCard {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .projectCard:hover {
-  border-color: #d1d5db;
+  border-color: #cbd5e1;
 }
 
 .iconWrapper {
@@ -70,28 +70,28 @@
 }
 
 .cardDescription {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .skillTag {
-  background-color: #f3f4f6;
+  background-color: #f1f5f9;
   color: #4b5563;
 }
 
 .metaItem {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .chevron {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 /* Sort */
-.sortWrapper { background: #f9fafb; border-color: #e5e7eb; color: #6b7280; }
+.sortWrapper { background: #f9fafb; border-color: #e2e8f0; color: #64748b; }
 .sortSelect { color: #374151; }
 
 /* Pagination */
-.pagination { border-top: 1px solid #e5e7eb; }
-.pageBtn { color: #374151; border-color: #e5e7eb; }
-.pageBtn:hover:not(:disabled) { background: #f3f4f6; }
-.pageInfo { color: #6b7280; }
+.pagination { border-top: 1px solid #e2e8f0; }
+.pageBtn { color: #374151; border-color: #e2e8f0; }
+.pageBtn:hover:not(:disabled) { background: #f1f5f9; }
+.pageInfo { color: #64748b; }

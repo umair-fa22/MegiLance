@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 import StepCard from './StepCard';
 import type { StepCardProps } from './StepCard';
 import { LottieAnimation, workflowAnimation } from '@/app/components/Animations/LottieAnimation';
+import SectionGlobe from '@/app/components/Animations/SectionGlobe/SectionGlobe';
 import commonStyles from './HowItWorks.common.module.css';
 import lightStyles from './HowItWorks.light.module.css';
 import darkStyles from './HowItWorks.dark.module.css';
@@ -43,6 +44,7 @@ const HowItWorks: React.FC = () => {
 
   return (
     <section className={cn(commonStyles.howItWorks, themeStyles.howItWorks)}>
+      <SectionGlobe variant="blue" size="lg" position="left" />
       <div className={cn(commonStyles.container)}>
         <div className={cn(commonStyles.header)}>
           <span className={cn(commonStyles.tagline, themeStyles.tagline)}>The Process</span>

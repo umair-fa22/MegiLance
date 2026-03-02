@@ -11,7 +11,7 @@
   gap: 1.5rem;
   padding: 1.5rem;
   border-radius: 8px;
-  border: 2px solid #27ae60;
+  border: 2px solid var(--color-success, #27ae60);
   align-items: center;
 }
 
@@ -35,7 +35,7 @@
 
 .recipientAvatar svg {
   font-size: 2rem;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 .recipientInfo {
@@ -83,8 +83,9 @@
 }
 
 .searchInput:focus {
-  outline: none;
-  border-color: #4573df;
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: -2px;
+  border-color: var(--color-primary, #4573df);
 }
 
 .searchStatus {
@@ -115,8 +116,13 @@
   border-radius: 8px;
   border: 2px solid #cbd5e0;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   align-items: center;
+}
+
+.recipientCard:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .recipientCard:hover {
@@ -125,7 +131,7 @@
 }
 
 .recipientCardSelected {
-  border-color: #27ae60;
+  border-color: var(--color-success, #27ae60);
 }
 
 .recipientCard .recipientInfo h4 {
@@ -152,7 +158,7 @@
 
 .recipientType svg {
   font-size: 1.25rem;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 .noResults {
@@ -173,7 +179,7 @@
 
 .infoBox svg {
   font-size: 1.25rem;
-  color: #3b82f6;
+  color: var(--color-primary, #3b82f6);
   flex-shrink: 0;
   margin-top: 0.125rem;
 }
@@ -196,8 +202,13 @@
   border-radius: 8px;
   border: 2px solid #cbd5e0;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   text-align: center;
+}
+
+.purposeCard:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .purposeCard:hover {
@@ -206,13 +217,13 @@
 }
 
 .purposeCardSelected {
-  border-color: #4573df;
+  border-color: var(--color-primary, #4573df);
 }
 
 .purposeIcon {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 .purposeCard h4 {
@@ -261,8 +272,9 @@
 
 .formGroup input:focus,
 .formGroup textarea:focus {
-  outline: none;
-  border-color: #4573df;
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: -2px;
+  border-color: var(--color-primary, #4573df);
 }
 
 .formGroup small {
@@ -290,12 +302,17 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.875rem 1.5rem;
-  background: #4573df;
+  background: var(--color-primary, #4573df);
   color: white;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 500;
   transition: background 0.2s;
+}
+
+.uploadButton:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .uploadButton:hover {
@@ -337,7 +354,7 @@
 
 .attachmentIcon svg {
   font-size: 1.25rem;
-  color: #3b82f6;
+  color: var(--color-primary, #3b82f6);
 }
 
 .attachmentInfo {
@@ -360,7 +377,7 @@
   padding: 0.5rem;
   background: transparent;
   border: none;
-  color: #e81123;
+  color: var(--color-error, #e81123);
   cursor: pointer;
   border-radius: 4px;
   transition: background 0.2s;

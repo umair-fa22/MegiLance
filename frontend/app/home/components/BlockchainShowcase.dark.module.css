@@ -1,7 +1,7 @@
 /* @AI-HINT: Dark theme styles for BlockchainShowcase. */
 
 .blockchainShowcase {
-  background: linear-gradient(180deg, #0f1115 0%, #1a1d24 100%);
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
 }
 
 .badge {
@@ -11,11 +11,11 @@
 }
 
 .title {
-  color: #ffffff;
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: #cccccc;
+  color: #94a3b8;
 }
 
 .block {
@@ -28,7 +28,7 @@
 }
 
 .blockHeader {
-  color: #a0a0a0;
+  color: #94a3b8;
 }
 
 .blockContent {
@@ -49,7 +49,7 @@
 }
 
 .featureDescription {
-  color: #cccccc;
+  color: #cbd5e1;
 }
 
 .stat {
@@ -62,7 +62,7 @@
 }
 
 .statLabel {
-  color: #a0a0a0;
+  color: #94a3b8;
 }
 
 .supportedChains {
@@ -77,7 +77,7 @@
 .chain {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.05);
-  color: #a0a0a0;
+  color: #94a3b8;
 }
 
 .chain:hover {

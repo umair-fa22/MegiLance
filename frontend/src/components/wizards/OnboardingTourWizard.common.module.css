@@ -10,8 +10,8 @@
 }
 
 .welcomeIcon {
-  font-size: 4rem;
-  color: #4573df;
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: var(--color-primary, #4573df);
   margin-bottom: 1rem;
 }
 
@@ -43,8 +43,13 @@
   border: 3px solid;
   border-radius: 16px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
   text-align: center;
+}
+
+.roleCard:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .roleCard:hover {
@@ -53,13 +58,13 @@
 }
 
 .roleCardSelected {
-  border-color: #4573df !important;
+  border-color: var(--color-primary, #4573df) !important;
 }
 
 .roleIcon {
   font-size: 3.5rem;
   margin-bottom: 1rem;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 .roleCard h4 {
@@ -88,7 +93,7 @@
 }
 
 .roleFeatures li svg {
-  color: #27AE60;
+  color: var(--color-success, #27AE60);
   flex-shrink: 0;
 }
 
@@ -101,6 +106,12 @@
   margin-top: 2rem;
 }
 
+@media (max-width: 768px) {
+  .statsBox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .stat {
   text-align: center;
 }
@@ -108,7 +119,7 @@
 .statNumber {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
   margin-bottom: 0.5rem;
 }
 
@@ -134,13 +145,30 @@
   margin-bottom: 2rem;
 }
 
+@media (max-width: 768px) {
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .featureCard {
   padding: 1.5rem;
   border: 2px solid;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
   position: relative;
+}
+
+.featureCard:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .featureCard:hover {
@@ -148,12 +176,12 @@
 }
 
 .featureCardSelected {
-  border-color: #4573df !important;
+  border-color: var(--color-primary, #4573df) !important;
 }
 
 .featureIcon {
   font-size: 2.5rem;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
   margin-bottom: 1rem;
 }
 
@@ -172,7 +200,7 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
-  color: #27AE60;
+  color: var(--color-success, #27AE60);
   font-size: 1.5rem;
 }
 
@@ -188,8 +216,8 @@
 }
 
 .profileIcon {
-  font-size: 4rem;
-  color: #4573df;
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: var(--color-primary, #4573df);
   margin-bottom: 1rem;
 }
 
@@ -221,7 +249,7 @@
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  background: #4573df;
+  background: var(--color-primary, #4573df);
   color: white;
   display: flex;
   align-items: center;
@@ -252,16 +280,16 @@
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
-  border: 2px solid #4573df;
+  border: 2px solid var(--color-primary, #4573df);
   background: transparent;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .actionButton:hover {
-  background: #4573df;
+  background: var(--color-primary, #4573df);
   color: white;
 }
 
@@ -302,6 +330,12 @@
   margin-bottom: 3rem;
 }
 
+@media (max-width: 768px) {
+  .actionsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .actionCard {
   padding: 2rem;
   border: 2px solid;
@@ -311,7 +345,7 @@
 
 .actionIcon {
   font-size: 3rem;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
   margin-bottom: 1rem;
 }
 
@@ -330,7 +364,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background: #4573df;
+  background: var(--color-primary, #4573df);
   color: white;
   border: none;
   border-radius: 8px;
@@ -367,7 +401,7 @@
 }
 
 .tip svg {
-  color: #27AE60;
+  color: var(--color-success, #27AE60);
   flex-shrink: 0;
   margin-top: 0.25rem;
 }
@@ -398,7 +432,7 @@
 
 .resourceIcon {
   font-size: 3rem;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
   margin-bottom: 1rem;
 }
 
@@ -414,7 +448,7 @@
 
 .resourceLink {
   display: inline-block;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
   font-weight: 600;
   text-decoration: none;
   transition: opacity 0.2s;
@@ -503,7 +537,7 @@
   padding: 8px 16px;
   border-radius: 6px;
   border: none;
-  background: #e81123;
+  background: var(--color-error, #e81123);
   color: #fff;
   cursor: pointer;
 }

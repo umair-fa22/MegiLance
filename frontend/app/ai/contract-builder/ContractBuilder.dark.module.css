@@ -1,6 +1,6 @@
 /* @AI-HINT: Dark theme styles for Contract Builder */
 
-.container { background: linear-gradient(135deg, #0c0f1a 0%, #111827 50%, #0f1724 100%); color: #e2e8f0; }
+.container { background: linear-gradient(135deg, #0c0f1a 0%, #0f172a 50%, #0f1724 100%); color: #e2e8f0; }
 
 .headerBadge { background: rgba(69,115,223,0.2); color: #7ba0f7; }
 .title { color: #f1f5f9; }

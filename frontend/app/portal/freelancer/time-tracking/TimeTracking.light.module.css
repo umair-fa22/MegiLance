@@ -19,7 +19,7 @@
 .inputSmall,
 .filterSelect {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
   color: #111827;
 }
 
@@ -34,7 +34,7 @@
 
 .summaryCard {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .summaryCard:hover {
@@ -48,7 +48,7 @@
 }
 
 .summaryLabel {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .summaryValue {
@@ -57,7 +57,7 @@
 
 .timerSection {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .activeTimer {
@@ -66,23 +66,23 @@
 }
 
 .timerTime {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .table {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .tableElement th {
   background-color: #f9fafb;
   color: #374151;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .tableElement td {
   color: #111827;
-  border-color: #f3f4f6;
+  border-color: #f1f5f9;
 }
 
 .tableElement tbody tr:hover {
@@ -94,7 +94,7 @@
 }
 
 .badge[data-status="draft"] {
-  background-color: #9ca3af;
+  background-color: #94a3b8;
 }
 
 .badge[data-status="submitted"] {
@@ -110,7 +110,7 @@
 }
 
 .iconBtn {
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
   color: #4b5563;
 }
 
@@ -139,8 +139,8 @@
 }
 
 .iconBtn[data-action="delete"] {
-  color: #6b7280;
-  border-color: #d1d5db;
+  color: #64748b;
+  border-color: #cbd5e1;
 }
 
 .iconBtn[data-action="delete"]:hover {
@@ -151,7 +151,7 @@
 
 .loading,
 .empty {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .checkbox input {

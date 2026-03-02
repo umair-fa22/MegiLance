@@ -6,6 +6,7 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { externalProjectsApi } from '@/lib/api';
 import { PageTransition, ScrollReveal } from '@/app/components/Animations';
+import SectionGlobe from '@/app/components/Animations/SectionGlobe/SectionGlobe';
 import Button from '@/app/components/Button/Button';
 import {
   Globe, Search, RefreshCw, ExternalLink, MapPin, DollarSign,
@@ -201,6 +202,7 @@ export default function ExternalProjectsPage() {
   return (
     <PageTransition>
       <div className={cn(commonStyles.page, themed.page)}>
+        <SectionGlobe variant="green" size="md" position="left" />
         {/* Header */}
         <ScrollReveal>
           <header className={commonStyles.header}>

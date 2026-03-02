@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 
 import TestimonialCard from './TestimonialCard';
 import type { Testimonial } from './TestimonialCard';
+import SectionGlobe from '@/app/components/Animations/SectionGlobe/SectionGlobe';
 import commonStyles from './Testimonials.common.module.css';
 import lightStyles from './Testimonials.light.module.css';
 import darkStyles from './Testimonials.dark.module.css';
@@ -42,6 +43,7 @@ const Testimonials: React.FC = () => {
 
   return (
     <section className={cn(commonStyles.testimonials, themeStyles.testimonials)}>
+      <SectionGlobe variant="green" size="sm" position="left" />
       <div className={commonStyles.container}>
         <div className={commonStyles.header}>
           <h2 className={cn(commonStyles.title, themeStyles.title)}>Trusted by the Best</h2>

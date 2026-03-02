@@ -16,7 +16,7 @@
 }
 
 .subtitle {
-  color: #6b7280;
+  color: #64748b;
 }
 
 /* Form Card */
@@ -26,7 +26,7 @@
 }
 
 .formHeader {
-  border-bottom-color: #f3f4f6;
+  border-bottom-color: #f1f5f9;
 }
 
 .formIconWrapper {
@@ -39,7 +39,7 @@
 }
 
 .formSubtitle {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .label {
@@ -48,17 +48,17 @@
 
 .labelOptional,
 .charCount {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .textarea {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
   color: #1f2937;
 }
 
 .textarea::placeholder {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .textarea:focus {
@@ -89,7 +89,7 @@
 
 /* Submit Section */
 .submitSection {
-  border-top-color: #f3f4f6;
+  border-top-color: #f1f5f9;
 }
 
 .submitButton {
@@ -103,7 +103,7 @@
 }
 
 .privacyNote {
-  color: #6b7280;
+  color: #64748b;
 }
 
 /* Results Panel */
@@ -124,13 +124,13 @@
 }
 
 .emptyStateText {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .feature {
   background-color: #f8fafc;
   color: #4b5563;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 /* Loading State */
@@ -148,11 +148,11 @@
 }
 
 .loadingText {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .loadingStep {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .loadingStep.completed {
@@ -224,7 +224,7 @@
 }
 
 .progressBar {
-  background-color: #e5e7eb;
+  background-color: #e2e8f0;
 }
 
 .progressFill {
@@ -242,12 +242,12 @@
 
 .factorCard {
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .factorImpact {
-  background-color: #f3f4f6;
-  color: #6b7280;
+  background-color: #f1f5f9;
+  color: #64748b;
 }
 
 .factorPositive {
@@ -265,7 +265,7 @@
 }
 
 .factorLabel {
-  color: #6b7280;
+  color: #64748b;
 }
 
 /* Actions */
@@ -284,19 +284,19 @@
 }
 
 .actionButton.secondary {
-  background: #f3f4f6;
+  background: #f1f5f9;
   color: #374151;
   box-shadow: none;
 }
 
 .actionButton.secondary:hover {
-  background: #e5e7eb;
+  background: #e2e8f0;
   box-shadow: none;
 }
 
 /* Disclaimer */
 .disclaimer {
   background-color: #f8fafc;
-  color: #6b7280;
-  border: 1px solid #e5e7eb;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
 }

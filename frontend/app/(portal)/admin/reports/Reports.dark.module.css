@@ -1,24 +1,24 @@
 /* Dark Theme - Admin Reports */
-.container { background: #0f0f0f; }
-.title { color: #f9fafb; }
-.subtitle { color: #9ca3af; }
-.statCard { background: #161616; border: 1px solid #2d2d2d; }
-.statValue { color: #f9fafb; }
-.statLabel { color: #9ca3af; }
-.tab { background: #1f1f1f; color: #d1d5db; }
-.tab:hover { background: #2d2d2d; }
+.container { background: #0f172a; }
+.title { color: #f8fafc; }
+.subtitle { color: #94a3b8; }
+.statCard { background: #1e293b; border: 1px solid #334155; }
+.statValue { color: #f8fafc; }
+.statLabel { color: #94a3b8; }
+.tab { background: #334155; color: #cbd5e1; }
+.tab:hover { background: #334155; }
 .tabActive { background: #4573df !important; color: #fff !important; }
-.reportCard { background: #161616; border: 1px solid #2d2d2d; }
+.reportCard { background: #1e293b; border: 1px solid #334155; }
 .reportCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-.reportCardTitle { color: #f9fafb; }
-.reportCardDesc { color: #9ca3af; }
+.reportCardTitle { color: #f8fafc; }
+.reportCardDesc { color: #94a3b8; }
 .reportCardMeta { color: #6b7280; }
-.chartSection { background: #161616; border: 1px solid #2d2d2d; }
-.chartTitle { color: #f9fafb; }
+.chartSection { background: #1e293b; border: 1px solid #334155; }
+.chartTitle { color: #f8fafc; }
 .chartBar { background: #4573df; }
 .chartLabel { color: #6b7280; }
-.tableContainer { background: #161616; border: 1px solid #2d2d2d; }
-.th { background: #1a1a1a; color: #9ca3af; border-bottom: 1px solid #2d2d2d; }
-.td { color: #d1d5db; border-bottom: 1px solid #1f1f1f; }
-.tr:hover { background: #1a1a1a; }
-.emptyState { background: #161616; color: #9ca3af; }
+.tableContainer { background: #1e293b; border: 1px solid #334155; }
+.th { background: #1e293b; color: #94a3b8; border-bottom: 1px solid #334155; }
+.td { color: #cbd5e1; border-bottom: 1px solid #334155; }
+.tr:hover { background: #1e293b; }
+.emptyState { background: #1e293b; color: #94a3b8; }

@@ -103,11 +103,11 @@
 }
 
 .trend_up {
-  color: #27AE60;
+  color: var(--color-success, #27AE60);
 }
 
 .trend_down {
-  color: #e81123;
+  color: var(--color-error, #e81123);
 }
 
 /* Charts Grid */
@@ -212,19 +212,19 @@
 
 /* Status-specific dot colors */
 .stat_dot_completed {
-  background-color: #27AE60;
+  background-color: var(--color-success, #27AE60);
 }
 
 .stat_dot_in_progress {
-  background-color: #4573df;
+  background-color: var(--color-primary, #4573df);
 }
 
 .stat_dot_pending_review {
-  background-color: #ff9800;
+  background-color: var(--color-accent, #ff9800);
 }
 
 .stat_dot_cancelled {
-  background-color: #e81123;
+  background-color: var(--color-error, #e81123);
 }
 
 .stat_label {
@@ -251,22 +251,22 @@
 
 /* Status-specific bar colors and widths */
 .stat_bar_completed {
-  background-color: #27AE60;
+  background-color: var(--color-success, #27AE60);
   width: 48%;
 }
 
 .stat_bar_in_progress {
-  background-color: #4573df;
+  background-color: var(--color-primary, #4573df);
   width: 32%;
 }
 
 .stat_bar_pending_review {
-  background-color: #ff9800;
+  background-color: var(--color-accent, #ff9800);
   width: 12%;
 }
 
 .stat_bar_cancelled {
-  background-color: #e81123;
+  background-color: var(--color-error, #e81123);
   width: 8%;
 }
 

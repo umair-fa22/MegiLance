@@ -13,7 +13,7 @@
 }
 
 .title {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 32px;
   font-weight: 700;
   margin: 0;
@@ -48,7 +48,12 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
@@ -66,7 +71,7 @@
 }
 
 .kpiValue {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 28px;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -84,7 +89,12 @@
   border: 1.5px solid;
   border-radius: 16px;
   padding: 1.5rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
@@ -93,7 +103,7 @@
 }
 
 .cardTitle {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 18px;
   font-weight: 600;
   margin: 0 0 var(--space-5) 0;
@@ -127,7 +137,12 @@
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.01em;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button:hover {

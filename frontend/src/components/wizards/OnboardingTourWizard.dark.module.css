@@ -1,8 +1,8 @@
 /* @AI-HINT: Dark theme for OnboardingTourWizard */
 
 .roleCard {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .roleCardSelected {
@@ -10,13 +10,13 @@
 }
 
 .statsBox {
-  background: #1a202c;
-  border: 2px solid #4a5568;
+  background: #0f172a;
+  border: 2px solid #475569;
 }
 
 .featureCard {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .featureCardSelected {
@@ -24,38 +24,38 @@
 }
 
 .tipBox {
-  background: #2d3748;
+  background: #1e293b;
   border: 2px solid #f6ad55;
   color: #fbd38d;
 }
 
 .checklistItem {
-  background: #1a202c;
-  border-color: #4a5568;
+  background: #0f172a;
+  border-color: #475569;
 }
 
 .actionButton {
-  background: #2d3748;
+  background: #1e293b;
 }
 
 .benefitsBox {
-  background: #1a202c;
+  background: #0f172a;
   border: 2px solid #68d391;
 }
 
 .actionCard {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .quickTips {
-  background: #1a202c;
-  border: 2px solid #4a5568;
+  background: #0f172a;
+  border: 2px solid #475569;
 }
 
 .resourceCard {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .finalBox {

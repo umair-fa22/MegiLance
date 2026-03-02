@@ -1,23 +1,23 @@
 /* @AI-HINT: Light theme styles for FAQ. */
 .root {
-  background-color: var(--color-background-light);
+  background-color: #f8fafc;
 }
 
 .subtitle {
-  color: var(--color-text-secondary-light);
+  color: #64748b;
 }
 
-.item { background: #ffffff; border-color: #e5e7eb; }
-.q { color: #111827; }
+.item { background: #ffffff; border-color: #e2e8f0; }
+.q { color: #0f172a; }
 .q:hover { background: #f8fafc; }
 .a { color: #374151; }
 
 .badge {
-  background-color: var(--color-primary-light-accent);
-  color: var(--color-primary);
-  border-color: var(--color-primary-light-border);
+  background-color: #e8f0fe;
+  color: #4573df;
+  border-color: rgba(69, 115, 223, 0.2);
 }
 
 .title {
-  color: var(--color-text-primary-light);
+  color: #1e293b;
 }

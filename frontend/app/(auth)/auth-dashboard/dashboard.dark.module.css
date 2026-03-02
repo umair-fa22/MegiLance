@@ -104,7 +104,7 @@
 
 /* Progress Bar Dark Theme */
 .Dashboard--dark .Dashboard-progress-bar {
-  background: #374151;
+  background: #334155;
 }
 
 .Dashboard--dark .Dashboard-progress-fill {
@@ -112,5 +112,5 @@
 }
 
 .Dashboard--dark .Dashboard-progress-text {
-  color: #d1d5db;
+  color: #cbd5e1;
 }

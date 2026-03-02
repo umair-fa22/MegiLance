@@ -8,7 +8,7 @@
 
 .searchSection { display: flex; gap: 0.75rem; max-width: 680px; margin: 1.5rem auto 0; }
 .searchBar { flex: 1; display: flex; align-items: center; gap: 0.75rem; padding: 0 1rem; border-radius: 12px; height: 52px; border: 1.5px solid transparent; transition: border-color 0.2s, box-shadow 0.2s; }
-.searchBar:focus-within { border-color: #4573df; box-shadow: 0 0 0 3px rgba(69,115,223,0.15); }
+.searchBar:focus-within { border-color: var(--color-primary, #4573df); box-shadow: 0 0 0 3px rgba(69,115,223,0.15); }
 .searchIcon { opacity: 0.5; flex-shrink: 0; }
 .searchInput { flex: 1; border: none; background: transparent; outline: none; font-size: 1rem; color: inherit; }
 .searchInput::placeholder { opacity: 0.5; }
@@ -21,7 +21,12 @@
 /* ── Categories ──────────────────────────────────────────────────── */
 .categoriesSection { padding: 0 2rem; margin-bottom: 1.5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .categoriesScroll { display: flex; gap: 0.5rem; padding: 0.5rem 0; min-width: max-content; }
-.categoryPill { display: flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; border-radius: 999px; border: 1.5px solid transparent; font-size: 0.85rem; font-weight: 500; cursor: pointer; white-space: nowrap; background: transparent; color: inherit; transition: all 0.2s; }
+.categoryPill { display: flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; border-radius: 999px; border: 1.5px solid transparent; font-size: 0.85rem; font-weight: 500; cursor: pointer; white-space: nowrap; background: transparent; color: inherit; transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s; }
 .categoryPillActive { font-weight: 600; }
 
 /* ── Main Layout ─────────────────────────────────────────────────── */
@@ -37,10 +42,20 @@
 .filterOptions { display: flex; flex-direction: column; gap: 0.25rem; }
 .filterOption { display: flex; align-items: center; gap: 0.6rem; padding: 0.4rem 0; cursor: pointer; font-size: 0.9rem; }
 .filterRadio { display: none; }
-.filterRadioCustom { width: 16px; height: 16px; border-radius: 50%; border: 2px solid; flex-shrink: 0; transition: all 0.2s; position: relative; }
+.filterRadioCustom { width: 16px; height: 16px; border-radius: 50%; border: 2px solid; flex-shrink: 0; transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s; position: relative; }
 .filterRadioActive { border-width: 5px; }
 .filterChips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.filterChip { padding: 0.4rem 0.9rem; border-radius: 999px; border: 1.5px solid; font-size: 0.85rem; cursor: pointer; background: transparent; color: inherit; transition: all 0.2s; }
+.filterChip { padding: 0.4rem 0.9rem; border-radius: 999px; border: 1.5px solid; font-size: 0.85rem; cursor: pointer; background: transparent; color: inherit; transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s; }
 .filterChipActive { font-weight: 600; }
 .clearFilters { display: flex; align-items: center; gap: 0.4rem; background: none; border: none; cursor: pointer; font-size: 0.85rem; padding: 0.5rem 0; opacity: 0.7; color: inherit; }
 .clearFilters:hover { opacity: 1; }
@@ -54,7 +69,12 @@
 .toolbarActions { display: flex; align-items: center; gap: 0.75rem; }
 .sortSelect { padding: 0.5rem 0.75rem; border-radius: 8px; border: 1.5px solid; font-size: 0.85rem; background: transparent; color: inherit; cursor: pointer; }
 .viewToggle { display: flex; border-radius: 8px; overflow: hidden; border: 1.5px solid; }
-.viewBtn { padding: 0.4rem 0.6rem; background: transparent; border: none; cursor: pointer; display: flex; align-items: center; color: inherit; opacity: 0.5; transition: all 0.2s; }
+.viewBtn { padding: 0.4rem 0.6rem; background: transparent; border: none; cursor: pointer; display: flex; align-items: center; color: inherit; opacity: 0.5; transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s; }
 .viewBtnActive { opacity: 1; }
 
 /* ── Active Filter Tags ──────────────────────────────────────────── */
@@ -69,7 +89,12 @@
 .jobsList { display: flex; flex-direction: column; gap: 1rem; }
 .jobsGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1rem; }
 
-.card { display: flex; flex-direction: column; gap: 0.75rem; padding: 1.5rem; border-radius: 14px; border: 1.5px solid transparent; transition: all 0.25s ease; text-decoration: none !important; color: inherit; }
+.card { display: flex; flex-direction: column; gap: 0.75rem; padding: 1.5rem; border-radius: 14px; border: 1.5px solid transparent; transition: transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease,
+    opacity 0.25s ease; text-decoration: none !important; color: inherit; }
 .card:hover { transform: translateY(-3px); }
 .card * { text-decoration: none !important; }
 
@@ -110,7 +135,12 @@
 
 /* ── Pagination ──────────────────────────────────────────────────── */
 .pagination { display: flex; justify-content: center; gap: 0.4rem; margin-top: 2rem; padding: 1rem 0; }
-.pageBtn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 10px; border: 1.5px solid transparent; background: transparent; cursor: pointer; font-size: 0.9rem; font-weight: 500; color: inherit; transition: all 0.2s; }
+.pageBtn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 10px; border: 1.5px solid transparent; background: transparent; cursor: pointer; font-size: 0.9rem; font-weight: 500; color: inherit; transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s; }
 .pageBtn:disabled { opacity: 0.3; cursor: not-allowed; }
 .pageBtnActive { font-weight: 700; }
 
@@ -145,4 +175,9 @@
   .title { font-size: 1.6rem; }
   .cardTop { flex-direction: column; }
   .budget { align-self: flex-start; }
+}
+
+.searchInput:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }

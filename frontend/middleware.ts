@@ -126,6 +126,10 @@ export function middleware(request: NextRequest) {
     response.headers.set('Pragma', 'no-cache');
   }
 
+  // Prevent authenticated users from accessing auth pages
+  const authPaths = ['/login', '/signup', '/forgot-password', '/reset-password'];
+  const isAuthPath = authPaths.some(path => pathname === path);
+
   // Prevent CDN from caching auth pages (login, signup, etc.)
   // CDN can cache RSC flight payloads (text/x-component) and serve them
   // for HTML page loads, causing blank/broken pages.
@@ -137,10 +141,6 @@ export function middleware(request: NextRequest) {
   // Tell CDN to vary cache by RSC header so RSC flight requests
   // and full HTML page loads are cached separately
   response.headers.set('Vary', 'RSC, Next-Router-State-Tree, Next-Router-Prefetch');
-
-  // Prevent authenticated users from accessing auth pages
-  const authPaths = ['/login', '/signup', '/forgot-password', '/reset-password'];
-  const isAuthPath = authPaths.some(path => pathname === path);
   
   if (isAuthPath && authToken) {
     return NextResponse.redirect(new URL('/dashboard', request.url));

@@ -1,6 +1,6 @@
 /* AI-HINT: Dark theme overrides for Privacy Policy page. */
 
-.themeWrapper { background: linear-gradient(180deg, #0a0f1a 0%, #0f172a 100%); color: var(--text-primary); }
+.themeWrapper { background: linear-gradient(180deg, #0f172a 0%, #0f172a 100%); color: var(--text-primary); }
 .subtitle { color: var(--text-secondary); }
 .meta { color: var(--text-tertiary); background: rgba(88, 166, 255, 0.1); }
 

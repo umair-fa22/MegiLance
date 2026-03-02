@@ -44,7 +44,12 @@
   justify-content: center;
   border-radius: var(--radius-md);
   color: var(--banner-text-color);
-  transition: all 0.2s;
+  transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s;
   min-width: 44px;
   min-height: 44px;
 }

@@ -1,325 +1,170 @@
-# @AI-HINT: Data analytics export API - BI reports and data exports
+# @AI-HINT: Data analytics export API - BI reports and data exports (Turso-backed)
+import json
+import os
 from fastapi import APIRouter, Depends, HTTPException, status, Query
-from sqlalchemy.orm import Session
 from typing import List, Optional
 from pydantic import BaseModel
 from datetime import datetime, timezone
 from enum import Enum
-from app.db.session import get_db
+
+from app.db.turso_http import execute_query
 from app.core.security import get_current_active_user
-from app.models.user import User
 from app.services.db_utils import get_user_role, paginate_params
 
 router = APIRouter(prefix="/data-export")
 
+EXPORT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))), "uploads", "exports")
+os.makedirs(EXPORT_DIR, exist_ok=True)
 
-class ExportFormat(str, Enum):
-    CSV = "csv"
-    JSON = "json"
-    XLSX = "xlsx"
-    PDF = "pdf"
-    PARQUET = "parquet"
+# Static column definitions per data type
+COLUMNS_MAP = {
+    "projects": ["id", "title", "description", "status", "budget", "created_at", "deadline", "client_id", "freelancer_id"],
+    "users": ["id", "email", "name", "role", "created_at", "is_verified", "is_active"],
+    "payments": ["id", "amount", "currency", "status", "payment_method", "created_at"],
+    "contracts": ["id", "project_id", "client_id", "freelancer_id", "amount", "status", "start_date", "end_date"],
+    "reviews": ["id", "rating", "comment", "reviewer_id", "reviewee_id", "project_id", "created_at"],
+}
 
-
-class ExportStatus(str, Enum):
-    PENDING = "pending"
-    PROCESSING = "processing"
-    COMPLETED = "completed"
-    FAILED = "failed"
-    EXPIRED = "expired"
-
-
-class DataExport(BaseModel):
-    id: str
-    user_id: str
-    name: str
-    data_type: str
-    format: ExportFormat
-    filters: Optional[dict] = None
-    status: ExportStatus
-    file_url: Optional[str] = None
-    file_size: Optional[int] = None
-    records_count: Optional[int] = None
-    created_at: datetime
-    completed_at: Optional[datetime] = None
-    expires_at: Optional[datetime] = None
+# Allowed table names (whitelist for SQL safety)
+ALLOWED_TABLES = {"projects", "users", "payments", "contracts", "reviews"}
 
 
-class ExportTemplate(BaseModel):
-    id: str
-    name: str
-    description: str
-    data_type: str
-    columns: List[str]
-    default_filters: Optional[dict] = None
-    default_format: ExportFormat
+def _uid(cu):
+    return cu.id if hasattr(cu, "id") else cu.get("user_id")
 
 
-class ScheduledExport(BaseModel):
-    id: str
-    user_id: str
-    template_id: str
-    name: str
-    schedule: str
-    format: ExportFormat
-    recipients: List[str]
-    is_active: bool
-    last_run: Optional[datetime] = None
-    next_run: Optional[datetime] = None
+def _val(cell):
+    return cell.get("value") if isinstance(cell, dict) else cell
 
 
-@router.post("/create", response_model=DataExport)
+def _row_dict(row, cols):
+    names = [c.get("name", c) if isinstance(c, dict) else c for c in cols]
+    vals = [_val(c) for c in row]
+    return dict(zip(names, vals))
+
+
+@router.post("/create")
 async def create_export(
     name: str,
-    data_type: str = Query(..., enum=["users", "projects", "contracts", "payments", "reviews", "messages"]),
-    format: ExportFormat = ExportFormat.CSV,
-    filters: Optional[dict] = None,
-    columns: Optional[List[str]] = None,
-    current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    data_type: str = Query(..., enum=["users", "projects", "contracts", "payments", "reviews"]),
+    export_format: str = Query("csv", alias="format", enum=["csv", "json"]),
+    filters: Optional[str] = None,
+    current_user=Depends(get_current_active_user),
 ):
-    """Create a new data export"""
-    # Sensitive data types require admin access
-    admin_only_types = {"users", "payments"}
-    if data_type in admin_only_types and get_user_role(current_user) != "admin":
-        raise HTTPException(
-            status_code=403,
-            detail=f"Admin access required to export {data_type} data"
-        )
-    return DataExport(
-        id="export-new",
-        user_id=str(current_user.id),
-        name=name,
-        data_type=data_type,
-        format=format,
-        filters=filters,
-        status=ExportStatus.PROCESSING,
-        created_at=datetime.now(timezone.utc)
+    """Create a new data export and generate the file."""
+    uid = _uid(current_user)
+    admin_only = {"users", "payments"}
+    if data_type in admin_only and get_user_role(current_user) != "admin":
+        raise HTTPException(status_code=403, detail=f"Admin access required to export {data_type} data")
+    if data_type not in ALLOWED_TABLES:
+        raise HTTPException(status_code=400, detail="Invalid data type")
+
+    now = datetime.now(timezone.utc).isoformat()
+    # Insert pending record
+    execute_query(
+        "INSERT INTO data_exports (user_id, export_type, format, status, filters, started_at, created_at) VALUES (?, ?, ?, 'processing', ?, ?, ?)",
+        [uid, data_type, export_format, filters or "", now, now]
     )
+    id_res = execute_query("SELECT last_insert_rowid()")
+    export_id = _val(id_res["rows"][0][0])
+
+    # Query actual data
+    cols = COLUMNS_MAP.get(data_type, ["id"])
+    safe_cols = ", ".join(c for c in cols if c.isalnum() or c == "_")
+    result = execute_query(f"SELECT {safe_cols} FROM {data_type} LIMIT 10000")
+    db_cols = result.get("columns", result.get("cols", []))
+    rows = [_row_dict(r, db_cols) for r in result.get("rows", [])]
+
+    # Save file
+    filename = f"export_{export_id}.{export_format}"
+    filepath = os.path.join(EXPORT_DIR, filename)
+    if export_format == "json":
+        with open(filepath, "w") as f:
+            json.dump(rows, f, default=str)
+    else:
+        import csv
+        with open(filepath, "w", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=db_cols if db_cols else cols)
+            writer.writeheader()
+            writer.writerows(rows)
+
+    file_size = os.path.getsize(filepath) if os.path.exists(filepath) else 0
+    completed = datetime.now(timezone.utc).isoformat()
+    execute_query(
+        "UPDATE data_exports SET status='completed', file_path=?, file_size=?, row_count=?, completed_at=? WHERE id=?",
+        [filepath, file_size, len(rows), completed, export_id]
+    )
+    return {
+        "id": export_id, "user_id": uid, "name": name, "data_type": data_type,
+        "format": export_format, "status": "completed", "file_size": file_size,
+        "records_count": len(rows), "created_at": now, "completed_at": completed,
+    }
 
 
-@router.get("/list", response_model=List[DataExport])
+@router.get("/list")
 async def list_exports(
-    status: Optional[ExportStatus] = None,
+    export_status: Optional[str] = Query(None, alias="status"),
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
     current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
 ):
-    """List user's exports"""
+    """List user's exports."""
+    uid = _uid(current_user)
     offset, limit = paginate_params(page, page_size)
-    return [
-        DataExport(
-            id=f"export-{i}",
-            user_id=str(current_user.id),
-            name=f"Export {i}",
-            data_type="projects",
-            format=ExportFormat.CSV,
-            status=ExportStatus.COMPLETED if i < 3 else ExportStatus.PROCESSING,
-            file_url=f"/downloads/export-{i}.csv" if i < 3 else None,
-            file_size=1024 * (i + 1) if i < 3 else None,
-            records_count=100 * (i + 1) if i < 3 else None,
-            created_at=datetime.now(timezone.utc),
-            completed_at=datetime.now(timezone.utc) if i < 3 else None
-        )
-        for i in range(min(limit, 5))
-    ]
-
-
-@router.get("/{export_id}", response_model=DataExport)
-async def get_export(
-    export_id: str,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Get export details"""
-    return DataExport(
-        id=export_id,
-        user_id=str(current_user.id),
-        name="Project Export",
-        data_type="projects",
-        format=ExportFormat.CSV,
-        status=ExportStatus.COMPLETED,
-        file_url=f"/downloads/{export_id}.csv",
-        file_size=2048,
-        records_count=150,
-        created_at=datetime.now(timezone.utc),
-        completed_at=datetime.now(timezone.utc)
+    conditions = ["user_id = ?"]
+    params = [uid]
+    if export_status:
+        conditions.append("status = ?")
+        params.append(export_status)
+    where = " AND ".join(conditions)
+    params.extend([limit, offset])
+    result = execute_query(
+        f"SELECT id, user_id, export_type, format, status, filters, file_path, file_size, row_count, error_message, started_at, completed_at, created_at FROM data_exports WHERE {where} ORDER BY created_at DESC LIMIT ? OFFSET ?",
+        params,
     )
+    cols = result.get("columns", result.get("cols", []))
+    return [_row_dict(r, cols) for r in result.get("rows", [])]
 
 
-@router.get("/{export_id}/download")
-async def download_export(
-    export_id: str,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Get download URL for export"""
-    return {
-        "export_id": export_id,
-        "download_url": f"/downloads/{export_id}.csv",
-        "expires_in": 3600
-    }
-
-
-@router.delete("/{export_id}")
-async def delete_export(
-    export_id: str,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Delete an export"""
-    return {"message": f"Export {export_id} deleted"}
-
-
-@router.get("/templates", response_model=List[ExportTemplate])
-async def get_export_templates(
-    data_type: Optional[str] = None,
-    current_user=Depends(get_current_active_user)
-):
-    """Get available export templates"""
-    return [
-        ExportTemplate(
-            id="template-projects",
-            name="Projects Export",
-            description="Export all project data",
-            data_type="projects",
-            columns=["id", "title", "status", "budget", "created_at", "client_id"],
-            default_format=ExportFormat.CSV
-        ),
-        ExportTemplate(
-            id="template-users",
-            name="Users Export",
-            description="Export user data",
-            data_type="users",
-            columns=["id", "email", "name", "role", "created_at", "is_verified"],
-            default_format=ExportFormat.CSV
-        ),
-        ExportTemplate(
-            id="template-payments",
-            name="Payments Export",
-            description="Export payment transactions",
-            data_type="payments",
-            columns=["id", "amount", "status", "payment_method", "created_at"],
-            default_format=ExportFormat.XLSX
-        )
+@router.get("/templates")
+async def get_export_templates(data_type: Optional[str] = None, current_user=Depends(get_current_active_user)):
+    """Get available export templates (static schema definitions)."""
+    templates = [
+        {"id": "tpl-projects", "name": "Projects Export", "description": "Export all project data", "data_type": "projects", "columns": COLUMNS_MAP["projects"], "default_format": "csv"},
+        {"id": "tpl-users", "name": "Users Export", "description": "Export user data (admin)", "data_type": "users", "columns": COLUMNS_MAP["users"], "default_format": "csv"},
+        {"id": "tpl-payments", "name": "Payments Export", "description": "Export payment transactions (admin)", "data_type": "payments", "columns": COLUMNS_MAP["payments"], "default_format": "csv"},
+        {"id": "tpl-contracts", "name": "Contracts Export", "description": "Export contract data", "data_type": "contracts", "columns": COLUMNS_MAP["contracts"], "default_format": "csv"},
+        {"id": "tpl-reviews", "name": "Reviews Export", "description": "Export review data", "data_type": "reviews", "columns": COLUMNS_MAP["reviews"], "default_format": "csv"},
     ]
-
-
-@router.post("/templates", response_model=ExportTemplate)
-async def create_export_template(
-    name: str,
-    description: str,
-    data_type: str,
-    columns: List[str],
-    default_format: ExportFormat = ExportFormat.CSV,
-    default_filters: Optional[dict] = None,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Create custom export template"""
-    return ExportTemplate(
-        id="template-new",
-        name=name,
-        description=description,
-        data_type=data_type,
-        columns=columns,
-        default_filters=default_filters,
-        default_format=default_format
-    )
-
-
-@router.get("/scheduled", response_model=List[ScheduledExport])
-async def get_scheduled_exports(
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Get scheduled exports"""
-    return [
-        ScheduledExport(
-            id="scheduled-1",
-            user_id=str(current_user.id),
-            template_id="template-projects",
-            name="Weekly Projects Report",
-            schedule="0 9 * * 1",
-            format=ExportFormat.XLSX,
-            recipients=["admin@example.com"],
-            is_active=True,
-            last_run=datetime.now(timezone.utc),
-            next_run=datetime.now(timezone.utc)
-        )
-    ]
-
-
-@router.post("/scheduled", response_model=ScheduledExport)
-async def create_scheduled_export(
-    template_id: str,
-    name: str,
-    schedule: str,
-    format: ExportFormat,
-    recipients: List[str],
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Create scheduled export"""
-    return ScheduledExport(
-        id="scheduled-new",
-        user_id=str(current_user.id),
-        template_id=template_id,
-        name=name,
-        schedule=schedule,
-        format=format,
-        recipients=recipients,
-        is_active=True,
-        next_run=datetime.now(timezone.utc)
-    )
-
-
-@router.put("/scheduled/{scheduled_id}")
-async def update_scheduled_export(
-    scheduled_id: str,
-    schedule: Optional[str] = None,
-    recipients: Optional[List[str]] = None,
-    is_active: Optional[bool] = None,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Update scheduled export"""
-    return {
-        "id": scheduled_id,
-        "schedule": schedule,
-        "recipients": recipients,
-        "is_active": is_active,
-        "updated_at": datetime.now(timezone.utc).isoformat()
-    }
-
-
-@router.delete("/scheduled/{scheduled_id}")
-async def delete_scheduled_export(
-    scheduled_id: str,
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Delete scheduled export"""
-    return {"message": f"Scheduled export {scheduled_id} deleted"}
+    if data_type:
+        templates = [t for t in templates if t["data_type"] == data_type]
+    return templates
 
 
 @router.get("/available-columns/{data_type}")
-async def get_available_columns(
-    data_type: str,
-    current_user=Depends(get_current_active_user)
-):
-    """Get available columns for a data type"""
-    columns_map = {
-        "projects": ["id", "title", "description", "status", "budget", "created_at", "deadline", "client_id", "freelancer_id"],
-        "users": ["id", "email", "first_name", "last_name", "role", "created_at", "is_verified", "is_active"],
-        "payments": ["id", "amount", "currency", "status", "payment_method", "created_at", "completed_at"],
-        "contracts": ["id", "project_id", "client_id", "freelancer_id", "amount", "status", "start_date", "end_date"],
-        "reviews": ["id", "rating", "comment", "reviewer_id", "reviewee_id", "project_id", "created_at"]
-    }
+async def get_available_columns(data_type: str, current_user=Depends(get_current_active_user)):
+    """Get available columns for a data type."""
+    return {"data_type": data_type, "columns": COLUMNS_MAP.get(data_type, [])}
+
+
+@router.get("/storage-usage")
+async def get_storage_usage(current_user=Depends(get_current_active_user)):
+    """Get export storage usage from real data."""
+    uid = _uid(current_user)
+    result = execute_query(
+        "SELECT COUNT(*), COALESCE(SUM(file_size), 0) FROM data_exports WHERE user_id = ?", [uid]
+    )
+    row = result["rows"][0] if result.get("rows") else [0, 0]
+    count = _val(row[0]) or 0
+    used = _val(row[1]) or 0
+    limit_bytes = 1073741824  # 1 GB
     return {
-        "data_type": data_type,
-        "columns": columns_map.get(data_type, [])
+        "used_bytes": used,
+        "used_human": f"{used / 1048576:.1f} MB",
+        "limit_bytes": limit_bytes,
+        "limit_human": "1 GB",
+        "percentage": round((used / limit_bytes) * 100, 2) if limit_bytes else 0,
+        "exports_count": count,
     }
 
 
@@ -330,32 +175,58 @@ async def preview_export(
     filters: Optional[dict] = None,
     limit: int = Query(10, ge=1, le=100),
     current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
 ):
-    """Preview export data"""
-    return {
-        "data_type": data_type,
-        "columns": columns,
-        "preview_rows": [
-            {col: f"sample_{col}_{i}" for col in columns}
-            for i in range(min(limit, 5))
-        ],
-        "total_records": 150
-    }
+    """Preview export data with real rows."""
+    if data_type not in ALLOWED_TABLES:
+        raise HTTPException(status_code=400, detail="Invalid data type")
+    valid_cols = COLUMNS_MAP.get(data_type, [])
+    safe_cols = [c for c in columns if c in valid_cols]
+    if not safe_cols:
+        safe_cols = valid_cols[:5] if valid_cols else ["id"]
+    col_str = ", ".join(safe_cols)
+    result = execute_query(f"SELECT {col_str} FROM {data_type} LIMIT ?", [limit])
+    db_cols = result.get("columns", result.get("cols", []))
+    rows = [_row_dict(r, db_cols) for r in result.get("rows", [])]
+    count_res = execute_query(f"SELECT COUNT(*) FROM {data_type}")
+    total = _val(count_res["rows"][0][0]) if count_res.get("rows") else 0
+    return {"data_type": data_type, "columns": safe_cols, "preview_rows": rows, "total_records": total}
 
 
-@router.get("/storage-usage")
-async def get_storage_usage(
-    current_user=Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    """Get export storage usage"""
-    return {
-        "used_bytes": 52428800,
-        "used_human": "50 MB",
-        "limit_bytes": 1073741824,
-        "limit_human": "1 GB",
-        "percentage": 4.88,
-        "exports_count": 25
-    }
+@router.get("/{export_id}")
+async def get_export(export_id: int, current_user=Depends(get_current_active_user)):
+    """Get export details."""
+    uid = _uid(current_user)
+    result = execute_query(
+        "SELECT id, user_id, export_type, format, status, filters, file_path, file_size, row_count, error_message, started_at, completed_at, created_at FROM data_exports WHERE id = ? AND user_id = ?",
+        [export_id, uid],
+    )
+    cols = result.get("columns", result.get("cols", []))
+    if not result.get("rows"):
+        raise HTTPException(status_code=404, detail="Export not found")
+    return _row_dict(result["rows"][0], cols)
+
+
+@router.get("/{export_id}/download")
+async def download_export(export_id: int, current_user=Depends(get_current_active_user)):
+    """Get download info for export."""
+    uid = _uid(current_user)
+    result = execute_query("SELECT file_path, format FROM data_exports WHERE id = ? AND user_id = ? AND status = 'completed'", [export_id, uid])
+    if not result.get("rows"):
+        raise HTTPException(status_code=404, detail="Export not found or not ready")
+    file_path = _val(result["rows"][0][0])
+    return {"export_id": export_id, "file_path": file_path, "expires_in": 3600}
+
+
+@router.delete("/{export_id}")
+async def delete_export(export_id: int, current_user=Depends(get_current_active_user)):
+    """Delete an export and its file."""
+    uid = _uid(current_user)
+    result = execute_query("SELECT file_path FROM data_exports WHERE id = ? AND user_id = ?", [export_id, uid])
+    if not result.get("rows"):
+        raise HTTPException(status_code=404, detail="Export not found")
+    file_path = _val(result["rows"][0][0])
+    if file_path and os.path.exists(file_path):
+        os.remove(file_path)
+    execute_query("DELETE FROM data_exports WHERE id = ?", [export_id])
+    return {"message": "Export deleted", "id": export_id}
 

@@ -17,7 +17,7 @@
 }
 
 .lineChartSvg:focus {
-  outline: 2px solid #4573df;
+  outline: 2px solid var(--color-primary, #4573df);
   outline-offset: 2px;
   border-radius: 4px;
 }

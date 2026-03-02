@@ -1,4 +1,4 @@
-/* @AI-HINT: Light theme styles for the PublicFooter. Defines a premium color palette for a clean, professional, and brand-aligned light mode appearance. */
+/* @AI-HINT: Light theme styles for the PublicFooter. Premium color palette for clean, professional, brand-aligned light mode. */
 
 .footer {
   background-color: var(--color-surface-alt, #f9fafb);
@@ -8,8 +8,35 @@
   color: var(--color-text-secondary, #4b5563);
 }
 
-.linksTitle {
+.newsletterLabel {
   color: var(--color-text-primary, #111827);
+}
+
+.newsletterInput {
+  background: #ffffff;
+  border-color: var(--color-border-subtle, #e2e8f0);
+  color: var(--color-text-primary, #111827);
+}
+
+.newsletterInput::placeholder {
+  color: var(--color-text-tertiary, #94a3b8);
+}
+
+.newsletterInput:focus {
+  border-color: var(--color-brand-primary, #4573df);
+}
+
+.newsletterButton {
+  background: var(--color-brand-primary, #4573df);
+  color: #ffffff;
+}
+
+.newsletterButton:hover {
+  background: #3a62c4;
+}
+
+.linksTitle {
+  color: var(--color-text-tertiary, #64748b);
 }
 
 .linkItem {
@@ -21,17 +48,19 @@
 }
 
 .bottomBar {
-  border-top-color: var(--color-border-subtle, #e5e7eb);
+  border-top-color: var(--color-border-subtle, #e2e8f0);
 }
 
 .copyright {
-  color: var(--color-text-tertiary, #6b7280);
+  color: var(--color-text-tertiary, #64748b);
 }
 
 .socialLink {
-  color: var(--color-text-tertiary, #6b7280);
+  color: var(--color-text-tertiary, #64748b);
+  background: transparent;
 }
 
 .socialLink:hover {
   color: var(--color-brand-primary, #4573df);
+  background: rgba(69, 115, 223, 0.08);
 }

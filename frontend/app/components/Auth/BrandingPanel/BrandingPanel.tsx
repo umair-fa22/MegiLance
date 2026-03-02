@@ -10,8 +10,7 @@ import type { LucideIcon } from 'lucide-react';
 import commonStyles from './BrandingPanel.common.module.css';
 import lightStyles from './BrandingPanel.light.module.css';
 import darkStyles from './BrandingPanel.dark.module.css';
-import { LoginIllustration } from '@/app/components/Illustrations/Illustrations';
-import illustrationStyles from '@/app/components/Illustrations/Illustrations.module.css';
+import SectionGlobe from '@/app/components/Animations/SectionGlobe/SectionGlobe';
 
 export interface RoleConfig {
   brandIcon: LucideIcon;
@@ -43,12 +42,12 @@ const AuthBrandingPanel: React.FC<AuthBrandingPanelProps> = ({ roleConfig }) => 
   // Always render to avoid initial layout shift; theme styles will hydrate on mount.
 
   return (
-    <div className={styles.brandingPanel}>
-      <div className={styles.brandingContent}>
+    <div className={styles.brandingPanel} style={{ height: '100vh', maxHeight: '100vh', overflow: 'hidden' }}>
+      <SectionGlobe variant="blue" size="lg" position="center" />
+      <div className={styles.brandingContent} style={{ position: 'relative', zIndex: 2 }}>
         <div className={styles.brandingIconWrapper}>
           <BrandIcon className={styles.brandingIcon} />
         </div>
-        <LoginIllustration className={illustrationStyles.loginIllustration} />
         <h2 className={styles.brandingTitle}>{brandTitle}</h2>
         <p className={styles.brandingText}>{brandText}</p>
       </div>

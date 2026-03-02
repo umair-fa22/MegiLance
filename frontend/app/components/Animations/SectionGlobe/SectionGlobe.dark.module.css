@@ -1,0 +1,30 @@
+/* @AI-HINT: Dark theme styles for the SectionGlobe decoration. Glowing brand blue tones for premium dark mode. */
+
+.globeWrapper {
+  opacity: 0.16;
+}
+
+.globe {
+  background: radial-gradient(circle at 35% 35%, rgba(88, 166, 255, 0.10), rgba(69, 115, 223, 0.04));
+  box-shadow: 0 0 40px rgba(88, 166, 255, 0.08);
+  border: 1px solid rgba(88, 166, 255, 0.12);
+}
+
+.connection {
+  background: linear-gradient(90deg, rgba(88, 166, 255, 0.45), transparent);
+  box-shadow: 0 0 3px rgba(88, 166, 255, 0.15);
+}
+
+.orbit {
+  border-color: rgba(88, 166, 255, 0.08);
+}
+
+.dot {
+  background: rgba(88, 166, 255, 0.6);
+  box-shadow: 0 0 7px rgba(88, 166, 255, 0.4);
+}
+
+.pulse {
+  background: rgba(88, 166, 255, 0.25);
+  box-shadow: 0 0 25px rgba(88, 166, 255, 0.15);
+}

@@ -69,7 +69,12 @@
   font-size: 0.8125rem;
   border: 1px solid transparent;
   outline: none;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   font-family: var(--font-body, 'Inter', sans-serif);
 }
 
@@ -118,7 +123,12 @@
   cursor: pointer;
   text-align: left;
   width: 100%;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   font-family: var(--font-body, 'Inter', sans-serif);
 }
 
@@ -175,7 +185,12 @@
 .cardArrow {
   flex-shrink: 0;
   opacity: 0;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   transform: translateX(-4px);
 }
 
@@ -223,4 +238,9 @@
     transition: none !important;
     transform: none !important;
   }
+}
+
+.searchInput:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }

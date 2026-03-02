@@ -5,10 +5,54 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 2rem;
+  min-height: 100dvh;
+  padding: 2rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative background orbs for visual depth */
+.layout::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.35;
+  top: -200px;
+  right: -150px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.layout::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.25;
+  bottom: -120px;
+  left: -100px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .main {
   width: 100%;
-  max-width: 450px;
+  max-width: 460px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 480px) {
+  .layout {
+    padding: 1.5rem 1rem;
+  }
+  
+  .main {
+    max-width: 100%;
+  }
 }

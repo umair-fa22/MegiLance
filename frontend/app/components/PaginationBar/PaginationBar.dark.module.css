@@ -2,7 +2,7 @@
 .navButton {
   background: #1e293b;
   border-color: #334155;
-  color: #e5e7eb;
+  color: #e2e8f0;
 }
 
 .navButton:hover:not(:disabled) {
@@ -12,7 +12,7 @@
 
 .pageButton {
   background: transparent;
-  color: #e5e7eb;
+  color: #e2e8f0;
 }
 
 .pageButton:hover:not(:disabled) {
@@ -34,5 +34,5 @@
 }
 
 .paginationInfo {
-  color: #9ca3af;
+  color: #94a3b8;
 }

@@ -1,13 +1,13 @@
 /* Advanced Search - Dark Theme */
 
 .container {
-  background: #1a202c;
+  background: #0f172a;
   color: #e2e8f0;
 }
 
 .searchInput {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
   color: #e2e8f0;
 }
 
@@ -16,49 +16,49 @@
 }
 
 .filterToggle {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
   color: #e2e8f0;
 }
 
 .filterToggle:hover {
-  background: #374151;
+  background: #334155;
   border-color: #4573df;
 }
 
 .filtersPanel {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .suggestionsDropdown {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .suggestionItem {
-  background: #2d3748;
+  background: #1e293b;
   color: #e2e8f0;
-  border-color: #4a5568;
+  border-color: #475569;
 }
 
 .suggestionItem:hover {
-  background: #374151;
+  background: #334155;
 }
 
 .recentSearches {
-  background: #2d3748;
+  background: #1e293b;
   color: #e2e8f0;
 }
 
 .savedSearches {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .savedSearchItem {
-  background: #1a202c;
-  border-color: #4a5568;
+  background: #0f172a;
+  border-color: #475569;
   color: #e2e8f0;
 }
 
@@ -77,8 +77,8 @@
 
 .filterInput,
 .filterInputFull {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
   color: #e2e8f0;
 }
 
@@ -89,12 +89,12 @@
 }
 
 .dialogInner {
-  background: #2d3748;
+  background: #1e293b;
 }
 
 .dialogInput {
-  background: #1a202c;
-  border-color: #4a5568;
+  background: #0f172a;
+  border-color: #475569;
   color: #e2e8f0;
 }
 
@@ -104,8 +104,8 @@
 }
 
 .trendingSection {
-  background: #2d3748;
-  border-color: #4a5568;
+  background: #1e293b;
+  border-color: #475569;
 }
 
 .trendingSectionTitle {
@@ -117,12 +117,12 @@
 }
 
 .trendingItem {
-  border-color: #4a5568;
+  border-color: #475569;
   color: #e2e8f0;
 }
 
 .trendingItem:hover {
-  background: #374151;
+  background: #334155;
   border-color: #4573df;
 }
 

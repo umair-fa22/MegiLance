@@ -1,30 +1,5 @@
-/* @AI-HINT: Dark theme styles for the FooterGlobe decoration. Uses brand blue/green tones for a premium dark mode glow. */
+/* @AI-HINT: Dark theme styles for the FooterGlobe 3D decoration. */
 
 .globeWrapper {
-  opacity: 0.2;
-}
-
-.globe {
-  background: radial-gradient(circle at 35% 35%, rgba(88, 166, 255, 0.12), rgba(69, 115, 223, 0.05));
-  box-shadow: 0 0 50px rgba(88, 166, 255, 0.1);
-  border: 1px solid rgba(88, 166, 255, 0.15);
-}
-
-.connection {
-  background: linear-gradient(90deg, rgba(88, 166, 255, 0.5), transparent);
-  box-shadow: 0 0 4px rgba(88, 166, 255, 0.2);
-}
-
-.orbit {
-  border-color: rgba(88, 166, 255, 0.1);
-}
-
-.dot {
-  background: rgba(88, 166, 255, 0.7);
-  box-shadow: 0 0 8px rgba(88, 166, 255, 0.5);
-}
-
-.pulse {
-  background: rgba(88, 166, 255, 0.3);
-  box-shadow: 0 0 30px rgba(88, 166, 255, 0.2);
+  opacity: 0.7;
 }

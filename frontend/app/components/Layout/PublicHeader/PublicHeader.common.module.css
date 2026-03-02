@@ -8,7 +8,12 @@
   z-index: 50;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px); /* More blur for premium feel */
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition */
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition */
 }
 
 .header.scrolled {
@@ -48,7 +53,12 @@
 .navLink {
   font-size: 0.9375rem; /* 15px - More refined */
   font-weight: 500;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   position: relative;
   padding: 0.5rem 0;
@@ -62,7 +72,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--primary-4573df), var(--accent-orange-ff9800));
+  background: linear-gradient(90deg, var(--color-primary, #4573df), var(--color-accent, #ff9800));
   transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing */
   border-radius: 2px 2px 0 0;
 }
@@ -133,7 +143,12 @@
   padding: 0.875rem;
   border-radius: 8px;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   cursor: pointer;
 }
 
@@ -149,7 +164,12 @@
   height: 40px;
   border-radius: 8px;
   flex-shrink: 0;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .dropdownItem:hover .dropdownItemIcon {
@@ -266,7 +286,12 @@
   font-weight: 500;
   text-decoration: none;
   border-bottom: 1px solid;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .mobileNavLink:hover {
@@ -327,7 +352,12 @@
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
@@ -346,7 +376,12 @@
   font-size: 0.9375rem;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 @keyframes pulse-glow {

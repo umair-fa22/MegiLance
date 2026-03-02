@@ -17,7 +17,7 @@
   font-size: 2.5rem;
   font-weight: 800;
   margin-bottom: 1rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
   line-height: 1.2;
 }
 
@@ -45,7 +45,7 @@
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
 }
 
 .linkWrapper {
@@ -87,7 +87,7 @@
 .statValue {
   font-size: 2.5rem;
   font-weight: 800;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
   margin-bottom: 0.5rem;
 }
 

@@ -1,28 +1,6 @@
-/* @AI-HINT: Light theme styles for the FooterGlobe decoration. Uses brand blue tones for a professional, subtle appearance. */
+/* @AI-HINT: Light theme styles for the FooterGlobe 3D decoration. */
 
 .globeWrapper {
-  opacity: 0.12;
-}
-
-.globe {
-  background: radial-gradient(circle at 35% 35%, rgba(69, 115, 223, 0.15), rgba(49, 130, 206, 0.06));
-  box-shadow: 0 0 40px rgba(69, 115, 223, 0.08);
-  border: 1px solid rgba(69, 115, 223, 0.1);
-}
-
-.connection {
-  background: linear-gradient(90deg, rgba(69, 115, 223, 0.5), transparent);
-}
-
-.orbit {
-  border-color: rgba(69, 115, 223, 0.1);
-}
-
-.dot {
-  background: rgba(69, 115, 223, 0.6);
-  box-shadow: 0 0 6px rgba(69, 115, 223, 0.4);
-}
-
-.pulse {
-  background: rgba(69, 115, 223, 0.3);
+  opacity: 0;
+  display: none;
 }

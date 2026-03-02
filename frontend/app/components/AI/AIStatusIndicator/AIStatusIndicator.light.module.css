@@ -1,17 +1,17 @@
 /* @AI-HINT: AIStatusIndicator light theme styles */
 
 .badge {
-  background: #f3f4f6;
+  background: #f1f5f9;
   color: #374151;
 }
 
 .badge:hover {
-  background: #e5e7eb;
+  background: #e2e8f0;
 }
 
 .dropdown {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .dropdownHeader {
@@ -32,7 +32,7 @@
 }
 
 .lastPing {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .errorBox {
@@ -41,27 +41,27 @@
 }
 
 .retryButton {
-  background: #f3f4f6;
+  background: #f1f5f9;
   color: #374151;
 }
 
 .retryButton:hover {
-  background: #e5e7eb;
+  background: #e2e8f0;
 }
 
 /* Card */
 .card {
   background: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .cardRetryButton {
-  background: #f3f4f6;
-  color: #6b7280;
+  background: #f1f5f9;
+  color: #64748b;
 }
 
 .cardRetryButton:hover {
-  background: #e5e7eb;
+  background: #e2e8f0;
   color: #374151;
 }
 

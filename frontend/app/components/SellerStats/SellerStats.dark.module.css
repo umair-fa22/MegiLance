@@ -5,12 +5,12 @@
 
 /* Level Badge */
 .levelSection {
-  background-color: var(--color-background-dark, #1e1e1e);
-  border: 1px solid var(--color-border-dark, #2d2d2d);
+  background-color: var(--color-background-dark, #1e293b);
+  border: 1px solid var(--color-border-dark, #334155);
 }
 
 .levelBadge.newSeller {
-  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+  background: linear-gradient(135deg, #6b7280 0%, #475569 100%);
 }
 
 .levelBadge.bronze {
@@ -18,7 +18,7 @@
 }
 
 .levelBadge.silver {
-  background: linear-gradient(135deg, #d1d5db 0%, #9ca3af 100%);
+  background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
 }
 
 .levelBadge.gold {
@@ -34,11 +34,11 @@
 }
 
 .levelDescription {
-  color: var(--color-text-secondary-dark, #9ca3af);
+  color: var(--color-text-secondary-dark, #94a3b8);
 }
 
 .jssScore {
-  color: var(--color-text-secondary-dark, #9ca3af);
+  color: var(--color-text-secondary-dark, #94a3b8);
 }
 
 .jssValue {
@@ -47,17 +47,17 @@
 
 /* Stats */
 .statCard {
-  background-color: var(--color-background-dark, #1e1e1e);
-  border: 1px solid var(--color-border-dark, #2d2d2d);
+  background-color: var(--color-background-dark, #1e293b);
+  border: 1px solid var(--color-border-dark, #334155);
 }
 
 .statIcon {
-  background-color: var(--color-background-alt-dark, #2d2d2d);
+  background-color: var(--color-background-alt-dark, #334155);
   color: var(--color-primary, #4573df);
 }
 
 .statLabel {
-  color: var(--color-text-secondary-dark, #9ca3af);
+  color: var(--color-text-secondary-dark, #94a3b8);
 }
 
 .statValue {
@@ -66,8 +66,8 @@
 
 /* Progress */
 .progressSection {
-  background-color: var(--color-background-dark, #1e1e1e);
-  border: 1px solid var(--color-border-dark, #2d2d2d);
+  background-color: var(--color-background-dark, #1e293b);
+  border: 1px solid var(--color-border-dark, #334155);
 }
 
 .progressTitle {
@@ -75,11 +75,11 @@
 }
 
 .progressNextLevel {
-  color: var(--color-text-secondary-dark, #9ca3af);
+  color: var(--color-text-secondary-dark, #94a3b8);
 }
 
 .progressItemLabel {
-  color: var(--color-text-secondary-dark, #9ca3af);
+  color: var(--color-text-secondary-dark, #94a3b8);
 }
 
 .progressItemValue {
@@ -87,7 +87,7 @@
 }
 
 .progressBar {
-  background-color: var(--color-background-alt-dark, #2d2d2d);
+  background-color: var(--color-background-alt-dark, #334155);
 }
 
 .progressBarFill {
@@ -100,8 +100,8 @@
 
 /* Benefits */
 .benefitsSection {
-  background-color: var(--color-background-dark, #1e1e1e);
-  border: 1px solid var(--color-border-dark, #2d2d2d);
+  background-color: var(--color-background-dark, #1e293b);
+  border: 1px solid var(--color-border-dark, #334155);
 }
 
 .benefitsTitle {
@@ -122,13 +122,13 @@
 }
 
 .benefitValue {
-  color: var(--color-text-secondary-dark, #9ca3af);
+  color: var(--color-text-secondary-dark, #94a3b8);
 }
 
 /* Badges */
 .badgesSection {
-  background-color: var(--color-background-dark, #1e1e1e);
-  border: 1px solid var(--color-border-dark, #2d2d2d);
+  background-color: var(--color-background-dark, #1e293b);
+  border: 1px solid var(--color-border-dark, #334155);
 }
 
 .badgesTitle {
@@ -136,7 +136,7 @@
 }
 
 .badge {
-  background-color: var(--color-background-alt-dark, #2d2d2d);
+  background-color: var(--color-background-alt-dark, #334155);
   color: var(--color-text-primary-dark, #f3f4f6);
 }
 

@@ -1,15 +1,15 @@
 /* @AI-HINT: Portal Projects page - dark theme colors */
 
 .page {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .toolbar {
-  background-color: #1a1d2e;
+  background-color: #0f172a;
 }
 
 .searchIcon {
@@ -19,7 +19,7 @@
 .searchInput {
   background-color: rgba(255, 255, 255, 0.05);
   border-color: #2a2d3e;
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .searchInput::placeholder {
@@ -32,11 +32,11 @@
 
 /* Filter Tabs */
 .filterTab {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .filterTab:hover {
-  color: #f9fafb;
+  color: #f8fafc;
   background-color: rgba(255, 255, 255, 0.06);
 }
 
@@ -47,11 +47,11 @@
 
 .filterCount {
   background-color: rgba(255, 255, 255, 0.1);
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .projectCard {
-  background-color: #1a1d2e;
+  background-color: #0f172a;
   border-color: #2a2d3e;
 }
 
@@ -69,16 +69,16 @@
 }
 
 .cardDescription {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .skillTag {
   background-color: rgba(255, 255, 255, 0.08);
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .metaItem {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .chevron {
@@ -86,11 +86,11 @@
 }
 
 /* Sort */
-.sortWrapper { background: #1a1d2e; border-color: #2a2d3e; color: #9ca3af; }
-.sortSelect { color: #d1d5db; }
+.sortWrapper { background: #0f172a; border-color: #2a2d3e; color: #94a3b8; }
+.sortSelect { color: #cbd5e1; }
 
 /* Pagination */
 .pagination { border-top: 1px solid #2a2d3e; }
-.pageBtn { color: #d1d5db; border-color: #2a2d3e; }
+.pageBtn { color: #cbd5e1; border-color: #2a2d3e; }
 .pageBtn:hover:not(:disabled) { background: rgba(255,255,255,0.06); }
-.pageInfo { color: #9ca3af; }
+.pageInfo { color: #94a3b8; }

@@ -1,24 +1,24 @@
 /* @AI-HINT: Dark theme colors for post-signup role selection page */
 .container {
-  background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 }
 
 .card {
-  background: #1f2937;
+  background: #1e293b;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
 }
 
 .title {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .roleCard {
-  border-color: #374151;
-  background: #111827;
+  border-color: #334155;
+  background: #0f172a;
 }
 
 .roleCard:hover {
@@ -38,15 +38,15 @@
 }
 
 .roleName {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .roleDesc {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .checkMark {
-  border-color: #4b5563;
+  border-color: #475569;
 }
 
 .checkMarkSelected {

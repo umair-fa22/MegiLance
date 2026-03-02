@@ -4,20 +4,20 @@
 .createBtn { background-color: #4573df; color: #ffffff; }
 .createBtn:hover { background-color: #3461d1; }
 .error { background-color: #fef2f2; border-color: #ef4444; color: #991b1b; }
-.formCard, .ticketDetail { background-color: #ffffff; border-color: #e5e7eb; }
-.select, .input, .textarea, .filterSelect, .replyInput { background-color: #ffffff; border-color: #e5e7eb; color: #111827; }
+.formCard, .ticketDetail { background-color: #ffffff; border-color: #e2e8f0; }
+.select, .input, .textarea, .filterSelect, .replyInput { background-color: #ffffff; border-color: #e2e8f0; color: #111827; }
 .select:focus, .input:focus, .textarea:focus, .replyInput:focus { outline: none; border-color: #4573df; box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1); }
-.cancelBtn { background-color: #f3f4f6; color: #374151; }
-.cancelBtn:hover { background-color: #e5e7eb; }
+.cancelBtn { background-color: #f1f5f9; color: #374151; }
+.cancelBtn:hover { background-color: #e2e8f0; }
 .submitBtn, .sendBtn { background-color: #4573df; color: #ffffff; }
 .submitBtn:hover, .sendBtn:hover { background-color: #3461d1; }
-.loading, .empty { color: #6b7280; }
-.ticketCard { background-color: #ffffff; border-color: #e5e7eb; }
+.loading, .empty { color: #64748b; }
+.ticketCard { background-color: #ffffff; border-color: #e2e8f0; }
 .ticketCard:hover { border-color: #4573df; }
 .ticketCard.selected { border-color: #4573df; background-color: #eff6ff; }
 .badge[data-status="open"] { background-color: #3b82f6; color: #ffffff; }
 .badge[data-status="in_progress"] { background-color: #f59e0b; color: #ffffff; }
 .badge[data-status="resolved"] { background-color: #10b981; color: #ffffff; }
-.badge[data-status="closed"] { background-color: #6b7280; color: #ffffff; }
-.detailHeader { border-color: #e5e7eb; }
+.badge[data-status="closed"] { background-color: #64748b; color: #ffffff; }
+.detailHeader { border-color: #e2e8f0; }
 .message { background-color: #f9fafb; }

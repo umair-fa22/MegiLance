@@ -45,14 +45,14 @@
 
 .formCard {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .select,
 .input,
 .textarea {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
   color: #111827;
 }
 
@@ -65,12 +65,12 @@
 }
 
 .cancelBtn {
-  background-color: #f3f4f6;
+  background-color: #f1f5f9;
   color: #374151;
 }
 
 .cancelBtn:hover {
-  background-color: #e5e7eb;
+  background-color: #e2e8f0;
 }
 
 .submitBtn {
@@ -84,7 +84,7 @@
 
 .loading,
 .empty {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .emptyBtn {
@@ -98,7 +98,7 @@
 
 .transactionCard {
   background-color: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .transactionCard:hover {
@@ -106,7 +106,7 @@
 }
 
 .transactionMeta {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .badge {
@@ -135,7 +135,7 @@
 }
 
 .transactionActions {
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .releaseBtn {
@@ -148,12 +148,12 @@
 }
 
 .refundBtn {
-  background-color: #f3f4f6;
+  background-color: #f1f5f9;
   color: #374151;
 }
 
 .refundBtn:hover {
-  background-color: #e5e7eb;
+  background-color: #e2e8f0;
 }
 
 .modal {
@@ -165,7 +165,7 @@
 }
 
 .modalSubtitle {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .availableAmount {

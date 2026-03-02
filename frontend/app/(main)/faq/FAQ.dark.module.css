@@ -1,8 +1,8 @@
 /* @AI-HINT: Dark theme styles for FAQ. */
-.root { color: #e5e7eb; }
-.subtitle { color: #d1d5db; }
-.item { background: #0e1627; border-color: #1f2937; }
-.q { color: #e5e7eb; }
-.q:hover { background: #0c1426; }
+.root { color: #e2e8f0; }
+.subtitle { color: #cbd5e1; }
+.item { background: #1e293b; border-color: #334155; }
+.q { color: #e2e8f0; }
+.q:hover { background: #253347; }
 .a { color: #cbd5e1; }
-.badge { background: #0e1a33; color: #8ab0ff; }
+.badge { background: rgba(69, 115, 223, 0.15); color: #93c5fd; }

@@ -22,7 +22,7 @@
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #4573df 0%, #ff9800 100%);
+  background: linear-gradient(135deg, var(--color-primary, #4573df) 0%, var(--color-accent, #ff9800) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -80,7 +80,12 @@
   border-radius: 1rem;
   display: flex;
   gap: 1.5rem;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .demoStep:hover {
@@ -140,7 +145,12 @@
   font-size: 0.8125rem;
   font-weight: 500;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 /* Key Metrics Grid */
@@ -155,7 +165,12 @@
   padding: 1.5rem;
   border-radius: 1rem;
   text-align: center;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .metricCard:hover {
@@ -189,7 +204,12 @@
 .highlightCard {
   padding: 1.5rem;
   border-radius: 1rem;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .highlightCard:hover {
@@ -233,7 +253,12 @@
   padding: 1rem;
   border-radius: 0.5rem;
   margin-bottom: 0.5rem;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .checklistItem:hover {
@@ -270,7 +295,12 @@
   padding: 1.25rem;
   border-radius: 0.75rem;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .quickLinkCard:hover {

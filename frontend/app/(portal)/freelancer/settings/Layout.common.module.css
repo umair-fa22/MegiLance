@@ -11,7 +11,7 @@
 .title {
   font-size: 1.875rem; /* 30px */
   font-weight: 700;
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
 }
 
 .subtitle {

@@ -1,11 +1,11 @@
 /* Dark theme colors for Escrow */
 
 .container {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .fundBtn {
@@ -44,16 +44,16 @@
 }
 
 .formCard {
-  background-color: #1f2937;
-  border-color: #374151;
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
 .select,
 .input,
 .textarea {
-  background-color: #1f2937;
-  border-color: #374151;
-  color: #f9fafb;
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #f8fafc;
 }
 
 .select:focus,
@@ -65,12 +65,12 @@
 }
 
 .cancelBtn {
-  background-color: #374151;
-  color: #d1d5db;
+  background-color: #334155;
+  color: #cbd5e1;
 }
 
 .cancelBtn:hover {
-  background-color: #4b5563;
+  background-color: #475569;
 }
 
 .submitBtn {
@@ -84,7 +84,7 @@
 
 .loading,
 .empty {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .emptyBtn {
@@ -97,8 +97,8 @@
 }
 
 .transactionCard {
-  background-color: #1f2937;
-  border-color: #374151;
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
 .transactionCard:hover {
@@ -106,7 +106,7 @@
 }
 
 .transactionMeta {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .badge {
@@ -130,12 +130,12 @@
 }
 
 .description {
-  background-color: #111827;
-  color: #d1d5db;
+  background-color: #0f172a;
+  color: #cbd5e1;
 }
 
 .transactionActions {
-  border-color: #374151;
+  border-color: #334155;
 }
 
 .releaseBtn {
@@ -148,12 +148,12 @@
 }
 
 .refundBtn {
-  background-color: #374151;
-  color: #d1d5db;
+  background-color: #334155;
+  color: #cbd5e1;
 }
 
 .refundBtn:hover {
-  background-color: #4b5563;
+  background-color: #475569;
 }
 
 .modal {
@@ -161,11 +161,11 @@
 }
 
 .modalContent {
-  background-color: #1f2937;
+  background-color: #1e293b;
 }
 
 .modalSubtitle {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .availableAmount {

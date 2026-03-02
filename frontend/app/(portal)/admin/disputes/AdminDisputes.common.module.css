@@ -54,10 +54,10 @@
   flex-shrink: 0;
 }
 
-.statIconTotal { background: rgba(69, 115, 223, 0.12); color: #4573df; }
-.statIconOpen { background: rgba(232, 17, 35, 0.1); color: #e81123; }
+.statIconTotal { background: rgba(69, 115, 223, 0.12); color: var(--color-primary, #4573df); }
+.statIconOpen { background: rgba(232, 17, 35, 0.1); color: var(--color-error, #e81123); }
 .statIconProgress { background: rgba(242, 201, 76, 0.15); color: #e6a800; }
-.statIconResolved { background: rgba(39, 174, 96, 0.12); color: #27AE60; }
+.statIconResolved { background: rgba(39, 174, 96, 0.12); color: var(--color-success, #27AE60); }
 
 .statContent { display: flex; flex-direction: column; }
 .statValue { font-size: 1.5rem; font-weight: 700; line-height: 1.2; }
@@ -98,7 +98,7 @@
   transition: border-color 0.2s;
 }
 
-.searchInput:focus { border-color: #4573df; }
+.searchInput:focus { border-color: var(--color-primary, #4573df); }
 
 .filterTabs { display: flex; gap: 0.25rem; flex-wrap: wrap; }
 
@@ -122,7 +122,7 @@
   padding: 1px 6px;
   border-radius: 10px;
   background: rgba(232, 17, 35, 0.12);
-  color: #e81123;
+  color: var(--color-error, #e81123);
   font-weight: 600;
 }
 
@@ -218,4 +218,9 @@
   font-size: 0.9rem;
   line-height: 1.6;
   margin: 0.5rem 0 0 0;
+}
+
+.searchInput:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }

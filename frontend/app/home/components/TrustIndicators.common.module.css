@@ -14,7 +14,7 @@
 }
 
 .trustTitle {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -22,7 +22,7 @@
 }
 
 .trustSubtitle {
-  font-family: var(--font-inter);
+  font-family: var(--font-family-body);
   font-size: 1.125rem;
   line-height: 1.6;
 }
@@ -40,7 +40,12 @@
   text-align: center;
   padding: 2rem;
   border-radius: 1.5rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
   border: 1px solid transparent;
 }
@@ -71,7 +76,7 @@
 }
 
 .indicatorValue {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.1;
@@ -81,7 +86,7 @@
 }
 
 .indicatorLabel {
-  font-family: var(--font-inter);
+  font-family: var(--font-family-body);
   font-size: 0.875rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -102,7 +107,12 @@
   gap: 1rem;
   padding: 1rem 1.5rem;
   border-radius: 1rem;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
   border: 1px solid transparent;
 }
 
@@ -125,13 +135,13 @@
 }
 
 .badgeTitle {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 0.9375rem;
   font-weight: 600;
 }
 
 .badgeDescription {
-  font-family: var(--font-inter);
+  font-family: var(--font-family-body);
   font-size: 0.75rem;
 }
 

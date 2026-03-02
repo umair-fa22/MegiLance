@@ -8,11 +8,11 @@
 }
 
 .subtitle {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .loadingState {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .rankCard {
@@ -21,11 +21,11 @@
 }
 
 .rankPoints {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .progressLabel {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .progressValue {
@@ -34,12 +34,12 @@
 }
 
 .progressBar {
-  background: #e5e7eb;
+  background: #e2e8f0;
 }
 
 .section {
   background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .sectionTitle {
@@ -48,7 +48,7 @@
 
 .tierCard {
   background: #fff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .tierCurrent {
@@ -61,7 +61,7 @@
 }
 
 .tierPoints {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .tierUnlocked {
@@ -70,7 +70,7 @@
 
 .statCard {
   background: #fff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .statCard:hover {
@@ -87,12 +87,12 @@
 }
 
 .statLabel {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .badgeCard {
   background: #fff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .badgeName {
@@ -100,7 +100,7 @@
 }
 
 .badgeDesc {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .badge_epic {

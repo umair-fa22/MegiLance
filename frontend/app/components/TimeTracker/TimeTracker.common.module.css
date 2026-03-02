@@ -5,7 +5,12 @@
   padding: 1rem;
   border-radius: 0.5rem;
   border: 1px solid transparent;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .timerDisplay {
@@ -36,7 +41,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: #27AE60;
+  background-color: var(--color-success, #27AE60);
   animation: pulse 2s infinite;
 }
 

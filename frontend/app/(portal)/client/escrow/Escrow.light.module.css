@@ -8,12 +8,12 @@
 }
 
 .subtitle {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .statCard {
   background: #fff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .statValue {
@@ -21,16 +21,16 @@
 }
 
 .statLabel {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .filterBtn {
-  background: #f3f4f6;
+  background: #f1f5f9;
   color: #374151;
 }
 
 .filterBtn:hover {
-  background: #e5e7eb;
+  background: #e2e8f0;
 }
 
 .filterBtnActive {
@@ -41,7 +41,7 @@
 .loadingState,
 .emptyState {
   background: #f9fafb;
-  color: #6b7280;
+  color: #64748b;
 }
 
 .emptyState h3 {
@@ -50,18 +50,18 @@
 
 .tableWrapper {
   background: #fff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .th {
   background: #f9fafb;
-  color: #6b7280;
-  border-bottom: 1px solid #e5e7eb;
+  color: #64748b;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .td {
   color: #374151;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f1f5f9;
 }
 
 .tr:hover {

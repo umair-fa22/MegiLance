@@ -11,9 +11,9 @@
 .overallhealthy { background: rgba(39, 174, 96, 0.1); border: 1px solid rgba(39, 174, 96, 0.3); }
 .overalldegraded { background: rgba(242, 201, 76, 0.15); border: 1px solid rgba(242, 201, 76, 0.3); }
 .overalldown { background: rgba(232, 17, 35, 0.1); border: 1px solid rgba(232, 17, 35, 0.3); }
-.iconHealthy { color: #27AE60; }
-.iconDegraded { color: #F2C94C; }
-.iconDown { color: #e81123; }
+.iconHealthy { color: var(--color-success, #27AE60); }
+.iconDegraded { color: var(--color-warning, #F2C94C); }
+.iconDown { color: var(--color-error, #e81123); }
 .servicesGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
 .serviceCard { padding: 1.25rem; border-radius: 12px; }
 .serviceHeader { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }

@@ -1,17 +1,17 @@
 /* AI-HINT: This file contains light theme styles for the Input component. */
 
 .input {
-  background-color: #f5f7fa; /* Surface / Light Card */
-  color: #23272f; /* Main Text */
-  border-color: #e0e0e0; /* Light gray border */
+  background-color: #f8fafc;
+  color: #0f172a;
+  border-color: #e2e8f0;
 }
 
 .input::placeholder {
-  color: #6c757d; /* Muted text */
+  color: #64748b;
 }
 
 .input:focus-visible {
-  border-color: #4573df; /* Primary Blue */
+  border-color: #4573df;
 }
 
 .input[type="file"]::file-selector-button {

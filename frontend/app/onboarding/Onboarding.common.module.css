@@ -50,7 +50,7 @@
   font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: 0.75rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
 }
 
 .stepDescription {
@@ -58,7 +58,7 @@
   opacity: 0.8;
   margin-bottom: 1.5rem;
   line-height: 1.6;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-body);
 }
 
 .formStep {
@@ -89,7 +89,7 @@
 .stepCounter {
   font-size: 0.875rem;
   font-weight: 500;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-body);
 }
 
 .progress {

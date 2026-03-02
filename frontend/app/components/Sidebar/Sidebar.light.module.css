@@ -2,27 +2,27 @@
 
 .sidebar {
   background-color: #ffffff;
-  border-right-color: #e8eaed;
-  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.03);
+  border-right-color: #edf0f4;
+  box-shadow: 1px 0 8px rgba(0, 0, 0, 0.02);
 }
 
 .sidebarHeader {
   background-color: #ffffff;
-  border-bottom-color: #f0f1f3;
+  border-bottom-color: #f0f2f5;
 }
 
 .logoText {
-  color: #111827;
+  color: #0f172a;
 }
 
 .toggleButton {
-  color: #6b7280;
-  background-color: #f5f6f8;
+  color: #64748b;
+  background-color: #f5f7fa;
   border-color: transparent;
 }
 
 .toggleButton:hover {
-  background-color: #eef0f4;
+  background-color: #edf2ff;
   color: #4573df;
 }
 
@@ -31,36 +31,36 @@
 }
 
 .sidebarNavContainer::-webkit-scrollbar-thumb {
-  background-color: #dfe1e5;
+  background-color: #e2e6ec;
 }
 
 .sidebarNavContainer::-webkit-scrollbar-thumb:hover {
-  background-color: #bfc3ca;
+  background-color: #c4cad3;
 }
 
 .divider {
-  background-color: #f0f1f3;
+  background-color: #f0f2f5;
 }
 
 .sidebarFooter {
   background-color: #fafbfc;
-  border-top-color: #f0f1f3;
+  border-top-color: #f0f2f5;
 }
 
 .userInfo {
-  background-color: #f8f9fa;
-  border: 1px solid #e8eaed;
+  background-color: #f8f9fb;
+  border: 1px solid #edf0f4;
 }
 
 .userInfo:hover {
-  background-color: #eef3ff;
-  border-color: #c7d6f5;
-  box-shadow: 0 2px 8px rgba(69, 115, 223, 0.08);
+  background-color: #edf2ff;
+  border-color: #b8ccf0;
+  box-shadow: 0 2px 12px rgba(69, 115, 223, 0.06);
 }
 
 .avatar {
-  border-color: #e8eaed;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border-color: #edf0f4;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .onlineDot {
@@ -68,9 +68,9 @@
 }
 
 .userName {
-  color: #111827;
+  color: #0f172a;
 }
 
 .userRole {
-  color: #6b7280;
+  color: #64748b;
 }

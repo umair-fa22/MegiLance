@@ -5,17 +5,17 @@
 }
 
 .placeholder {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .trigger {
-  background: #1f2937;
-  border-color: #374151;
+  background: #1e293b;
+  border-color: #334155;
   color: #f3f4f6;
 }
 
 .trigger:hover {
-  border-color: #4b5563;
+  border-color: #475569;
   background: #263142;
 }
 
@@ -35,28 +35,28 @@
 
 /* Tags */
 .tag {
-  background: #374151;
-  color: #e5e7eb;
-  border: 1px solid #4b5563;
+  background: #334155;
+  color: #e2e8f0;
+  border: 1px solid #475569;
 }
 
 .tagMore {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 /* Clear Button */
 .clearButton {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .clearButton:hover {
-  background: #374151;
-  color: #e5e7eb;
+  background: #334155;
+  color: #e2e8f0;
 }
 
 /* Chevron */
 .chevron {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 /* Loader */
@@ -66,15 +66,15 @@
 
 /* Dropdown */
 .dropdown {
-  background: #1f2937;
+  background: #1e293b;
   border: 2px solid #6366f1;
-  border-top: 1px solid #374151;
+  border-top: 1px solid #334155;
 }
 
 /* Search */
 .searchContainer {
-  background: #111827;
-  border-color: #374151;
+  background: #0f172a;
+  border-color: #334155;
 }
 
 .searchIcon {
@@ -90,25 +90,25 @@
 }
 
 .searchClear {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .searchClear:hover {
-  background: #374151;
-  color: #e5e7eb;
+  background: #334155;
+  color: #e2e8f0;
 }
 
 /* Options */
 .optionsList::-webkit-scrollbar-thumb {
-  background: #4b5563;
+  background: #475569;
 }
 
 .option {
-  color: #e5e7eb;
+  color: #e2e8f0;
 }
 
 .option:hover {
-  background: #374151;
+  background: #334155;
 }
 
 .optionHighlighted {
@@ -125,8 +125,8 @@
 }
 
 .optionIcon {
-  background: #374151;
-  color: #9ca3af;
+  background: #334155;
+  color: #94a3b8;
 }
 
 .optionLabel {
@@ -134,7 +134,7 @@
 }
 
 .optionDescription {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .checkIcon {
@@ -143,17 +143,17 @@
 
 /* Groups */
 .groupLabel {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 /* No Options */
 .noOptions {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 /* Helper Text */
 .helperText {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .errorText {

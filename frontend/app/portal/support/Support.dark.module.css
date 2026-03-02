@@ -1,23 +1,23 @@
 /* Dark - Support */
-.container { color: #f9fafb; }
-.subtitle { color: #d1d5db; }
+.container { color: #f8fafc; }
+.subtitle { color: #cbd5e1; }
 .createBtn { background-color: #4573df; color: #ffffff; }
 .createBtn:hover { background-color: #5b83e3; }
 .error { background-color: #7f1d1d; border-color: #ef4444; color: #fecaca; }
-.formCard, .ticketDetail { background-color: #1f2937; border-color: #374151; }
-.select, .input, .textarea, .filterSelect, .replyInput { background-color: #1f2937; border-color: #374151; color: #f9fafb; }
+.formCard, .ticketDetail { background-color: #1e293b; border-color: #334155; }
+.select, .input, .textarea, .filterSelect, .replyInput { background-color: #1e293b; border-color: #334155; color: #f8fafc; }
 .select:focus, .input:focus, .textarea:focus, .replyInput:focus { outline: none; border-color: #4573df; box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2); }
-.cancelBtn { background-color: #374151; color: #d1d5db; }
-.cancelBtn:hover { background-color: #4b5563; }
+.cancelBtn { background-color: #334155; color: #cbd5e1; }
+.cancelBtn:hover { background-color: #475569; }
 .submitBtn, .sendBtn { background-color: #4573df; color: #ffffff; }
 .submitBtn:hover, .sendBtn:hover { background-color: #5b83e3; }
-.loading, .empty { color: #9ca3af; }
-.ticketCard { background-color: #1f2937; border-color: #374151; }
+.loading, .empty { color: #94a3b8; }
+.ticketCard { background-color: #1e293b; border-color: #334155; }
 .ticketCard:hover { border-color: #4573df; }
 .ticketCard.selected { border-color: #4573df; background-color: #1e3a8a; }
 .badge[data-status="open"] { background-color: #2563eb; color: #ffffff; }
 .badge[data-status="in_progress"] { background-color: #d97706; color: #ffffff; }
 .badge[data-status="resolved"] { background-color: #059669; color: #ffffff; }
 .badge[data-status="closed"] { background-color: #6b7280; color: #ffffff; }
-.detailHeader { border-color: #374151; }
-.message { background-color: #111827; }
+.detailHeader { border-color: #334155; }
+.message { background-color: #0f172a; }

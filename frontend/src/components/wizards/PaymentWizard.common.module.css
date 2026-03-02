@@ -54,8 +54,9 @@
 .formGroup input:focus,
 .formGroup select:focus,
 .formGroup textarea:focus {
-  outline: none;
-  border-color: #4573df;
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: -2px;
+  border-color: var(--color-primary, #4573df);
 }
 
 .formGroup small {
@@ -104,7 +105,12 @@
   border-radius: 12px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.methodCard:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .methodCard:hover {
@@ -113,7 +119,7 @@
 }
 
 .methodCardSelected {
-  border-color: #4573df !important;
+  border-color: var(--color-primary, #4573df) !important;
 }
 
 .methodIcon {
@@ -187,12 +193,17 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background: #4573df;
+  background: var(--color-primary, #4573df);
   color: white;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
   transition: background 0.2s;
+}
+
+.uploadButton:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .uploadButton:hover {
@@ -207,7 +218,7 @@
   padding: 0.75rem;
   border-radius: 8px;
   background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 .infoBox {
@@ -240,11 +251,11 @@
   border-radius: 8px;
   border: 2px solid;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.2s, border-color 0.2s;
 }
 
 .radioLabel:hover {
-  border-color: #4573df;
+  border-color: var(--color-primary, #4573df);
 }
 
 .radioLabel input[type="radio"] {
@@ -317,8 +328,13 @@
   font-size: 1.125rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.2s, border-color 0.2s;
   background: transparent;
+}
+
+.quickAmountBtn:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .quickAmountBtn:hover {
@@ -326,7 +342,7 @@
 }
 
 .quickAmountSelected {
-  border-color: #4573df !important;
+  border-color: var(--color-primary, #4573df) !important;
 }
 
 .savedMethods {
@@ -344,15 +360,15 @@
   border: 2px solid;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: border-color 0.2s;
 }
 
 .savedMethodCard:hover {
-  border-color: #4573df;
+  border-color: var(--color-primary, #4573df);
 }
 
 .savedMethodSelected {
-  border-color: #4573df !important;
+  border-color: var(--color-primary, #4573df) !important;
 }
 
 .savedMethodCard svg {
@@ -362,7 +378,7 @@
 .defaultBadge {
   display: inline-block;
   padding: 0.25rem 0.5rem;
-  background: #27AE60;
+  background: var(--color-success, #27AE60);
   color: white;
   border-radius: 4px;
   font-size: 0.75rem;
@@ -380,13 +396,13 @@
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  transition: all 0.2s;
+  transition: border-color 0.2s, color 0.2s;
   background: transparent;
 }
 
 .addNewMethod:hover {
-  border-color: #4573df;
-  color: #4573df;
+  border-color: var(--color-primary, #4573df);
+  color: var(--color-primary, #4573df);
 }
 
 .secureBox {
@@ -401,7 +417,7 @@
 .secureBox svg {
   font-size: 2rem;
   flex-shrink: 0;
-  color: #27AE60;
+  color: var(--color-success, #27AE60);
 }
 
 .secureBox strong {
@@ -419,7 +435,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #F2C94C;
+  color: var(--color-warning, #F2C94C);
   font-weight: 600;
 }
 
@@ -463,7 +479,7 @@
   padding: 8px 16px;
   border-radius: 6px;
   border: none;
-  background: #e81123;
+  background: var(--color-error, #e81123);
   color: #fff;
   cursor: pointer;
 }

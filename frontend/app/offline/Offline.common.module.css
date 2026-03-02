@@ -32,7 +32,7 @@
   font-weight: 700;
   margin-bottom: 0.75rem;
   letter-spacing: -0.02em;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
 }
 
 .description {

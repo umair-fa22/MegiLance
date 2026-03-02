@@ -1,41 +1,41 @@
 /* AI-HINT: Light theme overrides for Portal Community page. */
 
 .themeWrapper { background: #fff; color: #1a1a1a; }
-.subtitle { color: #6b7280; }
+.subtitle { color: #64748b; }
 
-.input, .textarea, .composerInput { background: #f9fafb; border-color: #e5e7eb; color: #1a1a1a; }
+.input, .textarea, .composerInput { background: #f9fafb; border-color: #e2e8f0; color: #1a1a1a; }
 .searchWrap { background: #f9fafb; border-radius: 8px; }
 
 /* Stats Banner */
-.statsBanner { background: #f9fafb; border: 1px solid #e5e7eb; }
+.statsBanner { background: #f9fafb; border: 1px solid #e2e8f0; }
 .statValue { color: #1a1a1a; }
-.statLabel { color: #9ca3af; }
+.statLabel { color: #94a3b8; }
 
 /* Side Cards */
-.sideCard { background: #fff; border-color: #e5e7eb; }
+.sideCard { background: #fff; border-color: #e2e8f0; }
 .sideCardTitle { color: #1a1a1a; }
 
 /* Categories */
-.categoryBtn { color: #6b7280; }
-.categoryBtn:hover { background: #f3f4f6; color: #1a1a1a; }
+.categoryBtn { color: #64748b; }
+.categoryBtn:hover { background: #f1f5f9; color: #1a1a1a; }
 .categoryActive { background: #eff6ff !important; color: #4573df !important; }
-.categoryCount { background: #f3f4f6; color: #6b7280; }
+.categoryCount { background: #f1f5f9; color: #64748b; }
 
 /* Trending Tags */
-.trendTag { background: #f3f4f6; color: #6b7280; border-color: #e5e7eb; }
-.trendTag:hover { background: #e5e7eb; color: #1a1a1a; }
+.trendTag { background: #f1f5f9; color: #64748b; border-color: #e2e8f0; }
+.trendTag:hover { background: #e2e8f0; color: #1a1a1a; }
 
 /* Sort */
-.sortBtn { color: #6b7280; }
-.sortBtn:hover { background: #f3f4f6; }
+.sortBtn { color: #64748b; }
+.sortBtn:hover { background: #f1f5f9; }
 .sortBtnActive { background: #eff6ff; color: #4573df; font-weight: 600; }
 
 /* Composer */
-.composerCard { background: #fff; border-color: #e5e7eb; }
+.composerCard { background: #fff; border-color: #e2e8f0; }
 .composerTitle { color: #1a1a1a; }
 
 /* Threads */
-.thread { background: #fff; border-color: #e5e7eb; }
+.thread { background: #fff; border-color: #e2e8f0; }
 .thread:hover { background: #f9fafb; }
 .pinned { background: #f8faff; border-color: #d1ddfb; }
 
@@ -44,30 +44,30 @@
 .badgeHot { background: #fef2f2; color: #ef4444; }
 
 /* Avatar */
-.avatar { background: #e5e7eb; color: #374151; }
+.avatar { background: #e2e8f0; color: #374151; }
 
 /* Author */
 .authorName { color: #1a1a1a; }
-.threadTime { color: #9ca3af; }
+.threadTime { color: #94a3b8; }
 
 /* Level badges */
 .levelExpert { background: #fef3c7; color: #92400e; }
 .levelPro { background: #ede9fe; color: #5b21b6; }
 .levelContributor { background: #ecfdf5; color: #064e3b; }
-.levelNew { background: #f3f4f6; color: #6b7280; }
+.levelNew { background: #f1f5f9; color: #64748b; }
 
 /* Thread content */
 .threadTitle { color: #1a1a1a; }
-.threadPreview { color: #6b7280; }
+.threadPreview { color: #64748b; }
 
 /* Tags */
-.tag { background: #f3f4f6; border-color: #e5e7eb; color: #374151; }
+.tag { background: #f1f5f9; border-color: #e2e8f0; color: #374151; }
 
 /* Thread actions */
-.threadAction { color: #9ca3af; }
-.threadAction:hover { background: #f3f4f6; color: #374151; }
+.threadAction { color: #94a3b8; }
+.threadAction:hover { background: #f1f5f9; color: #374151; }
 .threadActionActive { color: #4573df !important; }
-.threadStat { color: #9ca3af; }
+.threadStat { color: #94a3b8; }
 
 /* Empty State */
-.emptyState { background: #f9fafb; color: #6b7280; }
+.emptyState { background: #f9fafb; color: #64748b; }

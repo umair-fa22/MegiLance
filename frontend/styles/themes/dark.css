@@ -11,10 +11,10 @@
   --warning-f2c94c: var(--ml-yellow);
 
   /* UI Surfaces & Backgrounds */
-  --background-1d2127: var(--neutral-950);
-  --surface-272b32: var(--neutral-900); /* For cards, forms, etc. */
-  --surface-alt-2c323a: var(--neutral-800); /* A slightly different dark for variation */
-  --container-dark-2c323a: var(--neutral-800); /* This is already a dark color, so it's consistent */
+  --background-1d2127: var(--neutral-900);
+  --surface-272b32: var(--neutral-800); /* For cards, forms, etc. */
+  --surface-alt-2c323a: var(--neutral-700); /* A slightly different dark for variation */
+  --container-dark-2c323a: var(--neutral-700); /* This is already a dark color, so it's consistent */
   --border-3a414a: var(--neutral-700); /* A subtle border for dark mode */
 
   /* Text Colors */

@@ -1,37 +1,66 @@
-/* @AI-HINT: Dark theme styles for the PublicFooter. Defines a premium color palette for a high-contrast, professional, and brand-aligned dark mode appearance. */
+/* @AI-HINT: Dark theme styles for the PublicFooter. Premium color palette for high-contrast, brand-aligned dark mode. */
 
 .footer {
-  background-color: var(--color-surface-dark, #0d1117);
+  background-color: var(--color-surface-dark, #0f172a);
 }
 
 .tagline {
-  color: var(--color-text-secondary-dark, #8b949e);
+  color: var(--color-text-secondary-dark, #94a3b8);
+}
+
+.newsletterLabel {
+  color: var(--color-text-primary-dark, #cbd5e1);
+}
+
+.newsletterInput {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--color-border-subtle-dark, #334155);
+  color: var(--color-text-primary-dark, #cbd5e1);
+}
+
+.newsletterInput::placeholder {
+  color: var(--color-text-tertiary-dark, #64748b);
+}
+
+.newsletterInput:focus {
+  border-color: var(--color-brand-primary-dark, #60a5fa);
+}
+
+.newsletterButton {
+  background: var(--color-brand-primary-dark, #60a5fa);
+  color: #0f172a;
+}
+
+.newsletterButton:hover {
+  background: #93b8f7;
 }
 
 .linksTitle {
-  color: var(--color-text-primary-dark, #c9d1d9);
+  color: var(--color-text-tertiary-dark, #64748b);
 }
 
 .linkItem {
-  color: var(--color-text-secondary-dark, #8b949e);
+  color: var(--color-text-secondary-dark, #94a3b8);
 }
 
 .linkItem:hover {
-  color: var(--color-brand-primary-dark, #58a6ff);
+  color: var(--color-brand-primary-dark, #60a5fa);
 }
 
 .bottomBar {
-  border-top-color: var(--color-border-subtle-dark, #30363d);
+  border-top-color: var(--color-border-subtle-dark, #334155);
 }
 
 .copyright {
-  color: var(--color-text-tertiary-dark, #6e7681);
+  color: var(--color-text-tertiary-dark, #64748b);
 }
 
 .socialLink {
-  color: var(--color-text-tertiary-dark, #6e7681);
+  color: var(--color-text-tertiary-dark, #64748b);
+  background: transparent;
 }
 
 .socialLink:hover {
-  color: var(--color-brand-primary-dark, #58a6ff);
+  color: var(--color-brand-primary-dark, #60a5fa);
+  background: rgba(96, 165, 250, 0.08);
 }

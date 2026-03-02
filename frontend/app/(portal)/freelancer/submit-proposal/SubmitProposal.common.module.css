@@ -39,7 +39,7 @@
 }
 
 .title {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 2rem;
   font-weight: 600;
   margin: 0;
@@ -143,7 +143,7 @@
 }
 
 .result_title {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0;

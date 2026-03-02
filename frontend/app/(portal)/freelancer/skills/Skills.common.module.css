@@ -55,7 +55,12 @@
 .skillCard {
   border-radius: 12px;
   padding: 1.25rem;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .skillHeader {
@@ -96,7 +101,7 @@
 }
 
 .level_beginner { background: rgba(107, 114, 128, 0.1); color: #6b7280; }
-.level_intermediate { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+.level_intermediate { background: rgba(59, 130, 246, 0.1); color: var(--color-primary, #3b82f6); }
 .level_advanced { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
 .level_expert { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
 
@@ -107,7 +112,12 @@
   cursor: pointer;
   border-radius: 4px;
   opacity: 0.5;
-  transition: all 0.2s;
+  transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s;
 }
 
 .removeBtn:hover {
@@ -196,7 +206,12 @@
   border: none;
   font-size: 0.8rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s;
 }
 
 .levelOptions {
@@ -213,12 +228,17 @@
   border-radius: 8px;
   border: 2px solid transparent;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s;
   text-align: left;
 }
 
 .levelOptionActive {
-  border-color: #4573df;
+  border-color: var(--color-primary, #4573df);
 }
 
 .levelLabel {

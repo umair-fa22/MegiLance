@@ -1,11 +1,11 @@
 /* Dark theme colors for Invoices */
 
 .container {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .createBtn {
@@ -24,17 +24,17 @@
 }
 
 .formCard {
-  background-color: #1f2937;
-  border-color: #374151;
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
 .closeBtn {
-  border-color: #374151;
-  color: #d1d5db;
+  border-color: #334155;
+  color: #cbd5e1;
 }
 
 .closeBtn:hover {
-  background-color: #374151;
+  background-color: #334155;
   border-color: #ef4444;
   color: #f87171;
 }
@@ -43,9 +43,9 @@
 .input,
 .textarea,
 .filterSelect {
-  background-color: #1f2937;
-  border-color: #374151;
-  color: #f9fafb;
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #f8fafc;
 }
 
 .select:focus,
@@ -69,17 +69,17 @@
 .lineItemDesc,
 .lineItemQty,
 .lineItemPrice {
-  background-color: #1f2937;
-  border-color: #374151;
-  color: #f9fafb;
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #f8fafc;
 }
 
 .lineItemAmount {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .removeItemBtn {
-  border-color: #374151;
+  border-color: #334155;
   color: #f87171;
 }
 
@@ -88,7 +88,7 @@
 }
 
 .totalRow {
-  border-color: #374151;
+  border-color: #334155;
 }
 
 .totalAmount {
@@ -96,12 +96,12 @@
 }
 
 .cancelBtn {
-  background-color: #374151;
-  color: #d1d5db;
+  background-color: #334155;
+  color: #cbd5e1;
 }
 
 .cancelBtn:hover {
-  background-color: #4b5563;
+  background-color: #475569;
 }
 
 .submitBtn {
@@ -115,7 +115,7 @@
 
 .loading,
 .empty {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .emptyBtn {
@@ -128,23 +128,23 @@
 }
 
 .table {
-  background-color: #1f2937;
-  border-color: #374151;
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
 .tableElement th {
-  background-color: #111827;
-  color: #d1d5db;
-  border-color: #374151;
+  background-color: #0f172a;
+  color: #cbd5e1;
+  border-color: #334155;
 }
 
 .tableElement td {
-  color: #f9fafb;
-  border-color: #374151;
+  color: #f8fafc;
+  border-color: #334155;
 }
 
 .tableElement tbody tr:hover {
-  background-color: #374151;
+  background-color: #334155;
 }
 
 .invoiceNumber {
@@ -152,7 +152,7 @@
 }
 
 .amount {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .badge {
@@ -180,12 +180,12 @@
 }
 
 .iconBtn {
-  border-color: #374151;
-  color: #d1d5db;
+  border-color: #334155;
+  color: #cbd5e1;
 }
 
 .iconBtn:hover {
-  background-color: #374151;
+  background-color: #334155;
   border-color: #4573df;
   color: #60a5fa;
 }
@@ -209,8 +209,8 @@
 }
 
 .iconBtn[data-action="delete"] {
-  color: #9ca3af;
-  border-color: #4b5563;
+  color: #94a3b8;
+  border-color: #475569;
 }
 
 .iconBtn[data-action="delete"]:hover {
@@ -224,27 +224,27 @@
 }
 
 .modalContent {
-  background-color: #1f2937;
+  background-color: #1e293b;
 }
 
 .detailRow {
-  border-color: #374151;
+  border-color: #334155;
 }
 
 .detailLabel {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .detailLineItem {
-  background-color: #111827;
+  background-color: #0f172a;
 }
 
 .lineItemMeta {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .lineItemTotal {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .invoiceTotal {
@@ -253,9 +253,9 @@
 }
 
 .notesSection {
-  border-color: #374151;
+  border-color: #334155;
 }
 
 .notes {
-  color: #d1d5db;
+  color: #cbd5e1;
 }

@@ -4,7 +4,12 @@
   border-radius: var(--radius-lg);
   padding: 1.5rem;
   margin-bottom: 2rem;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .header {
@@ -40,7 +45,8 @@
 }
 
 .inputArea:focus {
-  outline: none;
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
   border-color: var(--primary);
   box-shadow: 0 0 0 2px var(--primary-light);
 }

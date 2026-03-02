@@ -81,8 +81,8 @@
   transition: width 0.3s;
 }
 
-.progressFillGreen { background-color: #27AE60; }
-.progressFillYellow { background-color: #F2C94C; }
+.progressFillGreen { background-color: var(--color-success, #27AE60); }
+.progressFillYellow { background-color: var(--color-warning, #F2C94C); }
 
 .progressLabel {
   font-size: 0.78rem;
@@ -139,8 +139,15 @@
   text-align: center;
 }
 
-.quickActionCard:hover {
-  transform: translateY(-3px);
+@media (hover: hover) {
+  .quickActionCard:hover {
+    transform: translateY(-3px);
+  }
+}
+
+.quickActionCard:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .quickActionIcon {
@@ -154,11 +161,11 @@
 }
 
 /* Color-coded icon backgrounds */
-.quickActionIcon-primary { background: rgba(69, 115, 223, 0.12); color: #4573df; }
-.quickActionIcon-success { background: rgba(39, 174, 96, 0.12); color: #27AE60; }
-.quickActionIcon-info    { background: rgba(59, 130, 246, 0.12); color: #3b82f6; }
+.quickActionIcon-primary { background: rgba(69, 115, 223, 0.12); color: var(--color-primary, #4573df); }
+.quickActionIcon-success { background: rgba(39, 174, 96, 0.12); color: var(--color-success, #27AE60); }
+.quickActionIcon-info    { background: rgba(59, 130, 246, 0.12); color: var(--color-primary, #3b82f6); }
 .quickActionIcon-warning { background: rgba(242, 201, 76, 0.15); color: #d4a017; }
-.quickActionIcon-danger  { background: rgba(232, 17, 35, 0.10); color: #e81123; }
+.quickActionIcon-danger  { background: rgba(232, 17, 35, 0.10); color: var(--color-error, #e81123); }
 .quickActionIcon-purple  { background: rgba(139, 92, 246, 0.12); color: #8b5cf6; }
 
 .quickActionLabel {
@@ -201,8 +208,8 @@
   gap: 0.625rem;
 }
 
-.metricIconSuccess { color: #27AE60; }
-.metricIconPrimary { color: #4573df; }
+.metricIconSuccess { color: var(--color-success, #27AE60); }
+.metricIconPrimary { color: var(--color-primary, #4573df); }
 .metricIconWarning { color: #d4a017; }
 
 .metricStatValue {

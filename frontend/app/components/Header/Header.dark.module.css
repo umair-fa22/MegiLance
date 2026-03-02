@@ -16,7 +16,7 @@
 
 /* Dropdown Trigger */
 .navDropdownTrigger {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .navDropdownTrigger:hover {
@@ -36,7 +36,7 @@
 }
 
 .megaMenuItem {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .megaMenuItem:hover {
@@ -58,7 +58,7 @@
 
 /* Legacy nav link */
 .navLink {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .navLink:hover {
@@ -69,7 +69,7 @@
 
 /* Mobile Menu */
 .mobileMenuButton {
-  color: #e5e7eb;
+  color: #e2e8f0;
 }
 
 .mobileMenuButton:hover {
@@ -86,7 +86,7 @@
 }
 
 .mobileMenuItem {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .mobileMenuItem:hover {
@@ -97,7 +97,7 @@
 /* Explore Featured Link */
 .exploreLink {
   background: linear-gradient(135deg, #58a6ff 0%, #4573df 100%);
-  color: #0d1117;
+  color: #0f172a;
 }
 
 .exploreLink:hover {

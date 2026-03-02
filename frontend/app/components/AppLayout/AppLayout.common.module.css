@@ -17,8 +17,10 @@
 .appLayout {
   display: flex;
   min-height: 100vh;
+  min-height: 100dvh;
   position: relative;
   overflow-x: hidden;
+  isolation: isolate;
 }
 
 /* ===== SKIP LINK (Keyboard Accessibility) ===== */
@@ -32,12 +34,13 @@
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
-  border-radius: 0.5rem;
-  transition: top 0.2s ease;
+  border-radius: 0 0 0.75rem 0.75rem;
+  transition: top 0.25s var(--ease-premium, cubic-bezier(0.22, 1, 0.36, 1));
+  letter-spacing: -0.01em;
 }
 
 .skipLink:focus {
-  top: 1rem;
+  top: 0;
   outline: 2px solid var(--focus-ring-color, #4573df);
   outline-offset: 2px;
 }
@@ -51,6 +54,7 @@
   margin-left: 272px;
   transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 100vh;
+  min-height: 100dvh;
   position: relative;
 }
 
@@ -61,12 +65,12 @@
 
 .pageContent {
   flex-grow: 1;
-  padding: 1.75rem 2rem 2rem;
+  padding: 2rem 2.25rem 2.5rem;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 0;
-  max-width: 1600px;
+  max-width: 1440px;
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
@@ -86,6 +90,8 @@
   z-index: 150;
   transition: opacity 0.3s ease;
   cursor: pointer;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
 .mobileOverlayVisible {
@@ -95,7 +101,7 @@
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1400px) {
   .pageContent {
-    padding: 1.5rem 1.75rem 2rem;
+    padding: 1.75rem 2rem 2rem;
   }
 }
 
@@ -109,7 +115,7 @@
   }
   
   .pageContent {
-    padding: 1.25rem 1.5rem 1.5rem;
+    padding: 1.5rem 1.75rem 1.75rem;
   }
 }
 
@@ -123,7 +129,7 @@
   }
   
   .pageContent {
-    padding: 1rem;
+    padding: 1.25rem 1rem 1.5rem;
     max-width: 100%;
   }
   

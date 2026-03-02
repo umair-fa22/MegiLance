@@ -67,7 +67,8 @@
 /* Accessible focus ring */
 .input:focus-visible + .slider,
 .input:focus + .slider {
-  outline: none;
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
   /* Fallback ring */
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.25);
 }

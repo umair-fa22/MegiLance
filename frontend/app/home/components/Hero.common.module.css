@@ -200,7 +200,7 @@
   width: 48px;
   height: 48px;
   border: 3px solid rgba(69, 115, 223, 0.2);
-  border-top-color: #4573df;
+  border-top-color: var(--color-primary, #4573df);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -420,7 +420,12 @@
   font-family: var(--font-family-body);
   margin-bottom: 2rem;
   text-decoration: none;
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   /* PREMIUM - 3D Transform */
   transform: perspective(500px) translateZ(0);
   will-change: transform;
@@ -437,7 +442,12 @@
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .announcementBadge:hover .badgeIcon {
@@ -551,7 +561,12 @@
   justify-content: center;
   /* PREMIUM - 3D Button Transform */
   transform: perspective(500px) translateZ(0);
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .primaryCta:hover {
@@ -614,7 +629,12 @@
   font-size: 0.75rem;
   font-weight: 600;
   margin-left: -8px;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   /* PREMIUM - 3D Transform */
   transform: perspective(500px) translateZ(0);
 }
@@ -668,7 +688,12 @@
   font-size: 0.875rem;
   font-weight: 600;
   font-family: var(--font-family-body);
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   /* PREMIUM - 3D Transform */
   transform-style: preserve-3d;
   animation: float3D 6s ease-in-out infinite;
@@ -758,7 +783,12 @@
   font-size: 0.75rem;
   font-weight: 500;
   font-family: var(--font-family-body);
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   /* PREMIUM - 3D Transform */
   transform: perspective(500px) translateZ(0);
 }
@@ -766,7 +796,12 @@
 .trustBadge svg {
   width: 14px;
   height: 14px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .trustBadge:hover {

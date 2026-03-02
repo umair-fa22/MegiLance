@@ -183,7 +183,12 @@
   gap: 1.5rem;
   padding: 1.5rem;
   border-radius: 1.5rem;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    border-color 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    background-color 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    color 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    opacity 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.05);
   text-align: left;
@@ -207,7 +212,12 @@
   background: rgba(255, 255, 255, 0.05);
   border-radius: 1rem;
   padding: 0.5rem;
-  transition: all 0.4s ease;
+  transition: transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease,
+    background-color 0.4s ease,
+    color 0.4s ease,
+    opacity 0.4s ease;
 }
 
 .techLogo:hover .techIconWrapper {
@@ -218,7 +228,12 @@
 .techLogo svg {
   width: 100%;
   height: 100%;
-  transition: all 0.4s ease;
+  transition: transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease,
+    background-color 0.4s ease,
+    color 0.4s ease,
+    opacity 0.4s ease;
 }
 
 .techContent {
@@ -236,7 +251,7 @@
 .techRole {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 0.5rem;

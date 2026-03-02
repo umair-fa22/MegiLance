@@ -10,7 +10,7 @@
 }
 
 .headerSubtitle {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .createButton {
@@ -27,12 +27,12 @@
 /* Stats */
 .statCard {
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .statLabel {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .statValue {
@@ -42,7 +42,7 @@
 /* Search and Filters */
 .searchBox {
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .searchInput {
@@ -50,12 +50,12 @@
 }
 
 .searchInput::placeholder {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .filterSelect {
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   color: #1a1a2e;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
 }
@@ -63,17 +63,17 @@
 /* Table */
 .gigsTable {
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .gigsTable th {
   background-color: #f9fafb;
-  color: #6b7280;
-  border-bottom: 1px solid #e5e7eb;
+  color: #64748b;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .gigsTable td {
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f1f5f9;
 }
 
 .gigsTable tbody tr:hover {
@@ -85,7 +85,7 @@
 }
 
 .gigCategory {
-  color: #6b7280;
+  color: #64748b;
 }
 
 /* Status Badges */
@@ -109,11 +109,11 @@
 
 .statusDraft {
   background-color: rgba(107, 114, 128, 0.1);
-  color: #6b7280;
+  color: #64748b;
 }
 
 .statusDraft .statusDot {
-  background-color: #6b7280;
+  background-color: #64748b;
 }
 
 .statusPending {
@@ -141,12 +141,12 @@
 
 /* Actions */
 .actionButton {
-  background-color: #f3f4f6;
+  background-color: #f1f5f9;
   color: #4b5563;
 }
 
 .actionButton:hover {
-  background-color: #e5e7eb;
+  background-color: #e2e8f0;
   color: #1a1a2e;
 }
 
@@ -168,12 +168,12 @@
 /* Empty State */
 .emptyState {
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .emptyIcon {
-  background-color: #f3f4f6;
-  color: #6b7280;
+  background-color: #f1f5f9;
+  color: #64748b;
 }
 
 .emptyTitle {
@@ -181,13 +181,13 @@
 }
 
 .emptyText {
-  color: #6b7280;
+  color: #64748b;
 }
 
 /* Cards */
 .gigCard {
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -200,29 +200,29 @@
 }
 
 .gigCardStatLabel {
-  color: #6b7280;
+  color: #64748b;
 }
 
 /* Pagination */
 .paginationButton {
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   color: #4b5563;
 }
 
 .paginationButton:hover:not(:disabled) {
-  background-color: #f3f4f6;
+  background-color: #f1f5f9;
   color: #1a1a2e;
 }
 
 .pageButton {
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   color: #4b5563;
 }
 
 .pageButton:hover {
-  background-color: #f3f4f6;
+  background-color: #f1f5f9;
 }
 
 .pageButtonActive {

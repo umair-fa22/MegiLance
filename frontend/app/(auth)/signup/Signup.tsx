@@ -251,7 +251,7 @@ const Signup: React.FC = () => {
     <PageTransition className={styles.loginPage}>
       {/* Background Decor - REMOVED */}
 
-      <div className={styles.brandingSlot}>
+      <div className={styles.brandingSlot} style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', alignSelf: 'start' }}>
         <AuthBrandingPanel roleConfig={roleConfig[selectedRole]} />
       </div>
       <div className={styles.formPanel}>

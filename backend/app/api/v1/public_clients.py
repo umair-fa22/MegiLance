@@ -79,37 +79,9 @@ async def get_featured_clients(
                 member_since=created_at[:10] if created_at else None
             ))
     
-    # If no real clients, return demo data
+    # If no real clients, return empty
     if not clients:
-        demo_clients = [
-            {"name": "AtlasAI Technologies", "industry": "AI", "location": "San Francisco, CA"},
-            {"name": "NovaBank Financial", "industry": "Fintech", "location": "New York, NY"},
-            {"name": "PixelMint Commerce", "industry": "E-commerce", "location": "Los Angeles, CA"},
-            {"name": "CureWell Health", "industry": "Healthcare", "location": "Boston, MA"},
-            {"name": "CortexCloud AI", "industry": "AI", "location": "Seattle, WA"},
-            {"name": "VoltPay Solutions", "industry": "Fintech", "location": "London, UK"},
-            {"name": "ShopSphere Global", "industry": "E-commerce", "location": "Toronto, CA"},
-            {"name": "Medisphere Labs", "industry": "Healthcare", "location": "Singapore"},
-            {"name": "EduLearn Pro", "industry": "EdTech", "location": "Austin, TX"},
-            {"name": "MarketGenius", "industry": "Marketing", "location": "Miami, FL"},
-            {"name": "DesignStudio X", "industry": "Design", "location": "Berlin, DE"},
-            {"name": "CloudScale SaaS", "industry": "SaaS", "location": "Dublin, IE"},
-        ]
-        
-        for i, demo in enumerate(demo_clients[:limit]):
-            if industry and industry.lower() != "all" and demo["industry"].lower() != industry.lower():
-                continue
-            clients.append(PublicClientResponse(
-                id=1000 + i,
-                name=demo["name"],
-                company=demo["name"],
-                industry=demo["industry"],
-                location=demo["location"],
-                avatar_url="/images/clients/placeholder.svg",
-                projects_posted=(5 - i) if i < 5 else 1,
-                total_spent=10000 - (i * 500),
-                member_since="2024-01-15"
-            ))
+        return []
     
     return clients[:limit]
 
@@ -123,12 +95,12 @@ async def get_client_stats():
     """Get public statistics about clients on the platform. No auth required."""
     stats = fetch_client_stats()
     
-    # Provide reasonable defaults for demo
+    # Return actual stats
     return ClientStatsResponse(
-        total_clients=max(stats["total_clients"], 250),
-        total_projects=max(stats["total_projects"], 1500),
-        total_spent=max(stats["total_spent"], 2500000),
-        countries=max(stats["countries"], 45),
+        total_clients=stats["total_clients"],
+        total_projects=stats["total_projects"],
+        total_spent=stats["total_spent"],
+        countries=stats["countries"],
         industries=DEMO_INDUSTRIES
     )
 

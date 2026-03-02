@@ -23,7 +23,7 @@ from app.services.ai_writing import (
     ToneStyle
 )
 
-router = APIRouter(prefix="/ai-writing", tags=["ai-writing"])
+router = APIRouter(tags=["ai-writing"])
 
 
 # Request/Response Models

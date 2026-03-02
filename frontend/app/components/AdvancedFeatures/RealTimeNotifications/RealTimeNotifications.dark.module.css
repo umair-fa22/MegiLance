@@ -5,17 +5,17 @@
 }
 
 .bellButton:hover {
-  background-color: #2a2a2a;
+  background-color: #334155;
 }
 
 .dropdown {
-  background-color: #1e1e1e;
-  border: 1px solid #333333;
+  background-color: #1e293b;
+  border: 1px solid #475569;
 }
 
 .header {
-  background-color: #252525;
-  border-bottom-color: #333333;
+  background-color: #1e293b;
+  border-bottom-color: #475569;
 }
 
 .headerTitle {
@@ -31,16 +31,16 @@
 }
 
 .notificationItem {
-  background-color: #1e1e1e;
-  border-bottom-color: #2a2a2a;
+  background-color: #1e293b;
+  border-bottom-color: #334155;
 }
 
 .notificationItem:hover {
-  background-color: #252525;
+  background-color: #1e293b;
 }
 
 .notificationUnread {
-  background-color: #252525;
+  background-color: #1e293b;
 }
 
 .notificationIcon {
@@ -65,7 +65,7 @@
 }
 
 .notificationActions:hover {
-  background-color: #2a2a2a;
+  background-color: #334155;
   color: #e81123;
 }
 

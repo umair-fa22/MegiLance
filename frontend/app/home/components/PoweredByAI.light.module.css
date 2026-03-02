@@ -1,7 +1,7 @@
 /* @AI-HINT: Light theme styles for PoweredByAI. */
 
 .section {
-  background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
 }
 
 .badge {
@@ -11,11 +11,11 @@
 }
 
 .heading {
-  color: #1a1a1a;
+  color: #0f172a;
 }
 
 .subtitle {
-  color: #4a4a4a;
+  color: #475569;
 }
 
 .featureCard {
@@ -28,11 +28,11 @@
 }
 
 .cardTitle {
-  color: #1a1a1a;
+  color: #0f172a;
 }
 
 .cardDescription {
-  color: #4a4a4a;
+  color: #475569;
 }
 
 .techStackSection {

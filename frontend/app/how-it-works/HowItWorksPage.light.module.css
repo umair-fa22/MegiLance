@@ -1,25 +1,25 @@
 /* @AI-HINT: Light theme colors for How It Works page */
 
 .container {
-  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
-  color: #1a1a1a;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  color: #0f172a;
 }
 
 .title {
-  color: #1a1a1a;
+  color: #0f172a;
 }
 
 .subtitle {
-  color: #666666;
+  color: #475569;
 }
 
 .sectionTitle {
-  color: #1a1a1a;
+  color: #0f172a;
 }
 
 .statCard {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
@@ -29,7 +29,7 @@
 
 .featureCard {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
@@ -39,13 +39,13 @@
 
 .architectureCard {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
 .archLayer {
   background: #f8f9fa;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .ctaSection {

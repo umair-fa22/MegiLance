@@ -1,21 +1,21 @@
 /* @AI-HINT: AIStatusIndicator dark theme styles */
 
 .badge {
-  background: #374151;
-  color: #e5e7eb;
+  background: #334155;
+  color: #e2e8f0;
 }
 
 .badge:hover {
-  background: #4b5563;
+  background: #475569;
 }
 
 .dropdown {
-  background: #1f2937;
-  border: 1px solid #374151;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .dropdownHeader {
-  background: #111827;
+  background: #0f172a;
   color: #f3f4f6;
 }
 
@@ -28,11 +28,11 @@
 }
 
 .latencyValue {
-  color: #e5e7eb;
+  color: #e2e8f0;
 }
 
 .lastPing {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .errorBox {
@@ -41,33 +41,33 @@
 }
 
 .retryButton {
-  background: #374151;
-  color: #e5e7eb;
+  background: #334155;
+  color: #e2e8f0;
 }
 
 .retryButton:hover {
-  background: #4b5563;
+  background: #475569;
 }
 
 /* Card */
 .card {
-  background: #1f2937;
-  border-color: #374151;
+  background: #1e293b;
+  border-color: #334155;
 }
 
 .cardRetryButton {
-  background: #374151;
-  color: #9ca3af;
+  background: #334155;
+  color: #94a3b8;
 }
 
 .cardRetryButton:hover {
-  background: #4b5563;
-  color: #e5e7eb;
+  background: #475569;
+  color: #e2e8f0;
 }
 
 .cardItem {
-  background: #111827;
-  color: #e5e7eb;
+  background: #0f172a;
+  color: #e2e8f0;
 }
 
 .valueOnline {

@@ -59,11 +59,16 @@
   font-weight: 500;
   border-bottom: 2px solid transparent;
   margin-bottom: -1px;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .tabActive {
-  border-bottom-color: #4573df;
+  border-bottom-color: var(--color-primary, #4573df);
 }
 
 .badge {
@@ -127,11 +132,11 @@
 }
 
 .unread {
-  border-left: 3px solid #4573df;
+  border-left: 3px solid var(--color-primary, #4573df);
 }
 
 .selected {
-  border-left: 3px solid #4573df;
+  border-left: 3px solid var(--color-primary, #4573df);
 }
 
 .messageHeader {
@@ -176,7 +181,12 @@
   font-size: 1.25rem;
   cursor: pointer;
   opacity: 0.3;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .starBtn:hover,
@@ -264,11 +274,16 @@
   border-radius: 10px;
   border: 1px solid;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .unreadNotif {
-  border-left: 3px solid #4573df;
+  border-left: 3px solid var(--color-primary, #4573df);
 }
 
 .notifIcon {

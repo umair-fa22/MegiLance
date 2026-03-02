@@ -27,7 +27,12 @@
 .stepDot {
   width: 32px; height: 32px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.8rem; font-weight: 600; transition: all 0.3s;
+  font-size: 0.8rem; font-weight: 600; transition: transform 0.3s,
+    box-shadow 0.3s,
+    border-color 0.3s,
+    background-color 0.3s,
+    color 0.3s,
+    opacity 0.3s;
 }
 .stepDotActive { transform: scale(1.15); }
 .stepDotCompleted {}
@@ -56,15 +61,17 @@
 /* Inputs */
 .numberInput {
   padding: 10px 12px; border-radius: 8px; border: 1px solid transparent;
-  font-size: 0.9rem; width: 100%; outline: none;
+  font-size: 0.9rem; width: 100%;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
+.numberInput:focus-visible { outline: 2px solid var(--color-primary, #4573df); outline-offset: -2px; }
 .select {
   padding: 10px 12px; border-radius: 8px; border: 1px solid transparent;
-  font-size: 0.9rem; width: 100%; outline: none; cursor: pointer;
+  font-size: 0.9rem; width: 100%; cursor: pointer;
   transition: border-color 0.2s; appearance: none;
   background-repeat: no-repeat; background-position: right 12px center; background-size: 14px;
 }
+.select:focus-visible { outline: 2px solid var(--color-primary, #4573df); outline-offset: -2px; }
 
 /* Processing */
 .processingContainer { display: flex; flex-direction: column; align-items: center; padding: 3rem 0; }
@@ -136,13 +143,23 @@
 .navButtonBack, .navButtonNext {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 12px 28px; border-radius: 10px; font-size: 0.88rem;
-  font-weight: 600; border: none; cursor: pointer; transition: all 0.2s;
+  font-weight: 600; border: none; cursor: pointer; transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s;
 }
 .actionsBar { display: flex; gap: 12px; margin-left: auto; }
 .actionBtnPrimary, .actionBtnSecondary {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 12px 24px; border-radius: 10px; font-size: 0.88rem;
-  font-weight: 600; border: none; cursor: pointer; transition: all 0.2s;
+  font-weight: 600; border: none; cursor: pointer; transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s;
 }
 
 .disclaimer { text-align: center; font-size: 0.75rem; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(128,128,128,0.15); }

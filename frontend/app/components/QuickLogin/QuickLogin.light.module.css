@@ -7,12 +7,12 @@
 }
 
 .footer {
-  color: var(--muted-foreground, #6b7280);
+  color: var(--muted-foreground, #64748b);
 }
 
 .toggleButtonOpen {
-  background-color: var(--muted, #f3f4f6);
-  color: var(--muted-foreground, #6b7280);
+  background-color: var(--muted, #f1f5f9);
+  color: var(--muted-foreground, #64748b);
 }
 
 .toggleButtonClosed {

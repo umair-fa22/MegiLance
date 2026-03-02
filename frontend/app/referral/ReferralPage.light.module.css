@@ -1,21 +1,21 @@
 /* @AI-HINT: Light theme colors for ReferralPage */
 
 .container {
-  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
-  color: #1a1a1a;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  color: #0f172a;
 }
 
 .title {
-  color: #1a1a1a;
+  color: #0f172a;
 }
 
 .subtitle {
-  color: #666666;
+  color: #475569;
 }
 
 .card {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .cardTitle {
@@ -24,7 +24,7 @@
 
 .linkInput {
   background: #f9fafb;
-  border-color: #d1d5db;
+  border-color: #cbd5e1;
   color: #374151;
 }
 
@@ -36,11 +36,11 @@
 
 .statsCard {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .statItem {
-  background: #f9fafb;
+  background: #f8fafc;
 }
 
 .statValue {
@@ -48,5 +48,5 @@
 }
 
 .statLabel {
-  color: #6b7280;
+  color: #64748b;
 }

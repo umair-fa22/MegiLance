@@ -120,7 +120,12 @@
   font-size: var(--font-size-sm, 0.875rem);
   font-weight: 500;
   white-space: nowrap;
-  transition: all 150ms ease;
+  transition: transform 150ms,
+    box-shadow 150ms,
+    border-color 150ms,
+    background-color 150ms,
+    color 150ms,
+    opacity 150ms ease;
 }
 
 .navBtn:hover {

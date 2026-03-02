@@ -69,4 +69,16 @@
   align-items: center;
   gap: 0.5rem; /* space-x-2 */
   transition: color 0.2s;
+  text-decoration: none;
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }

@@ -1,6 +1,6 @@
 /* @AI-HINT: Income Calculator – dark theme colors */
 
-.container { background: linear-gradient(135deg, #0c0f1a 0%, #111827 100%); color: #f1f5f9; }
+.container { background: linear-gradient(135deg, #0c0f1a 0%, #0f172a 100%); color: #f1f5f9; }
 .headerBadge { background: rgba(69,115,223,0.15); color: #7ba0f7; }
 .title { color: #f1f5f9; }
 .subtitle { color: #94a3b8; }

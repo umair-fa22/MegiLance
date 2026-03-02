@@ -5,7 +5,7 @@
 }
 
 .error {
-  background-color: #3d1a1f;
+  background-color: #450a0a;
   color: #ff6b7a;
   border: 1px solid #e81123;
 }
@@ -19,8 +19,8 @@
 }
 
 .localVideo {
-  background-color: #1a1a1a;
-  border: 2px solid #404040;
+  background-color: #1e293b;
+  border: 2px solid #475569;
 }
 
 .statusOverlay {
@@ -32,8 +32,8 @@
 }
 
 .whiteboard {
-  background-color: #2a2a2a;
-  border: 2px solid #404040;
+  background-color: #334155;
+  border: 2px solid #475569;
 }
 
 .controls {

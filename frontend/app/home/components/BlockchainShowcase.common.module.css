@@ -101,7 +101,12 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
   width: 240px;
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   z-index: 1;
   backdrop-filter: blur(20px);
@@ -167,7 +172,12 @@
   padding: 2rem;
   border-radius: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.4s ease;
+  transition: transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease,
+    background-color 0.4s ease,
+    color 0.4s ease,
+    opacity 0.4s ease;
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(10px);
@@ -235,7 +245,12 @@
 .stat {
   padding: 2.5rem;
   border-radius: 1.5rem;
-  transition: all 0.4s ease;
+  transition: transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease,
+    background-color 0.4s ease,
+    color 0.4s ease,
+    opacity 0.4s ease;
   position: relative;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.03);
@@ -301,7 +316,12 @@
   font-weight: 600;
   padding: 1rem 2rem;
   border-radius: 1rem;
-  transition: all 0.4s ease;
+  transition: transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease,
+    background-color 0.4s ease,
+    color 0.4s ease,
+    opacity 0.4s ease;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }

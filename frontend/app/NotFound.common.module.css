@@ -17,13 +17,13 @@
 .content {
   background: var(--card-bg);
   border-radius: 16px;
-  padding: 3rem 2rem;
+  padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem);
   border: 1px solid var(--card-border);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .title {
-  font-size: 6rem;
+  font-size: clamp(3rem, 12vw, 6rem);
   font-weight: 700;
   margin: 0;
   line-height: 1;
@@ -67,6 +67,11 @@
   background: var(--primary-hover);
 }
 
+.primaryButton:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
 .secondaryButton {
   display: inline-block;
   background: transparent;
@@ -76,12 +81,22 @@
   text-decoration: none;
   font-weight: 600;
   border: 2px solid var(--primary-color);
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .secondaryButton:hover {
   background: var(--primary-color);
   color: white;
+}
+
+.secondaryButton:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
 }
 
 .suggestions {
@@ -98,7 +113,7 @@
 
 .suggestionsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
   gap: 1rem;
 }
 
@@ -110,7 +125,12 @@
   text-decoration: none;
   color: var(--text-primary);
   font-weight: 500;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
   border: 1px solid var(--card-border);
 }
 
@@ -120,11 +140,12 @@
   transform: translateY(-2px);
 }
 
+.suggestionLink:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
 @media (max-width: 640px) {
-  .title {
-    font-size: 4rem;
-  }
-  
   .subtitle {
     font-size: 1.5rem;
   }

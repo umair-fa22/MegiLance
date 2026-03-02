@@ -12,12 +12,12 @@
 }
 
 .statCard {
-  background-color: #1e1e1e;
+  background-color: #1e293b;
   border: 1px solid #333;
 }
 
 .section {
-  background-color: #1e1e1e;
+  background-color: #1e293b;
   border: 1px solid #333;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .linkBox {
-  background-color: #2d2d2d;
+  background-color: #334155;
   border-color: #444;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .table td {
-  border-bottom-color: #2d2d2d;
+  border-bottom-color: #334155;
   color: #e0e0e0;
 }
 

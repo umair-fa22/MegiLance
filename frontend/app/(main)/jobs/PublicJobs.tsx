@@ -17,6 +17,7 @@ import {
 import Button from '@/app/components/Button/Button';
 import { PageTransition, ScrollReveal } from '@/app/components/Animations';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
+import SectionGlobe from '@/app/components/Animations/SectionGlobe/SectionGlobe';
 
 import commonStyles from './PublicJobs.common.module.css';
 import lightStyles from './PublicJobs.light.module.css';
@@ -335,6 +336,7 @@ const PublicJobs: React.FC = () => {
   return (
     <PageTransition>
       <div className={cn(commonStyles.page, themeStyles.page)}>
+        <SectionGlobe variant="blue" size="md" position="right" />
         {/* Hero Header */}
         <ScrollReveal>
           <header className={cn(commonStyles.header, themeStyles.header)}>

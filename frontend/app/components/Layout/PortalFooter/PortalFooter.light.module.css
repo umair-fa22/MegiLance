@@ -1,7 +1,7 @@
 /* @AI-HINT: Light theme styles for enterprise PortalFooter */
 
 .footer {
-  border-top: 1px solid var(--border-light, #e8eaed);
+  border-top: 1px solid var(--border-light, #edf0f4);
   background-color: transparent;
 }
 
@@ -10,7 +10,7 @@
 }
 
 .copyright {
-  color: var(--text-tertiary-light, #9ca3af);
+  color: var(--text-tertiary-light, #b0b8c4);
 }
 
 .versionBadge {
@@ -24,7 +24,7 @@
 }
 
 .link {
-  color: var(--text-tertiary-light, #9ca3af);
+  color: var(--text-tertiary-light, #94a3b8);
 }
 
 .link:hover {
@@ -32,5 +32,5 @@
 }
 
 .separator {
-  color: var(--text-tertiary-light, #9ca3af);
+  color: var(--text-tertiary-light, #c8cdd4);
 }

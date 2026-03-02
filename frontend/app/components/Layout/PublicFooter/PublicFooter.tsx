@@ -1,11 +1,11 @@
-// @AI-HINT: This is the dedicated footer for the public-facing marketing website. It includes sitemap links, social media icons, and copyright information.
+// @AI-HINT: Premium public footer with sitemap links, newsletter CTA, social icons, globe decoration, and gradient top border.
 'use client';
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { Github, Twitter, Linkedin } from 'lucide-react';
+import { Github, Twitter, Linkedin, Mail } from 'lucide-react';
 
 import { MegiLanceLogo } from '@/app/components/MegiLanceLogo/MegiLanceLogo';
 import FooterGlobe from './FooterGlobe';
@@ -52,6 +52,7 @@ const socialLinks = [
   { name: 'Twitter', href: '#', icon: Twitter },
   { name: 'GitHub', href: '#', icon: Github },
   { name: 'LinkedIn', href: '#', icon: Linkedin },
+  { name: 'Email', href: 'mailto:hello@megilance.com', icon: Mail },
 ];
 
 const PublicFooter = () => {
@@ -71,6 +72,7 @@ const PublicFooter = () => {
 
   return (
     <footer className={cn(commonStyles.footer, styles.footer)}>
+      <div className={commonStyles.topBorder} />
       <FooterGlobe />
       <div className={cn(commonStyles.container, styles.container)}>
         <div className={commonStyles.mainContent}>
@@ -81,6 +83,21 @@ const PublicFooter = () => {
             <p className={cn(commonStyles.tagline, styles.tagline)}>
               The Future of Freelance, Today.
             </p>
+            {/* Newsletter CTA */}
+            <div className={commonStyles.newsletterSection}>
+              <p className={cn(commonStyles.newsletterLabel, styles.newsletterLabel)}>Stay Updated</p>
+              <form className={commonStyles.newsletterForm} onSubmit={(e) => e.preventDefault()}>
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  className={cn(commonStyles.newsletterInput, styles.newsletterInput)}
+                  aria-label="Email for newsletter"
+                />
+                <button type="submit" className={cn(commonStyles.newsletterButton, styles.newsletterButton)}>
+                  Subscribe
+                </button>
+              </form>
+            </div>
           </div>
           <div className={commonStyles.linksGrid}>
             {Object.entries(footerSections).map(([title, links]) => (

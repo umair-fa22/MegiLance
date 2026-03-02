@@ -54,7 +54,7 @@
 }
 
 .dashboardHeader h1 {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--text-primary-23272f);
@@ -196,7 +196,7 @@
 }
 
 .sectionHeader h2 {
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   font-size: 1.75rem;
   font-weight: 700;
   color: var(--text-primary-23272f);
@@ -238,7 +238,7 @@
 
 .emptyState h4 {
   margin: 0 0 0.5rem 0;
-  font-family: var(--font-poppins);
+  font-family: var(--font-family-heading);
   color: var(--text-primary-23272f);
   font-size: 1.25rem;
 }

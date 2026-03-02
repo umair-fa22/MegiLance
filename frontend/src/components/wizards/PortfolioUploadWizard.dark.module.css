@@ -3,18 +3,18 @@
 .input,
 .textarea,
 .select {
-  background: #2a2a2a;
+  background: #334155;
   border-color: #444;
   color: #e0e0e0;
 }
 
 .uploadBox {
-  background: #2a2a2a;
+  background: #334155;
   border-color: #4573df;
 }
 
 .imageCard {
-  background: #1e1e1e;
+  background: #1e293b;
   border-color: #444;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .techTag {
-  background: #1e1e1e;
+  background: #1e293b;
   border-color: #444;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .selectedTechBox {
-  background: #2a2a2a;
+  background: #334155;
   border: 1px solid #444;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .previewCard {
-  background: #1e1e1e;
+  background: #1e293b;
   border-color: #444;
 }
 
@@ -62,7 +62,7 @@
 }
 
 .settingCard {
-  background: #1e1e1e;
+  background: #1e293b;
   border-color: #444;
 }
 

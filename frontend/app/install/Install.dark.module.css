@@ -1,14 +1,14 @@
 /* @AI-HINT: Dark theme colors for Install component */
 .container {
-  background: linear-gradient(170deg, #0a0f1a 0%, #111827 40%, #0f1225 100%);
+  background: linear-gradient(170deg, #0f172a 0%, #0f172a 40%, #0f1225 100%);
 }
 
 .title {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .feature {
@@ -25,9 +25,9 @@
 }
 
 .featureTitle {
-  color: #f9fafb;
+  color: #f8fafc;
 }
 
 .featureDescription {
-  color: #9ca3af;
+  color: #94a3b8;
 }

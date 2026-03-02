@@ -2,12 +2,12 @@
 
 .container {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .header {
   background: #f8f9fa;
-  border-bottom-color: #e5e7eb;
+  border-bottom-color: #e2e8f0;
 }
 
 .title {
@@ -15,7 +15,7 @@
 }
 
 .status {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .messagesContainer {
@@ -23,11 +23,11 @@
 }
 
 .messageOther {
-  background: #f3f4f6;
+  background: #f1f5f9;
   color: #1a1a1a;
 }
 
 .inputContainer {
   background: #f8f9fa;
-  border-top-color: #e5e7eb;
+  border-top-color: #e2e8f0;
 }

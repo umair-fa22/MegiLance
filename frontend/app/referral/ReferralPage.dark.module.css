@@ -1,31 +1,31 @@
 /* @AI-HINT: Dark theme colors for ReferralPage */
 
 .container {
-  background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
-  color: #ffffff;
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  color: #f8fafc;
 }
 
 .title {
-  color: #ffffff;
+  color: #f8fafc;
 }
 
 .subtitle {
-  color: #a0a0a0;
+  color: #94a3b8;
 }
 
 .card {
-  background: #1e1e1e;
-  border: 1px solid #2d2d2d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .cardTitle {
-  color: #ffffff;
+  color: #f8fafc;
 }
 
 .linkInput {
-  background: #262626;
-  border-color: #3d3d3d;
-  color: #e5e5e5;
+  background: #0f172a;
+  border-color: #334155;
+  color: #e2e8f0;
 }
 
 .linkInput:focus {
@@ -35,12 +35,12 @@
 }
 
 .statsCard {
-  background: #1e1e1e;
-  border: 1px solid #2d2d2d;
+  background: #1e293b;
+  border: 1px solid #334155;
 }
 
 .statItem {
-  background: #262626;
+  background: #0f172a;
 }
 
 .statValue {
@@ -48,5 +48,5 @@
 }
 
 .statLabel {
-  color: #9ca3af;
+  color: #94a3b8;
 }

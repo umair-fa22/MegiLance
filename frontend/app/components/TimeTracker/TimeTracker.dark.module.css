@@ -1,6 +1,6 @@
 .container {
-  background-color: #1a202c;
-  border-color: #2d3748;
+  background-color: #0f172a;
+  border-color: #1e293b;
   box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
@@ -9,8 +9,8 @@
 }
 
 .descriptionInput {
-  background-color: #2d3748;
-  border-color: #4a5568;
+  background-color: #1e293b;
+  border-color: #475569;
   color: #e2e8f0;
 }
 

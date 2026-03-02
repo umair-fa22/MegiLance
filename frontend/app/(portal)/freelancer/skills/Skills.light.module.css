@@ -8,13 +8,13 @@
 }
 
 .subtitle {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .loadingState,
 .emptyState {
   background: #f9fafb;
-  color: #6b7280;
+  color: #64748b;
 }
 
 .emptyState h3 {
@@ -23,12 +23,12 @@
 
 .skillCard {
   background: #fff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .skillCard:hover {
-  border-color: #d1d5db;
+  border-color: #cbd5e1;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
@@ -37,7 +37,7 @@
 }
 
 .removeBtn {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .removeBtn:hover {
@@ -46,7 +46,7 @@
 }
 
 .experience {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .endorsements {
@@ -54,7 +54,7 @@
 }
 
 .progressBar {
-  background: #e5e7eb;
+  background: #e2e8f0;
 }
 
 .progressFill {
@@ -75,12 +75,12 @@
 }
 
 .suggestionChip {
-  background: #f3f4f6;
+  background: #f1f5f9;
   color: #374151;
 }
 
 .suggestionChip:hover {
-  background: #e5e7eb;
+  background: #e2e8f0;
 }
 
 .levelOption {
@@ -88,7 +88,7 @@
 }
 
 .levelOption:hover {
-  background: #f3f4f6;
+  background: #f1f5f9;
 }
 
 .levelOptionActive {
@@ -100,11 +100,11 @@
 }
 
 .levelDesc {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .modalActions {
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .level_beginner { background: rgba(107, 114, 128, 0.1); color: #4b5563; }

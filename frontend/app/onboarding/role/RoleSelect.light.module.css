@@ -1,6 +1,6 @@
 /* @AI-HINT: Light theme colors for post-signup role selection page */
 .container {
-  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
 }
 
 .card {
@@ -13,11 +13,11 @@
 }
 
 .subtitle {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .roleCard {
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
   background: #f9fafb;
 }
 
@@ -42,11 +42,11 @@
 }
 
 .roleDesc {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .checkMark {
-  border-color: #d1d5db;
+  border-color: #cbd5e1;
 }
 
 .checkMarkSelected {

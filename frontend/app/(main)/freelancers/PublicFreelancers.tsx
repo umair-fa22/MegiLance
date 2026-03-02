@@ -15,6 +15,7 @@ import {
 import Link from 'next/link';
 import { PageTransition, ScrollReveal } from '@/app/components/Animations';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
+import SectionGlobe from '@/app/components/Animations/SectionGlobe/SectionGlobe';
 
 import common from './PublicFreelancers.common.module.css';
 import light from './PublicFreelancers.light.module.css';
@@ -336,6 +337,7 @@ const PublicFreelancers: React.FC = () => {
   return (
     <PageTransition>
       <div className={cn(common.page, themed.page)}>
+        <SectionGlobe variant="purple" size="sm" position="left" />
         <ScrollReveal>
           <header className={cn(common.header, themed.header)}>
             <h1 className={cn(common.title, themed.title)}>Hire Top Freelancers</h1>

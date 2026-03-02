@@ -12,8 +12,8 @@
   justify-content: center; /* Vertically center the content */
   position: relative;
   transition: background-color 0.3s ease;
-  height: 100%; /* fill grid cell height */
-  min-height: 100vh;
+  height: 100vh; /* viewport height, not stretched grid cell */
+  max-height: 100vh;
   background: var(--branding-panel-bg, #f0f4ff);
   background-image: radial-gradient(circle at 10% 20%, rgba(69, 115, 223, 0.12) 0%, transparent 40%),
                     radial-gradient(circle at 90% 80%, rgba(255, 152, 0, 0.08) 0%, transparent 40%);
@@ -51,7 +51,7 @@
 }
 
 .brandingTitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
   font-size: 2.25rem;
   font-weight: 700;
   margin-bottom: 1rem;

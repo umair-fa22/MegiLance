@@ -17,7 +17,7 @@
   font-size: 3rem;
   font-weight: 800;
   margin-bottom: 1rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
   line-height: 1.2;
 }
 
@@ -45,7 +45,7 @@
   font-weight: 700;
   text-align: center;
   margin-bottom: 1.5rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
   position: relative;
   padding-bottom: 1rem;
 }
@@ -58,7 +58,7 @@
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, #4573df, #ff9800);
+  background: linear-gradient(90deg, var(--color-primary, #4573df), var(--color-accent, #ff9800));
   border-radius: 2px;
 }
 
@@ -104,15 +104,15 @@
   display: flex;
   justify-content: center;
   margin-bottom: 0.75rem;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 .statValue {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
   margin-bottom: 0.25rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
 }
 
 .statTitle {
@@ -147,14 +147,14 @@
 
 .featureIcon {
   margin-bottom: 1rem;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 .featureTitle {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
 }
 
 .featureDesc {
@@ -191,7 +191,7 @@
 
 .archArrow {
   font-size: 1.5rem;
-  color: #4573df;
+  color: var(--color-primary, #4573df);
   margin: 0.5rem 0;
 }
 
@@ -213,7 +213,7 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family-heading);
 }
 
 .ctaSubtitle {
@@ -238,11 +238,16 @@
   font-weight: 600;
   font-size: 1rem;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .ctaPrimary {
-  background: linear-gradient(135deg, #4573df, #6b8cff);
+  background: linear-gradient(135deg, var(--color-primary, #4573df), #6b8cff);
   color: white;
 }
 
@@ -252,8 +257,8 @@
 }
 
 .ctaSecondary {
-  border: 2px solid #4573df;
-  color: #4573df;
+  border: 2px solid var(--color-primary, #4573df);
+  color: var(--color-primary, #4573df);
   background: transparent;
 }
 

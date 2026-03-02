@@ -9,16 +9,16 @@
 }
 
 .subtitle {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .settingsBtn {
-  background: #f3f4f6;
+  background: #f1f5f9;
   color: #374151;
 }
 
 .settingsBtn:hover {
-  background: #e5e7eb;
+  background: #e2e8f0;
 }
 
 .addBtn {
@@ -31,7 +31,7 @@
 }
 
 .publicUrl {
-  background: #f3f4f6;
+  background: #f1f5f9;
   color: #374151;
 }
 
@@ -40,12 +40,12 @@
 }
 
 .categoryBtn {
-  background: #f3f4f6;
-  color: #6b7280;
+  background: #f1f5f9;
+  color: #64748b;
 }
 
 .categoryBtn:hover {
-  background: #e5e7eb;
+  background: #e2e8f0;
 }
 
 .categoryActive {
@@ -54,12 +54,12 @@
 }
 
 .layoutToggle {
-  background: #f3f4f6;
+  background: #f1f5f9;
 }
 
 .layoutBtn {
   background: transparent;
-  color: #6b7280;
+  color: #64748b;
 }
 
 .layoutBtn:hover,
@@ -69,12 +69,12 @@
 }
 
 .loading {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .emptyState {
-  background: #f3f4f6;
-  color: #6b7280;
+  background: #f1f5f9;
+  color: #64748b;
 }
 
 .emptyTitle {
@@ -93,7 +93,7 @@
 .featuredCard,
 .portfolioCard {
   background: #fff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .featuredCard:hover,
@@ -115,20 +115,20 @@
 }
 
 .cardDesc {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .tag {
-  background: #f3f4f6;
+  background: #f1f5f9;
   color: #374151;
 }
 
 .stat {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .likeBtn {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .liked {
@@ -140,22 +140,22 @@
 }
 
 .modalHeader {
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .closeButton {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .closeButton:hover {
-  background: #f3f4f6;
+  background: #f1f5f9;
 }
 
 .input,
 .select,
 .textarea {
   background: #fff;
-  border: 1px solid #d1d5db;
+  border: 1px solid #cbd5e1;
   color: #111827;
 }
 
@@ -167,7 +167,7 @@
 }
 
 .addTagBtn {
-  background: #f3f4f6;
+  background: #f1f5f9;
   color: #374151;
 }
 
@@ -177,16 +177,16 @@
 }
 
 .modalFooter {
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .cancelBtn {
-  background: #f3f4f6;
+  background: #f1f5f9;
   color: #374151;
 }
 
 .cancelBtn:hover {
-  background: #e5e7eb;
+  background: #e2e8f0;
 }
 
 .saveBtn {

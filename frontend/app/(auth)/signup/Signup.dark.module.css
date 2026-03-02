@@ -8,16 +8,16 @@
   --brand-text-color: #a0aec0; /* Cool gray */
 
   /* Form Panel */
-  --form-bg-color: #111827; /* Dark slate gray */
-  --text-primary: #f9fafb;
-  --text-secondary: #d1d5db;
+  --form-bg-color: #0f172a; /* Dark slate gray */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
   --text-tertiary: #6b7280;
-  --border-color: #374151;
+  --border-color: #334155;
   
   /* Interactive Elements */
   --color-primary: #4573df;
   --color-primary-hover: #608cfb;
-  --role-button-hover-bg: #1f2937;
+  --role-button-hover-bg: #1e293b;
   --role-button-selected-bg: rgba(69, 115, 223, 0.15);
   
   /* States */

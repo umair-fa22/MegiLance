@@ -62,10 +62,10 @@
   flex-shrink: 0;
 }
 
-.iconPrimary { background: rgba(69, 115, 223, 0.1); color: #4573df; }
-.iconSuccess { background: rgba(39, 174, 96, 0.1); color: #27AE60; }
+.iconPrimary { background: rgba(69, 115, 223, 0.1); color: var(--color-primary, #4573df); }
+.iconSuccess { background: rgba(39, 174, 96, 0.1); color: var(--color-success, #27AE60); }
 .iconWarning { background: rgba(242, 201, 76, 0.15); color: #c9a000; }
-.iconDanger { background: rgba(232, 17, 35, 0.1); color: #e81123; }
+.iconDanger { background: rgba(232, 17, 35, 0.1); color: var(--color-error, #e81123); }
 
 .statInfo {
   display: flex;
@@ -90,8 +90,8 @@
   gap: 4px;
 }
 
-.trendUp { color: #27AE60; }
-.trendDown { color: #e81123; }
+.trendUp { color: var(--color-success, #27AE60); }
+.trendDown { color: var(--color-error, #e81123); }
 
 /* Period Selector */
 .periodSelector {
@@ -108,7 +108,12 @@
   cursor: pointer;
   font-size: 0.85rem;
   font-weight: 500;
-  transition: all 0.2s;
+  transition: transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    opacity 0.2s;
 }
 
 .periodBtnActive {
@@ -254,8 +259,8 @@
   font-family: 'JetBrains Mono', monospace;
 }
 
-.amountPositive { color: #27AE60; }
-.amountNegative { color: #e81123; }
+.amountPositive { color: var(--color-success, #27AE60); }
+.amountNegative { color: var(--color-error, #e81123); }
 
 /* Empty State */
 .emptyState {
@@ -292,7 +297,7 @@
   background: rgba(232, 17, 35, 0.08);
   border: 1px solid rgba(232, 17, 35, 0.2);
   border-radius: 10px;
-  color: #e81123;
+  color: var(--color-error, #e81123);
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
 }

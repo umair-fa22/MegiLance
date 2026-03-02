@@ -1,6 +1,6 @@
 /* JobCard.dark.module.css */
 .card {
-  background: var(--surface, #1e1e1e);
+  background: var(--surface, #1e293b);
   border: 1px solid var(--border, #333);
 }
 

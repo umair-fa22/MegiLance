@@ -1,7 +1,7 @@
 /* @AI-HINT: Dark theme styles for FeaturesStatus section */
 
 .section {
-  background: linear-gradient(180deg, #0c1220 0%, #141c2d 100%);
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
 }
 
 .title {
@@ -12,7 +12,7 @@
 }
 
 .subtitle {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .statCard {
@@ -29,7 +29,7 @@
 }
 
 .statLabel {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .categoryCard {
@@ -59,7 +59,7 @@
 }
 
 .featureName {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .legend {
@@ -68,9 +68,9 @@
 }
 
 .legendTitle {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .legendItem {
-  color: #d1d5db;
+  color: #cbd5e1;
 }

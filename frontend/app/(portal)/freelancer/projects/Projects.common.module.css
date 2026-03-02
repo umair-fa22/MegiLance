@@ -115,12 +115,12 @@
 
 .statussuccess {
   background: rgba(39, 174, 96, 0.1);
-  color: #27AE60;
+  color: var(--color-success, #27AE60);
 }
 
 .statusprimary {
   background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--color-primary, #4573df);
 }
 
 .statuswarning {
@@ -130,7 +130,7 @@
 
 .statusdanger {
   background: rgba(232, 17, 35, 0.1);
-  color: #e81123;
+  color: var(--color-error, #e81123);
 }
 
 .clientName {
@@ -199,4 +199,14 @@
   .projectActions {
     flex-direction: column;
   }
+}
+
+.searchInput:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
+}
+
+.filterSelect:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }

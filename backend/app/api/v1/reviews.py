@@ -219,6 +219,101 @@ async def list_reviews(
     return output
 
 
+@router.get("/user/{user_id}", response_model=List[dict])
+async def get_reviews_for_user(
+    user_id: int,
+    page: int = Query(1, ge=1),
+    page_size: int = Query(20, ge=1, le=100),
+    current_user = Depends(get_current_user)
+):
+    """Get all reviews for a specific user (as reviewee)."""
+    offset, limit = paginate_params(page, page_size)
+    current_user_id = current_user.get("user_id")
+    role = current_user.get("role", "")
+
+    where_sql = "reviewee_id = ?"
+    params = [user_id]
+    if role.lower() != "admin":
+        where_sql += " AND (is_public = 1 OR reviewer_id = ? OR reviewee_id = ?)"
+        params.extend([current_user_id, current_user_id])
+    params.extend([limit, offset])
+
+    rows = reviews_service.query_reviews(where_sql, params, order_by="r.created_at DESC")
+    output = []
+    for row in rows:
+        breakdown = {}
+        try:
+            if row.get("rating_breakdown"):
+                breakdown = json.loads(row.get("rating_breakdown"))
+                breakdown.pop("response", None)
+        except (json.JSONDecodeError, TypeError, ValueError):
+            pass
+        output.append({
+            "id": row.get("id"),
+            "contract_id": row.get("contract_id"),
+            "reviewer_id": row.get("reviewer_id"),
+            "reviewed_user_id": row.get("reviewee_id"),
+            "rating": row.get("rating"),
+            "communication_rating": breakdown.get("communication"),
+            "quality_rating": breakdown.get("quality"),
+            "professionalism_rating": breakdown.get("professionalism"),
+            "deadline_rating": breakdown.get("deadline"),
+            "review_text": row.get("comment"),
+            "is_public": bool(row.get("is_public")),
+            "created_at": row.get("created_at"),
+            "updated_at": row.get("updated_at"),
+            "project_title": row.get("project_title"),
+            "reviewer_name": row.get("reviewer_name"),
+        })
+    return output
+
+
+@router.get("/contract/{contract_id}", response_model=List[dict])
+async def get_reviews_for_contract(
+    contract_id: int,
+    current_user = Depends(get_current_user)
+):
+    """Get all reviews for a specific contract."""
+    current_user_id = current_user.get("user_id")
+    role = current_user.get("role", "")
+
+    where_sql = "contract_id = ?"
+    params = [contract_id]
+    if role.lower() != "admin":
+        where_sql += " AND (is_public = 1 OR reviewer_id = ? OR reviewee_id = ?)"
+        params.extend([current_user_id, current_user_id])
+    params.extend([100, 0])
+
+    rows = reviews_service.query_reviews(where_sql, params, order_by="r.created_at DESC")
+    output = []
+    for row in rows:
+        breakdown = {}
+        try:
+            if row.get("rating_breakdown"):
+                breakdown = json.loads(row.get("rating_breakdown"))
+                breakdown.pop("response", None)
+        except (json.JSONDecodeError, TypeError, ValueError):
+            pass
+        output.append({
+            "id": row.get("id"),
+            "contract_id": row.get("contract_id"),
+            "reviewer_id": row.get("reviewer_id"),
+            "reviewed_user_id": row.get("reviewee_id"),
+            "rating": row.get("rating"),
+            "communication_rating": breakdown.get("communication"),
+            "quality_rating": breakdown.get("quality"),
+            "professionalism_rating": breakdown.get("professionalism"),
+            "deadline_rating": breakdown.get("deadline"),
+            "review_text": row.get("comment"),
+            "is_public": bool(row.get("is_public")),
+            "created_at": row.get("created_at"),
+            "updated_at": row.get("updated_at"),
+            "project_title": row.get("project_title"),
+            "reviewer_name": row.get("reviewer_name"),
+        })
+    return output
+
+
 @router.get("/stats/{user_id}", response_model=dict)
 async def get_review_stats(user_id: int):
     """

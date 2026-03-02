@@ -46,7 +46,12 @@
 .contactIcon { width: 64px; height: 64px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
 
 /* Buttons */
-.button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 20px; border-radius: 10px; border: 1px solid transparent; text-decoration: none; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 20px; border-radius: 10px; border: 1px solid transparent; text-decoration: none; font-weight: 600; cursor: pointer; transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease; }
 .primary { background: var(--brand); color: white; box-shadow: 0 4px 12px rgba(69, 115, 223, 0.3); }
 .primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(69, 115, 223, 0.4); }
 .contactCard .primary { background: white; color: var(--brand); }

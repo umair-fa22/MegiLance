@@ -334,23 +334,43 @@ async def get_support_tickets(
     page_size: int = Query(50, ge=1, le=200),
     admin: User = Depends(get_admin_user)
 ):
-    """Get support tickets"""
-    return {
-        "total": 0,
-        "tickets": [],
-        "message": "Support ticket system not yet implemented"
-    }
+    """Get support tickets from DB."""
+    from app.db.turso_http import execute_query
+    from app.services.db_utils import paginate_params
+    offset, limit = paginate_params(page, page_size)
+    conds, params = ["1=1"], []
+    if status:
+        conds.append("st.status = ?")
+        params.append(status)
+    where = " AND ".join(conds)
+    params.extend([limit, offset])
+    result = execute_query(
+        f"SELECT st.id, st.user_id, st.subject, st.description, st.status, st.priority, st.category, st.created_at, st.updated_at, u.name as user_name FROM support_tickets st LEFT JOIN users u ON st.user_id = u.id WHERE {where} ORDER BY st.created_at DESC LIMIT ? OFFSET ?",
+        params
+    )
+    cols = result.get("columns", result.get("cols", []))
+    _cn = lambda c: c.get("name", c) if isinstance(c, dict) else c
+    _cv = lambda c: c.get("value") if isinstance(c, dict) else c
+    tickets = [{_cn(c): _cv(v) for c, v in zip(cols, r)} for r in result.get("rows", [])]
+    count_res = execute_query(f"SELECT COUNT(*) FROM support_tickets st WHERE {where}", params[:-2])
+    total = _cv(count_res["rows"][0][0]) if count_res.get("rows") else 0
+    return {"total": total, "tickets": tickets, "page": page, "page_size": page_size}
 
 
 @router.get("/admin/ai/usage")
 async def get_ai_usage(admin: User = Depends(get_admin_user)):
-    """Get AI usage statistics"""
+    """Get AI usage statistics from analytics events."""
+    from app.db.turso_http import execute_query
+    total = execute_query("SELECT COUNT(*) FROM analytics_events WHERE event_type LIKE '%ai%'")
+    chatbot = execute_query("SELECT COUNT(*) FROM analytics_events WHERE event_type LIKE '%chatbot%'")
+    fraud = execute_query("SELECT COUNT(*) FROM analytics_events WHERE event_type LIKE '%fraud%'")
+    price = execute_query("SELECT COUNT(*) FROM analytics_events WHERE event_type LIKE '%price%' OR event_type LIKE '%estimate%'")
+    _cv = lambda c: c.get("value") if isinstance(c, dict) else c
     return {
-        "total_requests": 0,
-        "chatbot_queries": 0,
-        "fraud_checks": 0,
-        "price_estimates": 0,
-        "message": "AI usage tracking not yet implemented"
+        "total_requests": _cv(total["rows"][0][0]) if total.get("rows") else 0,
+        "chatbot_queries": _cv(chatbot["rows"][0][0]) if chatbot.get("rows") else 0,
+        "fraud_checks": _cv(fraud["rows"][0][0]) if fraud.get("rows") else 0,
+        "price_estimates": _cv(price["rows"][0][0]) if price.get("rows") else 0,
     }
 
 
@@ -386,5 +406,13 @@ async def get_fraud_alerts(
     limit: int = Query(10, ge=1, le=50),
     admin: User = Depends(get_admin_user)
 ):
-    """Get fraud alerts."""
-    return []
+    """Get fraud alerts from DB."""
+    from app.db.turso_http import execute_query
+    result = execute_query(
+        "SELECT id, user_id, alert_type, severity, description, status, created_at FROM fraud_alerts ORDER BY created_at DESC LIMIT ?",
+        [limit]
+    )
+    cols = result.get("columns", result.get("cols", []))
+    _cn = lambda c: c.get("name", c) if isinstance(c, dict) else c
+    _cv = lambda c: c.get("value") if isinstance(c, dict) else c
+    return [{_cn(c): _cv(v) for c, v in zip(cols, r)} for r in result.get("rows", [])]

@@ -9,13 +9,13 @@
 }
 
 .subtitle {
-  color: #6b7280;
+  color: #64748b;
 }
 
 /* Balance Cards */
 .balanceCard {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
@@ -25,7 +25,7 @@
 }
 
 .balanceLabel {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .balanceAmount {
@@ -33,20 +33,20 @@
 }
 
 .balanceSubtext {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 /* Tabs */
 .tabsContainer {
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .tab {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .tab:hover {
-  background: #f3f4f6;
+  background: #f1f5f9;
   color: #111827;
 }
 
@@ -58,7 +58,7 @@
 /* Content */
 .content {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
@@ -69,12 +69,12 @@
 /* Action Buttons */
 .actionButton {
   background: #f9fafb;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
   color: #374151;
 }
 
 .actionButton:hover {
-  background: #f3f4f6;
+  background: #f1f5f9;
   border-color: var(--primary);
   color: var(--primary);
 }
@@ -85,7 +85,7 @@
 }
 
 .transactionItem:hover {
-  background: #f3f4f6;
+  background: #f1f5f9;
 }
 
 .transactionDesc {
@@ -93,7 +93,7 @@
 }
 
 .transactionDate {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .amountPositive {
@@ -131,7 +131,7 @@
 /* Filter Select */
 .filterSelect {
   background: #ffffff;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
   color: #374151;
 }
 
@@ -142,7 +142,7 @@
 
 /* Form Styles */
 .formSubtitle {
-  color: #6b7280;
+  color: #64748b;
 }
 
 .formLabel {
@@ -151,7 +151,7 @@
 
 .formInput {
   background: #f9fafb;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
   color: #111827;
 }
 
@@ -162,8 +162,8 @@
 
 /* Quick Amount Buttons */
 .quickAmountBtn {
-  background: #f3f4f6;
-  border-color: #e5e7eb;
+  background: #f1f5f9;
+  border-color: #e2e8f0;
   color: #374151;
 }
 
@@ -176,11 +176,11 @@
 /* Payout Methods */
 .payoutMethod {
   background: #f9fafb;
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .payoutMethod:hover {
-  background: #f3f4f6;
+  background: #f1f5f9;
 }
 
 .payoutMethodSelected {
@@ -193,7 +193,7 @@
 }
 
 .payoutLast4 {
-  color: #6b7280;
+  color: #64748b;
 }
 
 /* Submit Button */
@@ -204,28 +204,28 @@
 
 /* Disclaimer */
 .disclaimer {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 /* Payment Info */
 .paymentInfo {
-  background: #f3f4f6;
+  background: #f1f5f9;
   color: #374151;
 }
 
 .changeButton {
-  background: #e5e7eb;
+  background: #e2e8f0;
   color: #374151;
 }
 
 .changeButton:hover {
-  background: #d1d5db;
+  background: #cbd5e1;
 }
 
 /* Settings */
 .payoutMethodCard {
   background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .actionLink {
@@ -237,8 +237,8 @@
 }
 
 .addMethodButton {
-  border-color: #d1d5db;
-  color: #6b7280;
+  border-color: #cbd5e1;
+  color: #64748b;
 }
 
 .addMethodButton:hover {
@@ -248,7 +248,7 @@
 }
 
 .settingsSection {
-  border-color: #e5e7eb;
+  border-color: #e2e8f0;
 }
 
 .settingsSubtitle {
@@ -264,5 +264,5 @@
 }
 
 .settingDesc {
-  color: #9ca3af;
+  color: #94a3b8;
 }

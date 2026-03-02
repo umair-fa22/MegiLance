@@ -18,13 +18,13 @@
 }
 
 .roleButton {
-  background: #1f2937;
-  border-color: #374151;
-  color: #f9fafb;
+  background: #1e293b;
+  border-color: #334155;
+  color: #f8fafc;
 }
 
 .roleButton:hover {
-  background: #111827;
+  background: #0f172a;
   border-color: #4573df;
 }
 
@@ -33,5 +33,5 @@
 }
 
 .roleEmail {
-  color: #9ca3af;
+  color: #94a3b8;
 }
