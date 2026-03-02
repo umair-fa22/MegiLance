@@ -127,6 +127,19 @@ export function useNotifications(options: UseNotificationsOptions = {}) {
     refreshCounts();
   }, [fetchNotifications, refreshCounts]);
 
+  const deleteNotification = useCallback(async (notificationId: number) => {
+    try {
+      await notificationsApi.delete(notificationId);
+      const removed = notifications.find(n => n.id === notificationId);
+      setNotifications(prev => prev.filter(n => n.id !== notificationId));
+      if (removed && !removed.is_read) {
+        decrementNotifications(1);
+      }
+    } catch (err) {
+      console.error('[useNotifications] delete error:', err);
+    }
+  }, [notifications, decrementNotifications]);
+
   const unreadCount = notifications.filter(n => !n.is_read).length;
 
   return {
@@ -136,6 +149,7 @@ export function useNotifications(options: UseNotificationsOptions = {}) {
     unreadCount,
     markAsRead,
     markAllAsRead,
+    deleteNotification,
     loadMore,
     refresh,
   };

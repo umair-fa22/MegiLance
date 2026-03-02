@@ -10,6 +10,7 @@ import { StaggerContainer, StaggerItem } from '@/app/components/Animations/Stagg
 import Modal from '@/app/components/Modal/Modal';
 import Button from '@/app/components/Button/Button';
 import Loader from '@/app/components/Loader/Loader';
+import { apiFetch } from '@/lib/api/core';
 import commonStyles from './Subscription.common.module.css';
 import lightStyles from './Subscription.light.module.css';
 import darkStyles from './Subscription.dark.module.css';
@@ -159,48 +160,29 @@ export default function SubscriptionPage() {
 
   const handleUpgrade = async (planId: string) => {
     try {
-      const token = localStorage.getItem('token') || localStorage.getItem('access_token');
-      const res = await fetch('/api/subscriptions/upgrade', {
+      await apiFetch('/subscriptions/upgrade', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ new_tier: planId, prorate: true }),
       });
-      
-      if (res.ok) {
-        await fetchSubscriptionData();
-        showToast('Plan upgraded successfully!');
-      } else {
-        const error = await res.json().catch(() => ({}));
-        showToast(error.detail || 'Upgrade failed. Please try again.', 'error');
-      }
-    } catch (error) {
+      await fetchSubscriptionData();
+      showToast('Plan upgraded successfully!');
+    } catch (error: any) {
       console.error('[Subscription] Upgrade error:', error);
-      showToast('Failed to upgrade plan. Please try again.', 'error');
+      showToast(error?.detail || 'Upgrade failed. Please try again.', 'error');
     }
   };
 
   const handleCancel = async () => {
     setShowCancelConfirm(false);
     try {
-      const token = localStorage.getItem('token') || localStorage.getItem('access_token');
-      const res = await fetch('/api/subscriptions/cancel', {
+      await apiFetch('/subscriptions/cancel', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ immediate: false }),
       });
-      
-      if (res.ok) {
-        setSubscription(prev => prev ? { ...prev, cancelAtPeriodEnd: true } : null);
-        showToast('Subscription will be canceled at end of billing period.');
-      } else {
-        showToast('Failed to cancel subscription.', 'error');
-      }
+      setSubscription(prev => prev ? { ...prev, cancelAtPeriodEnd: true } : null);
+      showToast('Subscription will be canceled at end of billing period.');
     } catch (error) {
       console.error('[Subscription] Cancel error:', error);
       showToast('Failed to cancel subscription.', 'error');

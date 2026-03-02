@@ -10,6 +10,7 @@ import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
 import { Bookmark, Briefcase, Clock, Users, ExternalLink, Trash2, AlertCircle } from 'lucide-react';
+import { apiFetch } from '@/lib/api/core';
 import commonStyles from './SavedJobs.common.module.css';
 import lightStyles from './SavedJobs.light.module.css';
 import darkStyles from './SavedJobs.dark.module.css';
@@ -44,16 +45,8 @@ export default function SavedJobsPage() {
     try {
       setLoading(true);
       setError(null);
-      const response = await fetch('/api/saved-jobs', {
-        credentials: 'include',
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setSavedJobs(Array.isArray(data) ? data : data.items || data.jobs || []);
-      } else {
-        // API returned an error status — show empty state (no fake data)
-        setSavedJobs([]);
-      }
+      const data = await apiFetch<any>('/saved-jobs');
+      setSavedJobs(Array.isArray(data) ? data : data.items || data.jobs || []);
     } catch (err) {
       console.error('Failed to load saved jobs:', err);
       setSavedJobs([]);
@@ -65,10 +58,7 @@ export default function SavedJobsPage() {
   const handleRemove = async (jobId: string) => {
     setRemovingId(jobId);
     try {
-      await fetch(`/api/saved-jobs/${jobId}`, {
-        method: 'DELETE',
-        credentials: 'include',
-      });
+      await apiFetch(`/saved-jobs/${jobId}`, { method: 'DELETE' });
       setSavedJobs(prev => prev.filter(job => job.id !== jobId));
     } catch (err) {
       console.error('Failed to unsave job:', err);

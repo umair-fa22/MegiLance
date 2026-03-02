@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { Button } from '@/app/components/Button';
+import { apiFetch } from '@/lib/api/core';
 import commonStyles from './Notes.common.module.css';
 import lightStyles from './Notes.light.module.css';
 import darkStyles from './Notes.dark.module.css';
@@ -72,40 +73,27 @@ export default function NotesPage() {
 
   const fetchNotes = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const res = await fetch('/api/notes-tags/notes?limit=50', {
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
-      });
-      
-      if (res.ok) {
-        const data = await res.json();
-        // Transform API response to match frontend Note interface
-        const transformedNotes: Note[] = (Array.isArray(data) ? data : []).map((n: any) => ({
-          id: n.id || String(n.id),
-          project_id: n.entity_id || n.project_id || '',
-          project_title: n.entity_type === 'project' ? `Project ${n.entity_id}` : 'General Note',
-          content: n.content || '',
-          color: n.color || '#fef3c7',
-          is_pinned: n.is_pinned || false,
-          is_private: n.is_private !== false,
-          created_at: n.created_at || new Date().toISOString(),
-          updated_at: n.updated_at || n.created_at || new Date().toISOString(),
-          tags: n.tags || [],
-        }));
-        setNotes(transformedNotes);
-      } else {
-        // Empty state if API fails
-        setNotes([]);
-      }
+      const data = await apiFetch<any>('/notes-tags/notes?limit=50');
+      const transformedNotes: Note[] = (Array.isArray(data) ? data : []).map((n: any) => ({
+        id: n.id || String(n.id),
+        project_id: n.entity_id || n.project_id || '',
+        project_title: n.entity_type === 'project' ? `Project ${n.entity_id}` : 'General Note',
+        content: n.content || '',
+        color: n.color || '#fef3c7',
+        is_pinned: n.is_pinned || false,
+        is_private: n.is_private !== false,
+        created_at: n.created_at || new Date().toISOString(),
+        updated_at: n.updated_at || n.created_at || new Date().toISOString(),
+        tags: n.tags || [],
+      }));
+      setNotes(transformedNotes);
       
       // Fetch tags
-      const tagsRes = await fetch('/api/notes-tags/tags', {
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
-      });
-      
-      if (tagsRes.ok) {
-        const tagsData = await tagsRes.json();
+      try {
+        const tagsData = await apiFetch<any>('/notes-tags/tags');
         setTags(Array.isArray(tagsData) ? tagsData : []);
+      } catch {
+        // Tags fetch failure is non-critical
       }
     } catch (error) {
       console.error('[Notes] Failed to fetch notes:', error);
@@ -123,15 +111,10 @@ export default function NotesPage() {
   const handleSaveNote = async () => {
     if (!editForm.content.trim()) return;
 
-    const token = localStorage.getItem('token');
     try {
       if (isCreating) {
-        const res = await fetch('/api/notes-tags/notes', {
+        await apiFetch('/notes-tags/notes', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            ...(token ? { Authorization: `Bearer ${token}` } : {}),
-          },
           body: JSON.stringify({
             entity_type: 'general',
             entity_id: 'general',
@@ -140,24 +123,16 @@ export default function NotesPage() {
             color: editForm.color,
           }),
         });
-        if (res.ok) {
-          await fetchNotes(); // Refresh from server
-        }
+        await fetchNotes();
       } else if (isEditing) {
-        const res = await fetch(`/api/notes-tags/notes/${isEditing}`, {
+        await apiFetch(`/notes-tags/notes/${isEditing}`, {
           method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            ...(token ? { Authorization: `Bearer ${token}` } : {}),
-          },
           body: JSON.stringify({
             content: editForm.content,
             color: editForm.color,
           }),
         });
-        if (res.ok) {
-          await fetchNotes(); // Refresh from server
-        }
+        await fetchNotes();
       }
     } catch (error) {
       console.error('[Notes] Failed to save note:', error);
@@ -179,39 +154,26 @@ export default function NotesPage() {
   };
 
   const handleDeleteNote = async (noteId: string) => {
-    const token = localStorage.getItem('token');
     try {
-      const res = await fetch(`/api/notes-tags/notes/${noteId}`, {
-        method: 'DELETE',
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
-      });
-      if (res.ok) {
-        setNotes(prev => prev.filter(n => n.id !== noteId));
-      }
+      await apiFetch(`/notes-tags/notes/${noteId}`, { method: 'DELETE' });
+      setNotes(prev => prev.filter(n => n.id !== noteId));
     } catch (error) {
       console.error('[Notes] Failed to delete note:', error);
     }
   };
 
   const handleTogglePin = async (noteId: string) => {
-    const token = localStorage.getItem('token');
     const note = notes.find(n => n.id === noteId);
     if (!note) return;
     
     try {
-      const res = await fetch(`/api/notes-tags/notes/${noteId}`, {
+      await apiFetch(`/notes-tags/notes/${noteId}`, {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
         body: JSON.stringify({ is_pinned: !note.is_pinned }),
       });
-      if (res.ok) {
-        setNotes(prev =>
-          prev.map(n => (n.id === noteId ? { ...n, is_pinned: !n.is_pinned } : n))
-        );
-      }
+      setNotes(prev =>
+        prev.map(n => (n.id === noteId ? { ...n, is_pinned: !n.is_pinned } : n))
+      );
     } catch (error) {
       console.error('[Notes] Failed to toggle pin:', error);
     }
@@ -228,31 +190,23 @@ export default function NotesPage() {
 
   const handleCreateTag = async () => {
     if (!newTagName.trim()) return;
-    const token = localStorage.getItem('token');
     const TAG_COLORS = ['#4573df', '#27AE60', '#e81123', '#F2C94C', '#ff9800', '#9B59B6', '#1ABC9C', '#E67E22'];
     const tagColor = TAG_COLORS[newTagName.length % TAG_COLORS.length];
     
     try {
-      const res = await fetch('/api/notes-tags/tags', {
+      const newTag = await apiFetch<any>('/notes-tags/tags', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
         body: JSON.stringify({
           name: newTagName.toLowerCase().replace(/\s+/g, '-'),
           color: tagColor,
         }),
       });
-      if (res.ok) {
-        const newTag = await res.json();
-        setTags(prev => [...prev, {
-          id: newTag.id,
-          name: newTag.name,
-          color: newTag.color,
-          usage_count: newTag.entity_count || 0,
-        }]);
-      }
+      setTags(prev => [...prev, {
+        id: newTag.id,
+        name: newTag.name,
+        color: newTag.color,
+        usage_count: newTag.entity_count || 0,
+      }]);
     } catch (error) {
       console.error('[Notes] Failed to create tag:', error);
     }
@@ -260,24 +214,18 @@ export default function NotesPage() {
   };
 
   const handleDeleteTag = async (tagId: string) => {
-    const token = localStorage.getItem('token');
     const tagToDelete = tags.find(t => t.id === tagId);
     
     try {
-      const res = await fetch(`/api/notes-tags/tags/${tagId}`, {
-        method: 'DELETE',
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
-      });
-      if (res.ok) {
-        setTags(prev => prev.filter(t => t.id !== tagId));
-        if (tagToDelete) {
-          setNotes(prev =>
-            prev.map(n => ({
-              ...n,
-              tags: n.tags.filter(t => t !== tagToDelete.name)
-            }))
-          );
-        }
+      await apiFetch(`/notes-tags/tags/${tagId}`, { method: 'DELETE' });
+      setTags(prev => prev.filter(t => t.id !== tagId));
+      if (tagToDelete) {
+        setNotes(prev =>
+          prev.map(n => ({
+            ...n,
+            tags: n.tags.filter(t => t !== tagToDelete.name)
+          }))
+        );
       }
     } catch (error) {
       console.error('[Notes] Failed to delete tag:', error);

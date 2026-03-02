@@ -11,6 +11,7 @@ import EmptyState from '@/app/components/EmptyState/EmptyState';
 import Loader from '@/app/components/Loader/Loader';
 import { PageTransition, ScrollReveal, StaggerContainer, StaggerItem } from '@/app/components/Animations';
 import { Shield, RefreshCw, FileText, Clock, CheckCircle, AlertTriangle, XCircle } from 'lucide-react';
+import { apiFetch } from '@/lib/api/core';
 import commonStyles from './Compliance.common.module.css';
 import lightStyles from './Compliance.light.module.css';
 import darkStyles from './Compliance.dark.module.css';
@@ -84,29 +85,25 @@ export default function CompliancePage() {
   const loadComplianceData = async () => {
     setLoading(true);
     try {
-      const token = typeof window !== 'undefined' ? sessionStorage.getItem('auth_token') : null;
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (token) headers['Authorization'] = `Bearer ${token}`;
-
       // Attempt to fetch compliance data from backend
       const [rulesRes, policiesRes, requestsRes, reportsRes] = await Promise.allSettled([
-        fetch('/api/compliance/rules', { headers }),
-        fetch('/api/compliance/retention-policies', { headers }),
-        fetch('/api/compliance/data-requests', { headers }),
-        fetch('/api/compliance/reports', { headers })
+        apiFetch('/compliance/rules'),
+        apiFetch('/compliance/retention-policies'),
+        apiFetch('/compliance/data-requests'),
+        apiFetch('/compliance/reports')
       ]);
 
-      if (rulesRes.status === 'fulfilled' && rulesRes.value.ok) {
-        setRules(await rulesRes.value.json());
+      if (rulesRes.status === 'fulfilled') {
+        setRules(rulesRes.value as any);
       }
-      if (policiesRes.status === 'fulfilled' && policiesRes.value.ok) {
-        setPolicies(await policiesRes.value.json());
+      if (policiesRes.status === 'fulfilled') {
+        setPolicies(policiesRes.value as any);
       }
-      if (requestsRes.status === 'fulfilled' && requestsRes.value.ok) {
-        setDataRequests(await requestsRes.value.json());
+      if (requestsRes.status === 'fulfilled') {
+        setDataRequests(requestsRes.value as any);
       }
-      if (reportsRes.status === 'fulfilled' && reportsRes.value.ok) {
-        setReports(await reportsRes.value.json());
+      if (reportsRes.status === 'fulfilled') {
+        setReports(reportsRes.value as any);
       }
     } catch (error) {
       console.error('Failed to load compliance data', error);

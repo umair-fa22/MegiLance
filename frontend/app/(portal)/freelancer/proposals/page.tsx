@@ -11,6 +11,7 @@ import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer } from '@/app/components/Animations/StaggerContainer';
 
+import { apiFetch } from '@/lib/api/core';
 import DataToolbar, { SortOption } from '@/app/components/DataToolbar/DataToolbar';
 import PaginationBar from '@/app/components/PaginationBar/PaginationBar';
 import Modal from '@/app/components/Modal/Modal';
@@ -95,16 +96,7 @@ const ProposalsPage: React.FC = () => {
     
     try {
       // Fetch proposals for current freelancer
-      const proposalsRes = await fetch('/api/proposals/', {
-        credentials: 'include',
-        headers: { 'Accept': 'application/json' },
-      });
-      
-      if (!proposalsRes.ok) {
-        throw new Error('Failed to fetch proposals');
-      }
-      
-      const apiProposals: APIProposal[] = await proposalsRes.json();
+      const apiProposals = await apiFetch<APIProposal[]>('/proposals/');
       
       // Get unique project IDs to fetch project details
       const projectIds = Array.from(new Set(apiProposals.map(p => p.project_id)));
@@ -112,13 +104,7 @@ const ProposalsPage: React.FC = () => {
       // Fetch project details for job titles and client names
       const projectPromises = projectIds.map(async (pid) => {
         try {
-          const res = await fetch(`/api/projects/${pid}`, {
-            credentials: 'include',
-            headers: { 'Accept': 'application/json' },
-          });
-          if (res.ok) {
-            return await res.json();
-          }
+          return await apiFetch<APIProject>(`/projects/${pid}`);
         } catch {
           // Ignore individual project fetch errors
         }
@@ -202,19 +188,10 @@ const ProposalsPage: React.FC = () => {
   const confirmWithdraw = async () => {
     if (pendingWithdrawId) {
       try {
-        const res = await fetch(`/api/proposals/${pendingWithdrawId}`, {
-          method: 'DELETE',
-          credentials: 'include',
-          headers: { 'Accept': 'application/json' },
-        });
-        
-        if (res.ok) {
-          toaster.notify({ title: 'Success', description: 'Proposal successfully withdrawn.', variant: 'success' });
-          // Refresh proposals list
-          fetchProposals();
-        } else {
-          toaster.notify({ title: 'Error', description: 'Failed to withdraw proposal.', variant: 'danger' });
-        }
+        await apiFetch(`/proposals/${pendingWithdrawId}`, { method: 'DELETE' });
+        toaster.notify({ title: 'Success', description: 'Proposal successfully withdrawn.', variant: 'success' });
+        // Refresh proposals list
+        fetchProposals();
       } catch (err) {
         toaster.notify({ title: 'Error', description: 'Failed to withdraw proposal.', variant: 'danger' });
       }

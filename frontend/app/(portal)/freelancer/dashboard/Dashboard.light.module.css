@@ -7,6 +7,12 @@
 .welcomeText h1 { color: #0f172a; }
 .welcomeText p   { color: #64748b; }
 
+/* ── Availability & Progress ────────── */
+.availabilityBadge { background-color: rgba(39,174,96,0.15); color: #27AE60; }
+.progressTrack { background-color: rgba(128,128,128,0.2); }
+.progressLabel { color: #64748b; }
+.progressLink { color: #4573df; }
+
 /* ── Section titles & links ─────────── */
 .sectionTitle { color: #0f172a; }
 .viewAllLink  { color: #4573df; }

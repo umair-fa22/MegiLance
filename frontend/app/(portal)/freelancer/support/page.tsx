@@ -9,6 +9,7 @@ import Button from '@/app/components/Button/Button';
 import Input from '@/app/components/Input/Input';
 import Textarea from '@/app/components/Textarea/Textarea';
 import Accordion, { AccordionItem } from '@/app/components/Accordion/Accordion';
+import { apiFetch } from '@/lib/api/core';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import commonStyles from './SupportPage.common.module.css';
@@ -62,12 +63,9 @@ const SupportPage: React.FC = () => {
     try {
       const { supportTicketsApi } = await import('@/lib/api');
       // Try to fetch FAQs from API if endpoint exists
-      const response = await fetch('/api/support/faqs').catch(() => null);
-      if (response?.ok) {
-        const data = await response.json();
-        if (data?.faqs?.length > 0) {
-          setFaqItems(data.faqs);
-        }
+      const data = await apiFetch<any>('/support/faqs').catch(() => null);
+      if (data?.faqs?.length > 0) {
+        setFaqItems(data.faqs);
       }
     } catch (error) {
       // Use default FAQs on error - no action needed

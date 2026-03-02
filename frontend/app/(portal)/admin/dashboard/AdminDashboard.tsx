@@ -56,8 +56,8 @@ const StatCard: React.FC<StatCardProps> = ({ title, value, trend, icon: Icon, ac
   const isNegative = trend?.includes('-');
 
   return (
-    <div className={cn(commonStyles.statCard, themeStyles.statCard)}>
-      <div className={cn(commonStyles.statIconBadge, commonStyles[`accent_${accent}`], themeStyles[`accent_${accent}`])}>
+    <div className={cn(commonStyles.statCard, themeStyles.statCard)} role="region" aria-label={`${title}: ${value}`}>
+      <div className={cn(commonStyles.statIconBadge, commonStyles[`accent_${accent}`], themeStyles[`accent_${accent}`])} aria-hidden="true">
         <Icon size={22} />
       </div>
       <div className={commonStyles.statBody}>
@@ -68,8 +68,8 @@ const StatCard: React.FC<StatCardProps> = ({ title, value, trend, icon: Icon, ac
             commonStyles.statTrend,
             isPositive && commonStyles.trendPositive,
             isNegative && commonStyles.trendNegative,
-          )}>
-            {isPositive ? <TrendingUp size={14} /> : isNegative ? <TrendingDown size={14} /> : null}
+          )} aria-label={`Trend: ${trend}`}>
+            {isPositive ? <TrendingUp size={14} aria-hidden="true" /> : isNegative ? <TrendingDown size={14} aria-hidden="true" /> : null}
             {trend}
           </span>
         )}
@@ -87,15 +87,15 @@ interface QuickActionProps {
 }
 
 const QuickAction: React.FC<QuickActionProps> = ({ label, href, icon: Icon, description, themeStyles }) => (
-  <Link href={href} className={cn(commonStyles.quickAction, themeStyles.quickAction)}>
-    <div className={cn(commonStyles.quickActionIcon, themeStyles.quickActionIcon)}>
+  <Link href={href} className={cn(commonStyles.quickAction, themeStyles.quickAction)} aria-label={`${label}: ${description}`}>
+    <div className={cn(commonStyles.quickActionIcon, themeStyles.quickActionIcon)} aria-hidden="true">
       <Icon size={20} />
     </div>
     <div className={commonStyles.quickActionText}>
       <span className={cn(commonStyles.quickActionLabel, themeStyles.quickActionLabel)}>{label}</span>
       <span className={cn(commonStyles.quickActionDesc, themeStyles.quickActionDesc)}>{description}</span>
     </div>
-    <ArrowRight size={16} className={commonStyles.quickActionArrow} />
+    <ArrowRight size={16} className={commonStyles.quickActionArrow} aria-hidden="true" />
   </Link>
 );
 
@@ -181,12 +181,13 @@ const AdminDashboard: React.FC = () => {
           </p>
         </div>
         <div className={commonStyles.headerActions}>
-          <Button variant="outline" size="sm">Export Report</Button>
-          <Button variant="primary" size="sm">System Settings</Button>
+          <Link href="/admin/analytics"><Button variant="outline" size="sm">Export Report</Button></Link>
+          <Link href="/admin/settings"><Button variant="primary" size="sm">System Settings</Button></Link>
         </div>
       </div>
 
       {/* Stats Grid */}
+      <section aria-label="Key performance indicators">
       <div className={commonStyles.statsGrid}>
         {stats.map((stat, idx) => (
           <StatCard
@@ -200,9 +201,10 @@ const AdminDashboard: React.FC = () => {
           />
         ))}
       </div>
+      </section>
 
       {/* Quick Actions */}
-      <section>
+      <section aria-label="Quick actions">
         <h2 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Quick Actions</h2>
         <div className={commonStyles.quickActionsGrid}>
           {quickActions.map((action) => (
@@ -212,6 +214,7 @@ const AdminDashboard: React.FC = () => {
       </section>
 
       {/* System Health Progress Rings */}
+      <section aria-label="System health">
       <div className={commonStyles.healthRow}>
         <div className={cn(commonStyles.healthCard, themeStyles.healthCard)}>
           <ProgressRing value={99.9} label="Uptime" size="md" color="success" suffix="%" />
@@ -242,6 +245,7 @@ const AdminDashboard: React.FC = () => {
           </div>
         </div>
       </div>
+      </section>
 
       {/* Main Content Grid */}
       <div className={commonStyles.mainContentGrid}>

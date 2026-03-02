@@ -43,3 +43,6 @@
 .link:hover {
     color: var(--color-primary-deep);
 }
+
+.alertSuccess { background-color: #dcfce7; color: #166534; }
+.alertError { background-color: #fef2f2; color: #991b1b; }

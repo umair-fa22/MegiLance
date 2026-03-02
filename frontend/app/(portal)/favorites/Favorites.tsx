@@ -1,12 +1,12 @@
 // @AI-HINT: Favorites/Bookmarks component - save and manage favorite projects and profiles
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { favoritesApi } from '@/lib/api';
 import type { Favorite } from '@/types/api';
-import { Star, Briefcase, User, Trash2, ExternalLink } from 'lucide-react';
+import { Star, Briefcase, User, Trash2, ExternalLink, Search } from 'lucide-react';
 import Modal from '@/app/components/Modal/Modal';
 import Button from '@/app/components/Button/Button';
 import Loader from '@/app/components/Loader/Loader';
@@ -23,6 +23,7 @@ const Favorites: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [filterType, setFilterType] = useState<string>('all');
   const [deleteTarget, setDeleteTarget] = useState<Favorite | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
   const [toast, setToast] = useState<{message: string; type: 'success' | 'error'} | null>(null);
   const showToast = (message: string, type: 'success' | 'error' = 'success') => {
     setToast({message, type});
@@ -94,6 +95,17 @@ const Favorites: React.FC = () => {
     }
   };
 
+  const filteredFavorites = useMemo(() => {
+    if (!searchQuery) return favorites;
+    const q = searchQuery.toLowerCase();
+    return favorites.filter(f =>
+      f.target_type.toLowerCase().includes(q) ||
+      String(f.target_id).includes(q) ||
+      (f as any).title?.toLowerCase().includes(q) ||
+      (f as any).name?.toLowerCase().includes(q)
+    );
+  }, [favorites, searchQuery]);
+
   return (
     <div className={cn(commonStyles.container, themeStyles.container)}>
       <div className={commonStyles.header}>
@@ -148,25 +160,38 @@ const Favorites: React.FC = () => {
       </div>
 
       <div className={commonStyles.filterSection}>
-        <label className={cn(commonStyles.filterLabel, themeStyles.label)}>
-          Filter:
-        </label>
-        <select
-          value={filterType}
-          onChange={(e) => setFilterType(e.target.value)}
-          className={cn(commonStyles.filterSelect, themeStyles.filterSelect)}
-          aria-label="Filter favorites by type"
-        >
-          <option value="all">All Favorites</option>
-          <option value="project">Projects</option>
-          <option value="freelancer">Freelancers</option>
-          <option value="client">Clients</option>
-        </select>
+        <div className={commonStyles.searchWrapper}>
+          <Search size={16} className={cn(commonStyles.searchIcon, themeStyles.searchIcon)} />
+          <input
+            type="text"
+            placeholder="Search favorites..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className={cn(commonStyles.searchInput, themeStyles.searchInput)}
+            aria-label="Search favorites"
+          />
+        </div>
+        <div className={commonStyles.filterRight}>
+          <label className={cn(commonStyles.filterLabel, themeStyles.label)}>
+            Filter:
+          </label>
+          <select
+            value={filterType}
+            onChange={(e) => setFilterType(e.target.value)}
+            className={cn(commonStyles.filterSelect, themeStyles.filterSelect)}
+            aria-label="Filter favorites by type"
+          >
+            <option value="all">All Favorites</option>
+            <option value="project">Projects</option>
+            <option value="freelancer">Freelancers</option>
+            <option value="client">Clients</option>
+          </select>
+        </div>
       </div>
 
       {loading ? (
         <Loader size="lg" />
-      ) : favorites.length === 0 ? (
+      ) : filteredFavorites.length === 0 ? (
         <div className={cn(commonStyles.empty, themeStyles.empty)}>
           <Star size={48} />
           <p>No favorites yet</p>
@@ -175,8 +200,8 @@ const Favorites: React.FC = () => {
           </p>
         </div>
       ) : (
-        <div className={commonStyles.favoritesGrid}>
-          {favorites.map((favorite) => (
+        <div className={commonStyles.favoritesGrid} role="list">
+          {filteredFavorites.map((favorite) => (
             <div
               key={favorite.id}
               className={cn(commonStyles.favoriteCard, themeStyles.favoriteCard)}

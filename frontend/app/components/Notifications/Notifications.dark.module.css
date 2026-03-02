@@ -1,0 +1,33 @@
+/* Dark Theme - Notifications */
+.container { background: #0f0f0f; }
+.title { color: #f9fafb; }
+.subtitle { color: #9ca3af; }
+.filterBtn { background: #1f1f1f; color: #d1d5db; }
+.filterBtn:hover { background: #2d2d2d; }
+.filterBtnActive { background: #4573df !important; color: #fff !important; }
+.filterCount { background: #2d2d2d; color: #d1d5db; }
+.filterBtnActive .filterCount { background: rgba(255,255,255,0.2); color: #fff; }
+.notifItem { background: #161616; border-color: #2d2d2d; }
+.notifItem:hover { background: #1a1a1a; }
+.unread { background: #141b2d; border-color: #1e3a6e; }
+.unread:hover { background: #182040; }
+.notifTitle { color: #f9fafb; }
+.notifMessage { color: #9ca3af; }
+.notifTime { color: #6b7280; }
+.notifTypeBadge { background: #1f1f1f; color: #9ca3af; }
+.iconSystem { background: #1e2a4a; color: #60a5fa; }
+.iconPayment { background: #0f2922; color: #34d399; }
+.iconProject { background: #2a2010; color: #fbbf24; }
+.iconMessage { background: #1f1635; color: #a78bfa; }
+.iconAlert { background: #2a1215; color: #f87171; }
+.iconProposal { background: #0f2b2e; color: #22d3ee; }
+.actionBtn { color: #6b7280; }
+.actionBtn:hover { background: #2d2d2d; color: #d1d5db; }
+.emptyState { background: #161616; }
+.emptyIcon { background: #1f1f1f; color: #6b7280; }
+.emptyTitle { color: #f9fafb; }
+.emptyText { color: #9ca3af; }
+.skeletonItem { background: #161616; }
+.skeletonIcon { background: #2d2d2d; }
+.skeletonLine { background: #2d2d2d; }
+.paginationInfo { color: #6b7280; }

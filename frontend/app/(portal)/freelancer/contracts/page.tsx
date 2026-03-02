@@ -12,6 +12,7 @@ import { Badge } from '@/app/components/Badge';
 import { Modal } from '@/app/components/Modal';
 import { useToaster } from '@/app/components/Toast';
 import api from '@/lib/api';
+import { apiFetch } from '@/lib/api/core';
 import { cn } from '@/lib/utils';
 import { usePersistedState } from '@/app/lib/hooks/usePersistedState';
 import { useSelection } from '@/app/lib/hooks/useSelection';
@@ -200,18 +201,14 @@ const ContractsPage = () => {
     if (!actionType || !actionTargetId) return;
     setActionLoading(true);
     
-    const token = localStorage.getItem('token') || localStorage.getItem('access_token');
     const contract = contracts.find(c => c.id === actionTargetId);
     
     try {
       if (actionType === 'extend') {
         // Create scope change request for extension
-        const res = await fetch('/api/scope-changes', {
+        const res = await apiFetch<any>('/scope-changes', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            ...(token ? { Authorization: `Bearer ${token}` } : {}),
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             contract_id: parseInt(actionTargetId, 10),
             title: `Extension request for ${contract?.projectTitle || 'contract'}`,
@@ -219,34 +216,19 @@ const ContractsPage = () => {
             reason: 'Additional time needed to complete deliverables',
           }),
         });
-        
-        if (res.ok) {
-          toaster.notify({ title: 'Extension requested', description: 'We have notified the client about your extension request.', variant: 'success' });
-        } else {
-          const error = await res.json().catch(() => ({}));
-          toaster.notify({ title: 'Request failed', description: error.detail || 'Could not submit extension request', variant: 'error' });
-        }
+        toaster.notify({ title: 'Extension requested', description: 'We have notified the client about your extension request.', variant: 'success' });
       } else if (actionType === 'dispute') {
         // Create dispute
-        const res = await fetch('/api/disputes', {
+        const res = await apiFetch<any>('/disputes', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            ...(token ? { Authorization: `Bearer ${token}` } : {}),
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             contract_id: parseInt(actionTargetId, 10),
             dispute_type: 'scope',
             description: `Dispute raised for contract: ${contract?.projectTitle || 'Unknown'}`,
           }),
         });
-        
-        if (res.ok) {
-          toaster.notify({ title: 'Dispute opened', description: 'A dispute ticket has been created for this contract.', variant: 'warning' });
-        } else {
-          const error = await res.json().catch(() => ({}));
-          toaster.notify({ title: 'Failed', description: error.detail || 'Could not create dispute', variant: 'error' });
-        }
+        toaster.notify({ title: 'Dispute opened', description: 'A dispute ticket has been created for this contract.', variant: 'warning' });
       }
     } catch (error) {
       console.error('[Contracts] Action failed:', error);

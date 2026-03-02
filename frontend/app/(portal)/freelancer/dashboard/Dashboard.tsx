@@ -7,6 +7,7 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { useFreelancerData } from '@/hooks/useFreelancer';
 import { useAuth } from '@/hooks/useAuth';
+import { apiFetch } from '@/lib/api/core';
 import Button from '@/app/components/Button/Button';
 import Loading from '@/app/components/Loading/Loading';
 import EmptyState from '@/app/components/EmptyState/EmptyState';
@@ -105,18 +106,8 @@ const Dashboard: React.FC = () => {
     
     const fetchSellerStats = async () => {
       try {
-        const token = sessionStorage.getItem('auth_token');
-        const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-        if (token) headers['Authorization'] = `Bearer ${token}`;
-        
-        const response = await fetch('/api/seller-stats/me', {
-          credentials: 'include',
-          headers,
-        });
-        if (response.ok) {
-          const data = await response.json();
-          setSellerStats(transformSellerStats(data));
-        }
+        const data = await apiFetch('/seller-stats/me');
+        setSellerStats(transformSellerStats(data as Record<string, unknown>));
       } catch {
         // Seller stats are optional - don't block dashboard
       }
@@ -124,18 +115,8 @@ const Dashboard: React.FC = () => {
 
     const fetchEarnings = async () => {
       try {
-        const token = sessionStorage.getItem('auth_token');
-        const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-        if (token) headers['Authorization'] = `Bearer ${token}`;
-        
-        const response = await fetch('/api/portal/freelancer/earnings/monthly?months=6', {
-          credentials: 'include',
-          headers,
-        });
-        if (response.ok) {
-          const data = await response.json();
-          setEarningsData(data.earnings || []);
-        }
+        const data = await apiFetch('/portal/freelancer/earnings/monthly?months=6') as { earnings?: { month: string; amount: number }[] };
+        setEarningsData(data.earnings || []);
       } catch {
         // Earnings chart is optional
       }
@@ -224,11 +205,11 @@ const Dashboard: React.FC = () => {
       {/* Header Section */}
       <div className={commonStyles.headerSection}>
         <div className={cn(commonStyles.welcomeText, themeStyles.welcomeText)}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+          <div className={commonStyles.welcomeRow}>
             <h1>Welcome back{user?.name ? `, ${user.name.split(' ')[0]}` : ''}</h1>
             {analytics?.availabilityStatus === 'available' && (
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '2px 10px', borderRadius: '12px', backgroundColor: 'rgba(39,174,96,0.15)', color: '#27AE60', fontSize: '0.8rem', fontWeight: 600 }}>
-                <Circle size={8} fill="#27AE60" /> Available
+              <span className={cn(commonStyles.availabilityBadge, themeStyles.availabilityBadge)} aria-label="Status: Available">
+                <Circle size={8} fill="#27AE60" aria-hidden="true" /> Available
               </span>
             )}
           </div>
@@ -238,13 +219,23 @@ const Dashboard: React.FC = () => {
             <p>You have new job matches waiting for you.</p>
           )}
           {analytics?.profileCompleteness != null && analytics.profileCompleteness < 80 && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '8px' }}>
-              <div style={{ flex: 1, maxWidth: '200px', height: '6px', borderRadius: '3px', backgroundColor: 'rgba(128,128,128,0.2)' }}>
-                <div style={{ width: `${analytics.profileCompleteness}%`, height: '100%', borderRadius: '3px', backgroundColor: analytics.profileCompleteness >= 60 ? '#27AE60' : '#F2C94C' }} />
+            <div className={commonStyles.profileProgressRow}>
+              <div
+                className={cn(commonStyles.progressTrack, themeStyles.progressTrack)}
+                role="progressbar"
+                aria-valuenow={analytics.profileCompleteness}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-label={`Profile ${analytics.profileCompleteness}% complete`}
+              >
+                <div
+                  className={cn(commonStyles.progressFill, analytics.profileCompleteness >= 60 ? commonStyles.progressFillGreen : commonStyles.progressFillYellow)}
+                  style={{ width: `${analytics.profileCompleteness}%` }}
+                />
               </div>
-              <span style={{ fontSize: '0.78rem', opacity: 0.7 }}>Profile {analytics.profileCompleteness}% complete</span>
-              <Link href="/freelancer/profile" style={{ fontSize: '0.78rem', color: '#4573df', textDecoration: 'none' }}>
-                Complete it <ArrowRight size={12} style={{ display: 'inline' }} />
+              <span className={cn(commonStyles.progressLabel, themeStyles.progressLabel)}>Profile {analytics.profileCompleteness}% complete</span>
+              <Link href="/freelancer/profile" className={cn(commonStyles.progressLink, themeStyles.progressLink)}>
+                Complete it <ArrowRight size={12} aria-hidden="true" />
               </Link>
             </div>
           )}
@@ -267,6 +258,7 @@ const Dashboard: React.FC = () => {
       {sellerStats && <SellerStats stats={sellerStats} />}
 
       {/* Stats Grid — with sparklines */}
+      <section aria-label="Performance statistics">
       <div className={commonStyles.statsGrid}>
         <StatCard 
           title="Total Earnings" 
@@ -302,8 +294,10 @@ const Dashboard: React.FC = () => {
           href="/freelancer/analytics"
         />
       </div>
+      </section>
 
       {/* Performance Metrics — Progress Rings */}
+      <section aria-label="Performance metrics">
       <div className={commonStyles.metricsRow}>
         <div className={cn(commonStyles.metricCard, themeStyles.metricCard)}>
           <ProgressRing value={metrics.completionRate} label="Completion Rate" size="lg" color="success" />
@@ -334,6 +328,7 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
       </div>
+      </section>
 
       {/* Earnings Chart */}
       {earningsData.length > 0 && (
@@ -344,12 +339,13 @@ const Dashboard: React.FC = () => {
       )}
 
       {/* Quick Actions */}
+      <section aria-label="Quick actions">
       <div className={commonStyles.quickActionsSection}>
         <h2 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Quick Actions</h2>
         <div className={commonStyles.quickActionsGrid}>
           {quickActions.map((action) => (
-            <Link key={action.label} href={action.href} className={cn(commonStyles.quickActionCard, themeStyles.quickActionCard)}>
-              <div className={cn(commonStyles.quickActionIcon, commonStyles[`quickActionIcon-${action.color}`])}>
+            <Link key={action.label} href={action.href} className={cn(commonStyles.quickActionCard, themeStyles.quickActionCard)} aria-label={`${action.label}: ${action.desc}`}>
+              <div className={cn(commonStyles.quickActionIcon, commonStyles[`quickActionIcon-${action.color}`])} aria-hidden="true">
                 <action.icon size={20} />
               </div>
               <span className={cn(commonStyles.quickActionLabel, themeStyles.quickActionLabel)}>{action.label}</span>
@@ -358,6 +354,7 @@ const Dashboard: React.FC = () => {
           ))}
         </div>
       </div>
+      </section>
 
       {/* Main Content Grid */}
       <div className={commonStyles.mainContentGrid}>

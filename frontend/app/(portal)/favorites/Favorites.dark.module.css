@@ -6,6 +6,10 @@
 .statIcon { color: #60a5fa; }
 .filterSelect { background-color: #1f2937; border-color: #374151; color: #f9fafb; }
 .filterSelect:focus { outline: none; border-color: #4573df; box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2); }
+.searchIcon { color: #6b7280; }
+.searchInput { background-color: #1f2937; border-color: #374151; color: #f9fafb; }
+.searchInput::placeholder { color: #6b7280; }
+.searchInput:focus { outline: none; border-color: #4573df; box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2); }
 .loading, .empty, .emptyText { color: #9ca3af; }
 .favoriteCard { background-color: #1f2937; border-color: #374151; }
 .favoriteCard:hover { border-color: #4573df; }

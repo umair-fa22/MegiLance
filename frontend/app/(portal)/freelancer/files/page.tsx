@@ -11,6 +11,7 @@ import darkStyles from './Files.dark.module.css';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
+import { apiFetch } from '@/lib/api/core';
 
 interface FileItem {
   id: string;
@@ -101,13 +102,8 @@ export default function FilesPage() {
 
   const fetchFiles = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const res = await fetch('/api/portfolio/files', {
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
-      });
-      if (res.ok) {
-        const data = await res.json();
-        const items: FileItem[] = (Array.isArray(data) ? data : data.items || []).map((f: any) => ({
+      const data = await apiFetch<any>('/portfolio/files');
+      const items: FileItem[] = (Array.isArray(data) ? data : data.items || []).map((f: any) => ({
           id: String(f.id),
           name: f.title || f.name || f.filename || 'Untitled',
           type: f.type === 'folder' ? 'folder' : 'file',
@@ -120,9 +116,6 @@ export default function FilesPage() {
           tags: f.tags || [],
         }));
         setFiles(items);
-      } else {
-        setFiles([]);
-      }
     } catch {
       setFiles([]);
     } finally {
@@ -175,7 +168,6 @@ export default function FilesPage() {
 
   const handleDownload = (file: FileItem) => {
     if (file.type === 'folder') return;
-    const token = localStorage.getItem('token');
     const url = `/api/portfolio/files/${file.id}/download`;
     const a = document.createElement('a');
     a.href = url;
@@ -186,11 +178,7 @@ export default function FilesPage() {
   const handleDelete = async (file: FileItem) => {
     if (!confirm(`Delete "${file.name}"?`)) return;
     try {
-      const token = localStorage.getItem('token');
-      await fetch(`/api/portfolio/files/${file.id}`, {
-        method: 'DELETE',
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
-      });
+      await apiFetch(`/portfolio/files/${file.id}`, { method: 'DELETE' });
       setFiles(prev => prev.filter(f => f.id !== file.id));
     } catch {
       alert('Failed to delete file');
@@ -235,7 +223,6 @@ export default function FilesPage() {
   };
 
   const handleUploadAll = async () => {
-    const token = localStorage.getItem('token');
     for (const item of uploadFiles) {
       if (item.status !== 'pending') continue;
       setUploadFiles(prev => prev.map(f => f.id === item.id ? { ...f, status: 'uploading' } : f));
@@ -254,23 +241,16 @@ export default function FilesPage() {
           ));
         }, 200);
 
-        const res = await fetch('/api/portfolio/upload', {
+        await apiFetch('/portfolio/upload', {
           method: 'POST',
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
           body: formData,
         });
 
         clearInterval(progressInterval);
 
-        if (res.ok) {
-          setUploadFiles(prev => prev.map(f =>
-            f.id === item.id ? { ...f, progress: 100, status: 'done' } : f
-          ));
-        } else {
-          setUploadFiles(prev => prev.map(f =>
-            f.id === item.id ? { ...f, status: 'error' } : f
-          ));
-        }
+        setUploadFiles(prev => prev.map(f =>
+          f.id === item.id ? { ...f, progress: 100, status: 'done' } : f
+        ));
       } catch {
         setUploadFiles(prev => prev.map(f =>
           f.id === item.id ? { ...f, status: 'error' } : f

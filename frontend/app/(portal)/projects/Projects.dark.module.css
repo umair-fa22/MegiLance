@@ -84,3 +84,13 @@
 .chevron {
   color: #6b7280;
 }
+
+/* Sort */
+.sortWrapper { background: #1a1d2e; border-color: #2a2d3e; color: #9ca3af; }
+.sortSelect { color: #d1d5db; }
+
+/* Pagination */
+.pagination { border-top: 1px solid #2a2d3e; }
+.pageBtn { color: #d1d5db; border-color: #2a2d3e; }
+.pageBtn:hover:not(:disabled) { background: rgba(255,255,255,0.06); }
+.pageInfo { color: #9ca3af; }

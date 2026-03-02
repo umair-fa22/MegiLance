@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import Button from '@/app/components/Button/Button';
+import { apiFetch } from '@/lib/api/core';
 import {
   ArrowLeft,
   ArrowRight,
@@ -303,23 +304,13 @@ const GigCreate: React.FC = () => {
         status: form.publishNow ? 'active' : 'draft',
       };
 
-      const response = await fetch('/api/gigs', {
+      const data = await apiFetch<any>('/gigs', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-
-      if (response.ok) {
-        const data = await response.json();
-        setCreatedGigSlug(data.slug);
-        setIsSuccess(true);
-      } else {
-        const errorData = await response.json();
-        setError(errorData.detail || 'Failed to create gig');
-      }
+      setCreatedGigSlug(data.slug);
+      setIsSuccess(true);
     } catch (err) {
       setError('Failed to create gig. Please try again.');
     } finally {

@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { User, Lock, Bell } from 'lucide-react';
+import { User, Lock, Bell, Shield, DollarSign } from 'lucide-react';
 
 import commonStyles from './SettingsNav.common.module.css';
 import lightStyles from './SettingsNav.light.module.css';
@@ -16,6 +16,8 @@ const navItems = [
   { href: '/freelancer/settings', label: 'Account', icon: User },
   { href: '/freelancer/settings/password', label: 'Password', icon: Lock },
   { href: '/freelancer/settings/notifications', label: 'Notifications', icon: Bell },
+  { href: '/freelancer/settings/security', label: 'Security', icon: Shield },
+  { href: '/freelancer/settings/currency', label: 'Currency', icon: DollarSign },
 ];
 
 const SettingsNav = () => {

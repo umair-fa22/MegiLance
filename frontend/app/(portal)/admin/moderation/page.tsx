@@ -13,6 +13,7 @@ import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
 import { ShieldAlert, Check, X, Eye, AlertTriangle, Flag, MessageSquare, FileText } from 'lucide-react';
+import { apiFetch } from '@/lib/api/core';
 
 import commonStyles from './Moderation.common.module.css';
 import lightStyles from './Moderation.light.module.css';
@@ -51,13 +52,7 @@ export default function AdminModerationPage() {
   const loadFlaggedItems = async () => {
     setLoading(true);
     try {
-      const token = typeof window !== 'undefined' ? sessionStorage.getItem('auth_token') : null;
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (token) headers['Authorization'] = `Bearer ${token}`;
-
-      const res = await fetch('/api/moderation/items', { headers });
-      if (!res.ok) throw new Error('Not available');
-      const data = await res.json();
+      const data = await apiFetch<FlaggedItem[]>('/moderation/items');
       setItems(Array.isArray(data) ? data : []);
     } catch {
       // Endpoint may not exist yet — show empty state
@@ -81,11 +76,7 @@ export default function AdminModerationPage() {
 
   const handleApprove = async (id: string) => {
     try {
-      const token = typeof window !== 'undefined' ? sessionStorage.getItem('auth_token') : null;
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (token) headers['Authorization'] = `Bearer ${token}`;
-
-      await fetch(`/api/moderation/items/${id}/approve`, { method: 'POST', headers });
+      await apiFetch(`/moderation/items/${id}/approve`, { method: 'POST' });
       setItems(items.map(item => item.id === id ? { ...item, status: 'approved' as const } : item));
       showToast('Item approved');
     } catch {
@@ -96,11 +87,7 @@ export default function AdminModerationPage() {
 
   const handleReject = async (id: string) => {
     try {
-      const token = typeof window !== 'undefined' ? sessionStorage.getItem('auth_token') : null;
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (token) headers['Authorization'] = `Bearer ${token}`;
-
-      await fetch(`/api/moderation/items/${id}/reject`, { method: 'POST', headers });
+      await apiFetch(`/moderation/items/${id}/reject`, { method: 'POST' });
       setItems(items.map(item => item.id === id ? { ...item, status: 'rejected' as const } : item));
       showToast('Item rejected');
     } catch {

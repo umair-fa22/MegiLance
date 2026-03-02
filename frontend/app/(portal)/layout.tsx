@@ -8,6 +8,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import AppLayout from '../components/AppLayout/AppLayout';
 import { getAuthToken, clearAuthData, authApi } from '@/lib/api';
 import { UnreadCountProvider } from '@/contexts/UnreadCountContext';
+import Loading from '../components/Loading/Loading';
 
 export default function PortalLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const router = useRouter();
@@ -61,14 +62,7 @@ export default function PortalLayout({ children }: Readonly<{ children: React.Re
 
   // Show loading while checking authentication
   if (isAuthenticated === null) {
-    return (
-      <div
-        className="flex justify-center items-center min-h-screen flex-col gap-4 bg-gray-50 dark:bg-slate-900"
-      >
-        <div className="w-10 h-10 border-3 border-gray-200 dark:border-gray-700 border-t-[#4573df] rounded-full animate-spin" />
-        <p className="text-sm text-gray-500 dark:text-slate-400">Verifying authentication...</p>
-      </div>
-    );
+    return <Loading size="lg" text="Verifying authentication..." fullscreen />;
   }
 
   // Don't render if not authenticated (redirecting)

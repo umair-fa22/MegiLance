@@ -43,3 +43,6 @@
 .link:hover {
     color: var(--color-primary-light);
 }
+
+.alertSuccess { background-color: rgba(39, 174, 96, 0.15); color: #4ade80; }
+.alertError { background-color: rgba(239, 68, 68, 0.15); color: #f87171; }

@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { useToaster } from '@/app/components/Toast/ToasterProvider';
+import { apiFetch } from '@/lib/api/core';
 
 import Input from '@/app/components/Input/Input';
 import Button from '@/app/components/Button/Button';
@@ -39,23 +40,13 @@ const PasswordSettingsPage = () => {
 
     setIsSaving(true);
     try {
-      const token = localStorage.getItem('token');
-      const res = await fetch('/api/auth/change-password', {
+      await apiFetch('/auth/change-password', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
         body: JSON.stringify({
           current_password: currentPassword,
           new_password: newPassword,
         }),
       });
-
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err.detail || 'Failed to update password');
-      }
 
       setCurrentPassword('');
       setNewPassword('');

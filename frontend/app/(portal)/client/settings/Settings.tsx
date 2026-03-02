@@ -103,13 +103,13 @@ const Settings: React.FC = () => {
             }
           >
             {successMessage && (
-              <div className="mb-4 p-3 bg-green-100 text-green-800 rounded flex items-center">
-                <CheckCircle size={18} className="mr-2" /> {successMessage}
+              <div className={cn(styles.alertBanner, styles.alertSuccess)} role="status">
+                <CheckCircle size={18} aria-hidden="true" /> {successMessage}
               </div>
             )}
             {error && (
-              <div className="mb-4 p-3 bg-red-100 text-red-800 rounded flex items-center">
-                <AlertCircle size={18} className="mr-2" /> {error}
+              <div className={cn(styles.alertBanner, styles.alertError)} role="alert">
+                <AlertCircle size={18} aria-hidden="true" /> {error}
               </div>
             )}
             <div className={styles.formGrid}>
@@ -236,24 +236,25 @@ const Settings: React.FC = () => {
         </ScrollReveal>
         <div className={styles.container}>
           <ScrollReveal delay={0.1}>
-            <nav className={styles.nav}>
+            <nav className={styles.nav} role="tablist" aria-label="Settings sections">
               {navItems.map(item => {
                 const Icon = item.icon;
                 return (
                   <button
                     key={item.id}
+                    role="tab"
                     className={cn(styles.navButton, activeTab === item.id && styles.navButtonActive)}
                     onClick={() => setActiveTab(item.id as SettingsTab)}
-                    aria-current={activeTab === item.id ? 'page' : undefined}
+                    aria-selected={activeTab === item.id}
                   >
-                    <Icon size={18} className={styles.navIcon} />
+                    <Icon size={18} className={styles.navIcon} aria-hidden="true" />
                     {item.label}
                   </button>
                 );
               })}
             </nav>
           </ScrollReveal>
-          <ScrollReveal delay={0.2} className={styles.content}>
+          <ScrollReveal delay={0.2} className={styles.content} role="tabpanel" aria-label={`${activeTab} settings`}>
             {renderContent()}
           </ScrollReveal>
         </div>

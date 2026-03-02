@@ -1,12 +1,73 @@
 /* AI-HINT: Dark theme overrides for Portal Community page. */
 
-.themeWrapper { background: var(--surface); color: var(--text-primary); }
-.subtitle { color: var(--text-secondary); }
+.themeWrapper { background: #0f0f0f; color: #f9fafb; }
+.subtitle { color: #9ca3af; }
 
-.input, .select, .textarea { background: var(--surface-elev); border: 1px solid var(--border); color: var(--text-primary); }
-.button { background: var(--primary); color: white; border: 1px solid rgba(0,0,0,0.2); }
-.button.secondary { background: var(--surface-elev); color: var(--text-primary); border: 1px solid var(--border); }
+.input, .textarea, .composerInput { background: #161616; border-color: #2d2d2d; color: #f9fafb; }
+.searchWrap { background: #161616; border-radius: 8px; }
 
-.card { background: var(--surface-elev); border: 1px solid var(--border); }
-.thread { background: var(--surface); border: 1px solid var(--border); }
-.tag { background: color-mix(in oklab, var(--primary) 20%, black); border: 1px solid var(--border); color: var(--text-primary); }
+/* Stats Banner */
+.statsBanner { background: #161616; border: 1px solid #2d2d2d; }
+.statValue { color: #f9fafb; }
+.statLabel { color: #6b7280; }
+
+/* Side Cards */
+.sideCard { background: #161616; border-color: #2d2d2d; }
+.sideCardTitle { color: #f9fafb; }
+
+/* Categories */
+.categoryBtn { color: #9ca3af; }
+.categoryBtn:hover { background: #1e1e1e; color: #f9fafb; }
+.categoryActive { background: rgba(69,115,223,0.15) !important; color: #6b9bff !important; }
+.categoryCount { background: #1e1e1e; color: #9ca3af; }
+
+/* Trending Tags */
+.trendTag { background: #1e1e1e; color: #9ca3af; border-color: #2d2d2d; }
+.trendTag:hover { background: #2d2d2d; color: #f9fafb; }
+
+/* Sort */
+.sortBtn { color: #9ca3af; }
+.sortBtn:hover { background: #1e1e1e; }
+.sortBtnActive { background: rgba(69,115,223,0.15); color: #6b9bff; font-weight: 600; }
+
+/* Composer */
+.composerCard { background: #161616; border-color: #2d2d2d; }
+.composerTitle { color: #f9fafb; }
+
+/* Threads */
+.thread { background: #161616; border-color: #2d2d2d; }
+.thread:hover { background: #1a1a1a; }
+.pinned { background: #111827; border-color: #1e3a5f; }
+
+/* Badges */
+.badgePinned { background: rgba(69,115,223,0.15); color: #6b9bff; }
+.badgeHot { background: rgba(239,68,68,0.15); color: #f87171; }
+
+/* Avatar */
+.avatar { background: #2d2d2d; color: #d1d5db; }
+
+/* Author */
+.authorName { color: #f9fafb; }
+.threadTime { color: #6b7280; }
+
+/* Level badges */
+.levelExpert { background: rgba(251,191,36,0.15); color: #fbbf24; }
+.levelPro { background: rgba(139,92,246,0.15); color: #a78bfa; }
+.levelContributor { background: rgba(52,211,153,0.15); color: #34d399; }
+.levelNew { background: #1e1e1e; color: #6b7280; }
+
+/* Thread content */
+.threadTitle { color: #f9fafb; }
+.threadPreview { color: #9ca3af; }
+
+/* Tags */
+.tag { background: #1e1e1e; border-color: #2d2d2d; color: #d1d5db; }
+
+/* Thread actions */
+.threadAction { color: #6b7280; }
+.threadAction:hover { background: #1e1e1e; color: #d1d5db; }
+.threadActionActive { color: #6b9bff !important; }
+.threadStat { color: #6b7280; }
+
+/* Empty State */
+.emptyState { background: #161616; color: #9ca3af; }

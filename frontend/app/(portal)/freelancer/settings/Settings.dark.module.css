@@ -37,6 +37,11 @@
   border-top: 1px solid var(--border-dark);
 }
 
+.formContainer { color: var(--text-primary-dark); }
+.formHeader { border-bottom-color: var(--border-dark); }
+.formTitle { color: var(--text-primary-dark); }
+.formDescription { color: var(--text-secondary-dark); }
+
 .switchDescription {
   color: var(--text-secondary-dark);
 }

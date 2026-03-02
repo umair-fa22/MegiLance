@@ -176,6 +176,7 @@ const ClientDashboard: React.FC = () => {
       </div>
 
       {/* Stats Grid — with sparklines */}
+      <section aria-label="Key statistics">
       <div className={commonStyles.statsGrid}>
         <StatCard 
           title="Total Spent" 
@@ -209,6 +210,7 @@ const ClientDashboard: React.FC = () => {
           href="/client/messages"
         />
       </div>
+      </section>
 
       {error && (
         <div className={commonStyles.errorBanner} role="alert">
@@ -218,12 +220,13 @@ const ClientDashboard: React.FC = () => {
       )}
 
       {/* Quick Actions */}
+      <section aria-label="Quick actions">
       <div className={commonStyles.quickActionsSection}>
         <h2 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Quick Actions</h2>
         <div className={commonStyles.quickActionsGrid}>
           {quickActions.map((action) => (
-            <Link key={action.label} href={action.href} className={cn(commonStyles.quickActionCard, themeStyles.quickActionCard)}>
-              <div className={cn(commonStyles.quickActionIcon, commonStyles[`quickActionIcon-${action.color}`])}>
+            <Link key={action.label} href={action.href} className={cn(commonStyles.quickActionCard, themeStyles.quickActionCard)} aria-label={`${action.label}: ${action.desc}`}>
+              <div className={cn(commonStyles.quickActionIcon, commonStyles[`quickActionIcon-${action.color}`])} aria-hidden="true">
                 <action.icon size={20} />
               </div>
               <span className={cn(commonStyles.quickActionLabel, themeStyles.quickActionLabel)}>{action.label}</span>
@@ -232,8 +235,10 @@ const ClientDashboard: React.FC = () => {
           ))}
         </div>
       </div>
+      </section>
 
       {/* Project Completion Metrics */}
+      <section aria-label="Project metrics">
       <div className={commonStyles.metricsRow}>
         <div className={cn(commonStyles.metricCard, themeStyles.metricCard)}>
           <ProgressRing value={metrics.completionRate} label="Completion Rate" size="lg" color="success" />
@@ -266,6 +271,7 @@ const ClientDashboard: React.FC = () => {
           </div>
         </div>
       </div>
+      </section>
 
       {/* Main Content Grid */}
       <div className={commonStyles.mainContentGrid}>

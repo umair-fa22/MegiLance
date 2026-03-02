@@ -4,6 +4,7 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
+import { apiFetch } from '@/lib/api/core';
 import Button from '@/app/components/Button/Button';
 import Input from '@/app/components/Input/Input';
 import Select from '@/app/components/Select/Select';
@@ -77,13 +78,7 @@ export default function SkillsAdminPage() {
   const loadSkillsData = async () => {
     setLoading(true);
     try {
-      const token = typeof window !== 'undefined' ? sessionStorage.getItem('auth_token') : null;
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (token) headers['Authorization'] = `Bearer ${token}`;
-
-      const res = await fetch('/api/skills/?active_only=false&limit=200', { headers });
-      if (!res.ok) throw new Error('Failed to load skills');
-      const data: Skill[] = await res.json();
+      const data: Skill[] = await apiFetch('/skills/?active_only=false&limit=200');
       setSkills(data);
 
       // Derive categories from distinct category values
@@ -127,10 +122,6 @@ export default function SkillsAdminPage() {
     if (!skillForm.name.trim()) return;
 
     try {
-      const token = typeof window !== 'undefined' ? sessionStorage.getItem('auth_token') : null;
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (token) headers['Authorization'] = `Bearer ${token}`;
-
       const body = {
         name: skillForm.name.trim(),
         description: skillForm.description || null,
@@ -141,28 +132,16 @@ export default function SkillsAdminPage() {
       };
 
       if (editingSkill) {
-        // Update
-        const res = await fetch(`/api/skills/${editingSkill.id}`, {
+        await apiFetch(`/skills/${editingSkill.id}`, {
           method: 'PATCH',
-          headers,
           body: JSON.stringify(body)
         });
-        if (!res.ok) {
-          const err = await res.json().catch(() => ({}));
-          throw new Error(err.detail || 'Failed to update skill');
-        }
         showToast('Skill updated successfully');
       } else {
-        // Create
-        const res = await fetch('/api/skills/', {
+        await apiFetch('/skills/', {
           method: 'POST',
-          headers,
           body: JSON.stringify(body)
         });
-        if (!res.ok) {
-          const err = await res.json().catch(() => ({}));
-          throw new Error(err.detail || 'Failed to create skill');
-        }
         showToast('Skill created successfully');
       }
 
@@ -176,12 +155,7 @@ export default function SkillsAdminPage() {
 
   const handleDeleteSkill = async (id: number) => {
     try {
-      const token = typeof window !== 'undefined' ? sessionStorage.getItem('auth_token') : null;
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (token) headers['Authorization'] = `Bearer ${token}`;
-
-      const res = await fetch(`/api/skills/${id}`, { method: 'DELETE', headers });
-      if (!res.ok) throw new Error('Failed to delete skill');
+      await apiFetch(`/skills/${id}`, { method: 'DELETE' });
       showToast('Skill deactivated successfully');
       setDeleteTargetId(null);
       loadSkillsData();
@@ -192,16 +166,10 @@ export default function SkillsAdminPage() {
 
   const handleToggleActive = async (skill: Skill) => {
     try {
-      const token = typeof window !== 'undefined' ? sessionStorage.getItem('auth_token') : null;
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (token) headers['Authorization'] = `Bearer ${token}`;
-
-      const res = await fetch(`/api/skills/${skill.id}`, {
+      await apiFetch(`/skills/${skill.id}`, {
         method: 'PATCH',
-        headers,
         body: JSON.stringify({ is_active: !skill.is_active })
       });
-      if (!res.ok) throw new Error('Failed to update skill');
       showToast(`Skill ${skill.is_active ? 'deactivated' : 'activated'}`);
       loadSkillsData();
     } catch (error) {

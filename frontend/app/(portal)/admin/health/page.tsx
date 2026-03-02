@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import Button from '@/app/components/Button/Button';
 import Loading from '@/app/components/Loading/Loading';
 import { Activity, Server, Database, Wifi, CheckCircle, AlertTriangle, XCircle, RefreshCw } from 'lucide-react';
+import { apiFetch } from '@/lib/api/core';
 
 import commonStyles from './Health.common.module.css';
 import lightStyles from './Health.light.module.css';
@@ -31,8 +32,7 @@ export default function AdminHealthPage() {
     try {
       setRefreshing(true);
       // Fetch from health endpoint
-      const response = await fetch('/api/health/ready').catch(() => null);
-      const isHealthy = response?.ok;
+      const isHealthy = await apiFetch('/health/ready').then(() => true).catch(() => false);
       
       setServices([
         { name: 'API Server', status: isHealthy ? 'healthy' : 'down', latency: 45, lastCheck: new Date().toISOString(), uptime: 99.9 },

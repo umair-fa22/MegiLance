@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { PageTransition, ScrollReveal, StaggerContainer, StaggerItem } from '@/app/components/Animations';
+import { apiFetch } from '@/lib/api/core';
 import commonStyles from './Verification.common.module.css';
 import lightStyles from './Verification.light.module.css';
 import darkStyles from './Verification.dark.module.css';
@@ -158,30 +159,23 @@ export default function VerificationPage() {
     
     setUploading(true);
     try {
-      const token = localStorage.getItem('token') || localStorage.getItem('access_token');
       const formData = new FormData();
       formData.append('document', selectedFile);
       formData.append('document_type', selectedVerification.type === 'identity' ? 'national_id' : 'address_proof');
       
-      const res = await fetch('/api/verification/upload-document', {
+      await apiFetch('/verification/upload-document', {
         method: 'POST',
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
         body: formData,
       });
       
-      if (res.ok) {
-        setVerifications(prev => prev.map(v => 
-          v.id === selectedVerification.id ? { ...v, status: 'pending' as const } : v
-        ));
-        setShowUploadModal(false);
-        setSelectedVerification(null);
-        setSelectedFile(null);
-      } else {
-        const error = await res.json().catch(() => ({}));
-        console.error('Upload failed:', error.detail || 'Unknown error');
-      }
-    } catch (error) {
-      console.error('Upload failed:', error);
+      setVerifications(prev => prev.map(v => 
+        v.id === selectedVerification.id ? { ...v, status: 'pending' as const } : v
+      ));
+      setShowUploadModal(false);
+      setSelectedVerification(null);
+      setSelectedFile(null);
+    } catch (error: any) {
+      console.error('Upload failed:', error?.detail || error);
     } finally {
       setUploading(false);
     }

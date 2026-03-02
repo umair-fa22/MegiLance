@@ -47,7 +47,14 @@ const PasswordStrength: React.FC<PasswordStrengthProps> = ({ password = '' }) =>
 
   return (
     <div className={commonStyles.container}>
-      <div className={commonStyles.strengthBar}>
+      <div
+        className={commonStyles.strengthBar}
+        role="progressbar"
+        aria-valuenow={strength}
+        aria-valuemin={0}
+        aria-valuemax={4}
+        aria-label={`Password strength: ${strengthLevels[strength].label}`}
+      >
         {strengthLevels.map((_, index) => (
           <div
             key={index}
