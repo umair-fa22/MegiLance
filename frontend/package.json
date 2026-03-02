@@ -50,7 +50,7 @@
   "devDependencies": {
     "@types/crypto-js": "^4.2.2",
     "@types/jest": "^30.0.0",
-    "@types/node": "^22.10.2",
+    "@types/node": "^25.3.3",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.2",
     "@types/simple-peer": "^9.11.8",
