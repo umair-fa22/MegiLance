@@ -96,7 +96,7 @@ class DigestSettings(BaseModel):
 
 class UserNotificationSettings(BaseModel):
     """Complete user notification settings."""
-    user_id: str
+    user_id: Any
     global_enabled: bool = True
     preferences: Dict[str, NotificationPreference]
     quiet_hours: QuietHours

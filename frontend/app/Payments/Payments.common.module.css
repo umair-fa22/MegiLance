@@ -1,0 +1,214 @@
+/* @AI-HINT: Common layout and structural styles for the Payments page. Theme-independent. */
+
+.page {
+  min-height: 100vh;
+  padding: var(--space-6) var(--space-6);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.headerIcon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xxl);
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Balance Cards Grid */
+.balanceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .balanceGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.balanceCard {
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.balanceCardPrimary {
+  background: var(--gradient-primary);
+  border: none;
+}
+
+.balanceLabel {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.balanceLabelWhite {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.balanceValue {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.balanceValueWhite {
+  color: #ffffff;
+}
+
+/* Transactions Section */
+.transactionsCard {
+  border-radius: var(--radius-xl);
+  border: 1px solid;
+  overflow: hidden;
+}
+
+.transactionsHeader {
+  padding: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  border-bottom: 1px solid;
+}
+
+.transactionsIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.transactionsTitle {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Loading State */
+.loadingContainer {
+  padding: var(--space-8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+  color: var(--color-primary);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Empty State */
+.emptyState {
+  padding: var(--space-8);
+  text-align: center;
+  font-size: var(--font-size-base);
+}
+
+/* Transaction List */
+.transactionList {
+  display: flex;
+  flex-direction: column;
+}
+
+.transactionRow {
+  padding: var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  transition: background-color 150ms ease;
+}
+
+.transactionLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.txIconCredit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-success-light);
+  color: var(--color-success);
+  flex-shrink: 0;
+}
+
+.txIconDebit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-error-light);
+  color: var(--color-error);
+  flex-shrink: 0;
+}
+
+.txDesc {
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  margin: 0;
+}
+
+.txDate {
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+.txAmountCredit {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-success);
+  white-space: nowrap;
+}
+
+.txAmountDebit {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-error);
+  white-space: nowrap;
+}
+
+/* Divider between rows */
+.transactionRow + .transactionRow {
+  border-top: 1px solid;
+}

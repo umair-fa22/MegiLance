@@ -416,3 +416,91 @@ async def get_fraud_alerts(
     _cn = lambda c: c.get("name", c) if isinstance(c, dict) else c
     _cv = lambda c: c.get("value") if isinstance(c, dict) else c
     return [{_cn(c): _cv(v) for c, v in zip(cols, r)} for r in result.get("rows", [])]
+
+
+@router.get("/admin/contracts")
+async def get_admin_contracts(
+    contract_status: Optional[str] = Query(None, alias="status"),
+    page: int = Query(1, ge=1),
+    page_size: int = Query(20, ge=1, le=100),
+    admin: User = Depends(get_admin_user)
+):
+    """Get all contracts for admin management."""
+    from app.db.turso_http import execute_query
+    offset = (page - 1) * page_size
+    conditions = []
+    params: list = []
+    if contract_status:
+        conditions.append("c.status = ?")
+        params.append(contract_status)
+    where = "WHERE " + " AND ".join(conditions) if conditions else ""
+    params += [page_size, offset]
+    result = execute_query(
+        f"""SELECT c.id, c.project_id, c.client_id, c.freelancer_id, c.status,
+                   c.amount, c.created_at, c.updated_at
+            FROM contracts c {where} ORDER BY c.created_at DESC LIMIT ? OFFSET ?""",
+        params
+    )
+    cols = result.get("columns", result.get("cols", []))
+    _cn = lambda c: c.get("name", c) if isinstance(c, dict) else c
+    _cv = lambda c: c.get("value") if isinstance(c, dict) else c
+    contracts = [{_cn(col): _cv(v) for col, v in zip(cols, r)} for r in result.get("rows", [])]
+    count_result = execute_query("SELECT COUNT(*) FROM contracts", [])
+    total = 0
+    if count_result and count_result.get("rows"):
+        row = count_result["rows"][0]
+        val = row[0] if row else 0
+        total = val.get("value", 0) if isinstance(val, dict) else val
+    return {"contracts": contracts, "total": total, "page": page, "page_size": page_size}
+
+
+@router.get("/admin/disputes")
+async def get_admin_disputes(
+    dispute_status: Optional[str] = Query(None, alias="status"),
+    page: int = Query(1, ge=1),
+    page_size: int = Query(20, ge=1, le=100),
+    admin: User = Depends(get_admin_user)
+):
+    """Get all disputes for admin management."""
+    from app.db.turso_http import execute_query
+    offset = (page - 1) * page_size
+    conditions = []
+    params: list = []
+    if dispute_status:
+        conditions.append("d.status = ?")
+        params.append(dispute_status)
+    where = "WHERE " + " AND ".join(conditions) if conditions else ""
+    params += [page_size, offset]
+    result = execute_query(
+        f"""SELECT d.id, d.contract_id, d.raised_by, d.reason, d.status,
+                   d.resolution, d.created_at, d.updated_at
+            FROM disputes d {where} ORDER BY d.created_at DESC LIMIT ? OFFSET ?""",
+        params
+    )
+    cols = result.get("columns", result.get("cols", []))
+    _cn = lambda c: c.get("name", c) if isinstance(c, dict) else c
+    _cv = lambda c: c.get("value") if isinstance(c, dict) else c
+    disputes = [{_cn(col): _cv(v) for col, v in zip(cols, r)} for r in result.get("rows", [])]
+    return {"disputes": disputes, "total": len(disputes), "page": page, "page_size": page_size}
+
+
+@router.get("/admin/reports")
+async def get_admin_reports(
+    report_type: Optional[str] = Query(None, alias="type"),
+    page: int = Query(1, ge=1),
+    page_size: int = Query(20, ge=1, le=100),
+    admin: User = Depends(get_admin_user)
+):
+    """Get platform reports for admin."""
+    from app.db.turso_http import execute_query
+    return {
+        "reports": [],
+        "total": 0,
+        "page": page,
+        "page_size": page_size,
+        "summary": {
+            "total_users": 0,
+            "total_projects": 0,
+            "total_revenue": 0
+        }
+    }

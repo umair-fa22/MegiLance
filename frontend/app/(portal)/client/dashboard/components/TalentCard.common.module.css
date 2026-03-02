@@ -37,6 +37,15 @@
   gap: 0.25rem;
 }
 
+.availabilityBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-success);
+}
+
 .name {
   font-size: 1rem;
   font-weight: 600;
@@ -57,6 +66,11 @@
   align-items: center;
   gap: 0.25rem;
   font-size: 0.875rem;
+}
+
+.starIcon {
+  color: #eab308;
+  fill: #eab308;
 }
 
 .rate {

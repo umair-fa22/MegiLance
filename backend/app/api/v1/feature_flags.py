@@ -71,6 +71,24 @@ class TrackExposureRequest(BaseModel):
 
 
 # User Endpoints
+@router.get("/flags")
+async def get_all_flags(
+    current_user=Depends(get_current_active_user)
+):
+    """Get all available feature flags with their status for the current user."""
+    flags = get_feature_flags()
+    all_flags = await flags.get_all_flags()
+    user_flags = []
+    for name, flag in all_flags.items():
+        is_enabled = await flags.is_enabled(name, user_id=current_user.id)
+        user_flags.append({
+            "name": name,
+            "description": getattr(flag, 'description', ''),
+            "is_enabled": is_enabled,
+        })
+    return {"flags": user_flags}
+
+
 @router.get("/check/{flag_name}")
 async def check_flag(
     flag_name: str,

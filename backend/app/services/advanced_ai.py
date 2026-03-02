@@ -750,11 +750,6 @@ class AdvancedAIService:
 
 def get_advanced_ai_service(db: Session = Depends(get_db)) -> AdvancedAIService:
     """Get advanced AI service instance"""
-    if db is None:
-        raise HTTPException(
-            status_code=503,
-            detail="AI service temporarily unavailable. Database connection required."
-        )
     return AdvancedAIService(db)
 
 

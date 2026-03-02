@@ -38,8 +38,8 @@ const TalentCard: React.FC<TalentCardProps> = ({ name, role, avatar, rating = 5.
         <h4 className={cn(commonStyles.name, themeStyles.name)}>{name}</h4>
         <p className={cn(commonStyles.role, themeStyles.role)}>{headline || role}</p>
         {availabilityStatus === 'available' && (
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '0.7rem', color: '#27AE60', fontWeight: 600 }}>
-            <Circle size={6} fill="#27AE60" color="#27AE60" aria-hidden="true" />
+          <span className={commonStyles.availabilityBadge}>
+            <Circle size={6} fill="currentColor" color="currentColor" aria-hidden="true" />
             Available
           </span>
         )}
@@ -47,7 +47,7 @@ const TalentCard: React.FC<TalentCardProps> = ({ name, role, avatar, rating = 5.
 
       <div className={commonStyles.meta}>
         <div className={cn(commonStyles.metaItem, themeStyles.metaItem)}>
-          <Star size={14} className="text-yellow-500 fill-yellow-500" />
+          <Star size={14} className={commonStyles.starIcon} />
           <span>{rating.toFixed(1)}</span>
         </div>
         {location && (

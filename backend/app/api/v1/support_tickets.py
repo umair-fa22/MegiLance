@@ -49,7 +49,7 @@ async def list_support_tickets(
     """List support tickets. Users see their own, admins see all."""
     is_admin = _is_admin(current_user)
 
-    tickets, total = support_tickets_service.list_tickets(
+    result = support_tickets_service.list_tickets(
         user_id=current_user["id"],
         is_admin=is_admin,
         assigned_to_me=assigned_to_me,
@@ -60,7 +60,12 @@ async def list_support_tickets(
         page_size=page_size
     )
 
-    return SupportTicketList(tickets=tickets, total=total, page=page, page_size=page_size)
+    return SupportTicketList(
+        tickets=result["tickets"],
+        total=result["total"],
+        page=result.get("page", page),
+        page_size=result.get("page_size", page_size)
+    )
 
 
 @router.get("/{ticket_id}", response_model=SupportTicketRead)

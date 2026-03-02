@@ -123,6 +123,51 @@ def _build_public_profile(row: list, columns: list) -> dict:
     return profile
 
 
+@router.get("/search")
+def search_freelancers(
+    query: Optional[str] = Query(None, description="Search by name or skills"),
+    skills: Optional[str] = Query(None, description="Comma-separated skills"),
+    location: Optional[str] = None,
+    min_rate: Optional[float] = None,
+    max_rate: Optional[float] = None,
+    page: int = Query(1, ge=1),
+    page_size: int = Query(20, ge=1, le=100),
+) -> dict:
+    """Search freelancers by name, skills, location, etc."""
+    try:
+        conditions = ["role = 'freelancer'", "is_active = 1"]
+        params = []
+        if query:
+            conditions.append("(name LIKE ? OR skills LIKE ? OR bio LIKE ?)")
+            params.extend([f"%{query}%", f"%{query}%", f"%{query}%"])
+        if skills:
+            for skill in [s.strip() for s in skills.split(",") if s.strip()]:
+                conditions.append("skills LIKE ?")
+                params.append(f"%{skill}%")
+        if location:
+            conditions.append("location LIKE ?")
+            params.append(f"%{location}%")
+        if min_rate is not None:
+            conditions.append("hourly_rate >= ?")
+            params.append(min_rate)
+        if max_rate is not None:
+            conditions.append("hourly_rate <= ?")
+            params.append(max_rate)
+        where = " AND ".join(conditions)
+        offset = (page - 1) * page_size
+        params += [page_size, offset]
+        result = execute_query(
+            f"SELECT {PUBLIC_PROFILE_COLUMNS} FROM users WHERE {where} ORDER BY profile_views DESC LIMIT ? OFFSET ?",
+            params
+        )
+        cols = result.get("columns", result.get("cols", []))
+        freelancers = [_build_public_profile(r, cols) for r in result.get("rows", [])]
+        return {"freelancers": freelancers, "total": len(freelancers), "page": page, "page_size": page_size}
+    except Exception as e:
+        logger.error("search_freelancers failed: %s", e, exc_info=True)
+        raise HTTPException(status_code=503, detail="Service temporarily unavailable")
+
+
 @router.get("/id/{user_id}")
 def get_public_profile_by_id(user_id: int) -> dict:
     """Get a freelancer's public profile by user ID."""

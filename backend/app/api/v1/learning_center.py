@@ -11,7 +11,7 @@ Features:
 - Certifications
 """
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel
@@ -44,6 +44,21 @@ class SubmitQuizRequest(BaseModel):
 
 
 # Content Discovery Endpoints
+@router.get("/courses")
+async def get_courses(
+    category: Optional[str] = None,
+    difficulty: Optional[str] = None,
+    page: int = Query(1, ge=1),
+    page_size: int = Query(20, ge=1, le=100),
+    db: Session = Depends(get_db),
+    current_user = Depends(get_current_active_user)
+):
+    """Get all available courses/learning content."""
+    service = get_learning_service(db)
+    content = await service.get_featured_content()
+    return {"courses": content, "total": len(content), "page": page, "page_size": page_size}
+
+
 @router.get("/featured")
 async def get_featured_content(
     db: Session = Depends(get_db),

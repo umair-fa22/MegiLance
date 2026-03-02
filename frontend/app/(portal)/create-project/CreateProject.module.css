@@ -1,0 +1,5 @@
+/* @AI-HINT: Common styles for the create-project wrapper page. */
+.wrapper {
+  min-height: 100vh;
+  padding: var(--space-8) 0;
+}

@@ -148,6 +148,24 @@ async def list_data_requests(
     return {"requests": requests}
 
 
+@router.get("/data-request/status")
+async def get_data_request_status(
+    db: Session = Depends(get_db),
+    current_user = Depends(get_current_active_user)
+):
+    """Get summary status of user's data requests."""
+    service = get_compliance_service(db)
+    requests = await service.list_data_requests(user_id=current_user.id)
+    pending = sum(1 for r in requests if r.get("status") == "pending")
+    completed = sum(1 for r in requests if r.get("status") == "completed")
+    return {
+        "total_requests": len(requests),
+        "pending": pending,
+        "completed": completed,
+        "requests": requests
+    }
+
+
 @router.get("/data-requests/{request_id}")
 async def get_data_request(
     request_id: str,

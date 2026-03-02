@@ -1,6 +1,7 @@
 // @AI-HINT: Project creation page for clients to post new projects
 import { Metadata } from 'next';
 import ProjectWizard from '@/app/components/Project/ProjectWizard/ProjectWizard';
+import styles from './CreateProject.module.css';
 
 export const metadata: Metadata = {
   title: 'Post a Project | MegiLance',
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function CreateProjectPage() {
   return (
-    <div className="min-h-screen py-8">
+    <div className={styles.wrapper}>
       <ProjectWizard />
     </div>
   );

@@ -93,6 +93,30 @@ def _verify_contract_access(contract_id: int, user_id: int) -> tuple:
 
 # ==================== Kanban Board Endpoints ====================
 
+@router.get("/my-workrooms")
+async def get_my_workrooms(
+    page: int = Query(1, ge=1),
+    page_size: int = Query(20, ge=1, le=100),
+    current_user: User = Depends(get_current_active_user)
+):
+    """Get all workrooms (contracts) for the current user."""
+    from app.db.turso_http import execute_query
+    offset = (page - 1) * page_size
+    result = execute_query(
+        """SELECT c.id, c.project_id, c.client_id, c.freelancer_id, c.status,
+                  c.amount, c.created_at, p.title as project_title
+           FROM contracts c LEFT JOIN projects p ON c.project_id = p.id
+           WHERE c.client_id = ? OR c.freelancer_id = ?
+           ORDER BY c.updated_at DESC LIMIT ? OFFSET ?""",
+        [current_user.id, current_user.id, page_size, offset]
+    )
+    cols = result.get("columns", result.get("cols", []))
+    _cn = lambda c: c.get("name", c) if isinstance(c, dict) else c
+    _cv = lambda c: c.get("value") if isinstance(c, dict) else c
+    workrooms = [{_cn(col): _cv(v) for col, v in zip(cols, r)} for r in result.get("rows", [])]
+    return {"workrooms": workrooms, "total": len(workrooms)}
+
+
 @router.get("/contracts/{contract_id}/board")
 async def get_kanban_board(
     contract_id: int,

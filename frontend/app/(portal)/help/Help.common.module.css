@@ -1,5 +1,44 @@
 /* AI-HINT: Common styles for portal Help/Support Center: header, categories grid, articles list, and CTA. */
 
+.bgDecorations {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.orbTopLeft {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+}
+
+.orbBottomRight {
+  position: absolute;
+  bottom: -10%;
+  right: -10%;
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+}
+
+.floatTopRight {
+  position: absolute;
+  top: 6rem;
+  right: 3rem;
+  opacity: 0.1;
+}
+
+.floatBottomLeft {
+  position: absolute;
+  bottom: 7rem;
+  left: 4rem;
+  opacity: 0.1;
+}
+
 .page {
   padding: 2rem;
 }

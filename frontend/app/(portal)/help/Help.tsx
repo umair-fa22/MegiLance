@@ -42,14 +42,14 @@ const Help: React.FC = () => {
 
   return (
     <PageTransition>
-      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-        <AnimatedOrb variant="blue" size={400} blur={90} opacity={0.08} className="absolute top-[-10%] left-[-10%]" />
-        <AnimatedOrb variant="purple" size={350} blur={70} opacity={0.06} className="absolute bottom-[-10%] right-[-10%]" />
-        <ParticlesSystem count={10} className="absolute inset-0" />
-        <div className="absolute top-24 right-12 opacity-10">
+      <div className={common.bgDecorations}>
+        <AnimatedOrb variant="blue" size={400} blur={90} opacity={0.08} className={common.orbTopLeft} />
+        <AnimatedOrb variant="purple" size={350} blur={70} opacity={0.06} className={common.orbBottomRight} />
+        <ParticlesSystem count={10} className={common.particles} />
+        <div className={common.floatTopRight}>
           <FloatingCube size={50} />
         </div>
-        <div className="absolute bottom-28 left-16 opacity-10">
+        <div className={common.floatBottomLeft}>
           <FloatingSphere size={40} />
         </div>
       </div>

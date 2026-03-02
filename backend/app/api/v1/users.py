@@ -217,6 +217,48 @@ def get_current_user_profile(current_user: User = Depends(get_current_user)) -> 
         )
 
 
+@router.put("/me", response_model=UserRead)
+def update_current_user_profile(payload: UserUpdate, current_user: User = Depends(get_current_user)) -> dict:
+    """Update the currently authenticated user's profile"""
+    try:
+        turso = get_turso_http()
+        updates = []
+        params = []
+        data = payload.dict(exclude_unset=True)
+        allowed_fields = {"name", "bio", "skills", "hourly_rate", "profile_image_url", "location"}
+        for field, value in data.items():
+            if field in allowed_fields:
+                updates.append(f"{field} = ?")
+                params.append(value)
+        if not updates:
+            raise HTTPException(status_code=400, detail="No valid fields to update")
+        updates.append("updated_at = ?")
+        params.append(datetime.now(timezone.utc).isoformat())
+        params.append(current_user.id)
+        turso.execute(
+            f"UPDATE users SET {', '.join(updates)} WHERE id = ?",
+            params
+        )
+        result = turso.execute(
+            """SELECT id, email, name, role, is_active, user_type, joined_at, created_at,
+                      bio, skills, hourly_rate, profile_image_url, location, profile_data
+               FROM users WHERE id = ?""",
+            [current_user.id]
+        )
+        rows = result.get("rows", [])
+        if not rows:
+            raise HTTPException(status_code=404, detail="User not found")
+        return _row_to_user_dict(rows[0], result.get("columns", []))
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error("update_current_user_profile failed: %s", e, exc_info=True)
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Database temporarily unavailable"
+        )
+
+
 @router.get("/{user_id}", response_model=UserRead)
 def get_user(user_id: int) -> dict:
     """Get user by ID from Turso database (public profile - email masked)"""

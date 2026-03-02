@@ -1,0 +1,59 @@
+/* @AI-HINT: Light theme colors for the Payments page. */
+
+.title {
+  color: #0f172a;
+}
+
+.headerIcon {
+  color: #0f172a;
+}
+
+.balanceCard {
+  background-color: #ffffff;
+  border-color: #e2e8f0;
+}
+
+.balanceLabel {
+  color: #64748b;
+}
+
+.balanceValue {
+  color: #0f172a;
+}
+
+.transactionsCard {
+  background-color: #ffffff;
+  border-color: #e2e8f0;
+}
+
+.transactionsHeader {
+  border-bottom-color: #e2e8f0;
+}
+
+.transactionsIcon {
+  color: #64748b;
+}
+
+.transactionsTitle {
+  color: #0f172a;
+}
+
+.emptyState {
+  color: #64748b;
+}
+
+.txDesc {
+  color: #0f172a;
+}
+
+.txDate {
+  color: #64748b;
+}
+
+.transactionRow + .transactionRow {
+  border-top-color: #e2e8f0;
+}
+
+.transactionRow:hover {
+  background-color: #f8fafc;
+}

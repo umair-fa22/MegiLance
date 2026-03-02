@@ -201,6 +201,71 @@ async def get_freelancer_dashboard_stats(freelancer: User = Depends(get_freelanc
     return FreelancerDashboardStats(**data)
 
 
+@router.get("/freelancer/dashboard")
+async def get_freelancer_dashboard(freelancer: User = Depends(get_freelancer_user)):
+    """Get freelancer dashboard overview (alias for dashboard/stats)"""
+    data = portal_service.get_freelancer_stats(freelancer.id)
+    data["profile_views"] = getattr(freelancer, "profile_views", 0) or 0
+    data["availability_status"] = getattr(freelancer, "availability_status", None)
+    from app.services.profile_validation import get_profile_completeness
+    data["profile_completeness"] = get_profile_completeness(freelancer)
+    return FreelancerDashboardStats(**data)
+
+
+@router.get("/freelancer/stats")
+async def get_freelancer_stats_alias(freelancer: User = Depends(get_freelancer_user)):
+    """Get freelancer stats (alias for dashboard/stats)"""
+    data = portal_service.get_freelancer_stats(freelancer.id)
+    data["profile_views"] = getattr(freelancer, "profile_views", 0) or 0
+    data["availability_status"] = getattr(freelancer, "availability_status", None)
+    from app.services.profile_validation import get_profile_completeness
+    data["profile_completeness"] = get_profile_completeness(freelancer)
+    return FreelancerDashboardStats(**data)
+
+
+@router.get("/freelancer/reviews")
+async def get_freelancer_reviews(
+    page: int = Query(1, ge=1),
+    page_size: int = Query(20, ge=1, le=100),
+    freelancer: User = Depends(get_freelancer_user)
+):
+    """Get freelancer's reviews"""
+    from app.db.turso_http import execute_query
+    offset = (page - 1) * page_size
+    result = execute_query(
+        """SELECT r.id, r.rating, r.comment, r.created_at, u.name as reviewer_name
+           FROM reviews r LEFT JOIN users u ON r.reviewer_id = u.id
+           WHERE r.reviewee_id = ? ORDER BY r.created_at DESC LIMIT ? OFFSET ?""",
+        [freelancer.id, page_size, offset]
+    )
+    cols = result.get("columns", result.get("cols", []))
+    _cn = lambda c: c.get("name", c) if isinstance(c, dict) else c
+    _cv = lambda c: c.get("value") if isinstance(c, dict) else c
+    reviews = [{_cn(c): _cv(v) for c, v in zip(cols, r)} for r in result.get("rows", [])]
+    return {"reviews": reviews, "total": len(reviews)}
+
+
+@router.get("/freelancer/notifications")
+async def get_freelancer_notifications(
+    page: int = Query(1, ge=1),
+    page_size: int = Query(20, ge=1, le=100),
+    freelancer: User = Depends(get_freelancer_user)
+):
+    """Get freelancer's notifications"""
+    from app.db.turso_http import execute_query
+    offset = (page - 1) * page_size
+    result = execute_query(
+        """SELECT id, type, title, message, is_read, created_at
+           FROM notifications WHERE user_id = ? ORDER BY created_at DESC LIMIT ? OFFSET ?""",
+        [freelancer.id, page_size, offset]
+    )
+    cols = result.get("columns", result.get("cols", []))
+    _cn = lambda c: c.get("name", c) if isinstance(c, dict) else c
+    _cv = lambda c: c.get("value") if isinstance(c, dict) else c
+    notifications = [{_cn(c): _cv(v) for c, v in zip(cols, r)} for r in result.get("rows", [])]
+    return {"notifications": notifications, "total": len(notifications)}
+
+
 @router.get("/freelancer/jobs")
 async def get_freelancer_jobs(
     category: Optional[str] = Query(None),

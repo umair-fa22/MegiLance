@@ -2,10 +2,15 @@
 // Production-ready: No mock data, connects to /api/wallet and /api/payments
 'use client';
 
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { useTheme } from 'next-themes';
-import { Wallet, CreditCard, History, ArrowUpRight, ArrowDownRight, Loader2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { Wallet, History, ArrowUpRight, ArrowDownRight, Loader2 } from 'lucide-react';
+import { PageTransition, ScrollReveal } from '@/components/Animations';
 import { getAuthToken } from '@/lib/api';
+import common from './Payments.common.module.css';
+import light from './Payments.light.module.css';
+import dark from './Payments.dark.module.css';
 
 interface Transaction {
   id: number;
@@ -37,6 +42,7 @@ async function fetchApi<T>(endpoint: string): Promise<T | null> {
 
 const Payments: React.FC = () => {
   const { resolvedTheme } = useTheme();
+  const themed = useMemo(() => resolvedTheme === 'dark' ? dark : light, [resolvedTheme]);
   const [mounted, setMounted] = React.useState(false);
   const [loading, setLoading] = useState(true);
   const [balance, setBalance] = useState<WalletBalance>({ available: 0, pending: 0, total: 0 });
@@ -79,73 +85,82 @@ const Payments: React.FC = () => {
     loadData();
   }, [loadData]);
 
-  if (!mounted) return null;
+  if (!mounted || !resolvedTheme) return null;
+
+  const fmt = (n: number) => n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   return (
-    <div className="min-h-screen p-6 md:p-8" style={{ background: 'var(--bg-primary, #f8fafc)' }}>
-      <div className="max-w-5xl mx-auto">
-        <div className="flex items-center gap-3 mb-8">
-          <Wallet size={28} className={resolvedTheme === 'dark' ? 'text-white' : 'text-gray-900'} />
-          <h1 className={`text-2xl md:text-3xl font-bold ${resolvedTheme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-            Payments
-          </h1>
-        </div>
+    <PageTransition>
+      <div className={common.page}>
+        <div className={common.container}>
+          <ScrollReveal>
+            <div className={common.header}>
+              <Wallet size={28} className={cn(common.headerIcon, themed.headerIcon)} />
+              <h1 className={cn(common.title, themed.title)}>Payments</h1>
+            </div>
+          </ScrollReveal>
 
-        {/* Balance Cards */}
-        <div className="grid md:grid-cols-3 gap-4 mb-8">
-          <div className={`p-6 rounded-xl ${resolvedTheme === 'dark' ? 'bg-gradient-to-br from-primary-600 to-primary-800' : 'bg-gradient-to-br from-primary-500 to-primary-700'}`}>
-            <p className="text-white/80 text-sm">Available Balance</p>
-            <p className="text-3xl font-bold text-white mt-1">${balance.available.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-          </div>
-          <div className={`p-6 rounded-xl ${resolvedTheme === 'dark' ? 'bg-slate-800 border border-slate-700' : 'bg-white border border-gray-200'}`}>
-            <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>Pending</p>
-            <p className={`text-2xl font-bold mt-1 ${resolvedTheme === 'dark' ? 'text-white' : 'text-gray-900'}`}>${balance.pending.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-          </div>
-          <div className={`p-6 rounded-xl ${resolvedTheme === 'dark' ? 'bg-slate-800 border border-slate-700' : 'bg-white border border-gray-200'}`}>
-            <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>Total Balance</p>
-            <p className={`text-2xl font-bold mt-1 ${resolvedTheme === 'dark' ? 'text-white' : 'text-gray-900'}`}>${balance.total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-          </div>
-        </div>
+          {/* Balance Cards */}
+          <ScrollReveal>
+            <div className={common.balanceGrid}>
+              <div className={cn(common.balanceCard, common.balanceCardPrimary)}>
+                <p className={cn(common.balanceLabel, common.balanceLabelWhite)}>Available Balance</p>
+                <p className={cn(common.balanceValue, common.balanceValueWhite)}>${fmt(balance.available)}</p>
+              </div>
+              <div className={cn(common.balanceCard, themed.balanceCard)}>
+                <p className={cn(common.balanceLabel, themed.balanceLabel)}>Pending</p>
+                <p className={cn(common.balanceValue, themed.balanceValue)}>${fmt(balance.pending)}</p>
+              </div>
+              <div className={cn(common.balanceCard, themed.balanceCard)}>
+                <p className={cn(common.balanceLabel, themed.balanceLabel)}>Total Balance</p>
+                <p className={cn(common.balanceValue, themed.balanceValue)}>${fmt(balance.total)}</p>
+              </div>
+            </div>
+          </ScrollReveal>
 
-        {/* Transaction History */}
-        <div className={`rounded-xl overflow-hidden ${resolvedTheme === 'dark' ? 'bg-slate-800 border border-slate-700' : 'bg-white border border-gray-200'}`}>
-          <div className="p-4 border-b border-gray-200 dark:border-slate-700">
-            <div className="flex items-center gap-2">
-              <History size={20} className={resolvedTheme === 'dark' ? 'text-gray-400' : 'text-gray-600'} />
-              <h2 className={`font-semibold ${resolvedTheme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Recent Transactions</h2>
-            </div>
-          </div>
-          {loading ? (
-            <div className="p-8 flex justify-center">
-              <Loader2 className="w-6 h-6 animate-spin text-primary-500" />
-            </div>
-          ) : transactions.length === 0 ? (
-            <div className="p-8 text-center">
-              <p className={resolvedTheme === 'dark' ? 'text-gray-400' : 'text-gray-600'}>No transactions yet</p>
-            </div>
-          ) : (
-            <div className="divide-y divide-gray-200 dark:divide-slate-700">
-              {transactions.map((tx) => (
-                <div key={tx.id} className="p-4 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-full ${tx.type === 'credit' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
-                      {tx.type === 'credit' ? <ArrowDownRight size={18} /> : <ArrowUpRight size={18} />}
-                    </div>
-                    <div>
-                      <p className={`font-medium ${resolvedTheme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{tx.desc}</p>
-                      <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>{tx.date}</p>
-                    </div>
-                  </div>
-                  <p className={`font-semibold ${tx.type === 'credit' ? 'text-green-600' : 'text-red-600'}`}>
-                    {tx.type === 'credit' ? '+' : '-'}${tx.amount.toLocaleString()}
-                  </p>
+          {/* Transaction History */}
+          <ScrollReveal>
+            <div className={cn(common.transactionsCard, themed.transactionsCard)}>
+              <div className={cn(common.transactionsHeader, themed.transactionsHeader)}>
+                <History size={20} className={cn(common.transactionsIcon, themed.transactionsIcon)} />
+                <h2 className={cn(common.transactionsTitle, themed.transactionsTitle)}>Recent Transactions</h2>
+              </div>
+              {loading ? (
+                <div className={common.loadingContainer}>
+                  <Loader2 className={common.spinner} />
                 </div>
-              ))}
+              ) : transactions.length === 0 ? (
+                <div className={cn(common.emptyState, themed.emptyState)}>
+                  <p>No transactions yet</p>
+                </div>
+              ) : (
+                <div className={common.transactionList}>
+                  {transactions.map((tx) => (
+                    <div key={tx.id} className={cn(common.transactionRow, themed.transactionRow)}>
+                      <div className={common.transactionLeft}>
+                        <div className={cn(
+                          tx.type === 'credit' ? common.txIconCredit : common.txIconDebit,
+                          tx.type === 'credit' ? themed.txIconCredit : themed.txIconDebit
+                        )}>
+                          {tx.type === 'credit' ? <ArrowDownRight size={18} /> : <ArrowUpRight size={18} />}
+                        </div>
+                        <div>
+                          <p className={cn(common.txDesc, themed.txDesc)}>{tx.desc}</p>
+                          <p className={cn(common.txDate, themed.txDate)}>{tx.date}</p>
+                        </div>
+                      </div>
+                      <span className={tx.type === 'credit' ? common.txAmountCredit : common.txAmountDebit}>
+                        {tx.type === 'credit' ? '+' : '-'}${tx.amount.toLocaleString()}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
-          )}
+          </ScrollReveal>
         </div>
       </div>
-    </div>
+    </PageTransition>
   );
 };
 
