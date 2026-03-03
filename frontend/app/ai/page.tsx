@@ -79,6 +79,33 @@ const aiFeatures = [
     status: 'Beta',
     color: 'pink',
     stats: 'In Beta'
+  },
+  {
+    title: 'Skill Analyzer',
+    description: 'Assess your skills against 2025 market demand data, discover high-ROI skill gaps, and get a personalized growth roadmap.',
+    icon: Brain,
+    href: '/ai/skill-analyzer',
+    status: 'Live',
+    color: 'blue',
+    stats: '80+ skills tracked'
+  },
+  {
+    title: 'Rate Advisor',
+    description: 'Get data-backed hourly rate recommendations with income projections and platform comparisons for your niche.',
+    icon: TrendingUp,
+    href: '/ai/rate-advisor',
+    status: 'Live',
+    color: 'green',
+    stats: '70+ countries covered'
+  },
+  {
+    title: 'Proposal Writer',
+    description: 'Generate winning proposals with market-data pricing, skill matching, and a quality score to maximize your win rate.',
+    icon: FileText,
+    href: '/ai/proposal-writer',
+    status: 'Live',
+    color: 'orange',
+    stats: 'AI-optimized copy'
   }
 ];
 

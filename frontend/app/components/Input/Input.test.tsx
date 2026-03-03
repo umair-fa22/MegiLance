@@ -9,7 +9,7 @@ import Input from '@/app/components/Input/Input';
 
 // Mock next-themes since it relies on React Context
 jest.mock('next-themes', () => ({
-  useTheme: () => ({ theme: 'light' }),
+  useTheme: () => ({ resolvedTheme: 'light' }),
 }));
 
 describe('Input Component', () => {
@@ -71,7 +71,7 @@ describe('Input Component', () => {
   });
 
   test('toggles password visibility when showPasswordToggle is true', () => {
-    render(<Input type="password" showPasswordToggle />);
+    render(<Input type="password" label="Password" showPasswordToggle />);
     
     const passwordInput = screen.getByLabelText('Password');
     const toggleButton = screen.getByLabelText('Show password');

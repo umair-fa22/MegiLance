@@ -17,8 +17,13 @@ import HowItWorks from './components/HowItWorks';
 import PoweredByAI from './components/PoweredByAI';
 import Testimonials from './components/Testimonials';
 import { ScrollReveal } from '../components/Animations/ScrollReveal';
-import { PageTransition } from '../components/Animations/PageTransition';
-import GlobeBackground from '../components/Animations/GlobeBackground';
+import dynamic from 'next/dynamic';
+
+// Lazy-load GlobeBackground to prevent Three.js crashes from breaking the page
+const GlobeBackground = dynamic(() => import('../components/Animations/GlobeBackground'), {
+  ssr: false,
+  loading: () => null,
+});
 
 import commonStyles from './Home.common.module.css';
 import lightStyles from './Home.light.module.css';
@@ -29,8 +34,7 @@ const Home: React.FC = () => {
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   return (
-    <PageTransition>
-      <div className={cn(commonStyles.homePage, themeStyles.homePage)}>
+    <div className={cn(commonStyles.homePage, themeStyles.homePage)}>
         {/* Background Parallax Layers */}
         <div className={commonStyles.parallaxBackground}>
           <GlobeBackground />
@@ -112,7 +116,6 @@ const Home: React.FC = () => {
           </div>
         </div>
       </div>
-    </PageTransition>
   );
 };
 

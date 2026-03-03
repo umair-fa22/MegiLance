@@ -3,7 +3,7 @@
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { useTheme } from 'next-themes';
-import styles from './ScrollScene3D.module.css';
+import styles from './ScrollScene3D.common.module.css';
 
 // ==========================================
 // SCROLL PROGRESS HOOK

@@ -82,3 +82,27 @@ global.IntersectionObserver = class IntersectionObserver {
     return null;
   }
 };
+
+// Mock framer-motion to render plain elements in tests
+jest.mock('framer-motion', () => {
+  const React = require('react');
+  const motion = new Proxy({}, {
+    get: (_target, prop) => {
+      return React.forwardRef((props, ref) => {
+        const { initial, animate, exit, whileHover, whileTap, whileInView, transition, variants, style, ...rest } = props;
+        return React.createElement(prop, { ...rest, ref, style });
+      });
+    },
+  });
+  return {
+    __esModule: true,
+    motion,
+    AnimatePresence: ({ children }) => React.createElement(React.Fragment, null, children),
+    useMotionValue: (val) => ({ set: jest.fn(), get: () => val }),
+    useSpring: (val) => val,
+    useTransform: (_val, _input, _output) => ({ set: jest.fn(), get: () => 0 }),
+    useMotionTemplate: (...args) => '',
+    useAnimation: () => ({ start: jest.fn(), stop: jest.fn() }),
+    useInView: () => true,
+  };
+});

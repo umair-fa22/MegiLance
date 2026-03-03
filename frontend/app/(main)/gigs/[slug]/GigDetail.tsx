@@ -635,7 +635,7 @@ What you'll get:
 • Modern UI/UX design
 
 My expertise includes:
-• Next.js 14 with App Router
+• Next.js 16 with App Router
 • TypeScript for type-safe code
 • Tailwind CSS for styling
 • API integration

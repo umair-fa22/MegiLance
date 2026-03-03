@@ -39,7 +39,7 @@ const getApiBase = () => {
 };
 
 const allPages = [
-  { route: '/', name: 'Homepage', description: 'Main landing with hero, features, testimonials', status: 'complete', category: 'public', tech: 'Next.js 14' },
+  { route: '/', name: 'Homepage', description: 'Main landing with hero, features, testimonials', status: 'complete', category: 'public', tech: 'Next.js 16' },
   { route: '/about', name: 'About Us', description: 'Company mission, team, timeline, values', status: 'complete', category: 'public', tech: 'SSR Page' },
   { route: '/pricing', name: 'Pricing', description: '3-tier plans: Starter, Pro, Enterprise', status: 'complete', category: 'public', tech: 'Interactive Cards' },
   { route: '/how-it-works', name: 'How It Works', description: 'Post → Match → Collaborate → Pay', status: 'complete', category: 'public', tech: 'Animated Steps' },

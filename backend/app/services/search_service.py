@@ -400,6 +400,29 @@ def global_search_tags(search_term: str, limit: int) -> List[dict]:
     return tags
 
 
+def global_search_gigs(search_term: str, limit: int) -> List[dict]:
+    """Search gigs for global search."""
+    result = execute_query(
+        """SELECT id, title, slug, short_description, basic_price, rating_average, seller_id
+           FROM gigs WHERE (title LIKE ? OR short_description LIKE ?) AND status = 'active' LIMIT ?""",
+        [search_term, search_term, limit]
+    )
+    gigs = []
+    if result and result.get("rows"):
+        for row in result["rows"]:
+            gigs.append({
+                "id": row[0].get("value") if row[0].get("type") != "null" else None,
+                "type": "gig",
+                "title": to_str(row[1]),
+                "slug": to_str(row[2]),
+                "short_description": to_str(row[3]),
+                "basic_price": row[4].get("value") if row[4].get("type") != "null" else None,
+                "rating_average": row[5].get("value") if row[5].get("type") != "null" else None,
+                "seller_id": row[6].get("value") if row[6].get("type") != "null" else None,
+            })
+    return gigs
+
+
 def autocomplete_projects(search_term: str, limit: int) -> List[dict]:
     """Get project autocomplete suggestions."""
     result = execute_query(

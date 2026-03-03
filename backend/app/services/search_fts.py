@@ -10,7 +10,7 @@ from sqlalchemy import text, and_, or_
 from app.models.project import Project
 from app.models.user import User
 from app.models.skill import Skill
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 import json
 import logging
 
@@ -397,16 +397,64 @@ class SearchService:
     
     def get_search_analytics(self, days: int = 30) -> Dict[str, Any]:
         """
-        Get search analytics for admin dashboard
+        Get search analytics for admin dashboard using search_history table.
         """
-        # This would track search queries, popular terms, etc.
-        # For now, return mock data structure
+        from app.db.turso_http import get_turso_http
+        turso = get_turso_http()
+
+        cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
+
+        total_row = turso.fetch_one(
+            "SELECT COUNT(*) FROM search_history WHERE searched_at >= ?", [cutoff]
+        )
+        total_searches = int(total_row[0]) if total_row else 0
+
+        unique_row = turso.fetch_one(
+            "SELECT COUNT(DISTINCT search_hash) FROM search_history WHERE searched_at >= ?", [cutoff]
+        )
+        unique_queries = int(unique_row[0]) if unique_row else 0
+
+        avg_row = turso.fetch_one(
+            "SELECT AVG(results_count) FROM search_history WHERE searched_at >= ?", [cutoff]
+        )
+        avg_results = round(float(avg_row[0]), 1) if avg_row and avg_row[0] is not None else 0
+
+        popular_result = turso.execute(
+            """SELECT criteria, COUNT(*) as cnt FROM search_history
+               WHERE searched_at >= ?
+               GROUP BY search_hash ORDER BY cnt DESC LIMIT 10""",
+            [cutoff]
+        )
+        popular_terms = []
+        for row in popular_result.get("rows", []):
+            try:
+                crit = json.loads(row[0]) if isinstance(row[0], str) else row[0]
+                term = crit.get("query", crit.get("name", str(crit)[:50])) if isinstance(crit, dict) else str(crit)[:50]
+            except (json.JSONDecodeError, TypeError, AttributeError):
+                term = str(row[0])[:50]
+            popular_terms.append({"term": term, "count": row[1]})
+
+        zero_result = turso.execute(
+            """SELECT criteria FROM search_history
+               WHERE searched_at >= ? AND results_count = 0
+               GROUP BY search_hash LIMIT 10""",
+            [cutoff]
+        )
+        zero_result_queries = []
+        for row in zero_result.get("rows", []):
+            try:
+                crit = json.loads(row[0]) if isinstance(row[0], str) else row[0]
+                term = crit.get("query", str(crit)[:50]) if isinstance(crit, dict) else str(crit)[:50]
+            except (json.JSONDecodeError, TypeError, AttributeError):
+                term = str(row[0])[:50]
+            zero_result_queries.append(term)
+
         return {
-            "total_searches": 0,
-            "unique_queries": 0,
-            "avg_results": 0,
-            "popular_terms": [],
-            "zero_result_queries": [],
+            "total_searches": total_searches,
+            "unique_queries": unique_queries,
+            "avg_results": avg_results,
+            "popular_terms": popular_terms,
+            "zero_result_queries": zero_result_queries,
             "period_days": days
         }
     

@@ -1,0 +1,50 @@
+
+Running 13 tests using 4 workers
+
+  Ô£ô   2 [chromium] ÔÇ║ e2e\pages.spec.ts:22:7 ÔÇ║ Homepage ÔÇ║ loads with all major sections visible (18.0s)
+  Ô£ô   4 [chromium] ÔÇ║ e2e\pages.spec.ts:45:7 ÔÇ║ Homepage ÔÇ║ responsive layout on mobile viewport (18.5s)
+  Ô£ô   1 [chromium] ÔÇ║ e2e\pages.spec.ts:33:7 ÔÇ║ Homepage ÔÇ║ navigation links are functional (21.5s)
+A11y violations: [
+  {
+    "id": "color-contrast",
+    "impact": "serious",
+    "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    "nodes": 10
+  }
+]
+  Ô£ô   3 [chromium] ÔÇ║ e2e\pages.spec.ts:55:7 ÔÇ║ Homepage ÔÇ║ accessibility audit - homepage (28.4s)
+  Ô£ô   7 [chromium] ÔÇ║ e2e\pages.spec.ts:117:7 ÔÇ║ Auth Pages ÔÇ║ login page has proper form structure (11.0s)
+  Ô£ô   5 [chromium] ÔÇ║ e2e\pages.spec.ts:78:7 ÔÇ║ Features Page ÔÇ║ renders feature cards and tab filtering (17.0s)
+  Ô£ô   8 [chromium] ÔÇ║ e2e\pages.spec.ts:131:7 ÔÇ║ Auth Pages ÔÇ║ signup page loads correctly (8.6s)
+  Ô£ô   6 [chromium] ÔÇ║ e2e\pages.spec.ts:105:7 ÔÇ║ Features Page ÔÇ║ accessibility audit - features page (17.0s)
+  Ô£ô   9 [chromium] ÔÇ║ e2e\pages.spec.ts:138:7 ÔÇ║ Auth Pages ÔÇ║ accessibility audit - login page (24.4s)
+  Ô£ô  12 [chromium] ÔÇ║ e2e\pages.spec.ts:206:7 ÔÇ║ Visual Regression ÔÇ║ features page visual snapshot (19.4s)
+  Ô£ô  11 [chromium] ÔÇ║ e2e\pages.spec.ts:194:7 ÔÇ║ Visual Regression ÔÇ║ homepage visual snapshot (21.0s)
+  Ô£ÿ  10 [chromium] ÔÇ║ e2e\pages.spec.ts:150:7 ÔÇ║ Theme Switching ÔÇ║ theme toggle changes visual appearance (15.0s)
+  Ô£ô  13 [chromium] ÔÇ║ e2e\pages.spec.ts:218:7 ÔÇ║ Visual Regression ÔÇ║ login page visual snapshot (8.5s)
+
+
+  1) [chromium] ÔÇ║ e2e\pages.spec.ts:150:7 ÔÇ║ Theme Switching ÔÇ║ theme toggle changes visual appearance 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mnot[2m.[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: not [32m"light"[39m
+
+      173 |
+      174 |       // The theme attribute/class should differ
+    > 175 |       expect(newTheme).not.toBe(initialTheme);
+          |                            ^
+      176 |     }
+      177 |   });
+      178 | });
+        at E:\MegiLance\frontend\e2e\pages.spec.ts:175:28
+
+    attachment #1: screenshot (image/png) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\pages-Theme-Switching-theme-toggle-changes-visual-appearance-chromium\test-failed-1.png
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    Error Context: test-results\pages-Theme-Switching-theme-toggle-changes-visual-appearance-chromium\error-context.md
+
+  1 failed
+    [chromium] ÔÇ║ e2e\pages.spec.ts:150:7 ÔÇ║ Theme Switching ÔÇ║ theme toggle changes visual appearance 
+  12 passed (1.2m)

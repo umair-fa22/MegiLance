@@ -10,7 +10,7 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   
   // Module name mapper for resolving imports
-  moduleNameMapping: {
+  moduleNameMapper: {
     // Handle module aliases
     '^@/components/(.*)$': '<rootDir>/app/components/$1',
     '^@/app/(.*)$': '<rootDir>/app/$1',
@@ -63,5 +63,11 @@ module.exports = {
   transformIgnorePatterns: [
     '/node_modules/',
     '^.+\\.module\\.(css|sass|scss)$',
+  ],
+
+  // Exclude Playwright E2E tests
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/e2e/',
   ],
 };

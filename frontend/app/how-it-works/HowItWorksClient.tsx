@@ -259,7 +259,7 @@ const HowItWorksPage: React.FC = () => {
           <div className={cn(commonStyles.architectureCard, themeStyles.architectureCard)}>
             <div className={commonStyles.archLayer}>
               <h3>🖥️ Frontend Layer</h3>
-              <p><strong>Next.js 14 + TypeScript</strong></p>
+              <p><strong>Next.js 16 + TypeScript</strong></p>
               <p>Fast, SEO-optimized pages with responsive design. SSR + SSG for instant loading.</p>
             </div>
             <div className={commonStyles.archArrow}>↓</div>

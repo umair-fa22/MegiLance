@@ -13,7 +13,7 @@ import { Badge } from '@/app/components/Badge';
 import Loading from '@/app/components/Loading/Loading';
 import EmptyState from '@/app/components/EmptyState/EmptyState';
 import { ProjectsIllustration } from '@/app/components/Illustrations/Illustrations';
-import illustrationStyles from '@/app/components/Illustrations/Illustrations.module.css';
+import illustrationStyles from '@/app/components/Illustrations/Illustrations.common.module.css';
 import { Briefcase, Search, ChevronRight, Calendar, DollarSign, Users, ArrowUpDown, ChevronLeft } from 'lucide-react';
 import commonStyles from './Projects.common.module.css';
 import lightStyles from './Projects.light.module.css';

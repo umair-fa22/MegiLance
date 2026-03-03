@@ -1,0 +1,52 @@
+
+Running 1 test using 1 worker
+
+BEFORE click: {
+  "className": "light",
+  "dataTheme": null,
+  "style": "color-scheme: light;",
+  "colorScheme": "light",
+  "allAttrs": [
+    "lang=\"en\"",
+    "class=\"light\"",
+    "style=\"color-scheme: light;\""
+  ]
+}
+AFTER click: {
+  "className": "light",
+  "dataTheme": null,
+  "style": "color-scheme: light;",
+  "colorScheme": "light",
+  "allAttrs": [
+    "lang=\"en\"",
+    "class=\"light\"",
+    "style=\"color-scheme: light;\""
+  ]
+}
+  Ô£ÿ  1 [chromium] ÔÇ║ e2e\pages.spec.ts:150:7 ÔÇ║ Theme Switching ÔÇ║ theme toggle changes visual appearance (12.6s)
+
+
+  1) [chromium] ÔÇ║ e2e\pages.spec.ts:150:7 ÔÇ║ Theme Switching ÔÇ║ theme toggle changes visual appearance 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32mtrue[39m
+    Received: [31mfalse[39m
+
+      204 |   test('homepage visual snapshot', async ({ page }) => {
+      205 |     await navigateAndWait(page, '/');
+    > 206 |     await dismissCookieConsent(page);
+          |                     ^
+      207 |     await disableAnimations(page);
+      208 |     await page.waitForTimeout(500);
+      209 |
+        at E:\MegiLance\frontend\e2e\pages.spec.ts:206:21
+
+    attachment #1: screenshot (image/png) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\pages-Theme-Switching-theme-toggle-changes-visual-appearance-chromium\test-failed-1.png
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    Error Context: test-results\pages-Theme-Switching-theme-toggle-changes-visual-appearance-chromium\error-context.md
+
+  1 failed
+    [chromium] ÔÇ║ e2e\pages.spec.ts:150:7 ÔÇ║ Theme Switching ÔÇ║ theme toggle changes visual appearance 

@@ -35,7 +35,7 @@ const roles = [
     type: 'Full-time',
     department: 'Engineering',
     icon: Code,
-    description: 'Build beautiful, performant interfaces using Next.js 14 and modern React patterns.'
+    description: 'Build beautiful, performant interfaces using Next.js 16 and modern React patterns.'
   },
   { 
     id: 'be-eng', 

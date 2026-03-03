@@ -254,8 +254,10 @@ const Settings: React.FC = () => {
               })}
             </nav>
           </ScrollReveal>
-          <ScrollReveal delay={0.2} className={styles.content} role="tabpanel" aria-label={`${activeTab} settings`}>
-            {renderContent()}
+          <ScrollReveal delay={0.2} className={styles.content}>
+            <div role="tabpanel" aria-label={`${activeTab} settings`}>
+              {renderContent()}
+            </div>
           </ScrollReveal>
         </div>
       </div>

@@ -381,10 +381,96 @@ class ExportImportService:
             return output.getvalue().encode()
         
         elif format == ExportFormat.PDF:
-            # Would generate actual PDF in production
-            return b"PDF export placeholder"
+            return self._generate_simple_pdf(data)
         
         return json.dumps(data).encode()
+    
+    def _generate_simple_pdf(self, data: Dict[str, Any]) -> bytes:
+        """Generate a minimal valid PDF from export data."""
+        # Build text content
+        lines = ["MegiLance Data Export", "=" * 40, ""]
+        for section, items in data.items():
+            lines.append(f"--- {section.upper()} ---")
+            lines.append("")
+            if isinstance(items, list):
+                for i, item in enumerate(items, 1):
+                    lines.append(f"  [{i}]")
+                    if isinstance(item, dict):
+                        for k, v in item.items():
+                            val_str = str(v)[:200]
+                            lines.append(f"    {k}: {val_str}")
+                    else:
+                        lines.append(f"    {item}")
+                    lines.append("")
+            elif isinstance(items, dict):
+                for k, v in items.items():
+                    val_str = str(v)[:200]
+                    lines.append(f"  {k}: {val_str}")
+                lines.append("")
+            else:
+                lines.append(f"  {items}")
+                lines.append("")
+
+        text = "\n".join(lines)
+        text_bytes = text.encode("latin-1", errors="replace")
+
+        # Build minimal PDF 1.4
+        objects: list = []
+        # Obj 1: Catalog
+        objects.append(b"1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj")
+        # Obj 2: Pages
+        objects.append(b"2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj")
+        # Obj 4: Font
+        objects.append(b"4 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>\nendobj")
+        # Obj 5: Stream (content)
+        content_lines = []
+        content_lines.append(b"BT")
+        content_lines.append(b"/F1 9 Tf")
+        y = 780
+        for line in lines:
+            if y < 40:
+                break
+            safe = line.replace("\\", "\\\\").replace("(", "\\(").replace(")", "\\)")
+            content_lines.append(f"1 0 0 1 40 {y} Tm".encode("latin-1"))
+            content_lines.append(f"({safe}) Tj".encode("latin-1", errors="replace"))
+            y -= 12
+        content_lines.append(b"ET")
+        stream_data = b"\n".join(content_lines)
+        stream_obj = (
+            f"5 0 obj\n<< /Length {len(stream_data)} >>\nstream\n".encode()
+            + stream_data
+            + b"\nendstream\nendobj"
+        )
+        objects.append(stream_obj)
+        # Obj 3: Page
+        objects.append(
+            b"3 0 obj\n<< /Type /Page /Parent 2 0 R "
+            b"/MediaBox [0 0 612 792] "
+            b"/Contents 5 0 R "
+            b"/Resources << /Font << /F1 4 0 R >> >> >>\nendobj"
+        )
+
+        # Assemble PDF
+        pdf = io.BytesIO()
+        pdf.write(b"%PDF-1.4\n")
+        offsets = []
+        for obj in objects:
+            offsets.append(pdf.tell())
+            pdf.write(obj + b"\n")
+        xref_start = pdf.tell()
+        pdf.write(b"xref\n")
+        pdf.write(f"0 {len(objects) + 1}\n".encode())
+        pdf.write(b"0000000000 65535 f \n")
+        obj_order = [1, 2, 4, 5, 3]  # matches objects list order
+        offset_map = dict(zip(obj_order, offsets))
+        for i in range(1, len(objects) + 1):
+            pdf.write(f"{offset_map[i]:010d} 00000 n \n".encode())
+        pdf.write(b"trailer\n")
+        pdf.write(f"<< /Size {len(objects) + 1} /Root 1 0 R >>\n".encode())
+        pdf.write(b"startxref\n")
+        pdf.write(f"{xref_start}\n".encode())
+        pdf.write(b"%%EOF\n")
+        return pdf.getvalue()
     
     async def _process_import(
         self,

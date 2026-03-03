@@ -17,11 +17,12 @@ export type PageTransitionProps = {
 // Separate client component for the logic that uses hooks
 const PageTransitionClient: React.FC<PageTransitionProps> = ({ children, className, theme: themeProp, variant = 'fade' }) => {
   const { resolvedTheme } = useTheme();
-  const currentTheme = themeProp || resolvedTheme;
+  const [mounted, setMounted] = React.useState(false);
+  const currentTheme = themeProp || (mounted ? resolvedTheme : undefined);
   const [pathname, setPathname] = React.useState<string | null>(null);
   
   React.useEffect(() => {
-    // Simple pathname detection
+    setMounted(true);
     setPathname(window.location.pathname);
   }, []);
 
@@ -35,14 +36,14 @@ const PageTransitionClient: React.FC<PageTransitionProps> = ({ children, classNa
 
   return (
     <div
-      key={pathname || 'default'}
       ref={wrapperRef}
-      className={[styles.base, styles[variant], themeClass, className].filter(Boolean).join(' ')}
+      className={[styles.base, themeClass, className].filter(Boolean).join(' ')}
+      style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column' as const }}
       role="region"
       aria-label="Page content"
       tabIndex={-1}
     >
-      <div className={styles.stage}>{children}</div>
+      {children}
     </div>
   );
 };

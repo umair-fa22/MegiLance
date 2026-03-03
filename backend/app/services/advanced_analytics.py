@@ -497,14 +497,46 @@ class AdvancedAnalyticsService:
                 if budgets
             }
             
-            # STUB: Deterministic fallback until historical data pipeline exists
+            # Calculate trends by comparing to previous period (90 days before start_date)
+            prev_start = start_date - timedelta(days=90)
+            prev_projects = self.db.query(Project).filter(
+                Project.created_at >= prev_start,
+                Project.created_at < start_date
+            )
+            if category:
+                prev_projects = prev_projects.filter(Project.category == category)
+            prev_projects = prev_projects.all()
+
+            prev_skill_demand = defaultdict(int)
+            for project in prev_projects:
+                if project.skills_required:
+                    skills = project.skills_required.split(",") if isinstance(project.skills_required, str) else project.skills_required
+                    for skill in skills:
+                        prev_skill_demand[skill.strip().lower()] += 1
+
             trends = []
             for skill, count in top_skills:
+                prev_count = prev_skill_demand.get(skill, 0)
+                if prev_count > 0:
+                    change_pct = round(((count - prev_count) / prev_count) * 100, 1)
+                    if change_pct > 10:
+                        trend = "rising"
+                    elif change_pct < -10:
+                        trend = "declining"
+                    else:
+                        trend = "stable"
+                elif count > 0:
+                    trend = "new"
+                    change_pct = 100.0
+                else:
+                    trend = "stable"
+                    change_pct = 0
                 trends.append({
                     "skill": skill,
                     "demand_count": count,
-                    "trend": "stable",
-                    "change_percent": 0
+                    "prev_demand_count": prev_count,
+                    "trend": trend,
+                    "change_percent": change_pct
                 })
             
             return {

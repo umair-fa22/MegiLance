@@ -1,0 +1,240 @@
+/* @AI-HINT: Skill Analyzer – common layout, structure, animations */
+
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3rem;
+  min-height: 100vh;
+}
+
+/* Header */
+.header { text-align: center; margin-bottom: 2rem; }
+.headerBadge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.08em; padding: 6px 14px; border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+.title { font-size: 2rem; font-weight: 700; margin: 0; }
+.subtitle { font-size: 0.95rem; margin-top: 0.4rem; }
+
+/* Stepper */
+.stepper {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; margin-bottom: 2rem;
+}
+.stepItem { display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative; z-index: 1; }
+.stepDot {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 600;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s,
+    background-color 0.3s, color 0.3s;
+}
+.stepDotActive { transform: scale(1.15); }
+.stepDotCompleted {}
+.stepLabel { font-size: 0.72rem; font-weight: 500; white-space: nowrap; }
+.stepLabelActive { font-weight: 700; }
+.stepLine { flex: 1; height: 2px; min-width: 40px; transition: background 0.3s; }
+.stepLineActive {}
+
+/* Forms */
+.formCard {
+  border-radius: 16px; padding: 2rem;
+  margin-bottom: 1.5rem; border: 1px solid transparent;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.formTitle { font-size: 1.15rem; font-weight: 700; margin: 0 0 1.25rem; display: flex; align-items: center; gap: 8px; }
+.formHint { font-size: 0.84rem; margin: -0.75rem 0 1rem; }
+.formGroup { display: flex; flex-direction: column; gap: 6px; flex: 1; margin-bottom: 1rem; }
+.formRow { display: flex; gap: 1rem; }
+.label { font-size: 0.82rem; font-weight: 600; }
+.labelHint { font-weight: 400; opacity: 0.65; font-size: 0.78rem; }
+
+/* Search */
+.searchRow {
+  position: relative; margin-bottom: 1rem;
+}
+.searchIcon {
+  position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+}
+.searchInput {
+  padding: 10px 12px 10px 36px; border-radius: 8px; border: 1px solid transparent;
+  font-size: 0.9rem; width: 100%;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.searchInput:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df); outline-offset: -2px;
+}
+
+/* Text inputs */
+.textInput {
+  padding: 10px 12px; border-radius: 8px; border: 1px solid transparent;
+  font-size: 0.9rem; width: 100%;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.textInput:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df); outline-offset: -2px;
+}
+
+/* Tags */
+.tagList { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
+.tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 500;
+  text-transform: capitalize;
+}
+.tag button {
+  background: none; border: none; cursor: pointer; padding: 0;
+  display: flex; align-items: center; opacity: 0.7;
+}
+.tag button:hover { opacity: 1; }
+
+/* Skill categories */
+.categoryList { display: flex; flex-direction: column; gap: 1.25rem; }
+.categoryGroup {}
+.categoryLabel { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+.skillGrid { display: flex; flex-wrap: wrap; gap: 8px; }
+.skillChip {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 6px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 500;
+  border: 1.5px solid transparent; cursor: pointer; text-transform: capitalize;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s,
+    background-color 0.15s, color 0.15s;
+}
+.skillChip:hover { transform: translateY(-1px); }
+.skillChipSelected {}
+
+/* Experience grid */
+.expGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.expCard {
+  padding: 14px 10px; border: 2px solid transparent; border-radius: 10px;
+  cursor: pointer; text-align: center; display: flex; flex-direction: column; gap: 4px;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s,
+    background-color 0.2s, color 0.2s;
+}
+.expCardSelected {}
+.expLabel { font-size: 0.82rem; font-weight: 600; }
+.expDesc { font-size: 0.72rem; }
+
+/* Processing */
+.processingContainer { display: flex; flex-direction: column; align-items: center; padding: 3rem 0; }
+.processingOrb { position: relative; width: 72px; height: 72px; margin-bottom: 1.5rem; }
+.processingOrbInner {
+  width: 72px; height: 72px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  animation: pulse-orb 1.8s ease-in-out infinite;
+}
+@keyframes pulse-orb { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+.processingSubtitle { font-size: 0.88rem; margin-top: 0.3rem; }
+.processingSteps { display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem; }
+.processingStep { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; }
+.processingStepCircle {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Results */
+.resultsContainer { display: flex; flex-direction: column; gap: 1.5rem; }
+.resultsGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+
+/* Hero */
+.priceHero {
+  border-radius: 16px; padding: 2.5rem; text-align: center;
+  position: relative; overflow: hidden;
+}
+.priceHeroGlow {
+  position: absolute; top: -40%; left: 50%; transform: translateX(-50%);
+  width: 200%; height: 200%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(69,115,223,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.priceHeroLabel { font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+.priceHeroValue { font-size: 2.5rem; font-weight: 800; margin: 0.4rem 0; }
+.priceHeroMeta { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+.priceHeroMetaItem { font-size: 0.82rem; display: flex; align-items: center; gap: 4px; }
+
+/* Result cards */
+.resultCard {
+  border-radius: 14px; padding: 1.5rem;
+  border: 1px solid transparent; transition: box-shadow 0.3s;
+}
+.resultCardFullWidth { grid-column: 1 / -1; }
+.resultCardHeader { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+.resultCardIcon {
+  width: 36px; height: 36px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.resultCardTitle { font-size: 0.95rem; font-weight: 700; margin: 0; }
+.miniTitle { font-size: 0.82rem; font-weight: 700; margin: 1rem 0 0.5rem; }
+
+/* Skill demand rows */
+.skillRow { margin-bottom: 14px; }
+.skillRowHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.skillName { font-size: 0.84rem; font-weight: 600; text-transform: capitalize; }
+.demandBadge { font-size: 0.68rem; font-weight: 600; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; }
+.skillBarTrack { height: 6px; border-radius: 3px; background: rgba(128,128,128,0.15); overflow: hidden; }
+.skillBarFill { height: 100%; border-radius: 3px; transition: width 0.8s ease; }
+.skillRowMeta { display: flex; gap: 12px; margin-top: 4px; }
+.skillMetaItem { font-size: 0.72rem; }
+
+/* Synergies */
+.synergyItem { padding: 12px; border-radius: 10px; margin-bottom: 10px; }
+.synergyName { font-size: 0.84rem; font-weight: 700; margin-bottom: 6px; }
+.synergyCombo { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
+.synergySkill { font-size: 0.75rem; padding: 2px 10px; border-radius: 6px; text-transform: capitalize; }
+.synergyPlus { font-size: 0.72rem; font-weight: 700; }
+.synergyBonus { font-size: 0.75rem; font-style: italic; margin-top: 4px; }
+.emptyMsg { font-size: 0.84rem; font-style: italic; }
+
+/* Skill gaps */
+.gapItem { padding: 12px; border-radius: 10px; margin-bottom: 10px; border-left: 3px solid transparent; }
+.gapHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.gapName { font-size: 0.84rem; font-weight: 700; text-transform: capitalize; }
+.gapRoi { font-size: 0.72rem; font-weight: 600; padding: 2px 8px; border-radius: 4px; }
+.gapReason { font-size: 0.78rem; margin-bottom: 6px; }
+.gapMeta { display: flex; gap: 16px; }
+.gapMetaItem { font-size: 0.72rem; display: flex; align-items: center; gap: 4px; }
+
+/* Calc list */
+.calcList { display: flex; flex-direction: column; }
+.calcRow { display: flex; justify-content: space-between; padding: 8px 0; font-size: 0.84rem; border-bottom: 1px solid rgba(128,128,128,0.12); }
+
+/* Recommendations */
+.recsGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.recItem { padding: 12px; border-radius: 8px; border-left: 3px solid transparent; }
+.recHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.recTitle { font-size: 0.82rem; font-weight: 700; }
+.recPriority { font-size: 0.68rem; font-weight: 600; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; }
+.recMsg { font-size: 0.78rem; margin-top: 4px; }
+
+/* Navigation */
+.navBar { display: flex; align-items: center; margin-top: 1.5rem; }
+.navSpacer { flex: 1; }
+.navButtonBack, .navButtonNext {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 28px; border-radius: 10px; font-size: 0.88rem;
+  font-weight: 600; border: none; cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, color 0.2s;
+}
+.navButtonNext:disabled { opacity: 0.5; cursor: not-allowed; }
+.actionsBar { display: flex; gap: 12px; margin-left: auto; }
+.actionBtnPrimary, .actionBtnSecondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 24px; border-radius: 10px; font-size: 0.88rem;
+  font-weight: 600; border: none; cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.disclaimer {
+  text-align: center; font-size: 0.75rem; margin-top: 2rem;
+  padding-top: 1rem; border-top: 1px solid rgba(128,128,128,0.15);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .resultsGrid { grid-template-columns: 1fr; }
+  .recsGrid { grid-template-columns: 1fr; }
+  .expGrid { grid-template-columns: repeat(2, 1fr); }
+  .formRow { flex-direction: column; }
+}

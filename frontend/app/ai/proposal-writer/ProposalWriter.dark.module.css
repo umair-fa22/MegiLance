@@ -1,0 +1,99 @@
+/* @AI-HINT: ProposalWriter dark theme – orange/amber accent */
+
+.container { background: #0d0d1a; color: #e0e0e0; }
+.headerBadge { background: rgba(230,126,34,0.15); color: #f0a04b; }
+.title { color: #ffffff; }
+.subtitle { color: #888; }
+
+/* Stepper */
+.stepDot { background: #1e1e30; color: #666; }
+.stepDotActive { background: #e67e22; color: #fff; box-shadow: 0 0 0 4px rgba(230,126,34,0.2); }
+.stepDotCompleted { background: #2ecc71; color: #fff; }
+.stepLabel { color: #666; }
+.stepLabelActive { color: #f0a04b; }
+.stepLine { background: #222; }
+.stepLineActive { background: #2ecc71; }
+
+/* Form Card */
+.formCard { background: #12121f; border-color: #1e1e30; }
+.formTitle { color: #fff; }
+.label { color: #ccc; }
+.labelHint { color: #666; }
+
+/* Inputs */
+.textInput, .numberInput, .textarea {
+  background: #1a1a2e;
+  color: #e0e0e0;
+  border-color: #2a2a40;
+}
+.textInput:focus, .numberInput:focus, .textarea:focus {
+  border-color: #e67e22;
+  background: #16162a;
+}
+
+/* Tone Cards */
+.toneCard { background: #16162a; border-color: #2a2a40; color: #ccc; }
+.toneCard:hover { border-color: #e67e22; }
+.toneCardSelected { background: rgba(230,126,34,0.12); border-color: #e67e22; color: #f0a04b; }
+.toneDesc { color: #666; }
+
+/* Length Cards */
+.lengthCard { background: #16162a; border-color: #2a2a40; color: #ccc; }
+.lengthCard:hover { border-color: #e67e22; }
+.lengthCardSelected { background: rgba(230,126,34,0.12); border-color: #e67e22; color: #f0a04b; }
+.lengthRange { color: #666; }
+
+/* Experience Cards */
+.expCard { background: #16162a; border-color: #2a2a40; color: #ccc; }
+.expCard:hover { border-color: #e67e22; }
+.expCardSelected { background: rgba(230,126,34,0.12); border-color: #e67e22; color: #f0a04b; }
+.expDesc { color: #666; }
+
+/* Processing */
+.processingContainer { color: #e0e0e0; }
+.processingOrbInner { color: #f0a04b; }
+.processingSubtitle { color: #666; }
+.processingStepCircle { background: rgba(230,126,34,0.15); color: #f0a04b; }
+
+/* Price Hero */
+.priceHero { background: linear-gradient(135deg, #1a1020 0%, #201520 100%); }
+.priceHeroLabel { color: #f0a04b; }
+.priceHeroValue { color: #fff; }
+.priceHeroMetaItem { color: #888; }
+
+/* Result Card */
+.resultCard { background: #12121f; border-color: #1e1e30; }
+.resultCardIcon { background: rgba(230,126,34,0.12); color: #f0a04b; }
+.resultCardTitle { color: #fff; }
+
+/* Copy Button */
+.copyBtn { background: rgba(230,126,34,0.12); color: #f0a04b; border-color: #3a2a18; }
+.copyBtn:hover { background: rgba(230,126,34,0.2); }
+
+/* Proposal & Scores */
+.proposalText { background: #0d0d1a; color: #ccc; border: 1px solid #1e1e30; }
+.scoreLabel { color: #aaa; }
+.scoreValue { color: #f0a04b; }
+.scoreBarFill { background: #e67e22; }
+.scoreBarTrack { background: #1e1e30; }
+.miniTitle { color: #bbb; }
+.tagMatch { background: rgba(46,204,113,0.12); color: #2ecc71; }
+.tagMissing { background: rgba(231,76,60,0.12); color: #e74c3c; }
+.rateLabel { color: #aaa; }
+.rateValue { color: #f0a04b; }
+
+/* Recs */
+.recItem { background: #16162a; border-color: #e67e22; }
+.recTitle { color: #e0e0e0; }
+.recMsg { color: #999; }
+
+/* Nav */
+.navButtonBack { background: #1e1e30; color: #ccc; }
+.navButtonBack:hover { background: #2a2a40; }
+.navButtonNext { background: #e67e22; color: #fff; }
+.navButtonNext:hover { background: #cf6d17; }
+.actionBtnSecondary { background: transparent; border-color: #e67e22; color: #f0a04b; }
+.actionBtnSecondary:hover { background: rgba(230,126,34,0.1); }
+
+/* Disclaimer */
+.disclaimer { color: #555; border-top: 1px solid #1e1e30; }

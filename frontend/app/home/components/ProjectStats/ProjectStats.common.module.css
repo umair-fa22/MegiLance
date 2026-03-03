@@ -100,7 +100,7 @@
 
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   width: 100%;
 }
@@ -207,6 +207,12 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .statsSection {
     padding: 4rem 1rem;

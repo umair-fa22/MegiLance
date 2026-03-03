@@ -9,7 +9,7 @@ import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';
 import { FAQIllustration } from '@/app/components/Illustrations/Illustrations';
-import illustrationStyles from '@/app/components/Illustrations/Illustrations.module.css';
+import illustrationStyles from '@/app/components/Illustrations/Illustrations.common.module.css';
 import common from './FAQ.common.module.css';
 import light from './FAQ.light.module.css';
 import dark from './FAQ.dark.module.css';

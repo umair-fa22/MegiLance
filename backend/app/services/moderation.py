@@ -7,7 +7,6 @@ from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any
 from sqlalchemy.orm import Session
 from enum import Enum
-from collections import defaultdict
 import secrets
 
 logger = logging.getLogger(__name__)
@@ -81,20 +80,15 @@ class ContentModerationService:
     Content moderation service.
     
     Provides AI-powered content safety checks and reporting.
+    Uses Turso DB tables: moderation_logs, moderation_reports, user_reputation, user_violations.
     """
-    
-    # TODO: migrate in-memory stores to database for persistence and scalability
-    _MAX_LOGS = 5000
-    _MAX_REPORTS = 2000
-    _MAX_VIOLATIONS_PER_USER = 100
 
     def __init__(self, db: Session):
         self.db = db
-        self._moderation_logs: List[Dict[str, Any]] = []
-        self._reports: Dict[str, Dict[str, Any]] = {}
-        self._user_violations: Dict[int, List[Dict[str, Any]]] = defaultdict(list)
-        self._user_reputation: Dict[int, float] = defaultdict(lambda: 100.0)
-        self._blocked_users: Dict[int, datetime] = {}
+
+    def _turso(self):
+        from app.db.turso_http import get_turso_http
+        return get_turso_http()
     
     async def moderate_text(
         self,
@@ -167,20 +161,15 @@ class ContentModerationService:
         else:
             result = ModerationResult.APPROVED
         
-        # Log moderation
-        log_entry = {
-            "id": f"mod_{secrets.token_urlsafe(8)}",
-            "content_type": content_type.value,
-            "user_id": user_id,
-            "result": result.value,
-            "risk_score": risk_score,
-            "violations": violations,
-            "timestamp": datetime.now(timezone.utc).isoformat()
-        }
-        
-        self._moderation_logs.append(log_entry)
-        if len(self._moderation_logs) > self._MAX_LOGS:
-            self._moderation_logs = self._moderation_logs[-self._MAX_LOGS:]
+        # Log moderation to DB
+        import json as _json
+        log_id = f"mod_{secrets.token_urlsafe(8)}"
+        now = datetime.now(timezone.utc).isoformat()
+        self._turso().execute(
+            """INSERT INTO moderation_logs (id, content_type, user_id, result, risk_score, violations, created_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?)""",
+            [log_id, content_type.value, user_id, result.value, risk_score, _json.dumps(violations), now]
+        )
         
         # Track user violations
         if user_id and violations:
@@ -205,29 +194,26 @@ class ContentModerationService:
     ) -> Dict[str, Any]:
         """Submit a user report."""
         report_id = f"report_{secrets.token_urlsafe(12)}"
-        
+        now = datetime.now(timezone.utc).isoformat()
+
+        self._turso().execute(
+            """INSERT INTO moderation_reports
+               (id, reporter_id, reported_user_id, content_type, content_id,
+                violation_type, description, status, created_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            [report_id, reporter_id, reported_user_id, content_type.value,
+             content_id, violation_type.value, description, ReportStatus.PENDING.value, now]
+        )
+
         report = {
-            "id": report_id,
-            "reporter_id": reporter_id,
+            "id": report_id, "reporter_id": reporter_id,
             "reported_user_id": reported_user_id,
-            "content_type": content_type.value,
-            "content_id": content_id,
-            "violation_type": violation_type.value,
-            "description": description,
-            "status": ReportStatus.PENDING.value,
-            "created_at": datetime.now(timezone.utc).isoformat(),
-            "resolved_at": None,
-            "resolution": None,
-            "moderator_notes": None
+            "content_type": content_type.value, "content_id": content_id,
+            "violation_type": violation_type.value, "description": description,
+            "status": ReportStatus.PENDING.value, "created_at": now,
+            "resolved_at": None, "resolution": None, "moderator_notes": None
         }
-        
-        if len(self._reports) >= self._MAX_REPORTS:
-            oldest_key = next(iter(self._reports))
-            del self._reports[oldest_key]
-        self._reports[report_id] = report
-        
         logger.info(f"Content report submitted: {report_id}")
-        
         return report
     
     async def get_report(
@@ -235,7 +221,18 @@ class ContentModerationService:
         report_id: str
     ) -> Optional[Dict[str, Any]]:
         """Get report details."""
-        return self._reports.get(report_id)
+        row = self._turso().fetch_one(
+            """SELECT id, reporter_id, reported_user_id, content_type, content_id,
+                      violation_type, description, status, resolution, moderator_notes,
+                      created_at, resolved_at
+               FROM moderation_reports WHERE id = ?""", [report_id]
+        )
+        if not row:
+            return None
+        cols = ["id", "reporter_id", "reported_user_id", "content_type", "content_id",
+                "violation_type", "description", "status", "resolution", "moderator_notes",
+                "created_at", "resolved_at"]
+        return dict(zip(cols, row))
     
     async def list_reports(
         self,
@@ -244,18 +241,24 @@ class ContentModerationService:
         limit: int = 50
     ) -> List[Dict[str, Any]]:
         """List reports with filters."""
-        reports = list(self._reports.values())
-        
+        sql = ("SELECT id, reporter_id, reported_user_id, content_type, content_id, "
+               "violation_type, description, status, resolution, moderator_notes, "
+               "created_at, resolved_at FROM moderation_reports WHERE 1=1")
+        params: list = []
         if status:
-            reports = [r for r in reports if r["status"] == status.value]
-        
+            sql += " AND status = ?"
+            params.append(status.value)
         if user_id:
-            reports = [r for r in reports if r["reported_user_id"] == user_id]
-        
-        # Sort by creation date descending
-        reports.sort(key=lambda x: x["created_at"], reverse=True)
-        
-        return reports[:limit]
+            sql += " AND reported_user_id = ?"
+            params.append(user_id)
+        sql += " ORDER BY created_at DESC LIMIT ?"
+        params.append(limit)
+
+        result = self._turso().execute(sql, params)
+        cols = ["id", "reporter_id", "reported_user_id", "content_type", "content_id",
+                "violation_type", "description", "status", "resolution", "moderator_notes",
+                "created_at", "resolved_at"]
+        return [dict(zip(cols, row)) for row in result.get("rows", [])]
     
     async def resolve_report(
         self,
@@ -265,21 +268,25 @@ class ContentModerationService:
         take_action: bool = False
     ) -> Optional[Dict[str, Any]]:
         """Resolve a report."""
-        report = self._reports.get(report_id)
-        
+        report = await self.get_report(report_id)
         if not report:
             return None
-        
+
+        now = datetime.now(timezone.utc).isoformat()
+        self._turso().execute(
+            """UPDATE moderation_reports
+               SET status = ?, resolved_at = ?, resolution = ?, moderator_notes = ?
+               WHERE id = ?""",
+            [ReportStatus.RESOLVED.value, now, resolution, moderator_notes, report_id]
+        )
         report["status"] = ReportStatus.RESOLVED.value
-        report["resolved_at"] = datetime.now(timezone.utc).isoformat()
+        report["resolved_at"] = now
         report["resolution"] = resolution
         report["moderator_notes"] = moderator_notes
-        
-        # Take action against user if needed
+
         if take_action:
-            user_id = report["reported_user_id"]
-            await self._apply_penalty(user_id, report["violation_type"])
-        
+            await self._apply_penalty(report["reported_user_id"], report["violation_type"])
+
         return report
     
     async def get_user_reputation(
@@ -287,10 +294,42 @@ class ContentModerationService:
         user_id: int
     ) -> Dict[str, Any]:
         """Get user's reputation score."""
-        reputation = self._user_reputation[user_id]
-        violations = self._user_violations.get(user_id, [])
-        
-        # Calculate trust level
+        row = self._turso().fetch_one(
+            "SELECT reputation_score, is_blocked, blocked_until FROM user_reputation WHERE user_id = ?",
+            [user_id]
+        )
+        if row:
+            reputation = float(row[0]) if row[0] is not None else 100.0
+            is_blocked = bool(row[1])
+            blocked_until = row[2]
+        else:
+            reputation = 100.0
+            is_blocked = False
+            blocked_until = None
+
+        # Auto-unblock if block expired
+        if is_blocked and blocked_until:
+            try:
+                block_dt = datetime.fromisoformat(blocked_until)
+                if datetime.now(timezone.utc) > block_dt:
+                    self._turso().execute(
+                        "UPDATE user_reputation SET is_blocked = 0, blocked_until = NULL, updated_at = ? WHERE user_id = ?",
+                        [datetime.now(timezone.utc).isoformat(), user_id]
+                    )
+                    is_blocked = False
+            except (ValueError, TypeError):
+                pass
+
+        # Get recent violations
+        viol_result = self._turso().execute(
+            "SELECT violation_type, severity, details, created_at FROM user_violations WHERE user_id = ? ORDER BY created_at DESC LIMIT 5",
+            [user_id]
+        )
+        recent = [{"type": r[0], "severity": r[1], "details": r[2], "timestamp": r[3]} for r in viol_result.get("rows", [])]
+        total_row = self._turso().fetch_one(
+            "SELECT COUNT(*) FROM user_violations WHERE user_id = ?", [user_id]
+        )
+
         if reputation >= 90:
             trust_level = "excellent"
         elif reputation >= 70:
@@ -301,14 +340,14 @@ class ContentModerationService:
             trust_level = "poor"
         else:
             trust_level = "untrusted"
-        
+
         return {
             "user_id": user_id,
             "reputation_score": reputation,
             "trust_level": trust_level,
-            "total_violations": len(violations),
-            "recent_violations": violations[-5:],
-            "is_blocked": user_id in self._blocked_users
+            "total_violations": int(total_row[0]) if total_row else 0,
+            "recent_violations": recent,
+            "is_blocked": is_blocked
         }
     
     async def is_user_blocked(
@@ -316,45 +355,67 @@ class ContentModerationService:
         user_id: int
     ) -> Dict[str, Any]:
         """Check if user is blocked."""
-        if user_id not in self._blocked_users:
+        row = self._turso().fetch_one(
+            "SELECT is_blocked, blocked_until FROM user_reputation WHERE user_id = ?", [user_id]
+        )
+        if not row or not row[0]:
             return {"blocked": False}
-        
-        block_until = self._blocked_users[user_id]
-        
-        if datetime.now(timezone.utc) > block_until:
-            del self._blocked_users[user_id]
+
+        blocked_until = row[1]
+        if not blocked_until:
+            return {"blocked": True, "blocked_until": None, "remaining_seconds": 0}
+
+        try:
+            block_dt = datetime.fromisoformat(blocked_until)
+        except (ValueError, TypeError):
+            return {"blocked": True, "blocked_until": blocked_until, "remaining_seconds": 0}
+
+        now = datetime.now(timezone.utc)
+        if now > block_dt:
+            self._turso().execute(
+                "UPDATE user_reputation SET is_blocked = 0, blocked_until = NULL, updated_at = ? WHERE user_id = ?",
+                [now.isoformat(), user_id]
+            )
             return {"blocked": False}
-        
+
         return {
             "blocked": True,
-            "blocked_until": block_until.isoformat(),
-            "remaining_seconds": (block_until - datetime.now(timezone.utc)).seconds
+            "blocked_until": block_dt.isoformat(),
+            "remaining_seconds": int((block_dt - now).total_seconds())
         }
     
     async def get_moderation_stats(self) -> Dict[str, Any]:
         """Get moderation statistics."""
-        total = len(self._moderation_logs)
-        
-        by_result = defaultdict(int)
-        by_violation = defaultdict(int)
-        
-        for log in self._moderation_logs:
-            by_result[log["result"]] += 1
-            for v in log["violations"]:
-                by_violation[v["type"]] += 1
-        
-        pending_reports = sum(
-            1 for r in self._reports.values()
-            if r["status"] == ReportStatus.PENDING.value
+        turso = self._turso()
+        total_row = turso.fetch_one("SELECT COUNT(*) FROM moderation_logs", [])
+        total = int(total_row[0]) if total_row else 0
+
+        result_rows = turso.execute(
+            "SELECT result, COUNT(*) FROM moderation_logs GROUP BY result", []
         )
-        
+        by_result = {r[0]: r[1] for r in result_rows.get("rows", [])}
+
+        # Count violations from user_violations table
+        viol_rows = turso.execute(
+            "SELECT violation_type, COUNT(*) FROM user_violations GROUP BY violation_type", []
+        )
+        by_violation = {r[0]: r[1] for r in viol_rows.get("rows", [])}
+
+        pending_row = turso.fetch_one(
+            "SELECT COUNT(*) FROM moderation_reports WHERE status = ?", [ReportStatus.PENDING.value]
+        )
+        total_reports_row = turso.fetch_one("SELECT COUNT(*) FROM moderation_reports", [])
+        blocked_row = turso.fetch_one(
+            "SELECT COUNT(*) FROM user_reputation WHERE is_blocked = 1", []
+        )
+
         return {
             "total_moderations": total,
-            "by_result": dict(by_result),
-            "by_violation_type": dict(by_violation),
-            "pending_reports": pending_reports,
-            "total_reports": len(self._reports),
-            "blocked_users": len(self._blocked_users)
+            "by_result": by_result,
+            "by_violation_type": by_violation,
+            "pending_reports": int(pending_row[0]) if pending_row else 0,
+            "total_reports": int(total_reports_row[0]) if total_reports_row else 0,
+            "blocked_users": int(blocked_row[0]) if blocked_row else 0
         }
     
     def _check_profanity(self, text: str) -> List[str]:
@@ -424,22 +485,40 @@ class ContentModerationService:
         risk_score: float
     ) -> None:
         """Track user violations and update reputation."""
+        turso = self._turso()
+        now = datetime.now(timezone.utc).isoformat()
+
         for violation in violations:
-            violations_list = self._user_violations[user_id]
-            if len(violations_list) >= self._MAX_VIOLATIONS_PER_USER:
-                self._user_violations[user_id] = violations_list[-self._MAX_VIOLATIONS_PER_USER + 1:]
-            self._user_violations[user_id].append({
-                **violation,
-                "timestamp": datetime.now(timezone.utc).isoformat()
-            })
-        
-        # Reduce reputation based on risk score
-        penalty = risk_score / 10.0
-        self._user_reputation[user_id] = max(0, self._user_reputation[user_id] - penalty)
-        
-        # Check for automatic blocking
-        if self._user_reputation[user_id] < 20:
-            self._blocked_users[user_id] = datetime.now(timezone.utc) + timedelta(days=7)
+            turso.execute(
+                """INSERT INTO user_violations (user_id, violation_type, severity, details, risk_score, created_at)
+                   VALUES (?, ?, ?, ?, ?, ?)""",
+                [user_id, violation.get("type", "other"), violation.get("severity", "medium"),
+                 violation.get("details", ""), risk_score, now]
+            )
+
+        # Ensure user_reputation row exists, then reduce reputation
+        row = turso.fetch_one("SELECT reputation_score FROM user_reputation WHERE user_id = ?", [user_id])
+        if row:
+            current = float(row[0]) if row[0] is not None else 100.0
+            new_rep = max(0, current - risk_score / 10.0)
+            turso.execute(
+                "UPDATE user_reputation SET reputation_score = ?, updated_at = ? WHERE user_id = ?",
+                [new_rep, now, user_id]
+            )
+        else:
+            new_rep = max(0, 100.0 - risk_score / 10.0)
+            turso.execute(
+                "INSERT INTO user_reputation (user_id, reputation_score, updated_at) VALUES (?, ?, ?)",
+                [user_id, new_rep, now]
+            )
+
+        # Auto-block if reputation drops below 20
+        if new_rep < 20:
+            block_until = (datetime.now(timezone.utc) + timedelta(days=7)).isoformat()
+            turso.execute(
+                "UPDATE user_reputation SET is_blocked = 1, blocked_until = ?, updated_at = ? WHERE user_id = ?",
+                [block_until, now, user_id]
+            )
             logger.warning(f"User {user_id} auto-blocked due to low reputation")
     
     async def _apply_penalty(
@@ -448,7 +527,6 @@ class ContentModerationService:
         violation_type: str
     ) -> None:
         """Apply penalty to user."""
-        # Reduce reputation
         penalties = {
             ViolationType.PROFANITY.value: 10,
             ViolationType.SPAM.value: 20,
@@ -457,18 +535,38 @@ class ContentModerationService:
             ViolationType.SCAM.value: 50,
             ViolationType.ADULT_CONTENT.value: 25,
         }
-        
         penalty = penalties.get(violation_type, 15)
-        self._user_reputation[user_id] = max(0, self._user_reputation[user_id] - penalty)
-        
-        # Block if too many violations
-        recent_violations = [
-            v for v in self._user_violations[user_id]
-            if datetime.fromisoformat(v["timestamp"]) > datetime.now(timezone.utc) - timedelta(days=30)
-        ]
-        
-        if len(recent_violations) >= 5:
-            self._blocked_users[user_id] = datetime.now(timezone.utc) + timedelta(days=30)
+        turso = self._turso()
+        now = datetime.now(timezone.utc).isoformat()
+
+        row = turso.fetch_one("SELECT reputation_score FROM user_reputation WHERE user_id = ?", [user_id])
+        if row:
+            new_rep = max(0, float(row[0] or 100.0) - penalty)
+            turso.execute(
+                "UPDATE user_reputation SET reputation_score = ?, updated_at = ? WHERE user_id = ?",
+                [new_rep, now, user_id]
+            )
+        else:
+            new_rep = max(0, 100.0 - penalty)
+            turso.execute(
+                "INSERT INTO user_reputation (user_id, reputation_score, updated_at) VALUES (?, ?, ?)",
+                [user_id, new_rep, now]
+            )
+
+        # Block if 5+ violations in last 30 days
+        cutoff = (datetime.now(timezone.utc) - timedelta(days=30)).isoformat()
+        recent_row = turso.fetch_one(
+            "SELECT COUNT(*) FROM user_violations WHERE user_id = ? AND created_at > ?",
+            [user_id, cutoff]
+        )
+        recent_count = int(recent_row[0]) if recent_row else 0
+
+        if recent_count >= 5:
+            block_until = (datetime.now(timezone.utc) + timedelta(days=30)).isoformat()
+            turso.execute(
+                "UPDATE user_reputation SET is_blocked = 1, blocked_until = ?, updated_at = ? WHERE user_id = ?",
+                [block_until, now, user_id]
+            )
     
     def _get_action_message(self, result: ModerationResult) -> str:
         """Get action message for result."""

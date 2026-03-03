@@ -11,7 +11,7 @@ import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
 import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';
 import { PricingIllustration } from '@/app/components/Illustrations/Illustrations';
-import illustrationStyles from '@/app/components/Illustrations/Illustrations.module.css';
+import illustrationStyles from '@/app/components/Illustrations/Illustrations.common.module.css';
 import commonStyles from './Pricing.common.module.css';
 import lightStyles from './Pricing.light.module.css';
 import darkStyles from './Pricing.dark.module.css';

@@ -9,7 +9,7 @@ import ProjectCard from '@/app/components/ProjectCard/ProjectCard';
 
 // Mock next-themes since it relies on React Context
 jest.mock('next-themes', () => ({
-  useTheme: () => ({ theme: 'light' }),
+  useTheme: () => ({ resolvedTheme: 'light' }),
 }));
 
 // Mock next/link since it's not available in the test environment
@@ -20,17 +20,17 @@ jest.mock('next/link', () => {
 });
 
 // Mock sub-components to isolate the ProjectCard tests
-jest.mock('../app/components/UserAvatar/UserAvatar', () => {
+jest.mock('@/app/components/UserAvatar/UserAvatar', () => {
   return ({ name }: { name: string }) => <div data-testid="user-avatar">{name}</div>;
 });
 
-jest.mock('../app/components/ProgressBar/ProgressBar', () => {
+jest.mock('@/app/components/ProgressBar/ProgressBar', () => {
   return ({ progress }: { progress: number }) => (
     <div data-testid="progress-bar">Progress: {progress}%</div>
   );
 });
 
-jest.mock('../app/components/ActionMenu/ActionMenu', () => {
+jest.mock('@/app/components/ActionMenu/ActionMenu', () => {
   return ({ items }: { items: any[] }) => (
     <div data-testid="action-menu">
       {items.map((item, index) => (
@@ -40,7 +40,7 @@ jest.mock('../app/components/ActionMenu/ActionMenu', () => {
   );
 });
 
-jest.mock('../app/components/Badge/Badge', () => {
+jest.mock('@/app/components/Badge/Badge', () => {
   return ({ children, variant }: { children: React.ReactNode; variant: string }) => (
     <div data-testid="badge" data-variant={variant}>{children}</div>
   );

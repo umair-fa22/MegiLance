@@ -82,7 +82,7 @@ const ProjectStats: React.FC = () => {
             Platform Architecture <span className={commonStyles.gradientText}>Scale</span>
           </h2>
           <p className={cn(commonStyles.subtitle, themeStyles.subtitle)}>
-            Real-time statistics from our production-ready full-stack environment, powered by Next.js 14 and FastAPI.
+            Real-time statistics from our production-ready full-stack environment, powered by Next.js 16 and FastAPI.
           </p>
         </motion.div>
 
@@ -106,7 +106,7 @@ const ProjectStats: React.FC = () => {
         >
           <Code2 size={16} className={commonStyles.footerIcon} />
           <p>
-            Built with <strong>Next.js 14</strong>, <strong>FastAPI</strong>, <strong>Turso Database</strong>, and modern AI/ML technologies
+            Built with <strong>Next.js 16</strong>, <strong>FastAPI</strong>, <strong>Turso Database</strong>, and modern AI/ML technologies
           </p>
         </motion.div>
       </div>

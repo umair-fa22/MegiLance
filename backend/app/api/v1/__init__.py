@@ -42,6 +42,11 @@ from . import (
     chatbot,
     # General-Purpose AI Price Estimator
     price_estimator,
+    # Standalone Public Tools
+    invoice_generator, contract_builder_standalone, income_calculator,
+    scope_planner, expense_tax_calculator,
+    # AI Parallel Tools
+    skill_analyzer, rate_advisor, proposal_writer,
 )
 
 __all__ = [
@@ -74,4 +79,7 @@ __all__ = [
     "gigs", "seller_stats", "talent_invitations",
     "external_projects", "ai_writing", "chatbot",
     "price_estimator",
+    "invoice_generator", "contract_builder_standalone", "income_calculator",
+    "scope_planner", "expense_tax_calculator",
+    "skill_analyzer", "rate_advisor", "proposal_writer",
 ]

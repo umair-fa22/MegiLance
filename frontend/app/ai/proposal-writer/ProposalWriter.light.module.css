@@ -1,0 +1,99 @@
+/* @AI-HINT: ProposalWriter light theme – orange/amber accent */
+
+.container { background: #f8f9fb; color: #1a1a2e; }
+.headerBadge { background: #fff3e0; color: #e67e22; }
+.title { color: #1a1a2e; }
+.subtitle { color: #666; }
+
+/* Stepper */
+.stepDot { background: #e8e8e8; color: #999; }
+.stepDotActive { background: #e67e22; color: #fff; box-shadow: 0 0 0 4px rgba(230,126,34,0.15); }
+.stepDotCompleted { background: #27ae60; color: #fff; }
+.stepLabel { color: #888; }
+.stepLabelActive { color: #e67e22; }
+.stepLine { background: #e0e0e0; }
+.stepLineActive { background: #27ae60; }
+
+/* Form Card */
+.formCard { background: #fff; border-color: #e8e8e8; }
+.formTitle { color: #1a1a2e; }
+.label { color: #333; }
+.labelHint { color: #999; }
+
+/* Inputs */
+.textInput, .numberInput, .textarea {
+  background: #f4f4f6;
+  color: #1a1a2e;
+  border-color: #e0e0e0;
+}
+.textInput:focus, .numberInput:focus, .textarea:focus {
+  border-color: #e67e22;
+  background: #fff;
+}
+
+/* Tone Cards */
+.toneCard { background: #f8f8fa; border-color: #e0e0e0; color: #333; }
+.toneCard:hover { border-color: #e67e22; }
+.toneCardSelected { background: #fff3e0; border-color: #e67e22; color: #e67e22; }
+.toneDesc { color: #888; }
+
+/* Length Cards */
+.lengthCard { background: #f8f8fa; border-color: #e0e0e0; color: #333; }
+.lengthCard:hover { border-color: #e67e22; }
+.lengthCardSelected { background: #fff3e0; border-color: #e67e22; color: #e67e22; }
+.lengthRange { color: #888; }
+
+/* Experience Cards */
+.expCard { background: #f8f8fa; border-color: #e0e0e0; color: #333; }
+.expCard:hover { border-color: #e67e22; }
+.expCardSelected { background: #fff3e0; border-color: #e67e22; color: #e67e22; }
+.expDesc { color: #888; }
+
+/* Processing */
+.processingContainer { color: #1a1a2e; }
+.processingOrbInner { color: #e67e22; }
+.processingSubtitle { color: #888; }
+.processingStepCircle { background: #fff3e0; color: #e67e22; }
+
+/* Price Hero */
+.priceHero { background: linear-gradient(135deg, #fff3e0 0%, #ffecd2 100%); }
+.priceHeroLabel { color: #e67e22; }
+.priceHeroValue { color: #1a1a2e; }
+.priceHeroMetaItem { color: #666; }
+
+/* Result Card */
+.resultCard { background: #fff; border-color: #e8e8e8; }
+.resultCardIcon { background: #fff3e0; color: #e67e22; }
+.resultCardTitle { color: #1a1a2e; }
+
+/* Copy Button */
+.copyBtn { background: #fff3e0; color: #e67e22; border-color: #f5c78a; }
+.copyBtn:hover { background: #ffe0b2; }
+
+/* Proposal & Scores */
+.proposalText { background: #fafafa; color: #333; border: 1px solid #e8e8e8; }
+.scoreLabel { color: #555; }
+.scoreValue { color: #e67e22; }
+.scoreBarFill { background: #e67e22; }
+.scoreBarTrack { background: #eee; }
+.miniTitle { color: #444; }
+.tagMatch { background: #e8f5e9; color: #27ae60; }
+.tagMissing { background: #fbe9e7; color: #c62828; }
+.rateLabel { color: #555; }
+.rateValue { color: #e67e22; }
+
+/* Recs */
+.recItem { background: #fafafa; border-color: #f5c78a; }
+.recTitle { color: #333; }
+.recMsg { color: #666; }
+
+/* Nav */
+.navButtonBack { background: #f0f0f0; color: #555; }
+.navButtonBack:hover { background: #e0e0e0; }
+.navButtonNext { background: #e67e22; color: #fff; }
+.navButtonNext:hover { background: #cf6d17; }
+.actionBtnSecondary { background: #fff; border-color: #e67e22; color: #e67e22; }
+.actionBtnSecondary:hover { background: #fff3e0; }
+
+/* Disclaimer */
+.disclaimer { color: #999; border-top: 1px solid #eee; }

@@ -6,8 +6,8 @@
 }
 
 .primary:hover:not(:disabled) {
-  background-color: #4573df 90%, white);
-  border-color: #4573df 90%, white);
+  background-color: #5881e2;
+  border-color: #5881e2;
 }
 
 .secondary {
@@ -18,7 +18,7 @@
 
 .secondary:hover:not(:disabled) {
   background-color: #1e293b;
-  border-color: #4573df 80%, white);
+  border-color: #6a8fe5;
 }
 
 .accent {
@@ -28,8 +28,8 @@
 }
 
 .accent:hover:not(:disabled) {
-  background-color: #4573df 90%, white);
-  border-color: #4573df 90%, white);
+  background-color: #5881e2;
+  border-color: #5881e2;
 }
 
 .destructive {
@@ -39,8 +39,8 @@
 }
 
 .destructive:hover:not(:disabled) {
-  background-color: #4573df 90%, white);
-  border-color: #4573df 90%, white);
+  background-color: #5881e2;
+  border-color: #5881e2;
 }
 
 .ghost {
@@ -62,7 +62,7 @@
 
 .link:hover:not(:disabled) {
   background-color: transparent;
-  color: #4573df 80%, white);
+  color: #6a8fe5;
 }
 
 .outline {
@@ -73,7 +73,7 @@
 
 .outline:hover:not(:disabled) {
   background-color: #1e293b;
-  border-color: #4573df 80%, white);
+  border-color: #6a8fe5;
 }
 
 .disabled {

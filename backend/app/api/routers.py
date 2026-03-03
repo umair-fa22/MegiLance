@@ -44,6 +44,8 @@ from .v1 import (
     # Standalone Public Tools
     invoice_generator, contract_builder_standalone, income_calculator,
     scope_planner, expense_tax_calculator,
+    # AI Parallel Tools - Skill Analyzer, Rate Advisor, Proposal Writer
+    skill_analyzer, rate_advisor, proposal_writer,
 )
 
 
@@ -129,6 +131,11 @@ api_router.include_router(contract_builder_standalone.router, prefix="/contract-
 api_router.include_router(income_calculator.router, prefix="/income-calculator", tags=["income-calculator"])
 api_router.include_router(scope_planner.router, prefix="/scope-planner", tags=["scope-planner"])
 api_router.include_router(expense_tax_calculator.router, prefix="/expense-tax-calculator", tags=["expense-tax-calculator"])
+
+# AI Parallel Tools
+api_router.include_router(skill_analyzer.router, prefix="/skill-analyzer", tags=["skill-analyzer"])
+api_router.include_router(rate_advisor.router, prefix="/rate-advisor", tags=["rate-advisor"])
+api_router.include_router(proposal_writer.router, prefix="/proposal-writer", tags=["proposal-writer"])
 
 # Skill Assessments - Professional skill verification
 api_router.include_router(assessments.router, prefix="/assessments", tags=["assessments"])

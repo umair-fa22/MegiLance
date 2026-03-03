@@ -1,0 +1,208 @@
+/* @AI-HINT: Rate Advisor – common layout, structure, animations */
+
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3rem;
+  min-height: 100vh;
+}
+
+/* Header */
+.header { text-align: center; margin-bottom: 2rem; }
+.headerBadge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.08em; padding: 6px 14px; border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+.title { font-size: 2rem; font-weight: 700; margin: 0; }
+.subtitle { font-size: 0.95rem; margin-top: 0.4rem; }
+
+/* Stepper */
+.stepper {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; margin-bottom: 2rem;
+}
+.stepItem { display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative; z-index: 1; }
+.stepDot {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 600;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s,
+    background-color 0.3s, color 0.3s;
+}
+.stepDotActive { transform: scale(1.15); }
+.stepDotCompleted {}
+.stepLabel { font-size: 0.72rem; font-weight: 500; white-space: nowrap; }
+.stepLabelActive { font-weight: 700; }
+.stepLine { flex: 1; height: 2px; min-width: 40px; transition: background 0.3s; }
+.stepLineActive {}
+
+/* Forms */
+.formCard {
+  border-radius: 16px; padding: 2rem;
+  margin-bottom: 1.5rem; border: 1px solid transparent;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.formTitle { font-size: 1.15rem; font-weight: 700; margin: 0 0 1.25rem; display: flex; align-items: center; gap: 8px; }
+.formGroup { display: flex; flex-direction: column; gap: 6px; flex: 1; margin-bottom: 1rem; }
+.formRow { display: flex; gap: 1rem; }
+.label { font-size: 0.82rem; font-weight: 600; }
+.labelHint { font-weight: 400; opacity: 0.65; font-size: 0.78rem; }
+
+/* Type grid */
+.typeGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.typeCard {
+  padding: 14px 10px; border: 2px solid transparent; border-radius: 10px;
+  cursor: pointer; text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s,
+    background-color 0.2s, color 0.2s;
+}
+.typeCardSelected {}
+.typeCardLabel { font-size: 0.82rem; font-weight: 600; }
+
+/* Experience grid */
+.expGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.expCard {
+  padding: 14px 10px; border: 2px solid transparent; border-radius: 10px;
+  cursor: pointer; text-align: center; display: flex; flex-direction: column; gap: 4px;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s,
+    background-color 0.2s, color 0.2s;
+}
+.expCardSelected {}
+.expLabel { font-size: 0.82rem; font-weight: 600; }
+.expDesc { font-size: 0.72rem; }
+
+/* Platform grid */
+.platformGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.platformCard {
+  padding: 14px 10px; border: 2px solid transparent; border-radius: 10px;
+  cursor: pointer; text-align: center; display: flex; flex-direction: column; gap: 4px;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s,
+    background-color 0.2s, color 0.2s;
+}
+.platformCardSelected {}
+.platformLabel { font-size: 0.82rem; font-weight: 600; }
+.platformFee { font-size: 0.72rem; }
+
+/* Inputs */
+.textInput, .numberInput {
+  padding: 10px 12px; border-radius: 8px; border: 1px solid transparent;
+  font-size: 0.9rem; width: 100%;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.textInput:focus-visible, .numberInput:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df); outline-offset: -2px;
+}
+
+/* Processing */
+.processingContainer { display: flex; flex-direction: column; align-items: center; padding: 3rem 0; }
+.processingOrb { position: relative; width: 72px; height: 72px; margin-bottom: 1.5rem; }
+.processingOrbInner {
+  width: 72px; height: 72px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  animation: pulse-orb 1.8s ease-in-out infinite;
+}
+@keyframes pulse-orb { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+.processingSubtitle { font-size: 0.88rem; margin-top: 0.3rem; }
+.processingSteps { display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem; }
+.processingStep { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; }
+.processingStepCircle {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Results */
+.resultsContainer { display: flex; flex-direction: column; gap: 1.5rem; }
+.resultsGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+
+/* Hero */
+.priceHero {
+  border-radius: 16px; padding: 2.5rem; text-align: center;
+  position: relative; overflow: hidden;
+}
+.priceHeroGlow {
+  position: absolute; top: -40%; left: 50%; transform: translateX(-50%);
+  width: 200%; height: 200%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(69,115,223,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.priceHeroLabel { font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+.priceHeroValue { font-size: 2.5rem; font-weight: 800; margin: 0.4rem 0; }
+.priceHeroMeta { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+.priceHeroMetaItem { font-size: 0.82rem; display: flex; align-items: center; gap: 4px; }
+
+/* Result cards */
+.resultCard {
+  border-radius: 14px; padding: 1.5rem;
+  border: 1px solid transparent; transition: box-shadow 0.3s;
+}
+.resultCardFullWidth { grid-column: 1 / -1; }
+.resultCardHeader { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+.resultCardIcon {
+  width: 36px; height: 36px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.resultCardTitle { font-size: 0.95rem; font-weight: 700; margin: 0; }
+
+/* Calc list */
+.calcList { display: flex; flex-direction: column; }
+.calcRow { display: flex; justify-content: space-between; padding: 8px 0; font-size: 0.84rem; border-bottom: 1px solid rgba(128,128,128,0.12); }
+.calcRowHeader { font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.calcRowHighlight { font-weight: 600; }
+
+/* Income projections */
+.incomeRow { padding: 12px; border-radius: 10px; margin-bottom: 10px; }
+.incomeHeader { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.incomeLabel { font-size: 0.84rem; font-weight: 700; text-transform: capitalize; }
+.incomeUtil { font-size: 0.72rem; }
+.incomeFigures { display: flex; gap: 12px; }
+.incomeFigure { font-size: 0.82rem; }
+.incomeHighlight { font-weight: 700; }
+
+/* Market position bar */
+.marketBar { margin-bottom: 1rem; }
+.marketBarTrack { position: relative; height: 12px; border-radius: 6px; background: rgba(128,128,128,0.15); overflow: visible; margin-bottom: 8px; }
+.marketBarRange { position: absolute; top: 0; height: 100%; border-radius: 6px; }
+.marketBarYou { position: absolute; top: -4px; width: 4px; height: 20px; border-radius: 2px; transform: translateX(-50%); }
+.marketLegend { display: flex; justify-content: space-between; }
+.marketLegendItem { font-size: 0.72rem; }
+
+/* Recommendations */
+.recsGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.recItem { padding: 12px; border-radius: 8px; border-left: 3px solid transparent; }
+.recTitle { font-size: 0.82rem; font-weight: 700; }
+.recMsg { font-size: 0.78rem; margin-top: 4px; }
+
+/* Navigation */
+.navBar { display: flex; align-items: center; margin-top: 1.5rem; }
+.navSpacer { flex: 1; }
+.navButtonBack, .navButtonNext {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 28px; border-radius: 10px; font-size: 0.88rem;
+  font-weight: 600; border: none; cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, color 0.2s;
+}
+.actionsBar { display: flex; gap: 12px; margin-left: auto; }
+.actionBtnPrimary, .actionBtnSecondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 24px; border-radius: 10px; font-size: 0.88rem;
+  font-weight: 600; border: none; cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.disclaimer {
+  text-align: center; font-size: 0.75rem; margin-top: 2rem;
+  padding-top: 1rem; border-top: 1px solid rgba(128,128,128,0.15);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .resultsGrid { grid-template-columns: 1fr; }
+  .recsGrid { grid-template-columns: 1fr; }
+  .typeGrid { grid-template-columns: repeat(2, 1fr); }
+  .expGrid { grid-template-columns: repeat(2, 1fr); }
+  .platformGrid { grid-template-columns: repeat(2, 1fr); }
+  .formRow { flex-direction: column; }
+  .calcRowHeader span:nth-child(n+3) { display: none; }
+}

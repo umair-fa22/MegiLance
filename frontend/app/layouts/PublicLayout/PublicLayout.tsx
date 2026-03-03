@@ -12,8 +12,10 @@ type Props = { children: React.ReactNode };
 
 const PublicLayout: React.FC<Props> = ({ children }) => {
   const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => setMounted(true), []);
 
-  const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
+  const themeStyles = (mounted && resolvedTheme === 'dark') ? darkStyles : lightStyles;
   const styles = React.useMemo(() => ({
     root: cn(commonStyles.root, themeStyles.root),
     skipLink: cn(commonStyles.skipLink, themeStyles.skipLink),

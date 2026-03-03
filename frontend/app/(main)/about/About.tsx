@@ -9,7 +9,7 @@ import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
 import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';
 import { AboutIllustration } from '@/app/components/Illustrations/Illustrations';
-import illustrationStyles from '@/app/components/Illustrations/Illustrations.module.css';
+import illustrationStyles from '@/app/components/Illustrations/Illustrations.common.module.css';
 import { 
   Globe, 
   Shield, 
@@ -150,7 +150,7 @@ const About: React.FC = () => {
               <Zap size={32} className={common.iconWarning} />
               <h3 id="solution-speed-title" className={styles.cardTitle}>Modern Tech Stack</h3>
               <p className={styles.cardBody}>
-                Next.js 14 delivers fast, SEO-optimized pages. FastAPI provides high-performance 
+                Next.js 16 delivers fast, SEO-optimized pages. FastAPI provides high-performance 
                 async backend. Turso edge database ensures low-latency worldwide. Docker enables 
                 consistent deployment across environments.
               </p>

@@ -23,18 +23,17 @@
   border-color: #1e2a52;
 }
 
-/* Modern color overrides guarded by support check */
+/* Modern color overrides */
 
-  .theme .container {
-    background: linear-gradient(180deg, #4573df, #4573df);
-    border-color: #4573df;
-  }
+.theme .container {
+  background: linear-gradient(180deg, #4573df, #4573df);
+  border-color: #4573df;
+}
 
-  .theme .title { color: #4573df; }
-  .theme .subtitle { color: #4573df; }
+.theme .title { color: #4573df; }
+.theme .subtitle { color: #4573df; }
 
-  .theme .progressBar {
-    background: #4573df;
-    border-color: #4573df;
-  }
+.theme .progressBar {
+  background: #4573df;
+  border-color: #4573df;
 }

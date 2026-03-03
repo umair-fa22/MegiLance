@@ -360,18 +360,68 @@ class SkillGraphService:
         test_id: str
     ) -> Dict[str, Any]:
         """Start a skill verification test."""
+        questions = self._get_test_questions(skill_id, test_id)
+        # Strip correct_answer from the response sent to the client
+        client_questions = [
+            {"id": q["id"], "text": q["text"], "options": q["options"]}
+            for q in questions
+        ]
+        attempt_id = str(uuid.uuid4())
+        # Store answer key in-memory for the attempt duration (keyed by attempt_id)
+        if not hasattr(self, "_active_attempts"):
+            self._active_attempts: Dict[str, Dict] = {}
+        self._active_attempts[attempt_id] = {
+            "user_id": user_id,
+            "skill_id": skill_id,
+            "test_id": test_id,
+            "answer_key": {q["id"]: q["correct_answer"] for q in questions},
+            "started_at": datetime.now(timezone.utc),
+            "expires_at": datetime.now(timezone.utc) + timedelta(minutes=30),
+        }
         return {
-            "attempt_id": str(uuid.uuid4()),
+            "attempt_id": attempt_id,
             "skill_id": skill_id,
             "test_id": test_id,
             "started_at": datetime.now(timezone.utc).isoformat(),
             "expires_at": (datetime.now(timezone.utc) + timedelta(minutes=30)).isoformat(),
-            "questions": [
-                {"id": "q1", "text": "What is Python?", "options": ["A", "B", "C", "D"]},
-                {"id": "q2", "text": "What is a list comprehension?", "options": ["A", "B", "C", "D"]}
-                # More questions in production
-            ]
+            "questions": client_questions
         }
+    
+    def _get_test_questions(self, skill_id: str, test_id: str) -> List[Dict]:
+        """Return questions with correct answers for the given skill/test."""
+        # Question banks per skill - easily extensible
+        question_banks = {
+            "python": [
+                {"id": "py1", "text": "What keyword is used to define a function in Python?", "options": ["func", "def", "function", "define"], "correct_answer": "B"},
+                {"id": "py2", "text": "Which of the following is a valid list comprehension?", "options": ["[x for x in range(10)]", "{x for x in range(10)}", "(x for x in range(10))", "list(x: range(10))"], "correct_answer": "A"},
+                {"id": "py3", "text": "What does 'self' refer to in a class method?", "options": ["The class itself", "The current instance", "The parent class", "A global variable"], "correct_answer": "B"},
+                {"id": "py4", "text": "Which data type is immutable?", "options": ["list", "dict", "set", "tuple"], "correct_answer": "D"},
+                {"id": "py5", "text": "What does the 'yield' keyword do?", "options": ["Stops execution", "Returns a value and pauses the generator", "Raises an exception", "Imports a module"], "correct_answer": "B"},
+            ],
+            "javascript": [
+                {"id": "js1", "text": "What is the correct way to declare a constant?", "options": ["var x", "let x", "const x", "constant x"], "correct_answer": "C"},
+                {"id": "js2", "text": "What does '===' check?", "options": ["Value only", "Value and type", "Type only", "Reference"], "correct_answer": "B"},
+                {"id": "js3", "text": "Which method adds an element to the end of an array?", "options": ["push()", "pop()", "shift()", "unshift()"], "correct_answer": "A"},
+                {"id": "js4", "text": "What does 'typeof null' return?", "options": ["null", "undefined", "object", "boolean"], "correct_answer": "C"},
+                {"id": "js5", "text": "Which is NOT a primitive type?", "options": ["string", "number", "object", "boolean"], "correct_answer": "C"},
+            ],
+            "react": [
+                {"id": "re1", "text": "What hook is used for side effects?", "options": ["useState", "useEffect", "useContext", "useRef"], "correct_answer": "B"},
+                {"id": "re2", "text": "What is JSX?", "options": ["A database query language", "A syntax extension for JavaScript", "A CSS framework", "A testing tool"], "correct_answer": "B"},
+                {"id": "re3", "text": "How do you pass data from parent to child component?", "options": ["state", "props", "context", "refs"], "correct_answer": "B"},
+                {"id": "re4", "text": "Which hook manages local state?", "options": ["useEffect", "useReducer", "useState", "useMemo"], "correct_answer": "C"},
+                {"id": "re5", "text": "What is the virtual DOM?", "options": ["A browser feature", "A lightweight copy of the real DOM", "A database", "A CSS engine"], "correct_answer": "B"},
+            ],
+        }
+        # Default generic questions for unknown skills
+        default_questions = [
+            {"id": "gen1", "text": "What is version control?", "options": ["A coding language", "A system for tracking changes", "A design tool", "A database"], "correct_answer": "B"},
+            {"id": "gen2", "text": "What does API stand for?", "options": ["Application Programming Interface", "Advanced Program Integration", "Automated Process Input", "Application Process Interface"], "correct_answer": "A"},
+            {"id": "gen3", "text": "What is a variable?", "options": ["A constant value", "A named storage location", "A function", "A loop"], "correct_answer": "B"},
+            {"id": "gen4", "text": "What does debugging mean?", "options": ["Writing code", "Finding and fixing errors", "Deploying software", "Designing interfaces"], "correct_answer": "B"},
+            {"id": "gen5", "text": "What is an algorithm?", "options": ["A programming language", "A step-by-step procedure", "A data structure", "A design pattern"], "correct_answer": "B"},
+        ]
+        return question_banks.get(skill_id, default_questions)
     
     async def submit_verification_test(
         self,
@@ -379,17 +429,63 @@ class SkillGraphService:
         attempt_id: str,
         answers: Dict[str, str]
     ) -> Dict[str, Any]:
-        """Submit verification test answers."""
-        # STUB: Replace with actual answer evaluation logic
-        score = 75  # Default placeholder score
-        passed = score >= 80
-        
+        """Submit verification test answers and compute real score."""
+        if not hasattr(self, "_active_attempts"):
+            self._active_attempts = {}
+
+        attempt = self._active_attempts.pop(attempt_id, None)
+        if not attempt:
+            # Attempt expired or not found — can't grade without answer key
+            return {
+                "attempt_id": attempt_id,
+                "score": 0,
+                "passed": False,
+                "status": VerificationStatus.FAILED.value,
+                "badge_awarded": None,
+                "error": "Test attempt not found or expired",
+                "completed_at": datetime.now(timezone.utc).isoformat()
+            }
+
+        # Check if attempt expired
+        if datetime.now(timezone.utc) > attempt["expires_at"]:
+            return {
+                "attempt_id": attempt_id,
+                "score": 0,
+                "passed": False,
+                "status": VerificationStatus.FAILED.value,
+                "badge_awarded": None,
+                "error": "Test attempt has expired",
+                "completed_at": datetime.now(timezone.utc).isoformat()
+            }
+
+        answer_key = attempt["answer_key"]
+        total = len(answer_key)
+        correct = 0
+        for qid, correct_ans in answer_key.items():
+            submitted = answers.get(qid, "").strip().upper()
+            if submitted == correct_ans.upper():
+                correct += 1
+
+        score = round((correct / total) * 100) if total > 0 else 0
+        # Determine passing threshold based on test level
+        test_id = attempt.get("test_id", "")
+        if "advanced" in test_id:
+            passing_score = 80
+        elif "intermediate" in test_id:
+            passing_score = 75
+        else:
+            passing_score = 70
+        passed = score >= passing_score
+        skill_id = attempt.get("skill_id", "")
+
         return {
             "attempt_id": attempt_id,
             "score": score,
+            "correct_answers": correct,
+            "total_questions": total,
             "passed": passed,
             "status": VerificationStatus.VERIFIED.value if passed else VerificationStatus.FAILED.value,
-            "badge_awarded": "python-advanced" if passed else None,
+            "badge_awarded": f"{skill_id}-{test_id.replace('test-', '')}" if passed else None,
             "completed_at": datetime.now(timezone.utc).isoformat()
         }
     

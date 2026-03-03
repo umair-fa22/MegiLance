@@ -8,7 +8,7 @@ import { PageTransition, ScrollReveal } from '@/app/components/Animations';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
 import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';
 import { StatusIllustration } from '@/app/components/Illustrations/Illustrations';
-import illustrationStyles from '@/app/components/Illustrations/Illustrations.module.css';
+import illustrationStyles from '@/app/components/Illustrations/Illustrations.common.module.css';
 import { 
   CheckCircle, XCircle, AlertCircle, Clock, RefreshCw, 
   Database, Server, MessageSquare, Brain, CreditCard,

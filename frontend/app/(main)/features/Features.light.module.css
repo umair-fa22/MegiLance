@@ -1,0 +1,36 @@
+/* @AI-HINT: Features page — light theme colors */
+
+.page { background: #ffffff; }
+
+/* Hero */
+.heroBadge { background: rgba(69, 115, 223, 0.08); color: #4573df; }
+.heroTitle { color: #0f172a; }
+.heroSubtitle { color: #64748b; }
+.heroStat { background: #f8fafc; border: 1px solid #e2e8f0; }
+.heroStatLabel { color: #94a3b8; }
+
+/* Tabs */
+.tab { background: transparent; color: #64748b; }
+.tab:hover { background: #f1f5f9; color: #334155; }
+.tabActive { background: #4573df !important; color: #fff !important; box-shadow: 0 2px 8px rgba(69, 115, 223, 0.25); }
+.tabCount { background: rgba(69, 115, 223, 0.1); color: #4573df; }
+
+/* Cards */
+.card { background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-color: #cbd5e1; }
+.iconBox { background: rgba(69, 115, 223, 0.08); color: #4573df; }
+.cardTitle { color: #0f172a; }
+.cardDesc { color: #64748b; }
+.highlight { background: #f1f5f9; color: #475569; }
+
+/* Status Pills */
+.statusLive { background: rgba(39, 174, 96, 0.1); color: #27AE60; }
+.statusBeta { background: rgba(69, 115, 223, 0.1); color: #4573df; }
+.statusComing { background: rgba(242, 201, 76, 0.15); color: #b08d00; }
+
+/* CTA */
+.ctaCard { background: linear-gradient(135deg, #f8fafc, #f1f5f9); border: 1px solid #e2e8f0; }
+.ctaTitle { color: #0f172a; }
+.ctaDesc { color: #64748b; }
+.ctaBtnSecondary { background: #fff; color: #334155; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.ctaBtnSecondary:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }

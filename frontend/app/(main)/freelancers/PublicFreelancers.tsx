@@ -15,7 +15,7 @@ import {
 import Link from 'next/link';
 import { PageTransition, ScrollReveal } from '@/app/components/Animations';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
-import SectionGlobe from '@/app/components/Animations/SectionGlobe/SectionGlobe';
+import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';
 
 import common from './PublicFreelancers.common.module.css';
 import light from './PublicFreelancers.light.module.css';
@@ -337,9 +337,22 @@ const PublicFreelancers: React.FC = () => {
   return (
     <PageTransition>
       <div className={cn(common.page, themed.page)}>
-        <SectionGlobe variant="purple" size="sm" position="left" />
+        {/* Premium 3D Background */}
+        <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+          <AnimatedOrb variant="purple" size={500} blur={90} opacity={0.1} className="absolute top-[-10%] right-[-10%]" />
+          <AnimatedOrb variant="blue" size={400} blur={70} opacity={0.08} className="absolute bottom-[-10%] left-[-10%]" />
+          <ParticlesSystem count={12} className="absolute inset-0" />
+          <div className="absolute top-20 left-10 opacity-10 animate-float-slow">
+            <FloatingCube size={40} />
+          </div>
+          <div className="absolute bottom-40 right-20 opacity-10 animate-float-medium">
+            <FloatingSphere size={30} variant="gradient" />
+          </div>
+        </div>
+
         <ScrollReveal>
           <header className={cn(common.header, themed.header)}>
+            <span className={cn(common.badge, themed.badge)}>Top Global Talent</span>
             <h1 className={cn(common.title, themed.title)}>Hire Top Freelancers</h1>
             <p className={cn(common.subtitle, themed.subtitle)}>Find verified experts for any project. {filteredFreelancers.length > 0 ? `${filteredFreelancers.length}+ professionals available.` : ''}</p>
             <div className={common.searchSection}>
@@ -441,13 +454,15 @@ const PublicFreelancers: React.FC = () => {
                   <StaggerItem key={f.id}>
                     <Link href={`/freelancers/${f.profileSlug || f.id}`} className={cn(common.card, themed.card)} aria-label={`View ${f.name}'s profile`}>
                       <div className={common.cardHeader}>
-                        <img src={f.avatarUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(f.name)}&background=random&size=80`} alt={f.name} className={common.avatar} loading="lazy" width={64} height={64} />
+                        <div className={common.avatarWrapper}>
+                          <img src={f.avatarUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(f.name)}&background=random&size=80`} alt={f.name} className={common.avatar} loading="lazy" width={64} height={64} />
+                          {f.availabilityStatus === 'available' && (
+                            <span className={common.onlineDot} aria-label="Available now" />
+                          )}
+                        </div>
                         <div className={common.cardInfo}>
                           <h3 className={cn(common.name, themed.name)}>{f.name}</h3>
                           <p className={cn(common.role, themed.role)}>{f.title}</p>
-                          {f.availabilityStatus === 'available' && (
-                            <span style={{ fontSize: '0.7rem', color: '#27AE60', fontWeight: 600 }}>Available</span>
-                          )}
                         </div>
                       </div>
                       <div className={common.skills}>
@@ -459,6 +474,7 @@ const PublicFreelancers: React.FC = () => {
                         <div className={cn(common.ratingWrapper, themed.ratingWrapper)}><Star size={14} fill="#facc15" color="#facc15" /><span>{f.rating.toFixed(1)}</span></div>
                         <div className={cn(common.locationWrapper, themed.locationWrapper)}><MapPin size={14} /><span>{f.location}</span></div>
                       </div>
+                      <span className={cn(common.cardCta, themed.cardCta)}>View Profile</span>
                     </Link>
                   </StaggerItem>
                 ))}

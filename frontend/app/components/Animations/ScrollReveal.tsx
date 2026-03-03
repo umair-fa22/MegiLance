@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import styles from './ScrollReveal.module.css';
+import styles from './ScrollReveal.common.module.css';
 
 interface ScrollRevealProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;

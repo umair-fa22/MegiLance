@@ -3,7 +3,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from 'next-themes';
-import styles from './ThreeD.module.css';
+import styles from './ThreeD.common.module.css';
 
 // ==========================================
 // 3D FLOATING CUBE

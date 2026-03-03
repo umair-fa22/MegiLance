@@ -1,13 +1,20 @@
 // @AI-HINT: Animated 3D globe background component for hero sections using dynamic import
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Component, useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useTheme } from 'next-themes';
 import commonStyles from './GlobeBackground.common.module.css';
 
 // Dynamically import Globe to avoid SSR issues with Three.js
 const Globe = dynamic(() => import('react-globe.gl'), { ssr: false });
+
+// Error boundary to prevent Three.js crashes from breaking the page
+class GlobeSafeBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
+  state = { hasError: false };
+  static getDerivedStateFromError() { return { hasError: true }; }
+  render() { return this.state.hasError ? null : this.props.children; }
+}
 
 /** Returns true when the globe should NOT render (reduced-motion or low-end device). */
 function shouldSkipGlobe(): boolean {
@@ -65,14 +72,15 @@ const GlobeBackground = () => {
   ];
 
   return (
+    <GlobeSafeBoundary>
     <div className={commonStyles.canvasWrapper}>
       <Globe
         ref={globeEl}
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
         bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
         backgroundColor="rgba(0,0,0,0)"
-        width={typeof window !== 'undefined' ? window.innerWidth : 1000}
-        height={typeof window !== 'undefined' ? window.innerHeight : 1000}
+        width={window.innerWidth}
+        height={window.innerHeight}
         arcsData={arcsData}
         arcColor={() => arcColor}
         arcDashLength={0.4}
@@ -83,6 +91,7 @@ const GlobeBackground = () => {
         atmosphereAltitude={0.15}
       />
     </div>
+    </GlobeSafeBoundary>
   );
 };
 

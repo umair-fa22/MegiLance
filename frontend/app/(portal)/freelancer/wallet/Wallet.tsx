@@ -19,7 +19,7 @@ import Modal from '@/app/components/Modal/Modal';
 import { useToaster } from '@/app/components/Toast/ToasterProvider';
 import { PageTransition, ScrollReveal } from '@/app/components/Animations';
 import { WalletIllustration } from '@/app/components/Illustrations/Illustrations';
-import illustrationStyles from '@/app/components/Illustrations/Illustrations.module.css';
+import illustrationStyles from '@/app/components/Illustrations/Illustrations.common.module.css';
 import commonStyles from './Wallet.common.module.css';
 import lightStyles from './Wallet.light.module.css';
 import darkStyles from './Wallet.dark.module.css';

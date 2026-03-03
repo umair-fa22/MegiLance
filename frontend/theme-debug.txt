@@ -1,0 +1,30 @@
+
+Running 1 test using 1 worker
+
+  Ô£ÿ  1 [chromium] ÔÇ║ e2e\pages.spec.ts:150:7 ÔÇ║ Theme Switching ÔÇ║ theme toggle changes visual appearance (9.2s)
+
+
+  1) [chromium] ÔÇ║ e2e\pages.spec.ts:150:7 ÔÇ║ Theme Switching ÔÇ║ theme toggle changes visual appearance 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+    Expected substring: [32m"dark"[39m
+    Received string:    [31m"light"[39m
+
+      165 |     const afterScheme = await page.evaluate(() => document.documentElement.style.colorScheme);
+      166 |     
+    > 167 |     expect(afterClass).toContain('dark');
+          |                        ^
+      168 |     expect(afterScheme).toBe('dark');
+      169 |   });
+      170 | });
+        at E:\MegiLance\frontend\e2e\pages.spec.ts:167:24
+
+    attachment #1: screenshot (image/png) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\pages-Theme-Switching-theme-toggle-changes-visual-appearance-chromium\test-failed-1.png
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    Error Context: test-results\pages-Theme-Switching-theme-toggle-changes-visual-appearance-chromium\error-context.md
+
+  1 failed
+    [chromium] ÔÇ║ e2e\pages.spec.ts:150:7 ÔÇ║ Theme Switching ÔÇ║ theme toggle changes visual appearance 

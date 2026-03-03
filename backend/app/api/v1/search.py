@@ -259,17 +259,18 @@ async def global_search(
     limit: int = Query(10, ge=1, le=50)
 ):
     """
-    Global search across projects, freelancers, and skills
+    Global search across projects, freelancers, gigs, and skills
     - Returns mixed results from all searchable entities
     - Public endpoint
     """
     safe_q = sanitize_search_query(q)
     if not safe_q:
-        return {"query": q, "results": {"projects": [], "freelancers": [], "skills": [], "tags": []}, "total_results": 0}
+        return {"query": q, "results": {"projects": [], "freelancers": [], "gigs": [], "skills": [], "tags": []}, "total_results": 0}
     search_term = f"%{safe_q}%"
     
     projects = search_service.global_search_projects(search_term, limit)
     freelancers = search_service.global_search_freelancers(search_term, limit)
+    gigs = search_service.global_search_gigs(search_term, limit)
     skills = search_service.global_search_skills(search_term, limit)
     tags = search_service.global_search_tags(search_term, limit)
     
@@ -278,10 +279,11 @@ async def global_search(
         "results": {
             "projects": projects,
             "freelancers": freelancers,
+            "gigs": gigs,
             "skills": skills,
             "tags": tags
         },
-        "total_results": len(projects) + len(freelancers) + len(skills) + len(tags)
+        "total_results": len(projects) + len(freelancers) + len(gigs) + len(skills) + len(tags)
     }
 
 

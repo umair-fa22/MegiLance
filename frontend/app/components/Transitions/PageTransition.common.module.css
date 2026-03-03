@@ -1,43 +1,14 @@
-/* AI-HINT: Common styles for PageTransition. Subtle, premium transitions with GPU-accelerated transforms. */
+/* AI-HINT: Common styles for PageTransition. Simple flex wrapper for page content. */
 .base {
   position: relative;
   isolation: isolate;
-}
-
-.stage {
-  display: contents;
-  will-change: transform, opacity, filter;
-}
-
-/* Variants */
-.fade {
-  animation: pt-fade-in 360ms cubic-bezier(.2,.6,.2,1);
-}
-
-.slide {
-  animation: pt-slide-in 420ms cubic-bezier(.2,.6,.2,1);
-}
-
-.scale {
-  animation: pt-scale-in 420ms cubic-bezier(.2,.6,.2,1);
-}
-
-@keyframes pt-fade-in {
-  from { opacity: 0; filter: saturate(90%) contrast(95%); }
-  to { opacity: 1; filter: none; }
-}
-
-@keyframes pt-slide-in {
-  from { opacity: 0; transform: translateY(10px); filter: blur(2px); }
-  to { opacity: 1; transform: translateY(0); filter: none; }
-}
-
-@keyframes pt-scale-in {
-  from { opacity: 0; transform: scale(0.98); }
-  to { opacity: 1; transform: scale(1); }
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
 }
 
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .fade, .slide, .scale { animation: none !important; }
+  .base { animation: none !important; }
 }

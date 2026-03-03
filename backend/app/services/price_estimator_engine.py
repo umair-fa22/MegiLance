@@ -3,6 +3,13 @@
 AI Price Estimator Engine - Core estimation logic for general-purpose pricing.
 Not limited to freelancing - works for any service/product pricing need.
 Covers: software, design, marketing, writing, video, consulting, engineering, and more.
+
+Enhanced with real-world data from:
+- Arc.dev 2025 Developer Rate Survey (12,000+ developers, 122 countries)
+- Upwork 50K Job Postings Dataset (2024)
+- Fiverr Offers Dataset (2024)
+- YunoJuno Rates Report 2025 (261K+ records)
+- Pakistan freelancer market data (SBP IT Export reports)
 """
 
 import math
@@ -11,6 +18,26 @@ from typing import List, Optional, Dict, Any
 from datetime import datetime
 
 from app.db.turso_http import execute_query, to_str
+from app.services.market_data_2025 import (
+    COUNTRY_DEVELOPER_RATES,
+    CITY_RATES,
+    PLATFORM_RATES,
+    UPWORK_SERVICE_RATES,
+    PAKISTAN_FREELANCE_STATS,
+    SOUTH_ASIA_BENCHMARKS,
+    DEMAND_INDEX_2025,
+    DATA_VERSION,
+    DATA_SOURCES,
+    get_country_rate_data,
+    get_city_rate_data,
+    get_pakistan_cities,
+    get_platform_rates,
+    get_upwork_service_rate,
+    get_demand_data,
+    get_south_asia_benchmark,
+    calculate_data_driven_rate,
+    get_data_version_info,
+)
 
 logger = logging.getLogger("megilance")
 
@@ -165,83 +192,88 @@ REGIONAL_MULTIPLIERS: Dict[str, float] = {
 # ============================================================================
 
 COUNTRY_DATA: Dict[str, Dict[str, Any]] = {
+    # ============================================================================
+    # Recalibrated from Arc.dev 2025 Developer Rate Survey (12,000+ devs, 122 countries)
+    # rate_mult = country_avg_rate / US_avg_rate ($70/hr baseline)
+    # client_budget_mult based on PPP + local market budget surveys
+    # ============================================================================
     # ---- NORTH AMERICA ----
     "US": {"name": "United States", "region": "north_america", "rate_mult": 1.0, "client_budget_mult": 1.0, "currency": "USD", "ppp_index": 1.0, "col_index": 100, "flag": "🇺🇸"},
-    "CA": {"name": "Canada", "region": "north_america", "rate_mult": 0.90, "client_budget_mult": 0.92, "currency": "CAD", "ppp_index": 0.84, "col_index": 87, "flag": "🇨🇦"},
+    "CA": {"name": "Canada", "region": "north_america", "rate_mult": 0.93, "client_budget_mult": 0.92, "currency": "CAD", "ppp_index": 0.84, "col_index": 87, "flag": "🇨🇦"},
     # ---- WESTERN EUROPE ----
-    "GB": {"name": "United Kingdom", "region": "western_europe", "rate_mult": 0.88, "client_budget_mult": 0.90, "currency": "GBP", "ppp_index": 0.80, "col_index": 90, "flag": "🇬🇧"},
-    "DE": {"name": "Germany", "region": "western_europe", "rate_mult": 0.85, "client_budget_mult": 0.88, "currency": "EUR", "ppp_index": 0.82, "col_index": 85, "flag": "🇩🇪"},
-    "FR": {"name": "France", "region": "western_europe", "rate_mult": 0.82, "client_budget_mult": 0.85, "currency": "EUR", "ppp_index": 0.80, "col_index": 83, "flag": "🇫🇷"},
-    "NL": {"name": "Netherlands", "region": "western_europe", "rate_mult": 0.87, "client_budget_mult": 0.88, "currency": "EUR", "ppp_index": 0.83, "col_index": 88, "flag": "🇳🇱"},
-    "CH": {"name": "Switzerland", "region": "western_europe", "rate_mult": 1.15, "client_budget_mult": 1.10, "currency": "CHF", "ppp_index": 1.12, "col_index": 120, "flag": "🇨🇭"},
-    "SE": {"name": "Sweden", "region": "western_europe", "rate_mult": 0.85, "client_budget_mult": 0.87, "currency": "SEK", "ppp_index": 0.78, "col_index": 86, "flag": "🇸🇪"},
-    "NO": {"name": "Norway", "region": "western_europe", "rate_mult": 0.95, "client_budget_mult": 0.95, "currency": "NOK", "ppp_index": 0.88, "col_index": 105, "flag": "🇳🇴"},
+    "GB": {"name": "United Kingdom", "region": "western_europe", "rate_mult": 0.87, "client_budget_mult": 0.88, "currency": "GBP", "ppp_index": 0.80, "col_index": 90, "flag": "🇬🇧"},
+    "DE": {"name": "Germany", "region": "western_europe", "rate_mult": 0.89, "client_budget_mult": 0.88, "currency": "EUR", "ppp_index": 0.82, "col_index": 85, "flag": "🇩🇪"},
+    "FR": {"name": "France", "region": "western_europe", "rate_mult": 0.79, "client_budget_mult": 0.82, "currency": "EUR", "ppp_index": 0.80, "col_index": 83, "flag": "🇫🇷"},
+    "NL": {"name": "Netherlands", "region": "western_europe", "rate_mult": 0.84, "client_budget_mult": 0.86, "currency": "EUR", "ppp_index": 0.83, "col_index": 88, "flag": "🇳🇱"},
+    "CH": {"name": "Switzerland", "region": "western_europe", "rate_mult": 1.27, "client_budget_mult": 1.15, "currency": "CHF", "ppp_index": 1.12, "col_index": 120, "flag": "🇨🇭"},
+    "SE": {"name": "Sweden", "region": "western_europe", "rate_mult": 0.91, "client_budget_mult": 0.90, "currency": "SEK", "ppp_index": 0.78, "col_index": 86, "flag": "🇸🇪"},
+    "NO": {"name": "Norway", "region": "western_europe", "rate_mult": 0.97, "client_budget_mult": 0.95, "currency": "NOK", "ppp_index": 0.88, "col_index": 105, "flag": "🇳🇴"},
     "DK": {"name": "Denmark", "region": "western_europe", "rate_mult": 0.90, "client_budget_mult": 0.90, "currency": "DKK", "ppp_index": 0.85, "col_index": 95, "flag": "🇩🇰"},
-    "IE": {"name": "Ireland", "region": "western_europe", "rate_mult": 0.88, "client_budget_mult": 0.88, "currency": "EUR", "ppp_index": 0.82, "col_index": 89, "flag": "🇮🇪"},
-    "ES": {"name": "Spain", "region": "western_europe", "rate_mult": 0.60, "client_budget_mult": 0.65, "currency": "EUR", "ppp_index": 0.68, "col_index": 65, "flag": "🇪🇸"},
-    "IT": {"name": "Italy", "region": "western_europe", "rate_mult": 0.65, "client_budget_mult": 0.68, "currency": "EUR", "ppp_index": 0.70, "col_index": 70, "flag": "🇮🇹"},
-    "PT": {"name": "Portugal", "region": "western_europe", "rate_mult": 0.50, "client_budget_mult": 0.55, "currency": "EUR", "ppp_index": 0.58, "col_index": 55, "flag": "🇵🇹"},
-    "AT": {"name": "Austria", "region": "western_europe", "rate_mult": 0.82, "client_budget_mult": 0.85, "currency": "EUR", "ppp_index": 0.80, "col_index": 82, "flag": "🇦🇹"},
-    "BE": {"name": "Belgium", "region": "western_europe", "rate_mult": 0.80, "client_budget_mult": 0.82, "currency": "EUR", "ppp_index": 0.78, "col_index": 80, "flag": "🇧🇪"},
-    "FI": {"name": "Finland", "region": "western_europe", "rate_mult": 0.82, "client_budget_mult": 0.84, "currency": "EUR", "ppp_index": 0.79, "col_index": 83, "flag": "🇫🇮"},
+    "IE": {"name": "Ireland", "region": "western_europe", "rate_mult": 0.86, "client_budget_mult": 0.86, "currency": "EUR", "ppp_index": 0.82, "col_index": 89, "flag": "🇮🇪"},
+    "ES": {"name": "Spain", "region": "western_europe", "rate_mult": 0.64, "client_budget_mult": 0.66, "currency": "EUR", "ppp_index": 0.68, "col_index": 65, "flag": "🇪🇸"},
+    "IT": {"name": "Italy", "region": "western_europe", "rate_mult": 0.67, "client_budget_mult": 0.68, "currency": "EUR", "ppp_index": 0.70, "col_index": 70, "flag": "🇮🇹"},
+    "PT": {"name": "Portugal", "region": "western_europe", "rate_mult": 0.57, "client_budget_mult": 0.58, "currency": "EUR", "ppp_index": 0.58, "col_index": 55, "flag": "🇵🇹"},
+    "AT": {"name": "Austria", "region": "western_europe", "rate_mult": 0.77, "client_budget_mult": 0.80, "currency": "EUR", "ppp_index": 0.80, "col_index": 82, "flag": "🇦🇹"},
+    "BE": {"name": "Belgium", "region": "western_europe", "rate_mult": 0.76, "client_budget_mult": 0.78, "currency": "EUR", "ppp_index": 0.78, "col_index": 80, "flag": "🇧🇪"},
+    "FI": {"name": "Finland", "region": "western_europe", "rate_mult": 0.83, "client_budget_mult": 0.84, "currency": "EUR", "ppp_index": 0.79, "col_index": 83, "flag": "🇫🇮"},
     # ---- EASTERN EUROPE ----
-    "PL": {"name": "Poland", "region": "eastern_europe", "rate_mult": 0.45, "client_budget_mult": 0.50, "currency": "PLN", "ppp_index": 0.48, "col_index": 45, "flag": "🇵🇱"},
-    "RO": {"name": "Romania", "region": "eastern_europe", "rate_mult": 0.38, "client_budget_mult": 0.42, "currency": "RON", "ppp_index": 0.40, "col_index": 38, "flag": "🇷🇴"},
-    "CZ": {"name": "Czech Republic", "region": "eastern_europe", "rate_mult": 0.45, "client_budget_mult": 0.48, "currency": "CZK", "ppp_index": 0.47, "col_index": 46, "flag": "🇨🇿"},
-    "UA": {"name": "Ukraine", "region": "eastern_europe", "rate_mult": 0.30, "client_budget_mult": 0.32, "currency": "UAH", "ppp_index": 0.25, "col_index": 28, "flag": "🇺🇦"},
-    "HU": {"name": "Hungary", "region": "eastern_europe", "rate_mult": 0.38, "client_budget_mult": 0.42, "currency": "HUF", "ppp_index": 0.40, "col_index": 40, "flag": "🇭🇺"},
-    "BG": {"name": "Bulgaria", "region": "eastern_europe", "rate_mult": 0.32, "client_budget_mult": 0.35, "currency": "BGN", "ppp_index": 0.35, "col_index": 33, "flag": "🇧🇬"},
-    "HR": {"name": "Croatia", "region": "eastern_europe", "rate_mult": 0.40, "client_budget_mult": 0.43, "currency": "EUR", "ppp_index": 0.42, "col_index": 42, "flag": "🇭🇷"},
-    "RS": {"name": "Serbia", "region": "eastern_europe", "rate_mult": 0.32, "client_budget_mult": 0.35, "currency": "RSD", "ppp_index": 0.33, "col_index": 32, "flag": "🇷🇸"},
-    "RU": {"name": "Russia", "region": "eastern_europe", "rate_mult": 0.35, "client_budget_mult": 0.38, "currency": "RUB", "ppp_index": 0.30, "col_index": 35, "flag": "🇷🇺"},
+    "PL": {"name": "Poland", "region": "eastern_europe", "rate_mult": 0.54, "client_budget_mult": 0.52, "currency": "PLN", "ppp_index": 0.48, "col_index": 45, "flag": "🇵🇱"},
+    "RO": {"name": "Romania", "region": "eastern_europe", "rate_mult": 0.50, "client_budget_mult": 0.48, "currency": "RON", "ppp_index": 0.40, "col_index": 38, "flag": "🇷🇴"},
+    "CZ": {"name": "Czech Republic", "region": "eastern_europe", "rate_mult": 0.57, "client_budget_mult": 0.55, "currency": "CZK", "ppp_index": 0.47, "col_index": 46, "flag": "🇨🇿"},
+    "UA": {"name": "Ukraine", "region": "eastern_europe", "rate_mult": 0.43, "client_budget_mult": 0.40, "currency": "UAH", "ppp_index": 0.25, "col_index": 28, "flag": "🇺🇦"},
+    "HU": {"name": "Hungary", "region": "eastern_europe", "rate_mult": 0.49, "client_budget_mult": 0.46, "currency": "HUF", "ppp_index": 0.40, "col_index": 40, "flag": "🇭🇺"},
+    "BG": {"name": "Bulgaria", "region": "eastern_europe", "rate_mult": 0.47, "client_budget_mult": 0.44, "currency": "BGN", "ppp_index": 0.35, "col_index": 33, "flag": "🇧🇬"},
+    "HR": {"name": "Croatia", "region": "eastern_europe", "rate_mult": 0.51, "client_budget_mult": 0.48, "currency": "EUR", "ppp_index": 0.42, "col_index": 42, "flag": "🇭🇷"},
+    "RS": {"name": "Serbia", "region": "eastern_europe", "rate_mult": 0.46, "client_budget_mult": 0.42, "currency": "RSD", "ppp_index": 0.33, "col_index": 32, "flag": "🇷🇸"},
+    "RU": {"name": "Russia", "region": "eastern_europe", "rate_mult": 0.46, "client_budget_mult": 0.42, "currency": "RUB", "ppp_index": 0.30, "col_index": 35, "flag": "🇷🇺"},
     # ---- AUSTRALIA & OCEANIA ----
-    "AU": {"name": "Australia", "region": "australia_nz", "rate_mult": 0.88, "client_budget_mult": 0.88, "currency": "AUD", "ppp_index": 0.82, "col_index": 88, "flag": "🇦🇺"},
-    "NZ": {"name": "New Zealand", "region": "australia_nz", "rate_mult": 0.78, "client_budget_mult": 0.80, "currency": "NZD", "ppp_index": 0.75, "col_index": 78, "flag": "🇳🇿"},
-    # ---- SOUTH ASIA ----
-    "PK": {"name": "Pakistan", "region": "south_asia", "rate_mult": 0.18, "client_budget_mult": 0.15, "currency": "PKR", "ppp_index": 0.12, "col_index": 15, "flag": "🇵🇰"},
-    "IN": {"name": "India", "region": "south_asia", "rate_mult": 0.25, "client_budget_mult": 0.22, "currency": "INR", "ppp_index": 0.18, "col_index": 22, "flag": "🇮🇳"},
-    "BD": {"name": "Bangladesh", "region": "south_asia", "rate_mult": 0.15, "client_budget_mult": 0.12, "currency": "BDT", "ppp_index": 0.10, "col_index": 12, "flag": "🇧🇩"},
-    "LK": {"name": "Sri Lanka", "region": "south_asia", "rate_mult": 0.20, "client_budget_mult": 0.18, "currency": "LKR", "ppp_index": 0.14, "col_index": 18, "flag": "🇱🇰"},
-    "NP": {"name": "Nepal", "region": "south_asia", "rate_mult": 0.14, "client_budget_mult": 0.12, "currency": "NPR", "ppp_index": 0.10, "col_index": 12, "flag": "🇳🇵"},
+    "AU": {"name": "Australia", "region": "australia_nz", "rate_mult": 1.30, "client_budget_mult": 1.05, "currency": "AUD", "ppp_index": 0.82, "col_index": 88, "flag": "🇦🇺"},
+    "NZ": {"name": "New Zealand", "region": "australia_nz", "rate_mult": 1.00, "client_budget_mult": 0.90, "currency": "NZD", "ppp_index": 0.75, "col_index": 78, "flag": "🇳🇿"},
+    # ---- SOUTH ASIA (Key target market - detailed calibration) ----
+    "PK": {"name": "Pakistan", "region": "south_asia", "rate_mult": 0.26, "client_budget_mult": 0.18, "currency": "PKR", "ppp_index": 0.12, "col_index": 15, "flag": "🇵🇰"},
+    "IN": {"name": "India", "region": "south_asia", "rate_mult": 0.36, "client_budget_mult": 0.28, "currency": "INR", "ppp_index": 0.18, "col_index": 22, "flag": "🇮🇳"},
+    "BD": {"name": "Bangladesh", "region": "south_asia", "rate_mult": 0.17, "client_budget_mult": 0.12, "currency": "BDT", "ppp_index": 0.10, "col_index": 12, "flag": "🇧🇩"},
+    "LK": {"name": "Sri Lanka", "region": "south_asia", "rate_mult": 0.31, "client_budget_mult": 0.24, "currency": "LKR", "ppp_index": 0.14, "col_index": 18, "flag": "🇱🇰"},
+    "NP": {"name": "Nepal", "region": "south_asia", "rate_mult": 0.17, "client_budget_mult": 0.12, "currency": "NPR", "ppp_index": 0.10, "col_index": 12, "flag": "🇳🇵"},
     # ---- SOUTHEAST ASIA ----
-    "PH": {"name": "Philippines", "region": "southeast_asia", "rate_mult": 0.25, "client_budget_mult": 0.22, "currency": "PHP", "ppp_index": 0.18, "col_index": 22, "flag": "🇵🇭"},
-    "VN": {"name": "Vietnam", "region": "southeast_asia", "rate_mult": 0.22, "client_budget_mult": 0.20, "currency": "VND", "ppp_index": 0.16, "col_index": 20, "flag": "🇻🇳"},
-    "ID": {"name": "Indonesia", "region": "southeast_asia", "rate_mult": 0.22, "client_budget_mult": 0.20, "currency": "IDR", "ppp_index": 0.16, "col_index": 20, "flag": "🇮🇩"},
-    "TH": {"name": "Thailand", "region": "southeast_asia", "rate_mult": 0.30, "client_budget_mult": 0.28, "currency": "THB", "ppp_index": 0.22, "col_index": 30, "flag": "🇹🇭"},
-    "MY": {"name": "Malaysia", "region": "southeast_asia", "rate_mult": 0.35, "client_budget_mult": 0.33, "currency": "MYR", "ppp_index": 0.28, "col_index": 35, "flag": "🇲🇾"},
-    "SG": {"name": "Singapore", "region": "southeast_asia", "rate_mult": 0.80, "client_budget_mult": 0.78, "currency": "SGD", "ppp_index": 0.72, "col_index": 85, "flag": "🇸🇬"},
+    "PH": {"name": "Philippines", "region": "southeast_asia", "rate_mult": 0.31, "client_budget_mult": 0.26, "currency": "PHP", "ppp_index": 0.18, "col_index": 22, "flag": "🇵🇭"},
+    "VN": {"name": "Vietnam", "region": "southeast_asia", "rate_mult": 0.29, "client_budget_mult": 0.24, "currency": "VND", "ppp_index": 0.16, "col_index": 20, "flag": "🇻🇳"},
+    "ID": {"name": "Indonesia", "region": "southeast_asia", "rate_mult": 0.29, "client_budget_mult": 0.24, "currency": "IDR", "ppp_index": 0.16, "col_index": 20, "flag": "🇮🇩"},
+    "TH": {"name": "Thailand", "region": "southeast_asia", "rate_mult": 0.46, "client_budget_mult": 0.38, "currency": "THB", "ppp_index": 0.22, "col_index": 30, "flag": "🇹🇭"},
+    "MY": {"name": "Malaysia", "region": "southeast_asia", "rate_mult": 0.50, "client_budget_mult": 0.42, "currency": "MYR", "ppp_index": 0.28, "col_index": 35, "flag": "🇲🇾"},
+    "SG": {"name": "Singapore", "region": "southeast_asia", "rate_mult": 0.79, "client_budget_mult": 0.76, "currency": "SGD", "ppp_index": 0.72, "col_index": 85, "flag": "🇸🇬"},
     # ---- EAST ASIA ----
-    "JP": {"name": "Japan", "region": "east_asia", "rate_mult": 0.65, "client_budget_mult": 0.68, "currency": "JPY", "ppp_index": 0.60, "col_index": 72, "flag": "🇯🇵"},
-    "KR": {"name": "South Korea", "region": "east_asia", "rate_mult": 0.58, "client_budget_mult": 0.60, "currency": "KRW", "ppp_index": 0.55, "col_index": 65, "flag": "🇰🇷"},
-    "CN": {"name": "China", "region": "east_asia", "rate_mult": 0.40, "client_budget_mult": 0.38, "currency": "CNY", "ppp_index": 0.32, "col_index": 42, "flag": "🇨🇳"},
-    "TW": {"name": "Taiwan", "region": "east_asia", "rate_mult": 0.48, "client_budget_mult": 0.50, "currency": "TWD", "ppp_index": 0.45, "col_index": 52, "flag": "🇹🇼"},
-    "HK": {"name": "Hong Kong", "region": "east_asia", "rate_mult": 0.75, "client_budget_mult": 0.75, "currency": "HKD", "ppp_index": 0.68, "col_index": 82, "flag": "🇭🇰"},
+    "JP": {"name": "Japan", "region": "east_asia", "rate_mult": 0.74, "client_budget_mult": 0.72, "currency": "JPY", "ppp_index": 0.60, "col_index": 72, "flag": "🇯🇵"},
+    "KR": {"name": "South Korea", "region": "east_asia", "rate_mult": 0.69, "client_budget_mult": 0.65, "currency": "KRW", "ppp_index": 0.55, "col_index": 65, "flag": "🇰🇷"},
+    "CN": {"name": "China", "region": "east_asia", "rate_mult": 0.49, "client_budget_mult": 0.44, "currency": "CNY", "ppp_index": 0.32, "col_index": 42, "flag": "🇨🇳"},
+    "TW": {"name": "Taiwan", "region": "east_asia", "rate_mult": 0.63, "client_budget_mult": 0.58, "currency": "TWD", "ppp_index": 0.45, "col_index": 52, "flag": "🇹🇼"},
+    "HK": {"name": "Hong Kong", "region": "east_asia", "rate_mult": 0.74, "client_budget_mult": 0.72, "currency": "HKD", "ppp_index": 0.68, "col_index": 82, "flag": "🇭🇰"},
     # ---- MIDDLE EAST ----
-    "AE": {"name": "United Arab Emirates", "region": "middle_east", "rate_mult": 0.70, "client_budget_mult": 0.72, "currency": "AED", "ppp_index": 0.60, "col_index": 75, "flag": "🇦🇪"},
-    "SA": {"name": "Saudi Arabia", "region": "middle_east", "rate_mult": 0.55, "client_budget_mult": 0.58, "currency": "SAR", "ppp_index": 0.48, "col_index": 55, "flag": "🇸🇦"},
-    "QA": {"name": "Qatar", "region": "middle_east", "rate_mult": 0.68, "client_budget_mult": 0.70, "currency": "QAR", "ppp_index": 0.58, "col_index": 72, "flag": "🇶🇦"},
-    "KW": {"name": "Kuwait", "region": "middle_east", "rate_mult": 0.60, "client_budget_mult": 0.62, "currency": "KWD", "ppp_index": 0.52, "col_index": 62, "flag": "🇰🇼"},
-    "IL": {"name": "Israel", "region": "middle_east", "rate_mult": 0.78, "client_budget_mult": 0.80, "currency": "ILS", "ppp_index": 0.70, "col_index": 82, "flag": "🇮🇱"},
-    "TR": {"name": "Turkey", "region": "middle_east", "rate_mult": 0.30, "client_budget_mult": 0.28, "currency": "TRY", "ppp_index": 0.22, "col_index": 30, "flag": "🇹🇷"},
-    "JO": {"name": "Jordan", "region": "middle_east", "rate_mult": 0.35, "client_budget_mult": 0.35, "currency": "JOD", "ppp_index": 0.30, "col_index": 38, "flag": "🇯🇴"},
-    "EG": {"name": "Egypt", "region": "middle_east", "rate_mult": 0.20, "client_budget_mult": 0.18, "currency": "EGP", "ppp_index": 0.12, "col_index": 18, "flag": "🇪🇬"},
+    "AE": {"name": "United Arab Emirates", "region": "middle_east", "rate_mult": 0.71, "client_budget_mult": 0.72, "currency": "AED", "ppp_index": 0.60, "col_index": 75, "flag": "🇦🇪"},
+    "SA": {"name": "Saudi Arabia", "region": "middle_east", "rate_mult": 0.60, "client_budget_mult": 0.58, "currency": "SAR", "ppp_index": 0.48, "col_index": 55, "flag": "🇸🇦"},
+    "QA": {"name": "Qatar", "region": "middle_east", "rate_mult": 0.69, "client_budget_mult": 0.68, "currency": "QAR", "ppp_index": 0.58, "col_index": 72, "flag": "🇶🇦"},
+    "KW": {"name": "Kuwait", "region": "middle_east", "rate_mult": 0.64, "client_budget_mult": 0.62, "currency": "KWD", "ppp_index": 0.52, "col_index": 62, "flag": "🇰🇼"},
+    "IL": {"name": "Israel", "region": "middle_east", "rate_mult": 0.83, "client_budget_mult": 0.82, "currency": "ILS", "ppp_index": 0.70, "col_index": 82, "flag": "🇮🇱"},
+    "TR": {"name": "Turkey", "region": "middle_east", "rate_mult": 0.40, "client_budget_mult": 0.35, "currency": "TRY", "ppp_index": 0.22, "col_index": 30, "flag": "🇹🇷"},
+    "JO": {"name": "Jordan", "region": "middle_east", "rate_mult": 0.40, "client_budget_mult": 0.38, "currency": "JOD", "ppp_index": 0.30, "col_index": 38, "flag": "🇯🇴"},
+    "EG": {"name": "Egypt", "region": "middle_east", "rate_mult": 0.26, "client_budget_mult": 0.22, "currency": "EGP", "ppp_index": 0.12, "col_index": 18, "flag": "🇪🇬"},
     # ---- LATIN AMERICA ----
-    "BR": {"name": "Brazil", "region": "latin_america", "rate_mult": 0.35, "client_budget_mult": 0.35, "currency": "BRL", "ppp_index": 0.28, "col_index": 35, "flag": "🇧🇷"},
-    "MX": {"name": "Mexico", "region": "latin_america", "rate_mult": 0.35, "client_budget_mult": 0.32, "currency": "MXN", "ppp_index": 0.25, "col_index": 32, "flag": "🇲🇽"},
-    "AR": {"name": "Argentina", "region": "latin_america", "rate_mult": 0.30, "client_budget_mult": 0.28, "currency": "ARS", "ppp_index": 0.18, "col_index": 28, "flag": "🇦🇷"},
-    "CO": {"name": "Colombia", "region": "latin_america", "rate_mult": 0.28, "client_budget_mult": 0.25, "currency": "COP", "ppp_index": 0.20, "col_index": 26, "flag": "🇨🇴"},
-    "CL": {"name": "Chile", "region": "latin_america", "rate_mult": 0.38, "client_budget_mult": 0.38, "currency": "CLP", "ppp_index": 0.32, "col_index": 38, "flag": "🇨🇱"},
-    "PE": {"name": "Peru", "region": "latin_america", "rate_mult": 0.25, "client_budget_mult": 0.22, "currency": "PEN", "ppp_index": 0.18, "col_index": 24, "flag": "🇵🇪"},
-    "UY": {"name": "Uruguay", "region": "latin_america", "rate_mult": 0.38, "client_budget_mult": 0.38, "currency": "UYU", "ppp_index": 0.30, "col_index": 40, "flag": "🇺🇾"},
+    "BR": {"name": "Brazil", "region": "latin_america", "rate_mult": 0.43, "client_budget_mult": 0.40, "currency": "BRL", "ppp_index": 0.28, "col_index": 35, "flag": "🇧🇷"},
+    "MX": {"name": "Mexico", "region": "latin_america", "rate_mult": 0.46, "client_budget_mult": 0.42, "currency": "MXN", "ppp_index": 0.25, "col_index": 32, "flag": "🇲🇽"},
+    "AR": {"name": "Argentina", "region": "latin_america", "rate_mult": 0.40, "client_budget_mult": 0.35, "currency": "ARS", "ppp_index": 0.18, "col_index": 28, "flag": "🇦🇷"},
+    "CO": {"name": "Colombia", "region": "latin_america", "rate_mult": 0.39, "client_budget_mult": 0.34, "currency": "COP", "ppp_index": 0.20, "col_index": 26, "flag": "🇨🇴"},
+    "CL": {"name": "Chile", "region": "latin_america", "rate_mult": 0.53, "client_budget_mult": 0.48, "currency": "CLP", "ppp_index": 0.32, "col_index": 38, "flag": "🇨🇱"},
+    "PE": {"name": "Peru", "region": "latin_america", "rate_mult": 0.36, "client_budget_mult": 0.30, "currency": "PEN", "ppp_index": 0.18, "col_index": 24, "flag": "🇵🇪"},
+    "UY": {"name": "Uruguay", "region": "latin_america", "rate_mult": 0.51, "client_budget_mult": 0.46, "currency": "UYU", "ppp_index": 0.30, "col_index": 40, "flag": "🇺🇾"},
     # ---- AFRICA ----
-    "NG": {"name": "Nigeria", "region": "africa", "rate_mult": 0.18, "client_budget_mult": 0.15, "currency": "NGN", "ppp_index": 0.08, "col_index": 14, "flag": "🇳🇬"},
-    "KE": {"name": "Kenya", "region": "africa", "rate_mult": 0.20, "client_budget_mult": 0.18, "currency": "KES", "ppp_index": 0.10, "col_index": 18, "flag": "🇰🇪"},
-    "ZA": {"name": "South Africa", "region": "africa", "rate_mult": 0.32, "client_budget_mult": 0.30, "currency": "ZAR", "ppp_index": 0.22, "col_index": 30, "flag": "🇿🇦"},
-    "GH": {"name": "Ghana", "region": "africa", "rate_mult": 0.18, "client_budget_mult": 0.15, "currency": "GHS", "ppp_index": 0.08, "col_index": 15, "flag": "🇬🇭"},
-    "ET": {"name": "Ethiopia", "region": "africa", "rate_mult": 0.12, "client_budget_mult": 0.10, "currency": "ETB", "ppp_index": 0.06, "col_index": 10, "flag": "🇪🇹"},
-    "TZ": {"name": "Tanzania", "region": "africa", "rate_mult": 0.14, "client_budget_mult": 0.12, "currency": "TZS", "ppp_index": 0.07, "col_index": 12, "flag": "🇹🇿"},
-    "MA": {"name": "Morocco", "region": "africa", "rate_mult": 0.22, "client_budget_mult": 0.20, "currency": "MAD", "ppp_index": 0.15, "col_index": 22, "flag": "🇲🇦"},
-    "TN": {"name": "Tunisia", "region": "africa", "rate_mult": 0.20, "client_budget_mult": 0.18, "currency": "TND", "ppp_index": 0.12, "col_index": 20, "flag": "🇹🇳"},
+    "NG": {"name": "Nigeria", "region": "africa", "rate_mult": 0.21, "client_budget_mult": 0.17, "currency": "NGN", "ppp_index": 0.08, "col_index": 14, "flag": "🇳🇬"},
+    "KE": {"name": "Kenya", "region": "africa", "rate_mult": 0.26, "client_budget_mult": 0.22, "currency": "KES", "ppp_index": 0.10, "col_index": 18, "flag": "🇰🇪"},
+    "ZA": {"name": "South Africa", "region": "africa", "rate_mult": 0.39, "client_budget_mult": 0.35, "currency": "ZAR", "ppp_index": 0.22, "col_index": 30, "flag": "🇿🇦"},
+    "GH": {"name": "Ghana", "region": "africa", "rate_mult": 0.21, "client_budget_mult": 0.17, "currency": "GHS", "ppp_index": 0.08, "col_index": 15, "flag": "🇬🇭"},
+    "ET": {"name": "Ethiopia", "region": "africa", "rate_mult": 0.14, "client_budget_mult": 0.10, "currency": "ETB", "ppp_index": 0.06, "col_index": 10, "flag": "🇪🇹"},
+    "TZ": {"name": "Tanzania", "region": "africa", "rate_mult": 0.17, "client_budget_mult": 0.14, "currency": "TZS", "ppp_index": 0.07, "col_index": 12, "flag": "🇹🇿"},
+    "MA": {"name": "Morocco", "region": "africa", "rate_mult": 0.29, "client_budget_mult": 0.24, "currency": "MAD", "ppp_index": 0.15, "col_index": 22, "flag": "🇲🇦"},
+    "TN": {"name": "Tunisia", "region": "africa", "rate_mult": 0.26, "client_budget_mult": 0.22, "currency": "TND", "ppp_index": 0.12, "col_index": 20, "flag": "🇹🇳"},
 }
 
 # Grouped countries by region for the UI
@@ -392,12 +424,26 @@ def get_categories() -> List[Dict[str, Any]]:
         cat_info = category_labels.get(cat_key, {"label": cat_key, "icon": "layers", "description": ""})
         service_list = []
         for svc_key, rates in services.items():
-            demand = DEMAND_INDICATORS.get(svc_key, "moderate")
+            demand_data = get_demand_data(svc_key)
+            if demand_data:
+                demand_score = demand_data["demand_score"]
+                demand = (
+                    "very_high" if demand_score >= 85
+                    else "high" if demand_score >= 70
+                    else "moderate" if demand_score >= 50
+                    else "low" if demand_score >= 30
+                    else "saturated"
+                )
+                demand_trend = demand_data.get("trend", "stable")
+            else:
+                demand = DEMAND_INDICATORS.get(svc_key, "moderate")
+                demand_trend = "unknown"
             service_list.append({
                 "key": svc_key,
                 "label": svc_key.replace("_", " ").title(),
                 "avg_rate": round((rates["mid"] + rates["senior"]) / 2, 2),
                 "demand": demand,
+                "demand_trend": demand_trend,
             })
         result.append({
             "key": cat_key,
@@ -789,6 +835,16 @@ def estimate_price(
 
     base_rate = service_rates.get(experience_level, service_rates["mid"])
 
+    # 1b. Blend with real-world data from market_data_2025
+    data_driven = calculate_data_driven_rate(
+        service_type, experience_level,
+        country_code=freelancer_country or client_country,
+    )
+    if data_driven["confidence"] != "low":
+        # Weighted blend: 55% hardcoded rates, 45% real-world data
+        base_rate = base_rate * 0.55 + data_driven["rate"] * 0.45
+    data_sources_used = data_driven.get("sources", [])
+
     # 2. Apply multipliers — use country-level data if available
     client_data = COUNTRY_DATA.get(client_country, None) if client_country else None
     freelancer_data = COUNTRY_DATA.get(freelancer_country, None) if freelancer_country else None
@@ -845,15 +901,31 @@ def estimate_price(
         features_bonus = 1 + len(features) * 0.03
         features_bonus = min(features_bonus, 1.5)  # Cap at 50% increase
 
-    # 6. Demand adjustment
-    demand = DEMAND_INDICATORS.get(service_type, "moderate")
-    demand_mult = {
-        "very_high": 1.15,
-        "high": 1.08,
-        "moderate": 1.0,
-        "low": 0.90,
-        "saturated": 0.80,
-    }.get(demand, 1.0)
+    # 6. Demand adjustment — use DEMAND_INDEX_2025 for granular data
+    demand_data_2025 = get_demand_data(service_type)
+    if demand_data_2025:
+        dscore = demand_data_2025["demand_score"]
+        # Continuous demand multiplier: score 50 → 1.0, score 100 → 1.20, score 0 → 0.80
+        demand_mult = 0.80 + (dscore / 100) * 0.40
+        demand = (
+            "very_high" if dscore >= 85
+            else "high" if dscore >= 70
+            else "moderate" if dscore >= 50
+            else "low" if dscore >= 30
+            else "saturated"
+        )
+        demand_trend = demand_data_2025.get("trend", "stable")
+        data_sources_used.append("Demand Index 2025")
+    else:
+        demand = DEMAND_INDICATORS.get(service_type, "moderate")
+        demand_mult = {
+            "very_high": 1.15,
+            "high": 1.08,
+            "moderate": 1.0,
+            "low": 0.90,
+            "saturated": 0.80,
+        }.get(demand, 1.0)
+        demand_trend = "unknown"
 
     effective_rate *= demand_mult * desc_bonus * features_bonus
 
@@ -867,7 +939,9 @@ def estimate_price(
 
     # 9. Calculate confidence score
     confidence = _calculate_confidence(
-        category, service_type, estimated_hours, description, features, experience_level
+        category, service_type, estimated_hours, description, features, experience_level,
+        data_sources_used=data_sources_used,
+        freelancer_country=freelancer_country,
     )
 
     # 10. Market comparison
@@ -891,7 +965,8 @@ def estimate_price(
     # 14. Regional analysis — detailed country-level pricing context
     regional_analysis = _build_regional_analysis(
         client_data, freelancer_data, region, base_rate,
-        effective_rate, regional_mult, total_estimate
+        effective_rate, regional_mult, total_estimate,
+        service_type=service_type,
     )
 
     return {
@@ -910,6 +985,7 @@ def estimate_price(
         "roi_insights": roi_insights,
         "timeline": timeline,
         "demand_level": demand,
+        "demand_trend": demand_trend,
         "regional_analysis": regional_analysis,
         "meta": {
             "category": category,
@@ -923,6 +999,8 @@ def estimate_price(
             "client_country": client_country,
             "freelancer_country": freelancer_country,
             "generated_at": datetime.utcnow().isoformat(),
+            "data_version": DATA_VERSION,
+            "data_sources": data_sources_used,
         }
     }
 
@@ -977,8 +1055,10 @@ def _calculate_confidence(
     description: str,
     features: Optional[List[str]],
     experience_level: str,
+    data_sources_used: Optional[List[str]] = None,
+    freelancer_country: Optional[str] = None,
 ) -> Dict[str, Any]:
-    """Calculate estimation confidence score with factors."""
+    """Calculate estimation confidence score with factors and data quality."""
     score = 60  # Base confidence
     factors = []
 
@@ -1010,7 +1090,32 @@ def _calculate_confidence(
         score += bonus
         factors.append({"factor": f"{len(features)} features specified", "impact": f"+{bonus}"})
 
-    score = min(score, 95)
+    # Data source coverage — real-world data improves confidence
+    src_count = len(data_sources_used) if data_sources_used else 0
+    if src_count >= 3:
+        score += 8
+        factors.append({"factor": f"Backed by {src_count} data sources", "impact": "+8"})
+    elif src_count >= 1:
+        score += 4
+        factors.append({"factor": f"Backed by {src_count} data source(s)", "impact": "+4"})
+
+    # Country-level rate data from Arc.dev survey
+    if freelancer_country:
+        country_rate = get_country_rate_data(freelancer_country)
+        if country_rate and country_rate.get("sample", 0) >= 50:
+            score += 5
+            factors.append({"factor": f"Strong survey data for {freelancer_country} (n={country_rate['sample']})", "impact": "+5"})
+        elif country_rate:
+            score += 2
+            factors.append({"factor": f"Limited survey data for {freelancer_country} (n={country_rate.get('sample', 0)})", "impact": "+2"})
+
+    # Upwork service rate data available
+    upwork_rate = get_upwork_service_rate(service_type)
+    if upwork_rate:
+        score += 3
+        factors.append({"factor": "Upwork rate benchmark available", "impact": "+3"})
+
+    score = min(score, 98)
 
     level = "high" if score >= 80 else "medium" if score >= 65 else "low"
 
@@ -1018,6 +1123,7 @@ def _calculate_confidence(
         "score": score,
         "level": level,
         "factors": factors,
+        "data_sources_count": src_count,
     }
 
 
@@ -1321,6 +1427,7 @@ def _build_regional_analysis(
     effective_rate: float,
     regional_mult: float,
     total_estimate: float,
+    service_type: str = "",
 ) -> Dict[str, Any]:
     """Build detailed regional pricing analysis with country-specific context."""
     analysis: Dict[str, Any] = {
@@ -1409,6 +1516,53 @@ def _build_regional_analysis(
             })
 
     analysis["comparison_countries"].sort(key=lambda c: c["hourly_rate"], reverse=True)
+
+    # Cross-platform rate comparison (Upwork vs Fiverr)
+    platform_comparison = {}
+    service_to_platform_map = {
+        "web_application": "web_development", "mobile_app": "mobile_development",
+        "ecommerce_platform": "web_development", "saas_product": "web_development",
+        "api_development": "web_development", "ui_ux_design": "design",
+        "logo_branding": "design", "graphic_design": "design", "web_design": "design",
+        "seo_optimization": "marketing_seo", "content_marketing": "marketing_seo",
+        "social_media": "marketing_seo", "ppc_advertising": "marketing_seo",
+        "blog_articles": "writing", "copywriting": "writing", "technical_writing": "writing",
+        "video_editing": "video_animation", "video_production": "video_animation",
+        "animation_2d": "video_animation", "data_science": "data_science_ai",
+        "ai_ml_solution": "data_science_ai", "machine_learning": "data_science_ai",
+        "business_consulting": "consulting", "financial_consulting": "consulting",
+    }
+    platform_cat = service_to_platform_map.get(service_type, "")
+    if platform_cat:
+        for plat in ["upwork", "fiverr"]:
+            plat_data = get_platform_rates(plat, platform_cat)
+            if plat_data:
+                platform_comparison[plat] = plat_data
+    if platform_comparison:
+        analysis["platform_rates"] = platform_comparison
+
+    # Pakistan city-level data if the freelancer is from PK
+    freelancer_code = None
+    if freelancer_data:
+        freelancer_code = next(
+            (k for k, v in COUNTRY_DATA.items() if v["name"] == freelancer_data["name"]),
+            None,
+        )
+    if freelancer_code == "PK":
+        pk_cities = get_pakistan_cities()
+        if pk_cities:
+            analysis["city_rates"] = pk_cities
+
+    # South Asia benchmark context
+    sa_code = freelancer_code or (
+        next((k for k, v in COUNTRY_DATA.items() if v["name"] == client_data["name"]), None)
+        if client_data else None
+    )
+    if sa_code:
+        sa_bench = get_south_asia_benchmark(sa_code)
+        if sa_bench:
+            analysis["regional_benchmark"] = sa_bench
+
     return analysis
 
 

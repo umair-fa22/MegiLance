@@ -1,7 +1,7 @@
 /* @AI-HINT: Common styles for the How It Works section. Defines the responsive grid layout, typography, and structure for a premium, modern design. */
 
 .howItWorks {
-  padding: 8rem 0;
+  padding: 5rem 0;
   position: relative;
   width: 100%;
   overflow: hidden;
