@@ -22,7 +22,7 @@ import light from './Explore.light.module.css';
 import dark from './Explore.dark.module.css';
 
 const PLATFORM_OVERVIEW = {
-  totalPages: 148,
+  totalPages: 145,
   apiEndpointsLabel: '1369',
   dbTablesLabel: '25+',
   frontendApiClients: 185,
@@ -64,14 +64,12 @@ const allPages = [
   { route: '/cookies', name: 'Cookie Policy', description: 'Cookie usage, GDPR', status: 'complete', category: 'public', tech: 'Legal Page' },
   { route: '/privacy', name: 'Privacy Policy', description: 'Data handling, user rights', status: 'complete', category: 'public', tech: 'Legal Page' },
   { route: '/terms', name: 'Terms of Service', description: 'User agreement, policies', status: 'complete', category: 'public', tech: 'Legal Page' },
-  { route: '/analytics', name: 'Analytics', description: 'General analytics page', status: 'complete', category: 'public', tech: 'Charts' },
-  { route: '/user-management', name: 'User Management', description: 'User management interface', status: 'complete', category: 'public', tech: 'Admin UI' },
+  { route: '/analytics', name: 'Analytics', description: 'Platform analytics overview', status: 'complete', category: 'public', tech: 'Charts' },
   { route: '/login', name: 'Login', description: 'Email/password + social auth', status: 'complete', category: 'auth', tech: 'JWT Auth' },
   { route: '/signup', name: 'Sign Up', description: 'Registration with role selection', status: 'complete', category: 'auth', tech: 'Validation' },
   { route: '/forgot-password', name: 'Forgot Password', description: 'Email-based password reset', status: 'complete', category: 'auth', tech: 'Email API' },
   { route: '/verify-email', name: 'Verify Email', description: 'Email verification with token', status: 'complete', category: 'auth', tech: 'Token Verify' },
   { route: '/logout', name: 'Logout', description: 'Session termination', status: 'complete', category: 'auth', tech: 'JWT Clear' },
-  { route: '/test-login', name: 'Test Login', description: 'Development testing login', status: 'complete', category: 'auth', tech: 'Dev Only' },
   { route: '/passwordless', name: 'Passwordless', description: 'Magic link authentication', status: 'complete', category: 'auth', tech: 'Magic Link' },
   { route: '/onboarding', name: 'Onboarding', description: 'New user onboarding flow', status: 'portal', category: 'auth', tech: 'Onboarding' },
   { route: '/client/dashboard', name: 'Client Dashboard', description: 'Projects overview, stats, activity', status: 'portal', category: 'client', tech: 'Real-time Data' },
@@ -131,7 +129,6 @@ const allPages = [
   { route: '/ai/fraud-check', name: 'AI Fraud Check', description: 'AI fraud detection, risk scoring', status: 'complete', category: 'ai', tech: 'Fraud ML' },
   { route: '/explore', name: 'Explore', description: 'This page - platform overview', status: 'complete', category: 'public', tech: 'Demo Page' },
   { route: '/showcase/health', name: 'System Health', description: 'Real-time API and DB health', status: 'complete', category: 'public', tech: 'Health API' },
-  { route: '/showcase/fyp', name: 'FYP Evaluation', description: 'FYP demo script, checklist', status: 'complete', category: 'public', tech: 'Demo Guide' },
 ];
 
 const coreModules = [
@@ -158,28 +155,15 @@ const databaseTables = [
   { name: 'payments', description: 'Payment transactions', columns: 10 },
   { name: 'escrow', description: 'Escrow holdings', columns: 9 },
   { name: 'messages', description: 'Chat messages', columns: 8 },
-  { name: 'conversations', description: 'Chat threads', columns: 6 },
   { name: 'reviews', description: 'User reviews and ratings', columns: 10 },
   { name: 'skills', description: 'Skill taxonomy (500+)', columns: 5 },
-  { name: 'user_skills', description: 'User-skill junction', columns: 4 },
   { name: 'notifications', description: 'User notifications', columns: 9 },
   { name: 'portfolio_items', description: 'Freelancer portfolio', columns: 9 },
   { name: 'categories', description: 'Project categories', columns: 4 },
   { name: 'disputes', description: 'Dispute records', columns: 12 },
   { name: 'audit_logs', description: 'System audit trail', columns: 8 },
-  { name: 'user_sessions', description: 'JWT session tracking', columns: 7 },
   { name: 'invoices', description: 'PDF invoice generation', columns: 11 },
-  { name: 'time_entries', description: 'Hourly time tracking', columns: 8 },
-  { name: 'refunds', description: 'Payment refund records', columns: 9 },
-  { name: 'scope_changes', description: 'Scope change requests', columns: 10 },
-  { name: 'analytics_events', description: 'Analytics tracking', columns: 8 },
   { name: 'project_embeddings', description: 'AI vector embeddings', columns: 5 },
-  { name: 'user_embeddings', description: 'AI user embeddings', columns: 5 },
-  { name: 'user_verifications', description: 'KYC/ID verification', columns: 8 },
-  { name: 'favorites', description: 'Saved items', columns: 5 },
-  { name: 'tags', description: 'Project tags', columns: 4 },
-  { name: 'project_tags', description: 'Project-tag junction', columns: 3 },
-  { name: 'support_tickets', description: 'Support tickets', columns: 10 },
   { name: 'referrals', description: 'Referral tracking', columns: 7 },
 ];
 

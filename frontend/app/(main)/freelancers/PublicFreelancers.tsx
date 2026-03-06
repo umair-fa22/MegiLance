@@ -35,18 +35,14 @@ const SKILL_CATEGORIES = [
 
 const RATE_RANGES = [
   { id: 'all', label: 'Any Rate', min: undefined as number | undefined, max: undefined as number | undefined },
-  { id: 'budget', label: 'Under $25/hr', min: 0, max: 25 },
-  { id: 'moderate', label: '$25 - $50/hr', min: 25, max: 50 },
-  { id: 'professional', label: '$50 - $100/hr', min: 50, max: 100 },
-  { id: 'expert', label: '$100 - $200/hr', min: 100, max: 200 },
-  { id: 'premium', label: '$200+/hr', min: 200, max: undefined as number | undefined },
+  { id: 'budget', label: 'Under $50/hr', min: 0, max: 50 },
+  { id: 'professional', label: '$50 - $150/hr', min: 50, max: 150 },
+  { id: 'expert', label: '$150+/hr', min: 150, max: undefined as number | undefined },
 ];
 
 const RATING_OPTIONS = [
   { id: 0, label: 'Any Rating', stars: 0 },
-  { id: 4.5, label: '4.5 & up', stars: 5 },
   { id: 4.0, label: '4.0 & up', stars: 4 },
-  { id: 3.5, label: '3.5 & up', stars: 4 },
   { id: 3.0, label: '3.0 & up', stars: 3 },
 ];
 
@@ -55,8 +51,6 @@ const SORT_OPTIONS = [
   { id: 'rating_high', label: 'Top Rated' },
   { id: 'rate_low', label: 'Rate: Low to High' },
   { id: 'rate_high', label: 'Rate: High to Low' },
-  { id: 'newest', label: 'Newest' },
-  { id: 'most_viewed', label: 'Most Viewed' },
 ];
 
 const EXPERIENCE_LEVELS = [

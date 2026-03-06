@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { PageTransition } from '@/components/Animations';
+import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';
 import {
   Brain, Shield, Zap, Users, CreditCard, BarChart3,
   MessageSquare, Globe, Lock, FileText, Star, Rocket,
@@ -219,6 +220,19 @@ export default function Features() {
 
   return (
     <PageTransition>
+      {/* Premium 3D Background */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+        <AnimatedOrb variant="purple" size={500} blur={100} opacity={0.07} className="absolute top-[-15%] right-[-15%]" />
+        <AnimatedOrb variant="blue" size={400} blur={80} opacity={0.05} className="absolute bottom-[-10%] left-[-10%]" />
+        <ParticlesSystem count={10} className="absolute inset-0" />
+        <div className="absolute top-24 left-8 opacity-10 animate-float-slow">
+          <FloatingCube size={35} />
+        </div>
+        <div className="absolute bottom-32 right-16 opacity-10 animate-float-medium">
+          <FloatingSphere size={25} variant="gradient" />
+        </div>
+      </div>
+
       <div className={cn(commonStyles.page, t.page)}>
         {/* Hero */}
         <section className={commonStyles.hero}>
