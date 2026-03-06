@@ -61,3 +61,10 @@
     transform: rotate(360deg);
   }
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .container {
+    gap: 0.75rem;
+  }
+}

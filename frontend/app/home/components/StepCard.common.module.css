@@ -154,8 +154,11 @@
 @media (max-width: 768px) {
   .stepCard {
     width: 100%;
-    padding-left: 4rem; /* Space for timeline line */
+    padding: 1.75rem;
+    padding-left: 3.5rem;
     text-align: left;
+    min-height: auto;
+    border-radius: 16px;
   }
   
   .client, .freelancer {
@@ -164,12 +167,51 @@
   }
   
   .client::before, .freelancer::before {
-    left: 1.5rem; /* Align with timeline line */
+    left: 1.25rem;
     right: auto;
+    width: 16px;
+    height: 16px;
   }
   
   .client .stepNumber, .freelancer .stepNumber {
-    right: 1rem;
+    right: 0.75rem;
     left: auto;
+  }
+
+  .iconWrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+  }
+
+  .iconWrapper svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .description {
+    font-size: 0.9375rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .stepCard {
+    padding: 1.25rem;
+    padding-left: 3rem;
+  }
+
+  .client::before, .freelancer::before {
+    left: 1rem;
+    width: 14px;
+    height: 14px;
+  }
+
+  .title {
+    font-size: 1.125rem;
   }
 }

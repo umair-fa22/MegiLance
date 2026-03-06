@@ -81,4 +81,11 @@
   vertical-align: middle;
 }
 
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .wrapper {
+    border-radius: 0.5rem;
+  }
+}
+
 

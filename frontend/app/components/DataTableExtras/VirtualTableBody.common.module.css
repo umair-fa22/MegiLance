@@ -5,3 +5,10 @@
   text-align: center;
   opacity: 0.8;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .noData {
+    font-size: 0.875rem;
+  }
+}

@@ -21,3 +21,16 @@
   font-weight: 700;
   font-size: 14px;
 }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .container {
+    height: 220px;
+  }
+}
+
+@media (max-width: 374px) {
+  .container {
+    height: 180px;
+  }
+}

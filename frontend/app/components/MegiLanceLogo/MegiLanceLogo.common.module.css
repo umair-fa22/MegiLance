@@ -69,3 +69,10 @@
 }
 
 /* Removed 'flow' animation as it adds unnecessary visual noise */
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .container {
+    gap: 0.5rem;
+  }
+}

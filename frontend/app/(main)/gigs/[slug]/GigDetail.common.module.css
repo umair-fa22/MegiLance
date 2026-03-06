@@ -719,3 +719,94 @@
     color 0.2s ease,
     opacity 0.2s ease;
 }
+
+/* ── Small Device Responsive ── */
+@media (max-width: 480px) {
+  .page {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .gigTitle {
+    font-size: 1.25rem;
+  }
+
+  .sellerStats {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .aboutSeller {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .aboutStats {
+    gap: 1rem;
+  }
+
+  .packageContent {
+    padding: 1rem;
+  }
+
+  .packageHeader {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .packageMeta {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .quickActions {
+    flex-direction: column;
+  }
+
+  .relatedGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .errorTitle {
+    font-size: 1.25rem;
+  }
+
+  .errorState {
+    padding: 2rem 1rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .gigTitle {
+    font-size: 1.125rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.0625rem;
+  }
+
+  .packageName {
+    font-size: 1.0625rem;
+  }
+
+  .packagePrice {
+    font-size: 1.25rem;
+  }
+
+  .reviewsRating {
+    font-size: 1.25rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.625rem;
+  }
+}

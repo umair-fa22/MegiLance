@@ -7,3 +7,12 @@
 .section { margin-bottom: var(--spacing-10); }
 .sectionTitle { font-size: 1.4rem; margin-bottom: var(--spacing-3); font-weight: var(--font-weight-semibold); }
 .sectionContent { line-height: 1.7; }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .container { padding: 0 var(--spacing-4); }
+}
+
+@media (max-width: 374px) {
+  .container { padding: 0 var(--spacing-3); }
+}

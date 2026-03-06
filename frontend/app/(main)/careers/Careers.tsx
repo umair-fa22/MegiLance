@@ -19,8 +19,6 @@ import {
   GraduationCap,
   Briefcase,
   Code,
-  Palette,
-  MessageSquare,
   TrendingUp
 } from 'lucide-react';
 import common from './Careers.common.module.css';
@@ -47,24 +45,6 @@ const roles = [
     description: 'Design and scale our FastAPI backend services and AI matching systems.'
   },
   { 
-    id: 'pm', 
-    title: 'Product Manager', 
-    location: 'Remote', 
-    type: 'Full-time',
-    department: 'Product',
-    icon: Briefcase,
-    description: 'Drive product strategy and work closely with engineering to deliver exceptional features.'
-  },
-  { 
-    id: 'ds', 
-    title: 'Design Systems Engineer', 
-    location: 'Remote', 
-    type: 'Contract',
-    department: 'Design',
-    icon: Palette,
-    description: 'Build and maintain our component library with world-class accessibility standards.'
-  },
-  { 
     id: 'ml-eng', 
     title: 'Machine Learning Engineer', 
     location: 'Remote', 
@@ -72,15 +52,6 @@ const roles = [
     department: 'AI/ML',
     icon: TrendingUp,
     description: 'Improve our AI matching algorithm and develop new intelligent features.'
-  },
-  { 
-    id: 'cs', 
-    title: 'Customer Success Manager', 
-    location: 'Remote', 
-    type: 'Full-time',
-    department: 'Operations',
-    icon: MessageSquare,
-    description: 'Help clients and freelancers succeed on the platform and gather feedback.'
   },
 ];
 

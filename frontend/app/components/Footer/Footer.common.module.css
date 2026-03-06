@@ -218,18 +218,46 @@
 
 @media (max-width: 640px) {
   .container {
-    padding: 3rem 1.5rem 2rem;
+    padding: 3rem 1.25rem 1.5rem;
   }
 
   .linksGrid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
   }
 
   .bottomBar {
     flex-direction: column-reverse;
-    gap: 1.5rem;
-    margin-top: 3rem;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
     text-align: center;
+  }
+
+  .socialLink {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 374px) {
+  .container {
+    padding: 2.5rem 1rem 1.5rem;
+  }
+
+  .linksGrid {
+    gap: 1.5rem;
+  }
+
+  .linksTitle {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .linkItem {
+    font-size: 0.8125rem;
+  }
+
+  .tagline {
+    font-size: 0.875rem;
   }
 }

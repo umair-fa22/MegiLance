@@ -25,3 +25,10 @@
 .icon {
   transition: color 0.3s ease;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .button {
+    padding: 6px;
+  }
+}

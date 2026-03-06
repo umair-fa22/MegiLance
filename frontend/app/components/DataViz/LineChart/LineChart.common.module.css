@@ -95,3 +95,16 @@
   white-space: nowrap;
   border: 0;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .chartTitle {
+    font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+  }
+}
+
+@media (max-width: 374px) {
+  .chartTitle {
+    font-size: 0.875rem;
+  }
+}

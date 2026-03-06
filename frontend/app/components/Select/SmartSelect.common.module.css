@@ -419,3 +419,10 @@
   outline: 2px solid var(--color-primary, #4573df);
   outline-offset: 2px;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .trigger {
+    font-size: 0.875rem;
+  }
+}

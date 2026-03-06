@@ -154,3 +154,34 @@
   padding-top: var(--spacing-4);
   border-top: 1px solid transparent;
 }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .card {
+    padding: var(--spacing-4);
+  }
+
+  .cardHeader {
+    gap: var(--spacing-3);
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .cardFooter {
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+}
+
+@media (max-width: 374px) {
+  .card {
+    padding: var(--spacing-3);
+  }
+
+  .matchBadge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+  }
+}

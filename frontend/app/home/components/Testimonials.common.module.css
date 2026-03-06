@@ -56,3 +56,27 @@
     gap: 2rem;
   }
 }
+
+@media (max-width: 480px) {
+  .testimonials {
+    padding: 3rem 0;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .testimonialsGrid {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .title {
+    font-size: 1.75rem;
+  }
+}

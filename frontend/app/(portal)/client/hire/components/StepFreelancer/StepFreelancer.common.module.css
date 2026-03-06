@@ -28,3 +28,28 @@
   margin-top: 0.5rem; /* 8px */
   transition: color 0.3s ease;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .section {
+    padding: 1.25rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .section {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.125rem;
+  }
+
+  .inputWrapper {
+    max-width: 100%;
+  }
+}

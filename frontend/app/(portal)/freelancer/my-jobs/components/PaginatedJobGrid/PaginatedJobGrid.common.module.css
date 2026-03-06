@@ -35,3 +35,24 @@
   justify-content: flex-start;
   align-items: center;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .section {
+    padding: 1rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .section {
+    padding: 0.75rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.125rem;
+  }
+}

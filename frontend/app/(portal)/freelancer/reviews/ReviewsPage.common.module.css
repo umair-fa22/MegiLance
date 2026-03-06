@@ -222,3 +222,59 @@
 .emptyState p {
   opacity: 0.8;
 }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .pageWrapper {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .header h1 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .mainGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .summaryCard {
+    position: static;
+  }
+
+  .summaryRatingScore {
+    font-size: clamp(2rem, 6vw, 2.75rem);
+  }
+
+  .reviewItem {
+    padding: 1rem;
+  }
+
+  .reviewItemComment {
+    padding-left: 0;
+  }
+
+  .loadingState,
+  .errorState,
+  .emptyState {
+    padding: 2rem 1rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .pageWrapper {
+    padding: var(--space-3) var(--space-2);
+  }
+
+  .header h1 {
+    font-size: 1.375rem;
+  }
+
+  .reviewItem {
+    padding: 0.75rem;
+  }
+
+  .summaryCard {
+    padding: 1rem;
+  }
+}

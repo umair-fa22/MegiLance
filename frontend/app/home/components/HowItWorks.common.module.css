@@ -12,11 +12,23 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
   width: 100%;
   box-sizing: border-box;
   position: relative;
   z-index: 1;
+}
+
+@media (min-width: 480px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
 }
 
 .header {
@@ -93,11 +105,41 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .howItWorks {
+    padding: 3.5rem 0;
+  }
+
+  .header {
+    margin-bottom: 3rem;
+  }
+
   .timeline::after {
-    left: 2rem;
+    left: 1.5rem;
   }
   
   .timeline {
-    gap: 3rem;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .howItWorks {
+    padding: 2.5rem 0;
+  }
+
+  .header {
+    margin-bottom: 2rem;
+  }
+
+  .timeline::after {
+    left: 1.25rem;
+  }
+
+  .timeline {
+    gap: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
   }
 }

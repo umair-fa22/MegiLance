@@ -49,3 +49,25 @@
 .legendIcon[data-color="var(--color-success, #27AE60)"] { background-color: var(--color-success, #27AE60); }
 .legendIcon[data-color="var(--color-warning, #F2C94C)"] { background-color: var(--color-warning, #F2C94C); }
 .legendIcon[data-color="var(--color-error, #e81123)"] { background-color: var(--color-error, #e81123); }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .chartWrapper {
+    height: 200px;
+  }
+}
+
+@media (max-width: 374px) {
+  .chartWrapper {
+    height: 180px;
+  }
+
+  .customTooltip {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+
+  .legendItem {
+    font-size: 0.8125rem;
+  }
+}

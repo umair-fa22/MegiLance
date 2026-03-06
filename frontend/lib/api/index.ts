@@ -1,7 +1,7 @@
 // @AI-HINT: Barrel file — re-exports all API modules and provides backward-compatible default export
 
 // Core utilities
-export { apiFetch, APIError, getAuthToken, setAuthToken, clearAuthData, getRefreshToken, setRefreshToken } from './core';
+export { apiFetch, APIError, getAuthToken, setAuthToken, clearAuthData, getRefreshToken, setRefreshToken, invalidateCache, isOnline } from './core';
 export type { ResourceId } from './core';
 
 // Auth

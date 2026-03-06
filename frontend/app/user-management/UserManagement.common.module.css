@@ -191,3 +191,44 @@
 .buttonPrimary:active {
   transform: translateY(0);
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page {
+    padding: var(--spacing-8) var(--spacing-4);
+  }
+
+  .title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .inviteFields {
+    flex-direction: column;
+  }
+
+  .fieldGroup {
+    min-width: 100%;
+  }
+
+  .th,
+  .td {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .page {
+    padding: var(--spacing-6) var(--spacing-3);
+  }
+
+  .inviteCard {
+    padding: 1rem;
+  }
+
+  .inviteHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

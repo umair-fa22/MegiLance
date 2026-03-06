@@ -68,3 +68,26 @@
   font-weight: 600;
   font-size: 0.9375rem;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page {
+    padding: 1.5rem;
+  }
+
+  .iconWrapper {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+@media (max-width: 374px) {
+  .page {
+    padding: 1rem;
+  }
+
+  .iconWrapper {
+    width: 56px;
+    height: 56px;
+  }
+}

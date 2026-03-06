@@ -141,3 +141,54 @@
   letter-spacing: 0.01em;
   animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+@media (max-width: 768px) {
+  .editorLayout {
+    flex-direction: column;
+    height: auto;
+  }
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1.5px solid transparent;
+    padding: 1rem;
+  }
+  .policyNav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .navItem {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+  .mainContent {
+    padding: 1rem;
+  }
+  .editorHeader {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .editorTitle {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 374px) {
+  .sidebar {
+    padding: 0.75rem;
+  }
+  .sidebarTitle {
+    font-size: 16px;
+  }
+  .mainContent {
+    padding: 0.75rem;
+  }
+  .editorTitle {
+    font-size: 15px;
+  }
+  .editorTextarea {
+    font-size: 13px;
+    padding: 10px;
+  }
+}

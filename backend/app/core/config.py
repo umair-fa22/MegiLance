@@ -57,6 +57,19 @@ class Settings(BaseSettings):
     rate_limit_login_attempts: int = 5  # Failed login attempts before temporary lockout
     rate_limit_lockout_minutes: int = 15
     
+    # Account Security
+    account_lockout_threshold: int = 10  # Lock account after this many failed attempts
+    account_lockout_duration_minutes: int = 30  # How long to lock the account
+    session_absolute_timeout_hours: int = 24  # Force re-login after this many hours
+    
+    # CSRF Protection
+    csrf_enabled: bool = True
+    csrf_header_name: str = "X-CSRF-Token"
+    
+    # Audit Logging
+    audit_log_enabled: bool = True
+    audit_log_retention_days: int = 90
+    
     # File Storage (Simple local storage or can be upgraded to cloud storage like S3/Cloudflare R2)
     upload_dir: str = "./uploads"
     max_upload_size: int = 10 * 1024 * 1024  # 10MB

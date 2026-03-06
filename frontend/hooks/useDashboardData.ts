@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import api from '@/lib/api';
 
 // @AI-HINT: Hook to fetch dashboard data for metrics, recent projects, and activity feed.
 // Fetches activity feed from /activity-feed API and unread messages from /messages/unread/count.
+// Supports: auto-refresh polling, manual refresh, AbortController cleanup, role-awareness.
 
 interface DashboardStatsResponse {
   active_projects?: number;
@@ -96,24 +97,48 @@ function formatTimeAgo(dateStr: string): string {
   return date.toLocaleDateString();
 }
 
-export function useDashboardData() {
+export function useDashboardData(options?: { 
+  /** Auto-refresh interval in ms (0 = disabled, default: 60000) */
+  refreshInterval?: number;
+  /** User role for role-specific data fetching */
+  userRole?: 'client' | 'freelancer' | 'admin';
+}) {
+  const { refreshInterval = 60000, userRole = 'freelancer' } = options || {};
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [lastFetched, setLastFetched] = useState<Date | null>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
+  const isMounted = useRef(true);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  useEffect(() => {
-    let isMounted = true;
+  const fetchData = useCallback(async (isRefresh = false) => {
+    // Cancel any in-flight request
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    abortControllerRef.current = new AbortController();
 
-    async function fetchData() {
-      setLoading(true);
-      setError(null);
-      try {
-        const [statsRes, projectsRes, activityRes, unreadRes] = await Promise.all([
-          api.portal.freelancer.getDashboardStats().catch(() => ({})),
-          api.portal.freelancer.getProjects().catch(() => ({ projects: [] })),
-          api.activityFeed.list({ page: 1, page_size: 10 }).catch(() => ({ activities: [] })),
-          api.messages.getUnreadCount().catch(() => ({ unread_count: 0 })),
-        ]);
+    if (!isRefresh) setLoading(true);
+    setError(null);
+    try {
+      // Role-aware dashboard stats fetch
+      const statsPromise = userRole === 'client'
+        ? api.portal.client.getDashboardStats().catch(() => ({}))
+        : userRole === 'admin'
+          ? api.admin.getDashboardStats().catch(() => ({}))
+          : api.portal.freelancer.getDashboardStats().catch(() => ({}));
+
+      const projectsPromise = userRole === 'client'
+        ? api.portal.client.getProjects().catch(() => ({ projects: [] }))
+        : api.portal.freelancer.getProjects().catch(() => ({ projects: [] }));
+
+      const [statsRes, projectsRes, activityRes, unreadRes] = await Promise.all([
+        statsPromise,
+        projectsPromise,
+        api.activityFeed.list({ page: 1, page_size: 10 }).catch(() => ({ activities: [] })),
+        api.messages.getUnreadCount().catch(() => ({ unread_count: 0 })),
+      ]);
 
         const stats = statsRes as DashboardStatsResponse;
         const projects: DashboardProjectResponse[] = ((projectsRes as { projects?: DashboardProjectResponse[] }).projects) || [];
@@ -169,27 +194,55 @@ export function useDashboardData() {
           amount: item.amount ? `$${item.amount.toLocaleString()}` : undefined,
         }));
 
-        const unreadMessages = (unreadRes as any)?.unread_count ?? (unreadRes as any)?.count ?? 0;
+        const unreadMessages = (unreadRes as Record<string, unknown>)?.unread_count ?? (unreadRes as Record<string, unknown>)?.count ?? 0;
 
-        if (isMounted) {
-          setData({ metrics, recentProjects, activityFeed, unreadMessages });
+        if (isMounted.current) {
+          setData({ metrics, recentProjects, activityFeed, unreadMessages: unreadMessages as number });
+          setLastFetched(new Date());
         }
       } catch (err: unknown) {
         console.error('[useDashboardData] API error:', err);
-        if (isMounted) {
+        if (isMounted.current) {
           setError(err instanceof Error ? err.message : 'Failed to load dashboard data');
-          setData({ metrics: [], recentProjects: [], activityFeed: [], unreadMessages: 0 });
+          // Keep stale data on refresh errors instead of clearing
+          if (!isRefresh) {
+            setData({ metrics: [], recentProjects: [], activityFeed: [], unreadMessages: 0 });
+          }
         }
       } finally {
-        if (isMounted) setLoading(false);
+        if (isMounted.current) setLoading(false);
       }
+    }, [userRole]);
+
+  // Manual refresh exposed to consumers
+  const refresh = useCallback(() => {
+    fetchData(true);
+  }, [fetchData]);
+
+  useEffect(() => {
+    isMounted.current = true;
+    fetchData();
+
+    // Auto-refresh polling
+    if (refreshInterval > 0) {
+      intervalRef.current = setInterval(() => {
+        // Only poll if page is visible
+        if (document.visibilityState === 'visible') {
+          fetchData(true);
+        }
+      }, refreshInterval);
     }
 
-    fetchData();
     return () => {
-      isMounted = false;
+      isMounted.current = false;
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
     };
-  }, []);
+  }, [fetchData, refreshInterval]);
 
-  return { data, loading, error } as const;
+  return { data, loading, error, refresh, lastFetched } as const;
 } 

@@ -11,3 +11,10 @@
 .checkboxLabel { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border-radius: 6px; transition: background-color 120ms ease; }
 .checkboxLabel:hover { background-color: var(--muted); }
 .checkbox { width: 16px; height: 16px; }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .menu {
+    min-width: 160px;
+  }
+}

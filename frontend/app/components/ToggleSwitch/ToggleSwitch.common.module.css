@@ -78,3 +78,10 @@
     box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 25%, transparent);
   }
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .label {
+    font-size: 0.875rem;
+  }
+}

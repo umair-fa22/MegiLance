@@ -5,3 +5,10 @@
 .content {}
 .title {}
 .description {}
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .card {
+    padding: 1rem;
+  }
+}

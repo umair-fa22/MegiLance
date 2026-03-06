@@ -34,3 +34,12 @@
 .navLabel {
   flex-grow: 1;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .navList {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+}

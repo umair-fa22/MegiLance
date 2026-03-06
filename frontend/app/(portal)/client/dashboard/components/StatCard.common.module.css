@@ -74,3 +74,35 @@
 .trendLabel {
   margin-left: 0.25rem;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .card {
+    padding: 1.25rem;
+  }
+
+  .value {
+    font-size: 1.5rem;
+  }
+
+  .iconWrapper {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 374px) {
+  .card {
+    padding: 1rem;
+  }
+
+  .value {
+    font-size: 1.25rem;
+  }
+
+  .iconWrapper {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+  }
+}

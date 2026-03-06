@@ -32,3 +32,10 @@
   flex-shrink: 0;
   padding-top: 2px; /* Align with the title text */
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .container {
+    gap: 1rem;
+  }
+}

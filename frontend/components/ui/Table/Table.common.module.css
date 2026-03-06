@@ -56,3 +56,10 @@
   opacity: 0.8;
   /* Text color in theme files */
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .wrapper {
+    border-radius: 0.5rem;
+  }
+}

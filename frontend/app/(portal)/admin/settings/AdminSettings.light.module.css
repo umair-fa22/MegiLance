@@ -1,55 +1,45 @@
-/* AI-HINT: Light theme overrides for Admin Settings page. */
+/* AI-HINT: Light theme for Enterprise Admin Settings — sidebar, content, forms, save bar */
 
-.themeWrapper {
-  background: #f8fafc;
-  color: #0f172a;
-}
+.themeWrapper { background: #f8fafc; color: #0f172a; }
+.subtitle { color: #64748b; }
 
-.subtitle {
-  color: #64748b;
-}
+/* Unsaved badge */
+.unsavedBadge { background: #fef3c7; color: #92400e; }
 
-.section {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-}
+/* Sidebar */
+.sidebar { background: #ffffff; border: 1px solid #e2e8f0; }
+.sidebarSearchInput { color: #0f172a; }
+.sidebarSearchInput::placeholder { color: #94a3b8; }
+.sidebarItem { color: #475569; }
+.sidebarItem:hover { background: #f1f5f9; }
+.sidebarItemActive { background: #eff6ff; color: #1e40af; }
+.sidebarDesc { color: #94a3b8; }
 
-.sectionTitle {
-  color: #0f172a;
-}
+/* Content header */
+.contentIcon { background: #eff6ff; color: #3b82f6; }
+.contentTitle { color: #0f172a; }
+.contentDesc { color: #64748b; }
 
-.input,
-.select,
-.textarea {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  color: #0f172a;
-}
+/* Sections */
+.section { background: #ffffff; border: 1px solid #e2e8f0; }
+.sectionTitle { color: #0f172a; }
+.subsectionTitle { color: #334155; border-color: #e2e8f0; }
 
-.help {
-  color: #64748b;
-}
+/* Forms */
+.input, .select, .textarea { background: #ffffff; border: 1px solid #e2e8f0; color: #0f172a; }
+.input:focus, .select:focus, .textarea:focus { border-color: #4573df; box-shadow: 0 0 0 3px rgba(69,115,223,0.08); }
+.inputSuffix { color: #64748b; }
+.inputToggle { color: #64748b; }
+.toggleLabel { color: #334155; }
+.help { color: #64748b; }
 
-.button.primary {
-  background: #4573df;
-  color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-}
+/* Save bar */
+.saveBar { background: rgba(255,255,255,0.95); border: 1px solid #e2e8f0; box-shadow: 0 -2px 16px rgba(0,0,0,0.08); }
 
-.button.secondary {
-  background: #ffffff;
-  color: #475569;
-  border: 1px solid #e2e8f0;
-}
+/* Button overrides */
+.button.primary { background: #4573df; color: #ffffff; border: 1px solid rgba(0,0,0,0.12); }
+.button.secondary { background: #ffffff; color: #475569; border: 1px solid #e2e8f0; }
 
 /* Toast */
-.toast {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(39, 174, 96, 0.3);
-  color: #166534;
-}
-
-.toastError {
-  border-color: rgba(232, 17, 35, 0.3);
-  color: #991b1b;
-}
+.toast { background: rgba(255,255,255,0.95); border: 1px solid rgba(39,174,96,0.3); color: #166534; }
+.toastError { border-color: rgba(232,17,35,0.3); color: #991b1b; }

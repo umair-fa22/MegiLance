@@ -1,0 +1,42 @@
+﻿/* AI-HINT: Dark theme overrides for Client Freelancers page. */
+
+/* AI-HINT: Dark theme styles for the Freelancers page. */
+
+.page {
+  background-color: #1d2127;
+}
+
+.title {
+  color: #f8fafc;
+}
+
+.subtitle {
+  color: #94a3b8;
+}
+
+.controlsSection {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+}
+
+.emptyState {
+  background-color: #1e293b;
+  border: 1px dashed #334155;
+}
+
+.emptyState h3 {
+  color: #f8fafc;
+}
+
+.emptyState p {
+  color: #94a3b8;
+}
+
+.paginationInfo {
+  color: #94a3b8;
+}
+
+.skeletonCard {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+}

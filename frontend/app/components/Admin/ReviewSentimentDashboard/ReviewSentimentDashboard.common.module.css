@@ -125,3 +125,49 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+
+@media (max-width: 768px) {
+  .dashboardTitle {
+    font-size: clamp(1.375rem, 4vw, 2rem);
+  }
+  .dashboardHeader {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .timeRangeTrigger {
+    width: 100%;
+  }
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .chartsGrid {
+    grid-template-columns: 1fr;
+  }
+  .metricCard {
+    padding: 1.25rem;
+  }
+  .reviewItem {
+    gap: 0.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .metricsGrid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .metricCard {
+    padding: 1rem;
+  }
+  .cardMetric {
+    font-size: 1.75rem;
+  }
+  .reviewItem {
+    padding: 0.75rem;
+  }
+  .chartPlaceholder {
+    min-height: 200px;
+  }
+}

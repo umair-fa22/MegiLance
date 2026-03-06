@@ -17,3 +17,17 @@
   text-decoration: none;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+
+  .navLink {
+    padding: var(--space-1) var(--space-3);
+    font-size: 0.875rem;
+  }
+}

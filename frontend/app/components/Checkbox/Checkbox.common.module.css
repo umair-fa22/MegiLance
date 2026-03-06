@@ -252,3 +252,10 @@
 .checkboxInput:focus ~ .checkboxCustom {
   border-color: var(--checkbox-border-hover-color);
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .label {
+    font-size: 0.875rem;
+  }
+}

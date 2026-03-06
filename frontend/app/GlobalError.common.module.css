@@ -57,6 +57,27 @@
   width: 100%;
 }
 
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .container {
+    gap: 1rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .iconWrapper {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
 .links {
   display: flex;
   justify-content: center;

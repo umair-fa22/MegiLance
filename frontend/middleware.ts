@@ -16,7 +16,11 @@ import type { NextRequest } from 'next/server';
  */
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const startTime = Date.now();
   const response = NextResponse.next();
+
+  // === PERFORMANCE TIMING ===
+  response.headers.set('X-Request-Start', String(startTime));
 
   // === SECURITY HEADERS (OWASP Top 10 + Vercel best practices) ===
   const securityHeaders: Record<string, string> = {
@@ -24,12 +28,15 @@ export function middleware(request: NextRequest) {
     'X-Content-Type-Options': 'nosniff',
     'X-XSS-Protection': '1; mode=block',
     'Referrer-Policy': 'strict-origin-when-cross-origin',
-    'Permissions-Policy': 'camera=(), microphone=(), geolocation=(self), payment=(self), usb=(), bluetooth=()',
+    'Permissions-Policy': 'camera=(), microphone=(), geolocation=(self), payment=(self), usb=(), bluetooth=(), accelerometer=(), gyroscope=()',
     'X-DNS-Prefetch-Control': 'on',
     // Prevent MIME-sniffing attacks
     'X-Download-Options': 'noopen',
     // Prevent Adobe Flash/PDF cross-domain data loading  
     'X-Permitted-Cross-Domain-Policies': 'none',
+    // Cross-Origin isolation headers for enhanced security
+    'Cross-Origin-Opener-Policy': 'same-origin',
+    'Cross-Origin-Resource-Policy': 'same-origin',
   };
 
   Object.entries(securityHeaders).forEach(([key, value]) => {
@@ -98,14 +105,30 @@ export function middleware(request: NextRequest) {
   // Check for auth token in cookies (httpOnly preferred)
   const authToken = request.cookies.get('auth_token')?.value;
   
-  if (isProtectedPath && !authToken) {
+  // Validate token is not expired before allowing access (lightweight check)
+  let isTokenValid = !!authToken;
+  if (authToken) {
+    try {
+      const base64Url = authToken.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const payload = JSON.parse(atob(base64));
+      // Check if token is expired (exp is in seconds)
+      if (payload.exp && payload.exp < Date.now() / 1000) {
+        isTokenValid = false;
+      }
+    } catch {
+      isTokenValid = false;
+    }
+  }
+  
+  if (isProtectedPath && !isTokenValid) {
     const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('returnTo', pathname);
     return NextResponse.redirect(loginUrl);
   }
 
   // Server-side dashboard redirect: decode JWT role to skip client-side spinner
-  if (pathname === '/dashboard' && authToken) {
+  if (pathname === '/dashboard' && isTokenValid && authToken) {
     try {
       const base64Url = authToken.split('.')[1];
       const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -124,6 +147,7 @@ export function middleware(request: NextRequest) {
   if (isProtectedPath) {
     response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
     response.headers.set('Pragma', 'no-cache');
+    response.headers.set('Expires', '0');
   }
 
   // Prevent authenticated users from accessing auth pages
@@ -142,19 +166,34 @@ export function middleware(request: NextRequest) {
   // and full HTML page loads are cached separately
   response.headers.set('Vary', 'RSC, Next-Router-State-Tree, Next-Router-Prefetch');
   
-  if (isAuthPath && authToken) {
+  if (isAuthPath && isTokenValid) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
   // === SECURITY: Block suspicious paths ===
   const blockedPaths = [
-    '/wp-admin', '/wp-login', '/.env', '/.git',
+    '/wp-admin', '/wp-login', '/wp-content', '/wp-includes',
+    '/.env', '/.git', '/.svn', '/.htaccess',
     '/phpinfo', '/php', '/cgi-bin', '/actuator',
+    '/xmlrpc', '/admin.php', '/config.php',
+    '/debug', '/trace', '/metrics',
   ];
   
   if (blockedPaths.some(blocked => pathname.startsWith(blocked))) {
     return new NextResponse(null, { status: 404 });
   }
+
+  // === SEO: Allow bots/crawlers through public pages efficiently ===
+  const userAgent = request.headers.get('user-agent') || '';
+  const isBot = /bot|crawl|spider|slurp|archive/i.test(userAgent);
+  if (isBot && !isProtectedPath) {
+    // Set long cache for bot-requested pages
+    response.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=86400');
+  }
+
+  // === Performance timing header ===
+  const duration = Date.now() - startTime;
+  response.headers.set('X-Middleware-Duration', `${duration}ms`);
 
   return response;
 }

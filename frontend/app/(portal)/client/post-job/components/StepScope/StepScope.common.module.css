@@ -207,3 +207,35 @@
   margin-top: 0.25rem;
   opacity: 0.8;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    gap: 1.25rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .metricsRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 374px) {
+  .container {
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+
+  .title {
+    font-size: 1.125rem;
+  }
+
+  .tipsBox {
+    padding: 0.75rem;
+  }
+}

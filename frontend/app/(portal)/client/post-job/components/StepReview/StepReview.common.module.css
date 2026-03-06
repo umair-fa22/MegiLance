@@ -80,3 +80,38 @@
   flex-wrap: wrap;
   gap: 0.5rem; /* 8px */
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .card {
+    padding: 1.25rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .section_divider {
+    margin: 1.25rem 0;
+  }
+}
+
+@media (max-width: 374px) {
+  .title {
+    font-size: 1.125rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .card_title {
+    font-size: 1.0625rem;
+    margin-bottom: 1rem;
+  }
+}

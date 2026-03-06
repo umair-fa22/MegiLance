@@ -212,3 +212,100 @@
     background: #334155;
   }
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 24px 16px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .userGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .userCard {
+    padding: 20px;
+  }
+
+  .credentials {
+    padding: 20px;
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 16px 12px;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  .userEmail {
+    font-size: 0.9rem;
+  }
+
+  .userDescription {
+    font-size: 0.8125rem;
+    margin-bottom: 16px;
+  }
+
+  .loginButton {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+
+  .credentials {
+    padding: 16px;
+  }
+
+  .credTable th,
+  .credTable td {
+    padding: 8px 10px;
+    font-size: 0.8125rem;
+  }
+
+  .successResult,
+  .errorResult {
+    padding: 16px;
+  }
+
+  .successResult pre,
+  .errorResult pre {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .container {
+    padding: 12px 8px;
+  }
+
+  .userCard {
+    padding: 14px;
+  }
+
+  .credTable th,
+  .credTable td {
+    padding: 6px 8px;
+    font-size: 0.75rem;
+  }
+}

@@ -102,3 +102,11 @@
   height: 8px;
   border-radius: 50%;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .statusDot {
+    width: 6px;
+    height: 6px;
+  }
+}

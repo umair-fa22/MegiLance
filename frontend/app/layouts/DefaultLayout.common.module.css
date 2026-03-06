@@ -12,3 +12,10 @@
   flex: 1 1 auto;
   width: 100%;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .main {
+    padding: 0;
+  }
+}

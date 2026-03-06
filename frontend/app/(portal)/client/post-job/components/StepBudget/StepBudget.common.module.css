@@ -177,3 +177,39 @@
   background-color: rgba(99, 102, 241, 0.1);
   color: #4f46e5;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    gap: 1.25rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .calculatorContent {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .insightsBox {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 374px) {
+  .container {
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+
+  .title {
+    font-size: 1.125rem;
+  }
+
+  .calculatorBox {
+    padding: 0.75rem;
+  }
+}

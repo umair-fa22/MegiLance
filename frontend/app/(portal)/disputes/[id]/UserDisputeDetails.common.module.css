@@ -122,3 +122,44 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.25rem;
+  }
+
+  .title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .section {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .evidenceList {
+    grid-template-columns: 1fr;
+  }
+
+  .statusBanner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .disputeHeader {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .section {
+    padding: 0.75rem;
+  }
+}

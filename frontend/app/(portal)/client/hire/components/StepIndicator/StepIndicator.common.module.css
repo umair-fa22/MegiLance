@@ -87,3 +87,38 @@
 .current .stepName {
   font-weight: 700;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .nav {
+    padding: 0.75rem;
+  }
+
+  .indicator {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .stepName {
+    font-size: 0.75rem;
+  }
+
+  .separator {
+    margin: 0 0.5rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .stepName {
+    display: none;
+  }
+
+  .indicator {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .separator {
+    margin: 0 0.25rem;
+  }
+}

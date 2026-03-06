@@ -172,3 +172,47 @@
   margin-left: auto;
   min-width: 240px;
 }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .toolbar {
+    flex-wrap: wrap;
+  }
+
+  .input {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .savedViewsSlot {
+    min-width: 0;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 374px) {
+  .title {
+    font-size: 1.375rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .statValue {
+    font-size: 1.5rem;
+  }
+}

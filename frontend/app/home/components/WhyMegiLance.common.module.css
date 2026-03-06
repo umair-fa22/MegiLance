@@ -27,24 +27,24 @@
 }
 
 .bgBlob1 {
-  width: 600px;
-  height: 600px;
+  width: min(600px, 80vw);
+  height: min(600px, 80vw);
   top: -100px;
   left: -200px;
   animation-delay: 0s;
 }
 
 .bgBlob2 {
-  width: 500px;
-  height: 500px;
+  width: min(500px, 70vw);
+  height: min(500px, 70vw);
   bottom: -150px;
   right: -100px;
   animation-delay: 5s;
 }
 
 .bgBlob3 {
-  width: 400px;
-  height: 400px;
+  width: min(400px, 60vw);
+  height: min(400px, 60vw);
   top: 40%;
   right: -100px;
   animation-delay: 10s;
@@ -134,10 +134,24 @@
 /* Grid Layout */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 4rem;
-  margin-bottom: 6rem;
-  /* Removed transform-style to prevent layout issues */
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    margin-bottom: 6rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 4rem;
+  }
 }
 
 /* Card Wrapper */
@@ -442,15 +456,72 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-  .section { padding: 6rem 1.5rem; }
+  .section { padding: 5rem 1.5rem; }
   .heading { font-size: 3.5rem; }
-  .grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
-  .section { padding: 4rem 1rem; }
+  .section { padding: 3.5rem 1rem; }
   .heading { font-size: 2.5rem; }
-  .grid { grid-template-columns: 1fr; gap: 3rem; }
+  .header { margin-bottom: 3rem; }
   .trustBadges { flex-direction: column; gap: 1rem; }
-  .trustBadge { width: 100%; }
+  .trustBadge { width: 100%; padding: 1rem 1.5rem; }
+  .trustSection { margin-top: 2.5rem; padding-top: 2.5rem; }
+  .trustLabel { margin-bottom: 2rem; }
+
+  .valueCard {
+    padding: 1.75rem;
+  }
+
+  .iconBackground {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .cardTitle {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .section { padding: 2.5rem 0.75rem; }
+  .heading { font-size: 2rem; }
+  .subtitle { font-size: 1.05rem; }
+  .header { margin-bottom: 2rem; }
+
+  .valueCard {
+    padding: 1.25rem;
+  }
+
+  .cardTitle {
+    font-size: 1.25rem;
+  }
+
+  .cardDescription {
+    font-size: 0.9375rem;
+    min-height: auto;
+  }
+
+  .cardCta {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .trustBadge {
+    padding: 0.75rem 1rem;
+  }
+
+  .badgeEmoji {
+    font-size: 1.5rem;
+  }
+
+  .badgeLabel {
+    font-size: 0.95rem;
+  }
 }

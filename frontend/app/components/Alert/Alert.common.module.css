@@ -110,3 +110,11 @@
 }
 
 /* Variant colors are defined in theme-specific files */
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .alert {
+    padding: 0.75rem;
+    gap: 0.5rem;
+  }
+}

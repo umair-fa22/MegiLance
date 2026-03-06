@@ -8,3 +8,12 @@
 .button { height: 36px; padding: 0 12px; border-radius: 8px; font-weight: 500; border: 1px solid transparent; transition: opacity 120ms ease, box-shadow 120ms ease; }
 .button:hover { opacity: 0.92; }
 .button:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .input { min-width: 160px; }
+}
+
+@media (max-width: 374px) {
+  .input { min-width: 120px; }
+}

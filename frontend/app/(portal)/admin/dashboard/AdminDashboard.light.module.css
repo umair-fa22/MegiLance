@@ -1,11 +1,18 @@
-/* @AI-HINT: Admin Dashboard light theme — cards, quick actions, activity feed */
+/* @AI-HINT: Admin Dashboard light theme — enterprise command center colours */
 
-.dashboardContainer {
-  color: #0f172a;
-}
-
+.dashboardContainer { color: #0f172a; }
 .headerTitle { color: #0f172a; }
 .headerSubtitle { color: #64748b; }
+
+/* Environment Badge */
+.envBadge { background: #dbeafe; color: #1d4ed8; }
+.lastRefresh { color: #94a3b8; }
+
+/* Tabs */
+.tabNav { background: #f1f5f9; }
+.tab { color: #64748b; }
+.tab:hover { background: rgba(0,0,0,0.04); color: #334155; }
+.tabActive { background: #ffffff; color: #0f172a; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
 
 /* Stats */
 .statCard {
@@ -13,16 +20,38 @@
   border: 1px solid #e2e8f0;
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
-.statCard:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-}
+.statCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
 .statLabel { color: #64748b; }
 .statValue { color: #0f172a; }
+.statSub { color: #94a3b8; }
 
-.accent_blue  { background: rgba(59,130,246,0.1); color: #2563eb; }
-.accent_green { background: rgba(22,163,74,0.1);  color: #16a34a; }
-.accent_amber { background: rgba(245,158,11,0.1); color: #d97706; }
-.accent_red   { background: rgba(239,68,68,0.1);  color: #dc2626; }
+.accent_blue   { background: rgba(59,130,246,0.1);  color: #2563eb; }
+.accent_green  { background: rgba(22,163,74,0.1);   color: #16a34a; }
+.accent_amber  { background: rgba(245,158,11,0.1);  color: #d97706; }
+.accent_red    { background: rgba(239,68,68,0.1);   color: #dc2626; }
+.accent_purple { background: rgba(139,92,246,0.1);  color: #7c3aed; }
+.accent_indigo { background: rgba(99,102,241,0.1);  color: #4f46e5; }
+
+/* Analytics Cards */
+.analyticsCard {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.analyticsCardTitle { color: #0f172a; }
+.analyticsPeriod { color: #94a3b8; }
+.analyticsTotal { color: #0f172a; }
+.analyticsTx { color: #94a3b8; }
+.analyticsFooter { border-color: #e2e8f0; }
+.miniBar { background: #4573df; }
+.miniBarLabel { color: #94a3b8; }
+
+/* Geo */
+.geoCountry { color: #334155; }
+.geoIcon { color: #94a3b8; }
+.geoBar { background: #f1f5f9; }
+.geoBarFill { background: linear-gradient(90deg, #4573df, #6366f1); }
+.geoPercent { color: #334155; }
 
 /* Quick Actions */
 .quickAction {
@@ -34,35 +63,21 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   border-color: #cbd5e1;
 }
-.quickActionIcon {
-  background-color: #f1f5f9;
-  color: #4573df;
-}
+.quickActionIcon { background-color: #f1f5f9; color: #4573df; }
 .quickActionLabel { color: #0f172a; }
-.quickActionDesc  { color: #94a3b8; }
+.quickActionDesc { color: #94a3b8; }
+.quickActionBadge { background: #fef3c7; color: #92400e; }
 
-/* Sections */
-.sectionTitle { color: #0f172a; }
-.viewAllLink { color: #4573df; }
-
-.tableWrapper {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-}
-
-/* Activity */
-.activityItem {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-}
-.activityIcon {
-  background-color: #eff6ff;
-  color: #3b82f6;
-}
-.activityName { color: #0f172a; }
-.activityDesc { color: #64748b; }
-
-.emptyState { color: #94a3b8; }
+/* Health Panel */
+.healthPanel { background-color: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.healthPanelTitle { color: #0f172a; }
+.healthTimestamp { color: #94a3b8; }
+.statusDotRow { background: #f8fafc; }
+.statusDotLabel { color: #334155; }
+.statusDotValue { color: #0f172a; }
+.metricCard { background: #f8fafc; border: 1px solid #e2e8f0; }
+.metricValue { color: #0f172a; }
+.metricLabel { color: #64748b; }
 
 /* Health Row */
 .healthCard {
@@ -72,3 +87,26 @@
 }
 .healthStatValue { color: #0f172a; }
 .healthStatLabel { color: #64748b; }
+
+/* Security */
+.securityCard { background-color: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.securityCardTitle { color: #0f172a; }
+.securityCheck { color: #334155; }
+.alertItem { background: #f8fafc; border: 1px solid #e2e8f0; }
+.alertMsg { color: #0f172a; }
+.alertTime { color: #94a3b8; }
+.alertActionBtn { background: #eff6ff; color: #2563eb; }
+.alertActionBtn:hover { background: #dbeafe; }
+
+/* Sections */
+.sectionTitle { color: #0f172a; }
+.viewAllLink { color: #4573df; }
+.tableWrapper { background-color: #ffffff; border: 1px solid #e2e8f0; }
+
+/* Activity */
+.activityItem { background-color: #ffffff; border: 1px solid #e2e8f0; }
+.activityIcon { background-color: #eff6ff; color: #3b82f6; }
+.activityName { color: #0f172a; }
+.activityDesc { color: #64748b; }
+
+.emptyState { color: #94a3b8; }

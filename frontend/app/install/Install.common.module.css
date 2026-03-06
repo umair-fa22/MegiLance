@@ -50,3 +50,16 @@
   font-size: 0.875rem;
   opacity: 0.8;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .container {
+    padding: 1rem;
+  }
+}

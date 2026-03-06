@@ -71,3 +71,39 @@
   border-radius: var(--rounded-full);
   transition: background-color 0.3s ease;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .indicator {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .stepName {
+    font-size: 0.75rem;
+  }
+
+  .stepNumber {
+    font-size: 0.875rem;
+  }
+
+  .progressBarContainer {
+    top: calc(1rem - 2px);
+  }
+}
+
+@media (max-width: 374px) {
+  .stepName {
+    display: none;
+  }
+
+  .indicator {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .icon {
+    width: 1rem;
+    height: 1rem;
+  }
+}

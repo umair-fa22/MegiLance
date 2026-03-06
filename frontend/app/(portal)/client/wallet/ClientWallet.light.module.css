@@ -1,20 +1,81 @@
-/* @AI-HINT: Light theme colors for Client Wallet. */
+/* @AI-HINT: ClientWallet light theme — colors only */
 
-.themeWrapper {
-  background: #f8fafc;
-  color: #1e293b;
-}
+.container { background: #f8f9fb; color: #1a1a2e; }
+.header { border-bottom: 1px solid #e5e7eb; padding-bottom: 1rem; }
+.title { color: #1a1a2e; }
+.subtitle { color: #6b7280; }
+.errorBanner { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
 
-.subtitle {
-  color: #64748b;
-}
+.depositPanel { background: #fff; border-color: #4573df; }
+.depositTitle { color: #1a1a2e; }
+.quickAmount { background: #f3f4f6; border-color: #e5e7eb; color: #374151; }
+.quickAmount:hover { background: #e8ecff; }
 
-.balanceCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-}
+.statCard { background: #fff; border: 1px solid #e5e7eb; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+.statCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.statLabel { color: #6b7280; }
+.statValue { color: #1a1a2e; }
+.statMeta { color: #9ca3af; }
 
-.balanceCard:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
+.tabBar { border-color: #e5e7eb; }
+.tabBtn { color: #6b7280; }
+.tabBtn:hover { color: #374151; background: #f3f4f6; }
+.tabBtnActive { color: #4573df; }
+
+.chartSection { background: #fff; border: 1px solid #e5e7eb; }
+.sectionTitle { color: #1a1a2e; }
+.chartBar { background: #4573df; }
+.chartAmount { color: #374151; }
+.chartLabel { color: #9ca3af; }
+
+.categoryItem { }
+.categoryName { color: #374151; }
+.categoryPercent { color: #1a1a2e; }
+.categoryBar { background: #f3f4f6; }
+.categoryAmount { color: #9ca3af; }
+.emptyText { color: #9ca3af; }
+
+.budgetQuickView { background: #fff; border: 1px solid #e5e7eb; }
+.budgetAmount { color: #374151; }
+.budgetProgressBar { background: #f3f4f6; }
+.budgetPercent { color: #6b7280; }
+
+.recentSection { background: #fff; border: 1px solid #e5e7eb; }
+
+.transactionsPanel { background: #fff; border: 1px solid #e5e7eb; }
+.sortHeader { background: #f9fafb; }
+.sortCol { color: #6b7280; }
+.sortColActive { color: #4573df; }
+.pageInfo { color: #9ca3af; }
+.pageNum { color: #6b7280; }
+.pageNum:hover { background: #f3f4f6; }
+.pageNumActive { color: #4573df; background: #e8ecff; border-color: #4573df; }
+
+.budgetSettingCard { background: #fff; border: 1px solid #e5e7eb; }
+.budgetDesc { color: #9ca3af; }
+.budgetSpent { color: #1a1a2e; }
+.budgetOf { color: #6b7280; }
+.budgetRemaining { color: #27AE60; }
+
+.categoryBudgets { background: #fff; border: 1px solid #e5e7eb; }
+.categoryBudgetItem { }
+.catBudgetName { color: #374151; }
+.catBudgetNums { color: #6b7280; }
+.catBudgetBar { background: #f3f4f6; }
+.catBudgetPct { color: #9ca3af; }
+
+.budgetAlerts { background: #fff; border: 1px solid #e5e7eb; }
+.alertItem { }
+
+.methodsPanel { background: #fff; border: 1px solid #e5e7eb; }
+.methodCard { background: #fff; border-color: #e5e7eb; }
+.methodCard:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.methodIcon { background: #f3f4f6; color: #4573df; }
+.methodName { color: #1a1a2e; }
+.methodExp { color: #9ca3af; }
+.addMethodCard { border-color: #d1d5db; color: #9ca3af; }
+.addMethodCard:hover { border-color: #4573df; color: #4573df; }
+
+.securityInfo { background: #f0fdf4; color: #15803d; }
+.securityTitle { color: #166534; }
+.securityText { color: #4ade80; }

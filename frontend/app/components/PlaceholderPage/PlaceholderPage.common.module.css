@@ -28,3 +28,10 @@
   font-size: var(--font-size-lg);
   color: var(--text-secondary);
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page {
+    padding: 2rem 1rem;
+  }
+}

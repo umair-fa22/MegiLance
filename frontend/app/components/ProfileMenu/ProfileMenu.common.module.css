@@ -108,3 +108,10 @@
 .itemLabel {
   flex-grow: 1;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .dropdown {
+    min-width: 180px;
+  }
+}

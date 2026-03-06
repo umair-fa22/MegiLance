@@ -353,3 +353,19 @@
 .themeToggle:hover svg {
   transform: scale(1.1);
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 240px;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .sidebar {
+    width: 220px;
+    padding: 0.75rem;
+    border-radius: 0;
+  }
+}

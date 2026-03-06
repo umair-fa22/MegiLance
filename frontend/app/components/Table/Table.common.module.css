@@ -127,3 +127,10 @@
     box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 18%, transparent) inset;
   }
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .tableContainer {
+    border-radius: 0.5rem;
+  }
+}

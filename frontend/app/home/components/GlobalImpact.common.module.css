@@ -124,3 +124,35 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 480px) {
+  .globalImpact {
+    padding: 3rem 0;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .globeSection {
+    height: 300px;
+  }
+
+  .mainGrid {
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .globeSection {
+    height: 250px;
+  }
+}

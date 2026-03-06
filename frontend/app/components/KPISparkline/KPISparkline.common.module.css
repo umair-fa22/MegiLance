@@ -56,3 +56,10 @@
   font-weight: 500;
   opacity: 0.55;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .container {
+    gap: 0.25rem;
+  }
+}

@@ -5,3 +5,9 @@
   margin: 0 auto;
   padding: 2rem 1rem;
 }
+
+@media (max-width: 374px) {
+  .pageContainer {
+    padding: 1.25rem 0.75rem;
+  }
+}

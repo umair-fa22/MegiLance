@@ -55,12 +55,14 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icons/icon-144x144.png', sizes: '144x144', type: 'image/png' },
+      { url: '/icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
       { url: '/icons/icon-192x192.svg', sizes: '192x192', type: 'image/svg+xml' },
       { url: '/icons/icon-512x512.svg', sizes: '512x512', type: 'image/svg+xml' },
     ],
     shortcut: '/icon.svg',
     apple: [
-      { url: '/icons/icon-192x192.svg', sizes: '180x180', type: 'image/svg+xml' },
+      { url: '/icons/icon-192x192.png', sizes: '180x180', type: 'image/png' },
     ],
   },
   authors: [{ name: 'MegiLance Team', url: 'https://megilance.com' }],
@@ -139,6 +141,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
+  viewportFit: 'cover',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
     { media: '(prefers-color-scheme: dark)', color: '#0b0f19' },

@@ -43,3 +43,11 @@
   font-weight: 800;
   margin-top: -1rem;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .container {
+    transform: scale(0.85);
+    transform-origin: center;
+  }
+}

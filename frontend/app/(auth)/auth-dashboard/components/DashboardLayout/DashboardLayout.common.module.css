@@ -12,3 +12,16 @@
   display: flex;
   flex-direction: column;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .mainContent {
+    padding: 1rem;
+  }
+}

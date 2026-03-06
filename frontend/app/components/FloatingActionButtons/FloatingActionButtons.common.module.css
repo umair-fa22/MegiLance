@@ -23,3 +23,11 @@
   left: 1.5rem; 
   align-items: flex-start;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .container {
+    bottom: 1rem;
+    right: 1rem;
+  }
+}

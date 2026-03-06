@@ -103,3 +103,46 @@
     transform: translateY(0);
   }
 }
+
+/* ── Mobile ≤ 640px ── */
+@media (max-width: 640px) {
+  .container {
+    padding: 1.5rem 1rem;
+  }
+
+  .card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .title {
+    font-size: 1.15rem;
+  }
+
+  .toast {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    padding: 0.875rem 1.25rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* ── Extra-small ≤ 374px ── */
+@media (max-width: 374px) {
+  .container {
+    padding: 1rem 0.75rem;
+  }
+
+  .card {
+    padding: 1.25rem 1rem;
+  }
+
+  .iconWrap {
+    width: 48px;
+    height: 48px;
+  }
+
+  .title {
+    font-size: 1.05rem;
+  }
+}

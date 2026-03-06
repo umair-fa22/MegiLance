@@ -135,16 +135,18 @@ def authenticate_user(email: str, password: str) -> Optional[Any]:
 
 
 def _create_token(data: dict, expires_delta: timedelta, token_type: str) -> str:
-    """Create JWT token with expiry"""
+    """Create JWT token with expiry and unique token ID (jti)"""
     settings = get_settings()
     to_encode = data.copy()
     expire = datetime.now(timezone.utc) + expires_delta
     
-    # Add token metadata
+    import uuid
+    # Add token metadata — jti enables per-token revocation
     to_encode.update({
         "exp": expire,
         "iat": datetime.now(timezone.utc),
         "type": token_type,
+        "jti": str(uuid.uuid4()),
     })
     
     token = jwt.encode(to_encode, settings.secret_key, algorithm=settings.jwt_algorithm)
@@ -383,7 +385,8 @@ def get_user_by_email(email: str) -> Optional[UserProxy]:
         result = execute_query(
             "SELECT id, email, hashed_password, is_active, is_verified, name, user_type, role, "
             "bio, skills, hourly_rate, profile_image_url, location, profile_data, "
-            "two_factor_enabled, joined_at FROM users WHERE email = ?",
+            "two_factor_enabled, joined_at, created_at, account_balance, seller_level, "
+            "availability_status FROM users WHERE email = ?",
             [email.lower().strip()]
         )
         rows = parse_rows(result)
@@ -401,7 +404,8 @@ def get_user_by_id(user_id: int) -> Optional[UserProxy]:
         result = execute_query(
             "SELECT id, email, hashed_password, is_active, is_verified, name, user_type, role, "
             "bio, skills, hourly_rate, profile_image_url, location, profile_data, "
-            "two_factor_enabled, joined_at FROM users WHERE id = ?",
+            "two_factor_enabled, joined_at, created_at, account_balance, seller_level, "
+            "availability_status FROM users WHERE id = ?",
             [user_id]
         )
         rows = parse_rows(result)
@@ -411,5 +415,36 @@ def get_user_by_id(user_id: int) -> Optional[UserProxy]:
     except Exception as e:
         logger.error(f"Error getting user by ID: {e}")
         return None
+
+
+def validate_password_strength(password: str) -> tuple[bool, list[str]]:
+    """Validate password against configured policy. Returns (is_valid, list_of_errors)."""
+    settings = get_settings()
+    errors = []
+    
+    if len(password) < settings.password_min_length:
+        errors.append(f"Password must be at least {settings.password_min_length} characters")
+    if len(password) > settings.password_max_length:
+        errors.append(f"Password must be at most {settings.password_max_length} characters")
+    if settings.password_require_uppercase and not any(c.isupper() for c in password):
+        errors.append("Password must contain at least one uppercase letter")
+    if settings.password_require_lowercase and not any(c.islower() for c in password):
+        errors.append("Password must contain at least one lowercase letter")
+    if settings.password_require_digit and not any(c.isdigit() for c in password):
+        errors.append("Password must contain at least one digit")
+    if settings.password_require_special and not any(c in '!@#$%^&*()_+-=[]{}|;:,.<>?' for c in password):
+        errors.append("Password must contain at least one special character")
+    
+    # Common password check (top 20 most common)
+    common_passwords = {
+        'password', '123456', '12345678', 'qwerty', 'abc123',
+        'password1', '111111', '1234567', 'letmein', 'admin',
+        'welcome', 'monkey', 'master', 'dragon', 'login',
+        'princess', 'football', 'shadow', 'sunshine', 'trustno1'
+    }
+    if password.lower() in common_passwords:
+        errors.append("Password is too common. Please choose a stronger password.")
+    
+    return (len(errors) == 0, errors)
 
 

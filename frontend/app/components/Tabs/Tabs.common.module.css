@@ -68,3 +68,18 @@
   will-change: transform, width;
   box-shadow: 0 -2px 4px rgba(69, 115, 223, 0.2); /* Subtle glow */
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .tabsList {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 374px) {
+  .tab {
+    font-size: 0.8125rem;
+    padding: 0.5rem 0.75rem;
+  }
+}

@@ -153,3 +153,10 @@
   font-size: 0.75rem;
   color: var(--color-error, #e81123);
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .menu {
+    min-width: 160px;
+  }
+}

@@ -11,3 +11,12 @@
   font-weight: 500;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+}

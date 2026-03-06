@@ -349,3 +349,67 @@
     display: none;
   }
 }
+
+@media (max-width: 480px) {
+  .carouselContainer {
+    padding: 3rem 1rem;
+  }
+
+  .carouselTitle {
+    font-size: 2rem;
+  }
+
+  .carouselSubtitle {
+    font-size: 1rem;
+  }
+
+  .carouselHeader {
+    margin-bottom: 2.5rem;
+  }
+
+  .carouselWrapper {
+    height: auto;
+    min-height: 400px;
+  }
+
+  .slideContent {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .slideTitle {
+    font-size: 1.5rem;
+  }
+
+  .slideDescription {
+    font-size: 0.95rem;
+  }
+
+  .playOverlay {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .carouselContainer {
+    padding: 2rem 0.75rem;
+  }
+
+  .carouselTitle {
+    font-size: 1.75rem;
+  }
+
+  .carouselWrapper {
+    min-height: 320px;
+  }
+
+  .slideContent {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .slideTitle {
+    font-size: 1.25rem;
+  }
+}

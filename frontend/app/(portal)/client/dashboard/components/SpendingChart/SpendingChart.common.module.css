@@ -23,3 +23,21 @@
   margin: 0;
   font-weight: 500;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .chartWrapper {
+    height: 200px;
+  }
+}
+
+@media (max-width: 374px) {
+  .chartWrapper {
+    height: 180px;
+  }
+
+  .customTooltip {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+}

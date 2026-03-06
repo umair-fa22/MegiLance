@@ -255,3 +255,25 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+@media (max-width: 640px) {
+  .card {
+    padding: 12px;
+  }
+  .cardGrid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .dropdown {
+    width: 200px;
+  }
+}
+
+@media (max-width: 374px) {
+  .card {
+    padding: 10px;
+  }
+  .cardItem {
+    padding: 8px;
+  }
+}

@@ -110,3 +110,42 @@
   padding: 4rem;
   color: var(--color-error, #e81123);
 }
+
+@media (max-width: 480px) {
+  .container {
+    margin: 1rem auto;
+    padding: 0 0.75rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .sidebarCard {
+    padding: 1rem;
+  }
+
+  .loading,
+  .error {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.0625rem;
+  }
+}

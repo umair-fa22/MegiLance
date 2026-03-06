@@ -2,6 +2,7 @@
   position: relative;
   overflow-x: hidden;
   width: 100%;
+  max-width: 100vw;
   min-height: 100vh;
 }
 
@@ -25,24 +26,24 @@
 }
 
 .orb1 {
-  width: 600px;
-  height: 600px;
+  width: min(600px, 80vw);
+  height: min(600px, 80vw);
   top: -100px;
   left: -100px;
   animation-delay: 0s;
 }
 
 .orb2 {
-  width: 500px;
-  height: 500px;
+  width: min(500px, 70vw);
+  height: min(500px, 70vw);
   top: 40%;
   right: -100px;
   animation-delay: -5s;
 }
 
 .orb3 {
-  width: 700px;
-  height: 700px;
+  width: min(700px, 90vw);
+  height: min(700px, 90vw);
   bottom: -200px;
   left: 20%;
   animation-delay: -10s;
@@ -57,6 +58,9 @@
 .pageContent {
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .homeSection {
@@ -64,11 +68,30 @@
   width: 100%;
   padding: 0;
   margin: 0;
+  overflow-x: hidden;
 }
 
 .sectionContainer {
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
+}
+
+@media (min-width: 480px) {
+  .sectionContainer {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .sectionContainer {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .sectionContainer {
+    padding: 0 2.5rem;
+  }
 }

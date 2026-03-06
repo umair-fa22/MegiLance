@@ -11,3 +11,10 @@
   flex: 1 1 auto;
   overflow-y: auto;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .content {
+    padding: 1rem;
+  }
+}

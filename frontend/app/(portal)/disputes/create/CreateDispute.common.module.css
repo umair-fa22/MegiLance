@@ -10,3 +10,20 @@
   margin: 0 auto;
   padding: 2rem 1rem;
 }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .pageContainer {
+    padding: 1.25rem 0.75rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .pageContainer {
+    padding: 1rem 0.5rem;
+  }
+
+  .loadingWrapper {
+    padding: 1.5rem;
+  }
+}

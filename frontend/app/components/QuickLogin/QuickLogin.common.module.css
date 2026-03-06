@@ -90,3 +90,10 @@
   z-index: 9999;
   font-size: 0.875rem;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .container {
+    padding: 0.75rem;
+  }
+}

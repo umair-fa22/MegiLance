@@ -117,3 +117,35 @@
   opacity: 0.6;
   font-style: italic;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .card {
+    padding: var(--space-2, 8px);
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .action {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 374px) {
+  .avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .name {
+    font-size: var(--text-xs, 12px);
+  }
+
+  .emptyState {
+    padding: 1rem;
+  }
+}

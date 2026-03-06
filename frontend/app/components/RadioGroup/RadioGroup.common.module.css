@@ -68,3 +68,10 @@
     color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
     opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .optionLabel {
+    font-size: 0.875rem;
+  }
+}

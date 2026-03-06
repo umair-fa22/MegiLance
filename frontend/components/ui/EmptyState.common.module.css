@@ -47,3 +47,10 @@
 .action {
   margin-top: 0.5rem;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .container {
+    padding: 1.5rem;
+  }
+}

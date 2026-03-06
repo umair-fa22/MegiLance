@@ -9,9 +9,21 @@
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
   position: relative;
   z-index: 1;
+}
+
+@media (min-width: 480px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
 }
 
 .header {
@@ -89,7 +101,16 @@
 
 @media (max-width: 768px) {
   .featuresSection { padding: 4rem 0; }
-  .container { padding: 0 1.5rem; }
-  .secondaryGrid { grid-template-columns: 1fr; gap: 3rem; } /* Increased from 1.5rem */
+  .secondaryGrid { grid-template-columns: 1fr; gap: 2rem; }
   .title { font-size: 2.5rem; }
+  .header { margin-bottom: 3rem; }
+}
+
+@media (max-width: 374px) {
+  .featuresSection { padding: 3rem 0; }
+  .grid { gap: 1.5rem; }
+  .secondaryGrid { gap: 1.5rem; }
+  .heroCardWrapper { margin-bottom: 1.5rem; }
+  .title { font-size: 2rem; }
+  .subtitle { font-size: 1.05rem; }
 }

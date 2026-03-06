@@ -1,4 +1,4 @@
-// @AI-HINT: Core API client — fetch wrapper, auth tokens, error class, retry logic
+// @AI-HINT: Core API client — fetch wrapper, auth tokens, error class, retry logic, caching
 
 /** Unified resource ID type — use for all API method parameters that accept IDs */
 export type ResourceId = string | number;
@@ -120,6 +120,60 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+// === GET Response Cache with TTL ===
+interface CacheEntry {
+  data: unknown;
+  timestamp: number;
+  etag?: string;
+}
+const _responseCache = new Map<string, CacheEntry>();
+const _CACHE_TTL = 30_000; // 30 seconds default cache TTL
+const _CACHE_MAX_SIZE = 200;
+
+function getCacheKey(endpoint: string): string {
+  return `GET:${endpoint}`;
+}
+
+function getCachedResponse<T>(endpoint: string): T | null {
+  const key = getCacheKey(endpoint);
+  const entry = _responseCache.get(key);
+  if (!entry) return null;
+  if (Date.now() - entry.timestamp > _CACHE_TTL) {
+    _responseCache.delete(key);
+    return null;
+  }
+  return entry.data as T;
+}
+
+function setCachedResponse(endpoint: string, data: unknown): void {
+  const key = getCacheKey(endpoint);
+  // Evict oldest entries if cache is full
+  if (_responseCache.size >= _CACHE_MAX_SIZE) {
+    const firstKey = _responseCache.keys().next().value;
+    if (firstKey) _responseCache.delete(firstKey);
+  }
+  _responseCache.set(key, { data, timestamp: Date.now() });
+}
+
+/** Invalidate cached GET responses matching a prefix (e.g., after a mutation) */
+export function invalidateCache(endpointPrefix?: string): void {
+  if (!endpointPrefix) {
+    _responseCache.clear();
+    return;
+  }
+  const prefix = getCacheKey(endpointPrefix);
+  for (const key of _responseCache.keys()) {
+    if (key.startsWith(prefix)) {
+      _responseCache.delete(key);
+    }
+  }
+}
+
+// === Connection quality detection ===
+export function isOnline(): boolean {
+  return typeof navigator !== 'undefined' ? navigator.onLine : true;
+}
+
 // Request deduplication for identical concurrent GET requests
 const inflightRequests = new Map<string, Promise<unknown>>();
 
@@ -171,9 +225,29 @@ async function attemptTokenRefresh(): Promise<string | null> {
 
 export async function apiFetch<T = unknown>(
   endpoint: string,
-  options: RequestInit = {}
+  options: RequestInit = {},
+  /** Set to true to skip the GET response cache for this request */
+  skipCache = false
 ): Promise<T> {
   const method = (options.method || 'GET').toUpperCase();
+
+  // Offline check
+  if (!isOnline()) {
+    throw new APIError('You appear to be offline. Please check your connection.', 0, 'OFFLINE');
+  }
+
+  // Check GET cache before making request
+  if (method === 'GET' && !skipCache) {
+    const cached = getCachedResponse<T>(endpoint);
+    if (cached !== null) return cached;
+  }
+
+  // Invalidate related cache on mutations
+  if (method !== 'GET' && method !== 'HEAD' && method !== 'OPTIONS') {
+    // Invalidate cache for the resource being mutated
+    const resourceBase = endpoint.split('?')[0].split('/').slice(0, 3).join('/');
+    invalidateCache(resourceBase);
+  }
 
   const dedupeKey = getDedupeKey(endpoint, method);
   if (dedupeKey) {
@@ -298,7 +372,14 @@ export async function apiFetch<T = unknown>(
         }
 
         if (response.status === 204) return undefined as T;
-        return response.json();
+        const data = await response.json();
+
+        // Cache successful GET responses
+        if (method === 'GET') {
+          setCachedResponse(endpoint, data);
+        }
+
+        return data;
 
       } catch (error) {
         clearTimeout(timeoutId);

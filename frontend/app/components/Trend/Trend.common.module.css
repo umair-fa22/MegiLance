@@ -13,3 +13,10 @@
 .icon {
   flex-shrink: 0;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .container {
+    font-size: 0.75rem;
+  }
+}

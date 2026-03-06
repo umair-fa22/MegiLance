@@ -1,5 +1,6 @@
 # @AI-HINT: Rate limiting middleware using SlowAPI to prevent DDoS attacks and abuse
 # Configures different rate limits for authentication, API calls, and public endpoints
+# Supports: role-based limits, trusted IP bypass, dynamic limit configuration
 
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
@@ -8,13 +9,23 @@ from slowapi.middleware import SlowAPIMiddleware
 from fastapi import Request
 
 
+def get_real_client_ip(request: Request) -> str:
+    """Extract real client IP, respecting X-Forwarded-For behind reverse proxies."""
+    forwarded = request.headers.get("X-Forwarded-For")
+    if forwarded:
+        # Take the first IP (client's real IP before any proxies)
+        return forwarded.split(",")[0].strip()
+    return get_remote_address(request)
+
+
 # Initialize limiter
-# Uses client IP address as the key for rate limiting
+# Uses real client IP as the key for rate limiting
 limiter = Limiter(
-    key_func=get_remote_address,
+    key_func=get_real_client_ip,
     default_limits=["200/minute"],  # Global default: 200 requests per minute
     storage_uri="memory://",  # In-memory storage (use Redis in production)
-    enabled=True
+    enabled=True,
+    headers_enabled=True,  # Include X-RateLimit-* response headers
 )
 
 
@@ -98,6 +109,24 @@ class RateLimitConfig:
     PASSWORD_RESET_REQUEST = "3/hour"
     PASSWORD_RESET_CONFIRM = "5/minute"
     EMAIL_VERIFICATION = "5/hour"
+    
+    # File upload (moderate)
+    FILE_UPLOAD = "20/minute"
+    
+    # Webhook delivery (lenient for outbound)
+    WEBHOOK_DELIVERY = "100/minute"
+    
+    # Admin operations (strict)
+    ADMIN_BULK = "5/minute"
+    ADMIN_EXPORT = "3/minute"
+    
+    # AI / expensive operations
+    AI_MATCHING = "10/minute"
+    AI_WRITING = "5/minute"
+    
+    # Search (moderate to prevent scraping)
+    SEARCH = "60/minute"
+    SEARCH_ADVANCED = "30/minute"
     
     # 2FA endpoints
     TWO_FA_SETUP = "3/hour"

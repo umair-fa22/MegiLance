@@ -197,3 +197,18 @@
   margin-top: 16px;
   font-size: 14px;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .dropdown {
+    width: 300px;
+    right: -8px;
+  }
+}
+
+@media (max-width: 374px) {
+  .dropdown {
+    width: calc(100vw - 2rem);
+    right: -1rem;
+  }
+}

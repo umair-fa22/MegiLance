@@ -6,3 +6,10 @@
   align-items: center;
   min-height: 100vh;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .container {
+    padding: 1rem;
+  }
+}

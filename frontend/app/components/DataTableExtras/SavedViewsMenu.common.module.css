@@ -79,3 +79,10 @@
   white-space: nowrap;
   border: 0;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .menu {
+    min-width: 160px;
+  }
+}

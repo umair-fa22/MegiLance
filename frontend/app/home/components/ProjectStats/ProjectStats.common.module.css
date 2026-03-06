@@ -3,10 +3,22 @@
 .statsSection {
   position: relative;
   width: 100%;
-  padding: 6rem 2rem;
+  padding: 4rem 1rem;
   overflow: hidden;
   display: flex;
   justify-content: center;
+}
+
+@media (min-width: 480px) {
+  .statsSection {
+    padding: 5rem 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .statsSection {
+    padding: 6rem 2rem;
+  }
 }
 
 .container {
@@ -78,7 +90,7 @@
 }
 
 .title {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -140,8 +152,8 @@
 }
 
 .iconBox {
-  width: 56px;
-  height: 56px;
+  width: clamp(44px, 8vw, 56px);
+  height: clamp(44px, 8vw, 56px);
   border-radius: 1rem;
   display: flex;
   align-items: center;
@@ -166,7 +178,7 @@
 }
 
 .value {
-  font-size: 3.5rem;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
   font-weight: 800;
   line-height: 1;
   font-variant-numeric: tabular-nums;
@@ -214,21 +226,40 @@
 }
 
 @media (max-width: 768px) {
-  .statsSection {
-    padding: 4rem 1rem;
-  }
-
-  .title {
-    font-size: 2.25rem;
-  }
-
   .statsGrid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
-  .value {
-    font-size: 3rem;
+  .statCard {
+    padding: 2rem 1.5rem;
+  }
+
+  .container {
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .statCard {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .label {
+    font-size: 1rem;
+  }
+
+  .description {
+    font-size: 0.8125rem;
+  }
+
+  .footer {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .container {
+    gap: 2rem;
   }
 }
 

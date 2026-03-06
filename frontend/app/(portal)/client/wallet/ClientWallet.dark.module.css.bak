@@ -1,0 +1,20 @@
+/* @AI-HINT: Dark theme colors for Client Wallet. */
+
+.themeWrapper {
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+.subtitle {
+  color: #94a3b8;
+}
+
+.balanceCard {
+  background: #1e293b;
+  border: 1px solid #334155;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.balanceCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}

@@ -1,0 +1,72 @@
+/* AI-HINT: Dark theme styles for the modernized Client Reviews page. */
+
+.page {
+  background-color: #0f172a;
+}
+
+.title {
+  color: #f8fafc;
+}
+
+.subtitle {
+  color: #94a3b8;
+}
+
+.controlsSection {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+}
+
+.card {
+  background-color: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+  border-color: #475569;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.freelancerName {
+  color: #f8fafc;
+}
+
+.projectName {
+  color: #94a3b8;
+}
+
+.reviewText {
+  color: #e2e8f0;
+}
+
+.cardFooter {
+  color: #64748b;
+  border-top-color: #334155;
+}
+
+.emptyState {
+  background-color: #1e293b;
+  border: 1px dashed #334155;
+}
+
+.emptyState h3 {
+  color: #f8fafc;
+}
+
+.emptyState p {
+  color: #94a3b8;
+}
+
+.paginationInfo {
+  color: #94a3b8;
+}
+
+.editor {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+}
+
+.sectionTitle {
+  color: #f8fafc;
+}

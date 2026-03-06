@@ -61,3 +61,32 @@
 .currentLabel {
   font-weight: 600;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .stepIcon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
+  }
+
+  .stepLabel {
+    font-size: 0.75rem;
+  }
+
+  .connector {
+    top: 14px;
+  }
+}
+
+@media (max-width: 374px) {
+  .stepLabel {
+    display: none;
+  }
+
+  .stepIcon {
+    width: 24px;
+    height: 24px;
+    font-size: 0.6875rem;
+  }
+}

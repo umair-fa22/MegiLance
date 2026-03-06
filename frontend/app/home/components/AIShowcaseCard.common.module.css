@@ -224,3 +224,59 @@
   width: 20px;
   height: 20px;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cardContent {
+    padding: 1.75rem;
+  }
+
+  .iconWrapper {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 1.5rem;
+  }
+
+  .iconWrapper svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .description {
+    font-size: 0.9375rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .learnMore {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 374px) {
+  .cardContent {
+    padding: 1.25rem;
+  }
+
+  .iconWrapper {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 1rem;
+  }
+
+  .title {
+    font-size: 1.125rem;
+  }
+
+  .description {
+    font-size: 0.875rem;
+  }
+}

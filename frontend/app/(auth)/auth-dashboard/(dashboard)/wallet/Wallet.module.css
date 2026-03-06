@@ -510,3 +510,58 @@
     font-size: 2rem; /* 32px */
   }
 }
+
+@media (max-width: 480px) {
+  .mainGrid {
+    gap: 1.25rem;
+  }
+
+  .balanceCard {
+    padding: 1.25rem;
+  }
+
+  .balanceAmount {
+    font-size: 1.75rem;
+  }
+
+  .pageHeader h1 {
+    font-size: 1.5rem;
+  }
+
+  .transactionControls {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .transactionHeader {
+    display: none;
+  }
+
+  .transactionRow {
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .statusBadge {
+    font-size: 0.7rem;
+  }
+
+  .addMethodButton {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .balanceAmount {
+    font-size: 1.5rem;
+  }
+
+  .pageHeader h1 {
+    font-size: 1.375rem;
+  }
+
+  .transactionRow {
+    padding: 0.625rem;
+  }
+}

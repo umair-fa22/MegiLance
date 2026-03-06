@@ -37,3 +37,25 @@
   font-weight: 500;
   cursor: default;
 }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .breadcrumbs {
+    font-size: 0.8125rem;
+    margin-bottom: 1rem;
+  }
+
+  .list {
+    flex-wrap: wrap;
+  }
+
+  .separator {
+    margin: 0 0.25rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .breadcrumbs {
+    font-size: 0.75rem;
+  }
+}

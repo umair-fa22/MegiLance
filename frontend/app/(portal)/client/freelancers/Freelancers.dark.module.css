@@ -1,42 +1,61 @@
-﻿/* AI-HINT: Dark theme overrides for Client Freelancers page. */
+/* @AI-HINT: Dark theme for enterprise Client Freelancers talent discovery page */
 
-/* AI-HINT: Dark theme styles for the Freelancers page. */
+.page { background-color: #0f172a; }
+.title { color: #f8fafc; }
+.subtitle { color: #94a3b8; }
 
-.page {
-  background-color: #1d2127;
-}
+/* Quick Stats */
+.quickStats { background: #1e293b; border: 1px solid #334155; }
 
-.title {
-  color: #f8fafc;
-}
+/* Controls */
+.controlsSection { background-color: rgba(30, 41, 59, 0.95); border: 1px solid #334155; }
+.filterToggle { color: #cbd5e1; border-color: #334155; }
+.filterToggle:hover { background: #334155; }
+.viewToggle { border-color: #334155; }
+.viewBtn { color: #64748b; }
+.viewBtn:hover { color: #e2e8f0; background: #334155; }
+.viewBtnActive { background: #4573df !important; color: #fff !important; }
+.sortDirBtn { color: #cbd5e1; border-color: #334155; }
+.sortDirBtn:hover { background: #334155; }
+.resultText { color: #94a3b8; }
+.clearBtn { color: #f87171; }
+.clearBtn:hover { background: rgba(248, 113, 113, 0.1); }
 
-.subtitle {
-  color: #94a3b8;
-}
+/* Advanced Filters */
+.advancedFilters { background: #1e293b; border-color: #334155; }
+.filterLabel { color: #94a3b8; }
+.rateInput { border-color: #334155; background: #0f172a; color: #f8fafc; }
+.rateInput:focus { border-color: #4573df; outline: none; }
+.ratingBtn { border-color: #334155; color: #94a3b8; background: #0f172a; }
+.ratingBtn:hover { background: #334155; }
+.ratingBtnActive { background: #4573df !important; color: #fff !important; border-color: #4573df !important; }
+.shortlistToggle { border-color: #334155; color: #cbd5e1; }
+.shortlistToggle:hover { background: #334155; }
+.shortlistToggleActive { background: #4573df !important; color: #fff !important; border-color: #4573df !important; }
 
-.controlsSection {
-  background-color: #1e293b;
-  border: 1px solid #334155;
-}
+/* Compare */
+.compareBar { background: rgba(69, 115, 223, 0.1); }
+.comparePanel { background: #1e293b; border: 1px solid #334155; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3); }
+.comparePanelTitle { color: #f8fafc; }
+.closeBtn { color: #94a3b8; }
+.closeBtn:hover { background: #334155; }
+.compareLabelCell { background: #0f172a; color: #94a3b8; border-color: #334155; }
+.compareValueCell { border-color: #334155; color: #f8fafc; }
 
-.emptyState {
-  background-color: #1e293b;
-  border: 1px dashed #334155;
-}
+/* Cards */
+.cardWrapper { }
+.actionBtn { background: rgba(30, 41, 59, 0.95); color: #94a3b8; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
+.actionBtn:hover { color: #4573df; }
+.skeletonCard { background-color: #1e293b; border: 1px solid #334155; }
 
-.emptyState h3 {
-  color: #f8fafc;
-}
+/* Empty */
+.emptyState { background-color: #1e293b; border: 1px dashed #334155; }
+.emptyState h3 { color: #f8fafc; }
+.emptyState p { color: #94a3b8; }
+.error { color: #f87171; }
 
-.emptyState p {
-  color: #94a3b8;
-}
-
-.paginationInfo {
-  color: #94a3b8;
-}
-
-.skeletonCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
-}
+/* Pagination */
+.paginationInfo { color: #94a3b8; }
+.pageNum { color: #94a3b8; }
+.pageNum:hover { background: #334155; color: #f8fafc; }
+.pageNumActive { background: #4573df !important; color: #fff !important; }

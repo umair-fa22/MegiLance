@@ -387,3 +387,82 @@
     font-size: 1.1rem;
   }
 }
+
+@media (max-width: 480px) {
+  .blockchainShowcase {
+    padding: 2.5rem 0;
+  }
+
+  .header {
+    margin-bottom: 2.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+  }
+
+  .content {
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .visual {
+    min-height: 280px;
+  }
+
+  .block {
+    width: min(240px, 85vw);
+    padding: 1.5rem;
+  }
+
+  .feature {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .featureIcon {
+    font-size: 1.5rem;
+    padding: 0.75rem;
+  }
+
+  .stats {
+    gap: 1rem;
+  }
+
+  .chain {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .chains {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .blockchainShowcase {
+    padding: 2rem 0;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .block {
+    width: 85vw;
+    padding: 1.25rem;
+  }
+
+  .blockContent {
+    font-size: 0.95rem;
+  }
+
+  .feature {
+    padding: 1rem;
+    flex-direction: column;
+  }
+}

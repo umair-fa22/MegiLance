@@ -1,44 +1,289 @@
-/* AI-HINT: Common styles for Admin Settings page: sections, forms, toggles, and save bar. */
+/* AI-HINT: Enterprise Admin Settings — sidebar navigation, 9 config sections, forms, toggles, save bar */
 
-.page { padding: var(--spacing-8); }
+.page { padding: var(--spacing-6); }
+
+.enterpriseContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  gap: var(--spacing-5);
+}
+
+/* Legacy wrapper (kept for compat) */
 .container { max-width: 960px; margin: 0 auto; display: grid; gap: var(--spacing-6); }
 
-.header { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-4); }
-.title { font-family: var(--font-family-headings); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: var(--font-weight-bold); letter-spacing: -0.02em; line-height: 1.2; }
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+}
+
+.headerInfo { display: flex; flex-direction: column; gap: 0.25rem; }
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.title {
+  font-family: var(--font-family-headings);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
 .subtitle { font-size: 14px; opacity: 0.85; letter-spacing: 0.01em; }
 
-.section { border: 1.5px solid transparent; border-radius: 16px; padding: 1.25rem; display: grid; gap: var(--spacing-4); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04); }
+.unsavedBadge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.2em 0.6em;
+  border-radius: 6px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ── Settings Layout ─────────────────────────────────── */
+
+.settingsLayout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 1.5rem;
+  min-height: 600px;
+}
+
+@media (max-width: 860px) {
+  .settingsLayout { grid-template-columns: 1fr; }
+}
+
+/* ── Sidebar ─────────────────────────────────────────── */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  border-radius: 0.875rem;
+  height: fit-content;
+  position: sticky;
+  top: 1rem;
+}
+
+.sidebarSearch {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.625rem;
+  margin-bottom: 0.5rem;
+}
+
+.sidebarSearchIcon { opacity: 0.4; flex-shrink: 0; }
+
+.sidebarSearchInput {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.8125rem;
+  width: 100%;
+}
+
+.sidebarItem {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  text-align: left;
+  width: 100%;
+  transition: background 0.15s ease;
+}
+
+.sidebarIcon { flex-shrink: 0; opacity: 0.6; }
+.sidebarText { display: flex; flex-direction: column; gap: 0.0625rem; flex: 1; min-width: 0; }
+.sidebarTitle { font-size: 0.8125rem; font-weight: 600; }
+.sidebarDesc { font-size: 0.6875rem; opacity: 0.55; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sidebarArrow { flex-shrink: 0; opacity: 0; transition: opacity 0.15s ease; }
+
+.sidebarItem:hover .sidebarArrow { opacity: 0.4; }
+.sidebarItemActive .sidebarArrow { opacity: 0.7; }
+
+/* ── Content ─────────────────────────────────────────── */
+
+.settingsContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contentHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(128,128,128,0.15);
+}
+
+.contentIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 0.625rem;
+  flex-shrink: 0;
+}
+
+.contentTitle { font-size: 1.125rem; font-weight: 600; }
+.contentDesc { font-size: 0.8125rem; opacity: 0.6; }
+
+/* ── Sections & Forms ────────────────────────────────── */
+
+.section {
+  border: 1.5px solid transparent;
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: grid;
+  gap: var(--spacing-4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
 .sectionTitle { font-weight: 600; font-size: 16px; letter-spacing: -0.01em; }
+.subsectionTitle { font-weight: 600; font-size: 0.875rem; margin-top: 0.5rem; padding-top: 0.75rem; border-top: 1px solid rgba(128,128,128,0.12); }
 
 .field { display: grid; gap: 8px; }
 .label { font-weight: 600; font-size: 14px; letter-spacing: 0.01em; }
-.input, .select, .textarea { padding: 10px 14px; border-radius: 10px; border: 1.5px solid transparent; resize: vertical; font-size: 14px; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.input, .select, .textarea {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid transparent;
+  resize: vertical;
+  font-size: 14px;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inputSuffix {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0 0.5rem;
+  opacity: 0.55;
+  white-space: nowrap;
+  position: absolute;
+  right: 10px;
+  pointer-events: none;
+}
+
+.inputToggle {
+  position: absolute;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+}
+
+.inputToggle:hover { opacity: 0.8; }
+
 .help { font-size: 12px; opacity: 0.85; letter-spacing: 0.01em; }
 
 .row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4); }
 @media (max-width: 720px) { .row { grid-template-columns: 1fr; } }
 
-.toggle { display: inline-flex; align-items: center; gap: 10px; }
-.toggle input { width: 40px; height: 22px; }
+.toggle { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; }
+.toggle input { width: 40px; height: 22px; cursor: pointer; }
+.toggleLabel { font-size: 0.8125rem; font-weight: 500; }
 
-.saveBar { position: sticky; bottom: 16px; display: flex; gap: var(--spacing-2); justify-content: flex-end; margin-top: var(--spacing-2); }
-.button { padding: 10px 16px; border-radius: 10px; border: 1.5px solid transparent; cursor: pointer; font-weight: 600; letter-spacing: 0.01em; font-size: 14px; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+.inlineAction {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.5rem;
+}
+
+/* ── Save Bar ────────────────────────────────────────── */
+
+.saveBar {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.875rem;
+  z-index: 100;
+  animation: slideUp 0.3s ease;
+}
+
+.saveBarText { font-size: 0.8125rem; font-weight: 500; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.button {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  font-size: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
 .button:hover { transform: translateY(-1px); }
+
+.skeletonRow { height: 200px; border-radius: 16px; animation: shimmer 1.5s ease-in-out infinite; }
+@keyframes shimmer {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.3; }
+}
+
+.error {
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #dc2626;
+  background: rgba(220,38,38,0.08);
+  border: 1px solid rgba(220,38,38,0.2);
+}
 
 .isNotVisible { opacity: 0; transform: translateY(16px); }
 .isVisible { opacity: 1; transform: translateY(0); transition: opacity .6s ease-out, transform .6s ease-out; }
 
-.input:focus-visible, .select:focus-visible, .textarea:focus-visible, .button:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.input:focus-visible, .select:focus-visible, .textarea:focus-visible, .button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
 
 /* Toast */
 .toast {

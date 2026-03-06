@@ -83,3 +83,16 @@
   letter-spacing: 0.01em;
   opacity: 0.8;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .card {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .card {
+    padding: 1rem;
+  }
+}

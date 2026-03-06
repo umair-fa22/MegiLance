@@ -45,3 +45,17 @@
 /* Modal copy and actions */
 .modalBodyCopy { padding: 8px 0 12px; }
 .modalActions { display: flex; justify-content: flex-end; gap: 8px; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .toolbar { gap: 8px; }
+  .input { min-width: 0; width: 100%; }
+  .table th, .table td { padding: 8px 10px; font-size: 0.85rem; }
+  .tableWrap { max-height: 400px; }
+  .paginationBar { flex-wrap: wrap; gap: 8px; }
+}
+
+@media (max-width: 374px) {
+  .container { gap: 16px; }
+  .table th, .table td { padding: 6px 8px; font-size: 0.8rem; }
+}

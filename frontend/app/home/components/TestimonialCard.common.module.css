@@ -63,3 +63,47 @@
   font-family: var(--font-family-body);
   font-size: 0.875rem;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .testimonialCard {
+    padding: 1.75rem;
+    border-radius: 1.25rem;
+  }
+
+  .testimonialCard:hover {
+    transform: translateY(-5px);
+  }
+
+  .cardHeader {
+    margin-bottom: 1.25rem;
+  }
+
+  .quote {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .authorInfo {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .testimonialCard {
+    padding: 1.25rem;
+  }
+
+  .quote {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .authorName {
+    font-size: 0.9375rem;
+  }
+
+  .authorTitle {
+    font-size: 0.8125rem;
+  }
+}

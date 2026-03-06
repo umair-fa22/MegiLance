@@ -19,3 +19,22 @@
   align-items: center;
   gap: 12px;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .widgetsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+}
+
+@media (max-width: 374px) {
+  .widgetsGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .widgetSkeleton {
+    padding: 12px;
+  }
+}

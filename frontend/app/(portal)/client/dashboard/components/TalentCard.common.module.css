@@ -81,3 +81,30 @@
   border-top-width: 1px;
   border-top-style: solid;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .card {
+    padding: 1rem;
+  }
+
+  .meta {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .card {
+    padding: 0.75rem;
+    border-radius: 10px;
+  }
+
+  .name {
+    font-size: 0.9375rem;
+  }
+
+  .metaItem {
+    font-size: 0.8125rem;
+  }
+}

@@ -1,72 +1,67 @@
-/* AI-HINT: Dark theme styles for the modernized Client Reviews page. */
+/* @AI-HINT: Reviews dark theme — colors only */
 
-.page {
-  background-color: #0f172a;
-}
+.container { background: #0f1117; color: #e5e7eb; }
+.header { border-bottom: 1px solid #23263a; padding-bottom: 1rem; }
+.title { color: #f3f4f6; }
+.subtitle { color: #9ca3af; }
+.errorBanner { background: #2d1b1b; color: #f87171; border: 1px solid #7f1d1d; }
 
-.title {
-  color: #f8fafc;
-}
+.statCard { background: #181b2e; border: 1px solid #23263a; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+.statCard:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.35); }
+.statLabel { color: #9ca3af; }
+.statValue { color: #f3f4f6; }
 
-.subtitle {
-  color: #94a3b8;
-}
+.tabBar { border-color: #23263a; }
+.tabBtn { color: #9ca3af; }
+.tabBtn:hover { color: #d1d5db; background: #1e2236; }
+.tabBtnActive { color: #6b9aff; }
+.tabCount { background: #23263a; color: #d1d5db; }
 
-.controlsSection {
-  background-color: #1e293b;
-  border: 1px solid #334155;
-}
+.filterToggle { border-color: #333752; color: #d1d5db; }
+.filterToggle:hover { background: #1e2236; }
+.advancedFilters { background: #13152a; border: 1px solid #23263a; }
+.filterLabel { color: #9ca3af; }
+.ratingBtn { border-color: #333752; color: #9ca3af; }
+.ratingBtn:hover { background: #1e2236; }
+.ratingBtnActive { border-color: #ff9800; background: rgba(255,152,0,0.12); color: #ff9800; }
+.sortDirBtn { border-color: #333752; color: #9ca3af; }
+.bulkBar { background: rgba(107,154,255,0.1); color: #6b9aff; }
+.selectAll { color: #9ca3af; }
+.resultCount { color: #6b7280; }
 
-.card {
-  background-color: #1e293b;
-  border-color: #334155;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
+.reviewCard { background: #181b2e; border-color: #23263a; }
+.reviewCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+.reviewFreelancer { color: #f3f4f6; }
+.reviewProject { color: #6b7280; }
+.reviewText { color: #d1d5db; }
+.responseBlock { background: #13152a; border-left-color: #6b9aff; }
+.responseText { color: #9ca3af; }
+.reviewDate { color: #6b7280; }
+.actionBtn { color: #6b7280; }
+.actionBtn:hover { color: #6b9aff; background: #23263a; }
+.emptyText { color: #6b7280; }
 
-.card:hover {
-  border-color: #475569;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
+.pageInfo { color: #6b7280; }
+.pageNum { color: #9ca3af; }
+.pageNum:hover { background: #23263a; }
+.pageNumActive { color: #6b9aff; background: rgba(107,154,255,0.12); border-color: #6b9aff; }
 
-.freelancerName {
-  color: #f8fafc;
-}
+.analyticsCard { background: #181b2e; border: 1px solid #23263a; }
+.sectionTitle { color: #f3f4f6; }
+.distLabel { color: #d1d5db; }
+.distBarWrap { background: #23263a; }
+.distBar { background: #ff9800; }
+.distCount { color: #f3f4f6; }
+.sentimentLabel { color: #d1d5db; }
+.sentimentValue { color: #6b7280; }
+.metricItem { background: #13152a; }
+.metricValue { color: #f3f4f6; }
+.metricLabel { color: #9ca3af; }
 
-.projectName {
-  color: #94a3b8;
-}
-
-.reviewText {
-  color: #e2e8f0;
-}
-
-.cardFooter {
-  color: #64748b;
-  border-top-color: #334155;
-}
-
-.emptyState {
-  background-color: #1e293b;
-  border: 1px dashed #334155;
-}
-
-.emptyState h3 {
-  color: #f8fafc;
-}
-
-.emptyState p {
-  color: #94a3b8;
-}
-
-.paginationInfo {
-  color: #94a3b8;
-}
-
-.editor {
-  background-color: #1e293b;
-  border: 1px solid #334155;
-}
-
-.sectionTitle {
-  color: #f8fafc;
-}
+.editorPanel { background: #181b2e; border: 1px solid #23263a; }
+.templateBtn { border-color: #333752; color: #9ca3af; }
+.templateBtn:hover { background: #1e2236; border-color: #6b9aff; color: #6b9aff; }
+.ratingStar { color: #4b5563; }
+.ratingStarActive { color: #ff9800; }
+.ratingText { color: #ff9800; }
+.charCount { color: #6b7280; }

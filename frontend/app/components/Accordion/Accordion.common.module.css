@@ -93,3 +93,10 @@
   line-height: 1.6;
   overflow: hidden;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .trigger {
+    font-size: 0.9375rem;
+  }
+}

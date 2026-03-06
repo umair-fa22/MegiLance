@@ -99,3 +99,10 @@
   width: 2.5rem; /* w-10 */
   padding: 0;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .button {
+    font-size: 0.8125rem;
+  }
+}

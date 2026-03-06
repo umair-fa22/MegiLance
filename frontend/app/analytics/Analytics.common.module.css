@@ -132,3 +132,46 @@
 .buttonPrimary:active {
   transform: translateY(0);
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page {
+    padding: var(--spacing-8) var(--spacing-4);
+  }
+
+  .title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .statValue {
+    font-size: 1.5rem;
+  }
+
+  .iconBox {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 374px) {
+  .page {
+    padding: var(--spacing-6) var(--spacing-3);
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .statCard {
+    padding: 1rem;
+  }
+
+  .statValue {
+    font-size: 1.25rem;
+  }
+}

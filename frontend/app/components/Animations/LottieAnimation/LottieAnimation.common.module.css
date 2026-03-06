@@ -4,3 +4,10 @@
   width: 100%;
   height: 100%;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .container {
+    max-width: 200px;
+  }
+}

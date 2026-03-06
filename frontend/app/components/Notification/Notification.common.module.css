@@ -176,3 +176,11 @@
 .hidden.positionBottomLeft { animation: slideOutLeft 0.3s ease-in forwards; }
 .hidden.positionTopCenter { animation: slideOutTop 0.3s ease-in forwards; }
 .hidden.positionBottomCenter { animation: slideOutBottom 0.3s ease-in forwards; }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .notification {
+    max-width: calc(100vw - 1rem);
+    font-size: 0.8125rem;
+  }
+}

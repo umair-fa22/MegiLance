@@ -208,3 +208,42 @@
   max-width: 300px;
   color: var(--text-secondary);
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1.25rem;
+  }
+  .title {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+  }
+  .header {
+    flex-direction: column;
+  }
+  .jobGrid {
+    grid-template-columns: 1fr;
+  }
+  .cardActions {
+    flex-direction: column;
+  }
+  .cardActions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 374px) {
+  .container {
+    padding: 1rem;
+  }
+  .toolbar {
+    gap: 0.5rem;
+  }
+  .jobCard {
+    gap: 0.75rem;
+  }
+  .jobTitle {
+    font-size: 1rem;
+  }
+  .metaItem {
+    font-size: 0.8125rem;
+  }
+}

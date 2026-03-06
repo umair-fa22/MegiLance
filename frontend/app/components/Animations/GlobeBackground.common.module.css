@@ -11,3 +11,10 @@
   pointer-events: none;
   overflow: hidden;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .container {
+    opacity: 0.5;
+  }
+}

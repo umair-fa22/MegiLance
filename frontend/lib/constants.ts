@@ -129,3 +129,63 @@ export const TOAST = {
   WARNING_DURATION: 4000,
   INFO_DURATION: 3000,
 } as const;
+
+/**
+ * WebSocket configuration
+ */
+export const WS = {
+  RECONNECT_MAX_ATTEMPTS: 15,
+  RECONNECT_DELAY: 1000,
+  RECONNECT_DELAY_MAX: 30000,
+  HEARTBEAT_INTERVAL: 30000, // 30 seconds
+  EVENT_BUFFER_MAX: 50,
+} as const;
+
+/**
+ * API caching configuration
+ */
+export const CACHE = {
+  /** Default TTL for GET response cache (ms) */
+  RESPONSE_TTL: 30000,
+  /** Max number of cached responses */
+  MAX_ENTRIES: 200,
+  /** Dashboard auto-refresh interval (ms) */
+  DASHBOARD_REFRESH: 60000,
+} as const;
+
+/**
+ * Performance thresholds
+ */
+export const PERFORMANCE = {
+  /** Slow request warning threshold (ms) */
+  SLOW_REQUEST_THRESHOLD: 3000,
+  /** Request timeout (ms) */
+  REQUEST_TIMEOUT: 60000,
+  /** Debounce delay for search input (ms) */
+  SEARCH_DEBOUNCE: 300,
+  /** Throttle delay for scroll events (ms) */
+  SCROLL_THROTTLE: 100,
+} as const;
+
+/**
+ * Security constants
+ */
+export const SECURITY = {
+  /** Maximum login attempts before showing CAPTCHA */
+  MAX_LOGIN_ATTEMPTS: 5,
+  /** Password minimum length */
+  PASSWORD_MIN_LENGTH: 8,
+  /** Inactivity timeout for auto-logout (ms) — 30 minutes */
+  INACTIVITY_TIMEOUT: 30 * 60 * 1000,
+} as const;
+
+/**
+ * Date/time format constants
+ */
+export const DATE_FORMAT = {
+  SHORT: 'MMM d, yyyy',
+  LONG: 'MMMM d, yyyy',
+  WITH_TIME: 'MMM d, yyyy h:mm a',
+  ISO: "yyyy-MM-dd'T'HH:mm:ss'Z'",
+  RELATIVE_THRESHOLD: 7 * 24 * 60 * 60 * 1000, // Show relative time within 7 days
+} as const;

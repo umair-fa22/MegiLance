@@ -9,3 +9,10 @@
 .required {
   margin-left: 4px;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .label {
+    font-size: 0.8125rem;
+  }
+}

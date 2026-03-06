@@ -164,3 +164,44 @@
 .topSpacing {
   margin-top: 0.5rem;
 }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .progressContainer {
+    width: 120px;
+    height: 120px;
+  }
+
+  .contentWrapper {
+    gap: 1rem;
+  }
+
+  .scoreValue {
+    font-size: 1.5rem;
+  }
+
+  .rankName {
+    font-size: 1.1rem;
+  }
+
+  .statsGrid {
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .progressContainer {
+    width: 100px;
+    height: 100px;
+  }
+
+  .scoreValue {
+    font-size: 1.25rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+}

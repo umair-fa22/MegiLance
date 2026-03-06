@@ -6,3 +6,10 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .label {
+    font-size: 0.6875rem;
+  }
+}

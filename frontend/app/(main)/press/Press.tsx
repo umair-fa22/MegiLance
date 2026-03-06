@@ -7,7 +7,7 @@ import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
 import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';
-import { Download, Copy, Mail, Newspaper, Award, TrendingUp, Calendar, ExternalLink, Check } from 'lucide-react';
+import { Download, Copy, Mail, Newspaper, Calendar, ExternalLink, Check } from 'lucide-react';
 import common from './Press.common.module.css';
 import light from './Press.light.module.css';
 import dark from './Press.dark.module.css';
@@ -31,12 +31,6 @@ const pressReleases = [
     date: 'November 15, 2024',
     description: 'USDC escrow system eliminates traditional payment fees for freelancers.'
   },
-];
-
-const mediaFeatures = [
-  { outlet: 'TechCrunch', title: 'The Future of Freelancing', url: '#' },
-  { outlet: 'Forbes', title: 'Top AI Startups to Watch', url: '#' },
-  { outlet: 'Wired', title: 'Blockchain Meets Gig Economy', url: '#' },
 ];
 
 const companyStats = [
@@ -158,24 +152,6 @@ const Press: React.FC = () => {
                   >
                     Read Full Release <ExternalLink size={14} />
                   </a>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
-          </section>
-
-          {/* Media Features */}
-          <section aria-labelledby="media-features-heading" className={common.section}>
-            <ScrollReveal>
-              <h2 id="media-features-heading" className={common.sectionTitle}>
-                <Award size={20} className="inline mr-2" />
-                Featured In
-              </h2>
-            </ScrollReveal>
-            <StaggerContainer className={common.mediaGrid}>
-              {mediaFeatures.map((feature, idx) => (
-                <StaggerItem key={idx} className={common.mediaCard}>
-                  <span className={common.mediaOutlet}>{feature.outlet}</span>
-                  <p className={common.mediaTitle}>{feature.title}</p>
                 </StaggerItem>
               ))}
             </StaggerContainer>

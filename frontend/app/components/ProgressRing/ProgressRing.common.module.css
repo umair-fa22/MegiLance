@@ -60,3 +60,9 @@
 
 .ringLg .ringSvg { width: 96px; height: 96px; }
 .ringLg .ringValue { font-size: 1.25rem; }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .ringLg .ringSvg { width: 72px; height: 72px; }
+  .ringLg .ringValue { font-size: 1rem; }
+}

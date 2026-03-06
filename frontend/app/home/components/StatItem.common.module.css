@@ -22,7 +22,7 @@
 
 .statValue {
   font-family: var(--font-family-heading);
-  font-size: 2.5rem;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 0.25rem;
@@ -35,4 +35,26 @@
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .statItem {
+    padding: 1rem;
+  }
+
+  .statLabel {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .statItem {
+    padding: 0.75rem;
+  }
+
+  .statLabel {
+    font-size: 0.6875rem;
+    letter-spacing: 0.03em;
+  }
 }

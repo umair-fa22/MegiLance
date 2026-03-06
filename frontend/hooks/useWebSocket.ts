@@ -1,5 +1,6 @@
 // @AI-HINT: WebSocket custom hook - manages Socket.IO connection and events
 // Supports: messaging, typing indicators, user presence, notifications, read receipts
+// Features: exponential backoff, heartbeat monitoring, event buffering, visibility reconnect
 'use client';
 
 import { useEffect, useState, useCallback, useRef } from 'react';
@@ -8,9 +9,15 @@ import { getAuthToken } from '@/lib/api';
 
 type Socket = SocketIOSocket;
 
+export type ConnectionState = 'connecting' | 'connected' | 'disconnected' | 'reconnecting';
+
 interface UseWebSocketOptions {
   url?: string;
   autoConnect?: boolean;
+  /** Maximum reconnection attempts before giving up (default: 15) */
+  maxReconnectAttempts?: number;
+  /** Enable heartbeat monitoring (default: true) */
+  enableHeartbeat?: boolean;
 }
 
 // Typed event payloads from backend
@@ -52,10 +59,29 @@ export interface WsReadReceipt {
 }
 
 export const useWebSocket = (options: UseWebSocketOptions = {}) => {
-  const { url = process.env.NEXT_PUBLIC_WS_URL || 'http://localhost:8000', autoConnect = true } = options;
+  const { 
+    url = process.env.NEXT_PUBLIC_WS_URL || 'http://localhost:8000', 
+    autoConnect = true,
+    maxReconnectAttempts = 15,
+    enableHeartbeat = true,
+  } = options;
   const [socket, setSocket] = useState<Socket | null>(null);
-  const [connected, setConnected] = useState(false);
+  const [connectionState, setConnectionState] = useState<ConnectionState>('disconnected');
+  const [reconnectAttempt, setReconnectAttempt] = useState(0);
   const socketRef = useRef<Socket | null>(null);
+  const heartbeatRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const eventBufferRef = useRef<Array<{event: string; data: unknown}>>([]);
+
+  // Flush buffered events when connection is restored
+  const flushEventBuffer = useCallback(() => {
+    if (socketRef.current?.connected && eventBufferRef.current.length > 0) {
+      const buffer = [...eventBufferRef.current];
+      eventBufferRef.current = [];
+      for (const { event, data } of buffer) {
+        socketRef.current.emit(event, data);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (!autoConnect) return;
@@ -65,7 +91,7 @@ export const useWebSocket = (options: UseWebSocketOptions = {}) => {
       return;
     }
 
-    // Create socket connection
+    // Create socket connection with exponential backoff
     const newSocket = io(url, {
       path: '/ws/socket.io',
       auth: {
@@ -73,8 +99,11 @@ export const useWebSocket = (options: UseWebSocketOptions = {}) => {
       },
       transports: ['websocket', 'polling'],
       reconnection: true,
-      reconnectionAttempts: 5,
+      reconnectionAttempts: maxReconnectAttempts,
       reconnectionDelay: 1000,
+      reconnectionDelayMax: 30000,
+      randomizationFactor: 0.5, // Jitter for exponential backoff
+      timeout: 20000,
     });
 
     socketRef.current = newSocket;
@@ -82,35 +111,98 @@ export const useWebSocket = (options: UseWebSocketOptions = {}) => {
 
     // Connection handlers
     newSocket.on('connect', () => {
-      setConnected(true);
+      setConnectionState('connected');
+      setReconnectAttempt(0);
+      flushEventBuffer();
     });
 
-    newSocket.on('disconnect', () => {
-      setConnected(false);
+    newSocket.on('disconnect', (reason) => {
+      setConnectionState('disconnected');
+      // If server disconnected us, try to reconnect with fresh token
+      if (reason === 'io server disconnect') {
+        const freshToken = getAuthToken();
+        if (freshToken) {
+          newSocket.auth = { token: freshToken };
+          newSocket.connect();
+        }
+      }
     });
 
     newSocket.on('connect_error', () => {
-      setConnected(false);
+      setConnectionState('reconnecting');
+      setReconnectAttempt(prev => prev + 1);
     });
+
+    newSocket.io.on('reconnect_attempt', (attempt) => {
+      setReconnectAttempt(attempt);
+      setConnectionState('reconnecting');
+      // Refresh token on reconnect attempts
+      const freshToken = getAuthToken();
+      if (freshToken) {
+        newSocket.auth = { token: freshToken };
+      }
+    });
+
+    newSocket.io.on('reconnect', () => {
+      setConnectionState('connected');
+      setReconnectAttempt(0);
+      flushEventBuffer();
+    });
+
+    newSocket.io.on('reconnect_failed', () => {
+      setConnectionState('disconnected');
+    });
+
+    // Heartbeat: detect stale connections
+    if (enableHeartbeat) {
+      heartbeatRef.current = setInterval(() => {
+        if (newSocket.connected) {
+          newSocket.emit('ping_heartbeat', { ts: Date.now() });
+        }
+      }, 30000); // Every 30 seconds
+    }
+
+    // Reconnect on page visibility change (e.g., tab becomes active again)
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible' && !newSocket.connected) {
+        const freshToken = getAuthToken();
+        if (freshToken) {
+          newSocket.auth = { token: freshToken };
+          newSocket.connect();
+        }
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     // Cleanup on unmount
     return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      if (heartbeatRef.current) {
+        clearInterval(heartbeatRef.current);
+      }
       newSocket.close();
       socketRef.current = null;
     };
-  }, [url, autoConnect]);
+  }, [url, autoConnect, maxReconnectAttempts, enableHeartbeat, flushEventBuffer]);
 
-  const send = useCallback((event: string, data: any) => {
+  const send = useCallback(<T = unknown>(event: string, data: T) => {
     if (socketRef.current?.connected) {
       socketRef.current.emit(event, data);
+    } else {
+      // Buffer events while disconnected (up to 50)
+      if (eventBufferRef.current.length < 50) {
+        eventBufferRef.current.push({ event, data });
+      }
     }
   }, []);
 
-  const on = useCallback((event: string, handler: (data: any) => void) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const on = useCallback((event: string, handler: (...args: any[]) => void) => {
     socketRef.current?.on(event, handler);
   }, []);
 
-  const off = useCallback((event: string, handler?: (data: any) => void) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const off = useCallback((event: string, handler?: (...args: any[]) => void) => {
     if (handler) {
       socketRef.current?.off(event, handler);
     } else {
@@ -126,7 +218,7 @@ export const useWebSocket = (options: UseWebSocketOptions = {}) => {
     send('leave_room', { room });
   }, [send]);
 
-  const sendMessage = useCallback((room: string, message: string, metadata?: any) => {
+  const sendMessage = useCallback((room: string, message: string, metadata?: Record<string, unknown>) => {
     send('message', {
       room,
       message,
@@ -139,17 +231,29 @@ export const useWebSocket = (options: UseWebSocketOptions = {}) => {
   }, [send]);
 
   const disconnect = useCallback(() => {
+    if (heartbeatRef.current) {
+      clearInterval(heartbeatRef.current);
+    }
     socketRef.current?.close();
-    setConnected(false);
+    setConnectionState('disconnected');
   }, []);
 
   const reconnect = useCallback(() => {
-    socketRef.current?.connect();
+    setConnectionState('connecting');
+    const freshToken = getAuthToken();
+    if (socketRef.current && freshToken) {
+      socketRef.current.auth = { token: freshToken };
+      socketRef.current.connect();
+    }
   }, []);
+
+  const connected = connectionState === 'connected';
 
   return {
     socket,
     connected,
+    connectionState,
+    reconnectAttempt,
     send,
     on,
     off,
@@ -159,5 +263,7 @@ export const useWebSocket = (options: UseWebSocketOptions = {}) => {
     sendReadReceipt,
     disconnect,
     reconnect,
+    /** Number of events buffered while disconnected */
+    bufferedEventCount: eventBufferRef.current.length,
   };
 };

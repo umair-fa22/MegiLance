@@ -324,3 +324,10 @@
 .suggestionItem strong {
   font-weight: 600;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .textarea {
+    font-size: 0.875rem;
+  }
+}

@@ -31,8 +31,8 @@
 }
 
 .gradientOrb1 {
-  width: 600px;
-  height: 600px;
+  width: min(600px, 80vw);
+  height: min(600px, 80vw);
   top: -200px;
   left: -100px;
   background: radial-gradient(circle, var(--color-primary, #4573df), transparent);
@@ -40,8 +40,8 @@
 }
 
 .gradientOrb2 {
-  width: 500px;
-  height: 500px;
+  width: min(500px, 70vw);
+  height: min(500px, 70vw);
   bottom: -100px;
   right: 5%;
   background: radial-gradient(circle, var(--color-accent, #ff9800), transparent);
@@ -49,8 +49,8 @@
 }
 
 .gradientOrb3 {
-  width: 400px;
-  height: 400px;
+  width: min(400px, 60vw);
+  height: min(400px, 60vw);
   top: 40%;
   right: -150px;
   background: radial-gradient(circle, #9c27b0, transparent);
@@ -136,15 +136,16 @@
 /* Features Grid */
 .featuresGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  margin-bottom: 8rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   .featuresGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem;
+    gap: 2rem;
+    margin-bottom: 6rem;
   }
 }
 
@@ -152,6 +153,7 @@
   .featuresGrid {
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
+    margin-bottom: 8rem;
   }
 }
 
@@ -275,13 +277,13 @@
 
 /* Icon Wrapper */
 .iconWrapper {
-  width: 80px;
-  height: 80px;
+  width: clamp(56px, 10vw, 80px);
+  height: clamp(56px, 10vw, 80px);
   border-radius: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
     border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
@@ -626,11 +628,11 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .section {
-    padding: 4rem 1rem;
+    padding: 3rem 1rem;
   }
 
   .header {
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
   }
 
   .heading {
@@ -638,13 +640,17 @@
     margin-bottom: 1.5rem;
   }
 
-  .featuresGrid {
-    gap: 2rem;
-    margin-bottom: 4rem;
+  .subtitle {
+    font-size: 1.05rem;
   }
 
   .featureCard {
     padding: 1.5rem;
+    min-height: auto;
+  }
+
+  .featureCardWrapper {
+    min-height: auto;
   }
 
   .techStack {
@@ -660,6 +666,58 @@
   }
 
   .capabilityItem {
-    padding: 1.5rem;
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .capabilitiesTitle {
+    font-size: 2rem;
+  }
+
+  .techStackSection {
+    margin-top: 4rem;
+    padding-top: 4rem;
+  }
+
+  .capabilitiesSection {
+    margin-top: 4rem;
+    padding-top: 3rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .section {
+    padding: 2.5rem 0.75rem;
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .featureCard {
+    padding: 1.25rem;
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+  }
+
+  .cardTitle {
+    font-size: 1.25rem;
+  }
+
+  .cardDescription {
+    font-size: 0.9375rem;
+  }
+
+  .capabilityIcon {
+    font-size: 2rem;
+  }
+
+  .capabilityText {
+    font-size: 0.95rem;
   }
 }

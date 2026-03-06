@@ -76,3 +76,10 @@
   gap: 0.625rem;
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .container:hover {
+    transform: translateY(-2px);
+  }
+}

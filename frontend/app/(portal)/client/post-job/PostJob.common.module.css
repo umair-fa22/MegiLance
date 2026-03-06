@@ -186,3 +186,64 @@
   outline: 2px solid var(--primary); 
   outline-offset: 2px; 
 }
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .main {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .footer {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  .result_card {
+    padding: 2rem 1.25rem;
+  }
+
+  .result_title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .main {
+    padding: 1rem 0.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .footer {
+    padding: 0.75rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footerLeft,
+  .footerRight {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .result_card {
+    padding: 1.5rem 1rem;
+  }
+
+  .result_title {
+    font-size: 1.25rem;
+  }
+
+  .result_message {
+    font-size: 0.9375rem;
+  }
+}

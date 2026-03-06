@@ -28,3 +28,16 @@
   align-items: center;
   gap: 1rem;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .headerActions {
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .headerTitle p {
+    font-size: 13px;
+  }
+}

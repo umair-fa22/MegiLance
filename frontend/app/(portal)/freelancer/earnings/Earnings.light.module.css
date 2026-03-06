@@ -1,24 +1,60 @@
-/* Light Theme - Freelancer Earnings */
-.container { background: #fff; }
-.title { color: #1a1a1a; }
+/* Light Theme - Freelancer Earnings Enterprise */
+.container { background: #ffffff; }
+.header { border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; }
+.title { color: #1a1a2e; }
 .subtitle { color: #64748b; }
-.statCard { background: #fff; border: 1px solid #e2e8f0; }
-.statValue { color: #1a1a1a; }
+.errorBanner { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+.statCard { background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
 .statLabel { color: #64748b; }
-.periodBtn { background: #f1f5f9; color: #374151; }
-.periodBtn:hover { background: #e2e8f0; }
-.periodBtnActive { background: #4573df !important; color: #fff !important; }
-.section { background: #fff; border: 1px solid #e2e8f0; }
-.sectionTitle { color: #1a1a1a; }
-.chartBar { background: #4573df; }
-.chartBarLabel { color: #64748b; }
-.chartBarValue { color: #1a1a1a; }
-.breakdownItem { background: #f9fafb; }
-.breakdownLabel { color: #374151; }
-.breakdownValue { color: #1a1a1a; }
-.tableWrapper { background: #fff; border: 1px solid #e2e8f0; }
-.th { background: #f9fafb; color: #64748b; border-bottom: 1px solid #e2e8f0; }
-.td { color: #374151; border-bottom: 1px solid #f1f5f9; }
-.tr:hover { background: #f9fafb; }
-.emptyState { background: #f9fafb; color: #64748b; }
-.emptyState h3 { color: #1a1a1a; }
+.statValue { color: #1a1a2e; }
+.statMeta { color: #94a3b8; }
+.miniProgress { background: #e2e8f0; }
+.tabBar { background: #f1f5f9; }
+.tabBtn { background: transparent; color: #64748b; }
+.tabBtn:hover { background: #e2e8f0; color: #374151; }
+.tabBtnActive { background: #ffffff !important; color: #4573df !important; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.chartSection { background: #ffffff; border: 1px solid #e2e8f0; }
+.sectionTitle { color: #1a1a2e; }
+.chartAmount { color: #64748b; }
+.chartLabel { color: #64748b; }
+.sourceItem { }
+.sourceName { color: #374151; }
+.sourcePercent { color: #1a1a2e; }
+.sourceBar { background: #e2e8f0; }
+.sourceAmount { color: #64748b; }
+.recentSection { background: #ffffff; border: 1px solid #e2e8f0; }
+.txRow { border-bottom-color: #f1f5f9; }
+.txRow:hover { background: #f9fafb; }
+.txIcon { background: #f1f5f9; color: #64748b; }
+.txDesc { color: #1a1a2e; }
+.txDate { color: #94a3b8; }
+.txAmount { color: #1a1a2e; }
+.emptyText { color: #94a3b8; }
+.txPanel { background: #ffffff; border: 1px solid #e2e8f0; }
+.sortHeader { border-bottom-color: #e2e8f0; }
+.sortCol { color: #64748b; }
+.sortColActive { color: #4573df; }
+.pageInfo { color: #64748b; }
+.pageNum { background: #f1f5f9; color: #374151; }
+.pageNum:hover { background: #e2e8f0; }
+.pageNumActive { background: #4573df !important; color: #fff !important; }
+.goalCard { background: #ffffff; border: 1px solid #e2e8f0; }
+.goalDesc { color: #64748b; }
+.goalCurrent { color: #1a1a2e; }
+.goalTarget { color: #94a3b8; }
+.goalBar { background: #e2e8f0; }
+.goalRemaining { color: #64748b; }
+.goalPercent { color: #4573df; }
+.projectionItem { background: #f9fafb; border: 1px solid #e2e8f0; }
+.projLabel { color: #64748b; }
+.projValue { color: #1a1a2e; }
+.taxCard { background: #ffffff; border: 1px solid #e2e8f0; }
+.taxDisclaimer { color: #94a3b8; }
+.taxLabel { color: #374151; }
+.taxItem { background: #f9fafb; border: 1px solid #e2e8f0; }
+.taxItemLabel { color: #64748b; }
+.taxItemValue { color: #1a1a2e; }
+.docItem { background: #f9fafb; border: 1px solid #e2e8f0; }
+.docItem:hover { background: #f1f5f9; }
+.docName { color: #1a1a2e; }
+.docMeta { color: #94a3b8; }

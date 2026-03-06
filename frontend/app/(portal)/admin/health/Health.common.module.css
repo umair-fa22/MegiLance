@@ -23,3 +23,29 @@
 .statLabel { display: block; font-size: 0.75rem; opacity: 0.6; margin-bottom: 2px; }
 .statValue { font-size: 1.1rem; font-weight: 600; }
 .lastCheck { margin: 0; font-size: 0.8rem; opacity: 0.5; }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .servicesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .serviceStats {
+    gap: 1rem;
+  }
+
+  .overallStatus {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 374px) {
+  .servicesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .serviceCard {
+    padding: 1rem;
+  }
+}

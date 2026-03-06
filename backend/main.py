@@ -4,9 +4,11 @@ import logging
 import json
 import time
 import uuid
+import sys
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.responses import JSONResponse
@@ -20,6 +22,9 @@ from app.core.rate_limit import limiter
 from app.db.init_db import init_db
 from app.db.session import get_engine
 from sqlalchemy import text
+
+# Track application start time for uptime reporting
+_APP_START_TIME = time.time()
 
 # Configure logging
 class JsonFormatter(logging.Formatter):
@@ -99,7 +104,16 @@ async def lifespan(app: FastAPI):
     except Exception as e:
         logger.error(f"startup.database_failed error={e}")
     yield
-    # Shutdown
+    # Shutdown — clean up caches and resources
+    try:
+        with _idempotency_lock:
+            _idempotency_cache.clear()
+        from app.core.security import _user_cache, _user_cache_lock
+        with _user_cache_lock:
+            _user_cache.clear()
+        logger.info("shutdown.caches_cleared")
+    except Exception as e:
+        logger.warning(f"shutdown.cleanup_warning: {e}")
     logger.info("shutdown.complete")
 
 
@@ -235,6 +249,26 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
 
 app.add_middleware(SecurityHeadersMiddleware)
 
+# GZip compression for responses > 500 bytes
+app.add_middleware(GZipMiddleware, minimum_size=500)
+
+
+# Request body size limit middleware (10MB default)
+class RequestSizeLimitMiddleware(BaseHTTPMiddleware):
+    MAX_BODY_SIZE = 10 * 1024 * 1024  # 10MB
+
+    async def dispatch(self, request, call_next):
+        content_length = request.headers.get("content-length")
+        if content_length and int(content_length) > self.MAX_BODY_SIZE:
+            return JSONResponse(
+                status_code=413,
+                content={"detail": "Request body too large. Maximum size is 10MB.", "error_type": "PayloadTooLarge"}
+            )
+        return await call_next(request)
+
+
+app.add_middleware(RequestSizeLimitMiddleware)
+
 
 @app.exception_handler(StarletteHTTPException)
 async def http_exception_handler(request, exc):
@@ -318,29 +352,58 @@ def api_root():
 
 @app.get("/api/health/live")
 def health_live():
-    return {"status": "ok"}
+    return {"status": "ok", "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
 
 @app.get("/api/health/ready")
 def health_ready():
     engine = get_engine()
+    uptime_seconds = int(time.time() - _APP_START_TIME)
+    base_info = {
+        "version": "1.0.0",
+        "environment": settings.environment,
+        "uptime_seconds": uptime_seconds,
+        "python_version": sys.version.split()[0],
+        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    }
     try:
         if engine is not None:
             with engine.connect() as conn:
                 conn.execute(text("SELECT 1"))
-            return {"status": "ready", "db": "ok", "driver": "sqlalchemy"}
+            return {"status": "ready", "db": "ok", "driver": "sqlalchemy", **base_info}
         else:
             # Using Turso HTTP API
             from app.db.turso_http import execute_query
             result = execute_query("SELECT 1")
             if result is not None:
-                return {"status": "ready", "db": "ok", "driver": "turso_http"}
+                return {"status": "ready", "db": "ok", "driver": "turso_http", **base_info}
             else:
-                return JSONResponse(status_code=503, content={"status": "degraded", "db_error": "Turso HTTP query failed"})
+                return JSONResponse(status_code=503, content={"status": "degraded", "db_error": "Turso HTTP query failed", **base_info})
     except Exception as e:
         logger.error(f"health.ready_failed error={e}")
         # SECURITY: Don't leak database error details in production
         error_detail = str(e) if settings.environment != "production" else "Database connection failed"
-        return JSONResponse(status_code=503, content={"status": "degraded", "db_error": error_detail})
+        return JSONResponse(status_code=503, content={"status": "degraded", "db_error": error_detail, **base_info})
+
+@app.get("/api/health/metrics")
+def health_metrics():
+    """Operational metrics endpoint for monitoring."""
+    import resource
+    uptime_seconds = int(time.time() - _APP_START_TIME)
+    with _idempotency_lock:
+        idempotency_cache_size = len(_idempotency_cache)
+    try:
+        from app.core.security import _user_cache, _user_cache_lock
+        with _user_cache_lock:
+            user_cache_size = len(_user_cache)
+    except Exception:
+        user_cache_size = -1
+    return {
+        "uptime_seconds": uptime_seconds,
+        "idempotency_cache_size": idempotency_cache_size,
+        "user_cache_size": user_cache_size,
+        "inflight_requests_dedup": 0,
+        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    }
 
 
 from fastapi.staticfiles import StaticFiles

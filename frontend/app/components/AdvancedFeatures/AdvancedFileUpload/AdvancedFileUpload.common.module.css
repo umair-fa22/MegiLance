@@ -171,3 +171,16 @@
 .errorIcon {
   color: var(--color-error, #e81123);
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .dropzone {
+    padding: 24px 16px;
+  }
+}
+
+@media (max-width: 374px) {
+  .dropzone {
+    padding: 16px 12px;
+  }
+}

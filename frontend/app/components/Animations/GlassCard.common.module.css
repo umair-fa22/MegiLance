@@ -15,3 +15,10 @@
 .hoverEffect:hover {
   transform: translateY(-5px) scale(1.02);
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .hoverEffect:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+}

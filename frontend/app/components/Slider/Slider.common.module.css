@@ -41,3 +41,11 @@
 .sliderThumb:hover {
   transform: scale(1.1);
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .sliderThumb {
+    width: 20px;
+    height: 20px;
+  }
+}

@@ -47,3 +47,17 @@
   font-size: 1rem;
   line-height: 1.7;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .question {
+    padding: 16px 0;
+  }
+}
+
+@media (max-width: 374px) {
+  .question {
+    padding: 12px 0;
+    font-size: 0.9375rem;
+  }
+}

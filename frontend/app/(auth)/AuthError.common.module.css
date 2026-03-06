@@ -61,3 +61,52 @@
   gap: 0.75rem;
   justify-content: center;
 }
+
+/* ── Mobile ≤ 640px ── */
+@media (max-width: 640px) {
+  .container {
+    padding: 1.5rem 1rem;
+  }
+
+  .card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* ── Extra-small ≤ 374px ── */
+@media (max-width: 374px) {
+  .container {
+    padding: 1rem 0.75rem;
+  }
+
+  .card {
+    padding: 1.25rem 1rem;
+  }
+
+  .iconWrap {
+    width: 44px;
+    height: 44px;
+  }
+
+  .iconWrap svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .message {
+    font-size: 0.825rem;
+  }
+}

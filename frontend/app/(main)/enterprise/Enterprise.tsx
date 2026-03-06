@@ -17,20 +17,13 @@ import {
   Globe,
   Lock,
   Zap,
-  Clock,
-  Award,
   Building2,
   ChevronRight,
   CheckCircle2,
   ArrowRight,
   HeadphonesIcon,
   Settings,
-  TrendingUp,
-  Star,
-  Briefcase,
-  FileCheck,
-  CreditCard,
-  Layers
+  TrendingUp
 } from 'lucide-react';
 import common from './Enterprise.common.module.css';
 import light from './Enterprise.light.module.css';
@@ -81,59 +74,6 @@ const coreFeatures = [
     title: 'AI-Powered Matching',
     description: 'Our proprietary AI analyzes skills, experience, and work style to find the perfect talent match in minutes, not weeks.',
     highlight: '95% Match Rate'
-  },
-];
-
-// Use cases
-const useCases = [
-  {
-    title: 'Rapid Team Scaling',
-    icon: Users,
-    stats: '50% faster hiring',
-    description: 'Scale your engineering, design, or marketing teams within days, not months. Access pre-vetted talent ready to start.',
-    benefits: ['Pre-vetted talent pool', 'Skills-based matching', 'Flexible engagement models']
-  },
-  {
-    title: 'Cost Optimization',
-    icon: CreditCard,
-    stats: '40% cost reduction',
-    description: 'Reduce overhead costs while maintaining quality. Transparent pricing with no hidden fees.',
-    benefits: ['Transparent pricing', 'No recruiter fees', 'Flexible contracts']
-  },
-  {
-    title: 'Global Expansion',
-    icon: Globe,
-    stats: '80+ countries',
-    description: 'Access local talent and expertise in new markets without establishing physical presence.',
-    benefits: ['Local compliance handling', 'Multi-currency payments', 'Time zone coverage']
-  },
-];
-
-// Testimonials from enterprise clients
-const testimonials = [
-  {
-    quote: "MegiLance Enterprise transformed how we build our product team. We've reduced time-to-hire by 60% while improving talent quality.",
-    author: 'Sarah Chen',
-    role: 'VP of Engineering',
-    company: 'TechCorp Global',
-    avatar: '/images/testimonials/avatar1.jpg',
-    rating: 5
-  },
-  {
-    quote: "The security and compliance features gave us confidence to use freelance talent for enterprise projects. It's been a game-changer.",
-    author: 'Michael Rodriguez',
-    role: 'CISO',
-    company: 'FinanceHub Inc.',
-    avatar: '/images/testimonials/avatar2.jpg',
-    rating: 5
-  },
-  {
-    quote: "Their dedicated account team understands our business needs. The AI matching saves us countless hours in recruitment.",
-    author: 'Emma Thompson',
-    role: 'Head of Operations',
-    company: 'Global Retail Co.',
-    avatar: '/images/testimonials/avatar3.jpg',
-    rating: 5
   },
 ];
 
@@ -333,83 +273,6 @@ const Enterprise: React.FC = () => {
                   <p className={cn(common.featureDescription, themed.featureDescription)}>
                     {feature.description}
                   </p>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
-          </div>
-        </section>
-
-        {/* Use Cases */}
-        <section className={cn(common.section, common.useCasesSection)}>
-          <div className={common.container}>
-            <ScrollReveal>
-              <div className={common.sectionHeader}>
-                <h2 className={common.sectionTitle}>How Enterprises Use MegiLance</h2>
-                <p className={cn(common.sectionSubtitle, themed.sectionSubtitle)}>
-                  Real business outcomes from organizations just like yours.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <StaggerContainer className={common.useCasesGrid}>
-              {useCases.map((useCase) => (
-                <StaggerItem key={useCase.title} className={cn(common.useCaseCard, themed.useCaseCard)}>
-                  <div className={cn(common.useCaseHeader, themed.useCaseHeader)}>
-                    <useCase.icon size={32} />
-                    <span className={cn(common.useCaseStats, themed.useCaseStats)}>{useCase.stats}</span>
-                  </div>
-                  <h3 className={common.useCaseTitle}>{useCase.title}</h3>
-                  <p className={cn(common.useCaseDescription, themed.useCaseDescription)}>
-                    {useCase.description}
-                  </p>
-                  <ul className={common.useCaseBenefits}>
-                    {useCase.benefits.map((benefit) => (
-                      <li key={benefit} className={cn(common.benefitItem, themed.benefitItem)}>
-                        <CheckCircle2 size={16} />
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
-          </div>
-        </section>
-
-        {/* Testimonials */}
-        <section className={common.section}>
-          <div className={common.container}>
-            <ScrollReveal>
-              <div className={common.sectionHeader}>
-                <h2 className={common.sectionTitle}>Trusted by Industry Leaders</h2>
-                <p className={cn(common.sectionSubtitle, themed.sectionSubtitle)}>
-                  See what enterprise clients say about working with MegiLance.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <StaggerContainer className={common.testimonialsGrid}>
-              {testimonials.map((testimonial) => (
-                <StaggerItem key={testimonial.author} className={cn(common.testimonialCard, themed.testimonialCard)}>
-                  <div className={common.testimonialStars}>
-                    {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star key={i} size={16} fill="currentColor" className={themed.starFilled} />
-                    ))}
-                  </div>
-                  <blockquote className={cn(common.testimonialQuote, themed.testimonialQuote)}>
-                    &ldquo;{testimonial.quote}&rdquo;
-                  </blockquote>
-                  <div className={common.testimonialAuthor}>
-                    <div className={cn(common.authorAvatar, themed.authorAvatar)}>
-                      {testimonial.author.charAt(0)}
-                    </div>
-                    <div className={common.authorInfo}>
-                      <div className={common.authorName}>{testimonial.author}</div>
-                      <div className={cn(common.authorRole, themed.authorRole)}>
-                        {testimonial.role}, {testimonial.company}
-                      </div>
-                    </div>
-                  </div>
                 </StaggerItem>
               ))}
             </StaggerContainer>

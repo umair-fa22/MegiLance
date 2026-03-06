@@ -105,6 +105,9 @@ export function useAuth(): UseAuthReturn {
   
   // Token refresh interval ref
   const refreshIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  
+  // AbortController for cancelling in-flight requests on unmount
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   const isAuthenticated = useMemo(() => !!user, [user]);
 
@@ -116,8 +119,38 @@ export function useAuth(): UseAuthReturn {
       if (refreshIntervalRef.current) {
         clearInterval(refreshIntervalRef.current);
       }
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
     };
   }, []);
+
+  // Multi-tab session sync: listen for storage events to sync logout/login across tabs
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === AUTH.TOKEN_KEY) {
+        if (!e.newValue) {
+          // Token removed in another tab — logout this tab too
+          if (isMounted.current) {
+            setUser(null);
+            setError(null);
+          }
+          sessionStorage.removeItem(AUTH.USER_KEY);
+        } else if (e.newValue && !user) {
+          // Token set in another tab — reload user
+          const cachedUser = sessionStorage.getItem(AUTH.USER_KEY);
+          if (cachedUser) {
+            try {
+              const parsed = JSON.parse(cachedUser);
+              if (isMounted.current) setUser(parsed);
+            } catch { /* invalid cache */ }
+          }
+        }
+      }
+    };
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [user]);
 
   // Load user from storage on mount
   useEffect(() => {
@@ -206,12 +239,22 @@ export function useAuth(): UseAuthReturn {
         }
       }, 25 * 60 * 1000);
 
-      // Redirect based on role
-      const redirectPath = normalized.user_type === 'admin' 
-        ? '/admin/dashboard'
-        : normalized.user_type === 'freelancer'
-          ? '/freelancer/dashboard'
-          : '/client/dashboard';
+      // Redirect based on role, respecting returnTo query param
+      const searchParams = new URLSearchParams(window.location.search);
+      const returnTo = searchParams.get('returnTo');
+      
+      // Only allow safe returnTo paths (prevent open redirect)
+      const safeReturnTo = returnTo && returnTo.startsWith('/') && !returnTo.startsWith('//') 
+        ? returnTo 
+        : null;
+
+      const redirectPath = safeReturnTo || (
+        normalized.user_type === 'admin' 
+          ? '/admin/dashboard'
+          : normalized.user_type === 'freelancer'
+            ? '/freelancer/dashboard'
+            : '/client/dashboard'
+      );
 
       router.push(redirectPath);
     } catch (err) {
@@ -224,6 +267,11 @@ export function useAuth(): UseAuthReturn {
   }, [router]);
 
   const logout = useCallback(() => {
+    // Notify backend about the logout (fire-and-forget)
+    try {
+      api.auth.logout().catch(() => {});
+    } catch { /* best effort */ }
+    
     clearAuthData();
     clearAuthCookie();
     sessionStorage.removeItem(AUTH.USER_KEY);
@@ -269,6 +317,26 @@ export function useAuth(): UseAuthReturn {
     refreshUser,
     updateProfile,
   };
+}
+
+/**
+ * Lightweight check: is there a non-expired auth token present?
+ * Useful in server components or quick gating without full hook.
+ */
+export function hasValidAuthToken(): boolean {
+  if (typeof window === 'undefined') return false;
+  const token = document.cookie
+    .split('; ')
+    .find(c => c.startsWith(`${AUTH.TOKEN_KEY}=`));
+  if (!token) return false;
+  try {
+    const jwt = token.split('=')[1];
+    const base64 = jwt.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+    const payload = JSON.parse(atob(base64));
+    return payload.exp > Date.now() / 1000;
+  } catch {
+    return false;
+  }
 }
 
 export default useAuth;

@@ -93,3 +93,17 @@
   display: flex;
   gap: 0.75rem;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .rateActions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 374px) {
+  .badge {
+    font-size: 0.6875rem;
+    padding: 0.2rem 0.5rem;
+  }
+}

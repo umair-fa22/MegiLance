@@ -25,3 +25,10 @@
     transform: rotate(360deg);
   }
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .loadingWrapper {
+    min-height: 80vh;
+  }
+}

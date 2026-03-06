@@ -45,3 +45,38 @@
   text-align: right;
   transition: color 0.3s ease;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .section {
+    padding: 1.25rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .reviewItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .itemValue {
+    text-align: left;
+  }
+}
+
+@media (max-width: 374px) {
+  .section {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.125rem;
+  }
+
+  .reviewItem {
+    padding: 0.75rem;
+  }
+}

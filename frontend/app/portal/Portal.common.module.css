@@ -26,3 +26,10 @@
 .loadingText {
   font-size: 1rem;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .loadingWrapper {
+    gap: 0.75rem;
+  }
+}

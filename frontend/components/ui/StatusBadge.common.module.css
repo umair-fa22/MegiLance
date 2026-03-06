@@ -25,3 +25,10 @@
   align-items: center;
   flex-shrink: 0;
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 374px) {
+  .badge {
+    font-size: 0.6875rem;
+  }
+}
