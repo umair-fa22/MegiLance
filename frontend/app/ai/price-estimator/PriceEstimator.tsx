@@ -86,70 +86,106 @@ const PriceEstimator: React.FC = () => {
     router.push('/client/post-job');
   }, [formData, result, router]);
 
-  const simulateLoading = useCallback(async () => {
+  const animateLoadingSteps = useCallback(async () => {
     const steps: LoadingStep[] = [
       { id: 'analyze', label: 'Analyzing project scope...', completed: false },
       { id: 'market', label: 'Researching market rates...', completed: false },
       { id: 'complexity', label: 'Evaluating complexity...', completed: false },
       { id: 'calculate', label: 'Calculating estimate...', completed: false }
     ];
-    
     setLoadingSteps(steps);
-    
+
     for (let i = 0; i < steps.length; i++) {
-      await new Promise(resolve => setTimeout(resolve, 600 + Math.random() * 400));
-      setLoadingSteps(prev => prev.map((step, idx) => 
+      await new Promise(resolve => setTimeout(resolve, 400));
+      setLoadingSteps(prev => prev.map((step, idx) =>
         idx === i ? { ...step, completed: true } : step
       ));
     }
   }, []);
 
-  const calculateEstimate = useCallback((): EstimationResult => {
-    // Base price calculation based on complexity
-    const complexityMultiplier: Record<string, number> = {
-      'Low': 1,
-      'Medium': 1.8,
-      'High': 3,
-      'Enterprise': 5
-    };
-    
-    const timelineMultiplier: Record<string, number> = {
-      'Urgent (< 1 week)': 1.5,
-      'Standard (1-4 weeks)': 1.2,
-      'Flexible': 1,
-      'Long-term (> 2 months)': 0.9
-    };
-    
-    const baseMin = 800;
-    const baseMax = 1500;
-    const complexity = complexityMultiplier[formData.complexity] || 1.8;
-    const timeline = timelineMultiplier[formData.timeline] || 1;
-    
-    // Description length adds to complexity
-    const descriptionFactor = Math.min(1 + (formData.description.length / 500) * 0.5, 2);
-    
-    const minPrice = Math.round(baseMin * complexity * timeline * descriptionFactor);
-    const maxPrice = Math.round(baseMax * complexity * timeline * descriptionFactor);
-    
+  // Map frontend form values to backend API fields
+  const mapComplexityToScope = (complexity: string) => {
+    const map: Record<string, string> = { 'Low': 'small', 'Medium': 'medium', 'High': 'large', 'Enterprise': 'enterprise' };
+    return map[complexity] || 'medium';
+  };
+  const mapTimelineToUrgency = (timeline: string) => {
+    const map: Record<string, string> = { 'Urgent (< 1 week)': 'urgent', 'Standard (1-4 weeks)': 'standard', 'Flexible': 'relaxed', 'Long-term (> 2 months)': 'ongoing' };
+    return map[timeline] || 'standard';
+  };
+
+  const buildResultFromApi = useCallback((data: any): EstimationResult => {
+    const est = data.estimate || {};
+    const minPrice = Math.round(est.low_estimate || est.total_estimate * 0.75 || 0);
+    const maxPrice = Math.round(est.high_estimate || est.total_estimate * 1.35 || 0);
+    const confidence = data.confidence?.score ?? data.confidence?.percentage ?? 80;
+    const timeline = data.timeline?.estimated_duration || data.timeline?.range || '2-4 weeks';
+
+    // Build breakdown from API response or derive from total
+    const apiBreakdown = data.breakdown;
+    let breakdown: EstimationResult['breakdown'];
+    if (Array.isArray(apiBreakdown) && apiBreakdown.length > 0) {
+      const iconMap: Record<string, React.ReactNode> = {
+        'development': <Code size={18} />, 'design': <Palette size={18} />,
+        'testing': <Target size={18} />, 'management': <Briefcase size={18} />,
+      };
+      breakdown = apiBreakdown.slice(0, 6).map((item: any) => ({
+        label: item.label || item.phase || item.name || 'Phase',
+        icon: iconMap[String(item.label || item.phase || '').toLowerCase()] || <Layers size={18} />,
+        value: item.cost ? `$${Math.round(item.cost).toLocaleString()}` : item.range || item.value || '',
+      }));
+    } else {
+      breakdown = [
+        { label: 'Development', icon: <Code size={18} />, value: `$${Math.round(minPrice * 0.5).toLocaleString()} - $${Math.round(maxPrice * 0.5).toLocaleString()}` },
+        { label: 'Design', icon: <Palette size={18} />, value: `$${Math.round(minPrice * 0.25).toLocaleString()} - $${Math.round(maxPrice * 0.25).toLocaleString()}` },
+        { label: 'Testing & QA', icon: <Target size={18} />, value: `$${Math.round(minPrice * 0.15).toLocaleString()} - $${Math.round(maxPrice * 0.15).toLocaleString()}` },
+        { label: 'Project Management', icon: <Briefcase size={18} />, value: `$${Math.round(minPrice * 0.1).toLocaleString()} - $${Math.round(maxPrice * 0.1).toLocaleString()}` },
+      ];
+    }
+
+    // Build factors from API or form data
+    const apiFactors = data.factors;
+    let factors: EstimationResult['factors'];
+    if (Array.isArray(apiFactors) && apiFactors.length > 0) {
+      factors = apiFactors.slice(0, 6).map((f: any) => ({
+        label: f.label || f.name || 'Factor',
+        value: f.value || f.impact || '',
+      }));
+    } else {
+      factors = [
+        { label: 'Demand', value: data.demand_level || 'moderate' },
+        { label: 'Hourly Rate', value: `$${Math.round(est.hourly_rate || 0)}/hr` },
+        { label: 'Hours', value: `${est.total_hours || 0}h` },
+        { label: 'Scope', value: data.meta?.scope || formData.complexity },
+      ];
+    }
+
+    return { minPrice, maxPrice, confidence, timeline: String(timeline), breakdown, factors };
+  }, [formData.complexity]);
+
+  // Client-side fallback when API is unavailable
+  const calculateFallbackEstimate = useCallback((): EstimationResult => {
+    const complexityMult: Record<string, number> = { 'Low': 1, 'Medium': 1.8, 'High': 3, 'Enterprise': 5 };
+    const timelineMult: Record<string, number> = { 'Urgent (< 1 week)': 1.5, 'Standard (1-4 weeks)': 1.2, 'Flexible': 1, 'Long-term (> 2 months)': 0.9 };
+    const c = complexityMult[formData.complexity] || 1.8;
+    const t = timelineMult[formData.timeline] || 1;
+    const d = Math.min(1 + (formData.description.length / 500) * 0.5, 2);
+    const minPrice = Math.round(800 * c * t * d);
+    const maxPrice = Math.round(1500 * c * t * d);
     return {
-      minPrice,
-      maxPrice,
-      confidence: 85 + Math.floor(Math.random() * 10),
-      timeline: formData.timeline === 'Urgent (< 1 week)' ? '3-5 days' : 
-                formData.timeline === 'Standard (1-4 weeks)' ? '2-3 weeks' :
-                formData.timeline === 'Long-term (> 2 months)' ? '2-3 months' : '1-2 weeks',
+      minPrice, maxPrice, confidence: 65,
+      timeline: formData.timeline === 'Urgent (< 1 week)' ? '3-5 days' : formData.timeline === 'Standard (1-4 weeks)' ? '2-3 weeks' : formData.timeline === 'Long-term (> 2 months)' ? '2-3 months' : '1-2 weeks',
       breakdown: [
-        { label: 'Development', icon: <Code size={18} />, value: `$${Math.round(minPrice * 0.5)} - $${Math.round(maxPrice * 0.5)}` },
-        { label: 'Design', icon: <Palette size={18} />, value: `$${Math.round(minPrice * 0.25)} - $${Math.round(maxPrice * 0.25)}` },
-        { label: 'Testing & QA', icon: <Target size={18} />, value: `$${Math.round(minPrice * 0.15)} - $${Math.round(maxPrice * 0.15)}` },
-        { label: 'Project Management', icon: <Briefcase size={18} />, value: `$${Math.round(minPrice * 0.1)} - $${Math.round(maxPrice * 0.1)}` }
+        { label: 'Development', icon: <Code size={18} />, value: `$${Math.round(minPrice * 0.5).toLocaleString()} - $${Math.round(maxPrice * 0.5).toLocaleString()}` },
+        { label: 'Design', icon: <Palette size={18} />, value: `$${Math.round(minPrice * 0.25).toLocaleString()} - $${Math.round(maxPrice * 0.25).toLocaleString()}` },
+        { label: 'Testing & QA', icon: <Target size={18} />, value: `$${Math.round(minPrice * 0.15).toLocaleString()} - $${Math.round(maxPrice * 0.15).toLocaleString()}` },
+        { label: 'Project Management', icon: <Briefcase size={18} />, value: `$${Math.round(minPrice * 0.1).toLocaleString()} - $${Math.round(maxPrice * 0.1).toLocaleString()}` },
       ],
       factors: [
         { label: 'Complexity', value: formData.complexity },
         { label: 'Timeline', value: formData.timeline === 'Flexible' ? '1-2 weeks' : formData.timeline },
         { label: 'Industry', value: formData.industry || 'General' },
-        { label: 'Scope', value: formData.description.length > 200 ? 'Large' : formData.description.length > 100 ? 'Medium' : 'Small' }
-      ]
+        { label: 'Scope', value: formData.description.length > 200 ? 'Large' : formData.description.length > 100 ? 'Medium' : 'Small' },
+      ],
     };
   }, [formData]);
 
@@ -157,12 +193,38 @@ const PriceEstimator: React.FC = () => {
     e.preventDefault();
     setIsLoading(true);
     setResult(null);
-    
-    await simulateLoading();
-    
-    const estimation = calculateEstimate();
-    setResult(estimation);
-    setIsLoading(false);
+
+    const loadingPromise = animateLoadingSteps();
+
+    try {
+      const res = await fetch('/api/price-estimator/estimate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          category: formData.industry ? formData.industry.toLowerCase().replace(/\s+/g, '_') : 'software_development',
+          service_type: 'web_application',
+          scope: mapComplexityToScope(formData.complexity),
+          urgency: mapTimelineToUrgency(formData.timeline),
+          description: `${formData.title}. ${formData.description}`,
+          quality_tier: formData.complexity === 'Enterprise' ? 'enterprise' : formData.complexity === 'High' ? 'premium' : 'standard',
+          experience_level: 'mid',
+        }),
+      });
+
+      await loadingPromise;
+
+      if (res.ok) {
+        const data = await res.json();
+        setResult(buildResultFromApi(data));
+      } else {
+        setResult(calculateFallbackEstimate());
+      }
+    } catch {
+      await loadingPromise;
+      setResult(calculateFallbackEstimate());
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleReset = () => {

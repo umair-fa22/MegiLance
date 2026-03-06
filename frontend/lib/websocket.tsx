@@ -457,7 +457,9 @@ export function useWSSubscription<T>(
 }
 
 /**
- * Hook for real-time notifications
+ * Hook for real-time notifications via WebSocket.
+ * Prefer useNotifications from '@/hooks/useNotifications' for full API-backed operations.
+ * This hook supplements WebSocket-pushed notifications with API persistence.
  */
 export function useNotifications() {
   const [notifications, setNotifications] = useState<WSNotification[]>([]);
@@ -473,14 +475,22 @@ export function useNotifications() {
     return unsubscribe;
   }, [on, state]);
 
-  const markAsRead = useCallback((id: string) => {
+  const markAsRead = useCallback(async (id: string) => {
     setNotifications((prev) =>
       prev.map((n) => (n.id === id ? { ...n, read: true } : n))
     );
+    try {
+      const { notificationsApi } = await import('@/lib/api');
+      await notificationsApi.markAsRead(id);
+    } catch { /* best-effort persistence */ }
   }, []);
 
-  const markAllAsRead = useCallback(() => {
+  const markAllAsRead = useCallback(async () => {
     setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+    try {
+      const { notificationsApi } = await import('@/lib/api');
+      await notificationsApi.markAllAsRead();
+    } catch { /* best-effort persistence */ }
   }, []);
 
   const clearNotification = useCallback((id: string) => {

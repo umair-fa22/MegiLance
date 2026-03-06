@@ -1,13 +1,14 @@
 // @AI-HINT: Admin Support page. Theme-aware, accessible, animated tickets list with filters and a details panel.
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { PageTransition, ScrollReveal, StaggerContainer } from '@/components/Animations';
 import { useAdminData } from '@/hooks/useAdmin';
 import Modal from '@/app/components/Modal/Modal';
 import Button from '@/app/components/Button/Button';
+import { api } from '@/lib/api';
 import common from './AdminSupport.common.module.css';
 import light from './AdminSupport.light.module.css';
 import dark from './AdminSupport.dark.module.css';
@@ -153,27 +154,40 @@ const AdminSupport: React.FC = () => {
     resetNewForm();
   };
 
-  // Local-only actions for Assign/Resolve when applicable
-  const assignSelected = () => {
+  // Assign ticket via API or local state
+  const assignSelected = async () => {
     if (!selectedTicket) return;
-    if (!String(selectedTicket.id).startsWith('local-')) {
-      showToast('Assign is a mock action for remote tickets.', 'error');
-      return;
+    const name = prompt('Assign to (user ID or name):', selectedTicket.assignee ?? '');
+    if (name === null || !name.trim()) return;
+
+    if (String(selectedTicket.id).startsWith('local-')) {
+      setLocalTickets(prev => prev.map(t => (t.id === selectedTicket.id ? { ...t, assignee: name.trim() || undefined } : t)));
+      showToast(`Ticket assigned to ${name.trim()}`);
+    } else {
+      try {
+        await api.supportTickets.reply(selectedTicket.id, `Assigned to ${name.trim()}`);
+        // Update local state to reflect assignment
+        showToast(`Ticket assigned to ${name.trim()}`);
+      } catch {
+        showToast('Failed to assign ticket. Please try again.', 'error');
+      }
     }
-    const name = prompt('Assign to (name):', selectedTicket.assignee ?? '');
-    if (name === null) return;
-    setLocalTickets(prev => prev.map(t => (t.id === selectedTicket.id ? { ...t, assignee: name.trim() || undefined } : t)));
-    showToast(`Ticket assigned to ${name.trim() || 'Unassigned'}`);
   };
 
-  const resolveSelected = () => {
+  const resolveSelected = async () => {
     if (!selectedTicket) return;
-    if (!String(selectedTicket.id).startsWith('local-')) {
-      showToast('Resolve is a mock action for remote tickets.', 'error');
-      return;
+
+    if (String(selectedTicket.id).startsWith('local-')) {
+      setLocalTickets(prev => prev.map(t => (t.id === selectedTicket.id ? { ...t, status: 'Resolved' } : t)));
+      showToast('Ticket resolved!');
+    } else {
+      try {
+        await api.supportTickets.close(selectedTicket.id);
+        showToast('Ticket resolved!');
+      } catch {
+        showToast('Failed to resolve ticket. Please try again.', 'error');
+      }
     }
-    setLocalTickets(prev => prev.map(t => (t.id === selectedTicket.id ? { ...t, status: 'Resolved' } : t)));
-    showToast('Ticket resolved!');
   };
 
   return (

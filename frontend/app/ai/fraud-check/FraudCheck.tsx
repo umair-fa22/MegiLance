@@ -1,4 +1,4 @@
-// @AI-HINT: Premium AI Fraud Check page with production-ready quality UI. Features animated score visualization, real-time analysis feedback, and advanced risk assessment.
+// @AI-HINT: Premium AI Fraud Check page with production-ready quality UI. Calls backend /api/ai/fraud-check for real pattern analysis, with client-side fallback.
 'use client';
 
 import React, { useState, useCallback } from 'react';
@@ -14,11 +14,18 @@ import commonStyles from './FraudCheck.common.module.css';
 import lightStyles from './FraudCheck.light.module.css';
 import darkStyles from './FraudCheck.dark.module.css';
 
+interface Warning {
+  category: string;
+  severity: string;
+  detail: string;
+}
+
 interface AnalysisResult {
   score: number;
   riskLevel: 'Low' | 'Medium' | 'High' | 'Critical';
   warnings: string[];
   confidence: number;
+  details?: Warning[];
 }
 
 const SAMPLE_TEXTS = {
@@ -70,63 +77,48 @@ const FraudCheck: React.FC = () => {
     setIsLoading(true);
     setAnalysisResult(null);
 
-    // Simulate AI analysis with realistic delay
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      const params = new URLSearchParams({ text: text.trim() });
+      const res = await fetch(`/api/ai/fraud-check?${params.toString()}`, { method: 'POST' });
 
-    // Advanced mock analysis based on content patterns
-    const lowerText = text.toLowerCase();
-    let score = 0;
-    const warnings: string[] = [];
+      if (!res.ok) throw new Error('API error');
 
-    // Check for urgent/pressure language
-    if (/urgent|asap|immediately|right now/i.test(text)) {
-      score += 20;
-      warnings.push('Uses high-pressure urgency language');
+      const data = await res.json();
+
+      const warningStrings: string[] = Array.isArray(data.warnings)
+        ? data.warnings.map((w: Warning | string) => (typeof w === 'string' ? w : w.detail))
+        : data.flags ?? [];
+
+      setAnalysisResult({
+        score: data.score ?? data.risk_score ?? 0,
+        riskLevel: (data.risk_level as AnalysisResult['riskLevel']) ?? 'Low',
+        warnings: warningStrings,
+        confidence: data.confidence ?? 85,
+        details: Array.isArray(data.warnings) && typeof data.warnings[0] === 'object' ? data.warnings : undefined,
+      });
+    } catch {
+      // Fallback: client-side basic analysis if backend is unreachable
+      const lowerText = text.toLowerCase();
+      let score = 0;
+      const warnings: string[] = [];
+
+      if (/urgent|asap|immediately|right now/i.test(text)) { score += 20; warnings.push('Uses high-pressure urgency language'); }
+      if (/guaranteed|100%|easy money|quick money/i.test(text)) { score += 25; warnings.push('Contains unrealistic payment promises'); }
+      if (/telegram|whatsapp|signal|contact me at/i.test(text)) { score += 30; warnings.push('Attempts to move communication off-platform'); }
+      if (/bank details|bank account|ssn|social security/i.test(lowerText)) { score += 35; warnings.push('Requests sensitive personal information'); }
+      if (/\$\d{5,}/.test(text) && /simple|easy|quick/i.test(text)) { score += 20; warnings.push('Offers unusually high payment for described work'); }
+      if (/no portfolio|no experience needed/i.test(text)) { score += 15; warnings.push('No credentials required for professional work'); }
+
+      score = Math.min(score, 100);
+      let riskLevel: AnalysisResult['riskLevel'] = 'Low';
+      if (score > 70) riskLevel = 'Critical';
+      else if (score > 50) riskLevel = 'High';
+      else if (score > 25) riskLevel = 'Medium';
+
+      setAnalysisResult({ score, riskLevel, warnings, confidence: 70 });
+    } finally {
+      setIsLoading(false);
     }
-
-    // Check for suspicious payment mentions
-    if (/guaranteed|100%|easy money|quick money/i.test(text)) {
-      score += 25;
-      warnings.push('Contains unrealistic payment promises');
-    }
-
-    // Check for external contact attempts
-    if (/telegram|whatsapp|signal|contact me at/i.test(text)) {
-      score += 30;
-      warnings.push('Attempts to move communication off-platform');
-    }
-
-    // Check for personal info requests
-    if (/bank details|bank account|ssn|social security/i.test(text)) {
-      score += 35;
-      warnings.push('Requests sensitive personal information');
-    }
-
-    // Check for unrealistic amounts
-    if (/\$\d{5,}/.test(text) && /simple|easy|quick/i.test(text)) {
-      score += 20;
-      warnings.push('Offers unusually high payment for described work');
-    }
-
-    // Check for no portfolio requirement (suspicious for high-value jobs)
-    if (/no portfolio|no experience needed/i.test(text)) {
-      score += 15;
-      warnings.push('No credentials required for professional work');
-    }
-
-    // Cap score at 100
-    score = Math.min(score, 100);
-
-    // Determine risk level
-    let riskLevel: AnalysisResult['riskLevel'] = 'Low';
-    if (score > 70) riskLevel = 'Critical';
-    else if (score > 50) riskLevel = 'High';
-    else if (score > 25) riskLevel = 'Medium';
-
-    const confidence = 85 + Math.floor(Math.random() * 10);
-
-    setAnalysisResult({ score, riskLevel, warnings, confidence });
-    setIsLoading(false);
   }, [text]);
 
   const loadSample = (type: 'clean' | 'suspicious') => {

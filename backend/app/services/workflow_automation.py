@@ -1,16 +1,57 @@
-# @AI-HINT: Workflow automation service for triggers, actions, and automated processes
+# @AI-HINT: Workflow automation service for triggers, actions, and automated processes (Turso DB-backed)
 """Workflow Automation Service."""
 
 from typing import Dict, Any, List, Optional
-from sqlalchemy.orm import Session
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 import logging
 import uuid
+import json
 
-from app.models.user import User
+from app.db.turso_http import execute_query, parse_rows
 
 logger = logging.getLogger(__name__)
+
+_workflow_tables_ensured = False
+
+def _ensure_workflow_tables():
+    global _workflow_tables_ensured
+    if _workflow_tables_ensured:
+        return
+    execute_query("""
+        CREATE TABLE IF NOT EXISTS workflows (
+            id TEXT PRIMARY KEY,
+            user_id INTEGER NOT NULL,
+            name TEXT NOT NULL,
+            description TEXT,
+            status TEXT DEFAULT 'draft',
+            trigger_config TEXT,
+            conditions TEXT,
+            actions TEXT,
+            execution_count INTEGER DEFAULT 0,
+            last_executed_at TEXT,
+            created_at TEXT NOT NULL,
+            updated_at TEXT NOT NULL
+        )
+    """, [])
+    execute_query("CREATE INDEX IF NOT EXISTS idx_wf_user ON workflows(user_id)", [])
+    execute_query("CREATE INDEX IF NOT EXISTS idx_wf_status ON workflows(status)", [])
+    execute_query("""
+        CREATE TABLE IF NOT EXISTS workflow_executions (
+            id TEXT PRIMARY KEY,
+            workflow_id TEXT NOT NULL,
+            user_id INTEGER NOT NULL,
+            status TEXT DEFAULT 'pending',
+            trigger_type TEXT,
+            trigger_data TEXT,
+            results TEXT,
+            error TEXT,
+            started_at TEXT NOT NULL,
+            completed_at TEXT
+        )
+    """, [])
+    execute_query("CREATE INDEX IF NOT EXISTS idx_wfx_workflow ON workflow_executions(workflow_id)", [])
+    _workflow_tables_ensured = True
 
 
 class TriggerType(str, Enum):
@@ -232,33 +273,28 @@ WORKFLOW_TEMPLATES = [
 
 
 class WorkflowAutomationService:
-    """Service for workflow automation"""
+    """Service for workflow automation with Turso DB persistence"""
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self, db=None):
+        _ensure_workflow_tables()
     
     # Workflow Templates
     async def get_templates(
         self,
         category: Optional[str] = None
     ) -> List[Dict[str, Any]]:
-        """Get workflow templates"""
         templates = WORKFLOW_TEMPLATES.copy()
-        
         if category:
             templates = [t for t in templates if t.get("category") == category]
-        
         return templates
     
     async def get_template(self, template_id: str) -> Optional[Dict[str, Any]]:
-        """Get a specific workflow template"""
         for template in WORKFLOW_TEMPLATES:
             if template["id"] == template_id:
                 return template
         return None
     
     async def get_template_categories(self) -> List[str]:
-        """Get workflow template categories"""
         categories = set()
         for template in WORKFLOW_TEMPLATES:
             categories.add(template.get("category", "Other"))
@@ -274,9 +310,19 @@ class WorkflowAutomationService:
         conditions: List[Dict[str, Any]],
         actions: List[Dict[str, Any]]
     ) -> Dict[str, Any]:
-        """Create a new workflow"""
+        workflow_id = str(uuid.uuid4())
+        now = datetime.now(timezone.utc).isoformat()
+        
+        execute_query(
+            """INSERT INTO workflows (id, user_id, name, description, status,
+               trigger_config, conditions, actions, execution_count, created_at, updated_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?)""",
+            [workflow_id, user_id, name, description, WorkflowStatus.DRAFT.value,
+             json.dumps(trigger), json.dumps(conditions), json.dumps(actions), now, now]
+        )
+        
         workflow = {
-            "id": str(uuid.uuid4()),
+            "id": workflow_id,
             "user_id": user_id,
             "name": name,
             "description": description,
@@ -284,12 +330,11 @@ class WorkflowAutomationService:
             "trigger": trigger,
             "conditions": conditions,
             "actions": actions,
-            "created_at": datetime.now(timezone.utc).isoformat(),
-            "updated_at": datetime.now(timezone.utc).isoformat(),
+            "created_at": now,
+            "updated_at": now,
             "execution_count": 0,
             "last_executed_at": None
         }
-        
         return {"workflow": workflow}
     
     async def create_from_template(
@@ -299,13 +344,11 @@ class WorkflowAutomationService:
         name: Optional[str] = None,
         customizations: Optional[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
-        """Create workflow from template"""
         template = await self.get_template(template_id)
         if not template:
             return {"error": "Template not found"}
         
         workflow_name = name or f"{template['name']} (Copy)"
-        
         return await self.create_workflow(
             user_id=user_id,
             name=workflow_name,
@@ -315,27 +358,73 @@ class WorkflowAutomationService:
             actions=template.get("actions", [])
         )
     
+    def _parse_workflow_row(self, row: Dict) -> Dict[str, Any]:
+        """Parse a workflow DB row into a proper dict."""
+        for field in ("trigger_config", "conditions", "actions"):
+            if row.get(field):
+                try:
+                    row[field] = json.loads(row[field])
+                except (json.JSONDecodeError, ValueError):
+                    row[field] = {} if field == "trigger_config" else []
+            else:
+                row[field] = {} if field == "trigger_config" else []
+        # Rename trigger_config to trigger for API consistency
+        row["trigger"] = row.pop("trigger_config", {})
+        return row
+    
     async def get_user_workflows(
         self,
         user_id: int,
         status_filter: Optional[WorkflowStatus] = None,
         limit: int = 50
-    ) -> List[Dict[str, Any]]:
-        """Get user's workflows"""
-        # Placeholder - would query workflow storage
-        return {
-            "workflows": [],
-            "total": 0,
-            "message": "Workflow storage not yet implemented"
-        }
+    ) -> Dict[str, Any]:
+        where = "user_id = ?"
+        params: list = [user_id]
+        if status_filter:
+            where += " AND status = ?"
+            params.append(status_filter.value)
+        
+        count_result = execute_query(
+            f"SELECT COUNT(*) as total FROM workflows WHERE {where}", list(params)
+        )
+        total = 0
+        if count_result and count_result.get("rows"):
+            rows = parse_rows(count_result)
+            if rows:
+                total = rows[0].get("total", 0)
+        
+        params.append(limit)
+        result = execute_query(
+            f"""SELECT id, user_id, name, description, status, trigger_config,
+                conditions, actions, execution_count, last_executed_at,
+                created_at, updated_at FROM workflows
+                WHERE {where} ORDER BY updated_at DESC LIMIT ?""",
+            params
+        )
+        
+        workflows = []
+        if result and result.get("rows"):
+            workflows = [self._parse_workflow_row(r) for r in parse_rows(result)]
+        
+        return {"workflows": workflows, "total": total}
     
     async def get_workflow(
         self,
         user_id: int,
         workflow_id: str
     ) -> Optional[Dict[str, Any]]:
-        """Get a specific workflow"""
-        return {"error": "Workflow not found"}
+        result = execute_query(
+            """SELECT id, user_id, name, description, status, trigger_config,
+               conditions, actions, execution_count, last_executed_at,
+               created_at, updated_at FROM workflows WHERE id = ? AND user_id = ?""",
+            [workflow_id, user_id]
+        )
+        if not result or not result.get("rows"):
+            return {"error": "Workflow not found"}
+        rows = parse_rows(result)
+        if not rows:
+            return {"error": "Workflow not found"}
+        return self._parse_workflow_row(rows[0])
     
     async def update_workflow(
         self,
@@ -343,29 +432,51 @@ class WorkflowAutomationService:
         workflow_id: str,
         updates: Dict[str, Any]
     ) -> Dict[str, Any]:
-        """Update a workflow"""
-        return {
-            "message": "Workflow updated",
-            "workflow_id": workflow_id
-        }
+        allowed = {"name", "description", "trigger", "conditions", "actions"}
+        set_parts = ["updated_at = ?"]
+        params: list = [datetime.now(timezone.utc).isoformat()]
+        
+        for key, val in updates.items():
+            if key not in allowed:
+                continue
+            col = "trigger_config" if key == "trigger" else key
+            if key in ("trigger", "conditions", "actions"):
+                val = json.dumps(val)
+            set_parts.append(f"{col} = ?")
+            params.append(val)
+        
+        params.extend([workflow_id, user_id])
+        execute_query(
+            f"UPDATE workflows SET {', '.join(set_parts)} WHERE id = ? AND user_id = ?",
+            params
+        )
+        return {"message": "Workflow updated", "workflow_id": workflow_id}
     
     async def delete_workflow(
         self,
         user_id: int,
         workflow_id: str
     ) -> Dict[str, Any]:
-        """Delete a workflow"""
-        return {
-            "message": "Workflow deleted",
-            "workflow_id": workflow_id
-        }
+        execute_query(
+            "DELETE FROM workflow_executions WHERE workflow_id = ? AND user_id = ?",
+            [workflow_id, user_id]
+        )
+        execute_query(
+            "DELETE FROM workflows WHERE id = ? AND user_id = ?",
+            [workflow_id, user_id]
+        )
+        return {"message": "Workflow deleted", "workflow_id": workflow_id}
     
     async def activate_workflow(
         self,
         user_id: int,
         workflow_id: str
     ) -> Dict[str, Any]:
-        """Activate a workflow"""
+        now = datetime.now(timezone.utc).isoformat()
+        execute_query(
+            "UPDATE workflows SET status = ?, updated_at = ? WHERE id = ? AND user_id = ?",
+            [WorkflowStatus.ACTIVE.value, now, workflow_id, user_id]
+        )
         return {
             "message": "Workflow activated",
             "workflow_id": workflow_id,
@@ -377,7 +488,11 @@ class WorkflowAutomationService:
         user_id: int,
         workflow_id: str
     ) -> Dict[str, Any]:
-        """Pause a workflow"""
+        now = datetime.now(timezone.utc).isoformat()
+        execute_query(
+            "UPDATE workflows SET status = ?, updated_at = ? WHERE id = ? AND user_id = ?",
+            [WorkflowStatus.PAUSED.value, now, workflow_id, user_id]
+        )
         return {
             "message": "Workflow paused",
             "workflow_id": workflow_id,
@@ -390,13 +505,114 @@ class WorkflowAutomationService:
         trigger_type: TriggerType,
         context: Dict[str, Any]
     ) -> Dict[str, Any]:
-        """Process a trigger event"""
-        # Find matching workflows and execute them
+        """Process a trigger event — find active workflows matching this trigger and execute them."""
+        result = execute_query(
+            "SELECT id, user_id, trigger_config, conditions, actions FROM workflows WHERE status = ?",
+            [WorkflowStatus.ACTIVE.value]
+        )
+        
+        matched = 0
+        executed = 0
+        if result and result.get("rows"):
+            rows = parse_rows(result)
+            for row in rows:
+                trigger_cfg = {}
+                try:
+                    trigger_cfg = json.loads(row.get("trigger_config", "{}"))
+                except (json.JSONDecodeError, ValueError):
+                    pass
+                if trigger_cfg.get("type") == trigger_type.value:
+                    matched += 1
+                    exec_result = await self._execute_actions(
+                        row["id"], row["user_id"],
+                        json.loads(row.get("actions", "[]")),
+                        json.loads(row.get("conditions", "[]")),
+                        context, trigger_type
+                    )
+                    if exec_result.get("status") == ExecutionStatus.COMPLETED.value:
+                        executed += 1
+        
         return {
             "trigger_type": trigger_type.value,
-            "workflows_matched": 0,
-            "workflows_executed": 0,
-            "message": "Trigger processing not yet implemented"
+            "workflows_matched": matched,
+            "workflows_executed": executed
+        }
+    
+    async def _execute_actions(
+        self,
+        workflow_id: str,
+        user_id: int,
+        actions: List[Dict],
+        conditions: List[Dict],
+        context: Dict[str, Any],
+        trigger_type: TriggerType
+    ) -> Dict[str, Any]:
+        """Execute workflow actions and record execution."""
+        exec_id = str(uuid.uuid4())
+        now = datetime.now(timezone.utc).isoformat()
+        
+        execute_query(
+            """INSERT INTO workflow_executions (id, workflow_id, user_id, status,
+               trigger_type, trigger_data, started_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?)""",
+            [exec_id, workflow_id, user_id, ExecutionStatus.RUNNING.value,
+             trigger_type.value, json.dumps(context), now]
+        )
+        
+        results = []
+        status = ExecutionStatus.COMPLETED.value
+        error_msg = None
+        
+        try:
+            for action in actions:
+                action_type = action.get("type", "")
+                config = action.get("config", {})
+                
+                if action_type == ActionType.SEND_IN_APP.value:
+                    from app.services.notifications_service import send_notification
+                    send_notification(
+                        user_id=user_id,
+                        notification_type="workflow",
+                        title=config.get("title", "Workflow Notification"),
+                        content=config.get("body", ""),
+                        data={"workflow_id": workflow_id, "context": context}
+                    )
+                    results.append({"action": action_type, "status": "completed"})
+                elif action_type == ActionType.LOG_ACTIVITY.value:
+                    results.append({"action": action_type, "status": "completed",
+                                    "message": config.get("message", "")})
+                elif action_type == ActionType.DELAY.value:
+                    results.append({"action": action_type, "status": "completed",
+                                    "delay_minutes": config.get("minutes", 0)})
+                else:
+                    # For other actions (email, push, webhook, etc.), log as pending
+                    results.append({"action": action_type, "status": "pending",
+                                    "note": "Action type requires external integration"})
+        except Exception as e:
+            status = ExecutionStatus.FAILED.value
+            error_msg = str(e)
+            logger.error(f"Workflow {workflow_id} execution failed: {e}")
+        
+        completed_at = datetime.now(timezone.utc).isoformat()
+        execute_query(
+            """UPDATE workflow_executions SET status = ?, results = ?, error = ?,
+               completed_at = ? WHERE id = ?""",
+            [status, json.dumps(results), error_msg, completed_at, exec_id]
+        )
+        
+        # Update workflow execution count
+        execute_query(
+            """UPDATE workflows SET execution_count = execution_count + 1,
+               last_executed_at = ?, updated_at = ? WHERE id = ?""",
+            [completed_at, completed_at, workflow_id]
+        )
+        
+        return {
+            "execution_id": exec_id,
+            "workflow_id": workflow_id,
+            "status": status,
+            "results": results,
+            "error": error_msg
         }
     
     # Execution History
@@ -405,21 +621,68 @@ class WorkflowAutomationService:
         user_id: int,
         workflow_id: Optional[str] = None,
         limit: int = 50
-    ) -> List[Dict[str, Any]]:
-        """Get workflow execution history"""
-        return {
-            "executions": [],
-            "total": 0,
-            "message": "Execution history not yet implemented"
-        }
+    ) -> Dict[str, Any]:
+        where = "user_id = ?"
+        params: list = [user_id]
+        if workflow_id:
+            where += " AND workflow_id = ?"
+            params.append(workflow_id)
+        
+        count_result = execute_query(
+            f"SELECT COUNT(*) as total FROM workflow_executions WHERE {where}", list(params)
+        )
+        total = 0
+        if count_result and count_result.get("rows"):
+            rows = parse_rows(count_result)
+            if rows:
+                total = rows[0].get("total", 0)
+        
+        params.append(limit)
+        result = execute_query(
+            f"""SELECT id, workflow_id, user_id, status, trigger_type, trigger_data,
+                results, error, started_at, completed_at
+                FROM workflow_executions WHERE {where}
+                ORDER BY started_at DESC LIMIT ?""",
+            params
+        )
+        
+        executions = []
+        if result and result.get("rows"):
+            executions = parse_rows(result)
+            for ex in executions:
+                for field in ("trigger_data", "results"):
+                    if ex.get(field):
+                        try:
+                            ex[field] = json.loads(ex[field])
+                        except (json.JSONDecodeError, ValueError):
+                            ex[field] = {}
+        
+        return {"executions": executions, "total": total}
     
     async def get_execution_details(
         self,
         user_id: int,
         execution_id: str
     ) -> Optional[Dict[str, Any]]:
-        """Get details of a workflow execution"""
-        return {"error": "Execution not found"}
+        result = execute_query(
+            """SELECT id, workflow_id, user_id, status, trigger_type, trigger_data,
+               results, error, started_at, completed_at
+               FROM workflow_executions WHERE id = ? AND user_id = ?""",
+            [execution_id, user_id]
+        )
+        if not result or not result.get("rows"):
+            return {"error": "Execution not found"}
+        rows = parse_rows(result)
+        if not rows:
+            return {"error": "Execution not found"}
+        ex = rows[0]
+        for field in ("trigger_data", "results"):
+            if ex.get(field):
+                try:
+                    ex[field] = json.loads(ex[field])
+                except (json.JSONDecodeError, ValueError):
+                    ex[field] = {}
+        return ex
     
     # Manual Execution
     async def execute_workflow(
@@ -428,13 +691,23 @@ class WorkflowAutomationService:
         workflow_id: str,
         test_data: Optional[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
-        """Manually execute a workflow"""
-        return {
-            "execution_id": str(uuid.uuid4()),
-            "workflow_id": workflow_id,
-            "status": ExecutionStatus.PENDING.value,
-            "message": "Manual execution not yet implemented"
-        }
+        wf = await self.get_workflow(user_id, workflow_id)
+        if not wf or wf.get("error"):
+            return {"error": "Workflow not found"}
+        
+        context = test_data or {}
+        trigger_type_str = wf.get("trigger", {}).get("type", TriggerType.SCHEDULE.value)
+        try:
+            trigger_type = TriggerType(trigger_type_str)
+        except ValueError:
+            trigger_type = TriggerType.SCHEDULE
+        
+        return await self._execute_actions(
+            workflow_id, user_id,
+            wf.get("actions", []),
+            wf.get("conditions", []),
+            context, trigger_type
+        )
     
     # Trigger Types
     async def get_available_triggers(self) -> List[Dict[str, Any]]:
@@ -507,19 +780,58 @@ class WorkflowAutomationService:
         user_id: int,
         period_days: int = 30
     ) -> Dict[str, Any]:
-        """Get workflow statistics"""
+        cutoff = (datetime.now(timezone.utc) - timedelta(days=period_days)).isoformat()
+        
+        wf_result = execute_query(
+            "SELECT COUNT(*) as total FROM workflows WHERE user_id = ?", [user_id]
+        )
+        total_wf = 0
+        if wf_result and wf_result.get("rows"):
+            rows = parse_rows(wf_result)
+            if rows:
+                total_wf = int(rows[0].get("total", 0))
+        
+        active_result = execute_query(
+            "SELECT COUNT(*) as total FROM workflows WHERE user_id = ? AND status = ?",
+            [user_id, WorkflowStatus.ACTIVE.value]
+        )
+        active_wf = 0
+        if active_result and active_result.get("rows"):
+            rows = parse_rows(active_result)
+            if rows:
+                active_wf = int(rows[0].get("total", 0))
+        
+        exec_result = execute_query(
+            """SELECT
+                 COUNT(*) as total,
+                 SUM(CASE WHEN status = ? THEN 1 ELSE 0 END) as success,
+                 SUM(CASE WHEN status = ? THEN 1 ELSE 0 END) as failed
+               FROM workflow_executions
+               WHERE user_id = ? AND started_at >= ?""",
+            [ExecutionStatus.COMPLETED.value, ExecutionStatus.FAILED.value, user_id, cutoff]
+        )
+        total_exec = 0
+        successful = 0
+        failed = 0
+        if exec_result and exec_result.get("rows"):
+            rows = parse_rows(exec_result)
+            if rows:
+                total_exec = int(rows[0].get("total", 0))
+                successful = int(rows[0].get("success", 0) or 0)
+                failed = int(rows[0].get("failed", 0) or 0)
+        
         return {
             "period_days": period_days,
-            "total_workflows": 0,
-            "active_workflows": 0,
-            "total_executions": 0,
-            "successful_executions": 0,
-            "failed_executions": 0,
-            "actions_performed": 0,
-            "time_saved_hours": 0.0
+            "total_workflows": total_wf,
+            "active_workflows": active_wf,
+            "total_executions": total_exec,
+            "successful_executions": successful,
+            "failed_executions": failed,
+            "actions_performed": total_exec,
+            "time_saved_hours": round(total_exec * 0.25, 1)
         }
 
 
-def get_workflow_automation_service(db: Session) -> WorkflowAutomationService:
+def get_workflow_automation_service(db=None) -> WorkflowAutomationService:
     """Get workflow automation service instance"""
-    return WorkflowAutomationService(db)
+    return WorkflowAutomationService()

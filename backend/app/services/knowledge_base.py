@@ -3,13 +3,56 @@
 
 from typing import Dict, Any, List, Optional
 from sqlalchemy.orm import Session
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 import logging
+import uuid
+import json
 
 from app.models.user import User
+from app.db.turso_http import execute_query, parse_rows
 
 logger = logging.getLogger(__name__)
+
+
+def _ensure_kb_tables():
+    """Create knowledge base tables if they don't exist."""
+    execute_query("""
+        CREATE TABLE IF NOT EXISTS kb_articles (
+            id TEXT PRIMARY KEY,
+            title TEXT NOT NULL,
+            slug TEXT UNIQUE,
+            category TEXT NOT NULL,
+            content_type TEXT NOT NULL DEFAULT 'article',
+            excerpt TEXT,
+            content TEXT NOT NULL,
+            tags TEXT,
+            read_time_minutes INTEGER DEFAULT 5,
+            views INTEGER DEFAULT 0,
+            helpful_count INTEGER DEFAULT 0,
+            status TEXT NOT NULL DEFAULT 'published',
+            created_by INTEGER,
+            created_at TEXT NOT NULL,
+            updated_at TEXT
+        )
+    """)
+    execute_query("""
+        CREATE TABLE IF NOT EXISTS kb_faqs (
+            id TEXT PRIMARY KEY,
+            question TEXT NOT NULL,
+            answer TEXT NOT NULL,
+            category TEXT NOT NULL,
+            tags TEXT,
+            views INTEGER DEFAULT 0,
+            helpful_count INTEGER DEFAULT 0,
+            status TEXT NOT NULL DEFAULT 'published',
+            created_by INTEGER,
+            created_at TEXT NOT NULL,
+            updated_at TEXT
+        )
+    """)
+
+_kb_tables_ensured = False
 
 
 class ArticleCategory(str, Enum):
@@ -183,6 +226,13 @@ class KnowledgeBaseService:
     
     def __init__(self, db: Session):
         self.db = db
+        global _kb_tables_ensured
+        if not _kb_tables_ensured:
+            try:
+                _ensure_kb_tables()
+                _kb_tables_ensured = True
+            except Exception as e:
+                logger.warning(f"Could not ensure kb tables: {e}")
     
     # FAQ Methods
     async def get_faqs(
@@ -392,9 +442,36 @@ class KnowledgeBaseService:
         article_data: Dict[str, Any]
     ) -> Dict[str, Any]:
         """Create a new article (admin)"""
+        article_id = f"article-{uuid.uuid4().hex[:8]}"
+        slug = article_data.get("slug") or article_data.get("title", "").lower().replace(" ", "-")[:80]
+        now = datetime.now(timezone.utc).isoformat()
+        tags = article_data.get("tags", [])
+        tags_json = json.dumps(tags) if isinstance(tags, list) else tags
+        
+        execute_query(
+            "INSERT INTO kb_articles (id, title, slug, category, content_type, excerpt, content, tags, read_time_minutes, status, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            [
+                article_id,
+                article_data.get("title", "Untitled"),
+                slug,
+                article_data.get("category", "getting_started"),
+                article_data.get("content_type", "article"),
+                article_data.get("excerpt", ""),
+                article_data.get("content", ""),
+                tags_json,
+                article_data.get("read_time_minutes", 5),
+                article_data.get("status", "published"),
+                admin_id,
+                now
+            ]
+        )
+        
         return {
-            "message": "Article creation not yet implemented",
-            "article_data": article_data
+            "id": article_id,
+            "slug": slug,
+            "title": article_data.get("title", "Untitled"),
+            "created_at": now,
+            "message": "Article created successfully"
         }
     
     async def update_article(
@@ -404,10 +481,28 @@ class KnowledgeBaseService:
         updates: Dict[str, Any]
     ) -> Dict[str, Any]:
         """Update an article (admin)"""
-        return {
-            "message": "Article update not yet implemented",
-            "article_id": article_id
-        }
+        allowed = {"title", "slug", "category", "content_type", "excerpt", "content", "tags", "read_time_minutes", "status"}
+        set_clauses = []
+        params = []
+        for key, value in updates.items():
+            if key in allowed:
+                if key == "tags" and isinstance(value, list):
+                    value = json.dumps(value)
+                set_clauses.append(f"{key} = ?")
+                params.append(value)
+        
+        if not set_clauses:
+            return {"error": "No valid fields to update"}
+        
+        set_clauses.append("updated_at = ?")
+        params.append(datetime.now(timezone.utc).isoformat())
+        params.append(article_id)
+        
+        execute_query(
+            f"UPDATE kb_articles SET {', '.join(set_clauses)} WHERE id = ?",
+            params
+        )
+        return {"article_id": article_id, "message": "Article updated successfully"}
     
     async def delete_article(
         self,
@@ -415,10 +510,8 @@ class KnowledgeBaseService:
         article_id: str
     ) -> Dict[str, Any]:
         """Delete an article (admin)"""
-        return {
-            "message": "Article deletion not yet implemented",
-            "article_id": article_id
-        }
+        execute_query("DELETE FROM kb_articles WHERE id = ?", [article_id])
+        return {"article_id": article_id, "message": "Article deleted successfully"}
 
 
 def get_knowledge_base_service(db: Session) -> KnowledgeBaseService:

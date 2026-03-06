@@ -78,8 +78,8 @@ export default function SubscriptionPage() {
       
       // Fetch real data from APIs
       const [paymentsData, invoicesData] = await Promise.all([
-        paymentsApi.list(1, 10).catch(() => null),
-        invoicesApi.list({ page: 1, page_size: 10 }).catch(() => null),
+        paymentsApi.list(1, 10).catch((e: unknown) => { console.error('Payments load failed:', e); return null; }),
+        invoicesApi.list({ page: 1, page_size: 10 }).catch((e: unknown) => { console.error('Invoices load failed:', e); return null; }),
       ]);
 
       // Default plans (could also be fetched from API)

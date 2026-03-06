@@ -450,7 +450,7 @@ export default function ContractBuilder() {
     fetch('/api/contract-builder-standalone/options')
       .then(r => r.json())
       .then(setOptions)
-      .catch(() => {});
+      .catch((e) => console.error('Contract builder options load failed:', e));
   }, []);
 
   // Fetch clauses when type changes
@@ -458,7 +458,7 @@ export default function ContractBuilder() {
     fetch(`/api/contract-builder-standalone/clauses/${encodeURIComponent(contractType)}`)
       .then(r => r.json())
       .then(data => setClauses(data.clauses || []))
-      .catch(() => {});
+      .catch((e) => console.error('Contract clauses load failed:', e));
   }, [contractType]);
 
   const handleChangeA = useCallback((f: string, v: string) => setPartyA(prev => ({ ...prev, [f]: v })), []);

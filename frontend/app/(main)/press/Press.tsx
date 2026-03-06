@@ -16,28 +16,28 @@ const pressReleases = [
   { 
     id: 'pr1', 
     title: 'MegiLance Launches AI-Powered Freelance Matching Platform', 
-    date: 'January 15, 2025',
-    description: 'Revolutionary 7-factor AI algorithm connects businesses with top freelance talent.'
+    date: 'March 1, 2026',
+    description: 'A 7-factor AI algorithm connects businesses with top freelance talent worldwide.'
   },
   { 
     id: 'pr2', 
-    title: 'MegiLance Secures $2M Seed Funding', 
-    date: 'December 1, 2024',
-    description: 'Investment to expand platform capabilities and global reach.'
+    title: 'Introducing Zero-Fee Blockchain Payments', 
+    date: 'February 15, 2026',
+    description: 'USDC escrow system eliminates traditional payment fees for freelancers.'
   },
   { 
     id: 'pr3', 
-    title: 'Zero-Fee Blockchain Payments Now Live', 
-    date: 'November 15, 2024',
-    description: 'USDC escrow system eliminates traditional payment fees for freelancers.'
+    title: 'MegiLance Platform Goes Live in Public Beta', 
+    date: 'January 20, 2026',
+    description: 'Open beta launch with AI matching, secure escrow, and global talent access.'
   },
 ];
 
 const companyStats = [
   { label: 'Founded', value: '2024' },
   { label: 'Headquarters', value: 'Remote-First' },
-  { label: 'Team Size', value: 'Growing' },
-  { label: 'Platform', value: 'AI-Powered' },
+  { label: 'Core Team', value: '3 Founders' },
+  { label: 'Platform', value: 'AI + Blockchain' },
 ];
 
 const Press: React.FC = () => {

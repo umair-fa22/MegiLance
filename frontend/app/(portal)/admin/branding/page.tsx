@@ -88,7 +88,7 @@ export default function BrandingPage() {
   const loadSettings = async () => {
     try {
       setLoading(true);
-      const data = await (brandingApi as any).getConfig?.('default').catch(() => null) || await (brandingApi as any).getSettings?.().catch(() => null);
+      const data = await (brandingApi as any).getConfig?.('default').catch((e: unknown) => { console.error('Branding config load failed:', e); return null; }) || await (brandingApi as any).getSettings?.().catch((e: unknown) => { console.error('Branding settings load failed:', e); return null; });
       if (data) {
         setSettings({ ...DEFAULT_SETTINGS, ...data });
       }

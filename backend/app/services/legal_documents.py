@@ -9,10 +9,51 @@ import logging
 import hashlib
 import uuid
 
+import json
+
 from app.models.user import User
 from app.models.contract import Contract
+from app.db.turso_http import execute_query, parse_rows
 
 logger = logging.getLogger(__name__)
+
+
+def _ensure_legal_documents_table():
+    """Create legal_documents table if it doesn't exist."""
+    execute_query("""
+        CREATE TABLE IF NOT EXISTS legal_documents (
+            id TEXT PRIMARY KEY,
+            doc_type TEXT NOT NULL,
+            title TEXT NOT NULL,
+            status TEXT NOT NULL DEFAULT 'draft',
+            content TEXT NOT NULL,
+            field_values TEXT,
+            created_by INTEGER NOT NULL,
+            version TEXT,
+            created_at TEXT NOT NULL,
+            updated_at TEXT,
+            hash TEXT,
+            FOREIGN KEY (created_by) REFERENCES users(id)
+        )
+    """)
+    execute_query("""
+        CREATE TABLE IF NOT EXISTS legal_signatures (
+            id TEXT PRIMARY KEY,
+            document_id TEXT NOT NULL,
+            requested_by INTEGER,
+            signer_email TEXT,
+            signer_name TEXT,
+            signer_id INTEGER,
+            status TEXT NOT NULL DEFAULT 'pending',
+            signature_type TEXT,
+            message TEXT,
+            created_at TEXT NOT NULL,
+            signed_at TEXT,
+            expires_at TEXT,
+            certificate_hash TEXT,
+            FOREIGN KEY (document_id) REFERENCES legal_documents(id)
+        )
+    """)
 
 
 class DocumentType(str, Enum):
@@ -164,8 +205,16 @@ Date: {{contractor_sign_date}}
 class LegalDocumentService:
     """Service for managing legal documents"""
     
+    _tables_ensured = False
+    
     def __init__(self, db: Session):
         self.db = db
+        if not LegalDocumentService._tables_ensured:
+            try:
+                _ensure_legal_documents_table()
+                LegalDocumentService._tables_ensured = True
+            except Exception as e:
+                logger.warning(f"Could not ensure legal_documents table: {e}")
     
     # Template Management
     async def get_templates(
@@ -238,6 +287,9 @@ class LegalDocumentService:
             
             # Create document record
             doc_id = str(uuid.uuid4())
+            now = datetime.now(timezone.utc).isoformat()
+            doc_hash = hashlib.sha256(content.encode()).hexdigest()
+            
             document = {
                 "id": doc_id,
                 "type": doc_type.value,
@@ -247,10 +299,19 @@ class LegalDocumentService:
                 "field_values": field_values,
                 "created_by": user_id,
                 "version": template["version"],
-                "created_at": datetime.now(timezone.utc).isoformat(),
+                "created_at": now,
                 "signatures": [],
-                "hash": hashlib.sha256(content.encode()).hexdigest()
+                "hash": doc_hash
             }
+            
+            # Persist to database
+            try:
+                execute_query(
+                    "INSERT INTO legal_documents (id, doc_type, title, status, content, field_values, created_by, version, created_at, hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    [doc_id, doc_type.value, title or template["name"], DocumentStatus.DRAFT.value, content, json.dumps(field_values), user_id, template["version"], now, doc_hash]
+                )
+            except Exception as e:
+                logger.error(f"Failed to persist document: {e}")
             
             return {"document": document}
             
@@ -291,17 +352,36 @@ class LegalDocumentService:
         status_filter: Optional[DocumentStatus] = None,
         doc_type_filter: Optional[DocumentType] = None,
         limit: int = 50
-    ) -> List[Dict[str, Any]]:
+    ) -> Dict[str, Any]:
         """Get user's legal documents"""
-        # Placeholder - would query document storage
+        conds = ["created_by = ?"]
+        params: list = [user_id]
+        if status_filter:
+            conds.append("status = ?")
+            params.append(status_filter.value)
+        if doc_type_filter:
+            conds.append("doc_type = ?")
+            params.append(doc_type_filter.value)
+        where = " AND ".join(conds)
+        params.append(limit)
+        
+        result = execute_query(
+            f"SELECT id, doc_type, title, status, version, created_at, updated_at FROM legal_documents WHERE {where} ORDER BY created_at DESC LIMIT ?",
+            params
+        )
+        documents = parse_rows(result) if result else []
+        
+        count_result = execute_query(f"SELECT COUNT(*) as cnt FROM legal_documents WHERE {where}", params[:-1])
+        count_rows = parse_rows(count_result) if count_result else []
+        total = int(count_rows[0].get("cnt", 0)) if count_rows else 0
+        
         return {
-            "documents": [],
-            "total": 0,
+            "documents": documents,
+            "total": total,
             "filters": {
                 "status": status_filter.value if status_filter else None,
                 "type": doc_type_filter.value if doc_type_filter else None
-            },
-            "message": "Document storage not yet implemented"
+            }
         }
     
     async def get_document(
@@ -310,8 +390,27 @@ class LegalDocumentService:
         document_id: str
     ) -> Optional[Dict[str, Any]]:
         """Get a specific document"""
-        # Placeholder
-        return {"error": "Document not found"}
+        result = execute_query(
+            "SELECT id, doc_type, title, status, content, field_values, created_by, version, created_at, updated_at, hash FROM legal_documents WHERE id = ? AND created_by = ?",
+            [document_id, user_id]
+        )
+        rows = parse_rows(result) if result else []
+        if not rows:
+            return {"error": "Document not found"}
+        doc = rows[0]
+        if doc.get("field_values"):
+            try:
+                doc["field_values"] = json.loads(doc["field_values"])
+            except (json.JSONDecodeError, TypeError):
+                pass
+        
+        # Fetch signatures
+        sig_result = execute_query(
+            "SELECT id, signer_email, signer_name, status, signature_type, created_at, signed_at, expires_at FROM legal_signatures WHERE document_id = ?",
+            [document_id]
+        )
+        doc["signatures"] = parse_rows(sig_result) if sig_result else []
+        return doc
     
     async def update_document(
         self,
@@ -320,10 +419,39 @@ class LegalDocumentService:
         updates: Dict[str, Any]
     ) -> Dict[str, Any]:
         """Update a draft document"""
-        return {
-            "message": "Document update not yet implemented",
-            "document_id": document_id
-        }
+        # Verify ownership and draft status
+        result = execute_query(
+            "SELECT id, status FROM legal_documents WHERE id = ? AND created_by = ?",
+            [document_id, user_id]
+        )
+        rows = parse_rows(result) if result else []
+        if not rows:
+            return {"error": "Document not found"}
+        if rows[0].get("status") != DocumentStatus.DRAFT.value:
+            return {"error": "Only draft documents can be updated"}
+        
+        allowed_fields = {"title", "content", "field_values", "status"}
+        set_clauses = []
+        params = []
+        for key, value in updates.items():
+            if key in allowed_fields:
+                if key == "field_values" and isinstance(value, dict):
+                    value = json.dumps(value)
+                set_clauses.append(f"{key} = ?")
+                params.append(value)
+        
+        if not set_clauses:
+            return {"error": "No valid fields to update"}
+        
+        set_clauses.append("updated_at = ?")
+        params.append(datetime.now(timezone.utc).isoformat())
+        params.extend([document_id, user_id])
+        
+        execute_query(
+            f"UPDATE legal_documents SET {', '.join(set_clauses)} WHERE id = ? AND created_by = ?",
+            params
+        )
+        return await self.get_document(user_id, document_id)
     
     async def delete_document(
         self,
@@ -331,10 +459,19 @@ class LegalDocumentService:
         document_id: str
     ) -> Dict[str, Any]:
         """Delete a draft document"""
-        return {
-            "message": "Document deletion not yet implemented",
-            "document_id": document_id
-        }
+        result = execute_query(
+            "SELECT id, status FROM legal_documents WHERE id = ? AND created_by = ?",
+            [document_id, user_id]
+        )
+        rows = parse_rows(result) if result else []
+        if not rows:
+            return {"error": "Document not found"}
+        if rows[0].get("status") not in [DocumentStatus.DRAFT.value, DocumentStatus.VOIDED.value]:
+            return {"error": "Only draft or voided documents can be deleted"}
+        
+        execute_query("DELETE FROM legal_signatures WHERE document_id = ?", [document_id])
+        execute_query("DELETE FROM legal_documents WHERE id = ? AND created_by = ?", [document_id, user_id])
+        return {"message": "Document deleted successfully", "document_id": document_id}
     
     # Signature Management
     async def request_signature(
@@ -347,17 +484,37 @@ class LegalDocumentService:
         expires_in_days: int = 14
     ) -> Dict[str, Any]:
         """Request e-signature on a document"""
+        # Verify document exists
+        doc_result = execute_query("SELECT id, status FROM legal_documents WHERE id = ?", [document_id])
+        doc_rows = parse_rows(doc_result) if doc_result else []
+        if not doc_rows:
+            return {"error": "Document not found"}
+        
+        sig_id = str(uuid.uuid4())
+        now = datetime.now(timezone.utc).isoformat()
+        expires_at = (datetime.now(timezone.utc) + timedelta(days=expires_in_days)).isoformat()
+        
+        execute_query(
+            "INSERT INTO legal_signatures (id, document_id, requested_by, signer_email, signer_name, status, message, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            [sig_id, document_id, user_id, signer_email, signer_name, SignatureStatus.PENDING.value, message, now, expires_at]
+        )
+        
+        # Update document status
+        execute_query(
+            "UPDATE legal_documents SET status = ?, updated_at = ? WHERE id = ? AND status = ?",
+            [DocumentStatus.PENDING_SIGNATURE.value, now, document_id, DocumentStatus.DRAFT.value]
+        )
+        
         signature_request = {
-            "id": str(uuid.uuid4()),
+            "id": sig_id,
             "document_id": document_id,
             "requested_by": user_id,
             "signer_email": signer_email,
             "signer_name": signer_name,
             "status": SignatureStatus.PENDING.value,
             "message": message,
-            "created_at": datetime.now(timezone.utc).isoformat(),
-            "expires_at": (datetime.now(timezone.utc) + timedelta(days=expires_in_days)).isoformat(),
-            "sign_url": f"/sign/{document_id}?token={uuid.uuid4()}"
+            "created_at": now,
+            "expires_at": expires_at,
         }
         
         return {"signature_request": signature_request}
@@ -369,17 +526,44 @@ class LegalDocumentService:
         signature_data: Dict[str, Any]
     ) -> Dict[str, Any]:
         """Sign a document"""
+        now = datetime.now(timezone.utc).isoformat()
+        cert_hash = hashlib.sha256(
+            f"{document_id}-{user_id}-{now}".encode()
+        ).hexdigest()
+        sig_type = signature_data.get("type", "typed")
+        
+        # Update the pending signature record
+        execute_query(
+            "UPDATE legal_signatures SET signer_id = ?, status = ?, signature_type = ?, signed_at = ?, certificate_hash = ? WHERE document_id = ? AND status = 'pending' LIMIT 1",
+            [user_id, SignatureStatus.SIGNED.value, sig_type, now, cert_hash, document_id]
+        )
+        
+        # Check if all signatures are complete
+        pending = execute_query(
+            "SELECT COUNT(*) as cnt FROM legal_signatures WHERE document_id = ? AND status = 'pending'",
+            [document_id]
+        )
+        pending_rows = parse_rows(pending) if pending else []
+        pending_count = int(pending_rows[0].get("cnt", 0)) if pending_rows else 0
+        
+        if pending_count == 0:
+            execute_query(
+                "UPDATE legal_documents SET status = ?, updated_at = ? WHERE id = ?",
+                [DocumentStatus.COMPLETED.value, now, document_id]
+            )
+        else:
+            execute_query(
+                "UPDATE legal_documents SET status = ?, updated_at = ? WHERE id = ?",
+                [DocumentStatus.PARTIALLY_SIGNED.value, now, document_id]
+            )
+        
         signature = {
             "id": str(uuid.uuid4()),
             "document_id": document_id,
             "signer_id": user_id,
-            "signature_type": signature_data.get("type", "typed"),  # typed, drawn, uploaded
-            "signed_at": datetime.now(timezone.utc).isoformat(),
-            "ip_address": signature_data.get("ip_address"),
-            "user_agent": signature_data.get("user_agent"),
-            "certificate_hash": hashlib.sha256(
-                f"{document_id}-{user_id}-{datetime.now(timezone.utc).isoformat()}".encode()
-            ).hexdigest()
+            "signature_type": sig_type,
+            "signed_at": now,
+            "certificate_hash": cert_hash
         }
         
         return {
@@ -394,12 +578,21 @@ class LegalDocumentService:
         reason: str
     ) -> Dict[str, Any]:
         """Void a document"""
+        now = datetime.now(timezone.utc).isoformat()
+        execute_query(
+            "UPDATE legal_documents SET status = ?, updated_at = ? WHERE id = ? AND created_by = ?",
+            [DocumentStatus.VOIDED.value, now, document_id, user_id]
+        )
+        execute_query(
+            "UPDATE legal_signatures SET status = ? WHERE document_id = ?",
+            [SignatureStatus.VOIDED.value, document_id]
+        )
         return {
             "document_id": document_id,
             "status": DocumentStatus.VOIDED.value,
             "voided_by": user_id,
             "reason": reason,
-            "voided_at": datetime.now(timezone.utc).isoformat()
+            "voided_at": now
         }
     
     # Contract Attachment
@@ -410,9 +603,26 @@ class LegalDocumentService:
         contract_id: int
     ) -> Dict[str, Any]:
         """Attach legal document to a contract"""
-        contract = self.db.query(Contract).filter(Contract.id == contract_id).first()
-        if not contract:
-            return {"error": "Contract not found"}
+        # Verify document exists
+        doc_result = execute_query("SELECT id FROM legal_documents WHERE id = ? AND created_by = ?", [document_id, user_id])
+        doc_rows = parse_rows(doc_result) if doc_result else []
+        if not doc_rows:
+            return {"error": "Document not found"}
+        
+        # Create link (using a simple approach - store contract_id on the document)
+        execute_query("""
+            CREATE TABLE IF NOT EXISTS legal_document_contracts (
+                document_id TEXT NOT NULL,
+                contract_id INTEGER NOT NULL,
+                attached_at TEXT NOT NULL,
+                PRIMARY KEY (document_id, contract_id)
+            )
+        """)
+        now = datetime.now(timezone.utc).isoformat()
+        execute_query(
+            "INSERT OR IGNORE INTO legal_document_contracts (document_id, contract_id, attached_at) VALUES (?, ?, ?)",
+            [document_id, contract_id, now]
+        )
         
         return {
             "message": "Document attached to contract",
@@ -423,12 +633,16 @@ class LegalDocumentService:
     async def get_contract_documents(
         self,
         contract_id: int
-    ) -> List[Dict[str, Any]]:
+    ) -> Dict[str, Any]:
         """Get all legal documents attached to a contract"""
+        result = execute_query(
+            "SELECT ld.id, ld.doc_type, ld.title, ld.status, ld.version, ld.created_at FROM legal_documents ld INNER JOIN legal_document_contracts ldc ON ld.id = ldc.document_id WHERE ldc.contract_id = ?",
+            [contract_id]
+        )
+        documents = parse_rows(result) if result else []
         return {
             "contract_id": contract_id,
-            "documents": [],
-            "message": "Contract document storage not yet implemented"
+            "documents": documents
         }
     
     # Document Export

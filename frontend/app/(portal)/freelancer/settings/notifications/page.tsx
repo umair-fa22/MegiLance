@@ -38,7 +38,7 @@ const NotificationSettingsPage = () => {
   const loadSettings = async () => {
     try {
       const { settingsApi } = await import('@/lib/api') as any;
-      const response = await settingsApi?.getNotificationPreferences?.().catch(() => null);
+      const response = await settingsApi?.getNotificationPreferences?.().catch((e: unknown) => { console.error('Load notification prefs failed:', e); return null; });
       
       if (response) {
         setSettings({
@@ -72,7 +72,7 @@ const NotificationSettingsPage = () => {
         message_notifications: settings.messageNotifications,
         payment_confirmations: settings.paymentConfirmations,
         weekly_summary: settings.weeklySummary,
-      }).catch(() => null);
+      });
       
       toaster.notify({ title: 'Saved', description: 'Notification settings saved!', variant: 'success' });
     } catch (error) {

@@ -40,13 +40,13 @@ const Analytics: React.FC = () => {
         const startDate = new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
         
         const [summary, revenueTrends, userStats] = await Promise.all([
-          analyticsApi.getDashboardSummary().catch(() => null),
+          analyticsApi.getDashboardSummary().catch((e: unknown) => { console.error('Dashboard summary failed:', e); return null; }),
           analyticsApi.getRevenueTrends(
             startDate.toISOString().split('T')[0],
             now.toISOString().split('T')[0],
             days <= 7 ? 'day' : days <= 30 ? 'day' : 'week'
-          ).catch(() => null),
-          analyticsApi.getActiveUserStats(days).catch(() => null),
+          ).catch((e: unknown) => { console.error('Revenue trends failed:', e); return null; }),
+          analyticsApi.getActiveUserStats(days).catch((e: unknown) => { console.error('User stats failed:', e); return null; }),
         ]);
 
         setApiData({ summary, revenueTrends, userStats });

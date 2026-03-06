@@ -58,9 +58,9 @@ export default function WorkflowsPage() {
       const { workflowApi } = await import('@/lib/api') as any;
       
       const [workflowsData, triggersData, actionsData] = await Promise.all([
-        workflowApi.list().catch(() => null),
-        workflowApi.getTriggers().catch(() => null),
-        workflowApi.getActions().catch(() => null),
+        workflowApi.list().catch((e: unknown) => { console.error('Failed to load workflows:', e); return null; }),
+        workflowApi.getTriggers().catch((e: unknown) => { console.error('Failed to load triggers:', e); return null; }),
+        workflowApi.getActions().catch((e: unknown) => { console.error('Failed to load actions:', e); return null; }),
       ]);
 
       // Transform API workflows or use defaults
@@ -105,9 +105,9 @@ export default function WorkflowsPage() {
       
       const { workflowApi } = await import('@/lib/api') as any;
       if (workflow.isActive) {
-        await workflowApi.disable(workflowId).catch(() => {});
+        await workflowApi.disable(workflowId);
       } else {
-        await workflowApi.enable(workflowId).catch(() => {});
+        await workflowApi.enable(workflowId);
       }
       
       setWorkflows(prev => prev.map(wf => 
@@ -115,16 +115,18 @@ export default function WorkflowsPage() {
       ));
     } catch (error) {
       console.error('Failed to toggle workflow:', error);
+      alert('Failed to update workflow status. Please try again.');
     }
   };
 
   const deleteWorkflow = async (workflowId: string) => {
     try {
       const { workflowApi } = await import('@/lib/api') as any;
-      await workflowApi.delete(workflowId).catch(() => {});
+      await workflowApi.delete(workflowId);
       setWorkflows(prev => prev.filter(wf => wf.id !== workflowId));
     } catch (error) {
       console.error('Failed to delete workflow:', error);
+      alert('Failed to delete workflow. Please try again.');
     }
   };
 

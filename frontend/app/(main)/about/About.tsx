@@ -187,26 +187,26 @@ const About: React.FC = () => {
           <ScrollReveal>
             <div className={styles.sectionHeader}>
               <h2 id="team-title" className={styles.sectionTitle}>Our Team</h2>
-              <span aria-hidden="true" className={styles.sectionNote}>Final Year Project | COMSATS University Islamabad</span>
+              <span aria-hidden="true" className={styles.sectionNote}>The people building the future of freelancing</span>
             </div>
           </ScrollReveal>
           <StaggerContainer className={styles.valuesGrid}>
             <StaggerItem className={styles.valueItem}>
-              <h3 className={styles.valueTitle}>Ghulam Ahmed (Team Lead)</h3>
+              <h3 className={styles.valueTitle}>Ghulam Ahmed</h3>
               <p className={styles.valueDesc}>
-                Architecture design, AI integration, full-stack development, and project documentation.
+                Founder &amp; Lead Engineer. Architecture design, AI integration, and full-stack development.
               </p>
             </StaggerItem>
             <StaggerItem className={styles.valueItem}>
               <h3 className={styles.valueTitle}>Muhammad Waqar Ul Mulk</h3>
               <p className={styles.valueDesc}>
-                Backend development, database design, API implementation, and security hardening.
+                Co-Founder &amp; Backend Lead. Database design, API implementation, and security hardening.
               </p>
             </StaggerItem>
             <StaggerItem className={styles.valueItem}>
               <h3 className={styles.valueTitle}>Mujtaba</h3>
               <p className={styles.valueDesc}>
-                Frontend development, UI/UX design, responsive layouts, and theme implementation.
+                Co-Founder &amp; Design Lead. UI/UX design, responsive layouts, and theme implementation.
               </p>
             </StaggerItem>
           </StaggerContainer>

@@ -1,11 +1,6 @@
-// @AI-HINT: Next.js route for Privacy Policy page delegating to Privacy component.
-'use client';
+// @AI-HINT: Redirects /legal/privacy to canonical /privacy route.
+import { redirect } from 'next/navigation';
 
-import React from 'react';
-import Privacy from './Privacy';
-
-const PrivacyPage = () => {
-  return <Privacy />;
-};
-
-export default PrivacyPage;
+export default function LegalPrivacyPage() {
+  redirect('/privacy');
+}

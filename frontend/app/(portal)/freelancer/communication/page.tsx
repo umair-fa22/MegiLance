@@ -75,9 +75,9 @@ export default function CommunicationPage() {
       const { messagesApi, notificationsApi } = await import('@/lib/api');
 
       const [inboxRes, sentRes, notifRes] = await Promise.all([
-        (messagesApi as any).getConversations?.({ folder: 'inbox' }).catch(() => null),
-        (messagesApi as any).getConversations?.({ folder: 'sent' }).catch(() => null),
-        (notificationsApi as any).list?.().catch(() => null),
+        (messagesApi as any).getConversations?.({ folder: 'inbox' }).catch((e: unknown) => { console.error('Inbox load failed:', e); return null; }),
+        (messagesApi as any).getConversations?.({ folder: 'sent' }).catch((e: unknown) => { console.error('Sent load failed:', e); return null; }),
+        (notificationsApi as any).list?.().catch((e: unknown) => { console.error('Notifications load failed:', e); return null; }),
       ]);
 
       // Transform API data or use defaults
@@ -128,7 +128,7 @@ export default function CommunicationPage() {
       // Fetch announcements from API
       try {
         const { default: api } = await import('@/lib/api');
-        const announcementsRes = await (api as any).announcements?.list?.().catch(() => null);
+        const announcementsRes = await (api as any).announcements?.list?.().catch((e: unknown) => { console.error('Announcements load failed:', e); return null; });
         const announcementArray = Array.isArray(announcementsRes) ? announcementsRes : announcementsRes?.announcements || announcementsRes?.items || [];
         setAnnouncements(announcementArray.map((a: any) => ({
           id: a.id?.toString(),

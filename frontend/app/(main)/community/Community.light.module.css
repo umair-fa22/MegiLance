@@ -42,6 +42,21 @@
   box-shadow: 0 6px 20px rgba(69, 115, 223, 0.35);
 }
 
+.ctaCard {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  color: #1e293b;
+}
+
+.ctaTitle {
+  color: #0f172a;
+}
+
+.ctaDesc {
+  color: #64748b;
+}
+
 /* Social Cards */
 .socialCard {
   background: rgba(255, 255, 255, 0.9);

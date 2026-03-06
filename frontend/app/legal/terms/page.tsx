@@ -1,11 +1,6 @@
-// @AI-HINT: Next.js route for Terms page delegating to Terms component.
-'use client';
+// @AI-HINT: Redirects /legal/terms to canonical /terms route.
+import { redirect } from 'next/navigation';
 
-import React from 'react';
-import Terms from './Terms';
-
-const TermsPage = () => {
-  return <Terms />;
-};
-
-export default TermsPage;
+export default function LegalTermsPage() {
+  redirect('/terms');
+}

@@ -72,9 +72,9 @@ export default function WorkroomClient({ contractId }: WorkroomClientProps) {
 
     try {
       const [boardRes, filesRes, discussionsRes] = await Promise.all([
-        workroomApi.getBoard(contractId).catch(() => null),
-        workroomApi.getFiles(contractId).catch(() => null),
-        workroomApi.getDiscussions(contractId).catch(() => null),
+        workroomApi.getBoard(contractId).catch((e: unknown) => { console.error('Board load failed:', e); return null; }),
+        workroomApi.getFiles(contractId).catch((e: unknown) => { console.error('Files load failed:', e); return null; }),
+        workroomApi.getDiscussions(contractId).catch((e: unknown) => { console.error('Discussions load failed:', e); return null; }),
       ]);
 
       // Transform board data — API returns { columns: { todo: [...], in_progress: [...], ... } } or flat task list

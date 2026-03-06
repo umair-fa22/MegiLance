@@ -110,7 +110,7 @@ export default function WalletClient() {
       setTransactions(mappedTransactions);
 
       // Fetch payout schedule to see if configured
-      const payoutData = await walletApi<any>('/payout-schedule').catch(() => null);
+      const payoutData = await walletApi<any>('/payout-schedule').catch((e: unknown) => { console.error('Payout schedule load failed:', e); return null; });
       if (payoutData?.is_configured && payoutData.destination_type) {
         setPayoutMethods([{
           id: 'default',

@@ -67,31 +67,152 @@ async def fraud_detection(
     text: str,
 ):
     """
-    AI Fraud Detection - analyzes text for potential fraud indicators
-    
-    **No authentication required** - can be used during project posting
+    AI Fraud Detection - analyzes text for potential fraud indicators.
+
+    Uses pattern-based heuristics across multiple categories:
+    urgency/pressure, payment red-flags, off-platform contact,
+    personal-info harvesting, unrealistic offers, credential skipping,
+    plus structural signals like ALL-CAPS ratio and exclamation density.
+
+    **No authentication required** - can be used during project posting.
     """
-    # Simple keyword-based fraud detection
-    fraud_keywords = [
-        "wire money", "western union", "moneygram", "advance payment",
-        "upfront fee", "processing fee", "guarantee", "risk free",
-        "click here", "urgent", "act now", "limited time"
-    ]
-    
     text_lower = text.lower()
-    detected_flags = []
-    
-    for keyword in fraud_keywords:
-        if keyword in text_lower:
-            detected_flags.append(keyword)
-    
-    risk_score = min(len(detected_flags) * 15, 100)
-    
+    text_stripped = text.strip()
+    word_count = len(text_stripped.split())
+
+    score = 0
+    warnings: list[dict] = []
+
+    # ── Category 1: Urgency / pressure language ──
+    urgency_patterns = [
+        (r'\burgent\b', 'Uses urgency keyword "urgent"'),
+        (r'\basap\b', 'Uses high-pressure abbreviation "ASAP"'),
+        (r'\bimmediately\b', 'Demands immediate action'),
+        (r'\bright now\b', 'Pressures for instant response'),
+        (r'\bact now\b', 'Classic pressure phrase "act now"'),
+        (r'\blimited time\b', 'Creates artificial scarcity'),
+        (r'\bdon\'?t miss\b', 'FOMO-inducing language'),
+        (r'\blast chance\b', 'Artificial deadline pressure'),
+        (r'\bhurry\b', 'Rushing language detected'),
+    ]
+    urgency_hits = 0
+    for pattern, desc in urgency_patterns:
+        if re.search(pattern, text_lower):
+            urgency_hits += 1
+            warnings.append({"category": "urgency", "severity": "medium", "detail": desc})
+    if urgency_hits:
+        score += min(urgency_hits * 8, 20)
+
+    # ── Category 2: Suspicious payment language ──
+    payment_patterns = [
+        (r'\bguaranteed?\b', 'Contains unrealistic payment guarantees'),
+        (r'\b100\s*%\b', 'Claims absolute certainty'),
+        (r'\beasy\s+money\b', 'Promises easy income'),
+        (r'\bquick\s+money\b', 'Promises quick income'),
+        (r'\brisk\s*free\b', 'Claims risk-free opportunity'),
+        (r'\badvance\s+payment\b', 'Requests advance payment'),
+        (r'\bupfront\s+fee\b', 'Requests upfront fees'),
+        (r'\bprocessing\s+fee\b', 'Mentions suspicious processing fees'),
+        (r'\bwire\s+money\b', 'Requests wire transfer'),
+        (r'\bwestern\s+union\b', 'Mentions Western Union'),
+        (r'\bmoneygram\b', 'Mentions MoneyGram'),
+        (r'\bcryptocurrency.*send\b', 'Requests direct crypto payment'),
+        (r'\bbitcoin.*send\b', 'Requests direct Bitcoin payment'),
+    ]
+    payment_hits = 0
+    for pattern, desc in payment_patterns:
+        if re.search(pattern, text_lower):
+            payment_hits += 1
+            warnings.append({"category": "payment", "severity": "high", "detail": desc})
+    if payment_hits:
+        score += min(payment_hits * 10, 30)
+
+    # ── Category 3: Off-platform contact ──
+    contact_patterns = [
+        (r'\btelegram\b', 'Tries to move to Telegram'),
+        (r'\bwhatsapp\b', 'Tries to move to WhatsApp'),
+        (r'\bsignal\s+(?:app|me)\b', 'Tries to move to Signal'),
+        (r'\bcontact\s+me\s+(?:at|on|via)\b', 'Requests off-platform contact'),
+        (r'\bemail\s+me\s+(?:at|directly)\b', 'Requests direct email contact'),
+        (r'\btext\s+me\b', 'Requests phone contact'),
+        (r'\bcall\s+me\b', 'Requests phone call'),
+        (r'@[\w]+\b(?!.*\.com)', 'Contains potential messaging handle'),
+    ]
+    contact_hits = 0
+    for pattern, desc in contact_patterns:
+        if re.search(pattern, text_lower):
+            contact_hits += 1
+            warnings.append({"category": "off_platform", "severity": "high", "detail": desc})
+    if contact_hits:
+        score += min(contact_hits * 12, 30)
+
+    # ── Category 4: Personal / financial info harvesting ──
+    info_patterns = [
+        (r'\bbank\s+(?:details|account|info)\b', 'Requests bank information'),
+        (r'\bssn\b|\bsocial\s+security\b', 'Requests Social Security Number'),
+        (r'\bcredit\s+card\b', 'Requests credit card details'),
+        (r'\bpassword\b', 'Mentions password sharing'),
+        (r'\bidentity\s+(?:card|document)\b', 'Requests identity documents outside proper channels'),
+        (r'\bsend\s+(?:your|me)\s+(?:id|passport)\b', 'Requests personal ID documents'),
+    ]
+    info_hits = 0
+    for pattern, desc in info_patterns:
+        if re.search(pattern, text_lower):
+            info_hits += 1
+            warnings.append({"category": "info_harvesting", "severity": "critical", "detail": desc})
+    if info_hits:
+        score += min(info_hits * 15, 35)
+
+    # ── Category 5: Unrealistic offer signals ──
+    if re.search(r'\$\d{5,}', text) and re.search(r'\bsimple\b|\beasy\b|\bquick\b', text_lower):
+        score += 15
+        warnings.append({"category": "unrealistic", "severity": "high", "detail": "Offers unusually high payment for described work"})
+
+    # ── Category 6: No credentials needed ──
+    if re.search(r'\bno\s+(?:portfolio|experience|skills?)\s+(?:needed|required)\b', text_lower):
+        score += 10
+        warnings.append({"category": "credentials", "severity": "medium", "detail": "No credentials required for professional work"})
+
+    # ── Structural signals ──
+    if word_count > 0:
+        caps_words = sum(1 for w in text_stripped.split() if w.isupper() and len(w) > 1)
+        caps_ratio = caps_words / word_count
+        if caps_ratio > 0.3 and word_count > 5:
+            score += 8
+            warnings.append({"category": "style", "severity": "low", "detail": f"Excessive capitalisation ({int(caps_ratio*100)}% ALL-CAPS words)"})
+
+    excl_count = text.count('!')
+    if excl_count > 3:
+        score += min(excl_count * 2, 10)
+        warnings.append({"category": "style", "severity": "low", "detail": f"Excessive exclamation marks ({excl_count})"})
+
+    # Cap at 100
+    score = min(score, 100)
+
+    # Determine risk level
+    if score >= 70:
+        risk_level = "Critical"
+    elif score >= 45:
+        risk_level = "High"
+    elif score >= 20:
+        risk_level = "Medium"
+    else:
+        risk_level = "Low"
+
+    # Confidence depends on text length – more words = more signal
+    base_confidence = 70
+    length_bonus = min(word_count, 150) / 150 * 25  # up to +25 for longer text
+    confidence = round(base_confidence + length_bonus)
+
     return {
-        "risk_score": risk_score,
-        "risk_level": "high" if risk_score > 60 else "medium" if risk_score > 30 else "low",
-        "flags": detected_flags,
-        "message": "Potential fraud indicators detected" if detected_flags else "No obvious fraud indicators"
+        "score": score,
+        "risk_level": risk_level,
+        "warnings": warnings,
+        "confidence": confidence,
+        "flags": [w["detail"] for w in warnings],
+        "message": f"{len(warnings)} potential issue(s) detected" if warnings else "No obvious fraud indicators",
+        # Legacy fields kept for backwards compat
+        "risk_score": score,
     }
 
 

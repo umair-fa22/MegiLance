@@ -146,12 +146,11 @@ const Gigs: React.FC = () => {
           const data = await response.json();
           setGigs(data.gigs || data || []);
         } else {
-          // Use mock data if API fails
-          setGigs(getMockGigs());
+          setGigs([]);
         }
       } catch (error) {
         console.error('Failed to fetch gigs:', error);
-        setGigs(getMockGigs());
+        setGigs([]);
       } finally {
         setIsLoading(false);
       }
@@ -584,128 +583,5 @@ const Gigs: React.FC = () => {
     </PageTransition>
   );
 };
-
-// Mock data for development/fallback
-function getMockGigs(): Gig[] {
-  return [
-    {
-      id: 1,
-      title: 'I will create a professional website using React and Next.js',
-      slug: 'professional-react-nextjs-website',
-      thumbnail_url: '/images/gigs/web-dev.jpg',
-      seller_id: 1,
-      seller_username: 'dev_expert',
-      seller_level: 'platinum',
-      starting_price: 150,
-      average_rating: 4.9,
-      total_reviews: 234,
-      category: 'programming',
-      tags: ['react', 'nextjs', 'web development'],
-      is_featured: true,
-      is_pro_seller: true,
-    },
-    {
-      id: 2,
-      title: 'I will design a modern logo for your brand',
-      slug: 'modern-brand-logo-design',
-      thumbnail_url: '/images/gigs/logo-design.jpg',
-      seller_id: 2,
-      seller_username: 'creative_studio',
-      seller_level: 'gold',
-      starting_price: 50,
-      average_rating: 4.8,
-      total_reviews: 156,
-      category: 'design',
-      tags: ['logo', 'branding', 'graphic design'],
-      is_featured: true,
-    },
-    {
-      id: 3,
-      title: 'I will write SEO optimized blog posts and articles',
-      slug: 'seo-blog-posts-articles',
-      thumbnail_url: '/images/gigs/content-writing.jpg',
-      seller_id: 3,
-      seller_username: 'content_pro',
-      seller_level: 'silver',
-      starting_price: 25,
-      average_rating: 4.7,
-      total_reviews: 89,
-      category: 'writing',
-      tags: ['SEO', 'blog', 'content writing'],
-    },
-    {
-      id: 4,
-      title: 'I will create explainer videos with animation',
-      slug: 'explainer-videos-animation',
-      thumbnail_url: '/images/gigs/video-animation.jpg',
-      seller_id: 4,
-      seller_username: 'motion_arts',
-      seller_level: 'gold',
-      starting_price: 200,
-      average_rating: 4.9,
-      total_reviews: 112,
-      category: 'video',
-      tags: ['animation', 'explainer video', 'motion graphics'],
-      is_featured: true,
-    },
-    {
-      id: 5,
-      title: 'I will manage your social media marketing',
-      slug: 'social-media-marketing-management',
-      thumbnail_url: '/images/gigs/social-media.jpg',
-      seller_id: 5,
-      seller_username: 'digital_guru',
-      seller_level: 'bronze',
-      starting_price: 75,
-      average_rating: 4.5,
-      total_reviews: 45,
-      category: 'digital-marketing',
-      tags: ['social media', 'marketing', 'SMM'],
-    },
-    {
-      id: 6,
-      title: 'I will develop a mobile app for iOS and Android',
-      slug: 'mobile-app-ios-android',
-      thumbnail_url: '/images/gigs/mobile-app.jpg',
-      seller_id: 6,
-      seller_username: 'app_wizard',
-      seller_level: 'platinum',
-      starting_price: 500,
-      average_rating: 5.0,
-      total_reviews: 78,
-      category: 'programming',
-      tags: ['mobile app', 'iOS', 'Android', 'React Native'],
-      is_pro_seller: true,
-    },
-    {
-      id: 7,
-      title: 'I will create custom illustrations for your project',
-      slug: 'custom-illustrations-project',
-      thumbnail_url: '/images/gigs/illustration.jpg',
-      seller_id: 7,
-      seller_username: 'art_house',
-      seller_level: 'silver',
-      starting_price: 80,
-      average_rating: 4.8,
-      total_reviews: 67,
-      category: 'design',
-      tags: ['illustration', 'digital art', 'custom art'],
-    },
-    {
-      id: 8,
-      title: 'I will do data analysis and visualization',
-      slug: 'data-analysis-visualization',
-      thumbnail_url: '/images/gigs/data-analysis.jpg',
-      seller_id: 8,
-      seller_username: 'data_ninja',
-      seller_level: 'gold',
-      starting_price: 100,
-      average_rating: 4.6,
-      total_reviews: 54,
-      category: 'data',
-      tags: ['data analysis', 'visualization', 'Python', 'Excel'],
-    },
-  ];
-}
 
 export default Gigs;

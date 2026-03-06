@@ -1,4 +1,4 @@
-# @AI-HINT: Comprehensive audit trail system for compliance and security
+# @AI-HINT: Comprehensive audit trail system for compliance and security (Turso DB-backed)
 """Audit Trail Service - Complete audit logging and compliance system."""
 
 import logging
@@ -7,11 +7,42 @@ import json
 import secrets
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any
-from sqlalchemy.orm import Session
 from enum import Enum
 from collections import defaultdict
 
+from app.db.turso_http import execute_query, parse_rows
+
 logger = logging.getLogger(__name__)
+
+_audit_table_ensured = False
+
+def _ensure_audit_table():
+    global _audit_table_ensured
+    if _audit_table_ensured:
+        return
+    execute_query("""
+        CREATE TABLE IF NOT EXISTS audit_logs (
+            id TEXT PRIMARY KEY,
+            user_id INTEGER,
+            action TEXT NOT NULL,
+            category TEXT NOT NULL,
+            resource_type TEXT,
+            resource_id TEXT,
+            details TEXT,
+            ip_address TEXT,
+            user_agent TEXT,
+            severity TEXT DEFAULT 'info',
+            metadata TEXT,
+            hash TEXT,
+            previous_hash TEXT,
+            created_at TEXT NOT NULL
+        )
+    """, [])
+    execute_query("CREATE INDEX IF NOT EXISTS idx_audit_user ON audit_logs(user_id)", [])
+    execute_query("CREATE INDEX IF NOT EXISTS idx_audit_category ON audit_logs(category)", [])
+    execute_query("CREATE INDEX IF NOT EXISTS idx_audit_action ON audit_logs(action)", [])
+    execute_query("CREATE INDEX IF NOT EXISTS idx_audit_created ON audit_logs(created_at)", [])
+    _audit_table_ensured = True
 
 
 class AuditCategory(str, Enum):
@@ -151,17 +182,20 @@ class AuditTrailService:
         "default": 180
     }
     
-    def __init__(self, db: Session):
-        self.db = db
-        
-        # In-memory stores
-        self._audit_logs: List[Dict] = []
-        self._log_index: Dict[str, int] = {}  # id -> index
-        self._user_logs: Dict[int, List[str]] = defaultdict(list)
-        self._category_logs: Dict[str, List[str]] = defaultdict(list)
-        
-        # Hash chain for tamper detection
-        self._last_hash: str = "genesis"
+    def __init__(self, db=None):
+        _ensure_audit_table()
+        self._last_hash = self._get_last_hash()
+    
+    def _get_last_hash(self) -> str:
+        """Get the last hash in the chain from DB."""
+        result = execute_query(
+            "SELECT hash FROM audit_logs ORDER BY created_at DESC LIMIT 1", []
+        )
+        if result and result.get("rows"):
+            rows = parse_rows(result)
+            if rows and rows[0].get("hash"):
+                return rows[0]["hash"]
+        return "genesis"
     
     async def log(
         self,
@@ -176,28 +210,10 @@ class AuditTrailService:
         severity: AuditSeverity = AuditSeverity.INFO,
         metadata: Optional[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
-        """
-        Log an audit event.
-        
-        Args:
-            user_id: User who performed the action
-            action: Type of action performed
-            category: Category of the action
-            resource_type: Type of resource affected
-            resource_id: ID of resource affected
-            details: Additional action details
-            ip_address: Client IP address
-            user_agent: Client user agent string
-            severity: Log severity level
-            metadata: Additional metadata
-            
-        Returns:
-            Created audit log entry
-        """
+        """Log an audit event to the database."""
         log_id = f"audit_{secrets.token_hex(12)}"
-        timestamp = datetime.now(timezone.utc)
+        timestamp = datetime.now(timezone.utc).isoformat()
         
-        # Create log entry
         entry = {
             "id": log_id,
             "user_id": user_id,
@@ -210,31 +226,30 @@ class AuditTrailService:
             "user_agent": user_agent,
             "severity": severity.value,
             "metadata": metadata or {},
-            "timestamp": timestamp.isoformat(),
+            "timestamp": timestamp,
             "hash": None,
             "previous_hash": self._last_hash
         }
         
-        # Calculate hash for tamper detection
         entry["hash"] = self._calculate_hash(entry)
         self._last_hash = entry["hash"]
         
-        # Store log
-        log_index = len(self._audit_logs)
-        self._audit_logs.append(entry)
-        self._log_index[log_id] = log_index
+        execute_query(
+            """INSERT INTO audit_logs (id, user_id, action, category, resource_type,
+               resource_id, details, ip_address, user_agent, severity, metadata,
+               hash, previous_hash, created_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            [log_id, user_id, action.value, category.value, resource_type,
+             resource_id, json.dumps(details) if details else None,
+             ip_address, user_agent, severity.value,
+             json.dumps(metadata) if metadata else None,
+             entry["hash"], entry["previous_hash"], timestamp]
+        )
         
-        # Index by user and category
-        if user_id:
-            self._user_logs[user_id].append(log_id)
-        self._category_logs[category.value].append(log_id)
-        
-        # Check for high-risk action alerts
         if action in self.HIGH_RISK_ACTIONS:
             await self._trigger_high_risk_alert(entry)
         
         logger.debug(f"Audit log: {action.value} by user {user_id}")
-        
         return entry
     
     async def get_logs(
@@ -251,46 +266,73 @@ class AuditTrailService:
         limit: int = 100,
         offset: int = 0
     ) -> Dict[str, Any]:
-        """Query audit logs with filters."""
-        # Start with all logs or filtered by user/category
-        if user_id:
-            log_ids = self._user_logs.get(user_id, [])
-            logs = [self._audit_logs[self._log_index[lid]] for lid in log_ids]
-        elif category:
-            log_ids = self._category_logs.get(category.value, [])
-            logs = [self._audit_logs[self._log_index[lid]] for lid in log_ids]
-        else:
-            logs = self._audit_logs.copy()
+        """Query audit logs with filters from DB."""
+        where_clauses = ["1=1"]
+        params: List[Any] = []
         
-        # Apply filters
+        if user_id is not None:
+            where_clauses.append("user_id = ?")
+            params.append(user_id)
+        if category:
+            where_clauses.append("category = ?")
+            params.append(category.value)
         if action:
-            logs = [l for l in logs if l["action"] == action.value]
-        
+            where_clauses.append("action = ?")
+            params.append(action.value)
         if resource_type:
-            logs = [l for l in logs if l["resource_type"] == resource_type]
-        
+            where_clauses.append("resource_type = ?")
+            params.append(resource_type)
         if resource_id:
-            logs = [l for l in logs if l["resource_id"] == resource_id]
-        
+            where_clauses.append("resource_id = ?")
+            params.append(resource_id)
         if severity:
-            logs = [l for l in logs if l["severity"] == severity.value]
-        
+            where_clauses.append("severity = ?")
+            params.append(severity.value)
         if ip_address:
-            logs = [l for l in logs if l["ip_address"] == ip_address]
-        
+            where_clauses.append("ip_address = ?")
+            params.append(ip_address)
         if start_date:
-            logs = [l for l in logs 
-                   if datetime.fromisoformat(l["timestamp"]) >= start_date]
-        
+            where_clauses.append("created_at >= ?")
+            params.append(start_date.isoformat())
         if end_date:
-            logs = [l for l in logs 
-                   if datetime.fromisoformat(l["timestamp"]) <= end_date]
+            where_clauses.append("created_at <= ?")
+            params.append(end_date.isoformat())
         
-        # Sort by timestamp (newest first)
-        logs.sort(key=lambda x: x["timestamp"], reverse=True)
+        where_sql = " AND ".join(where_clauses)
         
-        total = len(logs)
-        logs = logs[offset:offset + limit]
+        # Get total count
+        count_result = execute_query(
+            f"SELECT COUNT(*) as total FROM audit_logs WHERE {where_sql}", list(params)
+        )
+        total = 0
+        if count_result and count_result.get("rows"):
+            rows = parse_rows(count_result)
+            if rows:
+                total = rows[0].get("total", 0)
+        
+        # Get logs
+        all_params = list(params) + [limit, offset]
+        result = execute_query(
+            f"""SELECT id, user_id, action, category, resource_type, resource_id,
+                details, ip_address, user_agent, severity, metadata, hash,
+                previous_hash, created_at as timestamp
+                FROM audit_logs WHERE {where_sql}
+                ORDER BY created_at DESC LIMIT ? OFFSET ?""",
+            all_params
+        )
+        
+        logs = []
+        if result and result.get("rows"):
+            logs = parse_rows(result)
+            for log in logs:
+                for field in ("details", "metadata"):
+                    if log.get(field):
+                        try:
+                            log[field] = json.loads(log[field])
+                        except (json.JSONDecodeError, ValueError):
+                            log[field] = {}
+                    else:
+                        log[field] = {}
         
         return {
             "logs": logs,
@@ -305,19 +347,13 @@ class AuditTrailService:
         user_id: int,
         days: int = 30
     ) -> Dict[str, Any]:
-        """Get user activity summary."""
+        """Get user activity summary from DB."""
         start_date = datetime.now(timezone.utc) - timedelta(days=days)
         
-        result = await self.get_logs(
-            user_id=user_id,
-            start_date=start_date,
-            limit=1000
-        )
-        
+        result = await self.get_logs(user_id=user_id, start_date=start_date, limit=1000)
         logs = result["logs"]
         
-        # Summarize activity
-        activity = {
+        activity: Dict[str, Any] = {
             "total_actions": len(logs),
             "by_category": defaultdict(int),
             "by_action": defaultdict(int),
@@ -331,27 +367,21 @@ class AuditTrailService:
         for log in logs:
             activity["by_category"][log["category"]] += 1
             activity["by_action"][log["action"]] += 1
-            
-            date_key = log["timestamp"][:10]  # YYYY-MM-DD
-            activity["by_day"][date_key] += 1
-            
-            if log["ip_address"]:
+            ts = log.get("timestamp", "")
+            activity["by_day"][ts[:10]] += 1
+            if log.get("ip_address"):
                 activity["unique_ips"].add(log["ip_address"])
-            
             if log["action"] == AuditAction.LOGIN.value and not activity["last_login"]:
-                activity["last_login"] = log["timestamp"]
-            
+                activity["last_login"] = ts
             if not activity["last_activity"]:
-                activity["last_activity"] = log["timestamp"]
-            
-            # Check for high risk
+                activity["last_activity"] = ts
             try:
                 action_enum = AuditAction(log["action"])
                 if action_enum in self.HIGH_RISK_ACTIONS:
                     activity["high_risk_actions"].append({
                         "action": log["action"],
-                        "timestamp": log["timestamp"],
-                        "details": log["details"]
+                        "timestamp": ts,
+                        "details": log.get("details", {})
                     })
             except ValueError:
                 pass
@@ -360,7 +390,6 @@ class AuditTrailService:
         activity["by_category"] = dict(activity["by_category"])
         activity["by_action"] = dict(activity["by_action"])
         activity["by_day"] = dict(activity["by_day"])
-        
         return activity
     
     async def verify_integrity(
@@ -368,38 +397,50 @@ class AuditTrailService:
         start_index: int = 0,
         end_index: Optional[int] = None
     ) -> Dict[str, Any]:
-        """Verify audit log integrity (detect tampering)."""
-        if end_index is None:
-            end_index = len(self._audit_logs)
+        """Verify audit log integrity (detect tampering) from DB."""
+        result = execute_query(
+            "SELECT id, user_id, action, category, resource_type, resource_id, "
+            "details, ip_address, user_agent, severity, metadata, hash, "
+            "previous_hash, created_at as timestamp "
+            "FROM audit_logs ORDER BY created_at ASC LIMIT ? OFFSET ?",
+            [(end_index or 10000) - start_index, start_index]
+        )
         
-        logs = self._audit_logs[start_index:end_index]
+        logs = []
+        if result and result.get("rows"):
+            logs = parse_rows(result)
+            for log in logs:
+                for field in ("details", "metadata"):
+                    if log.get(field):
+                        try:
+                            log[field] = json.loads(log[field])
+                        except (json.JSONDecodeError, ValueError):
+                            log[field] = {}
+                    else:
+                        log[field] = {}
         
         issues = []
         previous_hash = logs[0]["previous_hash"] if logs else "genesis"
         
         for i, log in enumerate(logs):
-            # Verify hash chain
-            if log["previous_hash"] != previous_hash:
+            if log.get("previous_hash") != previous_hash:
                 issues.append({
                     "index": start_index + i,
                     "log_id": log["id"],
                     "issue": "Hash chain broken",
                     "expected_previous": previous_hash,
-                    "actual_previous": log["previous_hash"]
+                    "actual_previous": log.get("previous_hash")
                 })
-            
-            # Verify log hash
             expected_hash = self._calculate_hash(log)
-            if log["hash"] != expected_hash:
+            if log.get("hash") != expected_hash:
                 issues.append({
                     "index": start_index + i,
                     "log_id": log["id"],
                     "issue": "Log hash mismatch (possible tampering)",
                     "expected_hash": expected_hash,
-                    "actual_hash": log["hash"]
+                    "actual_hash": log.get("hash")
                 })
-            
-            previous_hash = log["hash"]
+            previous_hash = log.get("hash", "")
         
         return {
             "verified_count": len(logs),
@@ -414,16 +455,13 @@ class AuditTrailService:
         include_hashes: bool = False
     ) -> Dict[str, Any]:
         """Export audit logs for compliance."""
-        # Get filtered logs
         result = await self.get_logs(**(filters or {}), limit=10000)
         logs = result["logs"]
         
         if not include_hashes:
-            # Remove internal hash data for export
-            logs = [{k: v for k, v in log.items() 
+            logs = [{k: v for k, v in log.items()
                     if k not in ["hash", "previous_hash"]} for log in logs]
         
-        # Add export metadata
         export = {
             "export_date": datetime.now(timezone.utc).isoformat(),
             "total_records": len(logs),
@@ -432,32 +470,26 @@ class AuditTrailService:
             "logs": logs
         }
         
-        # Log the export action
         await self.log(
-            user_id=None,  # Would be admin user
+            user_id=None,
             action=AuditAction.DATA_EXPORT,
             category=AuditCategory.ADMIN,
-            details={
-                "format": format,
-                "record_count": len(logs),
-                "filters": filters
-            },
+            details={"format": format, "record_count": len(logs), "filters": filters},
             severity=AuditSeverity.WARNING
         )
-        
         return export
     
     async def get_statistics(
         self,
         days: int = 30
     ) -> Dict[str, Any]:
-        """Get audit log statistics."""
+        """Get audit log statistics from DB."""
         start_date = datetime.now(timezone.utc) - timedelta(days=days)
         
         result = await self.get_logs(start_date=start_date, limit=10000)
         logs = result["logs"]
         
-        stats = {
+        stats: Dict[str, Any] = {
             "period_days": days,
             "total_events": len(logs),
             "by_category": defaultdict(int),
@@ -473,19 +505,14 @@ class AuditTrailService:
         for log in logs:
             stats["by_category"][log["category"]] += 1
             stats["by_action"][log["action"]] += 1
-            stats["by_severity"][log["severity"]] += 1
-            
-            date_key = log["timestamp"][:10]
-            stats["by_day"][date_key] += 1
-            
-            if log["user_id"]:
+            stats["by_severity"][log.get("severity", "info")] += 1
+            stats["by_day"][log.get("timestamp", "")[:10]] += 1
+            if log.get("user_id"):
                 stats["unique_users"].add(log["user_id"])
-            if log["ip_address"]:
+            if log.get("ip_address"):
                 stats["unique_ips"].add(log["ip_address"])
-            
             if log["action"] == AuditAction.LOGIN_FAILED.value:
                 stats["failed_auth_count"] += 1
-            
             try:
                 action_enum = AuditAction(log["action"])
                 if action_enum in self.HIGH_RISK_ACTIONS:
@@ -499,78 +526,90 @@ class AuditTrailService:
         stats["by_action"] = dict(stats["by_action"])
         stats["by_severity"] = dict(stats["by_severity"])
         stats["by_day"] = dict(stats["by_day"])
-        
         return stats
     
     async def cleanup_old_logs(
         self,
         category: Optional[AuditCategory] = None
     ) -> Dict[str, Any]:
-        """Clean up logs past retention period."""
-        deleted_count = 0
+        """Clean up logs past retention period from DB."""
         now = datetime.now(timezone.utc)
+        deleted_count = 0
         
-        logs_to_keep = []
-        
-        for log in self._audit_logs:
-            log_category = log["category"]
-            retention_days = self.RETENTION_DAYS.get(
-                AuditCategory(log_category) if log_category in [c.value for c in AuditCategory] else None,
-                self.RETENTION_DAYS["default"]
+        for cat, days in self.RETENTION_DAYS.items():
+            if cat == "default":
+                continue
+            if category and cat != category:
+                continue
+            cutoff = (now - timedelta(days=days)).isoformat()
+            result = execute_query(
+                "SELECT COUNT(*) as cnt FROM audit_logs WHERE category = ? AND created_at < ?",
+                [cat.value, cutoff]
             )
-            
-            log_date = datetime.fromisoformat(log["timestamp"])
-            age_days = (now - log_date).days
-            
-            if age_days <= retention_days:
-                logs_to_keep.append(log)
-            else:
-                deleted_count += 1
+            cnt = 0
+            if result and result.get("rows"):
+                rows = parse_rows(result)
+                if rows:
+                    cnt = rows[0].get("cnt", 0)
+            if cnt > 0:
+                execute_query(
+                    "DELETE FROM audit_logs WHERE category = ? AND created_at < ?",
+                    [cat.value, cutoff]
+                )
+                deleted_count += cnt
         
-        # Rebuild indexes
-        self._audit_logs = logs_to_keep
-        self._log_index = {log["id"]: i for i, log in enumerate(self._audit_logs)}
+        # Handle uncategorized with default retention
+        if not category:
+            default_cutoff = (now - timedelta(days=self.RETENTION_DAYS["default"])).isoformat()
+            known_cats = [c.value for c in self.RETENTION_DAYS.keys() if c != "default"]
+            placeholders = ",".join(["?"] * len(known_cats))
+            result = execute_query(
+                f"SELECT COUNT(*) as cnt FROM audit_logs WHERE category NOT IN ({placeholders}) AND created_at < ?",
+                known_cats + [default_cutoff]
+            )
+            cnt = 0
+            if result and result.get("rows"):
+                rows = parse_rows(result)
+                if rows:
+                    cnt = rows[0].get("cnt", 0)
+            if cnt > 0:
+                execute_query(
+                    f"DELETE FROM audit_logs WHERE category NOT IN ({placeholders}) AND created_at < ?",
+                    known_cats + [default_cutoff]
+                )
+                deleted_count += cnt
         
-        # Rebuild user and category indexes
-        self._user_logs = defaultdict(list)
-        self._category_logs = defaultdict(list)
-        
-        for log in self._audit_logs:
-            if log["user_id"]:
-                self._user_logs[log["user_id"]].append(log["id"])
-            self._category_logs[log["category"]].append(log["id"])
+        remaining_result = execute_query("SELECT COUNT(*) as cnt FROM audit_logs", [])
+        remaining = 0
+        if remaining_result and remaining_result.get("rows"):
+            rows = parse_rows(remaining_result)
+            if rows:
+                remaining = rows[0].get("cnt", 0)
         
         return {
             "deleted_count": deleted_count,
-            "remaining_count": len(self._audit_logs)
+            "remaining_count": remaining
         }
     
     async def get_security_alerts(
         self,
         hours: int = 24
     ) -> Dict[str, Any]:
-        """Get recent security-related events."""
+        """Get recent security-related events from DB."""
         start_date = datetime.now(timezone.utc) - timedelta(hours=hours)
         
         result = await self.get_logs(
-            category=AuditCategory.SECURITY,
-            start_date=start_date,
-            limit=500
+            category=AuditCategory.SECURITY, start_date=start_date, limit=500
         )
-        
         security_logs = result["logs"]
         
-        # Also get auth failures
         auth_result = await self.get_logs(
-            action=AuditAction.LOGIN_FAILED,
-            start_date=start_date,
-            limit=500
+            action=AuditAction.LOGIN_FAILED, start_date=start_date, limit=500
         )
         
-        # Merge and deduplicate
         all_security = {l["id"]: l for l in security_logs + auth_result["logs"]}
         
-        alerts = {
+        alerts: Dict[str, Any] = {
             "period_hours": hours,
             "total_alerts": len(all_security),
             "failed_logins": len(auth_result["logs"]),
@@ -580,18 +619,15 @@ class AuditTrailService:
         }
         
         for log in all_security.values():
-            if log["ip_address"]:
+            if log.get("ip_address"):
                 alerts["by_ip"][log["ip_address"]] += 1
             alerts["by_action"][log["action"]] += 1
         
-        # Find suspicious IPs (many failed attempts)
         alerts["suspicious_ips"] = [
             ip for ip, count in alerts["by_ip"].items() if count >= 5
         ]
-        
         alerts["by_ip"] = dict(alerts["by_ip"])
         alerts["by_action"] = dict(alerts["by_action"])
-        
         return alerts
     
     def _calculate_hash(self, entry: Dict) -> str:
@@ -615,11 +651,9 @@ class AuditTrailService:
 _audit_service: Optional[AuditTrailService] = None
 
 
-def get_audit_service(db: Session) -> AuditTrailService:
+def get_audit_service(db=None) -> AuditTrailService:
     """Get or create audit service instance."""
     global _audit_service
     if _audit_service is None:
-        _audit_service = AuditTrailService(db)
-    else:
-        _audit_service.db = db
+        _audit_service = AuditTrailService()
     return _audit_service
