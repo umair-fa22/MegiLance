@@ -5,11 +5,9 @@ Provides full-text search across projects, freelancers, and skills using Turso's
 """
 
 from fastapi import APIRouter, Depends, Query, HTTPException
-from sqlalchemy.orm import Session
 from typing import Optional, List
 from pydantic import BaseModel, Field
 
-from app.db.session import get_db
 from app.core.security import get_current_user_optional, get_current_active_user, require_admin
 from app.services.search_fts import get_search_service, SearchService
 
@@ -61,7 +59,6 @@ class AutocompleteResponse(BaseModel):
 @router.post("/projects", response_model=SearchResult)
 async def search_projects(
     request: ProjectSearchRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_user_optional)
 ):
     """
@@ -73,9 +70,9 @@ async def search_projects(
     - Category, budget, and experience filters
     - Fast performance with indexed search
     """
-    search_service = get_search_service(db)
+    search_service = get_search_service()
     
-    results = search_service.search_projects(
+    results = await search_service.search_projects(
         query=request.query,
         category=request.category,
         min_budget=request.min_budget,
@@ -92,7 +89,6 @@ async def search_projects(
 @router.post("/freelancers", response_model=SearchResult)
 async def search_freelancers(
     request: FreelancerSearchRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_user_optional)
 ):
     """
@@ -104,9 +100,9 @@ async def search_freelancers(
     - Hourly rate and location filters
     - Skill matching
     """
-    search_service = get_search_service(db)
+    search_service = get_search_service()
     
-    results = search_service.search_freelancers(
+    results = await search_service.search_freelancers(
         query=request.query,
         skills=request.skills,
         min_hourly_rate=request.min_hourly_rate,
@@ -124,7 +120,6 @@ async def autocomplete_fts(
     q: str = Query(..., min_length=1, description="Search query"),
     type: str = Query("all", pattern="^(all|projects|skills)$"),
     limit: int = Query(10, ge=1, le=50),
-    db: Session = Depends(get_db)
 ):
     """
     FTS5-powered autocomplete suggestions for search queries
@@ -134,9 +129,9 @@ async def autocomplete_fts(
     - Skill names
     - Popular search terms
     """
-    search_service = get_search_service(db)
+    search_service = get_search_service()
     
-    suggestions = search_service.autocomplete(
+    suggestions = await search_service.autocomplete(
         query=q,
         type=type,
         limit=limit
@@ -151,7 +146,6 @@ async def autocomplete_fts(
 @router.get("/analytics")
 async def get_search_analytics(
     days: int = Query(30, ge=1, le=365),
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user),
     _admin = Depends(require_admin)
 ):
@@ -165,16 +159,15 @@ async def get_search_analytics(
     - Average results per search
     """
     # In production, check if user is admin
-    search_service = get_search_service(db)
+    search_service = get_search_service()
     
-    analytics = search_service.get_search_analytics(days=days)
+    analytics = await search_service.get_search_analytics(days=days)
     
     return analytics
 
 
 @router.post("/reindex")
 async def reindex_search(
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user),
     _admin = Depends(require_admin)
 ):
@@ -187,10 +180,10 @@ async def reindex_search(
     - Skills
     """
     # In production, check if user is admin
-    search_service = get_search_service(db)
+    search_service = get_search_service()
     
     try:
-        result = search_service.reindex_all()
+        result = await search_service.reindex_all()
         return {
             "status": "success",
             "message": "Search indexes rebuilt successfully",
@@ -208,14 +201,13 @@ async def unified_search(
     q: str = Query(..., min_length=1, description="Search query"),
     types: str = Query("all", description="Search types: all, projects, freelancers, skills"),
     limit: int = Query(20, ge=1, le=100),
-    db: Session = Depends(get_db)
 ):
     """
     Unified search across all entity types
     
     Returns combined results from projects, freelancers, and skills
     """
-    search_service = get_search_service(db)
+    search_service = get_search_service()
     
     results = {
         "query": q,
@@ -225,14 +217,14 @@ async def unified_search(
     }
     
     if types in ["all", "projects"]:
-        project_results = search_service.search_projects(
+        project_results = await search_service.search_projects(
             query=q,
             limit=limit
         )
         results["projects"] = project_results["results"]
     
     if types in ["all", "freelancers"]:
-        freelancer_results = search_service.search_freelancers(
+        freelancer_results = await search_service.search_freelancers(
             query=q,
             limit=limit
         )

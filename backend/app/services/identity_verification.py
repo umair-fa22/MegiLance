@@ -7,8 +7,6 @@ import secrets
 import re
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any, Tuple
-from sqlalchemy.orm import Session
-from sqlalchemy import and_, or_
 from enum import Enum
 import os
 import json
@@ -111,8 +109,7 @@ class IdentityVerificationService:
         },
     }
     
-    def __init__(self, db: Session, storage_path: str = "uploads/verification"):
-        self.db = db
+    def __init__(self, storage_path: str = "uploads/verification"):
         self.storage_path = storage_path
         os.makedirs(storage_path, exist_ok=True)
         
@@ -826,11 +823,9 @@ class IdentityVerificationService:
 _verification_service: Optional[IdentityVerificationService] = None
 
 
-def get_verification_service(db: Session) -> IdentityVerificationService:
+def get_verification_service() -> IdentityVerificationService:
     """Get or create verification service instance."""
     global _verification_service
     if _verification_service is None:
-        _verification_service = IdentityVerificationService(db)
-    else:
-        _verification_service.db = db
+        _verification_service = IdentityVerificationService()
     return _verification_service

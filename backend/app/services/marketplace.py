@@ -1,7 +1,6 @@
 # @AI-HINT: Marketplace search and discovery service
 """Marketplace Service - Advanced search and discovery features."""
 
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from datetime import datetime, timedelta, timezone
 from enum import Enum
@@ -37,8 +36,8 @@ class FreelancerSort(str, Enum):
 class MarketplaceService:
     """Advanced marketplace search and discovery service."""
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        pass
     
     # Project Search
     async def search_projects(
@@ -409,5 +408,10 @@ class MarketplaceService:
         }
 
 
-def get_marketplace_service(db: Session) -> MarketplaceService:
-    return MarketplaceService(db)
+_singleton_marketplace_service = None
+
+def get_marketplace_service() -> MarketplaceService:
+    global _singleton_marketplace_service
+    if _singleton_marketplace_service is None:
+        _singleton_marketplace_service = MarketplaceService()
+    return _singleton_marketplace_service

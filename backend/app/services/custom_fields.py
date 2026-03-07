@@ -6,7 +6,6 @@ import re
 from datetime import datetime, date, timezone
 from typing import Dict, List, Any, Optional, Union
 from collections import defaultdict
-from sqlalchemy.orm import Session
 
 
 class CustomFieldsService:
@@ -54,7 +53,6 @@ class CustomFieldsService:
     
     async def create_field_definition(
         self,
-        db: Session,
         user_id: str,
         entity_type: str,
         name: str,
@@ -140,7 +138,6 @@ class CustomFieldsService:
     
     async def get_field_definitions(
         self,
-        db: Session,
         entity_type: str,
         include_hidden: bool = False
     ) -> Dict[str, Any]:
@@ -179,7 +176,6 @@ class CustomFieldsService:
     
     async def update_field_definition(
         self,
-        db: Session,
         user_id: str,
         field_id: str,
         updates: Dict[str, Any]
@@ -206,7 +202,6 @@ class CustomFieldsService:
     
     async def delete_field_definition(
         self,
-        db: Session,
         user_id: str,
         field_id: str
     ) -> Dict[str, Any]:
@@ -287,7 +282,6 @@ class CustomFieldsService:
     
     async def set_field_value(
         self,
-        db: Session,
         user_id: str,
         entity_type: str,
         entity_id: str,
@@ -331,7 +325,6 @@ class CustomFieldsService:
     
     async def set_multiple_field_values(
         self,
-        db: Session,
         user_id: str,
         entity_type: str,
         entity_id: str,
@@ -363,7 +356,6 @@ class CustomFieldsService:
     
     async def get_field_values(
         self,
-        db: Session,
         entity_type: str,
         entity_id: str,
         include_empty: bool = True
@@ -411,7 +403,6 @@ class CustomFieldsService:
     
     async def create_field_group(
         self,
-        db: Session,
         user_id: str,
         entity_type: str,
         name: str,
@@ -446,7 +437,6 @@ class CustomFieldsService:
     
     async def get_field_groups(
         self,
-        db: Session,
         entity_type: str
     ) -> Dict[str, Any]:
         """Get all field groups for an entity type."""
@@ -460,7 +450,6 @@ class CustomFieldsService:
     
     async def export_field_definitions(
         self,
-        db: Session,
         entity_type: Optional[str] = None
     ) -> Dict[str, Any]:
         """Export field definitions for backup/transfer."""

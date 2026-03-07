@@ -6,7 +6,7 @@ from typing import Optional, Dict, List, Any
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 from pydantic import BaseModel, Field
-from sqlalchemy.orm import Session
+
 from fastapi import Depends
 import httpx
 import json
@@ -14,7 +14,7 @@ import json
 logger = logging.getLogger(__name__)
 
 from app.core.config import get_settings
-from app.db.session import get_db
+
 settings = get_settings()
 
 
@@ -92,8 +92,7 @@ class MultiCurrencyPaymentService:
         "MATIC": {"name": "Polygon", "decimals": 18, "networks": ["polygon"]},
     }
 
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
         self.exchange_rate_cache = {}
         self.cache_ttl = 300  # 5 minutes
 
@@ -681,6 +680,11 @@ class MultiCurrencyPaymentService:
 # Service Factory
 # ============================================================================
 
-def get_multicurrency_service(db: Session = Depends(get_db)) -> MultiCurrencyPaymentService:
+_multicurrency_service = None
+
+def get_multicurrency_service() -> MultiCurrencyPaymentService:
     """Get multi-currency payment service instance"""
-    return MultiCurrencyPaymentService(db)
+    global _multicurrency_service
+    if _multicurrency_service is None:
+        _multicurrency_service = MultiCurrencyPaymentService()
+    return _multicurrency_service

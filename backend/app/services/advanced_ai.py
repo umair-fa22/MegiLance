@@ -5,13 +5,14 @@ from typing import Dict, List, Any, Optional, Tuple
 from decimal import Decimal
 from datetime import datetime, timedelta, timezone
 from pydantic import BaseModel
-from sqlalchemy.orm import Session
-from fastapi import Depends, HTTPException
 import json
 import re
 import math
+import logging
 
-from app.db.session import execute_query, get_db
+from app.db.turso_http import execute_query, parse_rows
+
+logger = logging.getLogger(__name__)
 
 
 # ============================================================================
@@ -71,8 +72,8 @@ class PriceOptimization(BaseModel):
 class AdvancedAIService:
     """Advanced AI capabilities using ML models"""
 
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        pass
 
     # ========================================================================
     # Deep Learning Matching
@@ -417,21 +418,22 @@ class AdvancedAIService:
         score = 0.0
 
         # Get user profile
-        result = execute_query("""
+        result = await execute_query("""
             SELECT name, bio, location, profile_image_url, created_at
             FROM users WHERE id = ?
         """, [user_id])
 
-        if not result or not result.get("rows"):
+        rows = parse_rows(result)
+        if not rows:
             return {"score": 0, "patterns": []}
 
-        row = result["rows"][0]
-        name = row[0].get("value", "")
-        bio = row[1].get("value", "")
-        created_at = row[4].get("value")
+        row = rows[0]
+        name = row.get("name", "")
+        bio = row.get("bio", "")
+        created_at = row.get("created_at")
 
         # Check for generic/fake names
-        if re.match(r'^(user|test|admin|demo)\d+$', name.lower()):
+        if name and re.match(r'^(user|test|admin|demo)\d+$', name.lower()):
             patterns.append("generic_username")
             score += 25.0
 
@@ -442,13 +444,17 @@ class AdvancedAIService:
 
         # Check for new account (higher risk)
         if created_at:
-            account_age_days = (datetime.now(timezone.utc) - datetime.fromisoformat(created_at)).days
-            if account_age_days < 7:
-                patterns.append("very_new_account")
-                score += 15.0
+            try:
+                created_dt = datetime.fromisoformat(created_at.replace("Z", "+00:00"))
+                account_age_days = (datetime.now(timezone.utc) - created_dt).days
+                if account_age_days < 7:
+                    patterns.append("very_new_account")
+                    score += 15.0
+            except (ValueError, TypeError):
+                pass
 
         # Check for missing profile image
-        if not row[3].get("value"):
+        if not row.get("profile_image_url"):
             patterns.append("no_profile_image")
             score += 5.0
 
@@ -466,20 +472,20 @@ class AdvancedAIService:
 
         # Check proposal spam
         if action_type == "proposal_submission":
-            result = execute_query("""
-                SELECT COUNT(*) FROM proposals
+            result = await execute_query("""
+                SELECT COUNT(*) as cnt FROM proposals
                 WHERE freelancer_id = ? AND created_at > ?
             """, [user_id, (datetime.now(timezone.utc) - timedelta(hours=24)).isoformat()])
 
-            if result and result.get("rows"):
-                proposal_count = int(result["rows"][0][0].get("value", 0))
-                if proposal_count > 50:  # More than 50 proposals in 24h
+            rows = parse_rows(result)
+            if rows:
+                proposal_count = int(rows[0].get("cnt", 0))
+                if proposal_count > 50:
                     patterns.append("proposal_spam")
                     score += 40.0
-
-        # Check for rapid profile updates (bot behavior)
-        # Check for copy-pasted content
-        # Check for impossible activity patterns
+                elif proposal_count > 20:
+                    patterns.append("high_proposal_volume")
+                    score += 15.0
 
         return {"score": score, "patterns": patterns}
 
@@ -488,21 +494,25 @@ class AdvancedAIService:
         patterns = []
         score = 0.0
 
-        # Check for IP address sharing
-        result = execute_query("""
-            SELECT ip_address, COUNT(DISTINCT user_id) as user_count
-            FROM user_sessions
-            WHERE user_id = ?
-            GROUP BY ip_address
-            HAVING user_count > 5
-        """, [user_id])
+        # Check for IP address sharing across multiple accounts
+        try:
+            result = await execute_query("""
+                SELECT ip_address, COUNT(DISTINCT user_id) as user_count
+                FROM user_sessions
+                WHERE ip_address IN (
+                    SELECT ip_address FROM user_sessions WHERE user_id = ?
+                )
+                GROUP BY ip_address
+                HAVING COUNT(DISTINCT user_id) > 5
+            """, [user_id])
 
-        if result and result.get("rows"):
-            patterns.append("shared_ip_multiple_accounts")
-            score += 30.0
-
-        # Check for collusion (same users always working together)
-        # Check for review manipulation
+            rows = parse_rows(result)
+            if rows:
+                patterns.append("shared_ip_multiple_accounts")
+                score += 30.0
+        except Exception:
+            # Table may not exist yet
+            pass
 
         return {"score": score, "patterns": patterns}
 
@@ -579,20 +589,82 @@ class AdvancedAIService:
         )
 
     async def _assess_design_quality(self, work_id: int, design_data: Any) -> QualityAssessment:
-        """Assess design quality"""
-        # Placeholder for design quality assessment
-        # Would integrate with design analysis tools
+        """Assess design quality based on available design metadata"""
+        issues = []
+        suggestions = []
+        
+        accessibility_score = 50.0
+        consistency_score = 50.0
+        aesthetics_score = 50.0
+        
+        if isinstance(design_data, dict):
+            # Assess based on provided metadata
+            if design_data.get("colors"):
+                colors = design_data["colors"]
+                if len(colors) > 6:
+                    issues.append({"severity": "warning", "message": "Too many colors — may lack visual cohesion"})
+                    consistency_score -= 15
+                elif len(colors) < 2:
+                    issues.append({"severity": "info", "message": "Limited color palette"})
+                else:
+                    consistency_score += 20
+                    aesthetics_score += 10
+            
+            if design_data.get("has_alt_text") is False:
+                issues.append({"severity": "critical", "message": "Missing alt text on images"})
+                accessibility_score -= 30
+                suggestions.append("Add descriptive alt text to all images for accessibility")
+            elif design_data.get("has_alt_text") is True:
+                accessibility_score += 30
+            
+            if design_data.get("responsive") is True:
+                aesthetics_score += 15
+                accessibility_score += 10
+            elif design_data.get("responsive") is False:
+                issues.append({"severity": "warning", "message": "Design is not responsive"})
+                suggestions.append("Ensure the design adapts to different screen sizes")
+                aesthetics_score -= 10
+            
+            if design_data.get("contrast_ratio"):
+                ratio = float(design_data["contrast_ratio"])
+                if ratio >= 4.5:
+                    accessibility_score += 20
+                elif ratio >= 3.0:
+                    issues.append({"severity": "warning", "message": f"Contrast ratio ({ratio}) below AA standard (4.5:1)"})
+                    accessibility_score -= 10
+                    suggestions.append("Improve text-background contrast ratio to at least 4.5:1")
+                else:
+                    issues.append({"severity": "critical", "message": f"Poor contrast ratio ({ratio})"})
+                    accessibility_score -= 25
+                    suggestions.append("Significantly improve contrast for readability")
+        elif isinstance(design_data, str) and len(design_data) > 0:
+            # If it's a URL or path, we can at least note it exists
+            aesthetics_score += 10
+            suggestions.append("Provide structured design metadata for a more detailed assessment")
+        else:
+            suggestions.append("Provide design data (colors, responsive flag, contrast ratio) for accurate assessment")
+        
+        # Clamp scores
+        accessibility_score = max(0, min(100, accessibility_score))
+        consistency_score = max(0, min(100, consistency_score))
+        aesthetics_score = max(0, min(100, aesthetics_score))
+        
+        quality_score = (accessibility_score * 0.4 + consistency_score * 0.3 + aesthetics_score * 0.3)
+        
+        if not suggestions:
+            suggestions.append("Consider improving color contrast for accessibility")
+        
         return QualityAssessment(
             work_id=work_id,
             work_type="design",
-            quality_score=75.0,
+            quality_score=round(quality_score, 1),
             assessment_details={
-                "accessibility_score": 80,
-                "consistency_score": 70,
-                "aesthetics_score": 75
+                "accessibility_score": round(accessibility_score, 1),
+                "consistency_score": round(consistency_score, 1),
+                "aesthetics_score": round(aesthetics_score, 1)
             },
-            issues=[],
-            suggestions=["Consider improving color contrast for accessibility"]
+            issues=issues,
+            suggestions=suggestions
         )
 
     async def _assess_content_quality(self, work_id: int, content: str) -> QualityAssessment:
@@ -647,17 +719,45 @@ class AdvancedAIService:
         - Optimize revenue
         - Find competitive sweet spot
         """
-        # Get market rates
-        result = execute_query("""
-            SELECT AVG(budget) as avg_budget FROM projects
+        # Get market rates from DB
+        result = await execute_query("""
+            SELECT AVG(budget_min) as avg_min, AVG(budget_max) as avg_max,
+                   COUNT(*) as project_count
+            FROM projects
             WHERE category_id = (
                 SELECT id FROM categories WHERE name = ? LIMIT 1
             )
         """, [project_category])
 
-        market_rate = 1000.0  # Default
-        if result and result.get("rows"):
-            market_rate = float(result["rows"][0][0].get("value", 1000.0))
+        rows = parse_rows(result)
+        market_rate = 1000.0
+        project_count = 0
+        if rows and rows[0].get("avg_max"):
+            avg_min = float(rows[0].get("avg_min") or 500)
+            avg_max = float(rows[0].get("avg_max") or 1500)
+            market_rate = (avg_min + avg_max) / 2
+            project_count = int(rows[0].get("project_count", 0))
+
+        # Get freelancer's win rate for conversion estimate
+        fr_result = await execute_query("""
+            SELECT 
+                COUNT(*) as total_proposals,
+                SUM(CASE WHEN status = 'accepted' THEN 1 ELSE 0 END) as accepted
+            FROM proposals WHERE freelancer_id = ?
+        """, [freelancer_id])
+        
+        fr_rows = parse_rows(fr_result)
+        total_proposals = int(fr_rows[0].get("total_proposals", 0)) if fr_rows else 0
+        accepted = int(fr_rows[0].get("accepted", 0)) if fr_rows else 0
+        
+        # Calculate conversion probability from actual data
+        if total_proposals >= 5:
+            conversion_prob = accepted / total_proposals
+        elif total_proposals > 0:
+            # Small sample — blend with baseline
+            conversion_prob = (accepted / total_proposals) * 0.5 + 0.5 * 0.3
+        else:
+            conversion_prob = 0.3  # Default for new freelancers
 
         # Skill level multiplier
         multipliers = {
@@ -678,17 +778,26 @@ class AdvancedAIService:
             "median": optimal_price
         }
 
-        # Estimate conversion probability (simplified)
-        conversion_prob = 0.75  # Would use ML model in production
+        # Determine market position
+        if market_rate > 0:
+            ratio = float(optimal_price) / market_rate
+            if ratio < 0.85:
+                market_position = "budget"
+            elif ratio < 1.15:
+                market_position = "competitive"
+            else:
+                market_position = "premium"
+        else:
+            market_position = "competitive"
 
         # Calculate expected revenue
-        expected_revenue = optimal_price * Decimal(str(conversion_prob))
+        expected_revenue = optimal_price * Decimal(str(round(conversion_prob, 4)))
 
         return PriceOptimization(
             optimal_price=optimal_price,
             price_range=price_range,
-            market_position="competitive",
-            conversion_probability=conversion_prob,
+            market_position=market_position,
+            conversion_probability=round(conversion_prob, 4),
             expected_revenue=expected_revenue
         )
 
@@ -698,123 +807,128 @@ class AdvancedAIService:
 
     async def _get_project_details(self, project_id: int) -> Optional[Dict[str, Any]]:
         """Get project details"""
-        result = execute_query("""
-            SELECT id, title, description, budget, budget_type,
-                   required_skills, experience_level, category_id
+        result = await execute_query("""
+            SELECT id, title, description, budget_min, budget_type,
+                   skills_required, experience_level, category_id
             FROM projects WHERE id = ?
         """, [project_id])
 
-        if not result or not result.get("rows"):
+        rows = parse_rows(result)
+        if not rows:
             return None
 
-        row = result["rows"][0]
+        row = rows[0]
+        skills_raw = row.get("skills_required", "[]")
+        try:
+            skills = json.loads(skills_raw) if skills_raw else []
+        except (json.JSONDecodeError, TypeError):
+            skills = []
+
         return {
-            "id": int(row[0].get("value")),
-            "title": row[1].get("value"),
-            "description": row[2].get("value"),
-            "budget": float(row[3].get("value", 0)),
-            "budget_type": row[4].get("value"),
-            "required_skills": json.loads(row[5].get("value", "[]")),
-            "experience_level": row[6].get("value"),
-            "category": row[7].get("value")
+            "id": int(row.get("id", 0)),
+            "title": row.get("title", ""),
+            "description": row.get("description", ""),
+            "budget": float(row.get("budget_min", 0) or 0),
+            "budget_type": row.get("budget_type", "fixed"),
+            "required_skills": skills,
+            "experience_level": row.get("experience_level", "intermediate"),
+            "category": row.get("category_id", "")
         }
 
     async def _get_active_freelancers(self) -> List[Dict[str, Any]]:
         """Get all active freelancers"""
-        result = execute_query("""
+        result = await execute_query("""
             SELECT id, name, skills, hourly_rate, experience_level,
                    location, timezone
             FROM users
             WHERE user_type = 'freelancer' AND is_active = 1
-        """)
+        """, [])
 
         freelancers = []
-        if result and result.get("rows"):
-            for row in result["rows"]:
-                freelancers.append({
-                    "id": int(row[0].get("value")),
-                    "name": row[1].get("value"),
-                    "skills": json.loads(row[2].get("value", "[]")),
-                    "hourly_rate": float(row[3].get("value", 0)),
-                    "experience_level": row[4].get("value"),
-                    "location": row[5].get("value"),
-                    "timezone": row[6].get("value")
-                })
+        for row in parse_rows(result):
+            skills_raw = row.get("skills", "[]")
+            try:
+                skills = json.loads(skills_raw) if skills_raw else []
+            except (json.JSONDecodeError, TypeError):
+                skills = []
+
+            freelancers.append({
+                "id": int(row.get("id", 0)),
+                "name": row.get("name", ""),
+                "skills": skills,
+                "hourly_rate": float(row.get("hourly_rate", 0) or 0),
+                "experience_level": row.get("experience_level", "intermediate"),
+                "location": row.get("location", ""),
+                "timezone": row.get("timezone", "")
+            })
 
         return freelancers
 
 
 # ============================================================================
-# Service Factory
+# Service Factory (singleton)
 # ============================================================================
 
-def get_advanced_ai_service(db: Session = Depends(get_db)) -> AdvancedAIService:
+_instance: Optional[AdvancedAIService] = None
+
+
+def get_advanced_ai_service() -> AdvancedAIService:
     """Get advanced AI service instance"""
-    return AdvancedAIService(db)
+    global _instance
+    if _instance is None:
+        _instance = AdvancedAIService()
+    return _instance
 
 
 # ============================================================================
 # Turso HTTP helpers for AI Copilot endpoints
 # ============================================================================
 
-from app.db.turso_http import execute_query as turso_query, to_str as turso_to_str
 
-
-def get_project_for_proposal(project_id: int) -> Optional[Dict[str, Any]]:
+async def get_project_for_proposal(project_id: int) -> Optional[Dict[str, Any]]:
     """Get project details for proposal generation (Turso HTTP). Returns None if not found."""
-    result = turso_query("""
+    result = await execute_query("""
         SELECT p.id, p.title, p.description, p.budget_min, p.budget_max,
                p.budget_type, p.skills_required, p.experience_level
         FROM projects p WHERE p.id = ?
     """, [project_id])
 
-    if not result or not result.get("rows"):
+    rows = parse_rows(result)
+    if not rows:
         return None
 
-    row = result["rows"][0]
-
-    def get_val(r, idx):
-        cell = r[idx] if idx < len(r) else None
-        if isinstance(cell, dict):
-            return cell.get("value") if cell.get("type") != "null" else None
-        return cell
-
+    row = rows[0]
     return {
-        "title": get_val(row, 1) or "the project",
-        "description": get_val(row, 2) or "",
-        "budget_min": float(get_val(row, 3) or 0),
-        "budget_max": float(get_val(row, 4) or 0),
-        "budget_type": get_val(row, 5) or "fixed",
+        "title": row.get("title") or "the project",
+        "description": row.get("description") or "",
+        "budget_min": float(row.get("budget_min") or 0),
+        "budget_max": float(row.get("budget_max") or 0),
+        "budget_type": row.get("budget_type") or "fixed",
     }
 
 
-def get_user_profile_for_proposal(user_id) -> Dict[str, Any]:
+async def get_user_profile_for_proposal(user_id) -> Dict[str, Any]:
     """Get user profile for proposal generation (Turso HTTP)."""
-    result = turso_query("""
-        SELECT name, skills, hourly_rate, bio, NULL as completed_projects
+    result = await execute_query("""
+        SELECT name, skills, hourly_rate, bio
         FROM users WHERE id = ?
     """, [user_id])
 
+    rows = parse_rows(result)
+    
     freelancer_name = "there"
     freelancer_skills = []
     hourly_rate = 50
 
-    if result and result.get("rows"):
-        row = result["rows"][0]
-
-        def get_val(r, idx):
-            cell = r[idx] if idx < len(r) else None
-            if isinstance(cell, dict):
-                return cell.get("value") if cell.get("type") != "null" else None
-            return cell
-
-        freelancer_name = get_val(row, 0) or "there"
-        skills_str = get_val(row, 1) or "[]"
+    if rows:
+        row = rows[0]
+        freelancer_name = row.get("name") or "there"
+        skills_str = row.get("skills") or "[]"
         try:
             freelancer_skills = json.loads(skills_str) if skills_str else []
         except Exception:
             freelancer_skills = []
-        hourly_rate = float(get_val(row, 2) or 50)
+        hourly_rate = float(row.get("hourly_rate") or 50)
 
     return {
         "name": freelancer_name,

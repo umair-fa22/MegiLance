@@ -1,0 +1,27 @@
+/* @AI-HINT: MobileBottomNav dark theme colors */
+
+.bottomNav {
+  background-color: rgba(15, 23, 42, 0.92);
+  border-top-color: #1e293b;
+}
+
+.tabItem {
+  color: #64748b;
+}
+
+.tabItemActive {
+  color: #7aa5f5;
+}
+
+.tabLabel {
+  color: #64748b;
+}
+
+.tabLabelActive {
+  color: #7aa5f5;
+  font-weight: 600;
+}
+
+.activeIndicator {
+  background-color: #7aa5f5;
+}

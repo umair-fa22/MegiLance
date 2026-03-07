@@ -10,15 +10,13 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, BackgroundTasks
-from sqlalchemy.orm import Session
 from typing import Optional, List
 from pydantic import BaseModel
 from datetime import datetime, timezone
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.models.user import User
-from app.services.export_import import ExportImportService, ExportFormat
+from app.services.export_import import get_export_import_service, ExportFormat
 
 router = APIRouter()
 
@@ -60,7 +58,7 @@ class ExportJobResponse(BaseModel):
 # API Endpoints
 @router.get("/formats")
 async def get_export_formats(
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get available export formats."""
@@ -92,11 +90,11 @@ async def get_export_formats(
 async def request_export(
     request: ExportRequest,
     background_tasks: BackgroundTasks,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Request full data export."""
-    service = ExportImportService(db)
+    service = get_export_import_service()
     
     try:
         export_format = ExportFormat(request.format)
@@ -137,11 +135,11 @@ async def request_export(
 @router.get("/export/status/{job_id}")
 async def get_export_status(
     job_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Check export job status."""
-    service = ExportImportService(db)
+    service = get_export_import_service()
     
     status = await service.get_export_status(
         job_id=job_id,
@@ -157,11 +155,11 @@ async def get_export_status(
 @router.get("/export/download/{job_id}")
 async def download_export(
     job_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Download completed export."""
-    service = ExportImportService(db)
+    service = get_export_import_service()
     
     result = await service.download_export(
         job_id=job_id,
@@ -180,11 +178,11 @@ async def download_export(
 @router.get("/export/history")
 async def get_export_history(
     limit: int = 10,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get user's export history."""
-    service = ExportImportService(db)
+    service = get_export_import_service()
     
     history = await service.get_export_history(
         user_id=current_user.id,
@@ -197,11 +195,11 @@ async def get_export_history(
 @router.post("/import/validate")
 async def validate_import(
     request: ImportRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Validate import data before processing."""
-    service = ExportImportService(db)
+    service = get_export_import_service()
     
     validation = await service.validate_import_data(
         data=request.data,
@@ -214,11 +212,11 @@ async def validate_import(
 @router.post("/import")
 async def import_data(
     request: ImportRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Import data from backup."""
-    service = ExportImportService(db)
+    service = get_export_import_service()
     
     # First validate
     validation = await service.validate_import_data(
@@ -248,7 +246,7 @@ async def import_data(
 @router.post("/gdpr/request-deletion")
 async def request_data_deletion(
     request: DataDeletionRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Request account and data deletion (GDPR)."""
@@ -258,7 +256,7 @@ async def request_data_deletion(
             detail="You must confirm deletion request"
         )
     
-    service = ExportImportService(db)
+    service = get_export_import_service()
     
     result = await service.request_deletion(
         user_id=current_user.id,
@@ -270,11 +268,11 @@ async def request_data_deletion(
 
 @router.get("/gdpr/my-data")
 async def get_my_data_summary(
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get summary of all stored user data (GDPR)."""
-    service = ExportImportService(db)
+    service = get_export_import_service()
     
     summary = await service.get_data_summary(user_id=current_user.id)
     
@@ -284,7 +282,7 @@ async def get_my_data_summary(
 @router.post("/backup/schedule")
 async def schedule_backup(
     frequency: str = "weekly",  # daily, weekly, monthly
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Schedule automatic backups."""
@@ -295,7 +293,7 @@ async def schedule_backup(
             detail=f"Invalid frequency. Use: {valid_frequencies}"
         )
     
-    service = ExportImportService(db)
+    service = get_export_import_service()
     
     # Would implement backup scheduling
     return {
@@ -308,7 +306,7 @@ async def schedule_backup(
 
 @router.delete("/backup/schedule")
 async def cancel_backup_schedule(
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Cancel scheduled backups."""

@@ -6,7 +6,7 @@ import json
 import hashlib
 from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Any, Optional
-from sqlalchemy.orm import Session
+
 
 from app.db.turso_http import get_turso_http
 
@@ -57,7 +57,7 @@ class SavedSearchesService:
     # ── CRUD ──
 
     async def save_search(
-        self, db: Session, user_id: str, name: str, category: str,
+        self, user_id: str, name: str, category: str,
         criteria: Dict[str, Any], description: Optional[str] = None,
         is_alert: bool = False, alert_frequency: str = "daily"
     ) -> Dict[str, Any]:
@@ -98,7 +98,7 @@ class SavedSearchesService:
         return {"success": True, "saved_search": saved_search, "message": f"Search '{name}' saved successfully"}
 
     async def get_saved_searches(
-        self, db: Session, user_id: str,
+        self, user_id: str,
         category: Optional[str] = None, include_alerts_only: bool = False
     ) -> Dict[str, Any]:
         sql = ("SELECT id, user_id, name, category, criteria, description, search_hash, "
@@ -137,7 +137,7 @@ class SavedSearchesService:
         return items
 
     async def update_saved_search(
-        self, db: Session, user_id: str, search_id: str, updates: Dict[str, Any]
+        self, user_id: str, search_id: str, updates: Dict[str, Any]
     ) -> Dict[str, Any]:
         allowed = ["name", "criteria", "description", "is_alert", "alert_frequency"]
         set_parts = []
@@ -179,7 +179,7 @@ class SavedSearchesService:
 
         return {"success": True, "message": "Search updated successfully"}
 
-    async def delete_saved_search(self, db: Session, user_id: str, search_id: str) -> Dict[str, Any]:
+    async def delete_saved_search(self, user_id: str, search_id: str) -> Dict[str, Any]:
         row = self._turso().fetch_one(
             "SELECT name FROM saved_searches WHERE id = ? AND user_id = ?", [search_id, user_id]
         )
@@ -190,7 +190,7 @@ class SavedSearchesService:
 
     # ── Execute saved search with REAL DB queries ──
 
-    async def execute_saved_search(self, db: Session, user_id: str, search_id: str) -> Dict[str, Any]:
+    async def execute_saved_search(self, user_id: str, search_id: str) -> Dict[str, Any]:
         row = self._turso().fetch_one(
             "SELECT id, name, category, criteria, use_count FROM saved_searches WHERE id = ? AND user_id = ?",
             [search_id, user_id]
@@ -415,7 +415,7 @@ class SavedSearchesService:
     # ── History (DB-backed) ──
 
     async def add_to_history(
-        self, db: Session, user_id: str, category: str,
+        self, user_id: str, category: str,
         criteria: Dict[str, Any], results_count: int = 0
     ) -> Dict[str, Any]:
         entry_id = str(uuid.uuid4())
@@ -436,7 +436,7 @@ class SavedSearchesService:
         return {"tracked": True, "entry_id": entry_id}
 
     async def get_search_history(
-        self, db: Session, user_id: str,
+        self, user_id: str,
         category: Optional[str] = None, limit: int = 20
     ) -> Dict[str, Any]:
         sql = ("SELECT id, category, criteria, search_hash, results_count, searched_at "
@@ -466,7 +466,7 @@ class SavedSearchesService:
         return {"history": history, "total": len(history), "unique_searches": len(hashes)}
 
     async def clear_search_history(
-        self, db: Session, user_id: str, category: Optional[str] = None
+        self, user_id: str, category: Optional[str] = None
     ) -> Dict[str, Any]:
         if category:
             self._turso().execute(
@@ -480,7 +480,7 @@ class SavedSearchesService:
     # ── Popular / Templates ──
 
     async def get_popular_searches(
-        self, db: Session, category: Optional[str] = None, limit: int = 10
+        self, category: Optional[str] = None, limit: int = 10
     ) -> Dict[str, Any]:
         sql = "SELECT category, criteria, search_hash, COUNT(*) as cnt FROM search_history"
         params: list = []
@@ -509,7 +509,7 @@ class SavedSearchesService:
         return {"popular_searches": popular, "total_tracked": total_tracked}
 
     async def get_search_templates(
-        self, db: Session, category: Optional[str] = None
+        self, category: Optional[str] = None
     ) -> Dict[str, Any]:
         if category:
             templates = {category: self.search_templates.get(category, [])}
@@ -518,14 +518,14 @@ class SavedSearchesService:
         return {"templates": templates, "categories": list(self.search_templates.keys())}
 
     async def create_search_from_template(
-        self, db: Session, user_id: str, category: str,
+        self, user_id: str, category: str,
         template_name: str, custom_name: Optional[str] = None
     ) -> Dict[str, Any]:
         templates = self.search_templates.get(category, [])
         for template in templates:
             if template["name"] == template_name:
                 return await self.save_search(
-                    db=db, user_id=user_id,
+                    user_id=user_id,
                     name=custom_name or template["name"],
                     category=category, criteria=template["criteria"],
                     description=template["description"],
@@ -533,7 +533,7 @@ class SavedSearchesService:
         raise ValueError(f"Template '{template_name}' not found in category '{category}'")
 
     async def toggle_search_alert(
-        self, db: Session, user_id: str, search_id: str,
+        self, user_id: str, search_id: str,
         enable: bool, frequency: str = "daily"
     ) -> Dict[str, Any]:
         row = self._turso().fetch_one(
@@ -554,7 +554,7 @@ class SavedSearchesService:
             "message": f"Alerts {'enabled' if enable else 'disabled'} for '{row[0]}'",
         }
 
-    async def process_search_alerts(self, db: Session) -> Dict[str, Any]:
+    async def process_search_alerts(self) -> Dict[str, Any]:
         """Process alerts — fetch DB-based saved searches with alerts enabled."""
         result = self._turso().execute(
             "SELECT id, user_id, name, category, criteria, alert_frequency, last_alert_sent "
@@ -597,7 +597,7 @@ class SavedSearchesService:
             "processed_at": now.isoformat(),
         }
 
-    async def get_search_analytics(self, db: Session, user_id: str) -> Dict[str, Any]:
+    async def get_search_analytics(self, user_id: str) -> Dict[str, Any]:
         saved_row = self._turso().fetch_one(
             "SELECT COUNT(*) FROM saved_searches WHERE user_id = ?", [user_id]
         )

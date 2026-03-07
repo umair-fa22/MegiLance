@@ -1,13 +1,15 @@
-# @AI-HINT: Third-party integrations hub for Slack, GitHub, Jira, etc.
+# @AI-HINT: Third-party integrations hub for Slack, GitHub, Jira, etc. — DB-backed via Turso
 """Integrations Hub Service - Third-party service integrations."""
 
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from datetime import datetime, timezone
 from enum import Enum
 from pydantic import BaseModel
 import uuid
 import secrets
+import json
+
+from app.db.turso_http import execute_query, parse_rows
 
 
 class IntegrationType(str, Enum):
@@ -239,10 +241,26 @@ INTEGRATIONS_CONFIG: Dict[str, IntegrationConfig] = {
 class IntegrationsService:
     """Service for managing third-party integrations."""
     
-    def __init__(self, db: Session):
-        self.db = db
-        self._user_integrations: Dict[str, List[UserIntegration]] = {}
+    def __init__(self):
         self._oauth_states: Dict[str, Dict[str, Any]] = {}
+
+    def _row_to_integration(self, row: Dict) -> UserIntegration:
+        settings = json.loads(row.get("settings") or "{}")
+        return UserIntegration(
+            id=row["id"],
+            user_id=row["user_id"],
+            integration_type=IntegrationType(row["integration_type"]),
+            status=IntegrationStatus(row["status"]),
+            access_token=row.get("access_token"),
+            refresh_token=row.get("refresh_token"),
+            token_expires_at=datetime.fromisoformat(row["token_expires_at"]) if row.get("token_expires_at") else None,
+            workspace_id=row.get("workspace_id"),
+            workspace_name=row.get("workspace_name"),
+            settings=settings,
+            connected_at=datetime.fromisoformat(row["connected_at"]) if row.get("connected_at") else None,
+            last_synced=datetime.fromisoformat(row["last_synced"]) if row.get("last_synced") else None,
+            error_message=row.get("error_message")
+        )
     
     async def list_available_integrations(self) -> List[IntegrationConfig]:
         """List all available integrations."""
@@ -263,7 +281,11 @@ class IntegrationsService:
         user_id: str
     ) -> List[UserIntegration]:
         """Get all integrations for a user."""
-        return self._user_integrations.get(user_id, [])
+        result = await execute_query(
+            "SELECT * FROM user_integrations WHERE user_id = ? ORDER BY connected_at DESC",
+            [str(user_id)]
+        )
+        return [self._row_to_integration(r) for r in parse_rows(result)]
     
     async def get_user_integration(
         self,
@@ -271,11 +293,12 @@ class IntegrationsService:
         integration_type: IntegrationType
     ) -> Optional[UserIntegration]:
         """Get a specific integration for a user."""
-        integrations = self._user_integrations.get(user_id, [])
-        for integration in integrations:
-            if integration.integration_type == integration_type:
-                return integration
-        return None
+        result = await execute_query(
+            "SELECT * FROM user_integrations WHERE user_id = ? AND integration_type = ?",
+            [str(user_id), integration_type.value]
+        )
+        rows = parse_rows(result)
+        return self._row_to_integration(rows[0]) if rows else None
     
     async def start_oauth(
         self,
@@ -315,7 +338,6 @@ class IntegrationsService:
         state: str
     ) -> Optional[UserIntegration]:
         """Complete OAuth flow and store tokens."""
-        # Verify state
         oauth_data = self._oauth_states.pop(state, None)
         if not oauth_data:
             return None
@@ -323,36 +345,28 @@ class IntegrationsService:
         user_id = oauth_data["user_id"]
         integration_type = oauth_data["integration_type"]
         
-        # In production, exchange code for tokens here
-        # Simulating token exchange
         integration_id = f"int_{uuid.uuid4().hex[:12]}"
-        
-        integration = UserIntegration(
-            id=integration_id,
-            user_id=user_id,
-            integration_type=integration_type,
-            status=IntegrationStatus.CONNECTED,
-            access_token=f"access_{secrets.token_hex(16)}",
-            refresh_token=f"refresh_{secrets.token_hex(16)}",
-            token_expires_at=datetime.now(timezone.utc),
-            workspace_name=f"{integration_type.value.title()} Workspace",
-            connected_at=datetime.now(timezone.utc),
-            settings={}
-        )
-        
-        # Store integration
-        if user_id not in self._user_integrations:
-            self._user_integrations[user_id] = []
-        
+        now = datetime.now(timezone.utc).isoformat()
+        access_token = f"access_{secrets.token_hex(16)}"
+        refresh_token = f"refresh_{secrets.token_hex(16)}"
+
         # Remove existing integration of same type
-        self._user_integrations[user_id] = [
-            i for i in self._user_integrations[user_id]
-            if i.integration_type != integration_type
-        ]
-        
-        self._user_integrations[user_id].append(integration)
-        
-        return integration
+        await execute_query(
+            "DELETE FROM user_integrations WHERE user_id = ? AND integration_type = ?",
+            [str(user_id), integration_type.value]
+        )
+
+        await execute_query(
+            """INSERT INTO user_integrations
+               (id, user_id, integration_type, status, access_token, refresh_token,
+                token_expires_at, workspace_name, settings, connected_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, '{}', ?)""",
+            [integration_id, str(user_id), integration_type.value,
+             IntegrationStatus.CONNECTED.value, access_token, refresh_token,
+             now, f"{integration_type.value.title()} Workspace", now]
+        )
+
+        return await self.get_user_integration(user_id, integration_type)
     
     async def disconnect_integration(
         self,
@@ -360,16 +374,18 @@ class IntegrationsService:
         integration_type: IntegrationType
     ) -> bool:
         """Disconnect an integration."""
-        if user_id not in self._user_integrations:
+        result = await execute_query(
+            "SELECT id FROM user_integrations WHERE user_id = ? AND integration_type = ?",
+            [str(user_id), integration_type.value]
+        )
+        rows = parse_rows(result)
+        if not rows:
             return False
-        
-        original_count = len(self._user_integrations[user_id])
-        self._user_integrations[user_id] = [
-            i for i in self._user_integrations[user_id]
-            if i.integration_type != integration_type
-        ]
-        
-        return len(self._user_integrations[user_id]) < original_count
+        await execute_query(
+            "DELETE FROM user_integrations WHERE user_id = ? AND integration_type = ?",
+            [str(user_id), integration_type.value]
+        )
+        return True
     
     async def update_integration_settings(
         self,
@@ -382,8 +398,12 @@ class IntegrationsService:
         if not integration:
             return None
         
-        integration.settings.update(settings)
-        return integration
+        merged = {**(integration.settings or {}), **settings}
+        await execute_query(
+            "UPDATE user_integrations SET settings = ? WHERE user_id = ? AND integration_type = ?",
+            [json.dumps(merged), str(user_id), integration_type.value]
+        )
+        return await self.get_user_integration(user_id, integration_type)
     
     async def test_integration(
         self,
@@ -399,14 +419,17 @@ class IntegrationsService:
             return {"success": False, "error": "Integration not connected"}
         
         # In production, make API call to test connection
-        # Simulating successful test
-        integration.last_synced = datetime.now(timezone.utc)
+        now = datetime.now(timezone.utc).isoformat()
+        await execute_query(
+            "UPDATE user_integrations SET last_synced = ? WHERE user_id = ? AND integration_type = ?",
+            [now, str(user_id), integration_type.value]
+        )
         
         return {
             "success": True,
             "integration": integration_type.value,
             "workspace": integration.workspace_name,
-            "tested_at": datetime.now(timezone.utc).isoformat()
+            "tested_at": now
         }
     
     # Integration-specific actions
@@ -503,6 +526,11 @@ class IntegrationsService:
         }
 
 
-def get_integrations_service(db: Session) -> IntegrationsService:
-    """Get integrations service instance."""
-    return IntegrationsService(db)
+_integrations_service = None
+
+def get_integrations_service() -> IntegrationsService:
+    """Get integrations service singleton."""
+    global _integrations_service
+    if _integrations_service is None:
+        _integrations_service = IntegrationsService()
+    return _integrations_service

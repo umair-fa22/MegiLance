@@ -5,7 +5,7 @@ import logging
 import re
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any
-from sqlalchemy.orm import Session
+
 from enum import Enum
 import secrets
 
@@ -83,8 +83,8 @@ class ContentModerationService:
     Uses Turso DB tables: moderation_logs, moderation_reports, user_reputation, user_violations.
     """
 
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        pass
 
     def _turso(self):
         from app.db.turso_http import get_turso_http
@@ -580,14 +580,11 @@ class ContentModerationService:
 
 
 # Singleton instance
-_moderation_service: Optional[ContentModerationService] = None
+_moderation_service = None
 
-
-def get_moderation_service(db: Session) -> ContentModerationService:
+def get_moderation_service() -> ContentModerationService:
     """Get or create moderation service instance."""
     global _moderation_service
     if _moderation_service is None:
-        _moderation_service = ContentModerationService(db)
-    else:
-        _moderation_service.db = db
+        _moderation_service = ContentModerationService()
     return _moderation_service

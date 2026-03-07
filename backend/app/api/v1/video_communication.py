@@ -13,14 +13,12 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, WebSocket, WebSocketDisconnect
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel, Field
 from datetime import datetime, timedelta, timezone
 import json
 import secrets
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user, decode_token
 from app.core.config import get_settings
 from app.models.user import User
@@ -117,7 +115,7 @@ webrtc_service = WebRTCService()
 async def create_call(
     request: CreateCallRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Create a new video call"""
     room_id = webrtc_service.generate_room_id()
@@ -145,7 +143,7 @@ async def create_call(
 async def join_call(
     room_id: str,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Join a video call"""
     call = vc_service.get_call_by_room_id(room_id)
@@ -184,7 +182,7 @@ async def join_call(
 async def end_call(
     call_id: int,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """End a video call (host only)"""
     call_info = vc_service.get_call_host_and_start(call_id)
@@ -213,7 +211,7 @@ async def list_calls(
     limit: int = 20,
     offset: int = 0,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """List user's video calls"""
     calls_data = vc_service.list_user_calls(current_user.id, status, limit, offset)
@@ -228,7 +226,7 @@ async def list_calls(
 async def start_screen_share(
     request: ScreenShareRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Start screen sharing in a call"""
     participants = vc_service.get_call_participants(request.call_id)
@@ -255,7 +253,7 @@ async def start_screen_share(
 async def whiteboard_action(
     request: WhiteboardAction,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Execute whiteboard action"""
     participants = vc_service.get_call_participants(request.call_id)
@@ -382,7 +380,7 @@ async def websocket_signaling(websocket: WebSocket, room_id: str):
 async def start_recording(
     call_id: int,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Start call recording (host only)"""
     host_id = vc_service.get_call_host(call_id)
@@ -405,7 +403,7 @@ async def start_recording(
 async def stop_recording(
     call_id: int,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Stop call recording and get download URL"""
     host_id = vc_service.get_call_host(call_id)
@@ -435,7 +433,7 @@ async def get_user_availability(
     start_date: str,
     end_date: str,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get user's availability for scheduling calls"""
     busy_slots = vc_service.get_user_availability_slots(user_id, start_date, end_date)
@@ -455,7 +453,7 @@ async def get_user_availability(
 async def get_call_analytics(
     period: str = "week",
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get call usage analytics"""
     if period == "day":

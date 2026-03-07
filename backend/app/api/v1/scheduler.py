@@ -9,16 +9,14 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
 from typing import Optional, List
 from pydantic import BaseModel
 from datetime import datetime
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.models.user import User
 from app.services.scheduler import (
-    ScheduledTasksService,
+    get_scheduler_service,
     TaskStatus,
     TaskPriority,
     ScheduleType
@@ -52,11 +50,11 @@ class CreateScheduleRequest(BaseModel):
 @router.post("/tasks")
 async def create_task(
     request: CreateTaskRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Create a new task."""
-    service = ScheduledTasksService(db)
+    service = get_scheduler_service()
     
     try:
         priority = TaskPriority(request.priority)
@@ -80,11 +78,11 @@ async def list_tasks(
     status: Optional[str] = None,
     task_type: Optional[str] = None,
     limit: int = 50,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """List user's tasks."""
-    service = ScheduledTasksService(db)
+    service = get_scheduler_service()
     
     task_status = None
     if status:
@@ -106,11 +104,11 @@ async def list_tasks(
 @router.get("/tasks/{task_id}")
 async def get_task(
     task_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get task details."""
-    service = ScheduledTasksService(db)
+    service = get_scheduler_service()
     
     task = await service.get_task(task_id)
     
@@ -127,11 +125,11 @@ async def get_task(
 @router.post("/tasks/{task_id}/run")
 async def run_task(
     task_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Run a task immediately."""
-    service = ScheduledTasksService(db)
+    service = get_scheduler_service()
     
     task = await service.get_task(task_id)
     
@@ -149,11 +147,11 @@ async def run_task(
 @router.post("/tasks/{task_id}/cancel")
 async def cancel_task(
     task_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Cancel a pending task."""
-    service = ScheduledTasksService(db)
+    service = get_scheduler_service()
     
     task = await service.get_task(task_id)
     
@@ -177,11 +175,11 @@ async def cancel_task(
 @router.post("/schedules")
 async def create_schedule(
     request: CreateScheduleRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Create a recurring schedule."""
-    service = ScheduledTasksService(db)
+    service = get_scheduler_service()
     
     try:
         schedule_type = ScheduleType(request.schedule_type)
@@ -208,11 +206,11 @@ async def create_schedule(
 @router.get("/schedules")
 async def list_schedules(
     enabled_only: bool = False,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """List user's schedules."""
-    service = ScheduledTasksService(db)
+    service = get_scheduler_service()
     
     schedules = await service.list_schedules(
         user_id=current_user.id,
@@ -225,11 +223,11 @@ async def list_schedules(
 @router.get("/schedules/{schedule_id}")
 async def get_schedule(
     schedule_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get schedule details."""
-    service = ScheduledTasksService(db)
+    service = get_scheduler_service()
     
     schedule = await service.get_schedule(schedule_id)
     
@@ -246,11 +244,11 @@ async def get_schedule(
 async def toggle_schedule(
     schedule_id: str,
     enabled: bool,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Enable or disable a schedule."""
-    service = ScheduledTasksService(db)
+    service = get_scheduler_service()
     
     schedule = await service.get_schedule(schedule_id)
     
@@ -268,11 +266,11 @@ async def toggle_schedule(
 @router.delete("/schedules/{schedule_id}")
 async def delete_schedule(
     schedule_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Delete a schedule."""
-    service = ScheduledTasksService(db)
+    service = get_scheduler_service()
     
     schedule = await service.get_schedule(schedule_id)
     
@@ -291,11 +289,11 @@ async def delete_schedule(
 async def get_task_history(
     task_type: Optional[str] = None,
     limit: int = 100,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get task execution history."""
-    service = ScheduledTasksService(db)
+    service = get_scheduler_service()
     
     history = await service.get_task_history(task_type, limit)
     
@@ -307,11 +305,11 @@ async def get_task_history(
 
 @router.get("/statistics")
 async def get_statistics(
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get task statistics."""
-    service = ScheduledTasksService(db)
+    service = get_scheduler_service()
     
     stats = await service.get_statistics()
     

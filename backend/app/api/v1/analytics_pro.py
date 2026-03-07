@@ -11,15 +11,12 @@ Endpoints for:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, Query
-from sqlalchemy.orm import Session
 from typing import Optional
 from datetime import datetime, timezone
 from pydantic import BaseModel
 import logging
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user, require_admin
-from app.models.user import User
 from app.services.advanced_analytics import (
     AdvancedAnalyticsService,
     get_advanced_analytics_service
@@ -38,8 +35,7 @@ router = APIRouter()
 async def get_revenue_forecast(
     months_ahead: int = Query(6, ge=1, le=24, description="Months to forecast"),
     include_confidence: bool = Query(True, description="Include confidence intervals"),
-    db: Session = Depends(get_db),
-    current_user: User = Depends(require_admin)
+    current_user = Depends(require_admin)
 ):
     """
     Get ML-powered revenue forecast.
@@ -49,7 +45,7 @@ async def get_revenue_forecast(
     """
     
     try:
-        service = get_advanced_analytics_service(db)
+        service = get_advanced_analytics_service()
         
         forecast = await service.get_revenue_forecast(
             months_ahead=months_ahead,
@@ -67,8 +63,7 @@ async def get_revenue_forecast(
 async def get_revenue_breakdown(
     start_date: Optional[datetime] = Query(None, description="Period start"),
     end_date: Optional[datetime] = Query(None, description="Period end"),
-    db: Session = Depends(get_db),
-    current_user: User = Depends(require_admin)
+    current_user = Depends(require_admin)
 ):
     """
     Get revenue breakdown by category, type, and source.
@@ -77,7 +72,7 @@ async def get_revenue_breakdown(
     """
     
     try:
-        service = get_advanced_analytics_service(db)
+        service = get_advanced_analytics_service()
         
         breakdown = await service.get_revenue_breakdown(
             start_date=start_date,
@@ -99,8 +94,7 @@ async def get_revenue_breakdown(
 async def get_cohort_analysis(
     cohort_type: str = Query("monthly", description="Cohort grouping: monthly or weekly"),
     metric: str = Query("retention", description="Metric to analyze"),
-    db: Session = Depends(get_db),
-    current_user: User = Depends(require_admin)
+    current_user = Depends(require_admin)
 ):
     """
     Perform cohort analysis for user retention.
@@ -113,7 +107,7 @@ async def get_cohort_analysis(
         raise HTTPException(status_code=400, detail="Invalid cohort type")
     
     try:
-        service = get_advanced_analytics_service(db)
+        service = get_advanced_analytics_service()
         
         analysis = await service.get_cohort_analysis(
             cohort_type=cohort_type,
@@ -130,8 +124,7 @@ async def get_cohort_analysis(
 @router.get("/churn-prediction")
 async def get_churn_predictions(
     user_id: Optional[int] = Query(None, description="Specific user to predict"),
-    db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_active_user)
+    current_user = Depends(get_current_active_user)
 ):
     """
     Get churn predictions for users.
@@ -142,15 +135,15 @@ async def get_churn_predictions(
     # Allow users to check their own churn risk
     from app.services.db_utils import get_user_role
     role = get_user_role(current_user)
-    if user_id and user_id != current_user.id and role != "admin":
+    uid = current_user["id"] if isinstance(current_user, dict) else current_user.id
+    if user_id and user_id != uid and role != "admin":
         raise HTTPException(status_code=403, detail="Admin access required")
     
     if not user_id and role != "admin":
-        # Non-admins can only see their own prediction
-        user_id = current_user.id
+        user_id = uid
     
     try:
-        service = get_advanced_analytics_service(db)
+        service = get_advanced_analytics_service()
         
         predictions = await service.get_churn_prediction(user_id=user_id)
         
@@ -170,8 +163,7 @@ async def get_churn_predictions(
 @router.get("/market-trends")
 async def get_market_trends(
     category: Optional[str] = Query(None, description="Filter by category"),
-    db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_active_user)
+    current_user = Depends(get_current_active_user)
 ):
     """
     Get market trends for skills and categories.
@@ -179,7 +171,7 @@ async def get_market_trends(
     Analyzes demand patterns and pricing trends.
     """
     try:
-        service = get_advanced_analytics_service(db)
+        service = get_advanced_analytics_service()
         
         trends = await service.get_market_trends(category=category)
         
@@ -196,8 +188,7 @@ async def get_market_trends(
 
 @router.get("/platform-health")
 async def get_platform_health(
-    db: Session = Depends(get_db),
-    current_user: User = Depends(require_admin)
+    current_user = Depends(require_admin)
 ):
     """
     Get comprehensive platform health metrics.
@@ -207,7 +198,7 @@ async def get_platform_health(
     """
     
     try:
-        service = get_advanced_analytics_service(db)
+        service = get_advanced_analytics_service()
         
         health = await service.get_platform_health()
         
@@ -224,8 +215,7 @@ async def get_platform_health(
 
 @router.get("/dashboard-summary")
 async def get_analytics_dashboard(
-    db: Session = Depends(get_db),
-    current_user: User = Depends(require_admin)
+    current_user = Depends(require_admin)
 ):
     """
     Get combined analytics dashboard data.
@@ -235,7 +225,7 @@ async def get_analytics_dashboard(
     """
     
     try:
-        service = get_advanced_analytics_service(db)
+        service = get_advanced_analytics_service()
         
         # Gather all metrics
         health = await service.get_platform_health()
@@ -278,8 +268,7 @@ async def generate_custom_report(
     start_date: Optional[datetime] = Query(None),
     end_date: Optional[datetime] = Query(None),
     format: str = Query("json", description="Output format: json, csv"),
-    db: Session = Depends(get_db),
-    current_user: User = Depends(require_admin)
+    current_user = Depends(require_admin)
 ):
     """
     Generate custom analytics report.
@@ -295,7 +284,7 @@ async def generate_custom_report(
         )
     
     try:
-        service = get_advanced_analytics_service(db)
+        service = get_advanced_analytics_service()
         
         # Generate report based on type
         if report_type == "revenue":
@@ -315,7 +304,7 @@ async def generate_custom_report(
             },
             "data": data,
             "generated_at": datetime.now(timezone.utc).isoformat(),
-            "generated_by": current_user.id
+            "generated_by": current_user["id"] if isinstance(current_user, dict) else current_user.id
         }
         
     except Exception as e:

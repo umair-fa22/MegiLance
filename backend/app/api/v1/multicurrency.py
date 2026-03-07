@@ -1,12 +1,10 @@
 # @AI-HINT: Multi-currency payment API endpoints for 150+ currencies and crypto
 
 from fastapi import APIRouter, Depends, HTTPException, status, Query
-from sqlalchemy.orm import Session
 from typing import List
 from pydantic import BaseModel, Field
 from decimal import Decimal
 
-from app.db.session import get_db
 from app.core.security import get_current_user
 from app.services.multicurrency_payments import get_multicurrency_service, MultiCurrencyPaymentService
 from app.models.user import User

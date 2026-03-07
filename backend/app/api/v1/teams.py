@@ -12,11 +12,9 @@ Endpoints for:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 from typing import Optional, List
 from pydantic import BaseModel, Field
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.models.user import User
 from app.services.team_collaboration import get_team_service, TeamRole
@@ -76,10 +74,10 @@ class TransferOwnershipRequest(BaseModel):
 async def create_team(
     request: CreateTeamRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Create a new team."""
-    service = get_team_service(db)
+    service = get_team_service()
     
     result = await service.create_team(
         owner_id=current_user.id,
@@ -94,10 +92,10 @@ async def create_team(
 @router.get("/my-teams")
 async def get_my_teams(
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get all teams the user belongs to."""
-    service = get_team_service(db)
+    service = get_team_service()
     
     teams = await service.get_user_teams(current_user.id)
     
@@ -108,10 +106,10 @@ async def get_my_teams(
 async def get_team(
     team_id: str,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get team details."""
-    service = get_team_service(db)
+    service = get_team_service()
     
     team = await service.get_team(team_id)
     
@@ -131,10 +129,10 @@ async def update_team(
     team_id: str,
     request: UpdateTeamRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Update team settings."""
-    service = get_team_service(db)
+    service = get_team_service()
     
     result = await service.update_team(
         team_id=team_id,
@@ -153,10 +151,10 @@ async def invite_member(
     team_id: str,
     request: InviteMemberRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Invite a user to join the team."""
-    service = get_team_service(db)
+    service = get_team_service()
     
     try:
         role = TeamRole(request.role)
@@ -181,10 +179,10 @@ async def invite_member(
 async def accept_invitation(
     request: AcceptInvitationRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Accept a team invitation."""
-    service = get_team_service(db)
+    service = get_team_service()
     
     result = await service.accept_invitation(
         invitation_token=request.invitation_token,
@@ -202,10 +200,10 @@ async def remove_member(
     team_id: str,
     member_id: int,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Remove a member from the team."""
-    service = get_team_service(db)
+    service = get_team_service()
     
     result = await service.remove_member(
         team_id=team_id,
@@ -224,10 +222,10 @@ async def update_member_role(
     team_id: str,
     request: UpdateRoleRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Update a member's role."""
-    service = get_team_service(db)
+    service = get_team_service()
     
     try:
         role = TeamRole(request.role)
@@ -252,10 +250,10 @@ async def set_earnings_split(
     team_id: str,
     request: EarningsSplitRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Set earnings split for team members."""
-    service = get_team_service(db)
+    service = get_team_service()
     
     # Convert string keys to int
     splits = {int(k): v for k, v in request.splits.items()}
@@ -277,10 +275,10 @@ async def assign_project(
     team_id: str,
     request: AssignProjectRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Assign a project to the team."""
-    service = get_team_service(db)
+    service = get_team_service()
     
     result = await service.assign_project(
         team_id=team_id,
@@ -300,10 +298,10 @@ async def share_resource(
     team_id: str,
     request: ShareResourceRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Share a resource with the team."""
-    service = get_team_service(db)
+    service = get_team_service()
     
     result = await service.share_resource(
         team_id=team_id,
@@ -324,10 +322,10 @@ async def get_team_resources(
     team_id: str,
     resource_type: Optional[str] = None,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get shared team resources."""
-    service = get_team_service(db)
+    service = get_team_service()
     
     result = await service.get_team_resources(
         team_id=team_id,
@@ -346,10 +344,10 @@ async def get_activity_feed(
     team_id: str,
     limit: int = 50,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get team activity feed."""
-    service = get_team_service(db)
+    service = get_team_service()
     
     result = await service.get_activity_feed(
         team_id=team_id,
@@ -367,10 +365,10 @@ async def get_activity_feed(
 async def get_team_analytics(
     team_id: str,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get team analytics and performance metrics."""
-    service = get_team_service(db)
+    service = get_team_service()
     
     result = await service.get_team_analytics(
         team_id=team_id,
@@ -388,10 +386,10 @@ async def transfer_ownership(
     team_id: str,
     request: TransferOwnershipRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Transfer team ownership."""
-    service = get_team_service(db)
+    service = get_team_service()
     
     result = await service.transfer_ownership(
         team_id=team_id,
@@ -409,10 +407,10 @@ async def transfer_ownership(
 async def delete_team(
     team_id: str,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Delete a team."""
-    service = get_team_service(db)
+    service = get_team_service()
     
     result = await service.delete_team(
         team_id=team_id,

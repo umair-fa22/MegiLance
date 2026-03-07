@@ -13,11 +13,9 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.services.portfolio_builder import (
     get_portfolio_builder_service,
@@ -115,11 +113,11 @@ class SEORequest(BaseModel):
 @router.post("/")
 async def create_portfolio(
     request: CreatePortfolioRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a new portfolio."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     
     portfolio = await service.create_portfolio(
         user_id=current_user["id"],
@@ -133,11 +131,11 @@ async def create_portfolio(
 
 @router.get("/list")
 async def list_portfolios(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """List user's portfolios."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     portfolios = await service.list_portfolios(current_user["id"])
     return {"portfolios": portfolios}
 
@@ -145,11 +143,11 @@ async def list_portfolios(
 @router.get("/{portfolio_id}")
 async def get_portfolio(
     portfolio_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get portfolio by ID."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     portfolio = await service.get_portfolio(current_user["id"], portfolio_id)
     return {"portfolio": portfolio}
 
@@ -158,11 +156,11 @@ async def get_portfolio(
 async def update_portfolio(
     portfolio_id: str,
     request: UpdatePortfolioRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update portfolio settings."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     result = await service.update_portfolio(
         current_user["id"],
         portfolio_id,
@@ -174,11 +172,11 @@ async def update_portfolio(
 @router.delete("/{portfolio_id}")
 async def delete_portfolio(
     portfolio_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Delete a portfolio."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     success = await service.delete_portfolio(current_user["id"], portfolio_id)
     return {"success": success}
 
@@ -188,11 +186,11 @@ async def delete_portfolio(
 async def add_section(
     portfolio_id: str,
     request: AddSectionRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Add a section to portfolio."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     
     section = await service.add_section(
         user_id=current_user["id"],
@@ -210,11 +208,11 @@ async def update_section(
     portfolio_id: str,
     section_id: str,
     request: UpdateSectionRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update a portfolio section."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     result = await service.update_section(
         current_user["id"],
         portfolio_id,
@@ -228,11 +226,11 @@ async def update_section(
 async def delete_section(
     portfolio_id: str,
     section_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Delete a portfolio section."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     success = await service.delete_section(current_user["id"], portfolio_id, section_id)
     return {"success": success}
 
@@ -241,11 +239,11 @@ async def delete_section(
 async def reorder_sections(
     portfolio_id: str,
     section_orders: List[Dict[str, Any]],
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Reorder portfolio sections."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     result = await service.reorder_sections(current_user["id"], portfolio_id, section_orders)
     return result
 
@@ -255,11 +253,11 @@ async def reorder_sections(
 async def add_showcase_project(
     portfolio_id: str,
     request: ShowcaseProjectRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Add a project to showcase."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     project = await service.add_showcase_project(current_user["id"], portfolio_id, request.dict())
     return {"project": project}
 
@@ -269,11 +267,11 @@ async def create_case_study(
     portfolio_id: str,
     project_id: str,
     request: CaseStudyRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a case study for a project."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     case_study = await service.create_case_study(
         current_user["id"],
         portfolio_id,
@@ -288,11 +286,11 @@ async def create_case_study(
 async def add_testimonial(
     portfolio_id: str,
     request: TestimonialRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Add a testimonial to portfolio."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     testimonial = await service.add_testimonial(current_user["id"], portfolio_id, request.dict())
     return {"testimonial": testimonial}
 
@@ -301,11 +299,11 @@ async def add_testimonial(
 async def request_testimonial(
     portfolio_id: str,
     request: TestimonialRequestRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Request testimonial from a client."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     result = await service.request_testimonial(
         current_user["id"],
         portfolio_id,
@@ -321,11 +319,11 @@ async def request_testimonial(
 async def update_theme(
     portfolio_id: str,
     request: ThemeRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update portfolio theme."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     result = await service.update_theme(current_user["id"], portfolio_id, request.dict(exclude_none=True))
     return result
 
@@ -333,11 +331,11 @@ async def update_theme(
 @router.get("/templates/preview/{template}")
 async def preview_template(
     template: PortfolioTemplate,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Preview a template."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     preview = await service.preview_template(current_user["id"], template)
     return preview
 
@@ -347,11 +345,11 @@ async def preview_template(
 async def set_custom_domain(
     portfolio_id: str,
     request: CustomDomainRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Set custom domain for portfolio."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     result = await service.set_custom_domain(current_user["id"], portfolio_id, request.domain)
     return result
 
@@ -359,11 +357,11 @@ async def set_custom_domain(
 @router.post("/{portfolio_id}/domain/verify")
 async def verify_custom_domain(
     portfolio_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Verify custom domain DNS setup."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     result = await service.verify_custom_domain(current_user["id"], portfolio_id)
     return result
 
@@ -372,11 +370,11 @@ async def verify_custom_domain(
 @router.post("/{portfolio_id}/publish")
 async def publish_portfolio(
     portfolio_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Publish portfolio."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     result = await service.publish_portfolio(current_user["id"], portfolio_id)
     return result
 
@@ -384,11 +382,11 @@ async def publish_portfolio(
 @router.post("/{portfolio_id}/unpublish")
 async def unpublish_portfolio(
     portfolio_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Unpublish portfolio."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     result = await service.unpublish_portfolio(current_user["id"], portfolio_id)
     return result
 
@@ -398,11 +396,11 @@ async def unpublish_portfolio(
 async def get_portfolio_analytics(
     portfolio_id: str,
     days: int = 30,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get portfolio analytics."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     analytics = await service.get_portfolio_analytics(current_user["id"], portfolio_id, days)
     return {"analytics": analytics}
 
@@ -412,11 +410,11 @@ async def get_portfolio_analytics(
 async def update_seo_settings(
     portfolio_id: str,
     request: SEORequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update SEO settings."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     result = await service.update_seo_settings(current_user["id"], portfolio_id, request.dict())
     return result
 
@@ -426,10 +424,10 @@ async def update_seo_settings(
 async def export_portfolio(
     portfolio_id: str,
     format: str = "html",
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Export portfolio as static site."""
-    service = get_portfolio_builder_service(db)
+    service = get_portfolio_builder_service()
     result = await service.export_portfolio(current_user["id"], portfolio_id, format)
     return result

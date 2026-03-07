@@ -1,7 +1,6 @@
 # @AI-HINT: Notification preferences service for granular notification control
 """Notification Preferences Service - User notification settings management."""
 
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from datetime import datetime, time, timezone
 from enum import Enum
@@ -219,8 +218,7 @@ DEFAULT_PREFERENCES: Dict[str, Dict[str, Any]] = {
 class NotificationPreferencesService:
     """Service for managing notification preferences."""
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
         self._user_settings: Dict[str, UserNotificationSettings] = {}
     
     def _get_default_settings(self, user_id: str) -> UserNotificationSettings:
@@ -490,6 +488,11 @@ class NotificationPreferencesService:
         return categories
 
 
-def get_notification_preferences_service(db: Session) -> NotificationPreferencesService:
+_singleton_notification_preferences_service = None
+
+def get_notification_preferences_service() -> NotificationPreferencesService:
     """Get notification preferences service instance."""
-    return NotificationPreferencesService(db)
+    global _singleton_notification_preferences_service
+    if _singleton_notification_preferences_service is None:
+        _singleton_notification_preferences_service = NotificationPreferencesService()
+    return _singleton_notification_preferences_service

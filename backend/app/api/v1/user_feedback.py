@@ -7,11 +7,9 @@ voting, and satisfaction analytics.
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status, Query
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.services.user_feedback import (
     get_user_feedback_service,
@@ -65,11 +63,11 @@ class QuickFeedbackRequest(BaseModel):
 @router.post("")
 async def submit_feedback(
     request: SubmitFeedbackRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Submit feedback."""
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     result = await service.submit_feedback(
         user_id=current_user["id"],
         feedback_type=request.type,
@@ -86,11 +84,11 @@ async def get_my_feedback(
     status_filter: Optional[FeedbackStatus] = None,
     type_filter: Optional[FeedbackType] = None,
     limit: int = Query(50, le=100),
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get current user's submitted feedback."""
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     feedback = await service.get_user_feedback(
         current_user["id"],
         status_filter,
@@ -103,11 +101,11 @@ async def get_my_feedback(
 @router.get("/{feedback_id}")
 async def get_feedback(
     feedback_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get specific feedback details."""
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     feedback = await service.get_feedback(feedback_id)
     
     if not feedback or "error" in feedback:
@@ -121,14 +119,14 @@ async def get_feedback(
 async def vote_on_feedback(
     feedback_id: str,
     request: VoteRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Vote on feedback (upvote/downvote)."""
     if request.vote not in [1, -1]:
         raise HTTPException(status_code=400, detail="Vote must be 1 or -1")
     
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     result = await service.vote_feedback(
         current_user["id"],
         feedback_id,
@@ -140,11 +138,11 @@ async def vote_on_feedback(
 @router.delete("/{feedback_id}/vote")
 async def remove_vote(
     feedback_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Remove vote from feedback."""
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     result = await service.unvote_feedback(current_user["id"], feedback_id)
     return result
 
@@ -156,10 +154,10 @@ async def get_public_feedback_board(
     type_filter: Optional[FeedbackType] = None,
     sort_by: str = Query("votes", enum=["votes", "recent", "trending"]),
     limit: int = Query(50, le=100),
-    db: Session = Depends(get_db)
+    
 ):
     """Get public feedback board."""
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     feedback = await service.get_public_feedback(
         status_filter,
         type_filter,
@@ -173,11 +171,11 @@ async def get_public_feedback_board(
 @router.post("/feature-request")
 async def submit_feature_request(
     request: FeatureRequestRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Submit a feature request."""
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     result = await service.submit_feature_request(
         user_id=current_user["id"],
         title=request.title,
@@ -190,10 +188,10 @@ async def submit_feature_request(
 
 @router.get("/roadmap/public")
 async def get_feature_roadmap(
-    db: Session = Depends(get_db)
+    
 ):
     """Get public feature roadmap."""
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     roadmap = await service.get_feature_roadmap()
     return roadmap
 
@@ -201,21 +199,21 @@ async def get_feature_roadmap(
 # Survey Endpoints
 @router.get("/surveys/templates")
 async def get_survey_templates(
-    db: Session = Depends(get_db)
+    
 ):
     """Get available survey templates."""
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     templates = await service.get_survey_templates()
     return {"templates": templates}
 
 
 @router.get("/surveys/active")
 async def get_active_surveys(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get active surveys for current user."""
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     surveys = await service.get_active_surveys(current_user["id"])
     return surveys
 
@@ -224,11 +222,11 @@ async def get_active_surveys(
 async def submit_survey_response(
     survey_id: str,
     request: SurveyResponseRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Submit survey response."""
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     result = await service.submit_survey_response(
         current_user["id"],
         survey_id,
@@ -241,14 +239,14 @@ async def submit_survey_response(
 @router.get("/nps/score")
 async def get_nps_score(
     period_days: int = Query(30, ge=7, le=365),
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get Net Promoter Score (admin)."""
     if current_user.get("role") != "admin":
         raise HTTPException(status_code=403, detail="Admin access required")
     
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     nps = await service.calculate_nps(period_days)
     return nps
 
@@ -257,14 +255,14 @@ async def get_nps_score(
 async def get_nps_trend(
     periods: int = Query(6, ge=1, le=12),
     period_type: str = Query("month", enum=["week", "month"]),
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get NPS trend over time (admin)."""
     if current_user.get("role") != "admin":
         raise HTTPException(status_code=403, detail="Admin access required")
     
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     trend = await service.get_nps_trend(periods, period_type)
     return trend
 
@@ -273,14 +271,14 @@ async def get_nps_trend(
 @router.get("/csat/score")
 async def get_csat_score(
     period_days: int = Query(30, ge=7, le=365),
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get Customer Satisfaction Score (admin)."""
     if current_user.get("role") != "admin":
         raise HTTPException(status_code=403, detail="Admin access required")
     
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     csat = await service.calculate_csat(period_days)
     return csat
 
@@ -289,14 +287,14 @@ async def get_csat_score(
 @router.post("/quick")
 async def submit_quick_feedback(
     request: QuickFeedbackRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Submit quick in-app feedback."""
     if not 1 <= request.rating <= 5:
         raise HTTPException(status_code=400, detail="Rating must be between 1 and 5")
     
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     result = await service.submit_quick_feedback(
         current_user["id"],
         request.page,
@@ -310,14 +308,14 @@ async def submit_quick_feedback(
 @router.get("/admin/analytics")
 async def get_feedback_analytics(
     period_days: int = Query(30, ge=7, le=365),
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get feedback analytics (admin)."""
     if current_user.get("role") != "admin":
         raise HTTPException(status_code=403, detail="Admin access required")
     
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     analytics = await service.get_feedback_analytics(period_days)
     return {"analytics": analytics}
 
@@ -325,14 +323,14 @@ async def get_feedback_analytics(
 @router.get("/admin/sentiment")
 async def get_sentiment_analysis(
     period_days: int = Query(30, ge=7, le=365),
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get feedback sentiment analysis (admin)."""
     if current_user.get("role") != "admin":
         raise HTTPException(status_code=403, detail="Admin access required")
     
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     sentiment = await service.get_sentiment_analysis(period_days)
     return sentiment
 
@@ -341,14 +339,14 @@ async def get_sentiment_analysis(
 async def admin_update_feedback(
     feedback_id: str,
     updates: Dict[str, Any],
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update feedback status (admin)."""
     if current_user.get("role") != "admin":
         raise HTTPException(status_code=403, detail="Admin access required")
     
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     result = await service.update_feedback(feedback_id, updates)
     return result
 
@@ -356,14 +354,14 @@ async def admin_update_feedback(
 @router.post("/admin/surveys")
 async def admin_create_survey(
     request: CreateSurveyRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a new survey (admin)."""
     if current_user.get("role") != "admin":
         raise HTTPException(status_code=403, detail="Admin access required")
     
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     result = await service.create_survey(
         admin_id=current_user["id"],
         survey_type=request.type,
@@ -378,13 +376,13 @@ async def admin_create_survey(
 @router.get("/admin/satisfaction-by-feature")
 async def get_satisfaction_by_feature(
     period_days: int = Query(30, ge=7, le=365),
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get satisfaction breakdown by feature (admin)."""
     if current_user.get("role") != "admin":
         raise HTTPException(status_code=403, detail="Admin access required")
     
-    service = get_user_feedback_service(db)
+    service = get_user_feedback_service()
     satisfaction = await service.get_satisfaction_by_feature(period_days)
     return satisfaction

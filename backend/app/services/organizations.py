@@ -1,7 +1,6 @@
 # @AI-HINT: Organization/Workspace service for multi-tenant team management
 """Organization Service - Multi-tenant workspace and team management."""
 
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from datetime import datetime, timezone
 from enum import Enum
@@ -109,8 +108,7 @@ ROLE_PERMISSIONS = {
 class OrganizationService:
     """Service for organization/workspace management."""
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
         self._organizations: Dict[str, Organization] = {}
         self._members: Dict[str, List[OrganizationMember]] = {}
         self._invites: Dict[str, OrganizationInvite] = {}
@@ -521,9 +519,14 @@ class OrganizationService:
         }
 
 
-def get_organization_service(db: Session) -> OrganizationService:
+_singleton_organization_service = None
+
+def get_organization_service() -> OrganizationService:
     """Get organization service instance."""
-    return OrganizationService(db)
+    global _singleton_organization_service
+    if _singleton_organization_service is None:
+        _singleton_organization_service = OrganizationService()
+    return _singleton_organization_service
 
 
 # Import at end to avoid circular import

@@ -12,11 +12,9 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status, Query
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.services.learning_center import (
     get_learning_service,
@@ -50,22 +48,22 @@ async def get_courses(
     difficulty: Optional[str] = None,
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get all available courses/learning content."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     content = await service.get_featured_content()
     return {"courses": content, "total": len(content), "page": page, "page_size": page_size}
 
 
 @router.get("/featured")
 async def get_featured_content(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get featured learning content."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     content = await service.get_featured_content()
     return {"content": content}
 
@@ -78,11 +76,11 @@ async def search_content(
     difficulty: Optional[DifficultyLevel] = None,
     limit: int = 20,
     offset: int = 0,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Search learning content."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     results = await service.search_content(query, content_type, category, difficulty, limit, offset)
     return results
 
@@ -90,11 +88,11 @@ async def search_content(
 @router.get("/categories/{category}")
 async def get_content_by_category(
     category: LearningCategory,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get content by category."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     content = await service.get_content_by_category(category)
     return {"content": content}
 
@@ -102,11 +100,11 @@ async def get_content_by_category(
 @router.get("/content/{content_id}")
 async def get_content(
     content_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get content details."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     content = await service.get_content(content_id)
     
     if not content:
@@ -118,11 +116,11 @@ async def get_content(
 # Learning Path Endpoints
 @router.get("/paths")
 async def get_learning_paths(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get available learning paths."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     paths = await service.get_learning_paths()
     return {"paths": paths}
 
@@ -130,11 +128,11 @@ async def get_learning_paths(
 @router.get("/paths/{path_id}")
 async def get_learning_path(
     path_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get learning path details."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     path = await service.get_learning_path(path_id)
     
     if not path:
@@ -146,11 +144,11 @@ async def get_learning_path(
 @router.post("/paths/{path_id}/enroll")
 async def enroll_in_path(
     path_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Enroll in a learning path."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     enrollment = await service.enroll_in_path(current_user["id"], path_id)
     return enrollment
 
@@ -158,11 +156,11 @@ async def enroll_in_path(
 # Progress Tracking Endpoints
 @router.get("/progress")
 async def get_user_progress(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get user's learning progress."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     progress = await service.get_user_progress(current_user["id"])
     return {"progress": progress}
 
@@ -171,11 +169,11 @@ async def get_user_progress(
 async def update_progress(
     content_id: str,
     request: UpdateProgressRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update learning progress."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     result = await service.update_progress(
         current_user["id"],
         content_id,
@@ -190,11 +188,11 @@ async def update_progress(
 async def mark_content_complete(
     content_id: str,
     request: CompleteContentRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Mark content as complete."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     result = await service.mark_content_complete(current_user["id"], content_id, request.quiz_score)
     return result
 
@@ -204,11 +202,11 @@ async def mark_content_complete(
 async def get_quiz(
     content_id: str,
     lesson_id: Optional[str] = None,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get quiz for content."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     quiz = await service.get_quiz(content_id, lesson_id)
     return {"quiz": quiz}
 
@@ -217,11 +215,11 @@ async def get_quiz(
 async def submit_quiz(
     quiz_id: str,
     request: SubmitQuizRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Submit quiz answers."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     result = await service.submit_quiz(current_user["id"], quiz_id, request.answers)
     return result
 
@@ -229,11 +227,11 @@ async def submit_quiz(
 # Webinar Endpoints
 @router.get("/webinars")
 async def get_upcoming_webinars(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get upcoming webinars."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     webinars = await service.get_upcoming_webinars()
     return {"webinars": webinars}
 
@@ -241,11 +239,11 @@ async def get_upcoming_webinars(
 @router.post("/webinars/{webinar_id}/register")
 async def register_for_webinar(
     webinar_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Register for a webinar."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     registration = await service.register_for_webinar(current_user["id"], webinar_id)
     return registration
 
@@ -253,22 +251,22 @@ async def register_for_webinar(
 # Certification Endpoints
 @router.get("/certifications")
 async def get_available_certifications(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get available certifications."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     certifications = await service.get_available_certifications()
     return {"certifications": certifications}
 
 
 @router.get("/certifications/me")
 async def get_my_certifications(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get user's earned certifications."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     certifications = await service.get_user_certifications(current_user["id"])
     return {"certifications": certifications}
 
@@ -276,11 +274,11 @@ async def get_my_certifications(
 # Bookmark Endpoints
 @router.get("/bookmarks")
 async def get_bookmarks(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get user's bookmarked content."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     bookmarks = await service.get_bookmarks(current_user["id"])
     return {"bookmarks": bookmarks}
 
@@ -288,11 +286,11 @@ async def get_bookmarks(
 @router.post("/content/{content_id}/bookmark")
 async def bookmark_content(
     content_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Bookmark content for later."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     result = await service.bookmark_content(current_user["id"], content_id)
     return result
 
@@ -300,10 +298,10 @@ async def bookmark_content(
 @router.delete("/content/{content_id}/bookmark")
 async def remove_bookmark(
     content_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Remove bookmark."""
-    service = get_learning_service(db)
+    service = get_learning_service()
     success = await service.remove_bookmark(current_user["id"], content_id)
     return {"success": success}

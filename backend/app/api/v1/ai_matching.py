@@ -5,14 +5,13 @@ Provides ML-powered recommendations for projects and freelancers
 """
 
 from fastapi import APIRouter, Depends, Query, HTTPException
-from sqlalchemy.orm import Session
 from typing import List, Optional
 from pydantic import BaseModel, Field
 from datetime import datetime, timezone
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.services.matching_engine import get_matching_service, MatchingEngine
+from app.db.turso_http import execute_query, parse_rows
 import logging
 
 logger = logging.getLogger("megilance")
@@ -72,7 +71,6 @@ class RecommendationResponse(BaseModel):
 @router.get("/recommendations")
 async def get_general_recommendations(
     limit: int = Query(3, ge=1, le=10),
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """
@@ -80,116 +78,68 @@ async def get_general_recommendations(
     If the client has active projects, recommends based on the most recent one.
     Otherwise, recommends top-rated freelancers.
     """
-    from app.models.project import Project
-    from app.models.user import User
-    
-    # Helper function to use Turso HTTP API directly
-    def get_turso_recommendations(limit: int):
-        from app.db.turso_http import TursoHTTP
-        turso = TursoHTTP.get_instance()
-        result = turso.execute(
+    try:
+        # Check if client has active projects
+        result = await execute_query(
+            "SELECT id, title FROM projects WHERE client_id = ? AND status IN ('open', 'in_progress') ORDER BY created_at DESC LIMIT 1",
+            [current_user["id"]]
+        )
+        projects = parse_rows(result)
+        
+        if projects:
+            # Recommend based on most recent project
+            matching_service = get_matching_service()
+            recommendations = await matching_service.get_recommended_freelancers(
+                project_id=projects[0]["id"],
+                limit=limit,
+                min_score=0.4
+            )
+            return {
+                "recommendations": recommendations,
+                "context": f"Based on your project: {projects[0]['title']}",
+                "project_id": projects[0]["id"]
+            }
+        
+        # No active projects — recommend top-rated freelancers
+        result = await execute_query(
             "SELECT id, email, name, bio, profile_image_url, hourly_rate, location, rating "
             "FROM users WHERE LOWER(user_type) = 'freelancer' AND is_active = 1 "
             "ORDER BY rating DESC NULLS LAST "
             "LIMIT ?",
             [limit]
         )
+        rows = parse_rows(result)
         
         recommendations = []
-        if result and result.get('rows'):
-            for row in result['rows']:
-                user_rating = float(row[7]) if row[7] is not None else 0.0
-                # Derive match score from actual rating data
-                rating_factor = min(user_rating / 5.0, 1.0) if user_rating > 0 else 0.5
-                match_score = round(0.6 + (rating_factor * 0.4), 2)  # Range: 0.6-1.0
-                
-                recommendations.append({
-                    "freelancer_id": row[0],
-                    "freelancer_name": row[2] or row[1].split('@')[0] if row[1] else 'Freelancer',
-                    "freelancer_bio": row[3],
-                    "profile_image_url": row[4],
-                    "hourly_rate": row[5],
-                    "location": row[6],
-                    "match_score": match_score,
-                    "match_factors": {
-                        "skill_match": 0.7,
-                        "success_rate": rating_factor,
-                        "avg_rating": rating_factor,
-                        "budget_match": 0.7,
-                        "experience_match": 0.7,
-                        "availability": 1.0,
-                        "response_rate": 0.8
-                    }
-                })
-        return recommendations
-
-    # Always prefer Turso HTTP API as it's more reliable with our setup
-    # SQLAlchemy session exists but queries don't work with Turso cloud without libsql driver
-    try:
-        recommendations = get_turso_recommendations(limit)
-        return {
-            "recommendations": recommendations,
-            "context": "Top freelancers on the platform"
-        }
-    except Exception as turso_error:
-        # Log the Turso error and try SQLAlchemy as fallback
-        logger.warning("Turso HTTP fallback: %s", turso_error)
-    
-    # Fallback to SQLAlchemy (only if Turso HTTP fails)
-    matching_service = get_matching_service(db)
-    
-    try:
-        # 1. Try to find the most recent active project for this client
-        recent_project = db.query(Project).filter(
-            Project.client_id == current_user["id"],
-            Project.status.in_(["open", "in_progress"])
-        ).order_by(Project.created_at.desc()).first()
-        
-        if recent_project:
-            # Recommend based on this project
-            recommendations = matching_service.get_recommended_freelancers(
-                project_id=recent_project.id,
-                limit=limit,
-                min_score=0.4  # Slightly lower threshold for general dashboard
-            )
-            return {
-                "recommendations": recommendations,
-                "context": f"Based on your project: {recent_project.title}",
-                "project_id": recent_project.id
-            }
-        
-        # 2. If no active projects, recommend top-rated freelancers
-        top_freelancers = db.query(User).filter(
-            User.user_type == "Freelancer",
-            User.is_active == True
-        ).order_by(User.rating.desc().nullslast()).limit(limit).all()
-        
-        recommendations = []
-        for f in top_freelancers:
-            user_rating = float(f.rating) if f.rating else 0.0
+        for row in rows:
+            user_rating = float(row.get("rating") or 0)
             rating_factor = min(user_rating / 5.0, 1.0) if user_rating > 0 else 0.5
             match_score = round(0.6 + (rating_factor * 0.4), 2)
             
             recommendations.append({
-                "freelancer_id": f.id,
-                "freelancer_name": f.name,
-                "freelancer_bio": f.bio,
-                "hourly_rate": f.hourly_rate,
-                "location": f.location,
-                "profile_image_url": f.profile_image_url,
+                "freelancer_id": row.get("id"),
+                "freelancer_name": row.get("name") or (row.get("email", "").split("@")[0] if row.get("email") else "Freelancer"),
+                "freelancer_bio": row.get("bio"),
+                "profile_image_url": row.get("profile_image_url"),
+                "hourly_rate": row.get("hourly_rate"),
+                "location": row.get("location"),
                 "match_score": match_score,
                 "match_factors": {
+                    "skill_match": 0.7,
+                    "success_rate": rating_factor,
                     "avg_rating": rating_factor,
-                    "success_rate": rating_factor
+                    "budget_match": 0.7,
+                    "experience_match": 0.7,
+                    "availability": 1.0,
+                    "response_rate": 0.8
                 }
             })
-            
+        
         return {
             "recommendations": recommendations,
             "context": "Top rated freelancers",
             "project_id": None
         }
-    
     except Exception as e:
         logger.error("get_general_recommendations failed: %s", e, exc_info=True)
         raise HTTPException(
@@ -203,7 +153,6 @@ async def get_freelancer_recommendations(
     project_id: int,
     limit: int = Query(10, ge=1, le=50, description="Number of recommendations"),
     min_score: float = Query(0.5, ge=0.0, le=1.0, description="Minimum match score"),
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """
@@ -220,17 +169,10 @@ async def get_freelancer_recommendations(
     
     Returns ranked list of freelancers with match scores and explanations
     """
-    # Check if database session is available
-    if db is None:
-        raise HTTPException(
-            status_code=503,
-            detail="AI matching service temporarily unavailable. Database connection required."
-        )
-    
-    matching_service = get_matching_service(db)
+    matching_service = get_matching_service()
     
     try:
-        recommendations = matching_service.get_recommended_freelancers(
+        recommendations = await matching_service.get_recommended_freelancers(
             project_id=project_id,
             limit=limit,
             min_score=min_score
@@ -255,7 +197,6 @@ async def get_freelancer_recommendations(
 async def get_project_recommendations(
     limit: int = Query(10, ge=1, le=50),
     min_score: float = Query(0.5, ge=0.0, le=1.0),
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """
@@ -268,18 +209,11 @@ async def get_project_recommendations(
     - Availability
     - Historical success in similar projects
     """
-    # Check if database session is available
-    if db is None:
-        raise HTTPException(
-            status_code=503,
-            detail="AI matching service temporarily unavailable. Database connection required."
-        )
-    
     freelancer_id = current_user["id"]
-    matching_service = get_matching_service(db)
+    matching_service = get_matching_service()
     
     try:
-        recommendations = matching_service.get_recommended_projects(
+        recommendations = await matching_service.get_recommended_projects(
             freelancer_id=freelancer_id,
             limit=limit,
             min_score=min_score
@@ -304,7 +238,6 @@ async def get_project_recommendations(
 async def get_match_score(
     project_id: int,
     freelancer_id: int,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """
@@ -316,29 +249,21 @@ async def get_match_score(
     - Weights used in calculation
     - Explanation of score
     """
-    # Check if database session is available
-    if db is None:
-        raise HTTPException(
-            status_code=503,
-            detail="AI matching service temporarily unavailable. Database connection required."
-        )
+    matching_service = get_matching_service()
     
-    from app.models.project import Project
-    from app.models.user import User
-    
-    matching_service = get_matching_service(db)
-    
-    # Get project and freelancer
-    project = db.query(Project).filter(Project.id == project_id).first()
-    if not project:
+    # Get project and freelancer via Turso
+    result = await execute_query("SELECT * FROM projects WHERE id = ?", [project_id])
+    projects = parse_rows(result)
+    if not projects:
         raise HTTPException(status_code=404, detail="Project not found")
     
-    freelancer = db.query(User).filter(User.id == freelancer_id).first()
-    if not freelancer:
+    result = await execute_query("SELECT * FROM users WHERE id = ?", [freelancer_id])
+    freelancers = parse_rows(result)
+    if not freelancers:
         raise HTTPException(status_code=404, detail="Freelancer not found")
     
     # Calculate match score
-    match_result = matching_service.calculate_match_score(project, freelancer)
+    match_result = await matching_service.calculate_match_score(projects[0], freelancers[0])
     
     return {
         "project_id": project_id,
@@ -355,7 +280,6 @@ async def track_recommendation_click(
     item_type: str = Query(..., pattern="^(project|freelancer)$"),
     item_id: int = Query(...),
     score: float = Query(...),
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """
@@ -363,17 +287,10 @@ async def track_recommendation_click(
     
     This data is used to improve the ML matching algorithm over time
     """
-    # Check if database session is available
-    if db is None:
-        raise HTTPException(
-            status_code=503,
-            detail="AI matching service temporarily unavailable. Database connection required."
-        )
-    
-    matching_service = get_matching_service(db)
+    matching_service = get_matching_service()
     
     try:
-        matching_service.track_recommendation_click(
+        await matching_service.track_recommendation_click(
             user_id=current_user["id"],
             item_type=item_type,
             item_id=item_id,

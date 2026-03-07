@@ -10,15 +10,13 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
 from typing import Optional
 from pydantic import BaseModel
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user, require_admin
 from app.models.user import User
 from app.services.moderation import (
-    ContentModerationService,
+    get_moderation_service,
     ModerationContentType,
     ViolationType,
     ReportStatus
@@ -55,11 +53,10 @@ class ResolveReportRequest(BaseModel):
 @router.post("/check")
 async def check_content(
     request: ModerateTextRequest,
-    db: Session = Depends(get_db),
     current_user: User = Depends(get_current_active_user)
 ):
     """Check content for violations."""
-    service = ContentModerationService(db)
+    service = get_moderation_service()
     
     try:
         content_type = ModerationContentType(request.content_type)
@@ -82,11 +79,10 @@ async def check_content(
 @router.post("/report")
 async def report_content(
     request: ReportContentRequest,
-    db: Session = Depends(get_db),
     current_user: User = Depends(get_current_active_user)
 ):
     """Report content violation."""
-    service = ContentModerationService(db)
+    service = get_moderation_service()
     
     try:
         content_type = ModerationContentType(request.content_type)
@@ -126,11 +122,10 @@ async def report_content(
 @router.get("/reports/my")
 async def get_my_reports(
     status: Optional[str] = None,
-    db: Session = Depends(get_db),
     current_user: User = Depends(get_current_active_user)
 ):
     """Get reports I've submitted."""
-    service = ContentModerationService(db)
+    service = get_moderation_service()
     
     reports = list(service._reports.values())
     reports = [r for r in reports if r["reporter_id"] == current_user.id]
@@ -147,11 +142,10 @@ async def get_my_reports(
 
 @router.get("/reputation")
 async def get_my_reputation(
-    db: Session = Depends(get_db),
     current_user: User = Depends(get_current_active_user)
 ):
     """Get my reputation score."""
-    service = ContentModerationService(db)
+    service = get_moderation_service()
     
     reputation = await service.get_user_reputation(current_user.id)
     
@@ -161,11 +155,10 @@ async def get_my_reputation(
 @router.get("/reputation/{user_id}")
 async def get_user_reputation(
     user_id: int,
-    db: Session = Depends(get_db),
     current_user: User = Depends(get_current_active_user)
 ):
     """Get another user's reputation (limited info)."""
-    service = ContentModerationService(db)
+    service = get_moderation_service()
     
     reputation = await service.get_user_reputation(user_id)
     
@@ -179,7 +172,6 @@ async def get_user_reputation(
 
 @router.get("/violation-types")
 async def get_violation_types(
-    db: Session = Depends(get_db)
 ):
     """Get list of violation types."""
     return {
@@ -192,7 +184,6 @@ async def get_violation_types(
 
 @router.get("/content-types")
 async def get_content_types(
-    db: Session = Depends(get_db)
 ):
     """Get list of content types."""
     return {
@@ -209,12 +200,11 @@ async def admin_list_reports(
     status: Optional[str] = None,
     user_id: Optional[int] = None,
     limit: int = 50,
-    db: Session = Depends(get_db),
     current_user: User = Depends(require_admin)
 ):
     """List all reports (admin only)."""
     
-    service = ContentModerationService(db)
+    service = get_moderation_service()
     
     report_status = None
     if status:
@@ -235,12 +225,11 @@ async def admin_list_reports(
 @router.get("/admin/reports/{report_id}")
 async def admin_get_report(
     report_id: str,
-    db: Session = Depends(get_db),
     current_user: User = Depends(require_admin)
 ):
     """Get report details (admin only)."""
     
-    service = ContentModerationService(db)
+    service = get_moderation_service()
     
     report = await service.get_report(report_id)
     
@@ -254,12 +243,11 @@ async def admin_get_report(
 async def admin_resolve_report(
     report_id: str,
     request: ResolveReportRequest,
-    db: Session = Depends(get_db),
     current_user: User = Depends(require_admin)
 ):
     """Resolve a report (admin only)."""
     
-    service = ContentModerationService(db)
+    service = get_moderation_service()
     
     report = await service.resolve_report(
         report_id=report_id,
@@ -276,12 +264,11 @@ async def admin_resolve_report(
 
 @router.get("/admin/stats")
 async def admin_get_stats(
-    db: Session = Depends(get_db),
     current_user: User = Depends(require_admin)
 ):
     """Get moderation statistics (admin only)."""
     
-    service = ContentModerationService(db)
+    service = get_moderation_service()
     
     stats = await service.get_moderation_stats()
     
@@ -292,14 +279,13 @@ async def admin_get_stats(
 async def admin_block_user(
     user_id: int,
     days: int = 7,
-    db: Session = Depends(get_db),
     current_user: User = Depends(require_admin)
 ):
     """Block a user (admin only)."""
     
     from datetime import timedelta, timezone
     
-    service = ContentModerationService(db)
+    service = get_moderation_service()
     
     service._blocked_users[user_id] = datetime.now(timezone.utc) + timedelta(days=days)
     
@@ -313,14 +299,13 @@ async def admin_block_user(
 @router.post("/admin/unblock/{user_id}")
 async def admin_unblock_user(
     user_id: int,
-    db: Session = Depends(get_db),
     current_user: User = Depends(require_admin)
 ):
     """Unblock a user (admin only)."""
     
     from datetime import datetime
     
-    service = ContentModerationService(db)
+    service = get_moderation_service()
     
     if user_id in service._blocked_users:
         del service._blocked_users[user_id]

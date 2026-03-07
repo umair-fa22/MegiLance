@@ -15,11 +15,9 @@ import logging
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
-from sqlalchemy.orm import Session
 from typing import Optional, List
 from pydantic import BaseModel, field_validator
 
-from app.db.session import get_db
 from app.core.config import get_settings
 from app.core.security import get_current_active_user, get_current_user_optional
 from app.services.social_login import get_social_login_service, SocialProvider
@@ -79,9 +77,9 @@ def _set_refresh_cookie(response: JSONResponse, refresh_token: str) -> None:
 # ── Public Endpoints ─────────────────────────────────────────────────────
 
 @router.get("/providers")
-async def get_available_providers(db: Session = Depends(get_db)):
+async def get_available_providers():
     """Get list of available social login providers."""
-    service = get_social_login_service(db)
+    service = get_social_login_service()
     providers = await service.get_available_providers()
     return {"providers": providers}
 
@@ -89,11 +87,10 @@ async def get_available_providers(db: Session = Depends(get_db)):
 @router.post("/start")
 async def start_oauth(
     request: StartOAuthRequest,
-    db: Session = Depends(get_db),
     current_user: Optional[dict] = Depends(get_current_user_optional),
 ):
     """Start OAuth flow — returns authorization URL."""
-    service = get_social_login_service(db)
+    service = get_social_login_service()
 
     user_id = None
     intent = request.intent
@@ -122,7 +119,6 @@ async def start_oauth(
 @router.post("/complete")
 async def complete_oauth(
     request: CompleteOAuthRequest,
-    db: Session = Depends(get_db),
 ):
     """
     Complete OAuth flow — exchange code for tokens.
@@ -135,7 +131,7 @@ async def complete_oauth(
 
     Sets refresh_token as httpOnly cookie for security.
     """
-    service = get_social_login_service(db)
+    service = get_social_login_service()
 
     result = await service.complete_oauth(
         code=request.code,
@@ -163,14 +159,13 @@ async def complete_oauth(
 @router.post("/select-role")
 async def select_role(
     request: SelectRoleRequest,
-    db: Session = Depends(get_db),
     current_user=Depends(get_current_active_user),
 ):
     """
     Post-registration role selection for users who signed up via social auth
     without choosing a role upfront. Issues fresh tokens with the new role.
     """
-    service = get_social_login_service(db)
+    service = get_social_login_service()
     result = await service.update_user_role(current_user.id, request.role)
 
     if not result.get("success"):
@@ -189,11 +184,10 @@ async def select_role(
 
 @router.get("/linked-accounts")
 async def get_linked_accounts(
-    db: Session = Depends(get_db),
     current_user=Depends(get_current_active_user),
 ):
     """Get user's linked social accounts."""
-    service = get_social_login_service(db)
+    service = get_social_login_service()
     accounts = await service.get_linked_accounts(current_user.id)
     return {"accounts": accounts}
 
@@ -201,11 +195,10 @@ async def get_linked_accounts(
 @router.delete("/linked-accounts/{provider}")
 async def unlink_account(
     provider: SocialProvider,
-    db: Session = Depends(get_db),
     current_user=Depends(get_current_active_user),
 ):
     """Unlink a social account (ensures user keeps at least one auth method)."""
-    service = get_social_login_service(db)
+    service = get_social_login_service()
 
     result = await service.unlink_account(
         user_id=current_user.id,
@@ -224,11 +217,10 @@ async def unlink_account(
 @router.post("/sync-profile")
 async def sync_profile_from_social(
     request: SyncProfileRequest,
-    db: Session = Depends(get_db),
     current_user=Depends(get_current_active_user),
 ):
     """Sync profile data from a linked social account."""
-    service = get_social_login_service(db)
+    service = get_social_login_service()
 
     result = await service.sync_profile_from_social(
         user_id=current_user.id,

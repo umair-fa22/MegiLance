@@ -1,7 +1,6 @@
 # @AI-HINT: Compliance center service for regulatory compliance
 """Compliance Center Service - GDPR, regulatory compliance management."""
 
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from datetime import datetime, timedelta, timezone
 from enum import Enum
@@ -44,8 +43,8 @@ class RequestStatus(str, Enum):
 class ComplianceCenterService:
     """Regulatory compliance management service."""
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        pass
     
     # Compliance Status
     async def get_compliance_status(
@@ -488,5 +487,10 @@ class ComplianceCenterService:
         }
 
 
-def get_compliance_service(db: Session) -> ComplianceCenterService:
-    return ComplianceCenterService(db)
+_singleton_compliance_service = None
+
+def get_compliance_service() -> ComplianceCenterService:
+    global _singleton_compliance_service
+    if _singleton_compliance_service is None:
+        _singleton_compliance_service = ComplianceCenterService()
+    return _singleton_compliance_service

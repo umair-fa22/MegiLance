@@ -23,6 +23,7 @@ import darkStyles from './PortalNavbar.dark.module.css';
 interface PortalNavbarProps {
   userType?: 'client' | 'freelancer' | 'admin' | 'general';
   onMenuToggle?: () => void;
+  isSidebarOpen?: boolean;
 }
 
 // Format time ago helper
@@ -42,7 +43,7 @@ function formatTimeAgo(dateStr: string): string {
   return date.toLocaleDateString();
 }
 
-const PortalNavbar: React.FC<PortalNavbarProps> = ({ userType = 'client', onMenuToggle }) => {
+const PortalNavbar: React.FC<PortalNavbarProps> = ({ userType = 'client', onMenuToggle, isSidebarOpen = false }) => {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
@@ -229,12 +230,19 @@ const PortalNavbar: React.FC<PortalNavbarProps> = ({ userType = 'client', onMenu
           {/* Mobile hamburger menu */}
           {onMenuToggle && (
             <button 
-              className={cn(commonStyles.menuButton, styles.actionButton)}
+              className={cn(
+                commonStyles.menuButton,
+                styles.menuButton,
+                isSidebarOpen && commonStyles.menuButtonActive
+              )}
               onClick={onMenuToggle}
-              aria-label="Toggle navigation menu"
+              aria-label={isSidebarOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={isSidebarOpen}
               title="Menu"
             >
-              <Menu size={20} />
+              <span className={cn(commonStyles.hamburgerLine, commonStyles.hamburgerLine1)} />
+              <span className={cn(commonStyles.hamburgerLine, commonStyles.hamburgerLine2)} />
+              <span className={cn(commonStyles.hamburgerLine, commonStyles.hamburgerLine3)} />
             </button>
           )}
 
@@ -328,8 +336,8 @@ const PortalNavbar: React.FC<PortalNavbarProps> = ({ userType = 'client', onMenu
             {resolvedTheme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
 
-          {/* Help Menu */}
-          <div className={commonStyles.dropdownWrapper} ref={helpRef}>
+          {/* Help Menu - hidden on mobile, accessible via sidebar */}
+          <div className={cn(commonStyles.dropdownWrapper, commonStyles.hideOnMobile)} ref={helpRef}>
             <button 
               className={cn(commonStyles.actionButton, styles.actionButton)} 
               aria-label="Help"

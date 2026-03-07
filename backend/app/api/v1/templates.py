@@ -10,11 +10,9 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel, Field
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.services.db_utils import sanitize_text
 from app.models.user import User
@@ -68,11 +66,11 @@ class DuplicateTemplateRequest(BaseModel):
 @router.post("")
 async def create_template(
     request: CreateTemplateRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a new template."""
-    service = get_templates_service(db)
+    service = get_templates_service()
     
     template = await service.create_template(
         user_id=current_user["id"],
@@ -93,11 +91,11 @@ async def create_template(
 @router.get("")
 async def get_my_templates(
     template_type: Optional[TemplateType] = None,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get all templates owned by current user."""
-    service = get_templates_service(db)
+    service = get_templates_service()
     
     templates = await service.get_user_templates(
         user_id=current_user["id"],
@@ -115,10 +113,10 @@ async def get_public_templates(
     featured_only: bool = False,
     limit: int = 20,
     offset: int = 0,
-    db: Session = Depends(get_db)
+    
 ):
     """Get public templates from marketplace."""
-    service = get_templates_service(db)
+    service = get_templates_service()
     
     result = await service.get_public_templates(
         template_type=template_type,
@@ -134,22 +132,22 @@ async def get_public_templates(
 
 @router.get("/stats")
 async def get_template_stats(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get template statistics for current user."""
-    service = get_templates_service(db)
+    service = get_templates_service()
     stats = await service.get_template_stats(current_user["id"])
     return stats
 
 
 @router.get("/favorites")
 async def get_favorite_templates(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get user's favorite templates."""
-    service = get_templates_service(db)
+    service = get_templates_service()
     favorites = await service.get_favorites(current_user["id"])
     return {"favorites": favorites}
 
@@ -157,11 +155,11 @@ async def get_favorite_templates(
 @router.get("/{template_id}")
 async def get_template(
     template_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get a specific template."""
-    service = get_templates_service(db)
+    service = get_templates_service()
     
     template = await service.get_template(template_id)
     if not template:
@@ -184,11 +182,11 @@ async def get_template(
 async def update_template(
     template_id: str,
     request: UpdateTemplateRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update an existing template."""
-    service = get_templates_service(db)
+    service = get_templates_service()
     
     updates = request.dict(exclude_unset=True)
     for k in ("name", "description"):
@@ -212,11 +210,11 @@ async def update_template(
 @router.delete("/{template_id}")
 async def delete_template(
     template_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Delete a template."""
-    service = get_templates_service(db)
+    service = get_templates_service()
     
     success = await service.delete_template(
         template_id=template_id,
@@ -236,11 +234,11 @@ async def delete_template(
 async def duplicate_template(
     template_id: str,
     request: DuplicateTemplateRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Duplicate a template to your library."""
-    service = get_templates_service(db)
+    service = get_templates_service()
     
     template = await service.duplicate_template(
         template_id=template_id,
@@ -261,11 +259,11 @@ async def duplicate_template(
 async def apply_template(
     template_id: str,
     request: ApplyTemplateRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Apply a template with variables to generate content."""
-    service = get_templates_service(db)
+    service = get_templates_service()
     
     result = await service.apply_template(
         template_id=template_id,
@@ -285,11 +283,11 @@ async def apply_template(
 async def rate_template(
     template_id: str,
     request: RateTemplateRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Rate a template (1-5 stars)."""
-    service = get_templates_service(db)
+    service = get_templates_service()
     
     template = await service.rate_template(
         template_id=template_id,
@@ -309,11 +307,11 @@ async def rate_template(
 @router.post("/{template_id}/favorite")
 async def add_to_favorites(
     template_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Add template to favorites."""
-    service = get_templates_service(db)
+    service = get_templates_service()
     
     success = await service.add_to_favorites(
         user_id=current_user["id"],
@@ -332,11 +330,11 @@ async def add_to_favorites(
 @router.delete("/{template_id}/favorite")
 async def remove_from_favorites(
     template_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Remove template from favorites."""
-    service = get_templates_service(db)
+    service = get_templates_service()
     
     success = await service.remove_from_favorites(
         user_id=current_user["id"],

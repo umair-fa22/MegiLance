@@ -6,18 +6,11 @@ content similarity detection, and configurable risk thresholds.
 """
 
 from typing import Dict, Any, List, Optional, Tuple
-from sqlalchemy.orm import Session
-from sqlalchemy import func
+from app.db.turso_http import execute_query, parse_rows
 from datetime import datetime, timedelta, timezone
 import logging
 import json
 import re
-
-from app.models.user import User
-from app.models.project import Project
-from app.models.proposal import Proposal
-from app.models.payment import Payment
-from app.models.contract import Contract
 
 logger = logging.getLogger(__name__)
 
@@ -68,15 +61,17 @@ class FraudDetectionService:
         (r'(western\s*union|moneygram|wire\s*transfer\s*only)\b', 15, 'payment_scam'),
     ]
 
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        pass
 
     async def analyze_user(self, user_id: int) -> Dict[str, Any]:
         """Comprehensive user fraud analysis with multi-signal scoring."""
         try:
-            user = self.db.query(User).filter(User.id == user_id).first()
-            if not user:
+            result = await execute_query("SELECT * FROM users WHERE id = ?", [user_id])
+            rows = parse_rows(result)
+            if not rows:
                 return {'error': 'User not found'}
+            user = rows[0]
 
             risk_score = 0
             flags = []
@@ -113,13 +108,13 @@ class FraudDetectionService:
             signals['payment'] = payment
 
             # 6. Contract completion rate
-            completion = self._analyze_completion_rate(user_id)
+            completion = await self._analyze_completion_rate(user_id)
             risk_score += completion['score']
             flags.extend(completion['flags'])
             signals['completion'] = completion
 
             # 7. Content quality across proposals
-            content = self._analyze_content_patterns(user_id)
+            content = await self._analyze_content_patterns(user_id)
             risk_score += content['score']
             flags.extend(content['flags'])
             signals['content'] = content
@@ -141,13 +136,18 @@ class FraudDetectionService:
             logger.error(f"Error analyzing user fraud risk: {e}")
             return {'error': str(e)}
 
-    def _check_account_age(self, user: User) -> Dict[str, Any]:
+    def _check_account_age(self, user: Dict) -> Dict[str, Any]:
         """Score based on account age."""
         score = 0
         flags = []
         try:
-            age_days = (datetime.now(timezone.utc) - user.created_at).days
-        except (TypeError, AttributeError):
+            created = user.get("created_at", "")
+            if isinstance(created, str) and created:
+                dt = datetime.fromisoformat(created.replace("Z", "+00:00"))
+                age_days = (datetime.now(timezone.utc) - dt).days
+            else:
+                age_days = 999
+        except (TypeError, AttributeError, ValueError):
             age_days = 999
 
         if age_days < 1:
@@ -161,41 +161,42 @@ class FraudDetectionService:
 
         return {'score': score, 'flags': flags, 'age_days': age_days}
 
-    def _check_verification(self, user: User) -> Dict[str, Any]:
+    def _check_verification(self, user: Dict) -> Dict[str, Any]:
         """Score based on verification status."""
         score = 0
         flags = []
-        if not getattr(user, 'is_verified', False):
+        if not user.get('is_verified', False):
             score += 12
             flags.append('Unverified account')
-        if not getattr(user, 'email_verified', getattr(user, 'is_verified', False)):
+        if not user.get('email_verified', user.get('is_verified', False)):
             score += 5
             flags.append('Email not verified')
         return {'score': score, 'flags': flags}
 
-    def _check_profile_completeness(self, user: User) -> Dict[str, Any]:
+    def _check_profile_completeness(self, user: Dict) -> Dict[str, Any]:
         """Score based on profile data quality."""
         score = 0
         flags = []
         missing = []
 
         profile_data = {}
-        if user.profile_data:
+        raw_pd = user.get('profile_data')
+        if raw_pd:
             try:
-                profile_data = json.loads(user.profile_data) if isinstance(user.profile_data, str) else (user.profile_data or {})
+                profile_data = json.loads(raw_pd) if isinstance(raw_pd, str) else (raw_pd or {})
             except (json.JSONDecodeError, TypeError, ValueError):
                 profile_data = {}
 
-        bio = getattr(user, 'bio', None) or profile_data.get('bio', '')
-        skills = getattr(user, 'skills', None) or profile_data.get('skills', '')
+        bio = user.get('bio') or profile_data.get('bio', '')
+        skills = user.get('skills') or profile_data.get('skills', '')
 
         if not bio:
             missing.append('bio')
         if not skills:
             missing.append('skills')
-        if not getattr(user, 'location', None):
+        if not user.get('location'):
             missing.append('location')
-        if not getattr(user, 'profile_image_url', None):
+        if not user.get('profile_image_url'):
             missing.append('profile_image')
 
         if len(missing) >= 3:
@@ -213,14 +214,15 @@ class FraudDetectionService:
         flags = []
 
         now = datetime.now(timezone.utc)
-        one_hour_ago = now - timedelta(hours=1)
-        one_day_ago = now - timedelta(days=1)
+        one_hour_ago = (now - timedelta(hours=1)).isoformat()
+        one_day_ago = (now - timedelta(days=1)).isoformat()
 
         # Proposals per hour
-        proposals_1h = self.db.query(Proposal).filter(
-            Proposal.freelancer_id == user_id,
-            Proposal.created_at >= one_hour_ago,
-        ).count()
+        r1 = await execute_query(
+            "SELECT COUNT(*) as cnt FROM proposals WHERE freelancer_id = ? AND created_at >= ?",
+            [user_id, one_hour_ago]
+        )
+        proposals_1h = int(parse_rows(r1)[0]["cnt"]) if parse_rows(r1) else 0
 
         if proposals_1h > self.THRESHOLDS['max_proposals_per_hour']:
             score += 20
@@ -230,20 +232,22 @@ class FraudDetectionService:
             flags.append(f'Elevated proposal rate ({proposals_1h} in 1 hour)')
 
         # Proposals per day
-        proposals_24h = self.db.query(Proposal).filter(
-            Proposal.freelancer_id == user_id,
-            Proposal.created_at >= one_day_ago,
-        ).count()
+        r2 = await execute_query(
+            "SELECT COUNT(*) as cnt FROM proposals WHERE freelancer_id = ? AND created_at >= ?",
+            [user_id, one_day_ago]
+        )
+        proposals_24h = int(parse_rows(r2)[0]["cnt"]) if parse_rows(r2) else 0
 
         if proposals_24h > self.THRESHOLDS['max_proposals_per_day']:
             score += 15
             flags.append(f'Very high daily proposal volume ({proposals_24h} in 24 hours)')
 
         # Projects per hour (clients)
-        projects_1h = self.db.query(Project).filter(
-            Project.client_id == user_id,
-            Project.created_at >= one_hour_ago,
-        ).count()
+        r3 = await execute_query(
+            "SELECT COUNT(*) as cnt FROM projects WHERE client_id = ? AND created_at >= ?",
+            [user_id, one_hour_ago]
+        )
+        projects_1h = int(parse_rows(r3)[0]["cnt"]) if parse_rows(r3) else 0
 
         if projects_1h > self.THRESHOLDS['max_projects_per_hour']:
             score += 15
@@ -256,10 +260,11 @@ class FraudDetectionService:
         score = 0
         flags = []
 
-        disputed = self.db.query(Payment).filter(
-            Payment.from_user_id == user_id,
-            Payment.status == 'disputed',
-        ).count()
+        r1 = await execute_query(
+            "SELECT COUNT(*) as cnt FROM payments WHERE from_user_id = ? AND status = 'disputed'",
+            [user_id]
+        )
+        disputed = int(parse_rows(r1)[0]["cnt"]) if parse_rows(r1) else 0
 
         if disputed > self.THRESHOLDS['max_disputed_payments']:
             score += 25
@@ -268,23 +273,26 @@ class FraudDetectionService:
             score += 8
             flags.append(f'Has disputed payment(s) ({disputed})')
 
-        failed = self.db.query(Payment).filter(
-            Payment.from_user_id == user_id,
-            Payment.status == 'failed',
-        ).count()
+        r2 = await execute_query(
+            "SELECT COUNT(*) as cnt FROM payments WHERE from_user_id = ? AND status = 'failed'",
+            [user_id]
+        )
+        failed = int(parse_rows(r2)[0]["cnt"]) if parse_rows(r2) else 0
 
         if failed > self.THRESHOLDS['max_failed_payments']:
             score += 15
             flags.append(f'Multiple failed payments ({failed})')
 
         # Check for unusual payment amounts
-        recent_payments = self.db.query(Payment).filter(
-            Payment.from_user_id == user_id,
-            Payment.created_at >= datetime.now(timezone.utc) - timedelta(days=30),
-        ).all()
+        cutoff = (datetime.now(timezone.utc) - timedelta(days=30)).isoformat()
+        r3 = await execute_query(
+            "SELECT amount FROM payments WHERE from_user_id = ? AND created_at >= ?",
+            [user_id, cutoff]
+        )
+        recent_payments = parse_rows(r3)
 
         if recent_payments:
-            amounts = [p.amount for p in recent_payments if p.amount]
+            amounts = [float(p["amount"]) for p in recent_payments if p.get("amount")]
             if amounts:
                 avg_amount = sum(amounts) / len(amounts)
                 outliers = [a for a in amounts if a > avg_amount * 5]
@@ -294,22 +302,25 @@ class FraudDetectionService:
 
         return {'score': score, 'flags': flags, 'disputed': disputed, 'failed': failed}
 
-    def _analyze_completion_rate(self, user_id: int) -> Dict[str, Any]:
+    async def _analyze_completion_rate(self, user_id: int) -> Dict[str, Any]:
         """Analyze contract completion vs cancellation rate."""
         score = 0
         flags = []
 
-        total_contracts = self.db.query(Contract).filter(
-            (Contract.freelancer_id == user_id) | (Contract.client_id == user_id)
-        ).count()
+        r1 = await execute_query(
+            "SELECT COUNT(*) as cnt FROM contracts WHERE freelancer_id = ? OR client_id = ?",
+            [user_id, user_id]
+        )
+        total_contracts = int(parse_rows(r1)[0]["cnt"]) if parse_rows(r1) else 0
 
         if total_contracts == 0:
             return {'score': 0, 'flags': [], 'completion_rate': None}
 
-        cancelled = self.db.query(Contract).filter(
-            ((Contract.freelancer_id == user_id) | (Contract.client_id == user_id)),
-            Contract.status == 'cancelled',
-        ).count()
+        r2 = await execute_query(
+            "SELECT COUNT(*) as cnt FROM contracts WHERE (freelancer_id = ? OR client_id = ?) AND status = 'cancelled'",
+            [user_id, user_id]
+        )
+        cancelled = int(parse_rows(r2)[0]["cnt"]) if parse_rows(r2) else 0
 
         cancellation_rate = cancelled / total_contracts if total_contracts > 0 else 0
 
@@ -322,18 +333,20 @@ class FraudDetectionService:
 
         return {'score': score, 'flags': flags, 'completion_rate': 1 - cancellation_rate, 'total_contracts': total_contracts}
 
-    def _analyze_content_patterns(self, user_id: int) -> Dict[str, Any]:
+    async def _analyze_content_patterns(self, user_id: int) -> Dict[str, Any]:
         """Analyze proposals/projects for suspicious content patterns."""
         score = 0
         flags = []
 
         # Check recent proposals for suspicious patterns
-        recent_proposals = self.db.query(Proposal).filter(
-            Proposal.freelancer_id == user_id,
-        ).order_by(Proposal.created_at.desc()).limit(20).all()
+        result = await execute_query(
+            "SELECT cover_letter FROM proposals WHERE freelancer_id = ? ORDER BY created_at DESC LIMIT 20",
+            [user_id]
+        )
+        recent_proposals = parse_rows(result)
 
         # Detect copy-paste proposals (high text similarity)
-        cover_letters = [p.cover_letter for p in recent_proposals if p.cover_letter and len(p.cover_letter) > 30]
+        cover_letters = [p["cover_letter"] for p in recent_proposals if p.get("cover_letter") and len(p["cover_letter"]) > 30]
         if len(cover_letters) >= 3:
             duplicate_count = self._detect_duplicates(cover_letters)
             if duplicate_count >= 3:
@@ -375,9 +388,11 @@ class FraudDetectionService:
     async def analyze_project(self, project_id: int) -> Dict[str, Any]:
         """Analyze project for fraudulent characteristics with multi-signal scoring."""
         try:
-            project = self.db.query(Project).filter(Project.id == project_id).first()
-            if not project:
+            result = await execute_query("SELECT * FROM projects WHERE id = ?", [project_id])
+            rows = parse_rows(result)
+            if not rows:
                 return {'error': 'Project not found'}
+            project = rows[0]
 
             risk_score = 0
             flags = []
@@ -396,7 +411,7 @@ class FraudDetectionService:
             signals['budget'] = budget
 
             # 3. Client reputation
-            client_risk = await self.analyze_user(project.client_id)
+            client_risk = await self.analyze_user(project["client_id"])
             client_score = 0
             if isinstance(client_risk, dict) and client_risk.get('risk_level') in ['high', 'critical']:
                 client_score = 20
@@ -423,13 +438,13 @@ class FraudDetectionService:
             logger.error(f"Error analyzing project fraud risk: {e}")
             return {'error': str(e)}
 
-    def _analyze_project_content(self, project: Project) -> Dict[str, Any]:
+    def _analyze_project_content(self, project: Dict) -> Dict[str, Any]:
         """Analyze project title and description for red flags."""
         score = 0
         flags = []
 
-        description = project.description or ''
-        title = project.title or ''
+        description = project.get('description') or ''
+        title = project.get('title') or ''
         combined = f"{title} {description}".lower()
 
         # Suspicious pattern matching
@@ -452,21 +467,23 @@ class FraudDetectionService:
 
         return {'score': score, 'flags': flags}
 
-    def _analyze_budget(self, project: Project) -> Dict[str, Any]:
+    def _analyze_budget(self, project: Dict) -> Dict[str, Any]:
         """Analyze budget for reasonableness."""
         score = 0
         flags = []
 
-        if project.budget_max and project.budget_max > self.THRESHOLDS['max_budget_amount']:
-            score += 15
-            flags.append(f'Unusually high budget (${project.budget_max:,.0f})')
-        elif project.budget_max and project.budget_max < self.THRESHOLDS['min_budget_amount']:
-            score += 12
-            flags.append(f'Unusually low budget (${project.budget_max:,.0f})')
+        budget_max = project.get("budget_max")
+        budget_min = project.get("budget_min")
 
-        # Check for suspicious budget ranges
-        if project.budget_min and project.budget_max:
-            if project.budget_max > project.budget_min * 20:
+        if budget_max and float(budget_max) > self.THRESHOLDS['max_budget_amount']:
+            score += 15
+            flags.append(f'Unusually high budget (${float(budget_max):,.0f})')
+        elif budget_max and float(budget_max) < self.THRESHOLDS['min_budget_amount']:
+            score += 12
+            flags.append(f'Unusually low budget (${float(budget_max):,.0f})')
+
+        if budget_min and budget_max:
+            if float(budget_max) > float(budget_min) * 20:
                 score += 8
                 flags.append('Very wide budget range (potentially misleading)')
 
@@ -475,16 +492,18 @@ class FraudDetectionService:
     async def analyze_proposal(self, proposal_id: int) -> Dict[str, Any]:
         """Analyze proposal for suspicious activity with multi-signal scoring."""
         try:
-            proposal = self.db.query(Proposal).filter(Proposal.id == proposal_id).first()
-            if not proposal:
+            result = await execute_query("SELECT * FROM proposals WHERE id = ?", [proposal_id])
+            rows = parse_rows(result)
+            if not rows:
                 return {'error': 'Proposal not found'}
+            proposal = rows[0]
 
             risk_score = 0
             flags = []
             signals: Dict[str, Dict[str, Any]] = {}
 
             # 1. Bid amount analysis
-            bid = self._analyze_bid_amount(proposal)
+            bid = await self._analyze_bid_amount(proposal)
             risk_score += bid['score']
             flags.extend(bid['flags'])
             signals['bid'] = bid
@@ -496,7 +515,7 @@ class FraudDetectionService:
             signals['cover_letter'] = cover
 
             # 3. Freelancer reputation
-            freelancer_risk = await self.analyze_user(proposal.freelancer_id)
+            freelancer_risk = await self.analyze_user(proposal["freelancer_id"])
             freelancer_score = 0
             if isinstance(freelancer_risk, dict) and freelancer_risk.get('risk_level') in ['high', 'critical']:
                 freelancer_score = 20
@@ -523,14 +542,22 @@ class FraudDetectionService:
             logger.error(f"Error analyzing proposal fraud risk: {e}")
             return {'error': str(e)}
 
-    def _analyze_bid_amount(self, proposal: Proposal) -> Dict[str, Any]:
+    async def _analyze_bid_amount(self, proposal: Dict) -> Dict[str, Any]:
         """Analyze bid amount relative to project budget."""
         score = 0
         flags = []
-        project = proposal.project
 
-        if project and project.budget_max and proposal.bid_amount:
-            ratio = proposal.bid_amount / project.budget_max
+        # Fetch project for budget comparison
+        project_id = proposal.get("project_id")
+        project = None
+        if project_id:
+            proj_result = await execute_query("SELECT budget_max FROM projects WHERE id = ?", [project_id])
+            proj_rows = parse_rows(proj_result)
+            project = proj_rows[0] if proj_rows else None
+
+        bid_amount = proposal.get("bid_amount")
+        if project and project.get("budget_max") and bid_amount:
+            ratio = float(bid_amount) / float(project["budget_max"])
             if ratio > self.THRESHOLDS['bid_over_budget_ratio']:
                 score += 18
                 flags.append(f'Bid {ratio:.1f}x higher than project budget')
@@ -540,11 +567,11 @@ class FraudDetectionService:
 
         return {'score': score, 'flags': flags}
 
-    def _analyze_cover_letter(self, proposal: Proposal) -> Dict[str, Any]:
+    def _analyze_cover_letter(self, proposal: Dict) -> Dict[str, Any]:
         """Analyze cover letter quality and content."""
         score = 0
         flags = []
-        letter = proposal.cover_letter or ''
+        letter = proposal.get('cover_letter') or ''
 
         if len(letter) < self.THRESHOLDS['min_cover_letter_length']:
             score += 8
@@ -620,6 +647,12 @@ class AlertStatus(str, Enum):
     FALSE_POSITIVE = "false_positive"
 
 
-def get_fraud_detection_service(db: Session) -> FraudDetectionService:
-    """Get fraud detection service instance"""
-    return FraudDetectionService(db)
+_fraud_service: Optional[FraudDetectionService] = None
+
+
+def get_fraud_detection_service() -> FraudDetectionService:
+    """Get fraud detection service singleton"""
+    global _fraud_service
+    if _fraud_service is None:
+        _fraud_service = FraudDetectionService()
+    return _fraud_service

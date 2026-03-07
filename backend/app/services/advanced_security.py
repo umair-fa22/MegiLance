@@ -4,12 +4,10 @@
 from typing import Optional, Dict, List, Any
 from datetime import datetime, timedelta, timezone
 from pydantic import BaseModel, EmailStr
-from fastapi import Depends
 import secrets
 import hashlib
 import json
-from sqlalchemy.orm import Session
-from app.db.session import get_db
+
 
 from app.core.config import get_settings
 settings = get_settings()
@@ -62,8 +60,7 @@ class RiskAssessment(BaseModel):
 class AdvancedSecurityService:
     """Advanced security service with multi-factor authentication and threat detection"""
 
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
         self.risk_threshold = {
             "low": 30,
             "medium": 60,
@@ -565,6 +562,11 @@ class AdvancedSecurityService:
 # Service Factory
 # ============================================================================
 
-def get_security_service(db: Session = Depends(get_db)) -> AdvancedSecurityService:
-    """Get security service instance"""
-    return AdvancedSecurityService(db)
+_security_service = None
+
+def get_security_service() -> AdvancedSecurityService:
+    """Get security service singleton"""
+    global _security_service
+    if _security_service is None:
+        _security_service = AdvancedSecurityService()
+    return _security_service

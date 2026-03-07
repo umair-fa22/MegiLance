@@ -3,9 +3,12 @@
 
 import secrets
 from datetime import datetime, timedelta, timezone
-from typing import Optional
-from sqlalchemy.orm import Session
-from ..models.user import User
+from typing import Optional, Dict, Any
+import logging
+
+from app.db.turso_http import execute_query, parse_rows
+
+logger = logging.getLogger(__name__)
 
 
 class PasswordResetService:
@@ -15,21 +18,15 @@ class PasswordResetService:
         self.token_expiry_hours = 1  # Reset tokens valid for 1 hour
     
     def generate_reset_token(self) -> str:
-        """
-        Generate a secure random password reset token
-        
-        Returns:
-            str: URL-safe random token (32 bytes = 64 hex characters)
-        """
+        """Generate a secure random password reset token"""
         return secrets.token_urlsafe(32)
     
-    def create_reset_token(self, db: Session, user: User) -> tuple[str, datetime]:
+    async def create_reset_token(self, user_id: int) -> tuple[str, datetime]:
         """
-        Create and store a new password reset token for a user
+        Create and store a new password reset token for a user.
         
         Args:
-            db: Database session
-            user: User model instance
+            user_id: User ID
         
         Returns:
             tuple[str, datetime]: (reset_token, expiry_datetime)
@@ -37,82 +34,81 @@ class PasswordResetService:
         token = self.generate_reset_token()
         expiry = datetime.now(timezone.utc) + timedelta(hours=self.token_expiry_hours)
         
-        user.password_reset_token = token
-        user.password_reset_expires = expiry
-        db.commit()
+        await execute_query(
+            "UPDATE users SET password_reset_token = ?, password_reset_expires = ? WHERE id = ?",
+            [token, expiry.isoformat(), user_id]
+        )
         
         return token, expiry
     
-    def validate_reset_token(self, db: Session, token: str) -> Optional[User]:
+    async def validate_reset_token(self, token: str) -> Optional[Dict[str, Any]]:
         """
-        Validate a password reset token and check expiry
+        Validate a password reset token and check expiry.
         
         Args:
-            db: Database session
             token: Reset token from email link
         
         Returns:
-            User: User object if token is valid and not expired, None otherwise
+            Dict with user data if token is valid and not expired, None otherwise
         """
-        user = db.query(User).filter(User.password_reset_token == token).first()
+        result = await execute_query(
+            "SELECT * FROM users WHERE password_reset_token = ? LIMIT 1",
+            [token]
+        )
+        rows = parse_rows(result)
         
-        if not user:
+        if not rows:
             return None
+        
+        user = rows[0]
         
         # Check if token has expired
-        if user.password_reset_expires and user.password_reset_expires < datetime.now(timezone.utc):
-            return None
+        if user.get("password_reset_expires"):
+            expires = user["password_reset_expires"]
+            if isinstance(expires, str):
+                expires = datetime.fromisoformat(expires.replace("Z", "+00:00"))
+            if expires < datetime.now(timezone.utc):
+                return None
         
         return user
     
-    def reset_password(self, db: Session, user: User, new_password_hash: str) -> bool:
+    async def reset_password(self, user_id: int, new_password_hash: str) -> bool:
         """
-        Reset user's password and clear reset token
+        Reset user's password and clear reset token.
         
         Args:
-            db: Database session
-            user: User model instance
+            user_id: User ID
             new_password_hash: Hashed new password
         
         Returns:
             bool: True if password reset successful
         """
-        user.hashed_password = new_password_hash
-        user.password_reset_token = None  # Clear token after use
-        user.password_reset_expires = None
-        user.last_password_changed = datetime.now(timezone.utc)
-        
-        db.commit()
-        db.refresh(user)
-        
+        now = datetime.now(timezone.utc).isoformat()
+        await execute_query(
+            """UPDATE users SET hashed_password = ?, password_reset_token = NULL, 
+               password_reset_expires = NULL, last_password_changed = ? WHERE id = ?""",
+            [new_password_hash, now, user_id]
+        )
         return True
     
-    def is_token_expired(self, user: User) -> bool:
-        """
-        Check if user's reset token has expired
-        
-        Args:
-            user: User model instance
-        
-        Returns:
-            bool: True if token is expired or missing
-        """
-        if not user.password_reset_token or not user.password_reset_expires:
+    def is_token_expired(self, user: Dict[str, Any]) -> bool:
+        """Check if user's reset token has expired."""
+        token = user.get("password_reset_token")
+        expires = user.get("password_reset_expires")
+        if not token or not expires:
             return True
         
-        return user.password_reset_expires < datetime.now(timezone.utc)
-    
-    def invalidate_reset_token(self, db: Session, user: User):
-        """
-        Manually invalidate a user's reset token
+        if isinstance(expires, str):
+            expires = datetime.fromisoformat(expires.replace("Z", "+00:00"))
         
-        Args:
-            db: Database session
-            user: User model instance
-        """
-        user.password_reset_token = None
-        user.password_reset_expires = None
-        db.commit()
+        return expires < datetime.now(timezone.utc)
+    
+    async def invalidate_reset_token(self, user_id: int):
+        """Manually invalidate a user's reset token."""
+        await execute_query(
+            "UPDATE users SET password_reset_token = NULL, password_reset_expires = NULL WHERE id = ?",
+            [user_id]
+        )
 
 
 # Singleton instance

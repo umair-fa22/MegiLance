@@ -12,11 +12,9 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user, get_current_user_optional
 from app.services.marketplace import (
     get_marketplace_service,
@@ -49,11 +47,11 @@ async def search_projects(
     sort_by: SortOption = SortOption.RELEVANCE,
     page: int = 1,
     limit: int = 20,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_user_optional)
 ):
     """Search projects with advanced filters."""
-    service = get_marketplace_service(db)
+    service = get_marketplace_service()
     
     # Parse comma-separated values
     cat_list = categories.split(",") if categories else None
@@ -80,10 +78,10 @@ async def search_projects(
 @router.get("/projects/featured")
 async def get_featured_projects(
     limit: int = 10,
-    db: Session = Depends(get_db)
+    
 ):
     """Get featured projects."""
-    service = get_marketplace_service(db)
+    service = get_marketplace_service()
     projects = await service.get_featured_projects(limit)
     return {"projects": projects}
 
@@ -104,11 +102,11 @@ async def search_freelancers(
     sort_by: str = "relevance",
     page: int = 1,
     limit: int = 20,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_user_optional)
 ):
     """Search freelancers with advanced filters."""
-    service = get_marketplace_service(db)
+    service = get_marketplace_service()
     
     skill_list = skills.split(",") if skills else None
     cat_list = categories.split(",") if categories else None
@@ -135,19 +133,19 @@ async def search_freelancers(
 @router.get("/freelancers/featured")
 async def get_featured_freelancers(
     limit: int = 10,
-    db: Session = Depends(get_db)
+    
 ):
     """Get featured freelancers."""
-    service = get_marketplace_service(db)
+    service = get_marketplace_service()
     freelancers = await service.get_featured_freelancers(limit)
     return {"freelancers": freelancers}
 
 
 # Category Endpoints
 @router.get("/categories")
-async def get_categories(db: Session = Depends(get_db)):
+async def get_categories():
     """Get all categories with subcategories."""
-    service = get_marketplace_service(db)
+    service = get_marketplace_service()
     categories = await service.get_categories()
     return {"categories": categories}
 
@@ -158,10 +156,10 @@ async def get_category_projects(
     subcategory_id: Optional[str] = None,
     page: int = 1,
     limit: int = 20,
-    db: Session = Depends(get_db)
+    
 ):
     """Get projects by category."""
-    service = get_marketplace_service(db)
+    service = get_marketplace_service()
     results = await service.get_category_projects(category_id, subcategory_id, page, limit)
     return results
 
@@ -170,10 +168,10 @@ async def get_category_projects(
 @router.get("/trending/skills")
 async def get_trending_skills(
     limit: int = 10,
-    db: Session = Depends(get_db)
+    
 ):
     """Get trending skills."""
-    service = get_marketplace_service(db)
+    service = get_marketplace_service()
     skills = await service.get_trending_skills(limit)
     return {"skills": skills}
 
@@ -181,10 +179,10 @@ async def get_trending_skills(
 @router.get("/skills/{skill}/demand")
 async def get_skill_demand(
     skill: str,
-    db: Session = Depends(get_db)
+    
 ):
     """Get demand statistics for a skill."""
-    service = get_marketplace_service(db)
+    service = get_marketplace_service()
     demand = await service.get_skill_demand(skill)
     return {"demand": demand}
 
@@ -193,11 +191,11 @@ async def get_skill_demand(
 @router.get("/recommendations/projects")
 async def get_personalized_projects(
     limit: int = 20,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get personalized project recommendations."""
-    service = get_marketplace_service(db)
+    service = get_marketplace_service()
     projects = await service.get_personalized_projects(current_user["id"], limit)
     return {"projects": projects}
 
@@ -206,11 +204,11 @@ async def get_personalized_projects(
 async def get_recommended_freelancers(
     project_id: Optional[str] = None,
     limit: int = 10,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get recommended freelancers for a client."""
-    service = get_marketplace_service(db)
+    service = get_marketplace_service()
     freelancers = await service.get_recommended_freelancers(current_user["id"], project_id, limit)
     return {"freelancers": freelancers}
 
@@ -220,10 +218,10 @@ async def get_recommended_freelancers(
 async def get_search_suggestions(
     query: str,
     type: str = "all",
-    db: Session = Depends(get_db)
+    
 ):
     """Get search suggestions."""
-    service = get_marketplace_service(db)
+    service = get_marketplace_service()
     suggestions = await service.get_search_suggestions(query, type)
     return suggestions
 
@@ -232,10 +230,10 @@ async def get_search_suggestions(
 async def get_autocomplete(
     query: str,
     type: str = "all",
-    db: Session = Depends(get_db)
+    
 ):
     """Get autocomplete results."""
-    service = get_marketplace_service(db)
+    service = get_marketplace_service()
     results = await service.get_autocomplete(query, type)
     return {"results": results}
 
@@ -244,11 +242,11 @@ async def get_autocomplete(
 @router.get("/searches/recent")
 async def get_recent_searches(
     limit: int = 10,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get user's recent searches."""
-    service = get_marketplace_service(db)
+    service = get_marketplace_service()
     searches = await service.get_recent_searches(current_user["id"], limit)
     return {"searches": searches}
 
@@ -256,11 +254,11 @@ async def get_recent_searches(
 @router.post("/searches/save")
 async def save_search(
     request: SaveSearchRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Save a search for later."""
-    service = get_marketplace_service(db)
+    service = get_marketplace_service()
     saved = await service.save_search(
         current_user["id"],
         request.search_params,
@@ -272,8 +270,8 @@ async def save_search(
 
 # Statistics Endpoints
 @router.get("/stats")
-async def get_marketplace_stats(db: Session = Depends(get_db)):
+async def get_marketplace_stats():
     """Get marketplace statistics."""
-    service = get_marketplace_service(db)
+    service = get_marketplace_service()
     stats = await service.get_marketplace_stats()
     return {"stats": stats}

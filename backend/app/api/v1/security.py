@@ -1,11 +1,9 @@
 # @AI-HINT: Advanced security API endpoints for MFA, risk-based auth, and session management
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 from typing import List
 from pydantic import BaseModel, Field
 
-from app.db.session import get_db
 from app.core.security import get_current_user
 from app.services.advanced_security import get_security_service, AdvancedSecurityService
 from app.models.user import User
@@ -132,8 +130,7 @@ async def list_mfa_methods(
     """List all enabled MFA methods for the current user."""
     try:
         methods = await security_service.get_user_mfa_methods(
-            user_id=str(current_user.id),
-            db=db
+            user_id=str(current_user.id)
         )
         return methods
     except Exception:
@@ -146,7 +143,6 @@ async def assess_login_risk(
     ip_address: str,
     user_agent: str,
     current_user: User = Depends(get_current_user),
-    db: Session = Depends(get_db),
     security_service: AdvancedSecurityService = Depends(get_security_service)
 ):
     """
@@ -157,8 +153,7 @@ async def assess_login_risk(
         assessment = await security_service.assess_login_risk(
             user_id=str(current_user.id),
             ip_address=ip_address,
-            user_agent=user_agent,
-            db=db
+            user_agent=user_agent
         )
         return RiskAssessmentResponse(**assessment)
     except Exception:
@@ -175,8 +170,7 @@ async def list_sessions(
     """List all active sessions for the current user."""
     try:
         sessions = await security_service.get_user_sessions(
-            user_id=str(current_user.id),
-            db=db
+            user_id=str(current_user.id)
         )
         return [SessionResponse(**session) for session in sessions]
     except Exception:
@@ -193,8 +187,7 @@ async def terminate_session(
     try:
         await security_service.terminate_session(
             user_id=str(current_user.id),
-            session_id=session_id,
-            db=db
+            session_id=session_id
         )
         return {"message": "Session terminated successfully"}
     except Exception:
@@ -206,15 +199,13 @@ async def terminate_session(
 async def get_security_events(
     limit: int = 50,
     current_user: User = Depends(get_current_user),
-    db: Session = Depends(get_db),
     security_service: AdvancedSecurityService = Depends(get_security_service)
 ):
     """Get security event log for the current user."""
     try:
         events = await security_service.get_security_events(
             user_id=str(current_user.id),
-            limit=limit,
-            db=db
+            limit=limit
         )
         return {"events": events, "total": len(events)}
     except Exception:

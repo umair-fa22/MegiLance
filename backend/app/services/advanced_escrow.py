@@ -6,8 +6,6 @@ import secrets
 import hashlib
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any
-from sqlalchemy.orm import Session
-from sqlalchemy import func, and_, or_
 from enum import Enum
 from decimal import Decimal, ROUND_HALF_UP
 
@@ -56,8 +54,7 @@ class AdvancedEscrowService:
     # Maximum hold period (days)
     MAX_HOLD_PERIOD = 180
     
-    def __init__(self, db: Session, stripe_key: Optional[str] = None):
-        self.db = db
+    def __init__(self, stripe_key: Optional[str] = None):
         self.stripe_key = stripe_key
         
         # In-memory escrow store (would be database in production)
@@ -649,11 +646,9 @@ class AdvancedEscrowService:
 _escrow_service: Optional[AdvancedEscrowService] = None
 
 
-def get_escrow_service(db: Session) -> AdvancedEscrowService:
+def get_escrow_service() -> AdvancedEscrowService:
     """Get or create escrow service instance."""
     global _escrow_service
     if _escrow_service is None:
-        _escrow_service = AdvancedEscrowService(db)
-    else:
-        _escrow_service.db = db
+        _escrow_service = AdvancedEscrowService()
     return _escrow_service

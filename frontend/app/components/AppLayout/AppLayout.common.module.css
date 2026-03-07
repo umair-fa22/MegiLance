@@ -122,6 +122,8 @@
 @media (max-width: 768px) {
   .mainContent {
     margin-left: 0 !important;
+    /* Account for bottom nav bar height + safe area */
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
   }
   
   .mainContentCollapsed {
@@ -129,7 +131,7 @@
   }
   
   .pageContent {
-    padding: 1.25rem 1rem 1.5rem;
+    padding: 1rem 0.875rem 1.25rem;
     max-width: 100%;
   }
   
@@ -139,5 +141,16 @@
   
   .mobileOverlayVisible {
     display: block;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 380px) {
+  .mainContent {
+    padding-bottom: calc(58px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .pageContent {
+    padding: 0.75rem 0.625rem 1rem;
   }
 }

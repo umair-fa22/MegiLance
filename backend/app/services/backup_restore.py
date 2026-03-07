@@ -3,7 +3,6 @@
 
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any
-from sqlalchemy.orm import Session
 from enum import Enum
 import uuid
 import hashlib
@@ -39,8 +38,8 @@ class DataCategory(str, Enum):
 class BackupRestoreService:
     """Service for data backup and restore."""
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        pass
     
     # Backup Operations
     async def create_backup(
@@ -317,6 +316,11 @@ class BackupRestoreService:
         }
 
 
-def get_backup_restore_service(db: Session) -> BackupRestoreService:
+_singleton_backup_restore_service = None
+
+def get_backup_restore_service() -> BackupRestoreService:
     """Factory function for backup/restore service."""
-    return BackupRestoreService(db)
+    global _singleton_backup_restore_service
+    if _singleton_backup_restore_service is None:
+        _singleton_backup_restore_service = BackupRestoreService()
+    return _singleton_backup_restore_service

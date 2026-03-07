@@ -5,7 +5,6 @@ import uuid
 from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Any, Optional
 from collections import defaultdict
-from sqlalchemy.orm import Session
 
 
 class ActivityFeedService:
@@ -59,7 +58,6 @@ class ActivityFeedService:
     
     async def create_activity(
         self,
-        db: Session,
         user_id: str,
         activity_type: str,
         data: Dict[str, Any],
@@ -133,7 +131,6 @@ class ActivityFeedService:
     
     async def get_user_activities(
         self,
-        db: Session,
         user_id: str,
         viewer_id: Optional[str] = None,
         activity_types: Optional[List[str]] = None,
@@ -176,7 +173,6 @@ class ActivityFeedService:
     
     async def get_feed(
         self,
-        db: Session,
         user_id: str,
         include_own: bool = True,
         limit: int = 50
@@ -294,7 +290,6 @@ class ActivityFeedService:
     
     async def follow_user(
         self,
-        db: Session,
         follower_id: str,
         target_id: str
     ) -> Dict[str, Any]:
@@ -333,7 +328,6 @@ class ActivityFeedService:
     
     async def unfollow_user(
         self,
-        db: Session,
         follower_id: str,
         target_id: str
     ) -> Dict[str, Any]:
@@ -358,7 +352,6 @@ class ActivityFeedService:
     
     async def get_followers(
         self,
-        db: Session,
         user_id: str,
         limit: int = 50,
         offset: int = 0
@@ -374,7 +367,6 @@ class ActivityFeedService:
     
     async def get_following(
         self,
-        db: Session,
         user_id: str,
         limit: int = 50,
         offset: int = 0
@@ -390,7 +382,6 @@ class ActivityFeedService:
     
     async def update_privacy_settings(
         self,
-        db: Session,
         user_id: str,
         settings: Dict[str, str]
     ) -> Dict[str, Any]:
@@ -424,7 +415,6 @@ class ActivityFeedService:
     
     async def get_privacy_settings(
         self,
-        db: Session,
         user_id: str
     ) -> Dict[str, Any]:
         """Get user's privacy settings."""
@@ -432,7 +422,6 @@ class ActivityFeedService:
     
     async def like_activity(
         self,
-        db: Session,
         user_id: str,
         activity_id: str
     ) -> Dict[str, Any]:
@@ -453,7 +442,6 @@ class ActivityFeedService:
     
     async def unlike_activity(
         self,
-        db: Session,
         user_id: str,
         activity_id: str
     ) -> Dict[str, Any]:
@@ -474,7 +462,6 @@ class ActivityFeedService:
     
     async def comment_on_activity(
         self,
-        db: Session,
         user_id: str,
         activity_id: str,
         comment: str
@@ -501,7 +488,6 @@ class ActivityFeedService:
     
     async def delete_activity(
         self,
-        db: Session,
         user_id: str,
         activity_id: str
     ) -> Dict[str, Any]:
@@ -521,7 +507,6 @@ class ActivityFeedService:
     
     async def get_activity_stats(
         self,
-        db: Session,
         user_id: str
     ) -> Dict[str, Any]:
         """Get activity statistics for a user."""
@@ -547,7 +532,6 @@ class ActivityFeedService:
     
     async def get_trending_activities(
         self,
-        db: Session,
         time_range_hours: int = 24,
         limit: int = 20
     ) -> Dict[str, Any]:

@@ -3,7 +3,6 @@
 
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any
-from sqlalchemy.orm import Session
 from enum import Enum
 import uuid
 import hashlib
@@ -41,8 +40,8 @@ class PaymentTerms(str, Enum):
 class InvoiceTaxService:
     """Service for invoice and tax management."""
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        pass
     
     # Invoice Management
     async def create_invoice(
@@ -512,6 +511,11 @@ class InvoiceTaxService:
         ]
 
 
-def get_invoice_tax_service(db: Session) -> InvoiceTaxService:
+_singleton_invoice_tax_service = None
+
+def get_invoice_tax_service() -> InvoiceTaxService:
     """Factory function for invoice/tax service."""
-    return InvoiceTaxService(db)
+    global _singleton_invoice_tax_service
+    if _singleton_invoice_tax_service is None:
+        _singleton_invoice_tax_service = InvoiceTaxService()
+    return _singleton_invoice_tax_service

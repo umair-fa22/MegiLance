@@ -5,7 +5,6 @@ import logging
 import secrets
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any
-from sqlalchemy.orm import Session
 from enum import Enum
 from collections import defaultdict
 
@@ -75,8 +74,8 @@ class TeamCollaborationService:
     and collaborate on projects.
     """
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        pass
         
         # In-memory stores
         self._teams: Dict[str, Dict] = {}
@@ -679,11 +678,9 @@ class TeamCollaborationService:
 _team_service: Optional[TeamCollaborationService] = None
 
 
-def get_team_service(db: Session) -> TeamCollaborationService:
+def get_team_service() -> TeamCollaborationService:
     """Get or create team service instance."""
     global _team_service
     if _team_service is None:
-        _team_service = TeamCollaborationService(db)
-    else:
-        _team_service.db = db
+        _team_service = TeamCollaborationService()
     return _team_service

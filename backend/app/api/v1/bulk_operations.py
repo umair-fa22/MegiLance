@@ -15,9 +15,7 @@ from datetime import datetime, timezone
 from typing import Dict, List, Any, Optional
 from fastapi import APIRouter, Depends, HTTPException, BackgroundTasks, UploadFile, File
 from pydantic import BaseModel, Field
-from sqlalchemy.orm import Session
 
-from ...db.session import get_db
 from ...core.security import get_current_active_user, require_admin
 
 
@@ -127,7 +125,7 @@ async def bulk_project_operation(
     request: BulkProjectOperation,
     background_tasks: BackgroundTasks,
     current_user = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Perform bulk operations on projects.
@@ -191,7 +189,7 @@ async def bulk_user_operation(
     request: BulkUserOperation,
     background_tasks: BackgroundTasks,
     current_user = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Perform bulk operations on users (admin only).
@@ -252,7 +250,7 @@ async def bulk_payment_operation(
     request: BulkPaymentOperation,
     background_tasks: BackgroundTasks,
     current_user = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Perform bulk operations on payments (admin only).
@@ -311,7 +309,7 @@ async def bulk_payment_operation(
 async def bulk_tag_operation(
     request: BulkTagOperation,
     current_user = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Add or remove tags from multiple items.
@@ -341,7 +339,7 @@ async def bulk_export(
     request: BulkExportRequest,
     background_tasks: BackgroundTasks,
     current_user = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Export multiple items to file.
@@ -376,7 +374,7 @@ async def bulk_import(
     file: UploadFile = File(...),
     background_tasks: BackgroundTasks = None,
     current_user = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Import items from CSV or JSON file.
@@ -411,7 +409,7 @@ async def bulk_import(
 async def get_operation_status(
     operation_id: str,
     current_user = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Get status of a bulk operation.
@@ -434,7 +432,7 @@ async def list_operations(
     operation_type: Optional[str] = None,
     limit: int = 20,
     current_user = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """
     List user's bulk operations.
@@ -467,7 +465,7 @@ async def list_operations(
 async def cancel_operation(
     operation_id: str,
     current_user = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Cancel a queued bulk operation.
@@ -498,7 +496,7 @@ async def bulk_delete(
     permanent: bool = False,
     background_tasks: BackgroundTasks = None,
     current_user = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Bulk delete items (soft delete by default).
@@ -528,7 +526,7 @@ async def bulk_update(
     item_ids: List[str],
     updates: Dict[str, Any],
     current_user = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Bulk update item fields.

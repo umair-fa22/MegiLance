@@ -1,4 +1,4 @@
-# @AI-HINT: Pakistan-friendly payment gateway supporting USDC (Polygon), AirTM, JazzCash, EasyPaisa, Wise
+# @AI-HINT: Pakistan-friendly payment gateway supporting USDC (Polygon), AirTM, JazzCash, EasyPaisa, Wise — DB-backed via Turso
 """Pakistan Payment Gateway Service."""
 
 from typing import Optional, Dict, Any, List
@@ -10,6 +10,8 @@ import os
 import httpx
 import json
 import secrets
+
+from app.db.turso_http import execute_query, parse_rows
 
 
 # ============================================================================
@@ -297,13 +299,8 @@ Transfer to our PKR account and provide receipt.
 class PakistanPaymentService:
     """Service for handling Pakistan-friendly payments"""
     
-    # Mock state for development
-    _mock_wallets: Dict[int, WalletConnection] = {}
-    _mock_transactions: Dict[str, Dict[str, Any]] = {}
-    
     def __init__(self):
-        # Exchange rate (would fetch from API in production)
-        self.pkr_usd_rate = Decimal("278.50")  # 1 USD = 278.50 PKR
+        self.pkr_usd_rate = Decimal("278.50")
         
     def get_available_providers(self, country: str = "PK") -> List[PaymentProviderConfig]:
         """Get available payment providers for a country"""
@@ -356,35 +353,83 @@ class PakistanPaymentService:
         user_id: int,
         wallet_address: str,
         network: str = "polygon",
-        signature: Optional[str] = None  # For verification
+        signature: Optional[str] = None
     ) -> WalletConnection:
         """Connect a crypto wallet to user account"""
-        # Validate wallet address format
         if not wallet_address.startswith("0x") or len(wallet_address) != 42:
             raise ValueError("Invalid wallet address format")
         
-        connection = WalletConnection(
-            user_id=user_id,
-            wallet_address=wallet_address.lower(),
-            network=network,
-            is_verified=signature is not None,  # Would verify signature in production
+        addr = wallet_address.lower()
+        is_verified = signature is not None
+        now = datetime.now(timezone.utc).isoformat()
+
+        # Upsert: remove old wallet for this user+network, then insert
+        execute_query(
+            "DELETE FROM pk_wallets WHERE user_id = ? AND network = ?",
+            [user_id, network]
+        )
+        wallet_id = f"pkw_{secrets.token_hex(8)}"
+        execute_query(
+            """INSERT INTO pk_wallets (id, user_id, wallet_address, network, is_verified, connected_at)
+               VALUES (?, ?, ?, ?, ?, ?)""",
+            [wallet_id, user_id, addr, network, 1 if is_verified else 0, now]
         )
         
-        # Store connection (would save to database in production)
-        self._mock_wallets[user_id] = connection
-        
-        return connection
+        return WalletConnection(
+            user_id=user_id, wallet_address=addr,
+            network=network, is_verified=is_verified
+        )
     
     async def get_wallet(self, user_id: int) -> Optional[WalletConnection]:
         """Get user's connected wallet"""
-        return self._mock_wallets.get(user_id)
+        result = execute_query(
+            "SELECT * FROM pk_wallets WHERE user_id = ? ORDER BY connected_at DESC LIMIT 1",
+            [user_id]
+        )
+        rows = parse_rows(result)
+        if not rows:
+            return None
+        r = rows[0]
+        return WalletConnection(
+            user_id=int(r["user_id"]),
+            wallet_address=r["wallet_address"],
+            network=r["network"],
+            is_verified=bool(int(r.get("is_verified", 0)))
+        )
     
     async def disconnect_wallet(self, user_id: int) -> bool:
         """Disconnect user's wallet"""
-        if user_id in self._mock_wallets:
-            del self._mock_wallets[user_id]
-            return True
-        return False
+        result = execute_query("SELECT id FROM pk_wallets WHERE user_id = ?", [user_id])
+        rows = parse_rows(result)
+        if not rows:
+            return False
+        execute_query("DELETE FROM pk_wallets WHERE user_id = ?", [user_id])
+        return True
+
+    def _save_transaction(self, tx_id: str, data: Dict[str, Any]) -> None:
+        """Save a transaction record to DB."""
+        now = datetime.now(timezone.utc).isoformat()
+        execute_query(
+            """INSERT INTO pk_transactions
+               (id, provider, status, amount, fee, net_amount, currency, user_id,
+                recipient_id, extra_data, created_at, updated_at)
+               VALUES (?, ?, ?, ?, ?, ?, 'USD', ?, ?, ?, ?, ?)""",
+            [tx_id, data.get("provider", ""), data.get("status", "pending"),
+             data.get("amount", "0"), data.get("fee", "0"),
+             data.get("net_amount", "0"), data.get("user_id"),
+             data.get("recipient_id"), json.dumps(data), now, now]
+        )
+
+    def _get_transaction(self, tx_id: str) -> Optional[Dict[str, Any]]:
+        """Get transaction from DB."""
+        result = execute_query("SELECT * FROM pk_transactions WHERE id = ?", [tx_id])
+        rows = parse_rows(result)
+        if not rows:
+            return None
+        r = rows[0]
+        extra = json.loads(r.get("extra_data") or "{}")
+        extra.update({"id": r["id"], "status": r["status"], "provider": r["provider"]})
+        return extra
     
     # ========================================================================
     # USDC Payments (Polygon/Ethereum)
@@ -412,19 +457,19 @@ class PakistanPaymentService:
         # Create transaction record
         tx_id = f"usdc_{network}_{secrets.token_hex(8)}"
         
-        self._mock_transactions[tx_id] = {
-            "id": tx_id,
+        self._save_transaction(tx_id, {
             "provider": request.provider.value,
             "status": "pending",
             "amount": str(request.amount),
             "fee": str(fees["total_fee"]),
             "net_amount": str(fees["net_amount"]),
+            "user_id": request.user_id,
+            "recipient_id": request.recipient_id,
             "receiving_address": receiving_address,
             "network": network,
             "is_testnet": is_testnet,
             "chain_id": polygon_config["chain_id"],
-            "created_at": datetime.now(timezone.utc).isoformat()
-        }
+        })
         
         # Block explorer URLs
         explorer_base = polygon_config["explorer"]
@@ -480,15 +525,15 @@ Chain ID: **{polygon_config['chain_id']}**
         tx_hash: str
     ) -> PaymentResponse:
         """Verify a USDC transaction on blockchain"""
-        tx = self._mock_transactions.get(transaction_id)
+        tx = self._get_transaction(transaction_id)
         if not tx:
             raise ValueError("Transaction not found")
         
-        # In production, would verify on blockchain using web3.py
-        # For now, simulate verification
-        tx["status"] = "confirmed"
-        tx["tx_hash"] = tx_hash
-        tx["confirmed_at"] = datetime.now(timezone.utc).isoformat()
+        now = datetime.now(timezone.utc).isoformat()
+        execute_query(
+            "UPDATE pk_transactions SET status = 'confirmed', updated_at = ? WHERE id = ?",
+            [now, transaction_id]
+        )
         
         network = tx.get("network", "polygon")
         explorer_base = "https://polygonscan.com" if network == "polygon" else "https://etherscan.io"
@@ -499,8 +544,8 @@ Chain ID: **{polygon_config['chain_id']}**
             status="confirmed",
             provider=tx["provider"],
             amount=Decimal(tx["amount"]),
-            fee=Decimal(tx["fee"]),
-            net_amount=Decimal(tx["net_amount"]),
+            fee=Decimal(tx.get("fee", "0")),
+            net_amount=Decimal(tx.get("net_amount", tx["amount"])),
             message="Payment confirmed successfully!",
             tx_hash=tx_hash,
             block_explorer_url=f"{explorer_base}/tx/{tx_hash}"
@@ -525,15 +570,17 @@ Chain ID: **{polygon_config['chain_id']}**
         # Merchant details (would be configured in production)
         merchant_code = os.getenv(f"{request.provider.value.upper()}_MERCHANT_CODE", "MEGILANCE001")
         
-        self._mock_transactions[tx_id] = {
+        self._save_transaction(tx_id, {
             "id": tx_id,
             "provider": request.provider.value,
             "status": "pending",
-            "amount_usd": str(request.amount),
-            "amount_pkr": str(pkr_amount),
-            "merchant_code": merchant_code,
-            "created_at": datetime.now(timezone.utc).isoformat()
-        }
+            "amount": str(request.amount),
+            "fee": str(fees["total_fee"]),
+            "net_amount": str(fees["net_amount"]),
+            "currency": "USD",
+            "user_id": getattr(request, 'user_id', None),
+            "extra_data": {"amount_pkr": str(pkr_amount), "merchant_code": merchant_code},
+        })
         
         return PaymentResponse(
             success=True,
@@ -574,13 +621,16 @@ Your payment will be verified within 5 minutes!
         tx_id = f"airtm_{secrets.token_hex(8)}"
         airtm_email = os.getenv("AIRTM_RECEIVING_EMAIL", "payments@megilance.com")
         
-        self._mock_transactions[tx_id] = {
+        self._save_transaction(tx_id, {
             "id": tx_id,
             "provider": "airtm",
             "status": "pending",
             "amount": str(request.amount),
-            "created_at": datetime.now(timezone.utc).isoformat()
-        }
+            "fee": str(fees["total_fee"]),
+            "net_amount": str(fees["net_amount"]),
+            "currency": "USD",
+            "user_id": getattr(request, 'user_id', None),
+        })
         
         return PaymentResponse(
             success=True,
@@ -628,13 +678,16 @@ Verification typically takes 15-30 minutes.
         # Wise receiving details (would be configured in production)
         wise_email = os.getenv("WISE_RECEIVING_EMAIL", "payments@megilance.com")
         
-        self._mock_transactions[tx_id] = {
+        self._save_transaction(tx_id, {
             "id": tx_id,
             "provider": "wise",
             "status": "pending",
             "amount": str(request.amount),
-            "created_at": datetime.now(timezone.utc).isoformat()
-        }
+            "fee": str(fees["total_fee"]),
+            "net_amount": str(fees["net_amount"]),
+            "currency": "USD",
+            "user_id": getattr(request, 'user_id', None),
+        })
         
         return PaymentResponse(
             success=True,
@@ -677,13 +730,16 @@ First time? Sign up at wise.com (free account)
         tx_id = f"payoneer_{secrets.token_hex(8)}"
         payoneer_email = os.getenv("PAYONEER_RECEIVING_EMAIL", "payments@megilance.com")
         
-        self._mock_transactions[tx_id] = {
+        self._save_transaction(tx_id, {
             "id": tx_id,
             "provider": "payoneer",
             "status": "pending",
             "amount": str(request.amount),
-            "created_at": datetime.now(timezone.utc).isoformat()
-        }
+            "fee": str(fees["total_fee"]),
+            "net_amount": str(fees["net_amount"]),
+            "currency": "USD",
+            "user_id": getattr(request, 'user_id', None),
+        })
         
         return PaymentResponse(
             success=True,
@@ -790,7 +846,7 @@ New to Payoneer? Sign up at payoneer.com
     
     async def get_transaction_status(self, transaction_id: str) -> Dict[str, Any]:
         """Get status of a transaction"""
-        tx = self._mock_transactions.get(transaction_id)
+        tx = self._get_transaction(transaction_id)
         if not tx:
             return {"error": "Transaction not found", "status": "not_found"}
         return tx

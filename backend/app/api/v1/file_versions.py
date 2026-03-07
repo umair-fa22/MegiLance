@@ -13,9 +13,7 @@ from datetime import datetime
 from typing import Dict, List, Any, Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, UploadFile, File, Form
 from pydantic import BaseModel, Field
-from sqlalchemy.orm import Session
 
-from ...db.session import get_db
 from ...core.security import get_current_active_user
 from ...services.file_versioning import file_versioning_service
 from ...services.db_utils import sanitize_text
@@ -46,7 +44,7 @@ async def create_versioned_file(
     resource_id: Optional[str] = Form(None),
     description: Optional[str] = Form(None),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Create a new versioned file.
@@ -56,7 +54,7 @@ async def create_versioned_file(
     content = await file.read()
     
     result = await file_versioning_service.create_file(
-        db=db,
+        ,
         user_id=str(current_user.get("id")),
         filename=file.filename,
         content=content,
@@ -75,11 +73,11 @@ async def search_files(
     resource_id: Optional[str] = Query(None),
     limit: int = Query(50, ge=1, le=100),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Search and list versioned files."""
     result = await file_versioning_service.search_files(
-        db=db,
+        ,
         user_id=str(current_user.get("id")),
         query=query,
         resource_type=resource_type,
@@ -93,11 +91,11 @@ async def search_files(
 async def get_file(
     file_id: str,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get file metadata and version summary."""
     try:
-        result = await file_versioning_service.get_file(db=db, file_id=file_id)
+        result = await file_versioning_service.get_file(file_id=file_id)
         return result
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
@@ -111,7 +109,7 @@ async def upload_new_version(
     file: UploadFile = File(...),
     comment: Optional[str] = Form(None),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Upload a new version of an existing file.
@@ -122,7 +120,7 @@ async def upload_new_version(
         content = await file.read()
         
         result = await file_versioning_service.upload_new_version(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             file_id=file_id,
             content=content,
@@ -138,12 +136,12 @@ async def get_version_history(
     file_id: str,
     limit: int = Query(50, ge=1, le=100),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get version history for a file."""
     try:
         result = await file_versioning_service.get_version_history(
-            db=db,
+            ,
             file_id=file_id,
             limit=limit
         )
@@ -157,7 +155,7 @@ async def get_version(
     file_id: str,
     version_number: int,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Get a specific version.
@@ -166,7 +164,7 @@ async def get_version(
     """
     try:
         result = await file_versioning_service.get_version(
-            db=db,
+            ,
             file_id=file_id,
             version_number=version_number
         )
@@ -182,7 +180,7 @@ async def delete_version(
     file_id: str,
     version_number: int,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Delete a specific version.
@@ -191,7 +189,7 @@ async def delete_version(
     """
     try:
         result = await file_versioning_service.delete_version(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             file_id=file_id,
             version_number=version_number
@@ -208,7 +206,7 @@ async def rollback_to_version(
     file_id: str,
     version_number: int = Query(..., description="Version number to rollback to"),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Rollback file to a previous version.
@@ -217,7 +215,7 @@ async def rollback_to_version(
     """
     try:
         result = await file_versioning_service.rollback_to_version(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             file_id=file_id,
             version_number=version_number
@@ -234,7 +232,7 @@ async def compare_versions(
     file_id: str,
     request: CompareVersionsRequest,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Compare two versions of a file.
@@ -243,7 +241,7 @@ async def compare_versions(
     """
     try:
         result = await file_versioning_service.compare_versions(
-            db=db,
+            ,
             file_id=file_id,
             version_a=request.version_a,
             version_b=request.version_b
@@ -259,7 +257,7 @@ async def compare_versions(
 async def lock_file(
     file_id: str,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Lock a file for exclusive editing.
@@ -268,7 +266,7 @@ async def lock_file(
     """
     try:
         result = await file_versioning_service.lock_file(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             file_id=file_id
         )
@@ -282,7 +280,7 @@ async def unlock_file(
     file_id: str,
     force: bool = Query(False, description="Force unlock (admin only)"),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Unlock a file."""
     try:
@@ -291,7 +289,7 @@ async def unlock_file(
             raise ValueError("Only admins can force unlock")
         
         result = await file_versioning_service.unlock_file(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             file_id=file_id,
             force=force
@@ -306,7 +304,7 @@ async def unlock_file(
 @router.get("/info/config")
 async def get_versioning_config(
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get file versioning configuration."""
     return {

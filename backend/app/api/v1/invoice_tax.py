@@ -11,12 +11,10 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status, Query
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any, Literal
 from pydantic import BaseModel, EmailStr
 from datetime import datetime
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.services.db_utils import sanitize_text
 from app.services.invoice_tax import (
@@ -108,11 +106,11 @@ class CreateRecurringInvoiceRequest(BaseModel):
 @router.post("/invoices")
 async def create_invoice(
     request: CreateInvoiceRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a new invoice."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     
     items = [item.dict() for item in request.items]
     # Sanitize item descriptions
@@ -143,11 +141,11 @@ async def list_invoices(
     date_to: Optional[datetime] = None,
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """List invoices with filters."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     
     result = await service.list_invoices(
         user_id=current_user["id"],
@@ -165,11 +163,11 @@ async def list_invoices(
 @router.get("/invoices/{invoice_id}")
 async def get_invoice(
     invoice_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get invoice by ID."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     
     invoice = await service.get_invoice(invoice_id, current_user["id"])
     
@@ -186,11 +184,11 @@ async def get_invoice(
 async def update_invoice(
     invoice_id: str,
     request: UpdateInvoiceRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update an invoice (drafts only)."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     
     updates = request.dict(exclude_unset=True)
     if "items" in updates:
@@ -217,11 +215,11 @@ async def update_invoice(
 async def send_invoice(
     invoice_id: str,
     request: SendInvoiceRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Send invoice to client."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     
     result = await service.send_invoice(
         invoice_id=invoice_id,
@@ -237,11 +235,11 @@ async def send_invoice(
 async def record_payment(
     invoice_id: str,
     request: RecordPaymentRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Record a payment for an invoice."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     
     result = await service.record_payment(
         invoice_id=invoice_id,
@@ -259,11 +257,11 @@ async def record_payment(
 async def cancel_invoice(
     invoice_id: str,
     request: CancelInvoiceRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Cancel an invoice."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     
     result = await service.cancel_invoice(
         invoice_id=invoice_id,
@@ -277,11 +275,11 @@ async def cancel_invoice(
 @router.post("/invoices/{invoice_id}/duplicate")
 async def duplicate_invoice(
     invoice_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Duplicate an invoice."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     
     invoice = await service.duplicate_invoice(invoice_id, current_user["id"])
     
@@ -297,11 +295,11 @@ async def duplicate_invoice(
 @router.get("/invoices/{invoice_id}/pdf")
 async def export_invoice_pdf(
     invoice_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Export invoice as PDF."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     result = await service.export_invoice_pdf(invoice_id, current_user["id"])
     return result
 
@@ -310,11 +308,11 @@ async def export_invoice_pdf(
 @router.get("/tax-rates")
 async def get_tax_rates(
     country: Optional[str] = None,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get configured tax rates."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     rates = await service.get_tax_rates(current_user["id"], country)
     return {"tax_rates": rates}
 
@@ -322,11 +320,11 @@ async def get_tax_rates(
 @router.post("/tax-rates")
 async def create_tax_rate(
     request: CreateTaxRateRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a new tax rate."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     
     rate = await service.create_tax_rate(
         user_id=current_user["id"],
@@ -345,11 +343,11 @@ async def create_tax_rate(
 async def update_tax_rate(
     tax_id: str,
     request: UpdateTaxRateRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update a tax rate."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     
     rate = await service.update_tax_rate(
         tax_id=tax_id,
@@ -369,11 +367,11 @@ async def update_tax_rate(
 @router.delete("/tax-rates/{tax_id}")
 async def delete_tax_rate(
     tax_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Delete a tax rate."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     
     success = await service.delete_tax_rate(tax_id, current_user["id"])
     
@@ -391,11 +389,11 @@ async def delete_tax_rate(
 async def get_tax_report(
     year: int,
     quarter: Optional[int] = None,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Generate tax report."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     report = await service.get_tax_report(current_user["id"], year, quarter)
     return {"report": report}
 
@@ -404,11 +402,11 @@ async def get_tax_report(
 async def get_income_statement(
     year: int,
     month: Optional[int] = None,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Generate income statement."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     statement = await service.get_income_statement(current_user["id"], year, month)
     return {"statement": statement}
 
@@ -416,11 +414,11 @@ async def get_income_statement(
 # Invoice Templates
 @router.get("/templates")
 async def get_invoice_templates(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get invoice templates."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     templates = await service.get_invoice_templates(current_user["id"])
     return {"templates": templates}
 
@@ -428,11 +426,11 @@ async def get_invoice_templates(
 @router.put("/templates/{template_id}/default")
 async def set_default_template(
     template_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Set default invoice template."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     result = await service.set_invoice_template(current_user["id"], template_id)
     return result
 
@@ -441,11 +439,11 @@ async def set_default_template(
 @router.post("/export")
 async def export_to_accounting(
     request: ExportAccountingRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Export invoices for accounting software."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     
     result = await service.export_to_accounting(
         user_id=current_user["id"],
@@ -461,11 +459,11 @@ async def export_to_accounting(
 @router.post("/recurring")
 async def create_recurring_invoice(
     request: CreateRecurringInvoiceRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a recurring invoice schedule."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     
     items = [item.dict() for item in request.items]
     
@@ -483,10 +481,10 @@ async def create_recurring_invoice(
 
 @router.get("/recurring")
 async def list_recurring_invoices(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """List recurring invoice schedules."""
-    service = get_invoice_tax_service(db)
+    service = get_invoice_tax_service()
     recurring = await service.list_recurring_invoices(current_user["id"])
     return {"recurring_invoices": recurring}

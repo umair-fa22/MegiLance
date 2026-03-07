@@ -2,7 +2,6 @@
 """Knowledge Base & FAQ Service."""
 
 from typing import Dict, Any, List, Optional
-from sqlalchemy.orm import Session
 from datetime import datetime, timezone
 from enum import Enum
 import logging
@@ -224,8 +223,7 @@ Research market rates for your skills. Consider starting slightly lower to build
 class KnowledgeBaseService:
     """Service for knowledge base and FAQ management"""
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
         global _kb_tables_ensured
         if not _kb_tables_ensured:
             try:
@@ -514,6 +512,11 @@ class KnowledgeBaseService:
         return {"article_id": article_id, "message": "Article deleted successfully"}
 
 
-def get_knowledge_base_service(db: Session) -> KnowledgeBaseService:
+_knowledge_base_service = None
+
+def get_knowledge_base_service() -> KnowledgeBaseService:
     """Get knowledge base service instance"""
-    return KnowledgeBaseService(db)
+    global _knowledge_base_service
+    if _knowledge_base_service is None:
+        _knowledge_base_service = KnowledgeBaseService()
+    return _knowledge_base_service

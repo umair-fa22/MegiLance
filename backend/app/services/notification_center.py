@@ -6,8 +6,6 @@ import secrets
 import json
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any
-from sqlalchemy.orm import Session
-from sqlalchemy import and_, or_
 from enum import Enum
 from collections import defaultdict
 
@@ -155,8 +153,8 @@ class NotificationCenterService:
         NotificationChannel.SMS: 5
     }
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        pass
         
         # In-memory stores
         self._notifications: Dict[str, Dict] = {}
@@ -622,11 +620,9 @@ class NotificationCenterService:
 _notification_service: Optional[NotificationCenterService] = None
 
 
-def get_notification_service(db: Session) -> NotificationCenterService:
+def get_notification_service() -> NotificationCenterService:
     """Get or create notification service instance."""
     global _notification_service
     if _notification_service is None:
-        _notification_service = NotificationCenterService(db)
-    else:
-        _notification_service.db = db
+        _notification_service = NotificationCenterService()
     return _notification_service

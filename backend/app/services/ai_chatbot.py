@@ -1,4 +1,4 @@
-# @AI-HINT: AI chatbot with intent classification and support ticket creation
+# @AI-HINT: AI chatbot with intent classification and support ticket creation — DB-backed via Turso
 """Conversational support system with FAQ matching and live agent handoff."""
 
 import logging
@@ -7,9 +7,10 @@ import json
 import re
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any, Tuple
-from sqlalchemy.orm import Session
 from enum import Enum
 from collections import defaultdict
+
+from app.db.turso_http import execute_query, parse_rows
 
 logger = logging.getLogger(__name__)
 
@@ -190,12 +191,20 @@ class AIChatbotService:
     _MAX_MESSAGES_PER_CONVERSATION = 200
     _MAX_TICKETS = 2000
 
-    def __init__(self, db: Session):
-        self.db = db
-        self._conversations: Dict[str, Dict] = {}
-        self._user_conversations: Dict[int, List[str]] = defaultdict(list)
-        self._message_history: Dict[str, List[Dict]] = defaultdict(list)
-        self._tickets: Dict[str, Dict] = {}
+    def __init__(self):
+        pass
+
+    async def _get_conversation(self, conversation_id: str) -> Optional[Dict]:
+        result = await execute_query("SELECT * FROM chatbot_conversations WHERE id = ?", [conversation_id])
+        rows = parse_rows(result)
+        if not rows:
+            return None
+        r = rows[0]
+        r["intents_detected"] = json.loads(r.get("intents_detected") or "[]")
+        r["sentiment_history"] = json.loads(r.get("sentiment_history") or "[]")
+        r["context"] = json.loads(r.get("context") or "{}")
+        r["escalated"] = bool(int(r.get("escalated", 0)))
+        return r
     
     async def start_conversation(
         self,
@@ -204,28 +213,17 @@ class AIChatbotService:
     ) -> Dict[str, Any]:
         """Start a new chatbot conversation."""
         conversation_id = f"chat_{secrets.token_hex(12)}"
-        
-        conversation = {
-            "id": conversation_id,
-            "user_id": user_id,
-            "state": ConversationState.ACTIVE.value,
-            "context": context or {},
-            "intents_detected": [],
-            "sentiment_history": [],
-            "ticket_id": None,
-            "escalated": False,
-            "started_at": datetime.now(timezone.utc).isoformat(),
-            "last_activity": datetime.now(timezone.utc).isoformat()
-        }
-        
-        # Evict closed conversations if at capacity
-        if len(self._conversations) >= self._MAX_CONVERSATIONS:
-            self._evict_closed_conversations()
-        self._conversations[conversation_id] = conversation
-        if user_id:
-            self._user_conversations[user_id].append(conversation_id)
-        
-        # Send greeting
+        now = datetime.now(timezone.utc).isoformat()
+
+        await execute_query(
+            """INSERT INTO chatbot_conversations
+               (id, user_id, state, context, intents_detected, sentiment_history,
+                escalated, started_at, last_activity)
+               VALUES (?, ?, ?, ?, '[]', '[]', 0, ?, ?)""",
+            [conversation_id, user_id, ConversationState.ACTIVE.value,
+             json.dumps(context or {}), now, now]
+        )
+
         greeting = await self._get_greeting(user_id, context)
         
         return {
@@ -246,53 +244,52 @@ class AIChatbotService:
         user_id: Optional[int] = None
     ) -> Dict[str, Any]:
         """Process user message and generate response."""
-        conversation = self._conversations.get(conversation_id)
+        conversation = await self._get_conversation(conversation_id)
         if not conversation:
             return {"error": "Conversation not found"}
         
-        # Update last activity
-        conversation["last_activity"] = datetime.now(timezone.utc).isoformat()
+        now = datetime.now(timezone.utc).isoformat()
         
         # Analyze message
         intent = self._classify_intent(message)
         sentiment = self._analyze_sentiment(message)
         
-        # Store message
-        self._message_history[conversation_id].append({
-            "role": "user",
-            "content": message,
-            "intent": intent.value,
-            "sentiment": sentiment.value,
-            "timestamp": datetime.now(timezone.utc).isoformat()
-        })
+        # Store user message in DB
+        msg_id = f"msg_{secrets.token_hex(8)}"
+        await execute_query(
+            """INSERT INTO chatbot_messages (id, conversation_id, role, content, intent, sentiment, timestamp)
+               VALUES (?, ?, 'user', ?, ?, ?, ?)""",
+            [msg_id, conversation_id, message, intent.value, sentiment.value, now]
+        )
         
-        # Track intent and sentiment
-        conversation["intents_detected"].append(intent.value)
-        conversation["sentiment_history"].append(sentiment.value)
+        # Update conversation intents/sentiment
+        intents = conversation["intents_detected"]
+        intents.append(intent.value)
+        sentiments = conversation["sentiment_history"]
+        sentiments.append(sentiment.value)
+        await execute_query(
+            """UPDATE chatbot_conversations SET last_activity = ?, intents_detected = ?, sentiment_history = ?
+               WHERE id = ?""",
+            [now, json.dumps(intents), json.dumps(sentiments), conversation_id]
+        )
+        conversation["intents_detected"] = intents
+        conversation["sentiment_history"] = sentiments
         
         # Check for escalation triggers
         should_escalate = self._check_escalation_triggers(conversation, intent, sentiment)
-        
         if should_escalate:
             return await self._escalate_to_agent(conversation_id, message)
         
-        # Generate response based on intent
-        response = await self._generate_response(
-            conversation_id, message, intent, sentiment
-        )
+        # Generate response
+        response = await self._generate_response(conversation_id, message, intent, sentiment)
         
         # Store bot response
-        self._message_history[conversation_id].append({
-            "role": "assistant",
-            "content": response["message"],
-            "intent_matched": intent.value,
-            "timestamp": datetime.now(timezone.utc).isoformat()
-        })
-        
-        # Cap message history per conversation
-        history = self._message_history[conversation_id]
-        if len(history) > self._MAX_MESSAGES_PER_CONVERSATION:
-            self._message_history[conversation_id] = history[-self._MAX_MESSAGES_PER_CONVERSATION:]
+        bot_msg_id = f"msg_{secrets.token_hex(8)}"
+        await execute_query(
+            """INSERT INTO chatbot_messages (id, conversation_id, role, content, intent, sentiment, timestamp)
+               VALUES (?, ?, 'assistant', ?, ?, ?, ?)""",
+            [bot_msg_id, conversation_id, response["message"], intent.value, sentiment.value, now]
+        )
         
         return {
             "conversation_id": conversation_id,
@@ -309,11 +306,15 @@ class AIChatbotService:
         conversation_id: str
     ) -> Dict[str, Any]:
         """Get conversation history."""
-        conversation = self._conversations.get(conversation_id)
+        conversation = await self._get_conversation(conversation_id)
         if not conversation:
             return {"error": "Conversation not found"}
         
-        messages = self._message_history.get(conversation_id, [])
+        result = await execute_query(
+            "SELECT * FROM chatbot_messages WHERE conversation_id = ? ORDER BY timestamp ASC",
+            [conversation_id]
+        )
+        messages = parse_rows(result)
         
         return {
             "conversation": conversation,
@@ -370,39 +371,34 @@ class AIChatbotService:
     ) -> Dict[str, Any]:
         """Create a support ticket from conversation."""
         ticket_id = f"ticket_{secrets.token_hex(8)}"
-        
-        # Get conversation context
-        conversation = self._conversations.get(conversation_id, {})
-        messages = self._message_history.get(conversation_id, [])
-        
-        ticket = {
-            "id": ticket_id,
-            "user_id": user_id,
-            "conversation_id": conversation_id,
-            "subject": subject,
-            "description": description,
-            "priority": priority,
-            "category": category or "general",
-            "status": "open",
-            "intents_detected": conversation.get("intents_detected", []),
-            "sentiment_summary": self._summarize_sentiment(
-                conversation.get("sentiment_history", [])
-            ),
-            "conversation_summary": self._summarize_conversation(messages),
-            "created_at": datetime.now(timezone.utc).isoformat(),
-            "updated_at": datetime.now(timezone.utc).isoformat()
-        }
-        
-        if len(self._tickets) >= self._MAX_TICKETS:
-            oldest_key = next(iter(self._tickets))
-            del self._tickets[oldest_key]
-        self._tickets[ticket_id] = ticket
-        
-        # Update conversation
+        now = datetime.now(timezone.utc).isoformat()
+
+        conversation = await self._get_conversation(conversation_id) or {}
+        msgs_result = await execute_query(
+            "SELECT * FROM chatbot_messages WHERE conversation_id = ? ORDER BY timestamp ASC",
+            [conversation_id]
+        )
+        messages = parse_rows(msgs_result)
+
+        sentiment_summary = self._summarize_sentiment(conversation.get("sentiment_history", []))
+        conversation_summary = self._summarize_conversation(messages)
+
+        await execute_query(
+            """INSERT INTO chatbot_tickets
+               (id, user_id, conversation_id, subject, description, priority, category,
+                status, intents_detected, sentiment_summary, conversation_summary, created_at, updated_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?, 'open', ?, ?, ?, ?, ?)""",
+            [ticket_id, user_id, conversation_id, subject, description, priority,
+             category or "general", json.dumps(conversation.get("intents_detected", [])),
+             sentiment_summary, conversation_summary, now, now]
+        )
+
         if conversation:
-            conversation["ticket_id"] = ticket_id
-            conversation["state"] = ConversationState.ESCALATED.value
-        
+            await execute_query(
+                "UPDATE chatbot_conversations SET ticket_id = ?, state = ? WHERE id = ?",
+                [ticket_id, ConversationState.ESCALATED.value, conversation_id]
+            )
+
         return {
             "ticket_id": ticket_id,
             "status": "created",
@@ -411,7 +407,13 @@ class AIChatbotService:
     
     async def get_ticket(self, ticket_id: str) -> Optional[Dict[str, Any]]:
         """Get support ticket details."""
-        return self._tickets.get(ticket_id)
+        result = await execute_query("SELECT * FROM chatbot_tickets WHERE id = ?", [ticket_id])
+        rows = parse_rows(result)
+        if not rows:
+            return None
+        r = rows[0]
+        r["intents_detected"] = json.loads(r.get("intents_detected") or "[]")
+        return r
     
     async def close_conversation(
         self,
@@ -419,40 +421,20 @@ class AIChatbotService:
         resolution: Optional[str] = None
     ) -> Dict[str, Any]:
         """Close a conversation."""
-        conversation = self._conversations.get(conversation_id)
+        conversation = await self._get_conversation(conversation_id)
         if not conversation:
             return {"error": "Conversation not found"}
         
-        conversation["state"] = ConversationState.CLOSED.value
-        conversation["closed_at"] = datetime.now(timezone.utc).isoformat()
-        conversation["resolution"] = resolution
-        
-        # Clean up message history for closed conversation
-        self._message_history.pop(conversation_id, None)
+        now = datetime.now(timezone.utc).isoformat()
+        await execute_query(
+            "UPDATE chatbot_conversations SET state = ?, closed_at = ?, resolution = ? WHERE id = ?",
+            [ConversationState.CLOSED.value, now, resolution, conversation_id]
+        )
         
         return {
             "status": "closed",
             "message": "Thank you for chatting with us! Have a great day!"
         }
-    
-    def _evict_closed_conversations(self) -> None:
-        """Remove closed conversations to free memory."""
-        closed_ids = [
-            cid for cid, conv in self._conversations.items()
-            if conv.get("state") == ConversationState.CLOSED.value
-        ]
-        for cid in closed_ids:
-            del self._conversations[cid]
-            self._message_history.pop(cid, None)
-        # If still over limit, remove oldest by started_at
-        if len(self._conversations) >= self._MAX_CONVERSATIONS:
-            sorted_ids = sorted(
-                self._conversations,
-                key=lambda c: self._conversations[c].get("started_at", "")
-            )
-            for cid in sorted_ids[:len(self._conversations) - self._MAX_CONVERSATIONS + 1]:
-                del self._conversations[cid]
-                self._message_history.pop(cid, None)
 
     def _classify_intent(self, message: str) -> ChatIntent:
         """Classify the intent of a message."""
@@ -672,11 +654,11 @@ class AIChatbotService:
         last_message: str
     ) -> Dict[str, Any]:
         """Escalate conversation to human agent."""
-        conversation = self._conversations.get(conversation_id)
-        if conversation:
-            conversation["escalated"] = True
-            conversation["state"] = ConversationState.ESCALATED.value
-            conversation["escalated_at"] = datetime.now(timezone.utc).isoformat()
+        now = datetime.now(timezone.utc).isoformat()
+        await execute_query(
+            "UPDATE chatbot_conversations SET escalated = 1, state = ?, escalated_at = ? WHERE id = ?",
+            [ConversationState.ESCALATED.value, now, conversation_id]
+        )
         
         return {
             "conversation_id": conversation_id,
@@ -742,11 +724,9 @@ class AIChatbotService:
 _chatbot_service: Optional[AIChatbotService] = None
 
 
-def get_chatbot_service(db: Session) -> AIChatbotService:
+def get_chatbot_service() -> AIChatbotService:
     """Get or create chatbot service instance."""
     global _chatbot_service
     if _chatbot_service is None:
-        _chatbot_service = AIChatbotService(db)
-    else:
-        _chatbot_service.db = db
+        _chatbot_service = AIChatbotService()
     return _chatbot_service

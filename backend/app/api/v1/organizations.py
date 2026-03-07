@@ -10,11 +10,9 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 from typing import Optional, List
 from pydantic import BaseModel, Field, EmailStr
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.services.db_utils import sanitize_text
 from app.models.user import User
@@ -66,11 +64,11 @@ class TransferOwnershipRequest(BaseModel):
 @router.post("")
 async def create_organization(
     request: CreateOrganizationRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a new organization."""
-    service = get_organization_service(db)
+    service = get_organization_service()
     
     org = await service.create_organization(
         owner_id=current_user["id"],
@@ -85,11 +83,11 @@ async def create_organization(
 
 @router.get("")
 async def get_my_organizations(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get all organizations the current user belongs to."""
-    service = get_organization_service(db)
+    service = get_organization_service()
     
     orgs = await service.get_user_organizations(current_user["id"])
     
@@ -113,11 +111,11 @@ async def get_available_roles(
 @router.get("/{org_id}")
 async def get_organization(
     org_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get organization details."""
-    service = get_organization_service(db)
+    service = get_organization_service()
     
     org = await service.get_organization(org_id)
     if not org:
@@ -141,11 +139,11 @@ async def get_organization(
 async def update_organization(
     org_id: str,
     request: UpdateOrganizationRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update organization details."""
-    service = get_organization_service(db)
+    service = get_organization_service()
     
     updates = request.dict(exclude_unset=True)
     org = await service.update_organization(
@@ -166,11 +164,11 @@ async def update_organization(
 @router.delete("/{org_id}")
 async def delete_organization(
     org_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Delete an organization (owner only)."""
-    service = get_organization_service(db)
+    service = get_organization_service()
     
     success = await service.delete_organization(org_id, current_user["id"])
     
@@ -186,11 +184,11 @@ async def delete_organization(
 @router.get("/{org_id}/stats")
 async def get_organization_stats(
     org_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get organization statistics."""
-    service = get_organization_service(db)
+    service = get_organization_service()
     
     # Check membership
     member = await service.get_member(org_id, current_user["id"])
@@ -208,11 +206,11 @@ async def get_organization_stats(
 @router.get("/{org_id}/members")
 async def get_members(
     org_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get all members of an organization."""
-    service = get_organization_service(db)
+    service = get_organization_service()
     
     # Check membership
     member = await service.get_member(org_id, current_user["id"])
@@ -230,11 +228,11 @@ async def get_members(
 async def invite_member(
     org_id: str,
     request: InviteMemberRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Invite a new member to the organization."""
-    service = get_organization_service(db)
+    service = get_organization_service()
     
     invite = await service.invite_member(
         org_id=org_id,
@@ -260,11 +258,11 @@ async def invite_member(
 @router.get("/{org_id}/invites")
 async def get_pending_invites(
     org_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get all pending invites for an organization."""
-    service = get_organization_service(db)
+    service = get_organization_service()
     
     # Check membership
     member = await service.get_member(org_id, current_user["id"])
@@ -281,11 +279,11 @@ async def get_pending_invites(
 @router.post("/invites/accept")
 async def accept_invite(
     request: AcceptInviteRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Accept an organization invite."""
-    service = get_organization_service(db)
+    service = get_organization_service()
     
     member = await service.accept_invite(
         token=request.token,
@@ -304,11 +302,11 @@ async def accept_invite(
 @router.post("/invites/decline")
 async def decline_invite(
     request: AcceptInviteRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Decline an organization invite."""
-    service = get_organization_service(db)
+    service = get_organization_service()
     
     success = await service.decline_invite(request.token)
     
@@ -326,11 +324,11 @@ async def update_member_role(
     org_id: str,
     user_id: str,
     request: UpdateMemberRoleRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update a member's role."""
-    service = get_organization_service(db)
+    service = get_organization_service()
     
     member = await service.update_member_role(
         org_id=org_id,
@@ -352,11 +350,11 @@ async def update_member_role(
 async def remove_member(
     org_id: str,
     user_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Remove a member from the organization."""
-    service = get_organization_service(db)
+    service = get_organization_service()
     
     success = await service.remove_member(
         org_id=org_id,
@@ -376,11 +374,11 @@ async def remove_member(
 @router.post("/{org_id}/leave")
 async def leave_organization(
     org_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Leave an organization."""
-    service = get_organization_service(db)
+    service = get_organization_service()
     
     success = await service.leave_organization(org_id, current_user["id"])
     
@@ -397,11 +395,11 @@ async def leave_organization(
 async def transfer_ownership(
     org_id: str,
     request: TransferOwnershipRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Transfer organization ownership to another member."""
-    service = get_organization_service(db)
+    service = get_organization_service()
     
     success = await service.transfer_ownership(
         org_id=org_id,

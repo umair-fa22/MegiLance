@@ -10,15 +10,13 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
 from typing import Optional, List
 from pydantic import BaseModel
 from datetime import datetime
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user, require_admin
 from app.models.user import User
-from app.services.i18n import InternationalizationService, Language
+from app.services.i18n import get_i18n_service, Language
 
 router = APIRouter()
 
@@ -57,10 +55,10 @@ class FormatRequest(BaseModel):
 # API Endpoints
 @router.get("/languages")
 async def get_supported_languages(
-    db: Session = Depends(get_db)
+    
 ):
     """Get list of supported languages."""
-    service = InternationalizationService(db)
+    service = get_i18n_service()
     
     languages = service.get_supported_languages()
     
@@ -74,7 +72,7 @@ async def get_supported_languages(
 async def get_translations(
     language: str,
     namespace: Optional[str] = None,
-    db: Session = Depends(get_db)
+    
 ):
     """Get all translations for a language."""
     try:
@@ -85,7 +83,7 @@ async def get_translations(
             detail=f"Unsupported language: {language}"
         )
     
-    service = InternationalizationService(db)
+    service = get_i18n_service()
     
     translations = service.get_all_translations(lang)
     
@@ -99,7 +97,7 @@ async def get_translations(
 @router.post("/translate")
 async def translate_keys(
     request: TranslateRequest,
-    db: Session = Depends(get_db)
+    
 ):
     """Translate multiple keys."""
     try:
@@ -107,7 +105,7 @@ async def translate_keys(
     except ValueError:
         lang = Language.EN
     
-    service = InternationalizationService(db)
+    service = get_i18n_service()
     
     translations = service.translate_batch(request.keys, lang)
     
@@ -120,10 +118,10 @@ async def translate_keys(
 @router.post("/detect")
 async def detect_language(
     request: DetectLanguageRequest,
-    db: Session = Depends(get_db)
+    
 ):
     """Detect language from text."""
-    service = InternationalizationService(db)
+    service = get_i18n_service()
     
     result = service.detect_language(request.text)
     
@@ -132,11 +130,11 @@ async def detect_language(
 
 @router.get("/user/language")
 async def get_user_language(
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get user's preferred language."""
-    service = InternationalizationService(db)
+    service = get_i18n_service()
     
     language = service.get_user_language(current_user.id)
     
@@ -150,7 +148,7 @@ async def get_user_language(
 @router.put("/user/language")
 async def set_user_language(
     request: SetLanguageRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Set user's preferred language."""
@@ -162,7 +160,7 @@ async def set_user_language(
             detail=f"Unsupported language: {request.language}"
         )
     
-    service = InternationalizationService(db)
+    service = get_i18n_service()
     
     result = service.set_user_language(current_user.id, lang)
     
@@ -177,7 +175,7 @@ async def format_currency(
     amount: float,
     currency: str = "USD",
     language: str = "en",
-    db: Session = Depends(get_db)
+    
 ):
     """Format currency for locale."""
     try:
@@ -185,7 +183,7 @@ async def format_currency(
     except ValueError:
         lang = Language.EN
     
-    service = InternationalizationService(db)
+    service = get_i18n_service()
     
     formatted = service.format_currency(amount, currency, lang)
     
@@ -202,7 +200,7 @@ async def format_number(
     number: float,
     language: str = "en",
     decimals: int = 2,
-    db: Session = Depends(get_db)
+    
 ):
     """Format number for locale."""
     try:
@@ -210,7 +208,7 @@ async def format_number(
     except ValueError:
         lang = Language.EN
     
-    service = InternationalizationService(db)
+    service = get_i18n_service()
     
     formatted = service.format_number(number, lang, decimals)
     
@@ -226,7 +224,7 @@ async def format_date(
     date: datetime,
     language: str = "en",
     format: str = "medium",
-    db: Session = Depends(get_db)
+    
 ):
     """Format date for locale."""
     try:
@@ -237,7 +235,7 @@ async def format_date(
     if format not in ["short", "medium", "long"]:
         format = "medium"
     
-    service = InternationalizationService(db)
+    service = get_i18n_service()
     
     formatted = service.format_date(date, lang, format)
     
@@ -252,12 +250,12 @@ async def format_date(
 @router.post("/translations/add", include_in_schema=False)
 async def add_translation(
     request: AddTranslationRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user),
     _admin = Depends(require_admin)
 ):
     """Add a new translation (admin only)."""
-    service = InternationalizationService(db)
+    service = get_i18n_service()
     
     result = service.add_translation(
         key=request.key,
@@ -270,7 +268,7 @@ async def add_translation(
 @router.get("/rtl/{language}")
 async def check_rtl(
     language: str,
-    db: Session = Depends(get_db)
+    
 ):
     """Check if a language is RTL."""
     try:
@@ -281,7 +279,7 @@ async def check_rtl(
             detail=f"Unsupported language: {language}"
         )
     
-    service = InternationalizationService(db)
+    service = get_i18n_service()
     
     return {
         "language": language,

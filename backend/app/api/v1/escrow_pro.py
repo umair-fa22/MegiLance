@@ -11,12 +11,10 @@ Endpoints for:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 from typing import Optional, List
 from pydantic import BaseModel, Field
 from datetime import datetime
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.models.user import User
 from app.services.advanced_escrow import get_escrow_service
@@ -68,10 +66,10 @@ class EscrowResponse(BaseModel):
 async def create_escrow(
     request: CreateEscrowRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Create a new escrow account for a contract."""
-    service = get_escrow_service(db)
+    service = get_escrow_service()
     
     result = await service.create_escrow(
         client_id=current_user.id,
@@ -91,10 +89,10 @@ async def create_escrow(
 async def get_escrow(
     escrow_id: str,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get escrow details."""
-    service = get_escrow_service(db)
+    service = get_escrow_service()
     
     result = await service.get_escrow(escrow_id)
     
@@ -113,10 +111,10 @@ async def fund_milestone(
     escrow_id: str,
     request: FundMilestoneRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Fund a milestone in the escrow."""
-    service = get_escrow_service(db)
+    service = get_escrow_service()
     
     result = await service.fund_milestone(
         escrow_id=escrow_id,
@@ -136,10 +134,10 @@ async def release_milestone(
     escrow_id: str,
     request: ReleaseMilestoneRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Release funds for a completed milestone."""
-    service = get_escrow_service(db)
+    service = get_escrow_service()
     
     result = await service.release_milestone(
         escrow_id=escrow_id,
@@ -159,10 +157,10 @@ async def dispute_milestone(
     escrow_id: str,
     request: DisputeMilestoneRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Raise a dispute for a milestone."""
-    service = get_escrow_service(db)
+    service = get_escrow_service()
     
     result = await service.dispute_milestone(
         escrow_id=escrow_id,
@@ -183,10 +181,10 @@ async def request_refund(
     escrow_id: str,
     request: RefundRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Request a refund from escrow."""
-    service = get_escrow_service(db)
+    service = get_escrow_service()
     
     result = await service.process_refund(
         escrow_id=escrow_id,
@@ -205,10 +203,10 @@ async def request_refund(
 async def get_escrow_balance(
     escrow_id: str,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get escrow balance breakdown."""
-    service = get_escrow_service(db)
+    service = get_escrow_service()
     
     result = await service.get_escrow_balance(escrow_id)
     
@@ -222,10 +220,10 @@ async def get_escrow_balance(
 async def get_escrow_transactions(
     escrow_id: str,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get escrow transaction history."""
-    service = get_escrow_service(db)
+    service = get_escrow_service()
     
     escrow = await service.get_escrow(escrow_id)
     if not escrow:
@@ -245,10 +243,10 @@ async def get_escrow_transactions(
 async def get_user_escrows(
     status: Optional[str] = None,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get all escrows for the current user."""
-    service = get_escrow_service(db)
+    service = get_escrow_service()
     
     result = await service.get_user_escrows(
         user_id=current_user.id,

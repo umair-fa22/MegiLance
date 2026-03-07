@@ -2,7 +2,6 @@
 """Legal Document Center Service."""
 
 from typing import Dict, Any, List, Optional
-from sqlalchemy.orm import Session
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 import logging
@@ -11,8 +10,6 @@ import uuid
 
 import json
 
-from app.models.user import User
-from app.models.contract import Contract
 from app.db.turso_http import execute_query, parse_rows
 
 logger = logging.getLogger(__name__)
@@ -207,8 +204,7 @@ class LegalDocumentService:
     
     _tables_ensured = False
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
         if not LegalDocumentService._tables_ensured:
             try:
                 _ensure_legal_documents_table()
@@ -652,27 +648,48 @@ class LegalDocumentService:
         document_id: str,
         format: str = "pdf"
     ) -> Dict[str, Any]:
-        """Export document to PDF or other format"""
+        """Export document to specified format"""
+        result = execute_query(
+            "SELECT id, title, content, doc_type, status FROM legal_documents WHERE id = ? AND created_by = ?",
+            [document_id, user_id]
+        )
+        rows = parse_rows(result) if result else []
+        if not rows:
+            return {"error": "Document not found"}
+        
+        doc = rows[0]
         return {
             "document_id": document_id,
             "format": format,
-            "download_url": None,
-            "message": "Document export not yet implemented"
+            "title": doc.get("title"),
+            "content": doc.get("content"),
+            "status": doc.get("status"),
+            "exported_at": datetime.now(timezone.utc).isoformat()
         }
     
     # Audit Trail
     async def get_document_audit_trail(
         self,
         document_id: str
-    ) -> List[Dict[str, Any]]:
+    ) -> Dict[str, Any]:
         """Get audit trail for a document"""
+        result = execute_query(
+            "SELECT id, user_id, action, details, ip_address, user_agent, created_at FROM document_audit_trail WHERE document_id = ? ORDER BY created_at DESC",
+            [document_id]
+        )
+        rows = parse_rows(result) if result else []
+        for row in rows:
+            if row.get("details"):
+                try:
+                    row["details"] = json.loads(row["details"])
+                except (json.JSONDecodeError, TypeError):
+                    pass
         return {
             "document_id": document_id,
-            "audit_trail": [],
-            "message": "Audit trail not yet implemented"
+            "audit_trail": rows
         }
 
 
-def get_legal_document_service(db: Session) -> LegalDocumentService:
+def get_legal_document_service() -> LegalDocumentService:
     """Get legal document service instance"""
-    return LegalDocumentService(db)
+    return LegalDocumentService()

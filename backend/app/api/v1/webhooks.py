@@ -10,14 +10,12 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
 from typing import Optional, List
 from pydantic import BaseModel, HttpUrl
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.models.user import User
-from app.services.webhooks import WebhookService, WebhookEvent
+from app.services.webhooks import get_webhook_service, WebhookEvent
 
 router = APIRouter()
 
@@ -41,11 +39,11 @@ class WebhookUpdateRequest(BaseModel):
 # API Endpoints
 @router.get("/events")
 async def get_available_events(
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get list of available webhook events."""
-    service = WebhookService(db)
+    service = get_webhook_service()
     
     events = service.get_available_events()
     
@@ -67,11 +65,11 @@ async def get_available_events(
 @router.post("")
 async def create_webhook(
     request: WebhookCreateRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Register a new webhook."""
-    service = WebhookService(db)
+    service = get_webhook_service()
     
     # Validate events
     try:
@@ -100,11 +98,11 @@ async def create_webhook(
 
 @router.get("")
 async def list_webhooks(
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """List user's webhooks."""
-    service = WebhookService(db)
+    service = get_webhook_service()
     
     webhooks = await service.list_webhooks(current_user.id)
     
@@ -117,11 +115,11 @@ async def list_webhooks(
 @router.get("/{webhook_id}")
 async def get_webhook(
     webhook_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get webhook details."""
-    service = WebhookService(db)
+    service = get_webhook_service()
     
     webhook = await service.get_webhook(webhook_id, current_user.id)
     
@@ -135,11 +133,11 @@ async def get_webhook(
 async def update_webhook(
     webhook_id: str,
     request: WebhookUpdateRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Update webhook configuration."""
-    service = WebhookService(db)
+    service = get_webhook_service()
     
     # Validate events if provided
     events = None
@@ -170,11 +168,11 @@ async def update_webhook(
 @router.delete("/{webhook_id}")
 async def delete_webhook(
     webhook_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Delete a webhook."""
-    service = WebhookService(db)
+    service = get_webhook_service()
     
     success = await service.delete_webhook(webhook_id, current_user.id)
     
@@ -187,11 +185,11 @@ async def delete_webhook(
 @router.post("/{webhook_id}/test")
 async def test_webhook(
     webhook_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Send a test event to webhook."""
-    service = WebhookService(db)
+    service = get_webhook_service()
     
     result = await service.test_webhook(webhook_id, current_user.id)
     
@@ -204,11 +202,11 @@ async def test_webhook(
 @router.post("/{webhook_id}/rotate-secret")
 async def rotate_webhook_secret(
     webhook_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Rotate webhook secret."""
-    service = WebhookService(db)
+    service = get_webhook_service()
     
     result = await service.rotate_secret(webhook_id, current_user.id)
     
@@ -222,11 +220,11 @@ async def rotate_webhook_secret(
 async def get_delivery_logs(
     webhook_id: str,
     limit: int = 50,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get delivery logs for a webhook."""
-    service = WebhookService(db)
+    service = get_webhook_service()
     
     logs = await service.get_delivery_logs(
         webhook_id=webhook_id,
@@ -245,11 +243,11 @@ async def get_delivery_logs(
 async def retry_delivery(
     webhook_id: str,
     delivery_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Retry a failed delivery."""
-    service = WebhookService(db)
+    service = get_webhook_service()
     
     result = await service.retry_delivery(delivery_id, current_user.id)
     

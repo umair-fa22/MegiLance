@@ -11,12 +11,10 @@ Endpoints for:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 from typing import Optional
 from pydantic import BaseModel
 from datetime import datetime
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user, require_admin
 from app.models.user import User
 from app.services.db_utils import get_user_role
@@ -62,11 +60,11 @@ async def get_audit_logs(
     limit: int = 100,
     offset: int = 0,
     current_user: User = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """Get audit logs with filters (admin only)."""
     
-    service = get_audit_service(db)
+    service = get_audit_service()
     
     # Parse enums
     category_enum = None
@@ -108,7 +106,7 @@ async def get_user_activity(
     user_id: int,
     days: int = 30,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get user activity summary."""
     # Users can view their own, admins can view any
@@ -116,7 +114,7 @@ async def get_user_activity(
         if get_user_role(current_user) != "admin":
             raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Admin access required to view other users' activity")
     
-    service = get_audit_service(db)
+    service = get_audit_service()
     
     result = await service.get_user_activity(
         user_id=user_id,
@@ -130,10 +128,10 @@ async def get_user_activity(
 async def get_my_activity(
     days: int = 30,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get current user's activity summary."""
-    service = get_audit_service(db)
+    service = get_audit_service()
     
     result = await service.get_user_activity(
         user_id=current_user.id,
@@ -147,10 +145,10 @@ async def get_my_activity(
 async def get_statistics(
     days: int = 30,
     current_user: User = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """Get audit log statistics (admin only)."""
-    service = get_audit_service(db)
+    service = get_audit_service()
     
     result = await service.get_statistics(days=days)
     
@@ -161,10 +159,10 @@ async def get_statistics(
 async def get_security_alerts(
     hours: int = 24,
     current_user: User = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """Get recent security alerts (admin only)."""
-    service = get_audit_service(db)
+    service = get_audit_service()
     
     result = await service.get_security_alerts(hours=hours)
     
@@ -175,10 +173,10 @@ async def get_security_alerts(
 async def export_logs(
     request: ExportLogsRequest,
     current_user: User = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """Export audit logs for compliance (admin only)."""
-    service = get_audit_service(db)
+    service = get_audit_service()
     
     result = await service.export_logs(
         format=request.format,
@@ -194,10 +192,10 @@ async def verify_integrity(
     start_index: int = 0,
     end_index: Optional[int] = None,
     current_user: User = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """Verify audit log integrity (admin only)."""
-    service = get_audit_service(db)
+    service = get_audit_service()
     
     result = await service.verify_integrity(
         start_index=start_index,
@@ -211,10 +209,10 @@ async def verify_integrity(
 async def cleanup_old_logs(
     category: Optional[str] = None,
     current_user: User = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """Clean up logs past retention period (admin only)."""
-    service = get_audit_service(db)
+    service = get_audit_service()
     
     category_enum = None
     if category:
@@ -231,7 +229,7 @@ async def cleanup_old_logs(
 @router.get("/categories")
 async def get_categories(
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get available audit categories."""
     return {

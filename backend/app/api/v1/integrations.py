@@ -10,11 +10,9 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status, Request
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.models.user import User
 from app.services.integrations import get_integrations_service, IntegrationType
@@ -63,22 +61,19 @@ class CalendarSyncRequest(BaseModel):
 
 # Endpoints
 @router.get("")
-async def list_available_integrations(
-    db: Session = Depends(get_db)
-):
+async def list_available_integrations():
     """List all available integrations."""
-    service = get_integrations_service(db)
+    service = get_integrations_service()
     integrations = await service.list_available_integrations()
     return {"integrations": integrations}
 
 
 @router.get("/connected")
 async def get_connected_integrations(
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Get user's connected integrations."""
-    service = get_integrations_service(db)
+    service = get_integrations_service()
     integrations = await service.get_user_integrations(current_user["id"])
     return {"integrations": integrations}
 
@@ -86,11 +81,10 @@ async def get_connected_integrations(
 @router.get("/{integration_type}")
 async def get_integration_details(
     integration_type: IntegrationType,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Get details for a specific integration."""
-    service = get_integrations_service(db)
+    service = get_integrations_service()
     
     config = await service.get_integration_config(integration_type)
     if not config:
@@ -113,11 +107,10 @@ async def get_integration_details(
 @router.post("/oauth/start")
 async def start_oauth_flow(
     request: StartOAuthRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Start OAuth flow for an integration."""
-    service = get_integrations_service(db)
+    service = get_integrations_service()
     
     try:
         result = await service.start_oauth(
@@ -136,11 +129,10 @@ async def start_oauth_flow(
 @router.post("/oauth/complete")
 async def complete_oauth_flow(
     request: CompleteOAuthRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Complete OAuth flow and connect integration."""
-    service = get_integrations_service(db)
+    service = get_integrations_service()
     
     integration = await service.complete_oauth(
         code=request.code,
@@ -159,11 +151,10 @@ async def complete_oauth_flow(
 @router.delete("/{integration_type}")
 async def disconnect_integration(
     integration_type: IntegrationType,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Disconnect an integration."""
-    service = get_integrations_service(db)
+    service = get_integrations_service()
     
     success = await service.disconnect_integration(
         current_user["id"], integration_type
@@ -182,11 +173,10 @@ async def disconnect_integration(
 async def update_integration_settings(
     integration_type: IntegrationType,
     request: UpdateSettingsRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Update integration settings."""
-    service = get_integrations_service(db)
+    service = get_integrations_service()
     
     integration = await service.update_integration_settings(
         user_id=current_user["id"],
@@ -206,11 +196,10 @@ async def update_integration_settings(
 @router.post("/{integration_type}/test")
 async def test_integration(
     integration_type: IntegrationType,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Test an integration connection."""
-    service = get_integrations_service(db)
+    service = get_integrations_service()
     
     result = await service.test_integration(
         current_user["id"], integration_type
@@ -230,11 +219,10 @@ async def test_integration(
 @router.post("/slack/message")
 async def send_slack_message(
     request: SlackMessageRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Send a message to Slack."""
-    service = get_integrations_service(db)
+    service = get_integrations_service()
     
     result = await service.send_slack_message(
         user_id=current_user["id"],
@@ -255,11 +243,10 @@ async def send_slack_message(
 @router.post("/github/issue")
 async def create_github_issue(
     request: GitHubIssueRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Create a GitHub issue."""
-    service = get_integrations_service(db)
+    service = get_integrations_service()
     
     result = await service.create_github_issue(
         user_id=current_user["id"],
@@ -281,11 +268,10 @@ async def create_github_issue(
 @router.post("/trello/card")
 async def create_trello_card(
     request: TrelloCardRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Create a Trello card."""
-    service = get_integrations_service(db)
+    service = get_integrations_service()
     
     result = await service.create_trello_card(
         user_id=current_user["id"],
@@ -307,11 +293,10 @@ async def create_trello_card(
 @router.post("/google-calendar/sync")
 async def sync_google_calendar(
     request: CalendarSyncRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Sync events to Google Calendar."""
-    service = get_integrations_service(db)
+    service = get_integrations_service()
     
     result = await service.sync_google_calendar(
         user_id=current_user["id"],

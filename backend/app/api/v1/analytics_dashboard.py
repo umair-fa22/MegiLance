@@ -12,12 +12,10 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel
 from datetime import datetime
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.services.db_utils import sanitize_text
 from app.services.analytics_dashboard import (
@@ -74,11 +72,11 @@ class ExportDataRequest(BaseModel):
 @router.post("/dashboards")
 async def create_dashboard(
     request: CreateDashboardRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a custom dashboard."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     dashboard = await service.create_dashboard(
         current_user["id"],
         sanitize_text(request.name, 200),
@@ -90,11 +88,11 @@ async def create_dashboard(
 
 @router.get("/dashboards")
 async def list_dashboards(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """List user's dashboards."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     dashboards = await service.list_dashboards(current_user["id"])
     return {"dashboards": dashboards}
 
@@ -102,11 +100,11 @@ async def list_dashboards(
 @router.get("/dashboards/{dashboard_id}")
 async def get_dashboard(
     dashboard_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get dashboard by ID."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     dashboard = await service.get_dashboard(current_user["id"], dashboard_id)
     
     if not dashboard:
@@ -119,7 +117,7 @@ async def get_dashboard(
 async def update_dashboard(
     dashboard_id: str,
     updates: Dict[str, Any],
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update dashboard settings."""
@@ -128,7 +126,7 @@ async def update_dashboard(
     for k in ("name", "description"):
         if k in safe_updates and isinstance(safe_updates[k], str):
             safe_updates[k] = sanitize_text(safe_updates[k], 1000)
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     result = await service.update_dashboard(current_user["id"], dashboard_id, safe_updates)
     return result
 
@@ -136,11 +134,11 @@ async def update_dashboard(
 @router.delete("/dashboards/{dashboard_id}")
 async def delete_dashboard(
     dashboard_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Delete a dashboard."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     success = await service.delete_dashboard(current_user["id"], dashboard_id)
     return {"success": success}
 
@@ -150,11 +148,11 @@ async def delete_dashboard(
 async def add_widget(
     dashboard_id: str,
     request: AddWidgetRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Add a widget to dashboard."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     widget = await service.add_widget(
         current_user["id"],
         dashboard_id,
@@ -170,7 +168,7 @@ async def update_widget(
     dashboard_id: str,
     widget_id: str,
     updates: Dict[str, Any],
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update widget settings."""
@@ -178,7 +176,7 @@ async def update_widget(
     safe_updates = {k: v for k, v in updates.items() if k in ALLOWED_WIDGET_FIELDS}
     if "title" in safe_updates and isinstance(safe_updates["title"], str):
         safe_updates["title"] = sanitize_text(safe_updates["title"], 200)
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     result = await service.update_widget(current_user["id"], dashboard_id, widget_id, safe_updates)
     return result
 
@@ -187,11 +185,11 @@ async def update_widget(
 async def delete_widget(
     dashboard_id: str,
     widget_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Delete a widget."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     success = await service.delete_widget(current_user["id"], dashboard_id, widget_id)
     return {"success": success}
 
@@ -199,11 +197,11 @@ async def delete_widget(
 # Metrics Endpoints
 @router.get("/metrics")
 async def get_available_metrics(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get list of available metrics."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     metrics = await service.get_available_metrics(current_user["id"])
     return {"metrics": metrics}
 
@@ -214,11 +212,11 @@ async def get_metric(
     granularity: TimeGranularity = TimeGranularity.DAY,
     start_date: Optional[str] = None,
     end_date: Optional[str] = None,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get metric data."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     
     start = datetime.fromisoformat(start_date) if start_date else None
     end = datetime.fromisoformat(end_date) if end_date else None
@@ -229,11 +227,11 @@ async def get_metric(
 
 @router.get("/realtime")
 async def get_realtime_metrics(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get real-time metrics snapshot."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     metrics = await service.get_realtime_metrics(current_user["id"])
     return metrics
 
@@ -242,11 +240,11 @@ async def get_realtime_metrics(
 @router.post("/kpis")
 async def set_kpi_target(
     request: SetKPITargetRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Set a KPI target."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     kpi = await service.set_kpi_target(
         current_user["id"],
         request.metric_name,
@@ -258,11 +256,11 @@ async def set_kpi_target(
 
 @router.get("/kpis/progress")
 async def get_kpi_progress(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get KPI progress."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     progress = await service.get_kpi_progress(current_user["id"])
     return {"kpis": progress}
 
@@ -271,11 +269,11 @@ async def get_kpi_progress(
 @router.post("/alerts")
 async def create_alert_rule(
     request: CreateAlertRuleRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create an alert rule."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     rule = await service.create_alert_rule(
         current_user["id"],
         request.metric_name,
@@ -288,11 +286,11 @@ async def create_alert_rule(
 
 @router.get("/alerts")
 async def get_alert_rules(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get user's alert rules."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     rules = await service.get_alert_rules(current_user["id"])
     return {"rules": rules}
 
@@ -301,11 +299,11 @@ async def get_alert_rules(
 @router.post("/reports")
 async def generate_report(
     request: GenerateReportRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Generate analytics report."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     report = await service.generate_report(
         current_user["id"],
         request.report_type,
@@ -320,11 +318,11 @@ async def generate_report(
 @router.post("/export")
 async def export_data(
     request: ExportDataRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Export analytics data."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     export = await service.export_data(
         current_user["id"],
         request.metrics,
@@ -340,11 +338,11 @@ async def export_data(
 async def get_comparison(
     metric_name: str,
     compare_with: str = "previous_period",
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Compare metrics."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     comparison = await service.get_comparison(current_user["id"], metric_name, compare_with)
     return {"comparison": comparison}
 
@@ -352,11 +350,11 @@ async def get_comparison(
 @router.get("/benchmarks/{category}")
 async def get_industry_benchmarks(
     category: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get industry benchmark comparison."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     benchmarks = await service.get_industry_benchmarks(current_user["id"], category)
     return {"benchmarks": benchmarks}
 
@@ -366,21 +364,21 @@ async def get_industry_benchmarks(
 async def get_forecast(
     metric_name: str,
     forecast_days: int = 30,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get metric forecast."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     forecast = await service.get_forecast(current_user["id"], metric_name, forecast_days)
     return {"forecast": forecast}
 
 
 @router.get("/recommendations")
 async def get_recommendations(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get AI-powered recommendations."""
-    service = get_analytics_dashboard_service(db)
+    service = get_analytics_dashboard_service()
     recommendations = await service.get_recommendations(current_user["id"])
     return {"recommendations": recommendations}

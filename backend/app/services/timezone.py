@@ -3,7 +3,6 @@
 
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any
-from sqlalchemy.orm import Session
 from enum import Enum
 import uuid
 
@@ -11,8 +10,8 @@ import uuid
 class TimezoneService:
     """Service for timezone management."""
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        pass
     
     # Timezone List
     async def get_timezones(
@@ -274,6 +273,11 @@ class TimezoneService:
         return True
 
 
-def get_timezone_service(db: Session) -> TimezoneService:
+_singleton_timezone_service = None
+
+def get_timezone_service() -> TimezoneService:
     """Factory function for timezone service."""
-    return TimezoneService(db)
+    global _singleton_timezone_service
+    if _singleton_timezone_service is None:
+        _singleton_timezone_service = TimezoneService()
+    return _singleton_timezone_service

@@ -11,12 +11,10 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status, Query
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel
 from datetime import datetime
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.services.timezone import get_timezone_service
 
@@ -65,20 +63,20 @@ class FindOverlapRequest(BaseModel):
 async def get_timezones(
     search: Optional[str] = None,
     region: Optional[str] = None,
-    db: Session = Depends(get_db)
+    
 ):
     """Get list of all timezones."""
-    service = get_timezone_service(db)
+    service = get_timezone_service()
     timezones = await service.get_timezones(search, region)
     return {"timezones": timezones}
 
 
 @router.get("/regions")
 async def get_timezone_regions(
-    db: Session = Depends(get_db)
+    
 ):
     """Get list of timezone regions."""
-    service = get_timezone_service(db)
+    service = get_timezone_service()
     regions = await service.get_timezone_regions()
     return {"regions": regions}
 
@@ -86,21 +84,21 @@ async def get_timezone_regions(
 @router.get("/detect")
 async def detect_timezone(
     browser_timezone: Optional[str] = None,
-    db: Session = Depends(get_db)
+    
 ):
     """Detect user's timezone."""
-    service = get_timezone_service(db)
+    service = get_timezone_service()
     result = await service.detect_timezone(browser_timezone=browser_timezone)
     return result
 
 
 @router.get("/preferences")
 async def get_user_timezone(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get user's timezone preference."""
-    service = get_timezone_service(db)
+    service = get_timezone_service()
     preferences = await service.get_user_timezone(current_user["id"])
     return {"preferences": preferences}
 
@@ -108,11 +106,11 @@ async def get_user_timezone(
 @router.put("/preferences")
 async def set_user_timezone(
     request: SetTimezoneRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Set user's timezone preference."""
-    service = get_timezone_service(db)
+    service = get_timezone_service()
     
     preferences = await service.set_user_timezone(
         user_id=current_user["id"],
@@ -129,11 +127,11 @@ async def set_user_timezone(
 @router.post("/convert")
 async def convert_time(
     request: ConvertTimeRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Convert time between timezones."""
-    service = get_timezone_service(db)
+    service = get_timezone_service()
     
     result = await service.convert_time(
         time=request.time,
@@ -147,10 +145,10 @@ async def convert_time(
 @router.get("/current/{timezone}")
 async def get_current_time(
     timezone: str,
-    db: Session = Depends(get_db)
+    
 ):
     """Get current time in a specific timezone."""
-    service = get_timezone_service(db)
+    service = get_timezone_service()
     result = await service.get_current_time(timezone)
     return result
 
@@ -158,11 +156,11 @@ async def get_current_time(
 @router.post("/convert/multiple")
 async def get_time_in_multiple_zones(
     request: MultiZoneTimeRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get time in multiple timezones."""
-    service = get_timezone_service(db)
+    service = get_timezone_service()
     
     results = await service.get_time_in_multiple_zones(
         time=request.time,
@@ -176,11 +174,11 @@ async def get_time_in_multiple_zones(
 @router.post("/suggest-meeting-times")
 async def suggest_meeting_times(
     request: SuggestMeetingTimesRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Suggest optimal meeting times for participants."""
-    service = get_timezone_service(db)
+    service = get_timezone_service()
     
     participants = [p.dict() for p in request.participants]
     
@@ -196,11 +194,11 @@ async def suggest_meeting_times(
 @router.post("/find-overlap")
 async def find_overlapping_hours(
     request: FindOverlapRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Find overlapping working hours across users."""
-    service = get_timezone_service(db)
+    service = get_timezone_service()
     
     result = await service.find_overlapping_hours(
         user_ids=request.user_ids,
@@ -212,11 +210,11 @@ async def find_overlapping_hours(
 
 @router.get("/world-clock")
 async def get_world_clock(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get world clock with user's favorite timezones."""
-    service = get_timezone_service(db)
+    service = get_timezone_service()
     result = await service.get_world_clock(current_user["id"])
     return result
 
@@ -224,11 +222,11 @@ async def get_world_clock(
 @router.post("/favorites/{timezone}")
 async def add_favorite_timezone(
     timezone: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Add timezone to favorites."""
-    service = get_timezone_service(db)
+    service = get_timezone_service()
     result = await service.add_favorite_timezone(current_user["id"], timezone)
     return result
 
@@ -236,10 +234,10 @@ async def add_favorite_timezone(
 @router.delete("/favorites/{timezone}")
 async def remove_favorite_timezone(
     timezone: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Remove timezone from favorites."""
-    service = get_timezone_service(db)
+    service = get_timezone_service()
     success = await service.remove_favorite_timezone(current_user["id"], timezone)
     return {"success": success}

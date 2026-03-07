@@ -1,7 +1,6 @@
 # @AI-HINT: Portfolio builder service for professional showcases
 """Portfolio Builder Service - Professional portfolio creation and showcase."""
 
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from datetime import datetime, timezone
 from enum import Enum
@@ -33,8 +32,8 @@ class SectionType(str, Enum):
 class PortfolioBuilderService:
     """Professional portfolio creation service."""
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        pass
     
     # Portfolio Management
     async def create_portfolio(
@@ -530,5 +529,10 @@ class PortfolioBuilderService:
         return themes.get(template, themes[PortfolioTemplate.PROFESSIONAL])
 
 
-def get_portfolio_builder_service(db: Session) -> PortfolioBuilderService:
-    return PortfolioBuilderService(db)
+_singleton_portfolio_builder_service = None
+
+def get_portfolio_builder_service() -> PortfolioBuilderService:
+    global _singleton_portfolio_builder_service
+    if _singleton_portfolio_builder_service is None:
+        _singleton_portfolio_builder_service = PortfolioBuilderService()
+    return _singleton_portfolio_builder_service

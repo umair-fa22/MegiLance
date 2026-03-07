@@ -11,11 +11,9 @@ Endpoints for:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 from typing import Optional, List
 from pydantic import BaseModel, Field
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user, get_current_user_optional
 from app.models.user import User
 from app.services.ai_chatbot import get_chatbot_service
@@ -54,10 +52,10 @@ class FAQSearchRequest(BaseModel):
 async def start_conversation(
     request: Optional[StartConversationRequest] = None,
     current_user: Optional[User] = Depends(get_current_user_optional),
-    db: Session = Depends(get_db)
+    
 ):
     """Start a new chatbot conversation."""
-    service = get_chatbot_service(db)
+    service = get_chatbot_service()
     
     user_id = current_user.id if current_user else None
     context = request.context if request else None
@@ -75,10 +73,10 @@ async def send_message(
     conversation_id: str,
     request: SendMessageRequest,
     current_user: Optional[User] = Depends(get_current_user_optional),
-    db: Session = Depends(get_db)
+    
 ):
     """Send a message in a chatbot conversation."""
-    service = get_chatbot_service(db)
+    service = get_chatbot_service()
     
     user_id = current_user.id if current_user else None
     
@@ -98,10 +96,10 @@ async def send_message(
 async def get_conversation_history(
     conversation_id: str,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get conversation history."""
-    service = get_chatbot_service(db)
+    service = get_chatbot_service()
     
     result = await service.get_conversation_history(conversation_id)
     
@@ -121,10 +119,10 @@ async def close_conversation(
     conversation_id: str,
     request: Optional[CloseConversationRequest] = None,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Close a chatbot conversation."""
-    service = get_chatbot_service(db)
+    service = get_chatbot_service()
     
     # Verify conversation exists and ownership
     history = await service.get_conversation_history(conversation_id)
@@ -150,10 +148,10 @@ async def close_conversation(
 @router.post("/faq/search")
 async def search_faq(
     request: FAQSearchRequest,
-    db: Session = Depends(get_db)
+    
 ):
     """Search FAQ database."""
-    service = get_chatbot_service(db)
+    service = get_chatbot_service()
     
     results = await service.search_faq(
         query=request.query,
@@ -166,10 +164,10 @@ async def search_faq(
 
 @router.get("/faq/categories")
 async def get_faq_categories(
-    db: Session = Depends(get_db)
+    
 ):
     """Get FAQ categories."""
-    service = get_chatbot_service(db)
+    service = get_chatbot_service()
     
     categories = set()
     for faq in service.FAQ_DATABASE.values():
@@ -183,10 +181,10 @@ async def create_support_ticket(
     conversation_id: str,
     request: CreateTicketRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Create a support ticket from conversation."""
-    service = get_chatbot_service(db)
+    service = get_chatbot_service()
     
     result = await service.create_support_ticket(
         conversation_id=conversation_id,
@@ -204,10 +202,10 @@ async def create_support_ticket(
 async def get_ticket(
     ticket_id: str,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get support ticket details."""
-    service = get_chatbot_service(db)
+    service = get_chatbot_service()
     
     ticket = await service.get_ticket(ticket_id)
     

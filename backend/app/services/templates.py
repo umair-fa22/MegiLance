@@ -1,7 +1,6 @@
 # @AI-HINT: Templates service for reusable project/proposal/contract templates
 """Templates Service - Reusable template management."""
 
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from datetime import datetime, timezone
 from enum import Enum
@@ -59,8 +58,7 @@ class Template(BaseModel):
 class TemplatesService:
     """Service for managing reusable templates."""
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
         # In-memory storage for demo
         self._templates: Dict[str, Template] = {}
         self._user_favorites: Dict[str, List[str]] = {}
@@ -519,6 +517,11 @@ class TemplatesService:
         }
 
 
-def get_templates_service(db: Session) -> TemplatesService:
+_singleton_templates_service = None
+
+def get_templates_service() -> TemplatesService:
     """Get templates service instance."""
-    return TemplatesService(db)
+    global _singleton_templates_service
+    if _singleton_templates_service is None:
+        _singleton_templates_service = TemplatesService()
+    return _singleton_templates_service

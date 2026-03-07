@@ -7,12 +7,10 @@ and feature access control.
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status, Query
-from sqlalchemy.orm import Session
 from typing import Optional, List
 from pydantic import BaseModel
 from datetime import datetime
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user, require_admin
 from app.services.db_utils import sanitize_text
 from app.services.subscription_billing import (
@@ -55,22 +53,19 @@ class TrackUsageRequest(BaseModel):
 
 # Plan Endpoints
 @router.get("/plans")
-async def get_available_plans(
-    db: Session = Depends(get_db)
-):
+async def get_available_plans():
     """Get all available subscription plans."""
-    service = get_subscription_billing_service(db)
+    service = get_subscription_billing_service()
     plans = await service.get_available_plans()
     return {"plans": plans}
 
 
 @router.get("/plans/{tier}")
 async def get_plan_details(
-    tier: PlanTier,
-    db: Session = Depends(get_db)
+    tier: PlanTier
 ):
     """Get detailed information about a specific plan."""
-    service = get_subscription_billing_service(db)
+    service = get_subscription_billing_service()
     plan = await service.get_plan_details(tier)
     
     if not plan:
@@ -82,11 +77,10 @@ async def get_plan_details(
 @router.get("/plans/compare")
 async def compare_plans(
     tier1: PlanTier = Query(..., description="First plan to compare"),
-    tier2: PlanTier = Query(..., description="Second plan to compare"),
-    db: Session = Depends(get_db)
+    tier2: PlanTier = Query(..., description="Second plan to compare")
 ):
     """Compare two subscription plans."""
-    service = get_subscription_billing_service(db)
+    service = get_subscription_billing_service()
     comparison = await service.compare_plans(tier1, tier2)
     return comparison
 
@@ -94,11 +88,10 @@ async def compare_plans(
 # Subscription Management Endpoints
 @router.get("/my-subscription")
 async def get_my_subscription(
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Get current user's subscription."""
-    service = get_subscription_billing_service(db)
+    service = get_subscription_billing_service()
     subscription = await service.get_user_subscription(current_user["id"])
     return {"subscription": subscription}
 
@@ -106,11 +99,10 @@ async def get_my_subscription(
 @router.post("/subscribe")
 async def create_subscription(
     request: CreateSubscriptionRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Create a new subscription."""
-    service = get_subscription_billing_service(db)
+    service = get_subscription_billing_service()
     result = await service.create_subscription(
         current_user["id"],
         request.tier,
@@ -128,11 +120,10 @@ async def create_subscription(
 @router.post("/upgrade")
 async def upgrade_subscription(
     request: UpgradeRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Upgrade to a higher tier plan."""
-    service = get_subscription_billing_service(db)
+    service = get_subscription_billing_service()
     result = await service.upgrade_subscription(
         current_user["id"],
         request.new_tier,
@@ -148,11 +139,10 @@ async def upgrade_subscription(
 @router.post("/downgrade")
 async def downgrade_subscription(
     request: DowngradeRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Downgrade to a lower tier plan."""
-    service = get_subscription_billing_service(db)
+    service = get_subscription_billing_service()
     result = await service.downgrade_subscription(
         current_user["id"],
         request.new_tier,
@@ -168,11 +158,10 @@ async def downgrade_subscription(
 @router.post("/cancel")
 async def cancel_subscription(
     request: CancelRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Cancel subscription."""
-    service = get_subscription_billing_service(db)
+    service = get_subscription_billing_service()
     result = await service.cancel_subscription(
         current_user["id"],
         sanitize_text(request.reason, 1000) if request.reason else None,
@@ -187,11 +176,10 @@ async def cancel_subscription(
 
 @router.post("/reactivate")
 async def reactivate_subscription(
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Reactivate a cancelled subscription."""
-    service = get_subscription_billing_service(db)
+    service = get_subscription_billing_service()
     result = await service.reactivate_subscription(current_user["id"])
     
     if "error" in result:
@@ -204,22 +192,20 @@ async def reactivate_subscription(
 @router.get("/features/{feature}/access")
 async def check_feature_access(
     feature: str,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Check if user has access to a specific feature."""
-    service = get_subscription_billing_service(db)
+    service = get_subscription_billing_service()
     result = await service.check_feature_access(current_user["id"], feature)
     return result
 
 
 @router.get("/features/limits")
 async def get_feature_limits(
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Get all feature limits for user's subscription."""
-    service = get_subscription_billing_service(db)
+    service = get_subscription_billing_service()
     limits = await service.get_feature_limits(current_user["id"])
     return limits
 
@@ -228,22 +214,20 @@ async def get_feature_limits(
 @router.get("/billing/history")
 async def get_billing_history(
     limit: int = Query(20, ge=1, le=100),
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Get billing/invoice history."""
-    service = get_subscription_billing_service(db)
+    service = get_subscription_billing_service()
     history = await service.get_billing_history(current_user["id"], limit)
     return history
 
 
 @router.get("/billing/upcoming")
 async def get_upcoming_invoice(
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Preview the next invoice."""
-    service = get_subscription_billing_service(db)
+    service = get_subscription_billing_service()
     invoice = await service.get_upcoming_invoice(current_user["id"])
     return {"invoice": invoice}
 
@@ -252,11 +236,10 @@ async def get_upcoming_invoice(
 @router.post("/usage/track")
 async def track_usage(
     request: TrackUsageRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Track feature usage against limits."""
-    service = get_subscription_billing_service(db)
+    service = get_subscription_billing_service()
     result = await service.track_usage(
         current_user["id"],
         request.usage_type,
@@ -271,11 +254,10 @@ async def track_usage(
 
 @router.get("/usage/summary")
 async def get_usage_summary(
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Get usage summary for current billing period."""
-    service = get_subscription_billing_service(db)
+    service = get_subscription_billing_service()
     summary = await service.get_usage_summary(current_user["id"])
     return summary
 
@@ -286,57 +268,35 @@ async def admin_get_all_subscriptions(
     status_filter: Optional[SubscriptionStatus] = None,
     tier_filter: Optional[PlanTier] = None,
     limit: int = Query(50, le=200),
-    db: Session = Depends(get_db),
     current_user = Depends(require_admin)
 ):
     """Admin: Get all subscriptions with filters."""
-    # Placeholder for admin subscription listing
-    return {
-        "subscriptions": [],
-        "total": 0,
-        "filters": {
-            "status": status_filter.value if status_filter else None,
-            "tier": tier_filter.value if tier_filter else None
-        }
-    }
+    service = get_subscription_billing_service()
+    return await service.get_all_subscriptions(
+        status_filter=status_filter.value if status_filter else None,
+        tier_filter=tier_filter.value if tier_filter else None,
+        limit=limit
+    )
 
 
 @router.get("/admin/revenue")
 async def admin_get_revenue_stats(
     period_days: int = Query(30, ge=1, le=365),
-    db: Session = Depends(get_db),
     current_user = Depends(require_admin)
 ):
     """Admin: Get revenue statistics."""
-    
-    return {
-        "period_days": period_days,
-        "revenue": {
-            "total": 0.0,
-            "by_tier": {},
-            "by_billing_cycle": {}
-        },
-        "subscriptions": {
-            "active": 0,
-            "trialing": 0,
-            "cancelled": 0
-        },
-        "churn_rate": 0.0,
-        "mrr": 0.0,  # Monthly Recurring Revenue
-        "arr": 0.0   # Annual Recurring Revenue
-    }
+    service = get_subscription_billing_service()
+    return await service.get_revenue_stats(period_days)
 
 
 @router.put("/admin/subscriptions/{user_id}")
 async def admin_update_subscription(
     user_id: int,
     tier: PlanTier,
-    db: Session = Depends(get_db),
     current_user = Depends(require_admin)
 ):
     """Admin: Manually update a user's subscription."""
-    
-    service = get_subscription_billing_service(db)
+    service = get_subscription_billing_service()
     result = await service.create_subscription(
         user_id,
         tier,

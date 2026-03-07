@@ -1,13 +1,17 @@
 # @AI-HINT: Mobile push notification service for iOS/Android
 """Push Notification Service - FCM and APNs integration."""
 
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from typing import Optional, List, Dict, Any
-from sqlalchemy.orm import Session
 from enum import Enum
 import json
 import uuid
 import hashlib
+import logging
+
+from app.db.turso_http import execute_query, parse_rows
+
+logger = logging.getLogger(__name__)
 
 
 class DevicePlatform(str, Enum):
@@ -25,11 +29,29 @@ class NotificationPriority(str, Enum):
 class PushNotificationService:
     """Service for mobile push notifications."""
     
-    def __init__(self, db: Session):
-        self.db = db
-        # In production, initialize FCM and APNs clients here
+    def __init__(self):
         self._fcm_client = None
         self._apns_client = None
+        self._ensure_tables()
+    
+    def _ensure_tables(self):
+        try:
+            execute_query("""CREATE TABLE IF NOT EXISTS push_notification_logs (
+                id TEXT PRIMARY KEY,
+                user_id INTEGER NOT NULL,
+                title TEXT NOT NULL,
+                body TEXT NOT NULL,
+                data TEXT DEFAULT '{}',
+                priority TEXT DEFAULT 'high',
+                status TEXT DEFAULT 'sent',
+                devices_targeted INTEGER DEFAULT 0,
+                devices_delivered INTEGER DEFAULT 0,
+                opened_at TEXT,
+                device_id TEXT,
+                sent_at TEXT NOT NULL DEFAULT (datetime('now'))
+            )""")
+        except Exception:
+            pass
     
     # Device Management
     async def register_device(
@@ -42,20 +64,39 @@ class PushNotificationService:
         """Register a device for push notifications."""
         device_id = str(uuid.uuid4())
         token_hash = hashlib.sha256(device_token.encode()).hexdigest()[:16]
+        now = datetime.now(timezone.utc).isoformat()
+        info_json = json.dumps(device_info or {})
         
-        device = {
+        # Upsert by token_hash
+        existing = execute_query(
+            "SELECT id FROM push_devices WHERE token_hash = ?", [token_hash]
+        )
+        rows = parse_rows(existing)
+        
+        if rows:
+            execute_query(
+                """UPDATE push_devices SET user_id = ?, platform = ?, device_info = ?,
+                   is_active = 1, last_used_at = ? WHERE token_hash = ?""",
+                [user_id, platform.value, info_json, now, token_hash]
+            )
+            device_id = rows[0]["id"]
+        else:
+            execute_query(
+                """INSERT INTO push_devices (id, user_id, token_hash, platform, device_info, is_active, created_at, last_used_at)
+                VALUES (?, ?, ?, ?, ?, 1, ?, ?)""",
+                [device_id, user_id, token_hash, platform.value, info_json, now, now]
+            )
+        
+        return {
             "id": device_id,
             "user_id": user_id,
-            "device_token": device_token,
             "token_hash": token_hash,
             "platform": platform.value,
             "device_info": device_info or {},
             "is_active": True,
-            "created_at": datetime.now(timezone.utc).isoformat(),
-            "last_used_at": datetime.now(timezone.utc).isoformat()
+            "created_at": now,
+            "last_used_at": now
         }
-        
-        return device
     
     async def unregister_device(
         self,
@@ -63,7 +104,11 @@ class PushNotificationService:
         device_token: str
     ) -> bool:
         """Unregister a device from push notifications."""
-        # In production, delete from database
+        token_hash = hashlib.sha256(device_token.encode()).hexdigest()[:16]
+        execute_query(
+            "UPDATE push_devices SET is_active = 0 WHERE user_id = ? AND token_hash = ?",
+            [user_id, token_hash]
+        )
         return True
     
     async def get_user_devices(
@@ -71,23 +116,18 @@ class PushNotificationService:
         user_id: int
     ) -> List[Dict[str, Any]]:
         """Get all registered devices for a user."""
-        # Mock devices
-        return [
-            {
-                "id": "device-1",
-                "platform": "ios",
-                "device_info": {"model": "iPhone 15 Pro", "os_version": "17.2"},
-                "is_active": True,
-                "last_used_at": datetime.now(timezone.utc).isoformat()
-            },
-            {
-                "id": "device-2",
-                "platform": "android",
-                "device_info": {"model": "Pixel 8", "os_version": "14"},
-                "is_active": True,
-                "last_used_at": datetime.now(timezone.utc).isoformat()
-            }
-        ]
+        result = execute_query(
+            "SELECT * FROM push_devices WHERE user_id = ? AND is_active = 1 ORDER BY last_used_at DESC",
+            [user_id]
+        )
+        devices = parse_rows(result)
+        for d in devices:
+            try:
+                d["device_info"] = json.loads(d.get("device_info", "{}"))
+            except (json.JSONDecodeError, TypeError):
+                d["device_info"] = {}
+            d["is_active"] = bool(d.get("is_active"))
+        return devices
     
     async def update_device_token(
         self,
@@ -96,7 +136,13 @@ class PushNotificationService:
         new_token: str
     ) -> bool:
         """Update a device token (token refresh)."""
-        # In production, update in database
+        old_hash = hashlib.sha256(old_token.encode()).hexdigest()[:16]
+        new_hash = hashlib.sha256(new_token.encode()).hexdigest()[:16]
+        now = datetime.now(timezone.utc).isoformat()
+        execute_query(
+            "UPDATE push_devices SET token_hash = ?, last_used_at = ? WHERE user_id = ? AND token_hash = ?",
+            [new_hash, now, user_id, old_hash]
+        )
         return True
     
     # Push Notifications
@@ -115,8 +161,28 @@ class PushNotificationService:
     ) -> Dict[str, Any]:
         """Send push notification to all user devices."""
         notification_id = str(uuid.uuid4())
+        now = datetime.now(timezone.utc).isoformat()
         
-        notification = {
+        # Get user's active devices
+        devices = await self.get_user_devices(user_id)
+        devices_targeted = len(devices)
+        
+        # In production, send via FCM/APNs per device
+        await self._send_to_fcm({"title": title, "body": body, "data": data})
+        await self._send_to_apns({"title": title, "body": body, "data": data})
+        
+        devices_delivered = devices_targeted  # Assume all delivered for now
+        
+        # Log notification
+        execute_query(
+            """INSERT INTO push_notification_logs
+                (id, user_id, title, body, data, priority, status, devices_targeted, devices_delivered, sent_at)
+            VALUES (?, ?, ?, ?, ?, ?, 'sent', ?, ?, ?)""",
+            [notification_id, user_id, title, body, json.dumps(data or {}),
+             priority.value, devices_targeted, devices_delivered, now]
+        )
+        
+        return {
             "id": notification_id,
             "user_id": user_id,
             "title": title,
@@ -129,16 +195,10 @@ class PushNotificationService:
             "collapse_key": collapse_key,
             "ttl": ttl,
             "status": "sent",
-            "sent_at": datetime.now(timezone.utc).isoformat(),
-            "devices_targeted": 2,
-            "devices_delivered": 2
+            "sent_at": now,
+            "devices_targeted": devices_targeted,
+            "devices_delivered": devices_delivered
         }
-        
-        # In production, send via FCM/APNs
-        await self._send_to_fcm(notification)
-        await self._send_to_apns(notification)
-        
-        return notification
     
     async def send_to_device(
         self,
@@ -173,17 +233,26 @@ class PushNotificationService:
     ) -> Dict[str, Any]:
         """Send push notification to multiple users."""
         batch_id = str(uuid.uuid4())
+        total_devices = 0
+        successful = 0
+        failed = 0
         
-        results = {
+        for uid in user_ids:
+            try:
+                result = await self.send_notification(uid, title, body, data)
+                total_devices += result.get("devices_targeted", 0)
+                successful += result.get("devices_delivered", 0)
+            except Exception:
+                failed += 1
+        
+        return {
             "batch_id": batch_id,
             "total_users": len(user_ids),
-            "total_devices": len(user_ids) * 2,  # Estimated
-            "successful": len(user_ids) * 2,
-            "failed": 0,
+            "total_devices": total_devices,
+            "successful": successful,
+            "failed": failed,
             "sent_at": datetime.now(timezone.utc).isoformat()
         }
-        
-        return results
     
     async def send_silent_push(
         self,
@@ -279,23 +348,38 @@ class PushNotificationService:
         days: int = 30
     ) -> Dict[str, Any]:
         """Get push notification statistics."""
+        cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
+        
+        where = "WHERE sent_at >= ?"
+        params: list = [cutoff]
+        if user_id:
+            where += " AND user_id = ?"
+            params.append(user_id)
+        
+        # Totals
+        total_result = execute_query(
+            f"""SELECT
+                COUNT(*) as total_sent,
+                COALESCE(SUM(devices_delivered), 0) as total_delivered,
+                COALESCE(SUM(CASE WHEN opened_at IS NOT NULL THEN 1 ELSE 0 END), 0) as total_opened
+            FROM push_notification_logs {where}""",
+            params
+        )
+        totals = parse_rows(total_result)
+        t = totals[0] if totals else {"total_sent": 0, "total_delivered": 0, "total_opened": 0}
+        total_sent = int(t["total_sent"])
+        total_delivered = int(t["total_delivered"])
+        total_opened = int(t["total_opened"])
+        
+        delivery_rate = total_delivered / total_sent if total_sent > 0 else 0.0
+        open_rate = total_opened / total_sent if total_sent > 0 else 0.0
+        
         return {
-            "total_sent": 1542,
-            "total_delivered": 1489,
-            "total_opened": 876,
-            "delivery_rate": 0.966,
-            "open_rate": 0.588,
-            "by_platform": {
-                "ios": {"sent": 812, "delivered": 798, "opened": 512},
-                "android": {"sent": 730, "delivered": 691, "opened": 364}
-            },
-            "by_type": {
-                "new_message": 524,
-                "proposal_received": 234,
-                "payment_received": 189,
-                "milestone_approved": 156,
-                "other": 439
-            },
+            "total_sent": total_sent,
+            "total_delivered": total_delivered,
+            "total_opened": total_opened,
+            "delivery_rate": round(delivery_rate, 3),
+            "open_rate": round(open_rate, 3),
             "period_days": days
         }
     
@@ -305,7 +389,11 @@ class PushNotificationService:
         device_id: str
     ) -> bool:
         """Mark a notification as opened for analytics."""
-        # In production, update analytics
+        now = datetime.now(timezone.utc).isoformat()
+        execute_query(
+            "UPDATE push_notification_logs SET opened_at = ?, device_id = ? WHERE id = ? AND opened_at IS NULL",
+            [now, device_id, notification_id]
+        )
         return True
     
     # Platform-specific helpers
@@ -360,6 +448,11 @@ class PushNotificationService:
         }
 
 
-def get_push_notification_service(db: Session) -> PushNotificationService:
+_service_instance = None
+
+def get_push_notification_service() -> PushNotificationService:
     """Factory function for push notification service."""
-    return PushNotificationService(db)
+    global _service_instance
+    if _service_instance is None:
+        _service_instance = PushNotificationService()
+    return _service_instance

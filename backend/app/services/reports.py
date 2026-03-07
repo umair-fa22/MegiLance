@@ -1,4 +1,4 @@
-# @AI-HINT: Report generation service for PDF/Excel exports
+# @AI-HINT: Report generation service for PDF/Excel exports — DB-backed via Turso
 """Report Generation Service - Generate PDF and Excel reports."""
 
 import logging
@@ -6,10 +6,11 @@ import io
 import csv
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any
-from sqlalchemy.orm import Session
 from enum import Enum
 import secrets
 import json
+
+from app.db.turso_http import execute_query, parse_rows
 
 logger = logging.getLogger(__name__)
 
@@ -71,13 +72,8 @@ class ReportGenerationService:
     _MAX_REPORTS = 2000
     _MAX_SCHEDULED = 500
 
-    def __init__(self, db: Session):
-        self.db = db
-        self._reports: Dict[str, Dict[str, Any]] = {}
+    def __init__(self):
         self._templates: Dict[str, Dict[str, Any]] = {}
-        self._scheduled_reports: Dict[str, Dict[str, Any]] = {}
-        
-        # Initialize default templates
         self._init_templates()
     
     def _init_templates(self) -> None:
@@ -130,42 +126,32 @@ class ReportGenerationService:
         """
         report_id = f"report_{secrets.token_urlsafe(12)}"
         
-        # Default date range to last 30 days
         if not date_to:
             date_to = datetime.now(timezone.utc)
         if not date_from:
             date_from = date_to - timedelta(days=30)
         
-        report = {
-            "id": report_id,
-            "type": report_type.value,
-            "format": format.value,
-            "user_id": user_id,
-            "status": ReportStatus.PENDING.value,
-            "date_from": date_from.isoformat(),
-            "date_to": date_to.isoformat(),
-            "filters": filters or {},
-            "created_at": datetime.now(timezone.utc).isoformat(),
-            "file_url": None,
-            "file_size": None,
-            "error": None
-        }
+        now = datetime.now(timezone.utc).isoformat()
         
-        if len(self._reports) >= self._MAX_REPORTS:
-            oldest_key = next(iter(self._reports))
-            del self._reports[oldest_key]
-        self._reports[report_id] = report
+        await execute_query(
+            """INSERT INTO generated_reports
+               (id, report_type, format, user_id, status, date_from, date_to, filters, created_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            [report_id, report_type.value, format.value, user_id,
+             ReportStatus.PENDING.value, date_from.isoformat(), date_to.isoformat(),
+             json.dumps(filters or {}), now]
+        )
         
-        # Generate report data
         try:
-            report["status"] = ReportStatus.GENERATING.value
+            await execute_query(
+                "UPDATE generated_reports SET status = ? WHERE id = ?",
+                [ReportStatus.GENERATING.value, report_id]
+            )
             
-            # Generate based on type
             data = await self._generate_report_data(
                 report_type, user_id, date_from, date_to, filters
             )
             
-            # Format output
             if format == ReportFormat.CSV:
                 output = self._format_csv(data, report_type)
             elif format == ReportFormat.JSON:
@@ -175,33 +161,53 @@ class ReportGenerationService:
             else:
                 output = self._format_pdf(data, report_type)
             
-            report["data"] = output
-            report["status"] = ReportStatus.COMPLETED.value
-            report["completed_at"] = datetime.now(timezone.utc).isoformat()
-            report["file_size"] = len(str(output))
+            completed_at = datetime.now(timezone.utc).isoformat()
+            file_url = f"/api/v1/reports/download/{report_id}"
+            file_size = len(str(output))
             
-            # Generate download URL (would be actual file in production)
-            report["file_url"] = f"/api/v1/reports/download/{report_id}"
+            await execute_query(
+                """UPDATE generated_reports
+                   SET status = ?, data = ?, completed_at = ?, file_url = ?, file_size = ?
+                   WHERE id = ?""",
+                [ReportStatus.COMPLETED.value, json.dumps(output, default=str),
+                 completed_at, file_url, file_size, report_id]
+            )
             
         except Exception as e:
             logger.error(f"Report generation failed: {str(e)}")
-            report["status"] = ReportStatus.FAILED.value
-            report["error"] = str(e)
+            await execute_query(
+                "UPDATE generated_reports SET status = ?, error = ? WHERE id = ?",
+                [ReportStatus.FAILED.value, str(e), report_id]
+            )
         
-        return report
+        result = await execute_query("SELECT * FROM generated_reports WHERE id = ?", [report_id])
+        rows = parse_rows(result)
+        return self._row_to_report(rows[0]) if rows else {"id": report_id, "status": "failed"}
     
+    def _row_to_report(self, row: Dict) -> Dict[str, Any]:
+        """Convert a DB row to a report dict."""
+        r = dict(row)
+        r["filters"] = json.loads(r.get("filters") or "{}")
+        if r.get("data"):
+            try:
+                r["data"] = json.loads(r["data"])
+            except (json.JSONDecodeError, TypeError):
+                pass
+        r["file_size"] = int(r["file_size"]) if r.get("file_size") else None
+        return r
+
     async def get_report(
         self,
         report_id: str,
         user_id: int
     ) -> Optional[Dict[str, Any]]:
         """Get report details."""
-        report = self._reports.get(report_id)
-        
-        if not report or report["user_id"] != user_id:
-            return None
-        
-        return report
+        result = await execute_query(
+            "SELECT * FROM generated_reports WHERE id = ? AND user_id = ?",
+            [report_id, user_id]
+        )
+        rows = parse_rows(result)
+        return self._row_to_report(rows[0]) if rows else None
     
     async def list_reports(
         self,
@@ -210,66 +216,62 @@ class ReportGenerationService:
         limit: int = 50
     ) -> List[Dict[str, Any]]:
         """List user's reports."""
-        reports = [
-            r for r in self._reports.values()
-            if r["user_id"] == user_id
-        ]
-        
+        sql = "SELECT id, report_type, format, user_id, status, date_from, date_to, filters, file_url, file_size, error, created_at, completed_at FROM generated_reports WHERE user_id = ?"
+        params: list = [user_id]
         if report_type:
-            reports = [r for r in reports if r["type"] == report_type.value]
-        
-        # Sort by creation date descending
-        reports.sort(key=lambda x: x["created_at"], reverse=True)
-        
-        # Don't include full data in list
-        return [
-            {k: v for k, v in r.items() if k != "data"}
-            for r in reports[:limit]
-        ]
+            sql += " AND report_type = ?"
+            params.append(report_type.value)
+        sql += " ORDER BY created_at DESC LIMIT ?"
+        params.append(limit)
+
+        result = await execute_query(sql, params)
+        rows = parse_rows(result)
+        return [self._row_to_report(r) for r in rows]
     
     async def schedule_report(
         self,
         report_type: ReportType,
         user_id: int,
         format: ReportFormat,
-        schedule: str,  # daily, weekly, monthly
+        schedule: str,
         email_to: Optional[str] = None,
         filters: Optional[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
         """Schedule recurring report generation."""
         schedule_id = f"sched_{secrets.token_urlsafe(12)}"
-        
-        scheduled = {
-            "id": schedule_id,
-            "report_type": report_type.value,
-            "format": format.value,
-            "user_id": user_id,
-            "schedule": schedule,
-            "email_to": email_to,
-            "filters": filters or {},
-            "enabled": True,
-            "created_at": datetime.now(timezone.utc).isoformat(),
-            "last_run": None,
-            "next_run": self._calculate_next_run(schedule),
-            "run_count": 0
-        }
-        
-        if len(self._scheduled_reports) >= self._MAX_SCHEDULED:
-            oldest_key = next(iter(self._scheduled_reports))
-            del self._scheduled_reports[oldest_key]
-        self._scheduled_reports[schedule_id] = scheduled
-        
-        return scheduled
-    
+        now = datetime.now(timezone.utc).isoformat()
+        next_run = self._calculate_next_run(schedule)
+
+        await execute_query(
+            """INSERT INTO scheduled_reports
+               (id, report_type, format, user_id, schedule, email_to, filters,
+                enabled, created_at, next_run, run_count)
+               VALUES (?, ?, ?, ?, ?, ?, ?, 1, ?, ?, 0)""",
+            [schedule_id, report_type.value, format.value, user_id,
+             schedule, email_to, json.dumps(filters or {}), now, next_run]
+        )
+
+        result = await execute_query("SELECT * FROM scheduled_reports WHERE id = ?", [schedule_id])
+        rows = parse_rows(result)
+        return self._row_to_scheduled(rows[0]) if rows else {"id": schedule_id}
+
+    def _row_to_scheduled(self, row: Dict) -> Dict[str, Any]:
+        r = dict(row)
+        r["filters"] = json.loads(r.get("filters") or "{}")
+        r["enabled"] = bool(int(r.get("enabled", 0)))
+        r["run_count"] = int(r.get("run_count", 0))
+        return r
+
     async def list_scheduled_reports(
         self,
         user_id: int
     ) -> List[Dict[str, Any]]:
         """List user's scheduled reports."""
-        return [
-            s for s in self._scheduled_reports.values()
-            if s["user_id"] == user_id
-        ]
+        result = await execute_query(
+            "SELECT * FROM scheduled_reports WHERE user_id = ? ORDER BY created_at DESC",
+            [user_id]
+        )
+        return [self._row_to_scheduled(r) for r in parse_rows(result)]
     
     async def cancel_scheduled_report(
         self,
@@ -277,12 +279,14 @@ class ReportGenerationService:
         user_id: int
     ) -> bool:
         """Cancel a scheduled report."""
-        scheduled = self._scheduled_reports.get(schedule_id)
-        
-        if not scheduled or scheduled["user_id"] != user_id:
+        result = await execute_query(
+            "SELECT id FROM scheduled_reports WHERE id = ? AND user_id = ?",
+            [schedule_id, user_id]
+        )
+        rows = parse_rows(result)
+        if not rows:
             return False
-        
-        del self._scheduled_reports[schedule_id]
+        await execute_query("DELETE FROM scheduled_reports WHERE id = ?", [schedule_id])
         return True
     
     async def get_available_reports(
@@ -331,56 +335,101 @@ class ReportGenerationService:
         date_to: datetime,
         filters: Optional[Dict[str, Any]]
     ) -> Dict[str, Any]:
-        """Generate report data based on type."""
-        # This would query actual database in production
-        # Returning sample data structure
-        
+        """Generate report data based on type by querying the database."""
+        df = date_from.isoformat() if isinstance(date_from, datetime) else str(date_from)
+        dt = date_to.isoformat() if isinstance(date_to, datetime) else str(date_to)
+
         if report_type == ReportType.USER_EARNINGS:
+            rows = parse_rows(await execute_query(
+                """SELECT p.title as project, t.amount, t.status, t.created_at as date
+                   FROM transactions t LEFT JOIN projects p ON t.project_id = p.id
+                   WHERE t.user_id = ? AND t.created_at >= ? AND t.created_at <= ?
+                   ORDER BY t.created_at DESC""",
+                [str(user_id), df, dt]
+            ))
+            total = sum(float(r.get("amount", 0)) for r in rows)
             return {
                 "summary": {
-                    "total_earned": 15750.00,
-                    "total_projects": 12,
-                    "average_per_project": 1312.50,
+                    "total_earned": total,
+                    "total_transactions": len(rows),
+                    "average_per_transaction": round(total / max(len(rows), 1), 2),
                     "period": f"{date_from.date()} to {date_to.date()}"
                 },
-                "items": [
-                    {"date": "2025-01-15", "project": "Website Redesign", "amount": 2500.00, "status": "completed"},
-                    {"date": "2025-01-10", "project": "Mobile App", "amount": 4500.00, "status": "completed"},
-                    {"date": "2025-01-05", "project": "API Development", "amount": 3000.00, "status": "completed"}
-                ]
+                "items": rows
             }
-        
+
+        elif report_type == ReportType.USER_PROJECTS:
+            rows = parse_rows(await execute_query(
+                """SELECT title, status, budget_min, budget_max, created_at
+                   FROM projects WHERE client_id = ? AND created_at >= ? AND created_at <= ?
+                   ORDER BY created_at DESC""",
+                [str(user_id), df, dt]
+            ))
+            return {"total_projects": len(rows), "projects": rows}
+
         elif report_type == ReportType.PROJECT_SUMMARY:
+            rows = parse_rows(await execute_query(
+                """SELECT title as name, status, budget_min as budget, budget_max as budget_max,
+                          created_at FROM projects
+                   WHERE (client_id = ? OR id IN (SELECT project_id FROM proposals WHERE freelancer_id = ?))
+                   AND created_at >= ? AND created_at <= ?""",
+                [str(user_id), str(user_id), df, dt]
+            ))
+            active = len([r for r in rows if r.get("status") in ("open", "in_progress")])
+            completed = len([r for r in rows if r.get("status") == "completed"])
+            cancelled = len([r for r in rows if r.get("status") == "cancelled"])
             return {
-                "overview": {
-                    "total_projects": 8,
-                    "active": 3,
-                    "completed": 4,
-                    "cancelled": 1
-                },
-                "projects": [
-                    {"name": "Website Redesign", "status": "completed", "budget": 3000, "spent": 2500, "completion": 100},
-                    {"name": "Mobile App", "status": "in_progress", "budget": 8000, "spent": 4500, "completion": 60}
-                ]
+                "overview": {"total_projects": len(rows), "active": active,
+                             "completed": completed, "cancelled": cancelled},
+                "projects": rows
             }
-        
+
+        elif report_type == ReportType.PAYMENT_HISTORY:
+            rows = parse_rows(await execute_query(
+                """SELECT id, amount, status, payment_method, created_at
+                   FROM transactions WHERE user_id = ? AND created_at >= ? AND created_at <= ?
+                   ORDER BY created_at DESC""",
+                [str(user_id), df, dt]
+            ))
+            return {"total_payments": len(rows), "payments": rows}
+
         elif report_type == ReportType.TAX_SUMMARY:
+            rows = parse_rows(await execute_query(
+                """SELECT amount, status, transaction_type FROM transactions
+                   WHERE user_id = ? AND created_at >= ? AND created_at <= ?""",
+                [str(user_id), df, dt]
+            ))
+            gross = sum(float(r.get("amount", 0)) for r in rows if r.get("status") == "completed")
+            fee_rate = 0.10
+            fees = round(gross * fee_rate, 2)
+            net = round(gross - fees, 2)
             return {
-                "income": {
-                    "gross_earnings": 45000.00,
-                    "platform_fees": 4500.00,
-                    "net_income": 40500.00
-                },
-                "deductions": [
-                    {"category": "Software/Tools", "amount": 1200.00},
-                    {"category": "Equipment", "amount": 800.00}
-                ],
-                "summary": {
-                    "taxable_income": 38500.00,
-                    "estimated_tax": 8470.00
+                "income": {"gross_earnings": gross, "platform_fees": fees, "net_income": net},
+                "summary": {"taxable_income": net, "estimated_tax": round(net * 0.22, 2)}
+            }
+
+        elif report_type == ReportType.PLATFORM_OVERVIEW:
+            users = parse_rows(await execute_query("SELECT COUNT(*) as cnt FROM users", []))
+            projects = parse_rows(await execute_query("SELECT COUNT(*) as cnt FROM projects", []))
+            txns = parse_rows(await execute_query(
+                "SELECT COALESCE(SUM(amount),0) as total FROM transactions WHERE status = 'completed'", []
+            ))
+            return {
+                "metrics": {
+                    "total_users": int(users[0]["cnt"]) if users else 0,
+                    "total_projects": int(projects[0]["cnt"]) if projects else 0,
+                    "total_revenue": float(txns[0]["total"]) if txns else 0,
+                    "period": f"{date_from.date()} to {date_to.date()}"
                 }
             }
-        
+
+        elif report_type == ReportType.USER_STATISTICS:
+            rows = parse_rows(await execute_query(
+                """SELECT role, COUNT(*) as cnt, MAX(created_at) as latest
+                   FROM users GROUP BY role""", []
+            ))
+            return {"statistics": rows}
+
         else:
             return {
                 "report_type": report_type.value,
@@ -472,11 +521,9 @@ class ReportGenerationService:
 _report_service: Optional[ReportGenerationService] = None
 
 
-def get_report_service(db: Session) -> ReportGenerationService:
+def get_report_service() -> ReportGenerationService:
     """Get or create report service instance."""
     global _report_service
     if _report_service is None:
-        _report_service = ReportGenerationService(db)
-    else:
-        _report_service.db = db
+        _report_service = ReportGenerationService()
     return _report_service

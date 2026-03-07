@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import PortalNavbar from '../Layout/PortalNavbar/PortalNavbar';
 import PortalFooter from '../Layout/PortalFooter/PortalFooter';
+import MobileBottomNav from '../MobileBottomNav/MobileBottomNav';
 import { ChatbotAgent } from '@/app/components/AI';
 import CommandPalette from '@/app/components/CommandPalette/CommandPalette';
 
@@ -140,9 +141,7 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     setIsMobileOpen(false);
   }, []);
 
-  if (!resolvedTheme) return null; // Avoid rendering until theme is loaded to prevent flash of unstyled content
-
-  const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
+  const themeStyles = (resolvedTheme === 'dark') ? darkStyles : lightStyles;
 
   return (
     <>
@@ -164,7 +163,7 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         {routeAnnouncement}
       </div>
 
-      <div className={cn(commonStyles.appLayout, themeStyles.appLayout)}>
+      <div className={cn(commonStyles.appLayout, themeStyles.appLayout)} suppressHydrationWarning>
         {/* Mobile overlay backdrop */}
         <div
           className={cn(
@@ -189,7 +188,7 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           commonStyles.mainContent,
           isCollapsed && commonStyles.mainContentCollapsed
         )}>
-          <PortalNavbar userType={area} onMenuToggle={toggleSidebar} />
+          <PortalNavbar userType={area} onMenuToggle={toggleSidebar} isSidebarOpen={isMobileOpen} />
 
           <ErrorBoundary>
             <main 
@@ -210,6 +209,9 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <ChatbotAgent />
           </ErrorBoundary>
         </div>
+
+        {/* Mobile bottom tab navigation */}
+        <MobileBottomNav userType={area} />
       </div>
 
       {/* Command Palette — Ctrl+K */}

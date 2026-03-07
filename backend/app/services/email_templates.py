@@ -1,7 +1,6 @@
 # @AI-HINT: Email templates service for customizable system notifications
 """Email Templates Service - Customizable email templates."""
 
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from datetime import datetime, timezone
 from enum import Enum
@@ -335,8 +334,7 @@ View in Dashboard: {{dashboard_url}}
 class EmailTemplatesService:
     """Service for managing email templates."""
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
         self._templates: Dict[str, EmailTemplate] = {}
         self._init_default_templates()
     
@@ -533,6 +531,11 @@ class EmailTemplatesService:
         )
 
 
-def get_email_templates_service(db: Session) -> EmailTemplatesService:
+_singleton_email_templates_service = None
+
+def get_email_templates_service() -> EmailTemplatesService:
     """Get email templates service instance."""
-    return EmailTemplatesService(db)
+    global _singleton_email_templates_service
+    if _singleton_email_templates_service is None:
+        _singleton_email_templates_service = EmailTemplatesService()
+    return _singleton_email_templates_service

@@ -5,7 +5,6 @@ import uuid
 import hashlib
 from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Any, Optional
-from sqlalchemy.orm import Session
 
 
 class FileVersioningService:
@@ -29,7 +28,6 @@ class FileVersioningService:
     
     async def create_file(
         self,
-        db: Session,
         user_id: str,
         filename: str,
         content: bytes,
@@ -101,7 +99,6 @@ class FileVersioningService:
     
     async def upload_new_version(
         self,
-        db: Session,
         user_id: str,
         file_id: str,
         content: bytes,
@@ -184,7 +181,6 @@ class FileVersioningService:
     
     async def get_file(
         self,
-        db: Session,
         file_id: str
     ) -> Dict[str, Any]:
         """Get file metadata."""
@@ -212,7 +208,6 @@ class FileVersioningService:
     
     async def get_version(
         self,
-        db: Session,
         file_id: str,
         version_number: Optional[int] = None,
         version_id: Optional[str] = None
@@ -250,7 +245,6 @@ class FileVersioningService:
     
     async def rollback_to_version(
         self,
-        db: Session,
         user_id: str,
         file_id: str,
         version_number: int
@@ -286,7 +280,6 @@ class FileVersioningService:
     
     async def compare_versions(
         self,
-        db: Session,
         file_id: str,
         version_a: int,
         version_b: int
@@ -334,7 +327,6 @@ class FileVersioningService:
     
     async def lock_file(
         self,
-        db: Session,
         user_id: str,
         file_id: str
     ) -> Dict[str, Any]:
@@ -373,7 +365,6 @@ class FileVersioningService:
     
     async def unlock_file(
         self,
-        db: Session,
         user_id: str,
         file_id: str,
         force: bool = False
@@ -402,7 +393,6 @@ class FileVersioningService:
     
     async def delete_version(
         self,
-        db: Session,
         user_id: str,
         file_id: str,
         version_number: int
@@ -432,7 +422,6 @@ class FileVersioningService:
     
     async def get_version_history(
         self,
-        db: Session,
         file_id: str,
         limit: int = 50
     ) -> Dict[str, Any]:
@@ -468,7 +457,6 @@ class FileVersioningService:
     
     async def search_files(
         self,
-        db: Session,
         user_id: str,
         query: Optional[str] = None,
         resource_type: Optional[str] = None,

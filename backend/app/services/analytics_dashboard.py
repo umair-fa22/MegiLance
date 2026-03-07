@@ -1,7 +1,6 @@
 # @AI-HINT: Advanced analytics dashboard service
 """Analytics Dashboard Service - Comprehensive business intelligence."""
 
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from datetime import datetime, timedelta, timezone
 from enum import Enum
@@ -41,8 +40,8 @@ class WidgetType(str, Enum):
 class AnalyticsDashboardService:
     """Comprehensive business intelligence service."""
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        pass
     
     # Dashboard Management
     async def create_dashboard(
@@ -492,5 +491,10 @@ class AnalyticsDashboardService:
         ]
 
 
-def get_analytics_dashboard_service(db: Session) -> AnalyticsDashboardService:
-    return AnalyticsDashboardService(db)
+_singleton_analytics_dashboard_service = None
+
+def get_analytics_dashboard_service() -> AnalyticsDashboardService:
+    global _singleton_analytics_dashboard_service
+    if _singleton_analytics_dashboard_service is None:
+        _singleton_analytics_dashboard_service = AnalyticsDashboardService()
+    return _singleton_analytics_dashboard_service

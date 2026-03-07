@@ -13,9 +13,7 @@ from datetime import datetime
 from typing import Dict, List, Any, Optional
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
-from sqlalchemy.orm import Session
 
-from ...db.session import get_db
 from ...core.security import get_current_active_user
 from ...services.custom_fields import custom_fields_service
 from ...services.db_utils import sanitize_text
@@ -85,7 +83,7 @@ class CreateFieldGroupRequest(BaseModel):
 async def create_field_definition(
     request: CreateFieldDefinitionRequest,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Create a custom field definition.
@@ -117,7 +115,7 @@ async def create_field_definition(
     
     try:
         result = await custom_fields_service.create_field_definition(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             entity_type=request.entity_type,
             name=request.name,
@@ -143,12 +141,12 @@ async def get_field_definitions(
     entity_type: str = Query(..., description="Entity type to get fields for"),
     include_hidden: bool = Query(False),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get all field definitions for an entity type."""
     try:
         result = await custom_fields_service.get_field_definitions(
-            db=db,
+            ,
             entity_type=entity_type,
             include_hidden=include_hidden
         )
@@ -161,7 +159,7 @@ async def get_field_definitions(
 async def get_field_definition(
     field_id: str,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get a specific field definition."""
     field = custom_fields_service._field_definitions.get(field_id)
@@ -175,7 +173,7 @@ async def update_field_definition(
     field_id: str,
     request: UpdateFieldDefinitionRequest,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Update a field definition (admin only)."""
     if current_user.get("role") != "admin":
@@ -184,7 +182,7 @@ async def update_field_definition(
     try:
         updates = request.dict(exclude_unset=True)
         result = await custom_fields_service.update_field_definition(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             field_id=field_id,
             updates=updates
@@ -198,7 +196,7 @@ async def update_field_definition(
 async def delete_field_definition(
     field_id: str,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Delete a field definition (admin only)."""
     if current_user.get("role") != "admin":
@@ -206,7 +204,7 @@ async def delete_field_definition(
     
     try:
         result = await custom_fields_service.delete_field_definition(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             field_id=field_id
         )
@@ -223,12 +221,12 @@ async def set_field_value(
     entity_id: str,
     request: SetFieldValueRequest,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Set a custom field value for an entity."""
     try:
         result = await custom_fields_service.set_field_value(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             entity_type=entity_type,
             entity_id=entity_id,
@@ -246,11 +244,11 @@ async def set_multiple_field_values(
     entity_id: str,
     request: SetMultipleValuesRequest,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Set multiple custom field values at once."""
     result = await custom_fields_service.set_multiple_field_values(
-        db=db,
+        ,
         user_id=str(current_user.get("id")),
         entity_type=entity_type,
         entity_id=entity_id,
@@ -265,11 +263,11 @@ async def get_field_values(
     entity_id: str,
     include_empty: bool = Query(True, description="Include fields with no value"),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get all custom field values for an entity."""
     result = await custom_fields_service.get_field_values(
-        db=db,
+        ,
         entity_type=entity_type,
         entity_id=entity_id,
         include_empty=include_empty
@@ -283,14 +281,14 @@ async def get_field_values(
 async def create_field_group(
     request: CreateFieldGroupRequest,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Create a field group for organizing fields (admin only)."""
     if current_user.get("role") != "admin":
         raise HTTPException(status_code=403, detail="Admin access required")
     
     result = await custom_fields_service.create_field_group(
-        db=db,
+        ,
         user_id=str(current_user.get("id")),
         entity_type=request.entity_type,
         name=request.name,
@@ -307,11 +305,11 @@ async def create_field_group(
 async def get_field_groups(
     entity_type: str = Query(...),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get all field groups for an entity type."""
     result = await custom_fields_service.get_field_groups(
-        db=db,
+        ,
         entity_type=entity_type
     )
     return result
@@ -323,14 +321,14 @@ async def get_field_groups(
 async def export_field_definitions(
     entity_type: Optional[str] = Query(None),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Export field definitions (admin only)."""
     if current_user.get("role") != "admin":
         raise HTTPException(status_code=403, detail="Admin access required")
     
     result = await custom_fields_service.export_field_definitions(
-        db=db,
+        ,
         entity_type=entity_type
     )
     return result
@@ -341,7 +339,7 @@ async def export_field_definitions(
 @router.get("/info/types")
 async def get_field_types(
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get available field types and entity types."""
     return {

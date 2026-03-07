@@ -7,11 +7,9 @@ and contextual help.
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status, Query
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user, require_admin
 from app.models.user import User
 from app.services.knowledge_base import (
@@ -51,10 +49,10 @@ async def get_faqs(
     category: Optional[ArticleCategory] = None,
     search: Optional[str] = Query(None, alias="q"),
     limit: int = Query(50, le=100),
-    db: Session = Depends(get_db)
+    
 ):
     """Get FAQ entries."""
-    service = get_knowledge_base_service(db)
+    service = get_knowledge_base_service()
     faqs = await service.get_faqs(category, search, limit)
     return {"faqs": faqs, "count": len(faqs)}
 
@@ -62,10 +60,10 @@ async def get_faqs(
 @router.get("/faqs/{faq_id}")
 async def get_faq(
     faq_id: str,
-    db: Session = Depends(get_db)
+    
 ):
     """Get a specific FAQ entry."""
-    service = get_knowledge_base_service(db)
+    service = get_knowledge_base_service()
     faq = await service.get_faq(faq_id)
     
     if not faq:
@@ -81,10 +79,10 @@ async def get_articles(
     content_type: Optional[KnowledgeContentType] = None,
     search: Optional[str] = Query(None, alias="q"),
     limit: int = Query(20, le=50),
-    db: Session = Depends(get_db)
+    
 ):
     """Get help articles."""
-    service = get_knowledge_base_service(db)
+    service = get_knowledge_base_service()
     articles = await service.get_articles(category, content_type, search, limit)
     return {"articles": articles, "count": len(articles)}
 
@@ -92,10 +90,10 @@ async def get_articles(
 @router.get("/articles/{article_id}")
 async def get_article(
     article_id: str,
-    db: Session = Depends(get_db)
+    
 ):
     """Get a specific article."""
-    service = get_knowledge_base_service(db)
+    service = get_knowledge_base_service()
     article = await service.get_article(article_id)
     
     if not article:
@@ -107,10 +105,10 @@ async def get_article(
 @router.get("/articles/slug/{slug}")
 async def get_article_by_slug(
     slug: str,
-    db: Session = Depends(get_db)
+    
 ):
     """Get article by URL slug."""
-    service = get_knowledge_base_service(db)
+    service = get_knowledge_base_service()
     article = await service.get_article_by_slug(slug)
     
     if not article:
@@ -122,10 +120,10 @@ async def get_article_by_slug(
 # Categories
 @router.get("/categories")
 async def get_categories(
-    db: Session = Depends(get_db)
+    
 ):
     """Get all categories with content counts."""
-    service = get_knowledge_base_service(db)
+    service = get_knowledge_base_service()
     categories = await service.get_categories()
     return {"categories": categories}
 
@@ -135,10 +133,10 @@ async def get_categories(
 async def search_knowledge_base(
     q: str = Query(..., min_length=2, description="Search query"),
     limit: int = Query(20, le=50),
-    db: Session = Depends(get_db)
+    
 ):
     """Search across all knowledge base content."""
-    service = get_knowledge_base_service(db)
+    service = get_knowledge_base_service()
     results = await service.search(q, limit)
     return results
 
@@ -147,10 +145,10 @@ async def search_knowledge_base(
 @router.get("/popular")
 async def get_popular_content(
     limit: int = Query(10, le=20),
-    db: Session = Depends(get_db)
+    
 ):
     """Get most popular articles and FAQs."""
-    service = get_knowledge_base_service(db)
+    service = get_knowledge_base_service()
     popular = await service.get_popular_content(limit)
     return popular
 
@@ -160,13 +158,13 @@ async def get_popular_content(
 async def get_related_content(
     content_type: str,
     content_id: str,
-    db: Session = Depends(get_db)
+    
 ):
     """Get related content based on tags and category."""
     if content_type not in ["faq", "article"]:
         raise HTTPException(status_code=400, detail="Invalid content type")
     
-    service = get_knowledge_base_service(db)
+    service = get_knowledge_base_service()
     related = await service.get_related_content(content_id, content_type)
     return {"related": related}
 
@@ -175,10 +173,10 @@ async def get_related_content(
 @router.post("/suggestions")
 async def get_contextual_suggestions(
     request: SuggestionRequest,
-    db: Session = Depends(get_db)
+    
 ):
     """Get contextual help suggestions based on user's current context."""
-    service = get_knowledge_base_service(db)
+    service = get_knowledge_base_service()
     suggestions = await service.get_suggestions(request.context, request.user_role)
     return {"suggestions": suggestions}
 
@@ -186,10 +184,10 @@ async def get_contextual_suggestions(
 @router.get("/contextual/{page}")
 async def get_page_help(
     page: str,
-    db: Session = Depends(get_db)
+    
 ):
     """Get help content relevant to a specific page."""
-    service = get_knowledge_base_service(db)
+    service = get_knowledge_base_service()
     
     # Map pages to relevant topics
     page_topics = {
@@ -218,11 +216,11 @@ async def get_page_help(
 @router.post("/feedback")
 async def submit_feedback(
     request: FeedbackRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Mark content as helpful or not helpful."""
-    service = get_knowledge_base_service(db)
+    service = get_knowledge_base_service()
     result = await service.mark_helpful(
         request.content_type,
         request.content_id,
@@ -235,11 +233,11 @@ async def submit_feedback(
 # Quick Help
 @router.get("/quick-help")
 async def get_quick_help(
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get quick help resources for current user."""
-    service = get_knowledge_base_service(db)
+    service = get_knowledge_base_service()
     
     user_role = getattr(current_user, 'user_type', None) or getattr(current_user, 'role', 'freelancer')
     
@@ -257,11 +255,11 @@ async def get_quick_help(
 @router.post("/admin/articles")
 async def admin_create_article(
     request: CreateArticleRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(require_admin)
 ):
     """Admin: Create a new article."""
-    service = get_knowledge_base_service(db)
+    service = get_knowledge_base_service()
     result = await service.create_article(current_user.id, request.dict())
     return result
 
@@ -270,11 +268,11 @@ async def admin_create_article(
 async def admin_update_article(
     article_id: str,
     updates: Dict[str, Any],
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(require_admin)
 ):
     """Admin: Update an article."""
-    service = get_knowledge_base_service(db)
+    service = get_knowledge_base_service()
     result = await service.update_article(current_user.id, article_id, updates)
     return result
 
@@ -282,18 +280,18 @@ async def admin_update_article(
 @router.delete("/admin/articles/{article_id}")
 async def admin_delete_article(
     article_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(require_admin)
 ):
     """Admin: Delete an article."""
-    service = get_knowledge_base_service(db)
+    service = get_knowledge_base_service()
     result = await service.delete_article(current_user.id, article_id)
     return result
 
 
 @router.get("/admin/stats")
 async def admin_get_kb_stats(
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(require_admin)
 ):
     """Admin: Get knowledge base statistics."""

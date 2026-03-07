@@ -11,12 +11,10 @@ Endpoints for:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 from typing import Optional, List
 from pydantic import BaseModel, Field
 from datetime import datetime
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user, require_admin
 from app.models.user import User
 from app.services.notification_center import (
@@ -62,10 +60,10 @@ async def get_notifications(
     limit: int = 50,
     offset: int = 0,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get notifications for the current user."""
-    service = get_notification_service(db)
+    service = get_notification_service()
     
     type_enum = None
     if notification_type:
@@ -89,10 +87,10 @@ async def get_notifications(
 async def mark_notifications_read(
     request: MarkReadRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Mark notifications as read."""
-    service = get_notification_service(db)
+    service = get_notification_service()
     
     result = await service.mark_as_read(
         user_id=current_user.id,
@@ -106,10 +104,10 @@ async def mark_notifications_read(
 async def delete_notification(
     notification_id: str,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Delete a notification."""
-    service = get_notification_service(db)
+    service = get_notification_service()
     
     success = await service.delete_notification(
         user_id=current_user.id,
@@ -125,10 +123,10 @@ async def delete_notification(
 @router.get("/preferences")
 async def get_preferences(
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get notification preferences."""
-    service = get_notification_service(db)
+    service = get_notification_service()
     
     preferences = await service.get_user_preferences(current_user.id)
     
@@ -139,10 +137,10 @@ async def get_preferences(
 async def update_preferences(
     request: NotificationPreferencesRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Update notification preferences."""
-    service = get_notification_service(db)
+    service = get_notification_service()
     
     preferences = await service.update_user_preferences(
         user_id=current_user.id,
@@ -156,10 +154,10 @@ async def update_preferences(
 async def subscribe_push(
     request: PushSubscriptionRequest,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Subscribe to push notifications."""
-    service = get_notification_service(db)
+    service = get_notification_service()
     
     result = await service.register_push_subscription(
         user_id=current_user.id,
@@ -174,10 +172,10 @@ async def subscribe_push(
 async def unsubscribe_push(
     subscription_id: str,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Unsubscribe from push notifications."""
-    service = get_notification_service(db)
+    service = get_notification_service()
     
     await service.unregister_push_subscription(
         user_id=current_user.id,
@@ -193,11 +191,11 @@ async def send_notification(
     request: SendNotificationRequest,
     current_user: User = Depends(get_current_active_user),
     _admin = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """Send a notification (admin only)."""
     
-    service = get_notification_service(db)
+    service = get_notification_service()
     
     try:
         notification_type = NotificationType(request.notification_type)

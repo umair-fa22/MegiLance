@@ -35,6 +35,15 @@
   color: #f8fafc;
 }
 
+.menuButton {
+  color: #94a3b8;
+}
+
+.menuButton:hover {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+
 .searchContainer {
   background-color: #0f172a;
   border-color: #1e293b;

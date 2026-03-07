@@ -11,8 +11,6 @@ from pathlib import Path
 from typing import List, Dict, Any, Optional, Tuple
 from datetime import datetime, timedelta, timezone
 from enum import Enum
-from sqlalchemy.orm import Session
-from sqlalchemy import and_, func, desc
 import random
 
 logger = logging.getLogger(__name__)
@@ -118,8 +116,7 @@ class SkillAssessmentEngine:
     Production-grade skill assessment engine
     """
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
         self.code_executor = CodeExecutor()
         # In-memory session storage (use Redis in production)
         self._active_sessions: Dict[str, Dict] = {}
@@ -580,6 +577,11 @@ class SkillAssessmentEngine:
 
 
 # Factory function
-def get_assessment_engine(db: Session) -> SkillAssessmentEngine:
+_singleton_assessment_engine = None
+
+def get_assessment_engine() -> SkillAssessmentEngine:
     """Get assessment engine instance"""
-    return SkillAssessmentEngine(db)
+    global _singleton_assessment_engine
+    if _singleton_assessment_engine is None:
+        _singleton_assessment_engine = SkillAssessmentEngine()
+    return _singleton_assessment_engine

@@ -14,9 +14,7 @@ from datetime import datetime
 from typing import Dict, List, Any, Optional
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
-from sqlalchemy.orm import Session
 
-from ...db.session import get_db
 from ...core.security import get_current_active_user
 from ...services.comments import comments_service
 from ...services.db_utils import sanitize_text
@@ -55,7 +53,7 @@ class ReactionRequest(BaseModel):
 async def create_comment(
     request: CreateCommentRequest,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Create a new comment.
@@ -65,7 +63,7 @@ async def create_comment(
     """
     try:
         result = await comments_service.create_comment(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             resource_type=request.resource_type,
             resource_id=request.resource_id,
@@ -88,7 +86,7 @@ async def get_comments(
     limit: int = Query(50, ge=1, le=200),
     offset: int = Query(0, ge=0),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Get comments for a resource.
@@ -96,7 +94,7 @@ async def get_comments(
     Returns flat list with threading info (use threaded endpoint for tree view).
     """
     result = await comments_service.get_comments(
-        db=db,
+        ,
         resource_type=resource_type,
         resource_id=resource_id,
         include_deleted=include_deleted,
@@ -113,7 +111,7 @@ async def get_threaded_comments(
     resource_id: str = Query(...),
     include_deleted: bool = Query(False),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Get comments organized as a thread tree.
@@ -121,7 +119,7 @@ async def get_threaded_comments(
     Each comment includes its replies nested in a 'replies' array.
     """
     result = await comments_service.get_threaded_comments(
-        db=db,
+        ,
         resource_type=resource_type,
         resource_id=resource_id,
         include_deleted=include_deleted
@@ -133,11 +131,11 @@ async def get_threaded_comments(
 async def get_comment(
     comment_id: str,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get a single comment by ID."""
     try:
-        comment = await comments_service.get_comment(db=db, comment_id=comment_id)
+        comment = await comments_service.get_comment(comment_id=comment_id)
         return comment
     except ValueError as e:
         logger.warning("get_comment not found: %s", e)
@@ -149,7 +147,7 @@ async def update_comment(
     comment_id: str,
     request: UpdateCommentRequest,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Update a comment.
@@ -158,7 +156,7 @@ async def update_comment(
     """
     try:
         result = await comments_service.update_comment(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             comment_id=comment_id,
             content=sanitize_text(request.content, 10000)
@@ -173,7 +171,7 @@ async def update_comment(
 async def delete_comment(
     comment_id: str,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Delete a comment (soft delete).
@@ -183,7 +181,7 @@ async def delete_comment(
     try:
         is_admin = current_user.get("role") == "admin"
         result = await comments_service.delete_comment(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             comment_id=comment_id,
             is_admin=is_admin
@@ -201,7 +199,7 @@ async def add_reaction(
     comment_id: str,
     request: ReactionRequest,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Add a reaction to a comment.
@@ -211,7 +209,7 @@ async def add_reaction(
     """
     try:
         result = await comments_service.add_reaction(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             comment_id=comment_id,
             reaction=request.reaction
@@ -227,12 +225,12 @@ async def remove_reaction(
     comment_id: str,
     reaction: str,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Remove a reaction from a comment."""
     try:
         result = await comments_service.remove_reaction(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             comment_id=comment_id,
             reaction=reaction
@@ -249,13 +247,13 @@ async def remove_reaction(
 async def pin_comment(
     comment_id: str,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Pin a comment (admin only)."""
     try:
         is_admin = current_user.get("role") == "admin"
         result = await comments_service.pin_comment(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             comment_id=comment_id,
             is_admin=is_admin
@@ -270,13 +268,13 @@ async def pin_comment(
 async def unpin_comment(
     comment_id: str,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Unpin a comment."""
     try:
         is_admin = current_user.get("role") == "admin"
         result = await comments_service.unpin_comment(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             comment_id=comment_id,
             is_admin=is_admin
@@ -291,12 +289,12 @@ async def unpin_comment(
 async def resolve_comment(
     comment_id: str,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Mark a comment thread as resolved."""
     try:
         result = await comments_service.resolve_comment(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             comment_id=comment_id
         )
@@ -312,11 +310,11 @@ async def resolve_comment(
 async def get_edit_history(
     comment_id: str,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get edit history for a comment."""
     try:
-        result = await comments_service.get_edit_history(db=db, comment_id=comment_id)
+        result = await comments_service.get_edit_history(comment_id=comment_id)
         return result
     except ValueError as e:
         logger.warning("get_edit_history not found: %s", e)
@@ -327,11 +325,11 @@ async def get_edit_history(
 async def get_my_mentions(
     limit: int = Query(50, ge=1, le=100),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get comments where you are mentioned."""
     result = await comments_service.get_user_mentions(
-        db=db,
+        ,
         user_id=str(current_user.get("id")),
         limit=limit
     )
@@ -345,11 +343,11 @@ async def get_comment_stats(
     resource_type: str = Query(...),
     resource_id: str = Query(...),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get comment statistics for a resource."""
     result = await comments_service.get_comment_stats(
-        db=db,
+        ,
         resource_type=resource_type,
         resource_id=resource_id
     )
@@ -361,7 +359,7 @@ async def get_comment_stats(
 @router.get("/info/reactions")
 async def get_available_reactions(
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get available reaction types."""
     return {

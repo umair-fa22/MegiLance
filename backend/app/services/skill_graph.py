@@ -3,7 +3,6 @@
 
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any
-from sqlalchemy.orm import Session
 from enum import Enum
 import uuid
 
@@ -31,8 +30,8 @@ class VerificationStatus(str, Enum):
 class SkillGraphService:
     """Service for skill graph and endorsements."""
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        pass
     
     # Skill Taxonomy
     async def get_skill_categories(self) -> List[Dict[str, Any]]:
@@ -590,6 +589,11 @@ class SkillGraphService:
         ]
 
 
-def get_skill_graph_service(db: Session) -> SkillGraphService:
+_singleton_skill_graph_service = None
+
+def get_skill_graph_service() -> SkillGraphService:
     """Factory function for skill graph service."""
-    return SkillGraphService(db)
+    global _singleton_skill_graph_service
+    if _singleton_skill_graph_service is None:
+        _singleton_skill_graph_service = SkillGraphService()
+    return _singleton_skill_graph_service

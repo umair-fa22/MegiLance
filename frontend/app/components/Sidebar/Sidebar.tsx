@@ -92,8 +92,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, toggleSidebar, userType,
     return () => window.removeEventListener('storage', onStorage);
   }, [userType]);
 
-  if (!resolvedTheme) return null;
-
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   return (

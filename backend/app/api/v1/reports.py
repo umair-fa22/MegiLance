@@ -9,17 +9,15 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
 from typing import Optional
 from pydantic import BaseModel
 from datetime import datetime
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.models.user import User
 from app.services.db_utils import get_user_role
 from app.services.reports import (
-    ReportGenerationService,
+    get_report_service,
     ReportType,
     ReportFormat
 )
@@ -49,11 +47,10 @@ class ScheduleReportRequest(BaseModel):
 # API Endpoints
 @router.get("/types")
 async def get_report_types(
-    db: Session = Depends(get_db),
     current_user: User = Depends(get_current_active_user)
 ):
     """Get available report types."""
-    service = ReportGenerationService(db)
+    service = get_report_service()
     
     role = get_user_role(current_user)
     reports = await service.get_available_reports(role)
@@ -67,11 +64,10 @@ async def get_report_types(
 @router.post("/generate")
 async def generate_report(
     request: GenerateReportRequest,
-    db: Session = Depends(get_db),
     current_user: User = Depends(get_current_active_user)
 ):
     """Generate a report."""
-    service = ReportGenerationService(db)
+    service = get_report_service()
     
     # Validate report type
     try:
@@ -122,11 +118,10 @@ async def generate_report(
 async def list_reports(
     report_type: Optional[str] = None,
     limit: int = 50,
-    db: Session = Depends(get_db),
     current_user: User = Depends(get_current_active_user)
 ):
     """List user's generated reports."""
-    service = ReportGenerationService(db)
+    service = get_report_service()
     
     rtype = None
     if report_type:
@@ -147,11 +142,10 @@ async def list_reports(
 @router.get("/{report_id}")
 async def get_report(
     report_id: str,
-    db: Session = Depends(get_db),
     current_user: User = Depends(get_current_active_user)
 ):
     """Get report details."""
-    service = ReportGenerationService(db)
+    service = get_report_service()
     
     report = await service.get_report(report_id, current_user.id)
     
@@ -164,11 +158,10 @@ async def get_report(
 @router.get("/download/{report_id}")
 async def download_report(
     report_id: str,
-    db: Session = Depends(get_db),
     current_user: User = Depends(get_current_active_user)
 ):
     """Download a generated report."""
-    service = ReportGenerationService(db)
+    service = get_report_service()
     
     report = await service.get_report(report_id, current_user.id)
     
@@ -194,11 +187,10 @@ async def download_report(
 @router.post("/schedule")
 async def schedule_report(
     request: ScheduleReportRequest,
-    db: Session = Depends(get_db),
     current_user: User = Depends(get_current_active_user)
 ):
     """Schedule recurring report generation."""
-    service = ReportGenerationService(db)
+    service = get_report_service()
     
     # Validate report type
     try:
@@ -239,11 +231,10 @@ async def schedule_report(
 
 @router.get("/scheduled/list")
 async def list_scheduled_reports(
-    db: Session = Depends(get_db),
     current_user: User = Depends(get_current_active_user)
 ):
     """List scheduled reports."""
-    service = ReportGenerationService(db)
+    service = get_report_service()
     
     scheduled = await service.list_scheduled_reports(current_user.id)
     
@@ -253,11 +244,10 @@ async def list_scheduled_reports(
 @router.delete("/scheduled/{schedule_id}")
 async def cancel_scheduled_report(
     schedule_id: str,
-    db: Session = Depends(get_db),
     current_user: User = Depends(get_current_active_user)
 ):
     """Cancel a scheduled report."""
-    service = ReportGenerationService(db)
+    service = get_report_service()
     
     success = await service.cancel_scheduled_report(schedule_id, current_user.id)
     

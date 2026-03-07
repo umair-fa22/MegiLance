@@ -11,11 +11,9 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.services.ai_writing import (
     get_ai_writing_service,
@@ -110,11 +108,10 @@ class ApplyTemplateRequest(BaseModel):
 @router.post("/generate/proposal")
 async def generate_proposal(
     request: GenerateProposalRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Generate a proposal for a project."""
-    service = get_ai_writing_service(db)
+    service = get_ai_writing_service()
     
     result = await service.generate_proposal(
         user_id=current_user["id"],
@@ -132,11 +129,10 @@ async def generate_proposal(
 @router.post("/generate/project-description")
 async def generate_project_description(
     request: GenerateProjectDescriptionRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Generate a project description."""
-    service = get_ai_writing_service(db)
+    service = get_ai_writing_service()
     
     result = await service.generate_project_description(
         user_id=current_user["id"],
@@ -153,11 +149,10 @@ async def generate_project_description(
 @router.post("/generate/profile-bio")
 async def generate_profile_bio(
     request: GenerateProfileBioRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Generate a profile bio."""
-    service = get_ai_writing_service(db)
+    service = get_ai_writing_service()
     
     result = await service.generate_profile_bio(
         user_id=current_user["id"],
@@ -174,11 +169,10 @@ async def generate_profile_bio(
 @router.post("/generate/message")
 async def generate_message(
     request: GenerateMessageRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Generate a professional message."""
-    service = get_ai_writing_service(db)
+    service = get_ai_writing_service()
     
     result = await service.generate_message(
         user_id=current_user["id"],
@@ -194,11 +188,10 @@ async def generate_message(
 @router.post("/generate/upsell")
 async def generate_upsell(
     request: GenerateUpsellRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Generate upsell suggestions."""
-    service = get_ai_writing_service(db)
+    service = get_ai_writing_service()
     
     result = await service.generate_upsell_suggestions(
         user_id=current_user["id"],
@@ -213,11 +206,10 @@ async def generate_upsell(
 @router.post("/improve")
 async def improve_content(
     request: ImproveContentRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Improve existing content."""
-    service = get_ai_writing_service(db)
+    service = get_ai_writing_service()
     
     result = await service.improve_content(
         user_id=current_user["id"],
@@ -232,11 +224,10 @@ async def improve_content(
 @router.post("/adjust-tone")
 async def adjust_tone(
     request: AdjustToneRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Adjust the tone of content."""
-    service = get_ai_writing_service(db)
+    service = get_ai_writing_service()
     
     result = await service.adjust_tone(
         user_id=current_user["id"],
@@ -250,11 +241,10 @@ async def adjust_tone(
 @router.post("/expand")
 async def expand_content(
     request: ExpandContentRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Expand content to target length."""
-    service = get_ai_writing_service(db)
+    service = get_ai_writing_service()
     
     result = await service.expand_content(
         user_id=current_user["id"],
@@ -269,11 +259,10 @@ async def expand_content(
 @router.post("/summarize")
 async def summarize_content(
     request: SummarizeContentRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Summarize content to target length."""
-    service = get_ai_writing_service(db)
+    service = get_ai_writing_service()
     
     result = await service.summarize_content(
         user_id=current_user["id"],
@@ -288,11 +277,10 @@ async def summarize_content(
 @router.post("/analyze")
 async def analyze_content(
     request: AnalyzeContentRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Analyze content for quality and suggestions."""
-    service = get_ai_writing_service(db)
+    service = get_ai_writing_service()
     
     result = await service.analyze_content(
         user_id=current_user["id"],
@@ -305,11 +293,10 @@ async def analyze_content(
 @router.post("/analyze/feasibility")
 async def analyze_feasibility(
     request: AnalyzeFeasibilityRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Analyze project feasibility."""
-    service = get_ai_writing_service(db)
+    service = get_ai_writing_service()
     
     result = await service.analyze_feasibility(
         user_id=current_user["id"],
@@ -325,11 +312,10 @@ async def analyze_feasibility(
 @router.post("/grammar-check")
 async def check_grammar(
     request: CheckGrammarRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Check grammar and spelling."""
-    service = get_ai_writing_service(db)
+    service = get_ai_writing_service()
     
     result = await service.check_grammar(
         user_id=current_user["id"],
@@ -343,11 +329,10 @@ async def check_grammar(
 @router.get("/templates")
 async def get_writing_templates(
     content_type: Optional[WritingContentType] = None,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Get writing templates."""
-    service = get_ai_writing_service(db)
+    service = get_ai_writing_service()
     templates = await service.get_writing_templates(content_type)
     return {"templates": templates}
 
@@ -355,11 +340,10 @@ async def get_writing_templates(
 @router.post("/templates/apply")
 async def apply_template(
     request: ApplyTemplateRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Apply a template with variables."""
-    service = get_ai_writing_service(db)
+    service = get_ai_writing_service()
     
     result = await service.apply_template(
         user_id=current_user["id"],
@@ -373,10 +357,9 @@ async def apply_template(
 # Usage Endpoints
 @router.get("/usage")
 async def get_usage_stats(
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Get AI writing assistant usage statistics."""
-    service = get_ai_writing_service(db)
+    service = get_ai_writing_service()
     stats = await service.get_usage_stats(current_user["id"])
     return {"stats": stats}

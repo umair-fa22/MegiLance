@@ -15,9 +15,7 @@ from datetime import datetime
 from typing import Dict, List, Any, Optional, Literal
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
-from sqlalchemy.orm import Session
 
-from ...db.session import get_db
 from ...core.security import get_current_active_user
 from ...services.activity_feed import activity_feed_service
 from ...services.db_utils import sanitize_text
@@ -57,7 +55,7 @@ async def get_my_feed(
     include_own: bool = Query(True, description="Include own activities"),
     limit: int = Query(50, ge=1, le=100),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Get personalized activity feed.
@@ -66,7 +64,7 @@ async def get_my_feed(
     Activities are aggregated and sorted by recency.
     """
     result = await activity_feed_service.get_feed(
-        db=db,
+        ,
         user_id=str(current_user.get("id")),
         include_own=include_own,
         limit=limit
@@ -80,13 +78,13 @@ async def get_my_activities(
     limit: int = Query(50, ge=1, le=100),
     offset: int = Query(0, ge=0),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get current user's own activities."""
     types_list = activity_types.split(",") if activity_types else None
     
     result = await activity_feed_service.get_user_activities(
-        db=db,
+        ,
         user_id=str(current_user.get("id")),
         viewer_id=str(current_user.get("id")),
         activity_types=types_list,
@@ -103,7 +101,7 @@ async def get_user_activities(
     limit: int = Query(50, ge=1, le=100),
     offset: int = Query(0, ge=0),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Get another user's activities.
@@ -114,7 +112,7 @@ async def get_user_activities(
     types_list = activity_types.split(",") if activity_types else None
     
     result = await activity_feed_service.get_user_activities(
-        db=db,
+        ,
         user_id=user_id,
         viewer_id=str(current_user.get("id")),
         activity_types=types_list,
@@ -128,7 +126,7 @@ async def get_user_activities(
 async def create_activity(
     request: CreateActivityRequest,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Create a new activity.
@@ -142,7 +140,7 @@ async def create_activity(
     """
     try:
         result = await activity_feed_service.create_activity(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             activity_type=request.activity_type,
             data=request.data,
@@ -158,12 +156,12 @@ async def create_activity(
 async def delete_activity(
     activity_id: str,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Delete own activity."""
     try:
         result = await activity_feed_service.delete_activity(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             activity_id=activity_id
         )
@@ -178,12 +176,12 @@ async def delete_activity(
 async def follow_user(
     user_id: str,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Follow a user to see their activities in your feed."""
     try:
         result = await activity_feed_service.follow_user(
-            db=db,
+            ,
             follower_id=str(current_user.get("id")),
             target_id=user_id
         )
@@ -196,11 +194,11 @@ async def follow_user(
 async def unfollow_user(
     user_id: str,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Unfollow a user."""
     result = await activity_feed_service.unfollow_user(
-        db=db,
+        ,
         follower_id=str(current_user.get("id")),
         target_id=user_id
     )
@@ -212,11 +210,11 @@ async def get_my_followers(
     limit: int = Query(50, ge=1, le=100),
     offset: int = Query(0, ge=0),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get list of users following you."""
     result = await activity_feed_service.get_followers(
-        db=db,
+        ,
         user_id=str(current_user.get("id")),
         limit=limit,
         offset=offset
@@ -229,11 +227,11 @@ async def get_my_following(
     limit: int = Query(50, ge=1, le=100),
     offset: int = Query(0, ge=0),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get list of users you're following."""
     result = await activity_feed_service.get_following(
-        db=db,
+        ,
         user_id=str(current_user.get("id")),
         limit=limit,
         offset=offset
@@ -247,11 +245,11 @@ async def get_user_followers(
     limit: int = Query(50, ge=1, le=100),
     offset: int = Query(0, ge=0),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get followers of a specific user."""
     result = await activity_feed_service.get_followers(
-        db=db,
+        ,
         user_id=user_id,
         limit=limit,
         offset=offset
@@ -265,11 +263,11 @@ async def get_user_following(
     limit: int = Query(50, ge=1, le=100),
     offset: int = Query(0, ge=0),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get users that a specific user follows."""
     result = await activity_feed_service.get_following(
-        db=db,
+        ,
         user_id=user_id,
         limit=limit,
         offset=offset
@@ -283,12 +281,12 @@ async def get_user_following(
 async def like_activity(
     activity_id: str,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Like an activity."""
     try:
         result = await activity_feed_service.like_activity(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             activity_id=activity_id
         )
@@ -301,12 +299,12 @@ async def like_activity(
 async def unlike_activity(
     activity_id: str,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Unlike an activity."""
     try:
         result = await activity_feed_service.unlike_activity(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             activity_id=activity_id
         )
@@ -320,12 +318,12 @@ async def comment_on_activity(
     activity_id: str,
     request: CommentRequest,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Add a comment to an activity."""
     try:
         result = await activity_feed_service.comment_on_activity(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             activity_id=activity_id,
             comment=sanitize_text(request.comment, 1000)
@@ -340,11 +338,11 @@ async def comment_on_activity(
 @router.get("/privacy")
 async def get_privacy_settings(
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get current privacy settings."""
     result = await activity_feed_service.get_privacy_settings(
-        db=db,
+        ,
         user_id=str(current_user.get("id"))
     )
     return result
@@ -354,7 +352,7 @@ async def get_privacy_settings(
 async def update_privacy_settings(
     request: PrivacySettingsRequest,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Update activity privacy settings.
@@ -367,7 +365,7 @@ async def update_privacy_settings(
     try:
         settings = request.dict(exclude_unset=True)
         result = await activity_feed_service.update_privacy_settings(
-            db=db,
+            ,
             user_id=str(current_user.get("id")),
             settings=settings
         )
@@ -381,11 +379,11 @@ async def update_privacy_settings(
 @router.get("/stats")
 async def get_activity_stats(
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get activity statistics for current user."""
     result = await activity_feed_service.get_activity_stats(
-        db=db,
+        ,
         user_id=str(current_user.get("id"))
     )
     return result
@@ -395,11 +393,11 @@ async def get_activity_stats(
 async def get_user_activity_stats(
     user_id: str,
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get activity statistics for a specific user."""
     result = await activity_feed_service.get_activity_stats(
-        db=db,
+        ,
         user_id=user_id
     )
     return result
@@ -410,7 +408,7 @@ async def get_trending_activities(
     hours: int = Query(24, ge=1, le=168, description="Time range in hours"),
     limit: int = Query(20, ge=1, le=50),
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Get trending activities across the platform.
@@ -418,7 +416,7 @@ async def get_trending_activities(
     Ranked by engagement (likes and comments).
     """
     result = await activity_feed_service.get_trending_activities(
-        db=db,
+        ,
         time_range_hours=hours,
         limit=limit
     )
@@ -430,7 +428,7 @@ async def get_trending_activities(
 @router.get("/types")
 async def get_activity_types(
     current_user = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    
 ):
     """Get all available activity types."""
     return {

@@ -4,11 +4,9 @@
 import logging
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any, Tuple
-from sqlalchemy.orm import Session
-from sqlalchemy import func, and_, or_, desc
+from app.db.turso_http import execute_query, parse_rows
 from collections import defaultdict
 import math
-# STUB: Trend analysis uses heuristic fallbacks; replace with ML pipeline
 
 logger = logging.getLogger(__name__)
 
@@ -21,8 +19,8 @@ class AdvancedAnalyticsService:
     comprehensive business intelligence.
     """
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        pass
     
     # =========================================================================
     # Revenue Analytics
@@ -37,22 +35,23 @@ class AdvancedAnalyticsService:
         Generate revenue forecast using Linear Regression on historical data.
         """
         try:
-            from app.models.payment import Payment
-            
             # Get historical revenue data (12 months)
             end_date = datetime.now(timezone.utc)
             start_date = end_date - timedelta(days=365)
             
-            payments = self.db.query(Payment).filter(
-                Payment.created_at >= start_date,
-                Payment.status == "completed"
-            ).all()
+            result = await execute_query(
+                "SELECT created_at, amount FROM payments WHERE created_at >= ? AND status = 'completed'",
+                [start_date.isoformat()]
+            )
+            payments = parse_rows(result)
             
             # Aggregate by month
             monthly_revenue = defaultdict(float)
             for payment in payments:
-                month_key = payment.created_at.strftime("%Y-%m")
-                monthly_revenue[month_key] += float(payment.amount or 0)
+                created = payment.get("created_at", "")
+                if created:
+                    month_key = created[:7]  # "YYYY-MM"
+                    monthly_revenue[month_key] += float(payment.get("amount") or 0)
             
             # Prepare data for regression
             # X = month index (0, 1, 2...), y = revenue
@@ -174,33 +173,45 @@ class AdvancedAnalyticsService:
         Get revenue breakdown by category, type, and source.
         """
         try:
-            from app.models.payment import Payment
-            from app.models.project import Project
-            
             if not end_date:
                 end_date = datetime.now(timezone.utc)
             if not start_date:
                 start_date = end_date - timedelta(days=30)
             
-            # Get payments in range
-            payments = self.db.query(Payment).filter(
-                Payment.created_at >= start_date,
-                Payment.created_at <= end_date,
-                Payment.status == "completed"
-            ).all()
+            result = await execute_query(
+                "SELECT * FROM payments WHERE created_at >= ? AND created_at <= ? AND status = 'completed'",
+                [start_date.isoformat(), end_date.isoformat()]
+            )
+            payments = parse_rows(result)
             
             # Breakdown by payment type
             by_type = defaultdict(float)
             by_category = defaultdict(float)
+            project_ids = set()
             
             for payment in payments:
-                by_type[payment.payment_type or "project"] += float(payment.amount or 0)
-                
-                # Get project category if available
-                if payment.project_id:
-                    project = self.db.query(Project).filter(Project.id == payment.project_id).first()
-                    if project:
-                        by_category[project.category or "uncategorized"] += float(payment.amount or 0)
+                ptype = payment.get("payment_type") or "project"
+                by_type[ptype] += float(payment.get("amount") or 0)
+                pid = payment.get("project_id")
+                if pid:
+                    project_ids.add(pid)
+            
+            # Get project categories in batch
+            if project_ids:
+                placeholders = ",".join(["?"] * len(project_ids))
+                proj_result = await execute_query(
+                    f"SELECT id, category FROM projects WHERE id IN ({placeholders})",
+                    list(project_ids)
+                )
+                proj_rows = parse_rows(proj_result)
+                proj_cat_map = {r["id"]: r.get("category") or "uncategorized" for r in proj_rows}
+            else:
+                proj_cat_map = {}
+            
+            for payment in payments:
+                pid = payment.get("project_id")
+                if pid and pid in proj_cat_map:
+                    by_category[proj_cat_map[pid]] += float(payment.get("amount") or 0)
             
             total_revenue = sum(by_type.values())
             
@@ -239,48 +250,63 @@ class AdvancedAnalyticsService:
         Perform cohort analysis for user retention and engagement.
         """
         try:
-            from app.models.user import User
-            from app.models.project import Project
-            
-            # Get users grouped by registration month
-            users = self.db.query(User).filter(
-                User.created_at >= datetime.now(timezone.utc) - timedelta(days=180)
-            ).all()
+            cutoff = (datetime.now(timezone.utc) - timedelta(days=180)).isoformat()
+            user_result = await execute_query(
+                "SELECT id, created_at FROM users WHERE created_at >= ?",
+                [cutoff]
+            )
+            users = parse_rows(user_result)
             
             # Group users into cohorts
             cohorts = defaultdict(list)
             for user in users:
+                created = user.get("created_at", "")
+                if not created:
+                    continue
+                try:
+                    dt = datetime.fromisoformat(created.replace("Z", "+00:00")) if isinstance(created, str) else created
+                except (ValueError, AttributeError):
+                    continue
                 if cohort_type == "monthly":
-                    cohort_key = user.created_at.strftime("%Y-%m")
+                    cohort_key = dt.strftime("%Y-%m")
                 else:
-                    # Weekly cohort
-                    week_start = user.created_at - timedelta(days=user.created_at.weekday())
+                    week_start = dt - timedelta(days=dt.weekday())
                     cohort_key = week_start.strftime("%Y-W%W")
-                cohorts[cohort_key].append(user)
+                cohorts[cohort_key].append({"id": user["id"], "created_at": dt})
             
             # Calculate retention for each cohort
             cohort_data = []
             
             for cohort_key, cohort_users in sorted(cohorts.items()):
                 cohort_size = len(cohort_users)
-                user_ids = [u.id for u in cohort_users]
+                user_ids = [u["id"] for u in cohort_users]
                 
-                # Calculate retention by period
                 periods = []
-                for period in range(6):  # 6 periods
+                for period in range(6):
                     if cohort_type == "monthly":
-                        period_start = datetime.strptime(cohort_key, "%Y-%m") + timedelta(days=30 * period)
+                        try:
+                            period_start = datetime.strptime(cohort_key, "%Y-%m") + timedelta(days=30 * period)
+                        except ValueError:
+                            continue
                         period_end = period_start + timedelta(days=30)
                     else:
-                        period_start = datetime.strptime(cohort_key + "-1", "%Y-W%W-%w") + timedelta(weeks=period)
+                        try:
+                            period_start = datetime.strptime(cohort_key + "-1", "%Y-W%W-%w") + timedelta(weeks=period)
+                        except ValueError:
+                            continue
                         period_end = period_start + timedelta(weeks=1)
                     
-                    # Count active users (users with projects or proposals)
-                    active_count = self.db.query(Project).filter(
-                        Project.client_id.in_(user_ids),
-                        Project.created_at >= period_start,
-                        Project.created_at < period_end
-                    ).distinct(Project.client_id).count()
+                    # Count active users (users with projects in this period)
+                    if user_ids:
+                        placeholders = ",".join(["?"] * len(user_ids))
+                        count_result = await execute_query(
+                            f"SELECT COUNT(DISTINCT client_id) as cnt FROM projects WHERE client_id IN ({placeholders}) AND created_at >= ? AND created_at < ?",
+                            user_ids + [period_start.isoformat(), period_end.isoformat()]
+                        )
+                        count_rows = parse_rows(count_result)
+                        active_count = int(count_rows[0]["cnt"]) if count_rows else 0
+                    else:
+                        active_count = 0
                     
                     retention_rate = (active_count / cohort_size * 100) if cohort_size > 0 else 0
                     
@@ -330,38 +356,63 @@ class AdvancedAnalyticsService:
         Predict user churn probability using ML model.
         """
         try:
-            from app.models.user import User
-            from app.models.project import Project
-            from app.models.proposal import Proposal
-            
             if user_id:
-                users = [self.db.query(User).filter(User.id == user_id).first()]
-                if not users[0]:
+                user_result = await execute_query(
+                    "SELECT id, created_at, last_login, is_active FROM users WHERE id = ?", [user_id]
+                )
+                users = parse_rows(user_result)
+                if not users:
                     raise ValueError("User not found")
             else:
-                # Get users for batch prediction
-                users = self.db.query(User).filter(
-                    User.is_active == True
-                ).limit(100).all()
+                user_result = await execute_query(
+                    "SELECT id, created_at, last_login, is_active FROM users WHERE is_active = 1 LIMIT 100"
+                )
+                users = parse_rows(user_result)
+            
+            # Batch-fetch project counts and proposal counts
+            all_user_ids = [u["id"] for u in users]
+            project_counts = {}
+            proposal_counts = {}
+            
+            if all_user_ids:
+                placeholders = ",".join(["?"] * len(all_user_ids))
+                pc_result = await execute_query(
+                    f"SELECT client_id, COUNT(*) as cnt FROM projects WHERE client_id IN ({placeholders}) GROUP BY client_id",
+                    all_user_ids
+                )
+                for row in parse_rows(pc_result):
+                    project_counts[row["client_id"]] = int(row["cnt"])
+                
+                pp_result = await execute_query(
+                    f"SELECT freelancer_id, COUNT(*) as cnt FROM proposals WHERE freelancer_id IN ({placeholders}) GROUP BY freelancer_id",
+                    all_user_ids
+                )
+                for row in parse_rows(pp_result):
+                    proposal_counts[row["freelancer_id"]] = int(row["cnt"])
             
             predictions = []
+            now = datetime.now(timezone.utc)
             
             for user in users:
-                if not user:
-                    continue
-                    
                 # Calculate churn features
-                days_since_registration = (datetime.now(timezone.utc) - user.created_at).days if user.created_at else 0
-                days_since_last_login = (datetime.now(timezone.utc) - user.last_login).days if user.last_login else 30
+                created_str = user.get("created_at", "")
+                login_str = user.get("last_login", "")
                 
-                # Count user activity
-                project_count = self.db.query(Project).filter(
-                    Project.client_id == user.id
-                ).count()
+                try:
+                    created_dt = datetime.fromisoformat(created_str.replace("Z", "+00:00")) if created_str else now
+                except (ValueError, AttributeError):
+                    created_dt = now
+                    
+                try:
+                    login_dt = datetime.fromisoformat(login_str.replace("Z", "+00:00")) if login_str else None
+                except (ValueError, AttributeError):
+                    login_dt = None
                 
-                proposal_count = self.db.query(Proposal).filter(
-                    Proposal.freelancer_id == user.id
-                ).count()
+                days_since_registration = (now - created_dt).days
+                days_since_last_login = (now - login_dt).days if login_dt else 30
+                
+                project_count = project_counts.get(user["id"], 0)
+                proposal_count = proposal_counts.get(user["id"], 0)
                 
                 # Simple churn scoring (in production, use trained ML model)
                 # Higher score = higher churn risk
@@ -408,7 +459,7 @@ class AdvancedAnalyticsService:
                     ]
                 
                 predictions.append({
-                    "user_id": user.id,
+                    "user_id": user["id"],
                     "churn_probability": round(churn_probability, 3),
                     "risk_level": risk_level,
                     "factors": {
@@ -454,18 +505,19 @@ class AdvancedAnalyticsService:
         Analyze market trends for skills, categories, and pricing.
         """
         try:
-            from app.models.project import Project
-            from app.models.proposal import Proposal
-            
-            # Get projects from last 90 days
             start_date = datetime.now(timezone.utc) - timedelta(days=90)
             
-            projects = self.db.query(Project).filter(
-                Project.created_at >= start_date
-            )
             if category:
-                projects = projects.filter(Project.category == category)
-            projects = projects.all()
+                proj_result = await execute_query(
+                    "SELECT * FROM projects WHERE created_at >= ? AND category = ?",
+                    [start_date.isoformat(), category]
+                )
+            else:
+                proj_result = await execute_query(
+                    "SELECT * FROM projects WHERE created_at >= ?",
+                    [start_date.isoformat()]
+                )
+            projects = parse_rows(proj_result)
             
             # Analyze skill demand
             skill_demand = defaultdict(int)
@@ -473,45 +525,50 @@ class AdvancedAnalyticsService:
             budget_by_category = defaultdict(list)
             
             for project in projects:
-                # Track category
-                category_demand[project.category or "uncategorized"] += 1
+                cat = project.get("category") or "uncategorized"
+                category_demand[cat] += 1
                 
-                if project.budget_min and project.budget_max:
-                    avg_budget = (float(project.budget_min) + float(project.budget_max)) / 2
-                    budget_by_category[project.category or "uncategorized"].append(avg_budget)
+                bmin = project.get("budget_min")
+                bmax = project.get("budget_max")
+                if bmin and bmax:
+                    avg_budget = (float(bmin) + float(bmax)) / 2
+                    budget_by_category[cat].append(avg_budget)
                 
-                # Track skills
-                if project.skills_required:
-                    skills = project.skills_required.split(",") if isinstance(project.skills_required, str) else project.skills_required
-                    for skill in skills:
+                skills_req = project.get("skills_required") or ""
+                if skills_req:
+                    skills_list = skills_req.split(",") if isinstance(skills_req, str) else skills_req
+                    for skill in skills_list:
                         skill_demand[skill.strip().lower()] += 1
             
-            # Calculate trends
             top_skills = sorted(skill_demand.items(), key=lambda x: x[1], reverse=True)[:15]
             top_categories = sorted(category_demand.items(), key=lambda x: x[1], reverse=True)[:10]
             
-            # Average budgets by category
             avg_budgets = {
                 cat: round(sum(budgets) / len(budgets), 2)
                 for cat, budgets in budget_by_category.items()
                 if budgets
             }
             
-            # Calculate trends by comparing to previous period (90 days before start_date)
+            # Compare to previous period
             prev_start = start_date - timedelta(days=90)
-            prev_projects = self.db.query(Project).filter(
-                Project.created_at >= prev_start,
-                Project.created_at < start_date
-            )
             if category:
-                prev_projects = prev_projects.filter(Project.category == category)
-            prev_projects = prev_projects.all()
+                prev_result = await execute_query(
+                    "SELECT skills_required FROM projects WHERE created_at >= ? AND created_at < ? AND category = ?",
+                    [prev_start.isoformat(), start_date.isoformat(), category]
+                )
+            else:
+                prev_result = await execute_query(
+                    "SELECT skills_required FROM projects WHERE created_at >= ? AND created_at < ?",
+                    [prev_start.isoformat(), start_date.isoformat()]
+                )
+            prev_projects = parse_rows(prev_result)
 
             prev_skill_demand = defaultdict(int)
             for project in prev_projects:
-                if project.skills_required:
-                    skills = project.skills_required.split(",") if isinstance(project.skills_required, str) else project.skills_required
-                    for skill in skills:
+                skills_req = project.get("skills_required") or ""
+                if skills_req:
+                    skills_list = skills_req.split(",") if isinstance(skills_req, str) else skills_req
+                    for skill in skills_list:
                         prev_skill_demand[skill.strip().lower()] += 1
 
             trends = []
@@ -578,45 +635,41 @@ class AdvancedAnalyticsService:
         Get comprehensive platform health metrics.
         """
         try:
-            from app.models.user import User
-            from app.models.project import Project
-            from app.models.proposal import Proposal
-            from app.models.contract import Contract
-            
             now = datetime.now(timezone.utc)
-            day_ago = now - timedelta(days=1)
-            week_ago = now - timedelta(days=7)
-            month_ago = now - timedelta(days=30)
+            day_ago = (now - timedelta(days=1)).isoformat()
+            week_ago = (now - timedelta(days=7)).isoformat()
             
-            # User metrics
-            total_users = self.db.query(User).count()
-            active_users_24h = self.db.query(User).filter(
-                User.last_login >= day_ago
-            ).count()
-            new_users_week = self.db.query(User).filter(
-                User.created_at >= week_ago
-            ).count()
+            # User metrics — batch queries
+            u1 = await execute_query("SELECT COUNT(*) as cnt FROM users")
+            u2 = await execute_query("SELECT COUNT(*) as cnt FROM users WHERE last_login >= ?", [day_ago])
+            u3 = await execute_query("SELECT COUNT(*) as cnt FROM users WHERE created_at >= ?", [week_ago])
+            
+            total_users = int(parse_rows(u1)[0]["cnt"]) if parse_rows(u1) else 0
+            active_users_24h = int(parse_rows(u2)[0]["cnt"]) if parse_rows(u2) else 0
+            new_users_week = int(parse_rows(u3)[0]["cnt"]) if parse_rows(u3) else 0
             
             # Project metrics
-            total_projects = self.db.query(Project).count()
-            active_projects = self.db.query(Project).filter(
-                Project.status == "open"
-            ).count()
-            new_projects_week = self.db.query(Project).filter(
-                Project.created_at >= week_ago
-            ).count()
+            p1 = await execute_query("SELECT COUNT(*) as cnt FROM projects")
+            p2 = await execute_query("SELECT COUNT(*) as cnt FROM projects WHERE status = 'open'")
+            p3 = await execute_query("SELECT COUNT(*) as cnt FROM projects WHERE created_at >= ?", [week_ago])
+            
+            total_projects = int(parse_rows(p1)[0]["cnt"]) if parse_rows(p1) else 0
+            active_projects = int(parse_rows(p2)[0]["cnt"]) if parse_rows(p2) else 0
+            new_projects_week = int(parse_rows(p3)[0]["cnt"]) if parse_rows(p3) else 0
             
             # Proposal metrics
-            total_proposals = self.db.query(Proposal).count()
-            proposals_week = self.db.query(Proposal).filter(
-                Proposal.created_at >= week_ago
-            ).count()
+            pr1 = await execute_query("SELECT COUNT(*) as cnt FROM proposals")
+            pr2 = await execute_query("SELECT COUNT(*) as cnt FROM proposals WHERE created_at >= ?", [week_ago])
+            
+            total_proposals = int(parse_rows(pr1)[0]["cnt"]) if parse_rows(pr1) else 0
+            proposals_week = int(parse_rows(pr2)[0]["cnt"]) if parse_rows(pr2) else 0
             
             # Contract metrics
-            total_contracts = self.db.query(Contract).count()
-            active_contracts = self.db.query(Contract).filter(
-                Contract.status == "active"
-            ).count()
+            c1 = await execute_query("SELECT COUNT(*) as cnt FROM contracts")
+            c2 = await execute_query("SELECT COUNT(*) as cnt FROM contracts WHERE status = 'active'")
+            
+            total_contracts = int(parse_rows(c1)[0]["cnt"]) if parse_rows(c1) else 0
+            active_contracts = int(parse_rows(c2)[0]["cnt"]) if parse_rows(c2) else 0
             
             # Calculate health scores
             engagement_score = min(100, (active_users_24h / max(total_users, 1)) * 500)
@@ -761,11 +814,9 @@ class AdvancedAnalyticsService:
 _analytics_service: Optional[AdvancedAnalyticsService] = None
 
 
-def get_advanced_analytics_service(db: Session) -> AdvancedAnalyticsService:
+def get_advanced_analytics_service() -> AdvancedAnalyticsService:
     """Get or create analytics service instance."""
     global _analytics_service
     if _analytics_service is None:
-        _analytics_service = AdvancedAnalyticsService(db)
-    else:
-        _analytics_service.db = db
+        _analytics_service = AdvancedAnalyticsService()
     return _analytics_service

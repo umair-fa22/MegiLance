@@ -5,14 +5,12 @@ Provides instant push notifications for bids, messages, payments, and other even
 """
 
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Depends, HTTPException
-from sqlalchemy.orm import Session
 from typing import Dict, Set, List, Optional
 from datetime import datetime, timezone
 import json
 import asyncio
 from collections import defaultdict
 
-from app.db.session import get_db
 from app.models.notification import Notification
 from app.core.security import decode_token, get_current_active_user, require_admin
 from app.models.user import User
@@ -244,7 +242,7 @@ async def send_realtime_notification(
     notification: dict,
     current_user: User = Depends(get_current_active_user),
     _admin = Depends(require_admin),
-    db: Session = Depends(get_db)
+    
 ):
     """
     Send a real-time notification to a user

@@ -7,12 +7,9 @@ import logging
 from typing import Optional, Dict, Any, List
 from decimal import Decimal
 from datetime import datetime, timezone
-from sqlalchemy.orm import Session
 
 from ..core.config import get_settings
-from ..models.user import User
-from ..models.payment import Payment
-from ..db.turso_http import execute_query
+from ..db.turso_http import execute_query, parse_rows
 
 logger = logging.getLogger(__name__)
 
@@ -336,16 +333,9 @@ class StripeService:
             payload, signature, webhook_secret
         )
     
-    def handle_webhook_event(self, event: stripe.Event, db: Session) -> Dict[str, Any]:
+    async def handle_webhook_event(self, event: stripe.Event) -> Dict[str, Any]:
         """
         Handle webhook events from Stripe
-        
-        Args:
-            event: Stripe event object
-            db: Database session
-        
-        Returns:
-            Dict with processing result
         """
         event_type = event["type"]
         event_data = event["data"]["object"]
@@ -362,74 +352,59 @@ class StripeService:
         
         handler = handlers.get(event_type)
         if handler:
-            return handler(event_data, db)
+            return await handler(event_data)
         
         return {"status": "unhandled", "event_type": event_type}
     
     # ===== Webhook Event Handlers =====
     
-    def _handle_payment_succeeded(self, payment_intent: Dict, db: Session) -> Dict:
+    async def _handle_payment_succeeded(self, payment_intent: Dict) -> Dict:
         """Handle successful payment"""
         metadata = payment_intent.get("metadata", {})
-        
-        # Update payment record in database
         payment_id = metadata.get("payment_id")
         if payment_id:
-            payment = db.query(Payment).filter(Payment.id == payment_id).first()
-            if payment:
-                payment.status = "completed"
-                payment.stripe_payment_intent_id = payment_intent["id"]
-                payment.updated_at = datetime.now(timezone.utc)
-                db.commit()
-        
+            await execute_query(
+                "UPDATE payments SET status = 'completed', stripe_payment_intent_id = ?, updated_at = ? WHERE id = ?",
+                [payment_intent["id"], datetime.now(timezone.utc).isoformat(), payment_id]
+            )
         return {"status": "success", "payment_id": payment_id}
     
-    def _handle_payment_failed(self, payment_intent: Dict, db: Session) -> Dict:
+    async def _handle_payment_failed(self, payment_intent: Dict) -> Dict:
         """Handle failed payment"""
         metadata = payment_intent.get("metadata", {})
-        
         payment_id = metadata.get("payment_id")
         if payment_id:
-            payment = db.query(Payment).filter(Payment.id == payment_id).first()
-            if payment:
-                payment.status = "failed"
-                payment.updated_at = datetime.now(timezone.utc)
-                db.commit()
-        
+            await execute_query(
+                "UPDATE payments SET status = 'failed', updated_at = ? WHERE id = ?",
+                [datetime.now(timezone.utc).isoformat(), payment_id]
+            )
         return {"status": "failed", "payment_id": payment_id}
     
-    def _handle_payment_canceled(self, payment_intent: Dict, db: Session) -> Dict:
+    async def _handle_payment_canceled(self, payment_intent: Dict) -> Dict:
         """Handle canceled payment"""
         metadata = payment_intent.get("metadata", {})
-        
         payment_id = metadata.get("payment_id")
         if payment_id:
-            payment = db.query(Payment).filter(Payment.id == payment_id).first()
-            if payment:
-                payment.status = "canceled"
-                payment.updated_at = datetime.now(timezone.utc)
-                db.commit()
-        
+            await execute_query(
+                "UPDATE payments SET status = 'canceled', updated_at = ? WHERE id = ?",
+                [datetime.now(timezone.utc).isoformat(), payment_id]
+            )
         return {"status": "canceled", "payment_id": payment_id}
     
-    def _handle_charge_refunded(self, charge: Dict, db: Session) -> Dict:
+    async def _handle_charge_refunded(self, charge: Dict) -> Dict:
         """Handle refunded charge"""
-        # Implementation depends on your refund model
         return {"status": "refunded"}
     
-    def _handle_subscription_created(self, subscription: Dict, db: Session) -> Dict:
+    async def _handle_subscription_created(self, subscription: Dict) -> Dict:
         """Handle subscription created"""
-        # Implementation depends on your subscription model
         return {"status": "subscription_created"}
     
-    def _handle_subscription_updated(self, subscription: Dict, db: Session) -> Dict:
+    async def _handle_subscription_updated(self, subscription: Dict) -> Dict:
         """Handle subscription updated"""
-        # Implementation depends on your subscription model
         return {"status": "subscription_updated"}
     
-    def _handle_subscription_deleted(self, subscription: Dict, db: Session) -> Dict:
+    async def _handle_subscription_deleted(self, subscription: Dict) -> Dict:
         """Handle subscription deleted"""
-        # Implementation depends on your subscription model
         return {"status": "subscription_deleted"}
     
     # ===== Helper Methods =====
@@ -448,27 +423,27 @@ class StripeService:
 
     # ===== Turso Webhook DB Operations =====
 
-    def update_payment_status_turso(self, payment_id: int, new_status: str) -> None:
-        """Update a payment record's status via Turso."""
-        execute_query(
+    async def update_payment_status_turso(self, payment_id: int, new_status: str) -> None:
+        """Update a payment record's status."""
+        await execute_query(
             "UPDATE payments SET status = ?, updated_at = datetime('now') WHERE id = ?",
             [new_status, payment_id]
         )
 
-    def create_payment_notification_turso(
+    async def create_payment_notification_turso(
         self, user_id: int, notification_type: str, title: str, content: str, data: dict
     ) -> None:
-        """Create a payment-related notification via Turso."""
-        execute_query(
+        """Create a payment-related notification."""
+        await execute_query(
             """INSERT INTO notifications 
             (user_id, notification_type, title, content, data, is_read, created_at, priority)
             VALUES (?, ?, ?, ?, ?, ?, datetime('now'), 'high')""",
             [user_id, notification_type, title, content, json.dumps(data), 0]
         )
 
-    def complete_refund_turso(self, refund_id: int) -> None:
-        """Mark a refund as completed via Turso."""
-        execute_query(
+    async def complete_refund_turso(self, refund_id: int) -> None:
+        """Mark a refund as completed."""
+        await execute_query(
             "UPDATE refunds SET status = 'completed', processed_at = datetime('now') WHERE id = ?",
             [refund_id]
         )

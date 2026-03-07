@@ -10,11 +10,9 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user, require_admin
 from app.models.user import User
 from app.services.email_templates import (
@@ -56,11 +54,11 @@ class PreviewTemplateRequest(BaseModel):
 @router.get("")
 async def list_templates(
     include_inactive: bool = False,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(require_admin)
 ):
     """List all email templates (admin only)."""
-    service = get_email_templates_service(db)
+    service = get_email_templates_service()
     templates = await service.list_templates(include_inactive)
     
     return {"templates": templates}
@@ -68,7 +66,7 @@ async def list_templates(
 
 @router.get("/types")
 async def list_template_types(
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """List all available template types."""
@@ -82,12 +80,12 @@ async def list_template_types(
 @router.get("/{template_id}")
 async def get_template(
     template_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(require_admin)
 ):
     """Get a specific template (admin only)."""
     
-    service = get_email_templates_service(db)
+    service = get_email_templates_service()
     template = await service.get_template_by_id(template_id)
     
     if not template:
@@ -102,11 +100,11 @@ async def get_template(
 @router.post("")
 async def create_template(
     request: CreateTemplateRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(require_admin)
 ):
     """Create a custom email template (admin only)."""
-    service = get_email_templates_service(db)
+    service = get_email_templates_service()
     
     template = await service.create_template(
         template_type=request.template_type,
@@ -125,12 +123,12 @@ async def create_template(
 async def update_template(
     template_id: str,
     request: UpdateTemplateRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(require_admin)
 ):
     """Update an email template (admin only)."""
     
-    service = get_email_templates_service(db)
+    service = get_email_templates_service()
     
     updates = request.dict(exclude_unset=True)
     template = await service.update_template(template_id, updates)
@@ -147,12 +145,12 @@ async def update_template(
 @router.delete("/{template_id}")
 async def delete_template(
     template_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(require_admin)
 ):
     """Delete a custom template (admin only, system templates protected)."""
     
-    service = get_email_templates_service(db)
+    service = get_email_templates_service()
     
     success = await service.delete_template(template_id)
     
@@ -169,12 +167,12 @@ async def delete_template(
 async def preview_template(
     template_id: str,
     request: PreviewTemplateRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(require_admin)
 ):
     """Preview a template with sample data (admin only)."""
     
-    service = get_email_templates_service(db)
+    service = get_email_templates_service()
     
     result = await service.preview_template(
         template_id=template_id,
@@ -193,11 +191,11 @@ async def preview_template(
 @router.post("/{template_id}/duplicate")
 async def duplicate_template(
     template_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(require_admin)
 ):
     """Duplicate a template (admin only)."""
-    service = get_email_templates_service(db)
+    service = get_email_templates_service()
     
     template = await service.duplicate_template(
         template_id=template_id,
@@ -217,11 +215,11 @@ async def duplicate_template(
 async def render_template(
     template_type: EmailTemplateType,
     request: RenderTemplateRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Render a template with provided variables."""
-    service = get_email_templates_service(db)
+    service = get_email_templates_service()
     
     result = await service.render_template(
         template_type=template_type,

@@ -6,7 +6,6 @@
 import logging
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any, Tuple
-from sqlalchemy.orm import Session
 from enum import Enum
 import hashlib
 import secrets
@@ -38,8 +37,7 @@ _OAUTH_STATE_STORE: Dict[str, Dict[str, Any]] = {}
 class SocialLoginService:
     """Service for social login OAuth2."""
 
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
         self._oauth_states = _OAUTH_STATE_STORE
 
     # ── OAuth Configuration ──────────────────────────────────────────────
@@ -339,13 +337,12 @@ class SocialLoginService:
                 "bio": user_data.get("bio"),
             }
 
-        # Fallback mock data for unsupported providers
-        mock_users = {
-            SocialProvider.LINKEDIN: {"id": "linkedin_mock", "email": "user@email.com", "name": "LinkedIn User"},
-            SocialProvider.FACEBOOK: {"id": "facebook_mock", "email": "user@facebook.com", "name": "Facebook User"},
-            SocialProvider.APPLE: {"id": "apple_mock", "email": "user@icloud.com", "name": "Apple User"},
+        # Providers not yet fully integrated - return error
+        return {
+            "id": None,
+            "email": None,
+            "error": f"{provider.value.capitalize()} OAuth user info endpoint not yet configured."
         }
-        return mock_users.get(provider, {"id": "unknown", "email": None})
 
     # ── Smart login / register ───────────────────────────────────────────
 
@@ -737,6 +734,11 @@ class SocialLoginService:
         }
 
 
-def get_social_login_service(db: Session) -> SocialLoginService:
+_service_instance = None
+
+def get_social_login_service() -> SocialLoginService:
     """Factory function for social login service."""
-    return SocialLoginService(db)
+    global _service_instance
+    if _service_instance is None:
+        _service_instance = SocialLoginService()
+    return _service_instance

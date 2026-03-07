@@ -11,12 +11,10 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status, Query
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel
 from datetime import datetime, timezone
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user, require_admin
 from app.services.fraud_detection import (
     get_fraud_detection_service,
@@ -57,14 +55,13 @@ class FraudAlertResponse(BaseModel):
 @router.get("/analyze/user/{user_id}")
 async def analyze_user_fraud_risk(
     user_id: int,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """
     Analyze a user for potential fraudulent behavior.
     Returns risk score, risk level, flags, and recommendations.
     """
-    service = get_fraud_detection_service(db)
+    service = get_fraud_detection_service()
     analysis = await service.analyze_user(user_id)
     
     if "error" in analysis:
@@ -76,7 +73,6 @@ async def analyze_user_fraud_risk(
 @router.get("/analyze/user/{user_id}/history")
 async def get_user_fraud_history(
     user_id: int,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Get fraud analysis history for a user."""
@@ -93,14 +89,13 @@ async def get_user_fraud_history(
 @router.get("/analyze/project/{project_id}")
 async def analyze_project_fraud_risk(
     project_id: int,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """
     Analyze a project for fraudulent characteristics.
     Checks for suspicious keywords, budget anomalies, and client history.
     """
-    service = get_fraud_detection_service(db)
+    service = get_fraud_detection_service()
     analysis = await service.analyze_project(project_id)
     
     if "error" in analysis:
@@ -113,14 +108,13 @@ async def analyze_project_fraud_risk(
 @router.get("/analyze/proposal/{proposal_id}")
 async def analyze_proposal_fraud_risk(
     proposal_id: int,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """
     Analyze a proposal for suspicious activity.
     Checks bid amount reasonableness, cover letter quality, and freelancer history.
     """
-    service = get_fraud_detection_service(db)
+    service = get_fraud_detection_service()
     analysis = await service.analyze_proposal(proposal_id)
     
     if "error" in analysis:
@@ -133,14 +127,13 @@ async def analyze_proposal_fraud_risk(
 @router.post("/analyze/bulk")
 async def bulk_fraud_analysis(
     request: BulkAnalysisRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """
     Perform bulk fraud analysis on multiple entities.
     Returns combined analysis results.
     """
-    service = get_fraud_detection_service(db)
+    service = get_fraud_detection_service()
     results = {
         "users": [],
         "projects": [],
@@ -189,12 +182,12 @@ async def bulk_fraud_analysis(
 # Current User Self-Analysis
 @router.get("/my-risk-profile")
 async def get_my_risk_profile(
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Get the current user's fraud risk profile."""
-    service = get_fraud_detection_service(db)
-    analysis = await service.analyze_user(current_user.id)
+    service = get_fraud_detection_service()
+    uid = current_user["id"] if isinstance(current_user, dict) else current_user.id
+    analysis = await service.analyze_user(uid)
     
     return {
         "risk_profile": analysis,
@@ -206,15 +199,15 @@ async def get_my_risk_profile(
 @router.post("/report")
 async def report_fraud(
     request: FraudReportRequest,
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Report suspected fraud for manual review."""
+    uid = current_user["id"] if isinstance(current_user, dict) else current_user.id
     return {
         "report_id": f"FR-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}",
         "entity_type": request.entity_type,
         "entity_id": request.entity_id,
-        "reported_by": current_user.id,
+        "reported_by": uid,
         "reason": request.reason,
         "status": "pending_review",
         "created_at": datetime.now(timezone.utc).isoformat()
@@ -226,12 +219,11 @@ async def get_fraud_reports(
     status: Optional[str] = Query(None, description="Filter by status"),
     entity_type: Optional[str] = Query(None, description="Filter by entity type"),
     limit: int = Query(50, le=100),
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user)
 ):
     """Get fraud reports (admin only)."""
-    # Check if user is admin
-    if current_user.role != "admin":
+    role = current_user.get("role") if isinstance(current_user, dict) else getattr(current_user, "role", None)
+    if role != "admin":
         raise HTTPException(
             status_code=403,
             detail="Only administrators can view fraud reports"
@@ -247,12 +239,11 @@ async def get_fraud_reports(
 # Risk Thresholds Configuration (Admin)
 @router.get("/config/thresholds")
 async def get_risk_thresholds(
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user),
     _admin = Depends(require_admin)
 ):
     """Get current risk threshold configuration."""
-    service = get_fraud_detection_service(db)
+    service = get_fraud_detection_service()
     return {
         "thresholds": service.RISK_LEVELS,
         "description": {
@@ -268,7 +259,6 @@ async def get_risk_thresholds(
 @router.get("/statistics")
 async def get_fraud_statistics(
     period_days: int = Query(30, ge=1, le=365),
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user),
     _admin = Depends(require_admin)
 ):
@@ -294,7 +284,6 @@ async def get_fraud_statistics(
 
 @router.get("/dashboard")
 async def get_fraud_dashboard(
-    db: Session = Depends(get_db),
     current_user = Depends(get_current_active_user),
     _admin = Depends(require_admin)
 ):

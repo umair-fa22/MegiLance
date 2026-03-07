@@ -5,7 +5,6 @@ import logging
 import asyncio
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any, Callable
-from sqlalchemy.orm import Session
 from enum import Enum
 import secrets
 from collections import defaultdict
@@ -48,8 +47,7 @@ class ScheduledTasksService:
     Manages background jobs, scheduling, and task execution.
     """
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
         # In-memory task storage
         self._tasks: Dict[str, Dict[str, Any]] = {}
         self._scheduled: Dict[str, Dict[str, Any]] = {}
@@ -446,11 +444,9 @@ class ScheduledTasksService:
 _scheduler_service: Optional[ScheduledTasksService] = None
 
 
-def get_scheduler_service(db: Session) -> ScheduledTasksService:
+def get_scheduler_service() -> ScheduledTasksService:
     """Get or create scheduler service instance."""
     global _scheduler_service
     if _scheduler_service is None:
-        _scheduler_service = ScheduledTasksService(db)
-    else:
-        _scheduler_service.db = db
+        _scheduler_service = ScheduledTasksService()
     return _scheduler_service

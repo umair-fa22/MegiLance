@@ -6,7 +6,6 @@ import re
 from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Any, Optional
 from collections import defaultdict
-from sqlalchemy.orm import Session
 
 
 class CommentsService:
@@ -65,7 +64,6 @@ class CommentsService:
     
     async def create_comment(
         self,
-        db: Session,
         user_id: str,
         resource_type: str,
         resource_id: str,
@@ -143,7 +141,6 @@ class CommentsService:
     
     async def get_comments(
         self,
-        db: Session,
         resource_type: str,
         resource_id: str,
         include_deleted: bool = False,
@@ -187,7 +184,6 @@ class CommentsService:
     
     async def get_threaded_comments(
         self,
-        db: Session,
         resource_type: str,
         resource_id: str,
         include_deleted: bool = False
@@ -226,7 +222,6 @@ class CommentsService:
     
     async def get_comment(
         self,
-        db: Session,
         comment_id: str
     ) -> Dict[str, Any]:
         """Get a single comment by ID."""
@@ -237,7 +232,6 @@ class CommentsService:
     
     async def update_comment(
         self,
-        db: Session,
         user_id: str,
         comment_id: str,
         content: str
@@ -277,7 +271,6 @@ class CommentsService:
     
     async def delete_comment(
         self,
-        db: Session,
         user_id: str,
         comment_id: str,
         is_admin: bool = False
@@ -307,7 +300,6 @@ class CommentsService:
     
     async def add_reaction(
         self,
-        db: Session,
         user_id: str,
         comment_id: str,
         reaction: str
@@ -341,7 +333,6 @@ class CommentsService:
     
     async def remove_reaction(
         self,
-        db: Session,
         user_id: str,
         comment_id: str,
         reaction: str
@@ -376,7 +367,6 @@ class CommentsService:
     
     async def pin_comment(
         self,
-        db: Session,
         user_id: str,
         comment_id: str,
         is_admin: bool = False
@@ -400,7 +390,6 @@ class CommentsService:
     
     async def unpin_comment(
         self,
-        db: Session,
         user_id: str,
         comment_id: str,
         is_admin: bool = False
@@ -419,7 +408,6 @@ class CommentsService:
     
     async def resolve_comment(
         self,
-        db: Session,
         user_id: str,
         comment_id: str
     ) -> Dict[str, Any]:
@@ -439,7 +427,6 @@ class CommentsService:
     
     async def get_edit_history(
         self,
-        db: Session,
         comment_id: str
     ) -> Dict[str, Any]:
         """Get edit history for a comment."""
@@ -456,7 +443,6 @@ class CommentsService:
     
     async def get_user_mentions(
         self,
-        db: Session,
         user_id: str,
         limit: int = 50
     ) -> Dict[str, Any]:
@@ -478,7 +464,6 @@ class CommentsService:
     
     async def get_comment_stats(
         self,
-        db: Session,
         resource_type: str,
         resource_id: str
     ) -> Dict[str, Any]:

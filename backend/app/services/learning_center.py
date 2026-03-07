@@ -1,7 +1,6 @@
 # @AI-HINT: Learning center service for tutorials and guides
 """Learning Center Service - Educational content and tutorials."""
 
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from datetime import datetime, timedelta, timezone
 from enum import Enum
@@ -38,8 +37,8 @@ class LearningCategory(str, Enum):
 class LearningCenterService:
     """Educational content and learning service."""
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        pass
     
     # Content Discovery
     async def get_featured_content(self) -> List[Dict[str, Any]]:
@@ -462,5 +461,10 @@ class LearningCenterService:
         return True
 
 
-def get_learning_service(db: Session) -> LearningCenterService:
-    return LearningCenterService(db)
+_singleton_learning_service = None
+
+def get_learning_service() -> LearningCenterService:
+    global _singleton_learning_service
+    if _singleton_learning_service is None:
+        _singleton_learning_service = LearningCenterService()
+    return _singleton_learning_service

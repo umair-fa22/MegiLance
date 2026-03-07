@@ -3,7 +3,6 @@
 
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any
-from sqlalchemy.orm import Session
 from enum import Enum
 import uuid
 import json
@@ -34,8 +33,8 @@ class ContractType(str, Enum):
 class ContractBuilderService:
     """Service for visual contract building."""
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        pass
     
     # Contract Templates
     async def get_contract_templates(
@@ -498,6 +497,11 @@ class ContractBuilderService:
         ]
 
 
-def get_contract_builder_service(db: Session) -> ContractBuilderService:
+_singleton_contract_builder_service = None
+
+def get_contract_builder_service() -> ContractBuilderService:
     """Factory function for contract builder service."""
-    return ContractBuilderService(db)
+    global _singleton_contract_builder_service
+    if _singleton_contract_builder_service is None:
+        _singleton_contract_builder_service = ContractBuilderService()
+    return _singleton_contract_builder_service

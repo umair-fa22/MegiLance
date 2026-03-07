@@ -5,7 +5,6 @@ import logging
 import time
 from datetime import datetime, timedelta, timezone
 from typing import Optional, Dict, Any, List
-from sqlalchemy.orm import Session
 from collections import defaultdict
 from enum import Enum
 
@@ -119,8 +118,7 @@ class RateLimitingProService:
     and protection against API abuse.
     """
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
         # In-memory rate limit tracking
         # Format: {identifier: {category: RateLimitEntry}}
         self._limits: Dict[str, Dict[str, RateLimitEntry]] = defaultdict(dict)
@@ -426,11 +424,9 @@ class RateLimitingProService:
 _rate_limit_service: Optional[RateLimitingProService] = None
 
 
-def get_rate_limit_service(db: Session) -> RateLimitingProService:
+def get_rate_limit_service() -> RateLimitingProService:
     """Get or create rate limiting service instance."""
     global _rate_limit_service
     if _rate_limit_service is None:
-        _rate_limit_service = RateLimitingProService(db)
-    else:
-        _rate_limit_service.db = db
+        _rate_limit_service = RateLimitingProService()
     return _rate_limit_service

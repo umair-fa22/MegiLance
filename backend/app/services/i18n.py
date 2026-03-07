@@ -5,7 +5,6 @@ import logging
 import re
 from datetime import datetime
 from typing import Optional, List, Dict, Any
-from sqlalchemy.orm import Session
 from enum import Enum
 
 logger = logging.getLogger(__name__)
@@ -294,8 +293,7 @@ class InternationalizationService:
         }
     }
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
         self._user_preferences: Dict[int, str] = {}
         self._custom_translations: Dict[str, Dict[str, str]] = {}
     
@@ -549,11 +547,9 @@ class InternationalizationService:
 _i18n_service: Optional[InternationalizationService] = None
 
 
-def get_i18n_service(db: Session) -> InternationalizationService:
+def get_i18n_service() -> InternationalizationService:
     """Get or create i18n service instance."""
     global _i18n_service
     if _i18n_service is None:
-        _i18n_service = InternationalizationService(db)
-    else:
-        _i18n_service.db = db
+        _i18n_service = InternationalizationService()
     return _i18n_service

@@ -10,10 +10,8 @@ Endpoints for:
 
 from typing import List, Optional, Any
 from fastapi import APIRouter, Depends, HTTPException, Query, Body
-from sqlalchemy.orm import Session
 from pydantic import BaseModel, Field
 
-from app.db.session import get_db
 from app.core.security import get_current_user
 from app.models.user import User, UserType
 from app.services.skill_assessment import (
@@ -78,7 +76,7 @@ class AssessmentResultResponse(BaseModel):
 
 @router.get("/skills/available")
 async def get_available_skills(
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -102,7 +100,7 @@ async def get_available_skills(
 @router.post("/start")
 async def start_assessment(
     request: StartAssessmentRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -149,7 +147,7 @@ async def start_assessment(
 async def get_question(
     session_id: str,
     index: int,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -177,7 +175,7 @@ async def get_question(
 async def submit_answer(
     session_id: str,
     request: SubmitAnswerRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -203,7 +201,7 @@ async def submit_answer(
 async def record_focus_event(
     session_id: str,
     request: FocusEventRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -225,7 +223,7 @@ async def record_focus_event(
 @router.post("/session/{session_id}/complete")
 async def complete_assessment(
     session_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -249,7 +247,7 @@ async def complete_assessment(
 @router.get("/session/{session_id}/results")
 async def get_assessment_results(
     session_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -277,7 +275,7 @@ async def get_assessment_results(
 
 @router.get("/profile")
 async def get_skill_profile(
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -297,7 +295,7 @@ async def get_skill_profile(
 @router.get("/profile/{user_id}")
 async def get_user_skill_profile(
     user_id: int,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -325,7 +323,7 @@ async def get_user_skill_profile(
 async def get_skill_leaderboard(
     skill: str,
     limit: int = Query(default=10, ge=1, le=100),
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_user)
 ):
     """

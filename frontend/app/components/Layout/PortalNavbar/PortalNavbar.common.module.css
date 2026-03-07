@@ -37,18 +37,20 @@
 /* Mobile hamburger menu button */
 .menuButton {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   border: none;
   background: transparent;
   cursor: pointer;
-  transition: background-color 0.15s ease,
-    color 0.15s ease,
-    transform 0.15s ease;
+  transition: background-color 0.2s ease, transform 0.15s ease;
   flex-shrink: 0;
+  gap: 5px;
+  padding: 10px 8px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .menuButton:active {
@@ -59,6 +61,33 @@
   .menuButton {
     display: none;
   }
+}
+
+/* Animated hamburger lines */
+.hamburgerLine {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease,
+    width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: center;
+}
+
+/* Active state → X icon */
+.menuButtonActive .hamburgerLine1 {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menuButtonActive .hamburgerLine2 {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.menuButtonActive .hamburgerLine3 {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* Breadcrumb Navigation */
@@ -568,6 +597,17 @@
   margin-top: 2px;
 }
 
+/* Hide elements on mobile */
+.hideOnMobile {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .hideOnMobile {
+    display: none !important;
+  }
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .navbar {
@@ -583,9 +623,20 @@
     display: none;
   }
 
+  .rightSection {
+    gap: 0.125rem;
+  }
+
   .actionButton {
     width: 34px;
     height: 34px;
+    border-radius: 8px;
+  }
+
+  /* Hide help button on mobile - accessible via sidebar/more menu */
+  .dropdownWrapper:has(.helpDropdown),
+  .dropdownWrapper + .dropdownWrapper:first-of-type {
+    /* fallback: help hidden via specific class in TSX */
   }
 
   .notificationDropdown {
@@ -594,8 +645,19 @@
     left: 0;
     right: 0;
     width: 100%;
+    max-width: 100vw;
     border-radius: 0 0 12px 12px;
-    max-height: calc(100vh - 52px);
+    max-height: calc(100vh - 52px - 64px);
+    max-height: calc(100dvh - 52px - 64px);
+  }
+
+  .notificationHeader {
+    padding: 0.75rem 1rem;
+  }
+
+  .notificationItem {
+    padding: 0.875rem 1rem;
+    gap: 0.625rem;
   }
 
   .helpDropdown {
@@ -604,7 +666,58 @@
     left: 0;
     right: 0;
     width: 100%;
+    max-width: 100vw;
     border-radius: 0 0 12px 12px;
+  }
+
+  /* Larger touch targets on mobile */
+  .helpItem {
+    padding: 0.875rem;
+    min-height: 48px;
+  }
+
+  .viewAllLink {
+    min-height: 48px;
+    font-weight: 600;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 380px) {
+  .navbar {
+    height: 48px;
+  }
+
+  .container {
+    padding: 0 0.5rem;
+    gap: 0.25rem;
+  }
+
+  .actionButton {
+    width: 32px;
+    height: 32px;
+  }
+
+  .mobilePageTitle {
+    font-size: 0.875rem;
+  }
+
+  .notificationDropdown {
+    top: 48px;
+    max-height: calc(100vh - 48px - 58px);
+    max-height: calc(100dvh - 48px - 58px);
+  }
+
+  .helpDropdown {
+    top: 48px;
+  }
+
+  .notificationItemTitle {
+    font-size: 0.8125rem;
+  }
+
+  .notificationDesc {
+    font-size: 0.75rem;
   }
 }
 

@@ -433,13 +433,53 @@ def create_zephyr_assignment():
     add_cover_info(
         doc,
         title="Theory Assignment 1 — Zephyr Scale",
-        subtitle="Test Case Management Using Zephyr Scale (Jira Plugin)",
+        subtitle="Test Case Management Using Zephyr Scale (Jira Plugin)\nMegiLance — AI-Powered Freelancing Platform",
         student_name="Ghulam Mujtaba",
         student_id="FA21-BSE-084",
         course="CSE-455 Software Testing",
         instructor="Dr. Instructor",
-        date="February 2026",
+        date="March 2026",
     )
+
+    # ── Table of Contents ──
+    doc.add_heading("Table of Contents", level=1)
+    toc_items = [
+        "1. Introduction",
+        "2. Zephyr Scale Installation & Setup",
+        "   2.1 Atlassian Marketplace",
+        "   2.2 Verifying Installation in Connected Apps",
+        "3. Zephyr Scale — Test Cases Overview",
+        "   3.1 All Test Cases List (10 Test Cases)",
+        "   3.2 Test Cases Summary Table",
+        "4. Detailed Test Cases with Screenshots",
+        "   4.1 MEG-T1: User Registration (Details View)",
+        "   4.2 MEG-T1: User Registration (Test Script View)",
+        "   4.3 MEG-T6: Create New Project (Details View)",
+        "   4.4 MEG-T8: Submit Proposal (Details View)",
+        "   4.5 MEG-T9: Process Payment (Details View)",
+        "   4.6 MEG-T10: Search Projects (Details View)",
+        "5. Complete Test Case Specifications",
+        "6. Zephyr Scale — Test Cycles",
+        "7. Zephyr Scale — Test Plans",
+        "8. Zephyr Scale — Reports & Dashboards",
+        "9. Zephyr Scale Features Used",
+        "10. Jira Issues vs Zephyr Scale — Comparison",
+        "11. Jira Project — Supporting Evidence",
+        "   11.1 Scrum Board",
+        "   11.2 Backlog & Sprint Planning",
+        "   11.3 Timeline / Epics",
+        "   11.4 All Work Items (88 Issues)",
+        "   11.5 Automation Rules",
+        "   11.6 Jira Test Case Issues (21 Issues)",
+        "12. Conclusion",
+        "13. URLs Reference",
+    ]
+    for item in toc_items:
+        p = doc.add_paragraph(item)
+        p.paragraph_format.space_after = Pt(2)
+        if not item.startswith("   "):
+            p.runs[0].bold = True
+    doc.add_page_break()
 
     # ── Section 1: Introduction ──
     doc.add_heading("1. Introduction", level=1)
@@ -447,77 +487,193 @@ def create_zephyr_assignment():
         "This assignment demonstrates the use of Zephyr Scale (SmartBear Zephyr Advanced), "
         "a professional test management tool integrated with Jira Cloud, for creating and "
         "managing structured test cases for the MegiLance FYP project — an AI-powered "
-        "freelancing platform built with Next.js and FastAPI."
+        "freelancing platform built with Next.js 16, React 19, and FastAPI."
     )
     doc.add_paragraph(
         "Zephyr Scale provides dedicated test case management capabilities including "
         "structured test steps, test cycles, test plans, execution tracking, and reporting — "
         "going beyond basic Jira issues to offer a complete test management solution."
     )
+    doc.add_paragraph(
+        "The MegiLance platform connects clients with freelancers through intelligent "
+        "AI-powered matching, managing the full project lifecycle from posting to payment. "
+        "The system includes 88+ Jira work items across Epics, Stories, Bugs, and Tasks, "
+        "with 21 dedicated test case issues and 10 Zephyr Scale structured test cases."
+    )
 
     # ── Section 2: Installation ──
+    doc.add_page_break()
     doc.add_heading("2. Zephyr Scale Installation & Setup", level=1)
+
+    doc.add_heading("2.1 Atlassian Marketplace", level=2)
     doc.add_paragraph(
-        "Zephyr Scale (Zephyr Advanced by SmartBear) was installed from the Atlassian "
-        "Marketplace as a 30-day free trial and enabled for the MegiLance (MEG) project."
+        "Zephyr Scale (Zephyr — Test Management and Automation for Jira) was installed "
+        "from the Atlassian Marketplace as a free trial and enabled for the MegiLance (MEG) "
+        "project. The plugin provides enterprise-grade test management integrated directly "
+        "into the Jira Cloud interface."
     )
     add_screenshot(
         doc,
         os.path.join(SCREENSHOTS_DIR, "zephyr-install.png"),
-        "Figure 1: Zephyr Scale — Atlassian Marketplace Overview Page",
+        "Figure 1: Zephyr Scale — Atlassian Marketplace Overview Page (SmartBear)",
     )
-    doc.add_heading("2.1 Verifying Installation", level=2)
+
+    doc.add_heading("2.2 Verifying Installation in Connected Apps", level=2)
     doc.add_paragraph(
-        "After installation, Zephyr Scale appears in the Atlassian Administration "
-        "under Connected Apps as 'Zephyr - Test Management and Automation for Jira' "
-        "by SmartBear with the Advanced edition."
+        "After installation, Zephyr Scale appears in the Jira Administration panel under "
+        "Connected Apps / Manage Apps, confirming 'Zephyr — Test Management and Automation "
+        "for Jira' by SmartBear is active with the Advanced edition."
     )
     add_screenshot(
         doc,
         os.path.join(SCREENSHOTS_DIR, "zephyr-check.png"),
-        "Figure 2: Connected Apps — Zephyr Scale Installed (Advanced Edition)",
+        "Figure 2: Jira Admin — Connected Apps showing Zephyr Scale installed",
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "zephyr-admin-apps.png"),
+        "Figure 3: Jira Administration — Manage Apps (Zephyr Scale Active)",
     )
 
-    # ── Section 3: Test Cases Summary ──
-    doc.add_heading("3. Test Cases Summary", level=1)
+    # ── Section 3: Test Cases Overview ──
+    doc.add_page_break()
+    doc.add_heading("3. Zephyr Scale — Test Cases Overview", level=1)
+
+    doc.add_heading("3.1 All Test Cases List (10 Test Cases)", level=2)
     doc.add_paragraph(
         "10 test cases were created in Zephyr Scale covering the core modules of the "
-        "MegiLance platform: Authentication & Security, Project Management, User Profiles, "
-        "Proposals, Payments, and Search functionality."
+        "MegiLance platform. The test cases are accessed through the Zephyr tab in the "
+        "MegiLance project navigation, which shows the SmartBear Zephyr Advanced interface "
+        "with Test Cases, Test Cycles, Test Plans, and Reports tabs."
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "zephyr-test-cases-list-all.png"),
+        "Figure 4: Zephyr Scale — All 10 Test Cases (MEG-T1 to MEG-T10) with Priority, Version, Name, and Status columns",
     )
 
-    summary_table = doc.add_table(rows=1, cols=4)
+    doc.add_heading("3.2 Test Cases Summary Table", level=2)
+    doc.add_paragraph(
+        "The following table summarizes all 10 test cases organized by module:"
+    )
+
+    summary_table = doc.add_table(rows=1, cols=5)
     summary_table.style = "Light Grid Accent 1"
     hdr = summary_table.rows[0].cells
     hdr[0].text = "Key"
     hdr[1].text = "Test Case Name"
     hdr[2].text = "Module"
-    hdr[3].text = "Status"
+    hdr[3].text = "Priority"
+    hdr[4].text = "Status"
     summary_data = [
-        ("MEG-T1", "TC-AUTH-001: User Registration with Valid Data", "Authentication"),
-        ("MEG-T2", "TC-AUTH-002: User Login with Valid Credentials", "Authentication"),
-        ("MEG-T3", "TC-AUTH-003: User Login with Invalid Password", "Authentication"),
-        ("MEG-T4", "TC-AUTH-004: Password Reset Request", "Authentication"),
-        ("MEG-T5", "TC-AUTH-005: JWT Token Refresh", "Authentication"),
-        ("MEG-T6", "TC-PROJ-001: Create New Project", "Project Management"),
-        ("MEG-T7", "TC-PROF-001: Update User Profile", "User Profiles"),
-        ("MEG-T8", "TC-PROP-001: Submit Proposal for Project", "Proposals"),
-        ("MEG-T9", "TC-PAY-001: Process Payment Transaction", "Payments"),
-        ("MEG-T10", "TC-SEARCH-001: Search Projects with Filters", "Search"),
+        ("MEG-T1", "TC-AUTH-001: User Registration with Valid Data", "Authentication", "Normal"),
+        ("MEG-T2", "TC-AUTH-002: User Login with Valid Credentials", "Authentication", "Normal"),
+        ("MEG-T3", "TC-AUTH-003: User Login with Invalid Password", "Authentication", "Normal"),
+        ("MEG-T4", "TC-AUTH-004: Password Reset Request", "Authentication", "Normal"),
+        ("MEG-T5", "TC-AUTH-005: JWT Token Refresh", "Authentication", "Normal"),
+        ("MEG-T6", "TC-PROJ-001: Create New Project", "Project Mgmt", "Normal"),
+        ("MEG-T7", "TC-PROF-001: Update User Profile", "User Profiles", "Normal"),
+        ("MEG-T8", "TC-PROP-001: Submit Proposal for Project", "Proposals", "Normal"),
+        ("MEG-T9", "TC-PAY-001: Process Payment Transaction", "Payments", "Normal"),
+        ("MEG-T10", "TC-SEARCH-001: Search Projects with Filters", "Search", "Normal"),
     ]
-    for key, name, module in summary_data:
+    for key, name, module, priority in summary_data:
         row = summary_table.add_row().cells
         row[0].text = key
         row[1].text = name
         row[2].text = module
-        row[3].text = "Draft"
+        row[3].text = priority
+        row[4].text = "Draft"
     doc.add_paragraph()
 
-    # ── Section 4: Detailed Test Cases (ALL 10) ──
-    doc.add_heading("4. Detailed Test Cases", level=1)
+    # ── Section 4: Detailed Test Cases with Screenshots ──
+    doc.add_page_break()
+    doc.add_heading("4. Detailed Test Cases with Screenshots", level=1)
     doc.add_paragraph(
-        "Each test case below includes: Objective, Preconditions, Priority, and "
-        "a step-by-step Test Script with Test Data and Expected Results."
+        "This section shows the actual Zephyr Scale interface for each test case, "
+        "including the Details view (Name, Objective, Precondition, Status, Priority, Owner) "
+        "and the Test Script tab (step-by-step test steps with Test Data and Expected Results)."
+    )
+
+    doc.add_heading("4.1 MEG-T1: User Registration — Details View", level=2)
+    doc.add_paragraph(
+        "The Details view for MEG-T1 shows the test case metadata including Name, "
+        "Objective, Precondition, Status (Draft), Priority (Normal), and Owner assignment. "
+        "This is the primary view for reviewing test case information in Zephyr Scale."
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "zephyr-tc1-details.png"),
+        "Figure 5: MEG-T1 — TC-AUTH-001: User Registration with Valid Data (Zephyr Scale Details View)",
+    )
+
+    doc.add_heading("4.2 MEG-T1: User Registration — Test Script View", level=2)
+    doc.add_paragraph(
+        "The Test Script tab provides a structured step-by-step test execution guide. "
+        "Each step includes an Action description, Test Data, and Expected Result. "
+        "This structured format ensures consistent test execution across team members."
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "zephyr-tc1-testscript.png"),
+        "Figure 6: MEG-T1 — TC-AUTH-001: Test Script Tab (Step-by-Step Test Steps)",
+    )
+
+    doc.add_heading("4.3 MEG-T6: Create New Project — Details View", level=2)
+    doc.add_paragraph(
+        "MEG-T6 covers the Project Management module, testing that a client user "
+        "can create a new project with all required fields (title, description, budget, "
+        "skills, deadline) and receive a successful HTTP 201 response."
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "zephyr-tc6-details.png"),
+        "Figure 7: MEG-T6 — TC-PROJ-001: Create New Project (Zephyr Scale Details View)",
+    )
+
+    doc.add_heading("4.4 MEG-T8: Submit Proposal — Details View", level=2)
+    doc.add_paragraph(
+        "MEG-T8 covers the Proposals module, verifying that a freelancer can submit "
+        "a proposal for an open project with proposed amount, cover letter, and "
+        "estimated delivery time."
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "zephyr-tc8-details.png"),
+        "Figure 8: MEG-T8 — TC-PROP-001: Submit Proposal for Project (Zephyr Scale Details View)",
+    )
+
+    doc.add_heading("4.5 MEG-T9: Process Payment — Details View", level=2)
+    doc.add_paragraph(
+        "MEG-T9 covers the Payments module, testing that a payment can be processed "
+        "for an accepted contract milestone with proper balance updates and "
+        "transaction record creation."
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "zephyr-tc9-details.png"),
+        "Figure 9: MEG-T9 — TC-PAY-001: Process Payment Transaction (Zephyr Scale Details View)",
+    )
+
+    doc.add_heading("4.6 MEG-T10: Search Projects — Details View", level=2)
+    doc.add_paragraph(
+        "MEG-T10 covers the Search module, verifying that users can search and filter "
+        "projects using multiple criteria including keyword, skill filters, budget range, "
+        "and sorting options."
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "zephyr-tc10-details.png"),
+        "Figure 10: MEG-T10 — TC-SEARCH-001: Search Projects with Filters (Zephyr Scale Details View)",
+    )
+
+    # ── Section 5: Complete Test Case Specifications ──
+    doc.add_page_break()
+    doc.add_heading("5. Complete Test Case Specifications", level=1)
+    doc.add_paragraph(
+        "Each test case below includes the full specification: Objective, Preconditions, "
+        "Priority, and a step-by-step Test Script with Test Data and Expected Results. "
+        "These specifications match exactly what is configured in Zephyr Scale."
     )
 
     # TC-1: User Registration
@@ -662,8 +818,55 @@ def create_zephyr_assignment():
         ],
     )
 
-    # ── Section 5: Zephyr Scale Features Used ──
-    doc.add_heading("5. Zephyr Scale Features Used", level=1)
+    # ── Section 6: Test Cycles ──
+    doc.add_page_break()
+    doc.add_heading("6. Zephyr Scale — Test Cycles", level=1)
+    doc.add_paragraph(
+        "Test Cycles in Zephyr Scale allow grouping test cases into execution sets "
+        "for sprint-based or release-based testing. Test cycles track which test cases "
+        "have been executed, their pass/fail status, and execution history."
+    )
+    doc.add_paragraph(
+        "The MegiLance project's Test Cycles view is accessible from the Zephyr Scale "
+        "navigation tab and shows all configured test execution cycles."
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "zephyr-test-cycles.png"),
+        "Figure 11: Zephyr Scale — Test Cycles View (Test Execution Cycles)",
+    )
+
+    # ── Section 7: Test Plans ──
+    doc.add_page_break()
+    doc.add_heading("7. Zephyr Scale — Test Plans", level=1)
+    doc.add_paragraph(
+        "Test Plans provide high-level test planning that groups test cycles together. "
+        "A test plan defines the scope and objectives of testing for a release or milestone, "
+        "and can include multiple test cycles organized by feature area or testing phase."
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "zephyr-test-plans.png"),
+        "Figure 12: Zephyr Scale — Test Plans View (Test Planning Interface)",
+    )
+
+    # ── Section 8: Reports ──
+    doc.add_page_break()
+    doc.add_heading("8. Zephyr Scale — Reports & Dashboards", level=1)
+    doc.add_paragraph(
+        "Zephyr Scale provides built-in test reporting and dashboards for tracking "
+        "test execution progress, test case coverage, and defect metrics. Reports "
+        "include coverage analysis, execution status, and traceability matrices."
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "zephyr-reports.png"),
+        "Figure 13: Zephyr Scale — Reports Dashboard (Test Metrics & Analytics)",
+    )
+
+    # ── Section 9: Features Used ──
+    doc.add_page_break()
+    doc.add_heading("9. Zephyr Scale Features Used", level=1)
     doc.add_paragraph(
         "The following Zephyr Scale features were utilized in this assignment:"
     )
@@ -677,12 +880,15 @@ def create_zephyr_assignment():
         "Owner Assignment — Test cases assigned to specific team members",
         "Traceability — Link test cases to Jira issues for requirement coverage",
         "Test Cycles — Group test cases together for sprint-based execution",
+        "Test Plans — High-level test planning for releases and milestones",
+        "Reports — Built-in test metrics, coverage analysis, and dashboards",
     ]
     for feat in features:
         doc.add_paragraph(feat, style="List Bullet")
 
-    # ── Section 6: Comparison — Jira Issues vs Zephyr Scale ──
-    doc.add_heading("6. Jira Issues vs Zephyr Scale — Comparison", level=1)
+    # ── Section 10: Comparison ──
+    doc.add_page_break()
+    doc.add_heading("10. Jira Issues vs Zephyr Scale — Comparison", level=1)
     doc.add_paragraph(
         "The table below compares using plain Jira issues versus Zephyr Scale "
         "for test case management:"
@@ -711,8 +917,98 @@ def create_zephyr_assignment():
         row[2].text = zephyr
     doc.add_paragraph()
 
-    # ── Section 7: Conclusion ──
-    doc.add_heading("7. Conclusion", level=1)
+    # ── Section 11: Jira Project — Supporting Evidence ──
+    doc.add_page_break()
+    doc.add_heading("11. Jira Project — Supporting Evidence", level=1)
+    doc.add_paragraph(
+        "The following screenshots provide supporting evidence of the MegiLance "
+        "Jira project setup, demonstrating the full Agile/Scrum workflow alongside "
+        "the Zephyr Scale test management. The project contains 88+ work items across "
+        "multiple issue types with sprint planning, automation rules, and timeline tracking."
+    )
+
+    doc.add_heading("11.1 Scrum Board", level=2)
+    doc.add_paragraph(
+        "The MegiLance Scrum board shows work items organized in TO DO, IN PROGRESS, "
+        "and DONE columns for sprint-based development tracking."
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "03-scrum-board.png"),
+        "Figure 14: MEG Scrum Board — TO DO / IN PROGRESS / DONE columns",
+    )
+
+    doc.add_heading("11.2 Backlog & Sprint Planning", level=2)
+    doc.add_paragraph(
+        "Sprints are organized in the backlog with defined start/end dates and assigned "
+        "work items, demonstrating proper Scrum sprint planning methodology."
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "04-backlog-sprints.png"),
+        "Figure 15: Backlog — Sprint planning with MEG Sprint 1 and Foundation Sprint",
+    )
+
+    doc.add_heading("11.3 Timeline / Epics", level=2)
+    doc.add_paragraph(
+        "Epics provide high-level feature grouping across the project timeline, "
+        "including Authentication, AI Matching, Client/Freelancer/Admin Portals."
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "05-timeline-epics.png"),
+        "Figure 16: Timeline view — Epics (Auth, AI Matching, Client/Freelancer/Admin Portals)",
+    )
+
+    doc.add_heading("11.4 All Work Items (88 Issues)", level=2)
+    doc.add_paragraph(
+        "The project tracks 88+ issues across multiple types: Epics, Stories, Bugs, "
+        "and Tasks — spanning all modules of the MegiLance platform."
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "07-all-issues-types.png"),
+        "Figure 17: All work items — 88+ issues filtered by type (Epic, Story, Bug, Task)",
+    )
+
+    doc.add_heading("11.5 Automation Rules", level=2)
+    doc.add_paragraph(
+        "Jira automation rules streamline the workflow with automated actions for "
+        "bug priority-based due dates, sub-task completion rollups, due date reminders, "
+        "and auto-assignment on transitions."
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "06-automation-rules.png"),
+        "Figure 18: All automation rules — enabled and active for workflow automation",
+    )
+
+    doc.add_heading("11.6 Jira Test Case Issues (21 Issues)", level=2)
+    doc.add_paragraph(
+        "In addition to the 10 Zephyr Scale test cases, 21 test case issues were created "
+        "directly in Jira with the 'test-case' label, providing comprehensive test coverage "
+        "documentation within the standard Jira issue tracker."
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "01-test-cases-list.png"),
+        "Figure 19: Jira Issues — 21 Test Cases with label 'test-case' (JQL filtered)",
+    )
+
+    # Show sample Jira issue details
+    doc.add_paragraph(
+        "Sample Jira test case issue details showing structured test steps, "
+        "preconditions, expected results, and labels:"
+    )
+    add_screenshot(
+        doc,
+        os.path.join(SCREENSHOTS_DIR, "02-test-case-detail.png"),
+        "Figure 20: MEG-105 — TC-PROJ-001: Create New Project with Valid Data (Jira Issue Detail)",
+    )
+
+    # ── Section 12: Conclusion ──
+    doc.add_page_break()
+    doc.add_heading("12. Conclusion", level=1)
     doc.add_paragraph(
         "Zephyr Scale provides a significantly more structured and professional approach "
         "to test case management compared to plain Jira issues. The dedicated test case "
@@ -724,25 +1020,46 @@ def create_zephyr_assignment():
         "covering authentication, project management, user profiles, proposals, payments, and "
         "search modules — demonstrating the tool's capabilities for structured test management."
     )
+    doc.add_paragraph(
+        "Key achievements demonstrated in this assignment:"
+    )
+    achievements = [
+        "10 structured test cases created in Zephyr Scale (MEG-T1 to MEG-T10)",
+        "21 test case issues in Jira with proper labels and categorization",
+        "88+ total work items across Epics, Stories, Bugs, and Tasks",
+        "Step-by-step test scripts with Test Data and Expected Results",
+        "Test Cycles and Test Plans configured for execution tracking",
+        "Jira automation rules for workflow efficiency",
+        "Full Scrum board with sprint planning and backlog management",
+        "Timeline/Epic-level project tracking across all modules",
+    ]
+    for a in achievements:
+        doc.add_paragraph(a, style="List Bullet")
 
-    # ── URLs Reference ──
-    add_url_section(doc, "8. URLs Reference", [
+    # ── Section 13: URLs Reference ──
+    add_url_section(doc, "13. URLs Reference", [
         ("Zephyr Scale — All Test Cases",
          "https://ghulam-mujtaba.atlassian.net/projects/MEG?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.kanoah.test-manager__main-project-page"),
         ("Zephyr Scale — Atlassian Marketplace",
          "https://marketplace.atlassian.com/apps/1213259/zephyr-test-management-and-automation-for-jira"),
-        ("Jira Project — MegiLance (MEG)",
+        ("Jira Project — MegiLance (MEG) — Scrum Board",
          "https://ghulam-mujtaba.atlassian.net/jira/software/c/projects/MEG/boards/3"),
+        ("Backlog & Sprint Planning",
+         "https://ghulam-mujtaba.atlassian.net/jira/software/c/projects/MEG/boards/3/backlog"),
+        ("Timeline / Epics",
+         "https://ghulam-mujtaba.atlassian.net/jira/software/c/projects/MEG/boards/3/timeline"),
         ("All 21 Jira Test Case Issues",
          "https://ghulam-mujtaba.atlassian.net/issues/?jql=project%20%3D%20MEG%20AND%20labels%20%3D%20test-case"),
+        ("All Issues (Epic, Story, Bug, Task)",
+         "https://ghulam-mujtaba.atlassian.net/issues/?jql=project%20%3D%20MEG%20AND%20type%20in%20(Epic%2C%20Story%2C%20Bug%2C%20Task)%20ORDER%20BY%20type%20ASC"),
+        ("Automation Rules",
+         "https://ghulam-mujtaba.atlassian.net/jira/software/c/projects/MEG/settings/automate"),
+        ("TC-PROJ-001 — Create New Project (MEG-105)",
+         "https://ghulam-mujtaba.atlassian.net/browse/MEG-105"),
     ])
 
-    output_path = os.path.join(OUTPUT_DIR, "CSE455_ZephyrScale_TestCases_GhulamMujtaba.docx")
-    try:
-        doc.save(output_path)
-    except PermissionError:
-        output_path = os.path.join(OUTPUT_DIR, "CSE455_ZephyrScale_TestCases_GhulamMujtaba_v2.docx")
-        doc.save(output_path)
+    output_path = os.path.join(OUTPUT_DIR, "CSE455_ZephyrScale_TestCases_GhulamMujtaba_v2.docx")
+    doc.save(output_path)
     print(f"Zephyr Scale Assignment DOCX saved: {output_path}")
 
 

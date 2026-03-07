@@ -11,14 +11,12 @@ Endpoints for:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, Query, WebSocket, WebSocketDisconnect
-from sqlalchemy.orm import Session
 from typing import Optional, List
 from pydantic import BaseModel, Field
 from datetime import datetime
 import logging
 import json
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.models.user import User
 from app.services.video_interview import (
@@ -83,7 +81,7 @@ class FeedbackRequest(BaseModel):
 @router.post("/schedule")
 async def schedule_interview(
     request: ScheduleInterviewRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """
@@ -93,7 +91,7 @@ async def schedule_interview(
     and join URLs for both participants.
     """
     try:
-        service = get_interview_service(db)
+        service = get_interview_service()
         
         interview = await service.schedule_interview(
             client_id=current_user.id,
@@ -122,12 +120,12 @@ async def schedule_interview(
 async def get_my_interviews(
     status: Optional[str] = Query(None, description="Filter by status"),
     upcoming_only: bool = Query(False, description="Only show upcoming"),
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get all interviews for the current user."""
     try:
-        service = get_interview_service(db)
+        service = get_interview_service()
         
         interviews = await service.get_user_interviews(
             user_id=current_user.id,
@@ -148,12 +146,12 @@ async def get_my_interviews(
 @router.get("/{room_id}")
 async def get_interview_details(
     room_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get interview details by room ID."""
     try:
-        service = get_interview_service(db)
+        service = get_interview_service()
         
         interview = await service.get_interview(room_id)
         if not interview:
@@ -176,12 +174,12 @@ async def get_interview_details(
 async def reschedule_interview(
     room_id: str,
     request: RescheduleRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Reschedule an interview to a new time."""
     try:
-        service = get_interview_service(db)
+        service = get_interview_service()
         
         result = await service.reschedule_interview(
             room_id=room_id,
@@ -203,12 +201,12 @@ async def reschedule_interview(
 async def cancel_interview(
     room_id: str,
     reason: Optional[str] = None,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Cancel a scheduled interview."""
     try:
-        service = get_interview_service(db)
+        service = get_interview_service()
         
         result = await service.cancel_interview(
             room_id=room_id,
@@ -233,7 +231,7 @@ async def cancel_interview(
 async def join_video_room(
     room_id: str,
     request: JoinRoomRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """
@@ -243,7 +241,7 @@ async def join_video_room(
     and information about other participants.
     """
     try:
-        service = get_interview_service(db)
+        service = get_interview_service()
         
         # Generate a socket ID for this session
         import secrets
@@ -268,12 +266,12 @@ async def join_video_room(
 @router.post("/{room_id}/leave")
 async def leave_video_room(
     room_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Leave a video interview room."""
     try:
-        service = get_interview_service(db)
+        service = get_interview_service()
         
         result = await service.leave_room(
             room_id=room_id,
@@ -291,7 +289,7 @@ async def leave_video_room(
 async def send_signaling_message(
     room_id: str,
     message: SignalingMessage,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """
@@ -300,7 +298,7 @@ async def send_signaling_message(
     Used for establishing peer-to-peer video connections.
     """
     try:
-        service = get_interview_service(db)
+        service = get_interview_service()
         
         result = await service.handle_signaling(
             room_id=room_id,
@@ -322,12 +320,12 @@ async def send_signaling_message(
 @router.get("/{room_id}/signals")
 async def get_pending_signals(
     room_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get pending signaling messages for the current user."""
     try:
-        service = get_interview_service(db)
+        service = get_interview_service()
         
         messages = await service.get_pending_signals(current_user.id)
         
@@ -345,12 +343,12 @@ async def get_pending_signals(
 async def toggle_media(
     room_id: str,
     request: MediaToggleRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Toggle video/audio/screen sharing."""
     try:
-        service = get_interview_service(db)
+        service = get_interview_service()
         
         result = await service.toggle_media(
             room_id=room_id,
@@ -375,7 +373,7 @@ async def toggle_media(
 @router.post("/{room_id}/recording/start")
 async def start_recording(
     room_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """
@@ -385,7 +383,7 @@ async def start_recording(
     All participants will be notified.
     """
     try:
-        service = get_interview_service(db)
+        service = get_interview_service()
         
         result = await service.start_recording(
             room_id=room_id,
@@ -404,12 +402,12 @@ async def start_recording(
 @router.post("/{room_id}/recording/stop")
 async def stop_recording(
     room_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Stop recording the interview."""
     try:
-        service = get_interview_service(db)
+        service = get_interview_service()
         
         result = await service.stop_recording(
             room_id=room_id,
@@ -433,12 +431,12 @@ async def stop_recording(
 async def submit_feedback(
     room_id: str,
     request: FeedbackRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Submit feedback after an interview."""
     try:
-        service = get_interview_service(db)
+        service = get_interview_service()
         
         result = await service.submit_interview_feedback(
             room_id=room_id,
@@ -460,12 +458,12 @@ async def submit_feedback(
 
 @router.get("/analytics/me")
 async def get_interview_analytics(
-    db: Session = Depends(get_db),
+    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get interview analytics for the current user."""
     try:
-        service = get_interview_service(db)
+        service = get_interview_service()
         
         analytics = await service.get_interview_analytics(current_user.id)
         
@@ -485,7 +483,7 @@ async def websocket_signaling(
     websocket: WebSocket,
     room_id: str,
     token: str,
-    db: Session = Depends(get_db)
+    
 ):
     """
     WebSocket endpoint for real-time WebRTC signaling.
@@ -499,7 +497,7 @@ async def websocket_signaling(
     await websocket.accept()
     
     signaling_server = get_signaling_server()
-    interview_service = get_interview_service(db)
+    interview_service = get_interview_service()
     
     socket_id = None
     user_id = None

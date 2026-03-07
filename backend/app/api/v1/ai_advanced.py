@@ -1,11 +1,9 @@
 # @AI-HINT: Advanced AI API endpoints for matching, fraud detection, and quality assessment
 
 from fastapi import APIRouter, Depends, HTTPException, status, Query
-from sqlalchemy.orm import Session
 from typing import List
 from pydantic import BaseModel, Field
 
-from app.db.session import get_db
 from app.core.security import get_current_user
 from app.services.advanced_ai import get_advanced_ai_service, AdvancedAIService, get_project_for_proposal, get_user_profile_for_proposal
 from app.models.user import User
@@ -571,7 +569,7 @@ async def generate_proposal(
     - Proposed milestones and timeline
     - Suggested rate
     """
-    project_data = get_project_for_proposal(request.project_id)
+    project_data = await get_project_for_proposal(request.project_id)
     if not project_data:
         raise HTTPException(status_code=404, detail="Project not found")
     
@@ -581,7 +579,7 @@ async def generate_proposal(
     budget_max = project_data["budget_max"]
     budget_type = project_data["budget_type"]
     
-    profile_data = get_user_profile_for_proposal(current_user.id)
+    profile_data = await get_user_profile_for_proposal(current_user.id)
     freelancer_name = profile_data["name"]
     freelancer_skills = profile_data["skills"]
     hourly_rate = profile_data["hourly_rate"]

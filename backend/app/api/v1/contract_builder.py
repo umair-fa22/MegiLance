@@ -11,11 +11,9 @@ Features:
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status, Query
-from sqlalchemy.orm import Session
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel
 
-from app.db.session import get_db
 from app.core.security import get_current_active_user
 from app.services.db_utils import sanitize_text
 from app.services.contract_builder import (
@@ -80,11 +78,11 @@ class CreateCustomClauseRequest(BaseModel):
 @router.get("/templates")
 async def get_contract_templates(
     contract_type: Optional[ContractType] = None,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get contract templates."""
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     templates = await service.get_contract_templates(contract_type)
     return {"templates": templates}
 
@@ -92,11 +90,11 @@ async def get_contract_templates(
 @router.get("/templates/{template_id}")
 async def get_template_details(
     template_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get full template with content."""
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     template = await service.get_template_details(template_id)
     
     if not template:
@@ -113,11 +111,11 @@ async def get_template_details(
 async def get_clause_library(
     category: Optional[ClauseCategory] = None,
     search: Optional[str] = None,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get clause library."""
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     clauses = await service.get_clause_library(category, search)
     return {"clauses": clauses}
 
@@ -125,11 +123,11 @@ async def get_clause_library(
 @router.get("/clauses/{clause_id}")
 async def get_clause(
     clause_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get clause details."""
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     clause = await service.get_clause(clause_id)
     
     if not clause:
@@ -145,11 +143,11 @@ async def get_clause(
 @router.post("/contracts")
 async def create_contract_draft(
     request: CreateContractDraftRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a new contract draft."""
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     
     contract = await service.create_contract_draft(
         user_id=current_user["id"],
@@ -165,11 +163,11 @@ async def create_contract_draft(
 async def add_section(
     contract_id: str,
     request: AddSectionRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Add a section to contract."""
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     
     section = await service.add_section(
         contract_id=contract_id,
@@ -186,11 +184,11 @@ async def add_section(
 async def add_clause_to_contract(
     contract_id: str,
     request: AddClauseRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Add a clause from library to contract."""
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     
     result = await service.add_clause(
         contract_id=contract_id,
@@ -214,11 +212,11 @@ async def update_section(
     contract_id: str,
     section_id: str,
     request: UpdateSectionRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update a contract section."""
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     
     section = await service.update_section(
         contract_id=contract_id,
@@ -234,11 +232,11 @@ async def update_section(
 async def remove_section(
     contract_id: str,
     section_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Remove a section from contract."""
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     
     success = await service.remove_section(
         contract_id=contract_id,
@@ -253,11 +251,11 @@ async def remove_section(
 async def reorder_sections(
     contract_id: str,
     request: ReorderSectionsRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Reorder contract sections."""
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     
     result = await service.reorder_sections(
         contract_id=contract_id,
@@ -272,11 +270,11 @@ async def reorder_sections(
 async def set_variables(
     contract_id: str,
     request: SetVariablesRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Set contract variables."""
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     
     result = await service.set_variables(
         contract_id=contract_id,
@@ -290,11 +288,11 @@ async def set_variables(
 @router.get("/contracts/{contract_id}/preview")
 async def preview_contract(
     contract_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Preview contract with variables applied."""
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     result = await service.preview_contract(contract_id, current_user["id"])
     return result
 
@@ -303,7 +301,7 @@ async def preview_contract(
 async def export_contract(
     contract_id: str,
     format: str = "pdf",
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Export contract to file."""
@@ -313,7 +311,7 @@ async def export_contract(
             detail="Invalid format. Supported: pdf, docx, html"
         )
     
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     result = await service.export_contract(contract_id, current_user["id"], format)
     return result
 
@@ -323,11 +321,11 @@ async def export_contract(
 async def create_version(
     contract_id: str,
     request: CreateVersionRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a new version of the contract."""
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     
     version = await service.create_version(
         contract_id=contract_id,
@@ -341,11 +339,11 @@ async def create_version(
 @router.get("/contracts/{contract_id}/versions")
 async def get_versions(
     contract_id: str,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get contract version history."""
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     versions = await service.get_versions(contract_id, current_user["id"])
     return {"versions": versions}
 
@@ -354,11 +352,11 @@ async def get_versions(
 async def compare_versions(
     contract_id: str,
     request: CompareVersionsRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Compare two contract versions."""
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     
     result = await service.compare_versions(
         contract_id=contract_id,
@@ -374,11 +372,11 @@ async def compare_versions(
 @router.post("/clauses/custom")
 async def create_custom_clause(
     request: CreateCustomClauseRequest,
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a custom clause."""
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     
     clause = await service.create_custom_clause(
         user_id=current_user["id"],
@@ -393,10 +391,10 @@ async def create_custom_clause(
 
 @router.get("/clauses/custom")
 async def get_user_custom_clauses(
-    db: Session = Depends(get_db),
+    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get user's custom clauses."""
-    service = get_contract_builder_service(db)
+    service = get_contract_builder_service()
     clauses = await service.get_user_custom_clauses(current_user["id"])
     return {"clauses": clauses}

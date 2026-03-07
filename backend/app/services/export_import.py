@@ -8,7 +8,6 @@ import io
 import secrets
 from datetime import datetime, timezone
 from typing import Optional, List, Dict, Any
-from sqlalchemy.orm import Session
 from enum import Enum
 from collections import defaultdict
 
@@ -51,8 +50,8 @@ class ExportImportService:
     multiple format support and progress tracking.
     """
     
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        pass
         
         # In-memory stores
         self._export_jobs: Dict[str, Dict] = {}
@@ -541,11 +540,9 @@ class ExportImportService:
 _export_import_service: Optional[ExportImportService] = None
 
 
-def get_export_import_service(db: Session) -> ExportImportService:
+def get_export_import_service() -> ExportImportService:
     """Get or create export/import service instance."""
     global _export_import_service
     if _export_import_service is None:
-        _export_import_service = ExportImportService(db)
-    else:
-        _export_import_service.db = db
+        _export_import_service = ExportImportService()
     return _export_import_service

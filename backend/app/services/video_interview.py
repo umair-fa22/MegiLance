@@ -7,9 +7,8 @@ import hashlib
 import secrets
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any
-from sqlalchemy.orm import Session
-from sqlalchemy import and_, or_
 from enum import Enum
+from app.db.turso_http import execute_query, parse_rows
 
 logger = logging.getLogger(__name__)
 
@@ -43,20 +42,24 @@ class VideoInterviewService:
     # TURN server would be configured in production
     # {"urls": "turn:turn.megilance.com:3478", "username": "user", "credential": "pass"}
     
-    def __init__(self, db: Session):
-        self.db = db
-        self._active_rooms: Dict[str, Dict] = {}  # In-memory room state
-        self._signaling_queue: Dict[str, List] = {}  # Signaling messages queue
-        self._load_active_interviews() # Restore state on startup
+    def __init__(self):
+        self._active_rooms: Dict[str, Dict] = {}  # Live WebRTC room state (transient)
+        self._signaling_queue: Dict[str, List] = {}  # Signaling messages queue (transient)
 
-    def _load_active_interviews(self):
-        """Load scheduled interviews from DB into memory to prevent state loss on restart."""
-        # In a real implementation, this would query the 'interviews' table.
-        # Since we are simulating the table structure in this service for now,
-        # we will just initialize the structure.
-        # DEFERRED: Create 'interviews' table via Alembic migration when persistence is needed.
-        # Currently uses in-memory state which is sufficient for the signaling layer.
-        pass
+    def _get_interview_by_room(self, room_id: str) -> Optional[Dict[str, Any]]:
+        """Fetch an interview from DB by room_id."""
+        result = execute_query("SELECT * FROM interviews WHERE room_id = ?", [room_id])
+        rows = parse_rows(result)
+        if not rows:
+            return None
+        row = rows[0]
+        notes_data = {}
+        if row.get("notes"):
+            try:
+                notes_data = json.loads(row["notes"])
+            except (json.JSONDecodeError, TypeError):
+                pass
+        return {**row, **notes_data}
 
     
     async def schedule_interview(
@@ -68,41 +71,11 @@ class VideoInterviewService:
         duration_minutes: int = 30,
         title: Optional[str] = None,
         description: Optional[str] = None,
-        timezone: str = "UTC"
+        tz: str = "UTC"
     ) -> Dict[str, Any]:
-        """
-        Schedule a video interview between client and freelancer.
-        
-        Args:
-            client_id: ID of the client scheduling the interview
-            freelancer_id: ID of the freelancer being interviewed
-            project_id: Optional related project
-            scheduled_time: Scheduled start time
-            duration_minutes: Expected duration (default 30 min)
-            title: Interview title
-            description: Additional details
-            timezone: Timezone for scheduling
-            
-        Returns:
-            Interview details with room credentials
-        """
+        """Schedule a video interview between client and freelancer."""
         try:
-            from app.models.user import User
-            from app.models.project import Project
-            
-            # Validate participants
-            client = self.db.query(User).filter(User.id == client_id).first()
-            freelancer = self.db.query(User).filter(User.id == freelancer_id).first()
-            
-            if not client or not freelancer:
-                raise ValueError("Invalid client or freelancer ID")
-            
-            # Validate scheduled time is in the future
-            if scheduled_time <= datetime.now(timezone.utc):
-                raise ValueError("Interview must be scheduled for a future time")
-            
-            # Check for scheduling conflicts (simple check - 1 hour buffer)
-            # In production, would query actual interview table
+            now = datetime.now(timezone.utc)
             
             # Generate unique room ID
             room_id = self._generate_room_id(client_id, freelancer_id, scheduled_time)
@@ -111,21 +84,33 @@ class VideoInterviewService:
             client_token = self._generate_access_token(room_id, client_id, "host")
             freelancer_token = self._generate_access_token(room_id, freelancer_id, "guest")
             
-            # Create interview record (would be stored in database)
+            end_time = (scheduled_time + timedelta(minutes=duration_minutes)).isoformat()
+            interview_title = title or f"Interview for project {project_id}"
+            
+            execute_query(
+                """INSERT INTO interviews
+                   (room_id, client_id, freelancer_id, project_id, title, description,
+                    scheduled_time, duration_minutes, end_time, status, timezone,
+                    client_token, freelancer_token, created_at)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'scheduled', ?, ?, ?, ?)""",
+                [room_id, client_id, freelancer_id, project_id, interview_title,
+                 description, scheduled_time.isoformat(), duration_minutes, end_time,
+                 tz, client_token, freelancer_token, now.isoformat()]
+            )
+            
             interview = {
-                "id": hash(room_id) % 1000000,  # Simulated ID
                 "room_id": room_id,
                 "client_id": client_id,
                 "freelancer_id": freelancer_id,
                 "project_id": project_id,
-                "title": title or f"Interview with {freelancer.full_name}",
+                "title": interview_title,
                 "description": description,
                 "scheduled_time": scheduled_time.isoformat(),
                 "duration_minutes": duration_minutes,
-                "end_time": (scheduled_time + timedelta(minutes=duration_minutes)).isoformat(),
+                "end_time": end_time,
                 "status": InterviewStatus.SCHEDULED,
-                "timezone": timezone,
-                "created_at": datetime.now(timezone.utc).isoformat(),
+                "timezone": tz,
+                "created_at": now.isoformat(),
                 "tokens": {
                     "client": client_token,
                     "freelancer": freelancer_token
@@ -137,16 +122,7 @@ class VideoInterviewService:
                 "ice_servers": self.ICE_SERVERS
             }
             
-            # Store in active rooms
-            self._active_rooms[room_id] = {
-                "interview": interview,
-                "participants": {},
-                "started_at": None,
-                "recording": False
-            }
-            
             logger.info(f"Interview scheduled: {room_id} at {scheduled_time}")
-            
             return interview
             
         except Exception as e:
@@ -155,9 +131,16 @@ class VideoInterviewService:
     
     async def get_interview(self, room_id: str) -> Optional[Dict[str, Any]]:
         """Get interview details by room ID."""
-        if room_id in self._active_rooms:
-            return self._active_rooms[room_id]["interview"]
-        return None
+        row = self._get_interview_by_room(room_id)
+        if not row:
+            return None
+        row["tokens"] = {"client": row.get("client_token"), "freelancer": row.get("freelancer_token")}
+        row["join_urls"] = {
+            "client": f"/interview/join/{room_id}?token={row.get('client_token')}",
+            "freelancer": f"/interview/join/{room_id}?token={row.get('freelancer_token')}"
+        }
+        row["ice_servers"] = self.ICE_SERVERS
+        return row
     
     async def get_user_interviews(
         self,
@@ -165,42 +148,26 @@ class VideoInterviewService:
         status: Optional[str] = None,
         upcoming_only: bool = False
     ) -> List[Dict[str, Any]]:
-        """
-        Get all interviews for a user.
+        """Get all interviews for a user."""
+        sql = "SELECT * FROM interviews WHERE (client_id = ? OR freelancer_id = ?)"
+        params: list = [user_id, user_id]
         
-        Args:
-            user_id: User ID to get interviews for
-            status: Optional status filter
-            upcoming_only: Only return future interviews
-        """
-        interviews = []
-        now = datetime.now(timezone.utc)
+        if status:
+            sql += " AND status = ?"
+            params.append(status)
         
-        for room_id, room_data in self._active_rooms.items():
-            interview = room_data["interview"]
-            
-            # Check if user is a participant
-            if interview["client_id"] != user_id and interview["freelancer_id"] != user_id:
-                continue
-            
-            # Apply status filter
-            if status and interview["status"] != status:
-                continue
-            
-            # Apply upcoming filter
-            if upcoming_only:
-                scheduled = datetime.fromisoformat(interview["scheduled_time"])
-                if scheduled <= now:
-                    continue
-            
-            # Add role information
-            interview_copy = interview.copy()
-            interview_copy["user_role"] = "client" if interview["client_id"] == user_id else "freelancer"
-            interviews.append(interview_copy)
+        if upcoming_only:
+            sql += " AND scheduled_time > ?"
+            params.append(datetime.now(timezone.utc).isoformat())
         
-        # Sort by scheduled time
-        interviews.sort(key=lambda x: x["scheduled_time"])
-        return interviews
+        sql += " ORDER BY scheduled_time"
+        result = execute_query(sql, params)
+        rows = parse_rows(result)
+        
+        for row in rows:
+            row["user_role"] = "client" if row.get("client_id") == user_id else "freelancer"
+        
+        return rows
     
     async def join_room(
         self,
@@ -209,38 +176,29 @@ class VideoInterviewService:
         token: str,
         socket_id: str
     ) -> Dict[str, Any]:
-        """
-        Join a video interview room.
-        
-        Args:
-            room_id: Room to join
-            user_id: User joining
-            token: Access token
-            socket_id: WebSocket connection ID for signaling
-            
-        Returns:
-            Room configuration for WebRTC setup
-        """
-        if room_id not in self._active_rooms:
+        """Join a video interview room."""
+        interview = self._get_interview_by_room(room_id)
+        if not interview:
             raise ValueError("Interview room not found")
         
-        room = self._active_rooms[room_id]
-        interview = room["interview"]
-        
         # Validate token
-        valid_tokens = [
-            interview["tokens"]["client"],
-            interview["tokens"]["freelancer"]
-        ]
-        if token not in valid_tokens:
+        if token not in [interview.get("client_token"), interview.get("freelancer_token")]:
             raise ValueError("Invalid access token")
         
         # Validate user is a participant
-        if user_id not in [interview["client_id"], interview["freelancer_id"]]:
+        if user_id not in [interview.get("client_id"), interview.get("freelancer_id")]:
             raise ValueError("User not authorized to join this interview")
         
-        # Add participant to room
-        participant_role = "client" if user_id == interview["client_id"] else "freelancer"
+        # Create live room state if not exists
+        if room_id not in self._active_rooms:
+            self._active_rooms[room_id] = {
+                "participants": {},
+                "started_at": None,
+                "recording": False
+            }
+        
+        room = self._active_rooms[room_id]
+        participant_role = "client" if user_id == interview.get("client_id") else "freelancer"
         room["participants"][user_id] = {
             "socket_id": socket_id,
             "role": participant_role,
@@ -250,12 +208,13 @@ class VideoInterviewService:
             "screen_sharing": False
         }
         
-        # Update interview status if first join
-        if not room["started_at"] and len(room["participants"]) >= 1:
-            # Mark as in progress when both join
-            if len(room["participants"]) >= 2:
-                room["started_at"] = datetime.now(timezone.utc)
-                interview["status"] = InterviewStatus.IN_PROGRESS
+        # Update interview status if both participants joined
+        if not room["started_at"] and len(room["participants"]) >= 2:
+            room["started_at"] = datetime.now(timezone.utc)
+            execute_query(
+                "UPDATE interviews SET status = 'in_progress', started_at = ? WHERE room_id = ?",
+                [room["started_at"].isoformat(), room_id]
+            )
         
         # Get other participants for WebRTC connection
         other_participants = [
@@ -278,13 +237,7 @@ class VideoInterviewService:
         }
     
     async def leave_room(self, room_id: str, user_id: int) -> Dict[str, Any]:
-        """
-        Leave a video interview room.
-        
-        Args:
-            room_id: Room to leave
-            user_id: User leaving
-        """
+        """Leave a video interview room."""
         if room_id not in self._active_rooms:
             return {"status": "room_not_found"}
         
@@ -292,21 +245,22 @@ class VideoInterviewService:
         
         if user_id in room["participants"]:
             left_at = datetime.now(timezone.utc)
-            participant_data = room["participants"].pop(user_id)
+            room["participants"].pop(user_id)
             
-            # If room is now empty, mark interview as completed
+            # If room is now empty and was started, mark completed in DB
             if len(room["participants"]) == 0 and room["started_at"]:
-                room["interview"]["status"] = InterviewStatus.COMPLETED
-                room["interview"]["ended_at"] = left_at.isoformat()
-                room["interview"]["actual_duration_minutes"] = int(
-                    (left_at - room["started_at"]).total_seconds() / 60
+                actual_duration = int((left_at - room["started_at"]).total_seconds() / 60)
+                execute_query(
+                    "UPDATE interviews SET status = 'completed', completed_at = ? WHERE room_id = ?",
+                    [left_at.isoformat(), room_id]
                 )
+                del self._active_rooms[room_id]
             
             return {
                 "status": "left",
                 "room_id": room_id,
                 "left_at": left_at.isoformat(),
-                "remaining_participants": len(room["participants"])
+                "remaining_participants": len(room.get("participants", {}))
             }
         
         return {"status": "not_in_room"}
@@ -494,24 +448,25 @@ class VideoInterviewService:
         reason: Optional[str] = None
     ) -> Dict[str, Any]:
         """Cancel a scheduled interview."""
-        if room_id not in self._active_rooms:
+        interview = self._get_interview_by_room(room_id)
+        if not interview:
             raise ValueError("Interview not found")
         
-        room = self._active_rooms[room_id]
-        interview = room["interview"]
-        
-        # Verify user is a participant
-        if user_id not in [interview["client_id"], interview["freelancer_id"]]:
+        if user_id not in [interview.get("client_id"), interview.get("freelancer_id")]:
             raise ValueError("User not authorized to cancel this interview")
         
-        # Can only cancel scheduled interviews
-        if interview["status"] not in [InterviewStatus.SCHEDULED, InterviewStatus.RESCHEDULED]:
-            raise ValueError(f"Cannot cancel interview with status: {interview['status']}")
+        if interview.get("status") not in [InterviewStatus.SCHEDULED, InterviewStatus.RESCHEDULED]:
+            raise ValueError(f"Cannot cancel interview with status: {interview.get('status')}")
         
-        interview["status"] = InterviewStatus.CANCELLED
-        interview["cancelled_by"] = user_id
-        interview["cancelled_at"] = datetime.now(timezone.utc).isoformat()
-        interview["cancellation_reason"] = reason
+        now = datetime.now(timezone.utc).isoformat()
+        notes = json.dumps({"cancelled_by": user_id, "cancellation_reason": reason})
+        execute_query(
+            "UPDATE interviews SET status = 'cancelled', cancelled_at = ?, notes = ? WHERE room_id = ?",
+            [now, notes, room_id]
+        )
+        
+        # Clean up live room state if exists
+        self._active_rooms.pop(room_id, None)
         
         logger.info(f"Interview {room_id} cancelled by user {user_id}")
         
@@ -530,37 +485,34 @@ class VideoInterviewService:
         reason: Optional[str] = None
     ) -> Dict[str, Any]:
         """Reschedule an interview to a new time."""
-        if room_id not in self._active_rooms:
+        interview = self._get_interview_by_room(room_id)
+        if not interview:
             raise ValueError("Interview not found")
         
-        room = self._active_rooms[room_id]
-        interview = room["interview"]
-        
-        # Verify user is a participant
-        if user_id not in [interview["client_id"], interview["freelancer_id"]]:
+        if user_id not in [interview.get("client_id"), interview.get("freelancer_id")]:
             raise ValueError("User not authorized to reschedule this interview")
         
-        # Validate new time
         if new_time <= datetime.now(timezone.utc):
             raise ValueError("New time must be in the future")
         
-        old_time = interview["scheduled_time"]
-        
-        # Update interview
-        interview["status"] = InterviewStatus.RESCHEDULED
-        interview["scheduled_time"] = new_time.isoformat()
-        interview["end_time"] = (new_time + timedelta(minutes=interview["duration_minutes"])).isoformat()
-        interview["rescheduled_by"] = user_id
-        interview["rescheduled_at"] = datetime.now(timezone.utc).isoformat()
-        interview["reschedule_reason"] = reason
-        interview["previous_time"] = old_time
+        old_time = interview.get("scheduled_time")
+        duration = interview.get("duration_minutes", 30)
+        end_time = (new_time + timedelta(minutes=duration)).isoformat()
         
         # Generate new tokens
-        interview["tokens"]["client"] = self._generate_access_token(
-            room_id, interview["client_id"], "host"
-        )
-        interview["tokens"]["freelancer"] = self._generate_access_token(
-            room_id, interview["freelancer_id"], "guest"
+        client_token = self._generate_access_token(room_id, interview["client_id"], "host")
+        freelancer_token = self._generate_access_token(room_id, interview["freelancer_id"], "guest")
+        
+        notes = json.dumps({
+            "rescheduled_by": user_id,
+            "reschedule_reason": reason,
+            "previous_time": old_time
+        })
+        execute_query(
+            """UPDATE interviews SET status = 'rescheduled', scheduled_time = ?,
+               end_time = ?, client_token = ?, freelancer_token = ?, notes = ?
+               WHERE room_id = ?""",
+            [new_time.isoformat(), end_time, client_token, freelancer_token, notes, room_id]
         )
         
         logger.info(f"Interview {room_id} rescheduled from {old_time} to {new_time}")
@@ -572,7 +524,7 @@ class VideoInterviewService:
             "new_time": new_time.isoformat(),
             "rescheduled_by": user_id,
             "reason": reason,
-            "new_tokens": interview["tokens"]
+            "new_tokens": {"client": client_token, "freelancer": freelancer_token}
         }
     
     async def submit_interview_feedback(
@@ -584,35 +536,29 @@ class VideoInterviewService:
         would_hire: Optional[bool] = None,
         skills_demonstrated: Optional[List[str]] = None
     ) -> Dict[str, Any]:
-        """
-        Submit feedback after an interview.
-        
-        Args:
-            room_id: Interview room
-            user_id: User submitting feedback
-            rating: 1-5 rating
-            notes: Detailed notes
-            would_hire: Hiring decision (for clients)
-            skills_demonstrated: Skills observed
-        """
-        if room_id not in self._active_rooms:
+        """Submit feedback after an interview."""
+        interview = self._get_interview_by_room(room_id)
+        if not interview:
             raise ValueError("Interview not found")
         
-        room = self._active_rooms[room_id]
-        interview = room["interview"]
-        
-        # Verify user is a participant
-        if user_id not in [interview["client_id"], interview["freelancer_id"]]:
+        if user_id not in [interview.get("client_id"), interview.get("freelancer_id")]:
             raise ValueError("User not authorized to submit feedback")
         
-        # Validate rating
         if not 1 <= rating <= 5:
             raise ValueError("Rating must be between 1 and 5")
         
-        # Determine feedback type
-        feedback_type = "client_feedback" if user_id == interview["client_id"] else "freelancer_feedback"
+        feedback_type = "client_feedback" if user_id == interview.get("client_id") else "freelancer_feedback"
         
-        feedback = {
+        # Merge into existing notes JSON
+        existing_notes = {}
+        if interview.get("notes"):
+            try:
+                existing_notes = json.loads(interview["notes"]) if isinstance(interview["notes"], str) else {}
+            except (json.JSONDecodeError, TypeError):
+                pass
+        
+        existing_notes.setdefault("feedback", {})
+        existing_notes["feedback"][feedback_type] = {
             "user_id": user_id,
             "rating": rating,
             "notes": notes,
@@ -621,10 +567,10 @@ class VideoInterviewService:
             "submitted_at": datetime.now(timezone.utc).isoformat()
         }
         
-        # Store feedback
-        if "feedback" not in room:
-            room["feedback"] = {}
-        room["feedback"][feedback_type] = feedback
+        execute_query(
+            "UPDATE interviews SET notes = ? WHERE room_id = ?",
+            [json.dumps(existing_notes), room_id]
+        )
         
         logger.info(f"Feedback submitted for interview {room_id} by user {user_id}")
         
@@ -636,29 +582,31 @@ class VideoInterviewService:
         }
     
     async def get_interview_analytics(self, user_id: int) -> Dict[str, Any]:
-        """
-        Get interview analytics for a user.
+        """Get interview analytics for a user."""
+        result = execute_query(
+            "SELECT status, notes FROM interviews WHERE client_id = ? OR freelancer_id = ?",
+            [user_id, user_id]
+        )
+        rows = parse_rows(result)
         
-        Returns statistics on interview history, ratings, and outcomes.
-        """
-        user_interviews = await self.get_user_interviews(user_id)
+        total = len(rows)
+        completed = sum(1 for r in rows if r.get("status") == "completed")
+        cancelled = sum(1 for r in rows if r.get("status") == "cancelled")
+        no_shows = sum(1 for r in rows if r.get("status") == "no_show")
         
-        total = len(user_interviews)
-        completed = sum(1 for i in user_interviews if i["status"] == InterviewStatus.COMPLETED)
-        cancelled = sum(1 for i in user_interviews if i["status"] == InterviewStatus.CANCELLED)
-        no_shows = sum(1 for i in user_interviews if i["status"] == InterviewStatus.NO_SHOW)
-        
-        # Calculate average ratings from feedback
+        # Extract ratings from feedback stored in notes JSON
         ratings = []
-        for room_id, room_data in self._active_rooms.items():
-            if "feedback" in room_data:
-                for feedback_type, feedback in room_data["feedback"].items():
-                    if "rating" in feedback:
-                        # Check if this feedback is about this user
-                        interview = room_data["interview"]
-                        if (feedback_type == "client_feedback" and interview["freelancer_id"] == user_id) or \
-                           (feedback_type == "freelancer_feedback" and interview["client_id"] == user_id):
-                            ratings.append(feedback["rating"])
+        for row in rows:
+            if not row.get("notes"):
+                continue
+            try:
+                notes_data = json.loads(row["notes"])
+                feedback = notes_data.get("feedback", {})
+                for fb_type, fb in feedback.items():
+                    if "rating" in fb:
+                        ratings.append(fb["rating"])
+            except (json.JSONDecodeError, TypeError):
+                pass
         
         avg_rating = sum(ratings) / len(ratings) if ratings else 0
         
@@ -798,13 +746,11 @@ _interview_service: Optional[VideoInterviewService] = None
 _signaling_server: Optional[WebRTCSignalingServer] = None
 
 
-def get_interview_service(db: Session) -> VideoInterviewService:
+def get_interview_service() -> VideoInterviewService:
     """Get or create interview service instance."""
     global _interview_service
     if _interview_service is None:
-        _interview_service = VideoInterviewService(db)
-    else:
-        _interview_service.db = db
+        _interview_service = VideoInterviewService()
     return _interview_service
 
 
