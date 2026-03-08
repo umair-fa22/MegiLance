@@ -118,7 +118,6 @@ export default function RankPage() {
     return RANKS[level - 1]?.color || '#6b7280';
   };
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   if (loading || !rankData) {

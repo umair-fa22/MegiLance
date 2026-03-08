@@ -220,7 +220,7 @@ async def get_availability_settings(current_user=Depends(get_current_active_user
 
 @router.put("/settings")
 async def update_availability_settings(
-    timezone: Optional[str] = None,
+    tz: Optional[str] = None,
     default_meeting_duration: Optional[int] = None,
     buffer_before: Optional[int] = None,
     buffer_after: Optional[int] = None,

@@ -304,7 +304,6 @@ function MultiStepForm<T extends Record<string, unknown>>({
     [currentStep, totalSteps, isFirstStep, isLastStep, isSubmitting, goNext, goPrev, goToStep]
   );
 
-  if (!resolvedTheme) return null;
 
   return (
     <div className={cn(commonStyles.wizard, className)}>

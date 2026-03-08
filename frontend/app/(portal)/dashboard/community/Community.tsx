@@ -99,7 +99,6 @@ const TRENDING_TAGS = ['React', 'TypeScript', 'AI Tools', 'Remote Work', 'Web3',
 
 const Community: React.FC = () => {
   const { resolvedTheme } = useTheme();
-  if (!resolvedTheme) return null;
   const themed = resolvedTheme === 'dark' ? dark : light;
 
   const [query, setQuery] = useState('');

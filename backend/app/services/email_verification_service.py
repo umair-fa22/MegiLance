@@ -23,7 +23,7 @@ class EmailVerificationService:
     async def create_verification_token(self, user_id: int) -> str:
         """Create and store a new verification token for a user."""
         token = self.generate_verification_token()
-        await execute_query(
+        execute_query(
             "UPDATE users SET email_verification_token = ?, email_verified = 0 WHERE id = ?",
             [token, user_id]
         )
@@ -31,7 +31,7 @@ class EmailVerificationService:
     
     async def verify_email(self, token: str) -> Optional[Dict[str, Any]]:
         """Verify a user's email using the verification token."""
-        result = await execute_query(
+        result = execute_query(
             "SELECT id, email, name FROM users WHERE email_verification_token = ?",
             [token]
         )
@@ -40,7 +40,7 @@ class EmailVerificationService:
             return None
         
         user = rows[0]
-        await execute_query(
+        execute_query(
             "UPDATE users SET email_verified = 1, email_verification_token = NULL, is_verified = 1 WHERE id = ?",
             [user["id"]]
         )
@@ -52,7 +52,7 @@ class EmailVerificationService:
     
     async def is_token_valid(self, user_id: int) -> bool:
         """Check if user has a verification token."""
-        result = await execute_query(
+        result = execute_query(
             "SELECT email_verification_token FROM users WHERE id = ?",
             [user_id]
         )

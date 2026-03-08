@@ -59,7 +59,6 @@ const UserProfile: React.FC<UserProfileProps> = ({ userId }) => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [selectedPortfolioItem, setSelectedPortfolioItem] = useState<PortfolioItem | null>(null);
 
-  if (!resolvedTheme) return null;
 
   const themed = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 

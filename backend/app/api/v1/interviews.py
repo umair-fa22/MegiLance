@@ -81,7 +81,6 @@ class FeedbackRequest(BaseModel):
 @router.post("/schedule")
 async def schedule_interview(
     request: ScheduleInterviewRequest,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """
@@ -120,7 +119,6 @@ async def schedule_interview(
 async def get_my_interviews(
     status: Optional[str] = Query(None, description="Filter by status"),
     upcoming_only: bool = Query(False, description="Only show upcoming"),
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get all interviews for the current user."""
@@ -146,7 +144,6 @@ async def get_my_interviews(
 @router.get("/{room_id}")
 async def get_interview_details(
     room_id: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get interview details by room ID."""
@@ -174,7 +171,6 @@ async def get_interview_details(
 async def reschedule_interview(
     room_id: str,
     request: RescheduleRequest,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Reschedule an interview to a new time."""
@@ -201,7 +197,6 @@ async def reschedule_interview(
 async def cancel_interview(
     room_id: str,
     reason: Optional[str] = None,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Cancel a scheduled interview."""
@@ -231,7 +226,6 @@ async def cancel_interview(
 async def join_video_room(
     room_id: str,
     request: JoinRoomRequest,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """
@@ -266,7 +260,6 @@ async def join_video_room(
 @router.post("/{room_id}/leave")
 async def leave_video_room(
     room_id: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Leave a video interview room."""
@@ -289,7 +282,6 @@ async def leave_video_room(
 async def send_signaling_message(
     room_id: str,
     message: SignalingMessage,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """
@@ -320,7 +312,6 @@ async def send_signaling_message(
 @router.get("/{room_id}/signals")
 async def get_pending_signals(
     room_id: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get pending signaling messages for the current user."""
@@ -343,7 +334,6 @@ async def get_pending_signals(
 async def toggle_media(
     room_id: str,
     request: MediaToggleRequest,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Toggle video/audio/screen sharing."""
@@ -373,7 +363,6 @@ async def toggle_media(
 @router.post("/{room_id}/recording/start")
 async def start_recording(
     room_id: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """
@@ -402,7 +391,6 @@ async def start_recording(
 @router.post("/{room_id}/recording/stop")
 async def stop_recording(
     room_id: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Stop recording the interview."""
@@ -431,7 +419,6 @@ async def stop_recording(
 async def submit_feedback(
     room_id: str,
     request: FeedbackRequest,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Submit feedback after an interview."""
@@ -458,7 +445,6 @@ async def submit_feedback(
 
 @router.get("/analytics/me")
 async def get_interview_analytics(
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get interview analytics for the current user."""

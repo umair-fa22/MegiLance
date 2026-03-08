@@ -100,7 +100,6 @@ const GigDetail: React.FC = () => {
   const [expandedFaqs, setExpandedFaqs] = useState<Set<number>>(new Set());
   const [showAllReviews, setShowAllReviews] = useState(false);
 
-  if (!resolvedTheme) return null;
 
   const themed = resolvedTheme === 'dark' ? dark : light;
 

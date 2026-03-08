@@ -60,12 +60,12 @@ class APIKeyService:
         return row
 
     async def _get_key_by_hash(self, key_hash: str) -> Optional[Dict]:
-        result = await execute_query("SELECT * FROM api_keys WHERE key_hash = ?", [key_hash])
+        result = execute_query("SELECT * FROM api_keys WHERE key_hash = ?", [key_hash])
         rows = parse_rows(result)
         return self._parse_key_row(rows[0]) if rows else None
 
     async def _get_key_by_id(self, key_id: str, user_id: str) -> Optional[Dict]:
-        result = await execute_query(
+        result = execute_query(
             "SELECT * FROM api_keys WHERE id = ? AND user_id = ?", [key_id, str(user_id)]
         )
         rows = parse_rows(result)
@@ -82,7 +82,7 @@ class APIKeyService:
         if tier not in self.TIER_LIMITS:
             raise ValueError(f"Invalid tier. Must be one of: {list(self.TIER_LIMITS.keys())}")
 
-        result = await execute_query(
+        result = execute_query(
             "SELECT COUNT(*) as cnt FROM api_keys WHERE user_id = ? AND is_active = 1",
             [str(user_id)]
         )
@@ -99,7 +99,7 @@ class APIKeyService:
         key_id = str(uuid.uuid4())
         key_prefix = api_key[:20] + "..."
 
-        await execute_query(
+        execute_query(
             """INSERT INTO api_keys
                (id, key_hash, key_prefix, user_id, name, description, scopes, tier,
                 rate_limits, ip_whitelist, is_active, total_requests, created_at, expires_at)
@@ -109,7 +109,7 @@ class APIKeyService:
              json.dumps(ip_whitelist or []), now, expires_at]
         )
 
-        await execute_query(
+        execute_query(
             """INSERT INTO api_key_usage (key_hash, requests_today, requests_this_minute,
                minute_window_start, day_window_start, updated_at) VALUES (?, 0, 0, ?, ?, ?)""",
             [key_hash, now, datetime.now(timezone.utc).date().isoformat(), now]
@@ -133,7 +133,7 @@ class APIKeyService:
         if not include_inactive:
             sql += " AND is_active = 1"
         sql += " ORDER BY created_at DESC"
-        result = await execute_query(sql, params)
+        result = execute_query(sql, params)
         rows = parse_rows(result)
 
         keys = []
@@ -180,7 +180,7 @@ class APIKeyService:
                     "retry_after": rate_result.get("retry_after")}
 
         now = datetime.now(timezone.utc).isoformat()
-        await execute_query(
+        execute_query(
             "UPDATE api_keys SET last_used_at = ?, total_requests = total_requests + 1 WHERE key_hash = ?",
             [now, key_hash]
         )
@@ -240,7 +240,7 @@ class APIKeyService:
         if not key_data:
             raise ValueError("API key not found")
         now = datetime.now(timezone.utc).isoformat()
-        await execute_query(
+        execute_query(
             "UPDATE api_keys SET is_active = 0, revoked_at = ? WHERE id = ? AND user_id = ?",
             [now, key_id, str(user_id)]
         )
@@ -261,12 +261,12 @@ class APIKeyService:
         )
 
         revocation_time = (datetime.now(timezone.utc) + timedelta(hours=24)).isoformat()
-        await execute_query(
+        execute_query(
             "UPDATE api_keys SET pending_revocation = 1, revocation_time = ? WHERE id = ?",
             [revocation_time, key_id]
         )
         new_key_hash = self._hash_key(new_key_result["api_key"])
-        await execute_query("UPDATE api_keys SET rotated_from = ? WHERE key_hash = ?", [key_id, new_key_hash])
+        execute_query("UPDATE api_keys SET rotated_from = ? WHERE key_hash = ?", [key_id, new_key_hash])
 
         return {
             "success": True, "new_api_key": new_key_result["api_key"],
@@ -302,7 +302,7 @@ class APIKeyService:
 
         if sets:
             params.extend([key_id, str(user_id)])
-            await execute_query(f"UPDATE api_keys SET {', '.join(sets)} WHERE id = ? AND user_id = ?", params)
+            execute_query(f"UPDATE api_keys SET {', '.join(sets)} WHERE id = ? AND user_id = ?", params)
 
         updated = await self._get_key_by_id(key_id, user_id)
         return {

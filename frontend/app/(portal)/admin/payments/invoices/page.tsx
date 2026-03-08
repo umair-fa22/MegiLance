@@ -29,11 +29,11 @@ interface Invoice {
   notes?: string;
 }
 
-const statusColors: Record<string, string> = {
-  pending: '#F2C94C',
-  paid: '#27AE60',
-  overdue: '#e81123',
-  cancelled: '#888',
+const statusBadgeClass: Record<string, string> = {
+  pending: 'badgePending',
+  paid: 'badgePaid',
+  overdue: 'badgeOverdue',
+  cancelled: 'badgeCancelled',
 };
 
 const AdminPaymentsInvoicesPage = () => {
@@ -59,9 +59,7 @@ const AdminPaymentsInvoicesPage = () => {
 
   useEffect(() => { fetchInvoices(); }, [fetchInvoices]);
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
-  const isDark = resolvedTheme === 'dark';
 
   const pendingCount = invoices.filter(i => i.status === 'pending' || i.status === 'overdue').length;
   const paidTotal = invoices.filter(i => i.status === 'paid').reduce((s, i) => s + (i.total || 0), 0);
@@ -97,15 +95,15 @@ const AdminPaymentsInvoicesPage = () => {
           <ScrollReveal delay={0.05}>
             <div className={commonStyles.summary}>
               <div className={cn(commonStyles.card, themeStyles.card)}>
-                <div className={cn(commonStyles.cardTitle, themeStyles.cardTitle)}><Clock size={14} style={{ display: 'inline', marginRight: 4 }} /> Outstanding</div>
+                <div className={cn(commonStyles.cardTitle, themeStyles.cardTitle)}><Clock size={14} className={commonStyles.cardTitleIcon} /> Outstanding</div>
                 <div className={cn(commonStyles.metric, themeStyles.metric)}>{pendingCount}</div>
               </div>
               <div className={cn(commonStyles.card, themeStyles.card)}>
-                <div className={cn(commonStyles.cardTitle, themeStyles.cardTitle)}><DollarSign size={14} style={{ display: 'inline', marginRight: 4 }} /> Paid Total</div>
+                <div className={cn(commonStyles.cardTitle, themeStyles.cardTitle)}><DollarSign size={14} className={commonStyles.cardTitleIcon} /> Paid Total</div>
                 <div className={cn(commonStyles.metric, themeStyles.metric)}>${paidTotal.toFixed(2)}</div>
               </div>
               <div className={cn(commonStyles.card, themeStyles.card)}>
-                <div className={cn(commonStyles.cardTitle, themeStyles.cardTitle)}><CheckCircle2 size={14} style={{ display: 'inline', marginRight: 4 }} /> Total Invoices</div>
+                <div className={cn(commonStyles.cardTitle, themeStyles.cardTitle)}><CheckCircle2 size={14} className={commonStyles.cardTitleIcon} /> Total Invoices</div>
                 <div className={cn(commonStyles.metric, themeStyles.metric)}>{total}</div>
               </div>
             </div>
@@ -127,22 +125,22 @@ const AdminPaymentsInvoicesPage = () => {
                 </thead>
                 <tbody>
                   {loading ? (
-                    <tr><td className={cn(commonStyles.td, themeStyles.td)} colSpan={7} style={{ textAlign: 'center', padding: '2rem' }}>Loading...</td></tr>
+                    <tr><td className={cn(commonStyles.td, themeStyles.td, commonStyles.emptyCell)} colSpan={7}>Loading...</td></tr>
                   ) : invoices.length === 0 ? (
-                    <tr><td className={cn(commonStyles.td, themeStyles.td)} colSpan={7} style={{ textAlign: 'center', padding: '2rem' }}>No invoices found.</td></tr>
+                    <tr><td className={cn(commonStyles.td, themeStyles.td, commonStyles.emptyCell)} colSpan={7}>No invoices found.</td></tr>
                   ) : (
                     invoices.map((inv) => (
                       <tr key={inv.id} className={commonStyles.row}>
                         <td className={cn(commonStyles.td, themeStyles.td)}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                            <FileText size={14} style={{ color: '#4573df' }} />
+                          <div className={commonStyles.cellFlex}>
+                            <FileText size={14} className={commonStyles.iconPrimary} />
                             INV-{String(inv.id).padStart(4, '0')}
                           </div>
                         </td>
                         <td className={cn(commonStyles.td, themeStyles.td)}>#{inv.contract_id}</td>
-                        <td className={cn(commonStyles.td, themeStyles.td)} style={{ fontWeight: 600 }}>${(inv.total || 0).toFixed(2)}</td>
+                        <td className={cn(commonStyles.td, themeStyles.td, commonStyles.cellBold)}>${(inv.total || 0).toFixed(2)}</td>
                         <td className={cn(commonStyles.td, themeStyles.td)}>
-                          <span className={cn(commonStyles.badge, themeStyles.badge)} style={{ borderColor: statusColors[inv.status] || '#888', color: statusColors[inv.status] || '#888' }}>
+                          <span className={cn(commonStyles.badge, themeStyles.badge, commonStyles[statusBadgeClass[inv.status] || 'badgeCancelled'])}>
                             {inv.status}
                           </span>
                         </td>
@@ -150,7 +148,7 @@ const AdminPaymentsInvoicesPage = () => {
                           {inv.due_date ? new Date(inv.due_date).toLocaleDateString() : '—'}
                         </td>
                         <td className={cn(commonStyles.td, themeStyles.td)}>{new Date(inv.created_at).toLocaleDateString()}</td>
-                        <td className={cn(commonStyles.td, themeStyles.td)} style={{ maxWidth: 180, overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        <td className={cn(commonStyles.td, themeStyles.td, commonStyles.cellTruncate)}>
                           {inv.notes || '—'}
                         </td>
                       </tr>
@@ -160,9 +158,9 @@ const AdminPaymentsInvoicesPage = () => {
               </table>
             </div>
             {total > 20 && (
-              <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: '1rem' }}>
+              <div className={commonStyles.pagination}>
                 <Button variant="ghost" size="sm" onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}>Previous</Button>
-                <span style={{ padding: '8px 12px', fontSize: 14, color: isDark ? '#ccc' : '#555' }}>Page {page}</span>
+                <span className={cn(commonStyles.pageIndicator, themeStyles.pageIndicator)}>Page {page}</span>
                 <Button variant="ghost" size="sm" onClick={() => setPage(p => p + 1)} disabled={invoices.length < 20}>Next</Button>
               </div>
             )}

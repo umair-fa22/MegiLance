@@ -66,7 +66,6 @@ const AnalyticsPage: React.FC = () => {
     loadAnalytics();
   }, []);
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   return (

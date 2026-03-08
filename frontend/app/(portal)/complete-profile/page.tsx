@@ -1,16 +1,19 @@
 // @AI-HINT: Profile completion page - first-time onboarding for new users
-import { Metadata } from 'next';
-import ProfileWizard from '@/app/components/Profile/ProfileWizard/ProfileWizard';
-import styles from './CompleteProfile.module.css';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Complete Your Profile | MegiLance',
-  description: 'Set up your professional profile to start winning projects on MegiLance',
-};
+import { useTheme } from 'next-themes';
+import { cn } from '@/lib/utils';
+import ProfileWizard from '@/app/components/Profile/ProfileWizard/ProfileWizard';
+import commonStyles from './CompleteProfile.common.module.css';
+import lightStyles from './CompleteProfile.light.module.css';
+import darkStyles from './CompleteProfile.dark.module.css';
 
 export default function CompleteProfilePage() {
+  const { resolvedTheme } = useTheme();
+  const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
+
   return (
-    <div className={styles.wrapper}>
+    <div className={cn(commonStyles.wrapper, themeStyles.wrapper)}>
       <ProfileWizard />
     </div>
   );

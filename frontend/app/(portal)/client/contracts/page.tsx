@@ -203,7 +203,6 @@ export default function ClientContractsPage() {
     URL.revokeObjectURL(url);
   }, [contracts]);
 
-  if (!resolvedTheme) return null;
 
   return (
     <PageTransition>

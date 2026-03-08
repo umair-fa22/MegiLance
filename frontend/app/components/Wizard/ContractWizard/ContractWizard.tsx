@@ -293,7 +293,6 @@ const ContractWizard: React.FC<ContractWizardProps> = ({
     }
   };
 
-  if (!resolvedTheme) return null;
 
   // Step 1: Contract Terms
   const Step1Terms = (

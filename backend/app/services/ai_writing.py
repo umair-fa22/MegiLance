@@ -43,7 +43,7 @@ class AIWritingService:
     async def _ensure_tables(self):
         if self._tables_ready:
             return
-        await execute_query("""
+        execute_query("""
             CREATE TABLE IF NOT EXISTS ai_writing_history (
                 id TEXT PRIMARY KEY,
                 user_id INTEGER NOT NULL,
@@ -56,7 +56,7 @@ class AIWritingService:
                 created_at TEXT DEFAULT (datetime('now'))
             )
         """, [])
-        await execute_query("""
+        execute_query("""
             CREATE TABLE IF NOT EXISTS ai_writing_templates (
                 id TEXT PRIMARY KEY,
                 name TEXT NOT NULL,
@@ -75,7 +75,7 @@ class AIWritingService:
                                tone: str, word_count: int, content: str,
                                metadata: Optional[Dict] = None):
         """Log a content generation to history."""
-        await execute_query(
+        execute_query(
             """INSERT INTO ai_writing_history (id, user_id, content_type, tone, word_count, content, metadata, created_at)
                VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
             [gen_id, user_id, content_type, tone, word_count, content,
@@ -932,12 +932,12 @@ Best regards"""
         
         # Fetch custom templates from DB
         if content_type:
-            result = await execute_query(
+            result = execute_query(
                 "SELECT id, name, content_type, structure, variables, template_body FROM ai_writing_templates WHERE content_type = ?",
                 [content_type.value]
             )
         else:
-            result = await execute_query(
+            result = execute_query(
                 "SELECT id, name, content_type, structure, variables, template_body FROM ai_writing_templates",
                 []
             )
@@ -975,7 +975,7 @@ Best regards"""
         await self._ensure_tables()
         
         # Check DB first
-        result = await execute_query(
+        result = execute_query(
             "SELECT template_body, name, content_type FROM ai_writing_templates WHERE id = ?",
             [template_id]
         )
@@ -1028,7 +1028,7 @@ Best regards"""
         await self._ensure_tables()
         
         # Total counts
-        result = await execute_query(
+        result = execute_query(
             """SELECT 
                 COUNT(*) as total,
                 COALESCE(SUM(word_count), 0) as total_words
@@ -1041,7 +1041,7 @@ Best regards"""
         total_words = int(rows[0]["total_words"]) if rows else 0
         
         # Breakdown by type
-        result2 = await execute_query(
+        result2 = execute_query(
             """SELECT content_type, COUNT(*) as cnt
                FROM ai_writing_history
                WHERE user_id = ? AND created_at >= datetime('now', '-30 days')

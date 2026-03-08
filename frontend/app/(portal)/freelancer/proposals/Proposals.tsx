@@ -207,7 +207,6 @@ const Proposals: React.FC = () => {
     router.push(`/freelancer/proposals/${id}/edit`);
   };
 
-  if (!resolvedTheme) return null;
 
   return (
     <PageTransition>

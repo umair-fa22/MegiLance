@@ -78,7 +78,7 @@ const AIInsightsPanel: React.FC<AIInsightsPanelProps> = ({
     setMounted(true);
   }, []);
 
-  if (!mounted || !resolvedTheme) return null;
+  if (!mounted) return null;
 
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 

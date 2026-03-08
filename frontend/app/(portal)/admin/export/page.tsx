@@ -198,7 +198,7 @@ export default function DataExportPage() {
     setSelectedFields(fieldOptions[dataType]);
   };
 
-  if (!mounted || !resolvedTheme) return null;
+  if (!mounted) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   const formatFileSize = (bytes?: number) => {

@@ -233,7 +233,6 @@ const JobModerationQueue: React.FC = () => {
       return 0;
     });
 
-  if (!resolvedTheme) return null;
 
   return (
     <div className={cn(commonStyles.container, themeStyles.container)}>

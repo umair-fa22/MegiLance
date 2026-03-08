@@ -131,7 +131,6 @@ const MyJobs: React.FC = () => {
     fetchJobs();
   }, [fetchJobs]);
 
-  if (!resolvedTheme) return null;
 
   return (
     <PageTransition>

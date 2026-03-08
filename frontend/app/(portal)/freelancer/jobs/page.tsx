@@ -98,7 +98,6 @@ export default function JobsPage() {
     return () => clearTimeout(timer);
   }, [fetchJobs]);
 
-  if (!resolvedTheme) return null;
 
   return (
     <PageTransition>

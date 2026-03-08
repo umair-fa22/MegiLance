@@ -146,7 +146,6 @@ export default function AuditTrailPage() {
     return key ? ACTION_ICONS[key] : '📋';
   };
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   return (

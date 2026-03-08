@@ -195,7 +195,7 @@ class AIChatbotService:
         pass
 
     async def _get_conversation(self, conversation_id: str) -> Optional[Dict]:
-        result = await execute_query("SELECT * FROM chatbot_conversations WHERE id = ?", [conversation_id])
+        result = execute_query("SELECT * FROM chatbot_conversations WHERE id = ?", [conversation_id])
         rows = parse_rows(result)
         if not rows:
             return None
@@ -215,7 +215,7 @@ class AIChatbotService:
         conversation_id = f"chat_{secrets.token_hex(12)}"
         now = datetime.now(timezone.utc).isoformat()
 
-        await execute_query(
+        execute_query(
             """INSERT INTO chatbot_conversations
                (id, user_id, state, context, intents_detected, sentiment_history,
                 escalated, started_at, last_activity)
@@ -256,7 +256,7 @@ class AIChatbotService:
         
         # Store user message in DB
         msg_id = f"msg_{secrets.token_hex(8)}"
-        await execute_query(
+        execute_query(
             """INSERT INTO chatbot_messages (id, conversation_id, role, content, intent, sentiment, timestamp)
                VALUES (?, ?, 'user', ?, ?, ?, ?)""",
             [msg_id, conversation_id, message, intent.value, sentiment.value, now]
@@ -267,7 +267,7 @@ class AIChatbotService:
         intents.append(intent.value)
         sentiments = conversation["sentiment_history"]
         sentiments.append(sentiment.value)
-        await execute_query(
+        execute_query(
             """UPDATE chatbot_conversations SET last_activity = ?, intents_detected = ?, sentiment_history = ?
                WHERE id = ?""",
             [now, json.dumps(intents), json.dumps(sentiments), conversation_id]
@@ -285,7 +285,7 @@ class AIChatbotService:
         
         # Store bot response
         bot_msg_id = f"msg_{secrets.token_hex(8)}"
-        await execute_query(
+        execute_query(
             """INSERT INTO chatbot_messages (id, conversation_id, role, content, intent, sentiment, timestamp)
                VALUES (?, ?, 'assistant', ?, ?, ?, ?)""",
             [bot_msg_id, conversation_id, response["message"], intent.value, sentiment.value, now]
@@ -310,7 +310,7 @@ class AIChatbotService:
         if not conversation:
             return {"error": "Conversation not found"}
         
-        result = await execute_query(
+        result = execute_query(
             "SELECT * FROM chatbot_messages WHERE conversation_id = ? ORDER BY timestamp ASC",
             [conversation_id]
         )
@@ -374,7 +374,7 @@ class AIChatbotService:
         now = datetime.now(timezone.utc).isoformat()
 
         conversation = await self._get_conversation(conversation_id) or {}
-        msgs_result = await execute_query(
+        msgs_result = execute_query(
             "SELECT * FROM chatbot_messages WHERE conversation_id = ? ORDER BY timestamp ASC",
             [conversation_id]
         )
@@ -383,7 +383,7 @@ class AIChatbotService:
         sentiment_summary = self._summarize_sentiment(conversation.get("sentiment_history", []))
         conversation_summary = self._summarize_conversation(messages)
 
-        await execute_query(
+        execute_query(
             """INSERT INTO chatbot_tickets
                (id, user_id, conversation_id, subject, description, priority, category,
                 status, intents_detected, sentiment_summary, conversation_summary, created_at, updated_at)
@@ -394,7 +394,7 @@ class AIChatbotService:
         )
 
         if conversation:
-            await execute_query(
+            execute_query(
                 "UPDATE chatbot_conversations SET ticket_id = ?, state = ? WHERE id = ?",
                 [ticket_id, ConversationState.ESCALATED.value, conversation_id]
             )
@@ -407,7 +407,7 @@ class AIChatbotService:
     
     async def get_ticket(self, ticket_id: str) -> Optional[Dict[str, Any]]:
         """Get support ticket details."""
-        result = await execute_query("SELECT * FROM chatbot_tickets WHERE id = ?", [ticket_id])
+        result = execute_query("SELECT * FROM chatbot_tickets WHERE id = ?", [ticket_id])
         rows = parse_rows(result)
         if not rows:
             return None
@@ -426,7 +426,7 @@ class AIChatbotService:
             return {"error": "Conversation not found"}
         
         now = datetime.now(timezone.utc).isoformat()
-        await execute_query(
+        execute_query(
             "UPDATE chatbot_conversations SET state = ?, closed_at = ?, resolution = ? WHERE id = ?",
             [ConversationState.CLOSED.value, now, resolution, conversation_id]
         )
@@ -655,7 +655,7 @@ class AIChatbotService:
     ) -> Dict[str, Any]:
         """Escalate conversation to human agent."""
         now = datetime.now(timezone.utc).isoformat()
-        await execute_query(
+        execute_query(
             "UPDATE chatbot_conversations SET escalated = 1, state = ?, escalated_at = ? WHERE id = ?",
             [ConversationState.ESCALATED.value, now, conversation_id]
         )

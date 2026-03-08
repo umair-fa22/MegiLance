@@ -105,7 +105,6 @@ const DisputeDetailsPage: React.FC = () => {
     router.back();
   };
 
-  if (!resolvedTheme) return null;
 
   if (loading) {
     return (

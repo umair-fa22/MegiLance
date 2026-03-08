@@ -111,7 +111,6 @@ export default function SimilarJobs({ projectId, description, limit = 3 }: Simil
     fetchJobs();
   }, [projectId, description, limit]);
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   if (loading) {

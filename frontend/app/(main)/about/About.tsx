@@ -24,7 +24,6 @@ import dark from './About.dark.module.css';
 
 const About: React.FC = () => {
   const { resolvedTheme } = useTheme();
-  if (!resolvedTheme) return null;
   const t = resolvedTheme === 'dark' ? dark : light;
   const styles = {
     root: cn(common.root, t.root),

@@ -94,7 +94,6 @@ async def detect_timezone(
 
 @router.get("/preferences")
 async def get_user_timezone(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get user's timezone preference."""
@@ -106,7 +105,6 @@ async def get_user_timezone(
 @router.put("/preferences")
 async def set_user_timezone(
     request: SetTimezoneRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Set user's timezone preference."""
@@ -127,7 +125,6 @@ async def set_user_timezone(
 @router.post("/convert")
 async def convert_time(
     request: ConvertTimeRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Convert time between timezones."""
@@ -156,7 +153,6 @@ async def get_current_time(
 @router.post("/convert/multiple")
 async def get_time_in_multiple_zones(
     request: MultiZoneTimeRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get time in multiple timezones."""
@@ -174,7 +170,6 @@ async def get_time_in_multiple_zones(
 @router.post("/suggest-meeting-times")
 async def suggest_meeting_times(
     request: SuggestMeetingTimesRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Suggest optimal meeting times for participants."""
@@ -194,7 +189,6 @@ async def suggest_meeting_times(
 @router.post("/find-overlap")
 async def find_overlapping_hours(
     request: FindOverlapRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Find overlapping working hours across users."""
@@ -210,7 +204,6 @@ async def find_overlapping_hours(
 
 @router.get("/world-clock")
 async def get_world_clock(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get world clock with user's favorite timezones."""
@@ -222,7 +215,6 @@ async def get_world_clock(
 @router.post("/favorites/{timezone}")
 async def add_favorite_timezone(
     timezone: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Add timezone to favorites."""
@@ -234,7 +226,6 @@ async def add_favorite_timezone(
 @router.delete("/favorites/{timezone}")
 async def remove_favorite_timezone(
     timezone: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Remove timezone from favorites."""

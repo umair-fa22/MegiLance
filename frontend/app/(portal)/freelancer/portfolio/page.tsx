@@ -232,7 +232,6 @@ export default function PortfolioShowcasePage() {
     }
   };
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   const filteredItems = activeCategory === 'all'

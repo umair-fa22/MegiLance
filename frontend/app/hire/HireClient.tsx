@@ -59,7 +59,6 @@ const TOP_INDUSTRIES = [
 
 export default function HireClient() {
   const { resolvedTheme } = useTheme();
-  if (!resolvedTheme) return null;
 
   const themed = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 

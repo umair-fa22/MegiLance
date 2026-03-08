@@ -202,7 +202,6 @@ export default function TimeEntriesPage() {
     setNewEntry(prev => ({ ...prev, tags: prev.tags.filter(t => t !== tag) }));
   };
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   // Group entries by date

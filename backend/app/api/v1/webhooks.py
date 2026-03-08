@@ -39,7 +39,6 @@ class WebhookUpdateRequest(BaseModel):
 # API Endpoints
 @router.get("/events")
 async def get_available_events(
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get list of available webhook events."""
@@ -65,7 +64,6 @@ async def get_available_events(
 @router.post("")
 async def create_webhook(
     request: WebhookCreateRequest,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Register a new webhook."""
@@ -98,7 +96,6 @@ async def create_webhook(
 
 @router.get("")
 async def list_webhooks(
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """List user's webhooks."""
@@ -115,7 +112,6 @@ async def list_webhooks(
 @router.get("/{webhook_id}")
 async def get_webhook(
     webhook_id: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get webhook details."""
@@ -133,7 +129,6 @@ async def get_webhook(
 async def update_webhook(
     webhook_id: str,
     request: WebhookUpdateRequest,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Update webhook configuration."""
@@ -168,7 +163,6 @@ async def update_webhook(
 @router.delete("/{webhook_id}")
 async def delete_webhook(
     webhook_id: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Delete a webhook."""
@@ -185,7 +179,6 @@ async def delete_webhook(
 @router.post("/{webhook_id}/test")
 async def test_webhook(
     webhook_id: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Send a test event to webhook."""
@@ -202,7 +195,6 @@ async def test_webhook(
 @router.post("/{webhook_id}/rotate-secret")
 async def rotate_webhook_secret(
     webhook_id: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Rotate webhook secret."""
@@ -220,7 +212,6 @@ async def rotate_webhook_secret(
 async def get_delivery_logs(
     webhook_id: str,
     limit: int = 50,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get delivery logs for a webhook."""
@@ -243,7 +234,6 @@ async def get_delivery_logs(
 async def retry_delivery(
     webhook_id: str,
     delivery_id: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Retry a failed delivery."""

@@ -20,6 +20,19 @@
   min-height: 40vh;
 }
 
+/* ── Error Banner ───────────────────────────────── */
+.errorBanner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-error, #e81123);
+  background: rgba(232, 17, 35, 0.08);
+  color: var(--color-error, #e81123);
+  font-size: 0.875rem;
+}
+
 /* ── Header ─────────────────────────────────────── */
 .headerSection {
   display: flex;

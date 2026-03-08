@@ -190,6 +190,18 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             `,
           }}
         />
+        {/* Mobile sidebar fix - inject style to override Turbopack phantom animation */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var s = document.createElement('style');
+                s.textContent = '@media(max-width:768px){aside[class*="sidebar"]:not([class*="sidebarNav"]){display:none!important;animation:none!important}aside[class*="sidebar"][class*="sidebarMobileOpen"]{display:flex!important;animation:none!important;transform:translateX(0)!important;position:fixed!important;z-index:1000!important}aside[class*="sidebarMobileOpen"] aside{display:block!important}}';
+                document.head.appendChild(s);
+              })();
+            `,
+          }}
+        />
       </head>
       <body className="bg-[var(--background)] text-[var(--text-primary)] antialiased">
         <ClientRoot>

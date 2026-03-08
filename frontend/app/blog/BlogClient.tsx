@@ -110,7 +110,6 @@ const BlogPage: React.FC = () => {
   const gridPosts = filtered.slice(1);
   const trendingPosts = posts.filter(p => p.is_news_trend).slice(0, 4);
 
-  if (!resolvedTheme) return null;
 
   return (
     <PageTransition>

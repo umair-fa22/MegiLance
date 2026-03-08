@@ -1,0 +1,4 @@
+/* @AI-HINT: Light theme colors for complete-profile wrapper */
+.wrapper {
+  background: var(--color-bg-primary, #f8f9fa);
+}

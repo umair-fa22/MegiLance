@@ -136,7 +136,6 @@ const trustLogos = [
 
 const Enterprise: React.FC = () => {
   const { resolvedTheme } = useTheme();
-  if (!resolvedTheme) return null;
   const themed = resolvedTheme === 'dark' ? dark : light;
 
   const containerVariants = {

@@ -194,7 +194,6 @@ export default function RateCardsPage() {
     }
   };
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   if (loading) {

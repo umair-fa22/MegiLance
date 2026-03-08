@@ -105,7 +105,6 @@ export default function EmailTemplatesPage() {
     });
   }, [templates, search, filterType]);
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   return (

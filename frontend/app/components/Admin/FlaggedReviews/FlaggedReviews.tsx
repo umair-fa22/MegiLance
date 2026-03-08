@@ -168,7 +168,6 @@ const FlaggedReviews: React.FC = () => {
     }
   };
 
-  if (!resolvedTheme) return null;
 
   return (
     <div className={cn(commonStyles.container, themeStyles.container)}>

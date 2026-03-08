@@ -69,7 +69,6 @@ const faqData = [
 
 const FAQ: React.FC = () => {
   const { resolvedTheme } = useTheme();
-  if (!resolvedTheme) return null;
   const styles = React.useMemo(() => {
     const themeStyles = resolvedTheme === 'dark' ? dark : light;
     return {

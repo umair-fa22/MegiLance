@@ -80,7 +80,7 @@ async def get_general_recommendations(
     """
     try:
         # Check if client has active projects
-        result = await execute_query(
+        result = execute_query(
             "SELECT id, title FROM projects WHERE client_id = ? AND status IN ('open', 'in_progress') ORDER BY created_at DESC LIMIT 1",
             [current_user["id"]]
         )
@@ -89,7 +89,7 @@ async def get_general_recommendations(
         if projects:
             # Recommend based on most recent project
             matching_service = get_matching_service()
-            recommendations = await matching_service.get_recommended_freelancers(
+            recommendations = matching_service.get_recommended_freelancers(
                 project_id=projects[0]["id"],
                 limit=limit,
                 min_score=0.4
@@ -101,7 +101,7 @@ async def get_general_recommendations(
             }
         
         # No active projects — recommend top-rated freelancers
-        result = await execute_query(
+        result = execute_query(
             "SELECT id, email, name, bio, profile_image_url, hourly_rate, location, rating "
             "FROM users WHERE LOWER(user_type) = 'freelancer' AND is_active = 1 "
             "ORDER BY rating DESC NULLS LAST "
@@ -172,7 +172,7 @@ async def get_freelancer_recommendations(
     matching_service = get_matching_service()
     
     try:
-        recommendations = await matching_service.get_recommended_freelancers(
+        recommendations = matching_service.get_recommended_freelancers(
             project_id=project_id,
             limit=limit,
             min_score=min_score
@@ -213,7 +213,7 @@ async def get_project_recommendations(
     matching_service = get_matching_service()
     
     try:
-        recommendations = await matching_service.get_recommended_projects(
+        recommendations = matching_service.get_recommended_projects(
             freelancer_id=freelancer_id,
             limit=limit,
             min_score=min_score
@@ -252,18 +252,18 @@ async def get_match_score(
     matching_service = get_matching_service()
     
     # Get project and freelancer via Turso
-    result = await execute_query("SELECT * FROM projects WHERE id = ?", [project_id])
+    result = execute_query("SELECT * FROM projects WHERE id = ?", [project_id])
     projects = parse_rows(result)
     if not projects:
         raise HTTPException(status_code=404, detail="Project not found")
     
-    result = await execute_query("SELECT * FROM users WHERE id = ?", [freelancer_id])
+    result = execute_query("SELECT * FROM users WHERE id = ?", [freelancer_id])
     freelancers = parse_rows(result)
     if not freelancers:
         raise HTTPException(status_code=404, detail="Freelancer not found")
     
     # Calculate match score
-    match_result = await matching_service.calculate_match_score(projects[0], freelancers[0])
+    match_result = matching_service.calculate_match_score(projects[0], freelancers[0])
     
     return {
         "project_id": project_id,
@@ -290,7 +290,7 @@ async def track_recommendation_click(
     matching_service = get_matching_service()
     
     try:
-        await matching_service.track_recommendation_click(
+        matching_service.track_recommendation_click(
             user_id=current_user["id"],
             item_type=item_type,
             item_id=item_id,

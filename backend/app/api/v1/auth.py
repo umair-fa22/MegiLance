@@ -19,6 +19,7 @@ from app.core.security import (
     get_password_hash,
     verify_password,
     add_token_to_blacklist,
+    is_token_blacklisted,
     oauth2_scheme,
 )
 from app.core.rate_limit import (
@@ -62,7 +63,7 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
 MAX_NAME_LENGTH = 100
 MAX_BIO_LENGTH = 2000
 MAX_EMAIL_LENGTH = 254
-ALLOWED_USER_TYPES = {'client', 'freelancer', 'admin'}
+ALLOWED_USER_TYPES = {'client', 'freelancer'}  # admin accounts are created internally only
 
 
 def validate_email(email: str) -> bool:
@@ -401,6 +402,13 @@ def refresh_token(request: Request, body: RefreshTokenRequest = None):
             detail="Invalid refresh token"
         )
 
+    # Check if this refresh token has been revoked (e.g., after logout or previous rotation)
+    if is_token_blacklisted(token_value):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Refresh token has been revoked"
+        )
+
     if payload.get("type") != "refresh":
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -420,6 +428,11 @@ def refresh_token(request: Request, body: RefreshTokenRequest = None):
     }
     access_token = create_access_token(subject=subject, custom_claims=custom_claims)
     new_refresh_token = create_refresh_token(subject=subject, custom_claims=custom_claims)
+    
+    # Blacklist the old refresh token to prevent replay attacks
+    old_exp = payload.get("exp")
+    if old_exp:
+        add_token_to_blacklist(token_value, datetime.fromtimestamp(old_exp, tz=timezone.utc))
     
     token_response = Token(access_token=access_token, refresh_token=new_refresh_token)
     
@@ -505,7 +518,10 @@ def read_users_me(current_user: User = Depends(get_current_active_user)):
         location=_safe_str(current_user.location),
         title=profile_data.get("title"),
         portfolio_url=profile_data.get("portfolio_url"),
-        joined_at=current_user.joined_at
+        joined_at=current_user.joined_at,
+        headline=_safe_str(getattr(current_user, 'headline', None)),
+        experience_level=_safe_str(getattr(current_user, 'experience_level', None)),
+        languages=getattr(current_user, 'languages', None),
     )
 
 

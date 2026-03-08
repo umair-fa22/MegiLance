@@ -216,7 +216,6 @@ async def get_page_help(
 @router.post("/feedback")
 async def submit_feedback(
     request: FeedbackRequest,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Mark content as helpful or not helpful."""
@@ -233,7 +232,6 @@ async def submit_feedback(
 # Quick Help
 @router.get("/quick-help")
 async def get_quick_help(
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get quick help resources for current user."""
@@ -255,7 +253,6 @@ async def get_quick_help(
 @router.post("/admin/articles")
 async def admin_create_article(
     request: CreateArticleRequest,
-    ,
     current_user: User = Depends(require_admin)
 ):
     """Admin: Create a new article."""
@@ -268,7 +265,6 @@ async def admin_create_article(
 async def admin_update_article(
     article_id: str,
     updates: Dict[str, Any],
-    ,
     current_user: User = Depends(require_admin)
 ):
     """Admin: Update an article."""
@@ -280,7 +276,6 @@ async def admin_update_article(
 @router.delete("/admin/articles/{article_id}")
 async def admin_delete_article(
     article_id: str,
-    ,
     current_user: User = Depends(require_admin)
 ):
     """Admin: Delete an article."""
@@ -291,7 +286,6 @@ async def admin_delete_article(
 
 @router.get("/admin/stats")
 async def admin_get_kb_stats(
-    ,
     current_user: User = Depends(require_admin)
 ):
     """Admin: Get knowledge base statistics."""

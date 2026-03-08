@@ -91,7 +91,6 @@ export default function FeatureFlagsPage() {
 
   const activeCount = useMemo(() => flags.filter(f => f.is_active).length, [flags]);
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   return (

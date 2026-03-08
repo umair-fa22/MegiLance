@@ -15,15 +15,15 @@ import { WebSocketProvider } from '@/lib/websocket';
 
 const ClientRoot: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <ErrorBoundary>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem={true}
-        disableTransitionOnChange={true}
-        enableColorScheme={true}
-        storageKey="megilance-theme"
-      >
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem={true}
+      disableTransitionOnChange={true}
+      enableColorScheme={true}
+      storageKey="megilance-theme"
+    >
+      <ErrorBoundary>
         <AnalyticsProvider>
           <WebSocketProvider>
             <ToasterProvider>
@@ -37,8 +37,8 @@ const ClientRoot: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             </ToasterProvider>
           </WebSocketProvider>
         </AnalyticsProvider>
-      </ThemeProvider>
-    </ErrorBoundary>
+      </ErrorBoundary>
+    </ThemeProvider>
   );
 };
 

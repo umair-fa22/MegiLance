@@ -499,7 +499,6 @@ export default function PriceEstimatorPro() {
   }, [result]);
 
   /* ----- Guard ----- */
-  if (!resolvedTheme) return null;
 
   if (loadingCats) {
     return (

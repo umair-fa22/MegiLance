@@ -21,7 +21,7 @@ from . import (
     review_responses,
     rate_cards, proposal_templates,
     notes_tags, custom_statuses, search_advanced,
-    realtime_notifications, ai_matching, security, video_communication,
+    realtime_notifications, ai_matching, gamification, security, video_communication,
     # Version 2.0 features
     multicurrency, ai_advanced, admin_fraud_alerts,
     # Billion Dollar Upgrade
@@ -72,7 +72,7 @@ __all__ = [
     "availability_calendar", "review_responses",
     "rate_cards", "proposal_templates", "notes_tags",
     "custom_statuses", "search_advanced",
-    "realtime_notifications", "ai_matching", "security", "video_communication",
+    "realtime_notifications", "ai_matching", "gamification", "security", "video_communication",
     "multicurrency", "ai_advanced", "admin_fraud_alerts",
     "scope_change", "wallet", "community", "workroom", "feature_flags",
     "pakistan_payments", "blog", "public_clients",

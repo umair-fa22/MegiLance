@@ -98,7 +98,6 @@ const AuditLogs: React.FC = () => {
 
   const selected = logs.find(l => l.id === selectedId) || null;
 
-  if (!resolvedTheme) return null;
 
   if (loading) {
     return (

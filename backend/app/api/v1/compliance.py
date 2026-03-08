@@ -68,7 +68,6 @@ class PIARequest(BaseModel):
 @router.get("/status")
 async def get_compliance_status(
     organization_id: Optional[str] = None,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get overall compliance status."""
@@ -80,7 +79,6 @@ async def get_compliance_status(
 @router.get("/frameworks/{framework}")
 async def get_framework_requirements(
     framework: ComplianceFramework,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get requirements for a compliance framework."""
@@ -92,7 +90,6 @@ async def get_framework_requirements(
 # Consent Management Endpoints
 @router.get("/consents")
 async def get_user_consents(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get user's consent status."""
@@ -104,7 +101,6 @@ async def get_user_consents(
 @router.put("/consents")
 async def update_consent(
     request: UpdateConsentRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update user consent."""
@@ -121,7 +117,6 @@ async def update_consent(
 @router.post("/data-requests")
 async def create_data_request(
     request: CreateDataRequestRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a data subject request (GDPR rights)."""
@@ -137,7 +132,6 @@ async def create_data_request(
 @router.get("/data-requests")
 async def list_data_requests(
     status: Optional[str] = None,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """List user's data requests."""
@@ -148,7 +142,6 @@ async def list_data_requests(
 
 @router.get("/data-request/status")
 async def get_data_request_status(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get summary status of user's data requests."""
@@ -167,7 +160,6 @@ async def get_data_request_status(
 @router.get("/data-requests/{request_id}")
 async def get_data_request(
     request_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get data request by ID."""
@@ -180,7 +172,6 @@ async def get_data_request(
 @router.post("/export")
 async def export_user_data(
     format: str = "json",
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Export all user data for portability."""
@@ -193,7 +184,6 @@ async def export_user_data(
 @router.post("/delete-account")
 async def request_data_deletion(
     request: DataDeletionRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Request account and data deletion."""
@@ -206,7 +196,6 @@ async def request_data_deletion(
 async def confirm_data_deletion(
     deletion_id: str,
     request: ConfirmDeletionRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Confirm data deletion request."""
@@ -222,7 +211,6 @@ async def confirm_data_deletion(
 @router.delete("/delete-account/{deletion_id}")
 async def cancel_data_deletion(
     deletion_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Cancel data deletion request."""
@@ -234,7 +222,6 @@ async def cancel_data_deletion(
 # Retention Policies
 @router.get("/retention-policies")
 async def get_retention_policies(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get data retention policies."""
@@ -246,7 +233,6 @@ async def get_retention_policies(
 # Cookie Preferences
 @router.get("/cookies")
 async def get_cookie_preferences(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get user's cookie preferences."""
@@ -258,7 +244,6 @@ async def get_cookie_preferences(
 @router.put("/cookies")
 async def update_cookie_preferences(
     request: CookiePreferencesRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update cookie preferences."""
@@ -274,7 +259,6 @@ async def update_cookie_preferences(
 @router.post("/pia")
 async def create_privacy_impact_assessment(
     request: PIARequest,
-    ,
     current_user = Depends(get_current_active_user),
     _admin = Depends(require_admin)
 ):
@@ -295,7 +279,6 @@ async def generate_compliance_report(
     framework: ComplianceFramework,
     start_date: Optional[str] = None,
     end_date: Optional[str] = None,
-    ,
     current_user = Depends(get_current_active_user),
     _admin = Depends(require_admin)
 ):

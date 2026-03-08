@@ -64,7 +64,6 @@ class TransferOwnershipRequest(BaseModel):
 @router.post("")
 async def create_organization(
     request: CreateOrganizationRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a new organization."""
@@ -83,7 +82,6 @@ async def create_organization(
 
 @router.get("")
 async def get_my_organizations(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get all organizations the current user belongs to."""
@@ -111,7 +109,6 @@ async def get_available_roles(
 @router.get("/{org_id}")
 async def get_organization(
     org_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get organization details."""
@@ -139,7 +136,6 @@ async def get_organization(
 async def update_organization(
     org_id: str,
     request: UpdateOrganizationRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update organization details."""
@@ -164,7 +160,6 @@ async def update_organization(
 @router.delete("/{org_id}")
 async def delete_organization(
     org_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Delete an organization (owner only)."""
@@ -184,7 +179,6 @@ async def delete_organization(
 @router.get("/{org_id}/stats")
 async def get_organization_stats(
     org_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get organization statistics."""
@@ -206,7 +200,6 @@ async def get_organization_stats(
 @router.get("/{org_id}/members")
 async def get_members(
     org_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get all members of an organization."""
@@ -228,7 +221,6 @@ async def get_members(
 async def invite_member(
     org_id: str,
     request: InviteMemberRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Invite a new member to the organization."""
@@ -258,7 +250,6 @@ async def invite_member(
 @router.get("/{org_id}/invites")
 async def get_pending_invites(
     org_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get all pending invites for an organization."""
@@ -279,7 +270,6 @@ async def get_pending_invites(
 @router.post("/invites/accept")
 async def accept_invite(
     request: AcceptInviteRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Accept an organization invite."""
@@ -302,7 +292,6 @@ async def accept_invite(
 @router.post("/invites/decline")
 async def decline_invite(
     request: AcceptInviteRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Decline an organization invite."""
@@ -324,7 +313,6 @@ async def update_member_role(
     org_id: str,
     user_id: str,
     request: UpdateMemberRoleRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update a member's role."""
@@ -350,7 +338,6 @@ async def update_member_role(
 async def remove_member(
     org_id: str,
     user_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Remove a member from the organization."""
@@ -374,7 +361,6 @@ async def remove_member(
 @router.post("/{org_id}/leave")
 async def leave_organization(
     org_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Leave an organization."""
@@ -395,7 +381,6 @@ async def leave_organization(
 async def transfer_ownership(
     org_id: str,
     request: TransferOwnershipRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Transfer organization ownership to another member."""

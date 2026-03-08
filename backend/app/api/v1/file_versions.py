@@ -54,7 +54,6 @@ async def create_versioned_file(
     content = await file.read()
     
     result = await file_versioning_service.create_file(
-        ,
         user_id=str(current_user.get("id")),
         filename=file.filename,
         content=content,
@@ -77,7 +76,6 @@ async def search_files(
 ):
     """Search and list versioned files."""
     result = await file_versioning_service.search_files(
-        ,
         user_id=str(current_user.get("id")),
         query=query,
         resource_type=resource_type,
@@ -120,7 +118,6 @@ async def upload_new_version(
         content = await file.read()
         
         result = await file_versioning_service.upload_new_version(
-            ,
             user_id=str(current_user.get("id")),
             file_id=file_id,
             content=content,
@@ -141,7 +138,6 @@ async def get_version_history(
     """Get version history for a file."""
     try:
         result = await file_versioning_service.get_version_history(
-            ,
             file_id=file_id,
             limit=limit
         )
@@ -164,7 +160,6 @@ async def get_version(
     """
     try:
         result = await file_versioning_service.get_version(
-            ,
             file_id=file_id,
             version_number=version_number
         )
@@ -189,7 +184,6 @@ async def delete_version(
     """
     try:
         result = await file_versioning_service.delete_version(
-            ,
             user_id=str(current_user.get("id")),
             file_id=file_id,
             version_number=version_number
@@ -215,7 +209,6 @@ async def rollback_to_version(
     """
     try:
         result = await file_versioning_service.rollback_to_version(
-            ,
             user_id=str(current_user.get("id")),
             file_id=file_id,
             version_number=version_number
@@ -241,7 +234,6 @@ async def compare_versions(
     """
     try:
         result = await file_versioning_service.compare_versions(
-            ,
             file_id=file_id,
             version_a=request.version_a,
             version_b=request.version_b
@@ -266,7 +258,6 @@ async def lock_file(
     """
     try:
         result = await file_versioning_service.lock_file(
-            ,
             user_id=str(current_user.get("id")),
             file_id=file_id
         )
@@ -289,7 +280,6 @@ async def unlock_file(
             raise ValueError("Only admins can force unlock")
         
         result = await file_versioning_service.unlock_file(
-            ,
             user_id=str(current_user.get("id")),
             file_id=file_id,
             force=force

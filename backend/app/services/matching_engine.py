@@ -116,12 +116,12 @@ class MatchingEngine:
     """AI-powered matching engine for project-freelancer recommendations"""
     
     def __init__(self):
-        pass
+        self._ensure_matching_tables()
     
-    async def _ensure_matching_tables(self):
+    def _ensure_matching_tables(self):
         """Create matching-related tables if they don't exist"""
         try:
-            await execute_query("""
+            execute_query("""
                 CREATE TABLE IF NOT EXISTS skill_embeddings (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     skill_name VARCHAR(100) NOT NULL UNIQUE,
@@ -131,7 +131,7 @@ class MatchingEngine:
                 )
             """)
             
-            await execute_query("""
+            execute_query("""
                 CREATE TABLE IF NOT EXISTS match_scores (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     project_id INTEGER NOT NULL,
@@ -145,7 +145,7 @@ class MatchingEngine:
                 )
             """)
             
-            await execute_query("""
+            execute_query("""
                 CREATE TABLE IF NOT EXISTS recommendation_history (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     user_id INTEGER NOT NULL,
@@ -215,15 +215,15 @@ class MatchingEngine:
             "missing": [proj_normalized.get(m, m) for m in unmatched_proj],
         }
     
-    async def calculate_success_rate(self, freelancer_id: int) -> float:
+    def calculate_success_rate(self, freelancer_id: int) -> float:
         """Calculate freelancer's historical success rate"""
-        result = await execute_query(
+        result = execute_query(
             "SELECT COUNT(*) as cnt FROM contracts WHERE freelancer_id = ? AND status = ?",
             [freelancer_id, "completed"]
         )
         completed = parse_rows(result)[0]["cnt"] if parse_rows(result) else 0
         
-        result = await execute_query(
+        result = execute_query(
             "SELECT COUNT(*) as cnt FROM contracts WHERE freelancer_id = ?",
             [freelancer_id]
         )
@@ -234,9 +234,9 @@ class MatchingEngine:
         
         return completed / total
     
-    async def calculate_avg_rating(self, freelancer_id: int) -> float:
+    def calculate_avg_rating(self, freelancer_id: int) -> float:
         """Calculate average rating from reviews"""
-        result = await execute_query(
+        result = execute_query(
             "SELECT AVG(rating) as avg_rating FROM reviews WHERE reviewee_id = ?",
             [freelancer_id]
         )
@@ -277,14 +277,14 @@ class MatchingEngine:
         
         return 0.5
     
-    async def calculate_experience_match_score(self, project: Dict, freelancer: Dict) -> float:
+    def calculate_experience_match_score(self, project: Dict, freelancer: Dict) -> float:
         """
         Match freelancer experience level with project requirements
         """
         if not project.get("experience_level"):
             return 1.0  # No preference
         
-        result = await execute_query(
+        result = execute_query(
             "SELECT COUNT(*) as cnt FROM contracts WHERE freelancer_id = ? AND status = ?",
             [freelancer.get("id"), "completed"]
         )
@@ -307,11 +307,11 @@ class MatchingEngine:
             # Underqualified - larger penalty
             return 0.4
     
-    async def calculate_availability_score(self, freelancer_id: int) -> float:
+    def calculate_availability_score(self, freelancer_id: int) -> float:
         """
         Calculate freelancer availability based on active contracts
         """
-        result = await execute_query(
+        result = execute_query(
             "SELECT COUNT(*) as cnt FROM contracts WHERE freelancer_id = ? AND status IN ('active', 'in_progress')",
             [freelancer_id]
         )
@@ -326,17 +326,17 @@ class MatchingEngine:
         else:
             return 0.1  # Very busy
     
-    async def calculate_response_rate(self, freelancer_id: int) -> float:
+    def calculate_response_rate(self, freelancer_id: int) -> float:
         """
         Calculate how quickly freelancer responds to proposals
         """
-        result = await execute_query(
+        result = execute_query(
             "SELECT COUNT(*) as cnt FROM proposals WHERE freelancer_id = ?",
             [freelancer_id]
         )
         proposals = parse_rows(result)[0]["cnt"] if parse_rows(result) else 0
         
-        result = await execute_query(
+        result = execute_query(
             "SELECT COUNT(*) as cnt FROM proposals WHERE freelancer_id = ? AND status = ?",
             [freelancer_id, "accepted"]
         )
@@ -364,7 +364,7 @@ class MatchingEngine:
             return [s.strip() for s in raw.split(",") if s.strip()]
         return []
 
-    async def calculate_match_score(self, project: Dict, freelancer: Dict) -> Dict[str, Any]:
+    def calculate_match_score(self, project: Dict, freelancer: Dict) -> Dict[str, Any]:
         """
         Calculate comprehensive match score between project and freelancer.
         Uses skill synonym resolution, category matching, behavioral signals,
@@ -377,15 +377,15 @@ class MatchingEngine:
 
         # Calculate individual factors
         skill_result = self.calculate_skill_match_score(project_skills, freelancer_skills)
-        avg_rating = await self.calculate_avg_rating(freelancer_id)
-        success_rate = await self.calculate_success_rate(freelancer_id)
+        avg_rating = self.calculate_avg_rating(freelancer_id)
+        success_rate = self.calculate_success_rate(freelancer_id)
         budget_match = self.calculate_budget_match_score(project, freelancer)
-        experience = await self.calculate_experience_match_score(project, freelancer)
-        availability = await self.calculate_availability_score(freelancer_id)
-        response_rate = await self.calculate_response_rate(freelancer_id)
+        experience = self.calculate_experience_match_score(project, freelancer)
+        availability = self.calculate_availability_score(freelancer_id)
+        response_rate = self.calculate_response_rate(freelancer_id)
 
         # Recency bonus: prefer recently active freelancers
-        recency = await self._calculate_recency_score(freelancer_id)
+        recency = self._calculate_recency_score(freelancer_id)
 
         factors = {
             "skill_match": skill_result["score"],
@@ -436,9 +436,9 @@ class MatchingEngine:
             },
         }
 
-    async def _calculate_recency_score(self, freelancer_id: int) -> float:
+    def _calculate_recency_score(self, freelancer_id: int) -> float:
         """Score based on how recently the freelancer was active."""
-        result = await execute_query(
+        result = execute_query(
             "SELECT MAX(created_at) as last_activity FROM proposals WHERE freelancer_id = ?",
             [freelancer_id]
         )
@@ -446,7 +446,7 @@ class MatchingEngine:
         last_activity_str = rows[0]["last_activity"] if rows and rows[0].get("last_activity") else None
 
         if not last_activity_str:
-            result = await execute_query(
+            result = execute_query(
                 "SELECT MAX(created_at) as last_activity FROM contracts WHERE freelancer_id = ?",
                 [freelancer_id]
             )
@@ -471,7 +471,7 @@ class MatchingEngine:
         else:
             return 0.2
     
-    async def get_recommended_freelancers(
+    def get_recommended_freelancers(
         self,
         project_id: int,
         limit: int = 10,
@@ -482,7 +482,7 @@ class MatchingEngine:
         Get recommended freelancers for a project using AI matching.
         Includes diversity boosting to avoid showing only top-heavy results.
         """
-        result = await execute_query(
+        result = execute_query(
             "SELECT * FROM projects WHERE id = ?", [project_id]
         )
         projects = parse_rows(result)
@@ -490,7 +490,7 @@ class MatchingEngine:
             return []
         project = projects[0]
 
-        result = await execute_query(
+        result = execute_query(
             "SELECT * FROM users WHERE user_type = ? AND is_active = 1",
             ["freelancer"]
         )
@@ -498,7 +498,7 @@ class MatchingEngine:
 
         recommendations = []
         for freelancer in freelancers:
-            match_result = await self.calculate_match_score(project, freelancer)
+            match_result = self.calculate_match_score(project, freelancer)
 
             if match_result["score"] >= min_score:
                 name = freelancer.get("name") or f"{freelancer.get('first_name') or ''} {freelancer.get('last_name') or ''}".strip()
@@ -527,7 +527,7 @@ class MatchingEngine:
         # Cache top results
         for rec in final:
             try:
-                await execute_query(
+                execute_query(
                     "INSERT OR REPLACE INTO match_scores (project_id, freelancer_id, score, factors) VALUES (?, ?, ?, ?)",
                     [project_id, rec["freelancer_id"], rec["match_score"], json.dumps(rec["match_factors"])]
                 )
@@ -573,7 +573,7 @@ class MatchingEngine:
 
         return result
     
-    async def get_recommended_projects(
+    def get_recommended_projects(
         self,
         freelancer_id: int,
         limit: int = 10,
@@ -582,7 +582,7 @@ class MatchingEngine:
         """
         Get recommended projects for a freelancer with detailed match insights.
         """
-        result = await execute_query(
+        result = execute_query(
             "SELECT * FROM users WHERE id = ?", [freelancer_id]
         )
         freelancers = parse_rows(result)
@@ -590,14 +590,14 @@ class MatchingEngine:
             return []
         freelancer = freelancers[0]
 
-        result = await execute_query(
+        result = execute_query(
             "SELECT * FROM projects WHERE status = ?", ["open"]
         )
         projects = parse_rows(result)
 
         recommendations = []
         for project in projects:
-            match_result = await self.calculate_match_score(project, freelancer)
+            match_result = self.calculate_match_score(project, freelancer)
 
             if match_result["score"] >= min_score:
                 created_at = project.get("created_at")
@@ -649,10 +649,10 @@ class MatchingEngine:
 
         return "; ".join(reasons[:3]) if reasons else "Relevant background and experience"
     
-    async def track_recommendation_click(self, user_id: int, item_type: str, item_id: int, score: float):
+    def track_recommendation_click(self, user_id: int, item_type: str, item_id: int, score: float):
         """Track when a user clicks on a recommendation (for ML training data)"""
         try:
-            await execute_query(
+            execute_query(
                 """
                     INSERT INTO recommendation_history (user_id, item_type, item_id, score, clicked)
                     VALUES (?, ?, ?, ?, 1)

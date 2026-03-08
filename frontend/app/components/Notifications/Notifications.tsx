@@ -92,7 +92,6 @@ export default function Notifications() {
     if (notif.action_url) router.push(notif.action_url);
   }, [markAsRead, router]);
 
-  if (!resolvedTheme) return null;
 
   // Skeleton loading
   if (loading && notifications.length === 0) {

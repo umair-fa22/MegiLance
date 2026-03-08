@@ -66,7 +66,6 @@ class DuplicateTemplateRequest(BaseModel):
 @router.post("")
 async def create_template(
     request: CreateTemplateRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a new template."""
@@ -91,7 +90,6 @@ async def create_template(
 @router.get("")
 async def get_my_templates(
     template_type: Optional[TemplateType] = None,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get all templates owned by current user."""
@@ -132,7 +130,6 @@ async def get_public_templates(
 
 @router.get("/stats")
 async def get_template_stats(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get template statistics for current user."""
@@ -143,7 +140,6 @@ async def get_template_stats(
 
 @router.get("/favorites")
 async def get_favorite_templates(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get user's favorite templates."""
@@ -155,7 +151,6 @@ async def get_favorite_templates(
 @router.get("/{template_id}")
 async def get_template(
     template_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get a specific template."""
@@ -182,7 +177,6 @@ async def get_template(
 async def update_template(
     template_id: str,
     request: UpdateTemplateRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update an existing template."""
@@ -210,7 +204,6 @@ async def update_template(
 @router.delete("/{template_id}")
 async def delete_template(
     template_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Delete a template."""
@@ -234,7 +227,6 @@ async def delete_template(
 async def duplicate_template(
     template_id: str,
     request: DuplicateTemplateRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Duplicate a template to your library."""
@@ -259,7 +251,6 @@ async def duplicate_template(
 async def apply_template(
     template_id: str,
     request: ApplyTemplateRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Apply a template with variables to generate content."""
@@ -283,7 +274,6 @@ async def apply_template(
 async def rate_template(
     template_id: str,
     request: RateTemplateRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Rate a template (1-5 stars)."""
@@ -307,7 +297,6 @@ async def rate_template(
 @router.post("/{template_id}/favorite")
 async def add_to_favorites(
     template_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Add template to favorites."""
@@ -330,7 +319,6 @@ async def add_to_favorites(
 @router.delete("/{template_id}/favorite")
 async def remove_from_favorites(
     template_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Remove template from favorites."""

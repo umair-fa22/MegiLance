@@ -387,7 +387,6 @@ def health_ready():
 @app.get("/api/health/metrics")
 def health_metrics():
     """Operational metrics endpoint for monitoring."""
-    import resource
     uptime_seconds = int(time.time() - _APP_START_TIME)
     with _idempotency_lock:
         idempotency_cache_size = len(_idempotency_cache)

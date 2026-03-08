@@ -266,7 +266,6 @@ export default function InvoiceGenerator() {
   }, [result]);
 
   /* ----- Guard ----- */
-  if (!resolvedTheme) return null;
 
   if (loadingOptions) {
     return (

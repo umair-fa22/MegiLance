@@ -118,7 +118,6 @@ export default function EscrowPage() {
     });
   };
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   return (

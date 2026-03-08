@@ -69,7 +69,6 @@ class SubmitTestRequest(BaseModel):
 # Skill Taxonomy Endpoints
 @router.get("/categories")
 async def get_skill_categories(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get skill categories."""
@@ -82,7 +81,6 @@ async def get_skill_categories(
 async def get_skills(
     category: Optional[str] = None,
     search: Optional[str] = None,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get skills from taxonomy."""
@@ -94,7 +92,6 @@ async def get_skills(
 @router.get("/skills/{skill_id}/relationships")
 async def get_skill_relationships(
     skill_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get skill relationships."""
@@ -106,7 +103,6 @@ async def get_skill_relationships(
 # User Skills Endpoints
 @router.get("/user/skills")
 async def get_user_skills(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get current user's skills."""
@@ -118,7 +114,6 @@ async def get_user_skills(
 @router.get("/users/{user_id}/skills")
 async def get_other_user_skills(
     user_id: int,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get another user's skills."""
@@ -130,7 +125,6 @@ async def get_other_user_skills(
 @router.post("/user/skills")
 async def add_user_skill(
     request: AddSkillRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Add a skill to user's profile."""
@@ -150,7 +144,6 @@ async def add_user_skill(
 async def update_user_skill(
     skill_id: str,
     request: UpdateSkillRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update user's skill."""
@@ -169,7 +162,6 @@ async def update_user_skill(
 @router.delete("/user/skills/{skill_id}")
 async def remove_user_skill(
     skill_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Remove a skill from user's profile."""
@@ -182,7 +174,6 @@ async def remove_user_skill(
 @router.get("/endorsements")
 async def get_endorsements(
     skill_id: Optional[str] = None,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get endorsements for current user."""
@@ -195,7 +186,6 @@ async def get_endorsements(
 async def get_user_endorsements(
     user_id: int,
     skill_id: Optional[str] = None,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get endorsements for another user."""
@@ -207,7 +197,6 @@ async def get_user_endorsements(
 @router.post("/endorsements/request")
 async def request_endorsement(
     request: RequestEndorsementRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Request an endorsement."""
@@ -227,7 +216,6 @@ async def request_endorsement(
 @router.post("/endorsements")
 async def give_endorsement(
     request: GiveEndorsementRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Give an endorsement to another user."""
@@ -249,7 +237,6 @@ async def give_endorsement(
 async def respond_to_endorsement_request(
     request_id: str,
     request: RespondEndorsementRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Respond to an endorsement request."""
@@ -267,7 +254,6 @@ async def respond_to_endorsement_request(
 
 @router.get("/endorsements/requests/pending")
 async def get_pending_endorsement_requests(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get pending endorsement requests for user to respond to."""
@@ -280,7 +266,6 @@ async def get_pending_endorsement_requests(
 @router.get("/verification/tests/{skill_id}")
 async def get_verification_tests(
     skill_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get available verification tests for a skill."""
@@ -292,7 +277,6 @@ async def get_verification_tests(
 @router.post("/verification/tests/start")
 async def start_verification_test(
     request: StartTestRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Start a skill verification test."""
@@ -311,7 +295,6 @@ async def start_verification_test(
 async def submit_verification_test(
     attempt_id: str,
     request: SubmitTestRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Submit verification test answers."""
@@ -329,7 +312,6 @@ async def submit_verification_test(
 @router.get("/verification/history")
 async def get_verification_history(
     skill_id: Optional[str] = None,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get user's verification test history."""
@@ -341,7 +323,6 @@ async def get_verification_history(
 # Recommendations Endpoints
 @router.get("/recommendations")
 async def get_skill_recommendations(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get skill recommendations."""
@@ -353,7 +334,6 @@ async def get_skill_recommendations(
 # Analytics Endpoints
 @router.get("/analytics")
 async def get_skill_analytics(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get analytics about user's skills."""
@@ -366,7 +346,6 @@ async def get_skill_analytics(
 @router.get("/learning-paths/{skill_id}")
 async def get_learning_paths(
     skill_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get learning paths for a skill."""

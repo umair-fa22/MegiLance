@@ -75,7 +75,6 @@ const GigsList: React.FC = () => {
     fetchGigs();
   }, []);
 
-  if (!resolvedTheme) return null;
 
   const themed = resolvedTheme === 'dark' ? dark : light;
 

@@ -127,7 +127,6 @@ const ReviewsPage: React.FC = () => {
 
   const averageRating = calculatedStats.average_rating.toFixed(1);
 
-  if (!resolvedTheme) return null;
 
   return (
     <PageTransition>

@@ -176,7 +176,6 @@ const Calendar: React.FC = () => {
       .slice(0, 4);
   }, [events]);
 
-  if (!resolvedTheme) return null;
 
   return (
     <PageTransition>

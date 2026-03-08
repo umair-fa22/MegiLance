@@ -133,7 +133,7 @@ class ReportGenerationService:
         
         now = datetime.now(timezone.utc).isoformat()
         
-        await execute_query(
+        execute_query(
             """INSERT INTO generated_reports
                (id, report_type, format, user_id, status, date_from, date_to, filters, created_at)
                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
@@ -143,7 +143,7 @@ class ReportGenerationService:
         )
         
         try:
-            await execute_query(
+            execute_query(
                 "UPDATE generated_reports SET status = ? WHERE id = ?",
                 [ReportStatus.GENERATING.value, report_id]
             )
@@ -165,7 +165,7 @@ class ReportGenerationService:
             file_url = f"/api/v1/reports/download/{report_id}"
             file_size = len(str(output))
             
-            await execute_query(
+            execute_query(
                 """UPDATE generated_reports
                    SET status = ?, data = ?, completed_at = ?, file_url = ?, file_size = ?
                    WHERE id = ?""",
@@ -175,12 +175,12 @@ class ReportGenerationService:
             
         except Exception as e:
             logger.error(f"Report generation failed: {str(e)}")
-            await execute_query(
+            execute_query(
                 "UPDATE generated_reports SET status = ?, error = ? WHERE id = ?",
                 [ReportStatus.FAILED.value, str(e), report_id]
             )
         
-        result = await execute_query("SELECT * FROM generated_reports WHERE id = ?", [report_id])
+        result = execute_query("SELECT * FROM generated_reports WHERE id = ?", [report_id])
         rows = parse_rows(result)
         return self._row_to_report(rows[0]) if rows else {"id": report_id, "status": "failed"}
     
@@ -202,7 +202,7 @@ class ReportGenerationService:
         user_id: int
     ) -> Optional[Dict[str, Any]]:
         """Get report details."""
-        result = await execute_query(
+        result = execute_query(
             "SELECT * FROM generated_reports WHERE id = ? AND user_id = ?",
             [report_id, user_id]
         )
@@ -224,7 +224,7 @@ class ReportGenerationService:
         sql += " ORDER BY created_at DESC LIMIT ?"
         params.append(limit)
 
-        result = await execute_query(sql, params)
+        result = execute_query(sql, params)
         rows = parse_rows(result)
         return [self._row_to_report(r) for r in rows]
     
@@ -242,7 +242,7 @@ class ReportGenerationService:
         now = datetime.now(timezone.utc).isoformat()
         next_run = self._calculate_next_run(schedule)
 
-        await execute_query(
+        execute_query(
             """INSERT INTO scheduled_reports
                (id, report_type, format, user_id, schedule, email_to, filters,
                 enabled, created_at, next_run, run_count)
@@ -251,7 +251,7 @@ class ReportGenerationService:
              schedule, email_to, json.dumps(filters or {}), now, next_run]
         )
 
-        result = await execute_query("SELECT * FROM scheduled_reports WHERE id = ?", [schedule_id])
+        result = execute_query("SELECT * FROM scheduled_reports WHERE id = ?", [schedule_id])
         rows = parse_rows(result)
         return self._row_to_scheduled(rows[0]) if rows else {"id": schedule_id}
 
@@ -267,7 +267,7 @@ class ReportGenerationService:
         user_id: int
     ) -> List[Dict[str, Any]]:
         """List user's scheduled reports."""
-        result = await execute_query(
+        result = execute_query(
             "SELECT * FROM scheduled_reports WHERE user_id = ? ORDER BY created_at DESC",
             [user_id]
         )
@@ -279,14 +279,14 @@ class ReportGenerationService:
         user_id: int
     ) -> bool:
         """Cancel a scheduled report."""
-        result = await execute_query(
+        result = execute_query(
             "SELECT id FROM scheduled_reports WHERE id = ? AND user_id = ?",
             [schedule_id, user_id]
         )
         rows = parse_rows(result)
         if not rows:
             return False
-        await execute_query("DELETE FROM scheduled_reports WHERE id = ?", [schedule_id])
+        execute_query("DELETE FROM scheduled_reports WHERE id = ?", [schedule_id])
         return True
     
     async def get_available_reports(
@@ -340,7 +340,7 @@ class ReportGenerationService:
         dt = date_to.isoformat() if isinstance(date_to, datetime) else str(date_to)
 
         if report_type == ReportType.USER_EARNINGS:
-            rows = parse_rows(await execute_query(
+            rows = parse_rows(execute_query(
                 """SELECT p.title as project, t.amount, t.status, t.created_at as date
                    FROM transactions t LEFT JOIN projects p ON t.project_id = p.id
                    WHERE t.user_id = ? AND t.created_at >= ? AND t.created_at <= ?
@@ -359,7 +359,7 @@ class ReportGenerationService:
             }
 
         elif report_type == ReportType.USER_PROJECTS:
-            rows = parse_rows(await execute_query(
+            rows = parse_rows(execute_query(
                 """SELECT title, status, budget_min, budget_max, created_at
                    FROM projects WHERE client_id = ? AND created_at >= ? AND created_at <= ?
                    ORDER BY created_at DESC""",
@@ -368,7 +368,7 @@ class ReportGenerationService:
             return {"total_projects": len(rows), "projects": rows}
 
         elif report_type == ReportType.PROJECT_SUMMARY:
-            rows = parse_rows(await execute_query(
+            rows = parse_rows(execute_query(
                 """SELECT title as name, status, budget_min as budget, budget_max as budget_max,
                           created_at FROM projects
                    WHERE (client_id = ? OR id IN (SELECT project_id FROM proposals WHERE freelancer_id = ?))
@@ -385,7 +385,7 @@ class ReportGenerationService:
             }
 
         elif report_type == ReportType.PAYMENT_HISTORY:
-            rows = parse_rows(await execute_query(
+            rows = parse_rows(execute_query(
                 """SELECT id, amount, status, payment_method, created_at
                    FROM transactions WHERE user_id = ? AND created_at >= ? AND created_at <= ?
                    ORDER BY created_at DESC""",
@@ -394,7 +394,7 @@ class ReportGenerationService:
             return {"total_payments": len(rows), "payments": rows}
 
         elif report_type == ReportType.TAX_SUMMARY:
-            rows = parse_rows(await execute_query(
+            rows = parse_rows(execute_query(
                 """SELECT amount, status, transaction_type FROM transactions
                    WHERE user_id = ? AND created_at >= ? AND created_at <= ?""",
                 [str(user_id), df, dt]
@@ -409,9 +409,9 @@ class ReportGenerationService:
             }
 
         elif report_type == ReportType.PLATFORM_OVERVIEW:
-            users = parse_rows(await execute_query("SELECT COUNT(*) as cnt FROM users", []))
-            projects = parse_rows(await execute_query("SELECT COUNT(*) as cnt FROM projects", []))
-            txns = parse_rows(await execute_query(
+            users = parse_rows(execute_query("SELECT COUNT(*) as cnt FROM users", []))
+            projects = parse_rows(execute_query("SELECT COUNT(*) as cnt FROM projects", []))
+            txns = parse_rows(execute_query(
                 "SELECT COALESCE(SUM(amount),0) as total FROM transactions WHERE status = 'completed'", []
             ))
             return {
@@ -424,7 +424,7 @@ class ReportGenerationService:
             }
 
         elif report_type == ReportType.USER_STATISTICS:
-            rows = parse_rows(await execute_query(
+            rows = parse_rows(execute_query(
                 """SELECT role, COUNT(*) as cnt, MAX(created_at) as latest
                    FROM users GROUP BY role""", []
             ))

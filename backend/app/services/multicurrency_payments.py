@@ -96,6 +96,18 @@ class MultiCurrencyPaymentService:
         self.exchange_rate_cache = {}
         self.cache_ttl = 300  # 5 minutes
 
+    async def get_supported_currencies(self):
+        return [
+            {"code": code, "name": code, "symbol": code, "is_crypto": False}
+            for code in self.FIAT_CURRENCIES
+        ]
+
+    async def get_supported_cryptocurrencies(self):
+        return [
+            {"code": code, "name": info["name"], "symbol": code, "is_crypto": True}
+            for code, info in self.CRYPTO_CURRENCIES.items()
+        ]
+
     # ========================================================================
     # Currency Conversion
     # ========================================================================

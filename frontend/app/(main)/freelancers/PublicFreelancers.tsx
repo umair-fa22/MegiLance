@@ -119,7 +119,6 @@ const PublicFreelancers: React.FC = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [debouncedSearch, setDebouncedSearch] = useState(filters.search);
 
-  if (!resolvedTheme) return null;
   const themed = resolvedTheme === 'dark' ? dark : light;
 
   // Debounce search

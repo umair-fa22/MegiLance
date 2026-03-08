@@ -392,7 +392,6 @@ export default function ScopePlanner() {
 
   const reset = () => { setStep(0); setResult(null); setLoading(false); };
 
-  if (!resolvedTheme) return null;
   const cs = commonStyles;
   const ts = resolvedTheme === 'light' ? lightStyles : darkStyles;
 

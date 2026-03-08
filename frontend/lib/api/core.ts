@@ -38,6 +38,11 @@ export function getAuthToken(): string | null {
   if (typeof window !== 'undefined') {
     try {
       authToken = sessionStorage.getItem(TOKEN_STORAGE_KEY) || localStorage.getItem(TOKEN_STORAGE_KEY);
+      // Fallback: read from cookie if not in storage (e.g. after page refresh)
+      if (!authToken) {
+        const match = document.cookie.match(new RegExp(`(?:^|; )${TOKEN_STORAGE_KEY}=([^;]*)`));
+        if (match) authToken = match[1];
+      }
     } catch (e) {
       console.warn('Storage unavailable:', e);
     }
@@ -190,6 +195,11 @@ function onTokenRefreshed(token: string) {
   refreshSubscribers = [];
 }
 
+function onTokenRefreshFailed() {
+  refreshSubscribers.forEach(cb => cb(''));
+  refreshSubscribers = [];
+}
+
 function addRefreshSubscriber(callback: (token: string) => void) {
   if (refreshSubscribers.length < 100) {
     refreshSubscribers.push(callback);
@@ -330,6 +340,7 @@ export async function apiFetch<T = unknown>(
               if (retryResponse.status === 204) return undefined as T;
               return retryResponse.json();
             } else {
+              onTokenRefreshFailed();
               if (typeof window !== 'undefined') {
                 const currentPath = window.location.pathname;
                 window.location.href = `/login?returnTo=${encodeURIComponent(currentPath)}&expired=true`;

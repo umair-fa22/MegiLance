@@ -92,7 +92,6 @@ const Onboarding: React.FC = () => {
 
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
-  if (!resolvedTheme) return null;
 
   const clearFieldError = (field: string) => {
     setErrors((prev) => {

@@ -245,7 +245,6 @@ const AnalyticsDashboard: React.FC = () => {
     },
   };
 
-  if (!resolvedTheme) return null;
 
   if (loading) {
     return (

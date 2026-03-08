@@ -102,7 +102,6 @@ export default function Earnings() {
     })();
   }, []);
 
-  if (!resolvedTheme) return null;
   const t = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   // Stats

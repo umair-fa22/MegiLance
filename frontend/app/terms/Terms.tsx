@@ -14,7 +14,6 @@ const Terms: React.FC = () => {
   const { resolvedTheme } = useTheme();
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
-  if (!resolvedTheme) return null;
 
   return (
     <PageTransition>

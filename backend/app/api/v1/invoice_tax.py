@@ -106,7 +106,6 @@ class CreateRecurringInvoiceRequest(BaseModel):
 @router.post("/invoices")
 async def create_invoice(
     request: CreateInvoiceRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a new invoice."""
@@ -141,7 +140,6 @@ async def list_invoices(
     date_to: Optional[datetime] = None,
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """List invoices with filters."""
@@ -163,7 +161,6 @@ async def list_invoices(
 @router.get("/invoices/{invoice_id}")
 async def get_invoice(
     invoice_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get invoice by ID."""
@@ -184,7 +181,6 @@ async def get_invoice(
 async def update_invoice(
     invoice_id: str,
     request: UpdateInvoiceRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update an invoice (drafts only)."""
@@ -215,7 +211,6 @@ async def update_invoice(
 async def send_invoice(
     invoice_id: str,
     request: SendInvoiceRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Send invoice to client."""
@@ -235,7 +230,6 @@ async def send_invoice(
 async def record_payment(
     invoice_id: str,
     request: RecordPaymentRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Record a payment for an invoice."""
@@ -257,7 +251,6 @@ async def record_payment(
 async def cancel_invoice(
     invoice_id: str,
     request: CancelInvoiceRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Cancel an invoice."""
@@ -275,7 +268,6 @@ async def cancel_invoice(
 @router.post("/invoices/{invoice_id}/duplicate")
 async def duplicate_invoice(
     invoice_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Duplicate an invoice."""
@@ -295,7 +287,6 @@ async def duplicate_invoice(
 @router.get("/invoices/{invoice_id}/pdf")
 async def export_invoice_pdf(
     invoice_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Export invoice as PDF."""
@@ -308,7 +299,6 @@ async def export_invoice_pdf(
 @router.get("/tax-rates")
 async def get_tax_rates(
     country: Optional[str] = None,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get configured tax rates."""
@@ -320,7 +310,6 @@ async def get_tax_rates(
 @router.post("/tax-rates")
 async def create_tax_rate(
     request: CreateTaxRateRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a new tax rate."""
@@ -343,7 +332,6 @@ async def create_tax_rate(
 async def update_tax_rate(
     tax_id: str,
     request: UpdateTaxRateRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update a tax rate."""
@@ -367,7 +355,6 @@ async def update_tax_rate(
 @router.delete("/tax-rates/{tax_id}")
 async def delete_tax_rate(
     tax_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Delete a tax rate."""
@@ -389,7 +376,6 @@ async def delete_tax_rate(
 async def get_tax_report(
     year: int,
     quarter: Optional[int] = None,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Generate tax report."""
@@ -402,7 +388,6 @@ async def get_tax_report(
 async def get_income_statement(
     year: int,
     month: Optional[int] = None,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Generate income statement."""
@@ -414,7 +399,6 @@ async def get_income_statement(
 # Invoice Templates
 @router.get("/templates")
 async def get_invoice_templates(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get invoice templates."""
@@ -426,7 +410,6 @@ async def get_invoice_templates(
 @router.put("/templates/{template_id}/default")
 async def set_default_template(
     template_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Set default invoice template."""
@@ -439,7 +422,6 @@ async def set_default_template(
 @router.post("/export")
 async def export_to_accounting(
     request: ExportAccountingRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Export invoices for accounting software."""
@@ -459,7 +441,6 @@ async def export_to_accounting(
 @router.post("/recurring")
 async def create_recurring_invoice(
     request: CreateRecurringInvoiceRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a recurring invoice schedule."""
@@ -481,7 +462,6 @@ async def create_recurring_invoice(
 
 @router.get("/recurring")
 async def list_recurring_invoices(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """List recurring invoice schedules."""

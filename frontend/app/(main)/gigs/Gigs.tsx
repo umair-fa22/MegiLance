@@ -123,7 +123,6 @@ const Gigs: React.FC = () => {
     search: searchParams.get('q') || '',
   });
 
-  if (!resolvedTheme) return null;
 
   const themed = resolvedTheme === 'dark' ? dark : light;
 

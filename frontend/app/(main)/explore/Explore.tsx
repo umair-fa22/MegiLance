@@ -262,7 +262,6 @@ const Explore: React.FC = () => {
 
   const stat = (val: string | number, loading?: boolean) => loading ? '...' : (typeof val === 'number' ? val.toLocaleString() : val);
 
-  if (!resolvedTheme) return null;
 
   return (
     <PageTransition>

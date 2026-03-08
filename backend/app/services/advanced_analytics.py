@@ -39,7 +39,7 @@ class AdvancedAnalyticsService:
             end_date = datetime.now(timezone.utc)
             start_date = end_date - timedelta(days=365)
             
-            result = await execute_query(
+            result = execute_query(
                 "SELECT created_at, amount FROM payments WHERE created_at >= ? AND status = 'completed'",
                 [start_date.isoformat()]
             )
@@ -178,7 +178,7 @@ class AdvancedAnalyticsService:
             if not start_date:
                 start_date = end_date - timedelta(days=30)
             
-            result = await execute_query(
+            result = execute_query(
                 "SELECT * FROM payments WHERE created_at >= ? AND created_at <= ? AND status = 'completed'",
                 [start_date.isoformat(), end_date.isoformat()]
             )
@@ -199,7 +199,7 @@ class AdvancedAnalyticsService:
             # Get project categories in batch
             if project_ids:
                 placeholders = ",".join(["?"] * len(project_ids))
-                proj_result = await execute_query(
+                proj_result = execute_query(
                     f"SELECT id, category FROM projects WHERE id IN ({placeholders})",
                     list(project_ids)
                 )
@@ -251,7 +251,7 @@ class AdvancedAnalyticsService:
         """
         try:
             cutoff = (datetime.now(timezone.utc) - timedelta(days=180)).isoformat()
-            user_result = await execute_query(
+            user_result = execute_query(
                 "SELECT id, created_at FROM users WHERE created_at >= ?",
                 [cutoff]
             )
@@ -299,7 +299,7 @@ class AdvancedAnalyticsService:
                     # Count active users (users with projects in this period)
                     if user_ids:
                         placeholders = ",".join(["?"] * len(user_ids))
-                        count_result = await execute_query(
+                        count_result = execute_query(
                             f"SELECT COUNT(DISTINCT client_id) as cnt FROM projects WHERE client_id IN ({placeholders}) AND created_at >= ? AND created_at < ?",
                             user_ids + [period_start.isoformat(), period_end.isoformat()]
                         )
@@ -357,14 +357,14 @@ class AdvancedAnalyticsService:
         """
         try:
             if user_id:
-                user_result = await execute_query(
+                user_result = execute_query(
                     "SELECT id, created_at, last_login, is_active FROM users WHERE id = ?", [user_id]
                 )
                 users = parse_rows(user_result)
                 if not users:
                     raise ValueError("User not found")
             else:
-                user_result = await execute_query(
+                user_result = execute_query(
                     "SELECT id, created_at, last_login, is_active FROM users WHERE is_active = 1 LIMIT 100"
                 )
                 users = parse_rows(user_result)
@@ -376,14 +376,14 @@ class AdvancedAnalyticsService:
             
             if all_user_ids:
                 placeholders = ",".join(["?"] * len(all_user_ids))
-                pc_result = await execute_query(
+                pc_result = execute_query(
                     f"SELECT client_id, COUNT(*) as cnt FROM projects WHERE client_id IN ({placeholders}) GROUP BY client_id",
                     all_user_ids
                 )
                 for row in parse_rows(pc_result):
                     project_counts[row["client_id"]] = int(row["cnt"])
                 
-                pp_result = await execute_query(
+                pp_result = execute_query(
                     f"SELECT freelancer_id, COUNT(*) as cnt FROM proposals WHERE freelancer_id IN ({placeholders}) GROUP BY freelancer_id",
                     all_user_ids
                 )
@@ -508,12 +508,12 @@ class AdvancedAnalyticsService:
             start_date = datetime.now(timezone.utc) - timedelta(days=90)
             
             if category:
-                proj_result = await execute_query(
+                proj_result = execute_query(
                     "SELECT * FROM projects WHERE created_at >= ? AND category = ?",
                     [start_date.isoformat(), category]
                 )
             else:
-                proj_result = await execute_query(
+                proj_result = execute_query(
                     "SELECT * FROM projects WHERE created_at >= ?",
                     [start_date.isoformat()]
                 )
@@ -552,12 +552,12 @@ class AdvancedAnalyticsService:
             # Compare to previous period
             prev_start = start_date - timedelta(days=90)
             if category:
-                prev_result = await execute_query(
+                prev_result = execute_query(
                     "SELECT skills_required FROM projects WHERE created_at >= ? AND created_at < ? AND category = ?",
                     [prev_start.isoformat(), start_date.isoformat(), category]
                 )
             else:
-                prev_result = await execute_query(
+                prev_result = execute_query(
                     "SELECT skills_required FROM projects WHERE created_at >= ? AND created_at < ?",
                     [prev_start.isoformat(), start_date.isoformat()]
                 )
@@ -640,33 +640,33 @@ class AdvancedAnalyticsService:
             week_ago = (now - timedelta(days=7)).isoformat()
             
             # User metrics — batch queries
-            u1 = await execute_query("SELECT COUNT(*) as cnt FROM users")
-            u2 = await execute_query("SELECT COUNT(*) as cnt FROM users WHERE last_login >= ?", [day_ago])
-            u3 = await execute_query("SELECT COUNT(*) as cnt FROM users WHERE created_at >= ?", [week_ago])
+            u1 = execute_query("SELECT COUNT(*) as cnt FROM users")
+            u2 = execute_query("SELECT COUNT(*) as cnt FROM users WHERE last_login >= ?", [day_ago])
+            u3 = execute_query("SELECT COUNT(*) as cnt FROM users WHERE created_at >= ?", [week_ago])
             
             total_users = int(parse_rows(u1)[0]["cnt"]) if parse_rows(u1) else 0
             active_users_24h = int(parse_rows(u2)[0]["cnt"]) if parse_rows(u2) else 0
             new_users_week = int(parse_rows(u3)[0]["cnt"]) if parse_rows(u3) else 0
             
             # Project metrics
-            p1 = await execute_query("SELECT COUNT(*) as cnt FROM projects")
-            p2 = await execute_query("SELECT COUNT(*) as cnt FROM projects WHERE status = 'open'")
-            p3 = await execute_query("SELECT COUNT(*) as cnt FROM projects WHERE created_at >= ?", [week_ago])
+            p1 = execute_query("SELECT COUNT(*) as cnt FROM projects")
+            p2 = execute_query("SELECT COUNT(*) as cnt FROM projects WHERE status = 'open'")
+            p3 = execute_query("SELECT COUNT(*) as cnt FROM projects WHERE created_at >= ?", [week_ago])
             
             total_projects = int(parse_rows(p1)[0]["cnt"]) if parse_rows(p1) else 0
             active_projects = int(parse_rows(p2)[0]["cnt"]) if parse_rows(p2) else 0
             new_projects_week = int(parse_rows(p3)[0]["cnt"]) if parse_rows(p3) else 0
             
             # Proposal metrics
-            pr1 = await execute_query("SELECT COUNT(*) as cnt FROM proposals")
-            pr2 = await execute_query("SELECT COUNT(*) as cnt FROM proposals WHERE created_at >= ?", [week_ago])
+            pr1 = execute_query("SELECT COUNT(*) as cnt FROM proposals")
+            pr2 = execute_query("SELECT COUNT(*) as cnt FROM proposals WHERE created_at >= ?", [week_ago])
             
             total_proposals = int(parse_rows(pr1)[0]["cnt"]) if parse_rows(pr1) else 0
             proposals_week = int(parse_rows(pr2)[0]["cnt"]) if parse_rows(pr2) else 0
             
             # Contract metrics
-            c1 = await execute_query("SELECT COUNT(*) as cnt FROM contracts")
-            c2 = await execute_query("SELECT COUNT(*) as cnt FROM contracts WHERE status = 'active'")
+            c1 = execute_query("SELECT COUNT(*) as cnt FROM contracts")
+            c2 = execute_query("SELECT COUNT(*) as cnt FROM contracts WHERE status = 'active'")
             
             total_contracts = int(parse_rows(c1)[0]["cnt"]) if parse_rows(c1) else 0
             active_contracts = int(parse_rows(c2)[0]["cnt"]) if parse_rows(c2) else 0

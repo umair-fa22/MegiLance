@@ -139,7 +139,6 @@ export default function AdminReportsPage() {
     return reportCards.filter(c => c.category === activeTab);
   }, [activeTab, reportCards]);
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   return (

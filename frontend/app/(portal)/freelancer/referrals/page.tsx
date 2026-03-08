@@ -118,7 +118,6 @@ export default function ReferralPage() {
     }
   };
 
-  if (!resolvedTheme) return null;
 
   if (loading) {
     return (

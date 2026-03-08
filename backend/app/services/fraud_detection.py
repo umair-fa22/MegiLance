@@ -67,7 +67,7 @@ class FraudDetectionService:
     async def analyze_user(self, user_id: int) -> Dict[str, Any]:
         """Comprehensive user fraud analysis with multi-signal scoring."""
         try:
-            result = await execute_query("SELECT * FROM users WHERE id = ?", [user_id])
+            result = execute_query("SELECT * FROM users WHERE id = ?", [user_id])
             rows = parse_rows(result)
             if not rows:
                 return {'error': 'User not found'}
@@ -218,7 +218,7 @@ class FraudDetectionService:
         one_day_ago = (now - timedelta(days=1)).isoformat()
 
         # Proposals per hour
-        r1 = await execute_query(
+        r1 = execute_query(
             "SELECT COUNT(*) as cnt FROM proposals WHERE freelancer_id = ? AND created_at >= ?",
             [user_id, one_hour_ago]
         )
@@ -232,7 +232,7 @@ class FraudDetectionService:
             flags.append(f'Elevated proposal rate ({proposals_1h} in 1 hour)')
 
         # Proposals per day
-        r2 = await execute_query(
+        r2 = execute_query(
             "SELECT COUNT(*) as cnt FROM proposals WHERE freelancer_id = ? AND created_at >= ?",
             [user_id, one_day_ago]
         )
@@ -243,7 +243,7 @@ class FraudDetectionService:
             flags.append(f'Very high daily proposal volume ({proposals_24h} in 24 hours)')
 
         # Projects per hour (clients)
-        r3 = await execute_query(
+        r3 = execute_query(
             "SELECT COUNT(*) as cnt FROM projects WHERE client_id = ? AND created_at >= ?",
             [user_id, one_hour_ago]
         )
@@ -260,7 +260,7 @@ class FraudDetectionService:
         score = 0
         flags = []
 
-        r1 = await execute_query(
+        r1 = execute_query(
             "SELECT COUNT(*) as cnt FROM payments WHERE from_user_id = ? AND status = 'disputed'",
             [user_id]
         )
@@ -273,7 +273,7 @@ class FraudDetectionService:
             score += 8
             flags.append(f'Has disputed payment(s) ({disputed})')
 
-        r2 = await execute_query(
+        r2 = execute_query(
             "SELECT COUNT(*) as cnt FROM payments WHERE from_user_id = ? AND status = 'failed'",
             [user_id]
         )
@@ -285,7 +285,7 @@ class FraudDetectionService:
 
         # Check for unusual payment amounts
         cutoff = (datetime.now(timezone.utc) - timedelta(days=30)).isoformat()
-        r3 = await execute_query(
+        r3 = execute_query(
             "SELECT amount FROM payments WHERE from_user_id = ? AND created_at >= ?",
             [user_id, cutoff]
         )
@@ -307,7 +307,7 @@ class FraudDetectionService:
         score = 0
         flags = []
 
-        r1 = await execute_query(
+        r1 = execute_query(
             "SELECT COUNT(*) as cnt FROM contracts WHERE freelancer_id = ? OR client_id = ?",
             [user_id, user_id]
         )
@@ -316,7 +316,7 @@ class FraudDetectionService:
         if total_contracts == 0:
             return {'score': 0, 'flags': [], 'completion_rate': None}
 
-        r2 = await execute_query(
+        r2 = execute_query(
             "SELECT COUNT(*) as cnt FROM contracts WHERE (freelancer_id = ? OR client_id = ?) AND status = 'cancelled'",
             [user_id, user_id]
         )
@@ -339,7 +339,7 @@ class FraudDetectionService:
         flags = []
 
         # Check recent proposals for suspicious patterns
-        result = await execute_query(
+        result = execute_query(
             "SELECT cover_letter FROM proposals WHERE freelancer_id = ? ORDER BY created_at DESC LIMIT 20",
             [user_id]
         )
@@ -388,7 +388,7 @@ class FraudDetectionService:
     async def analyze_project(self, project_id: int) -> Dict[str, Any]:
         """Analyze project for fraudulent characteristics with multi-signal scoring."""
         try:
-            result = await execute_query("SELECT * FROM projects WHERE id = ?", [project_id])
+            result = execute_query("SELECT * FROM projects WHERE id = ?", [project_id])
             rows = parse_rows(result)
             if not rows:
                 return {'error': 'Project not found'}
@@ -492,7 +492,7 @@ class FraudDetectionService:
     async def analyze_proposal(self, proposal_id: int) -> Dict[str, Any]:
         """Analyze proposal for suspicious activity with multi-signal scoring."""
         try:
-            result = await execute_query("SELECT * FROM proposals WHERE id = ?", [proposal_id])
+            result = execute_query("SELECT * FROM proposals WHERE id = ?", [proposal_id])
             rows = parse_rows(result)
             if not rows:
                 return {'error': 'Proposal not found'}
@@ -551,7 +551,7 @@ class FraudDetectionService:
         project_id = proposal.get("project_id")
         project = None
         if project_id:
-            proj_result = await execute_query("SELECT budget_max FROM projects WHERE id = ?", [project_id])
+            proj_result = execute_query("SELECT budget_max FROM projects WHERE id = ?", [project_id])
             proj_rows = parse_rows(proj_result)
             project = proj_rows[0] if proj_rows else None
 

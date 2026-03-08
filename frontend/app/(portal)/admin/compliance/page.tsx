@@ -112,7 +112,7 @@ export default function CompliancePage() {
     }
   };
 
-  if (!mounted || !resolvedTheme) return null;
+  if (!mounted) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   const getStatusBadgeVariant = (status: string): 'success' | 'warning' | 'default' | 'info' => {

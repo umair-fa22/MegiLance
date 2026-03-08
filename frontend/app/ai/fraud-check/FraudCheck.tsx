@@ -131,7 +131,6 @@ const FraudCheck: React.FC = () => {
     setAnalysisResult(null);
   };
 
-  if (!resolvedTheme) return null;
 
   const riskClass = analysisResult ? commonStyles[`risk${analysisResult.riskLevel}`] : '';
   const riskThemeClass = analysisResult ? themeStyles[`risk${analysisResult.riskLevel}`] : '';

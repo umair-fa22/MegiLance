@@ -33,7 +33,8 @@ import {
   CheckCircle2,
   Zap,
   Star,
-  TrendingUp
+  TrendingUp,
+  AlertCircle
 } from 'lucide-react';
 
 import commonStyles from './Dashboard.common.module.css';
@@ -96,7 +97,7 @@ function transformSellerStats(raw: Record<string, unknown>): SellerStatsData {
 const Dashboard: React.FC = () => {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const { analytics, recommendedJobs, proposals, loading } = useFreelancerData();
+  const { analytics, recommendedJobs, proposals, loading, error } = useFreelancerData();
   const { user } = useAuth();
   const [sellerStats, setSellerStats] = useState<SellerStatsData | null>(null);
   const [earningsData, setEarningsData] = useState<{ month: string; amount: number }[]>([]);
@@ -181,7 +182,6 @@ const Dashboard: React.FC = () => {
 
     return events.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()).slice(0, 5);
   }, [proposals, recommendedJobs]);
-
   // Quick actions for the grid
   const quickActions = [
     { label: 'Find Work', href: '/jobs', icon: Search, color: 'primary' as const, desc: 'Browse jobs' },
@@ -202,6 +202,11 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className={cn(commonStyles.dashboardContainer, themeStyles.dashboardContainer)}>
+      {error && (
+        <div className={cn(commonStyles.errorBanner, themeStyles.errorBanner)} role="alert">
+          <AlertCircle size={16} /> {error}
+        </div>
+      )}
       {/* Header Section */}
       <div className={commonStyles.headerSection}>
         <div className={cn(commonStyles.welcomeText, themeStyles.welcomeText)}>
@@ -263,7 +268,6 @@ const Dashboard: React.FC = () => {
         <StatCard 
           title="Total Earnings" 
           value={metrics.earnings} 
-          trend={8.5} 
           icon={DollarSign}
           sparklineData={earningsSparkline}
           sparklineColor="success"
@@ -272,24 +276,19 @@ const Dashboard: React.FC = () => {
         <StatCard 
           title="Active Jobs" 
           value={metrics.activeJobs.toString()} 
-          trend={0} 
           icon={Briefcase}
-          sparklineData={[1, 2, 3, 2, 4, metrics.activeJobs]}
           sparklineColor="primary"
         />
         <StatCard 
           title="Proposals Sent" 
           value={metrics.proposalsSent.toString()} 
-          trend={12.0} 
           icon={FileText}
           href="/freelancer/proposals"
         />
         <StatCard 
           title="Profile Views" 
           value={metrics.profileViews.toString()} 
-          trend={-5.0} 
           icon={Eye}
-          sparklineData={[10, 15, 12, 18, 14, metrics.profileViews]}
           sparklineColor="warning"
           href="/freelancer/analytics"
         />

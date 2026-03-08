@@ -8,7 +8,7 @@ import { PageTransition, ScrollReveal, StaggerContainer } from '@/components/Ani
 import { useAdminData } from '@/hooks/useAdmin';
 import Modal from '@/app/components/Modal/Modal';
 import Button from '@/app/components/Button/Button';
-import { api } from '@/lib/api';
+import api from '@/lib/api';
 import common from './AdminSupport.common.module.css';
 import light from './AdminSupport.light.module.css';
 import dark from './AdminSupport.dark.module.css';

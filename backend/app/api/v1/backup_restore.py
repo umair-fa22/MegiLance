@@ -58,7 +58,6 @@ class CleanupRequest(BaseModel):
 @router.post("/create")
 async def create_backup(
     request: CreateBackupRequest,
-    ,
     current_user = Depends(require_admin)
 ):
     """Create a new backup."""
@@ -78,7 +77,6 @@ async def create_backup(
 @router.get("/{backup_id}/status")
 async def get_backup_status(
     backup_id: str,
-    ,
     current_user = Depends(require_admin)
 ):
     """Get status of a backup."""
@@ -91,7 +89,6 @@ async def get_backup_status(
 async def list_backups(
     status: Optional[BackupStatus] = None,
     limit: int = 10,
-    ,
     current_user = Depends(require_admin)
 ):
     """List user's backups."""
@@ -103,7 +100,6 @@ async def list_backups(
 @router.get("/{backup_id}/download")
 async def download_backup(
     backup_id: str,
-    ,
     current_user = Depends(require_admin)
 ):
     """Get download link for backup."""
@@ -115,7 +111,6 @@ async def download_backup(
 @router.delete("/{backup_id}")
 async def delete_backup(
     backup_id: str,
-    ,
     current_user = Depends(require_admin)
 ):
     """Delete a backup."""
@@ -128,7 +123,6 @@ async def delete_backup(
 @router.post("/restore")
 async def restore_from_backup(
     request: RestoreRequest,
-    ,
     current_user = Depends(require_admin)
 ):
     """Restore data from backup."""
@@ -147,7 +141,6 @@ async def restore_from_backup(
 @router.get("/restore/{restore_id}/status")
 async def get_restore_status(
     restore_id: str,
-    ,
     current_user = Depends(require_admin)
 ):
     """Get status of a restore operation."""
@@ -159,7 +152,6 @@ async def get_restore_status(
 @router.get("/{backup_id}/preview")
 async def preview_restore(
     backup_id: str,
-    ,
     current_user = Depends(require_admin)
 ):
     """Preview what will be restored."""
@@ -171,7 +163,6 @@ async def preview_restore(
 # Schedule Endpoints
 @router.get("/schedule")
 async def get_backup_schedule(
-    ,
     current_user = Depends(require_admin)
 ):
     """Get user's backup schedule."""
@@ -183,7 +174,6 @@ async def get_backup_schedule(
 @router.put("/schedule")
 async def set_backup_schedule(
     request: SetScheduleRequest,
-    ,
     current_user = Depends(require_admin)
 ):
     """Set user's backup schedule."""
@@ -207,7 +197,6 @@ async def set_backup_schedule(
 # Storage Endpoints
 @router.get("/storage")
 async def get_storage_usage(
-    ,
     current_user = Depends(require_admin)
 ):
     """Get backup storage usage."""
@@ -219,7 +208,6 @@ async def get_storage_usage(
 @router.post("/cleanup")
 async def cleanup_old_backups(
     request: CleanupRequest,
-    ,
     current_user = Depends(require_admin)
 ):
     """Clean up old backups."""
@@ -232,7 +220,6 @@ async def cleanup_old_backups(
 @router.post("/export-migration")
 async def export_for_migration(
     format: str = "json",
-    ,
     current_user = Depends(require_admin)
 ):
     """Export all data for platform migration."""

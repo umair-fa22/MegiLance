@@ -47,7 +47,6 @@ async def search_projects(
     sort_by: SortOption = SortOption.RELEVANCE,
     page: int = 1,
     limit: int = 20,
-    ,
     current_user = Depends(get_current_user_optional)
 ):
     """Search projects with advanced filters."""
@@ -102,7 +101,6 @@ async def search_freelancers(
     sort_by: str = "relevance",
     page: int = 1,
     limit: int = 20,
-    ,
     current_user = Depends(get_current_user_optional)
 ):
     """Search freelancers with advanced filters."""
@@ -191,7 +189,6 @@ async def get_skill_demand(
 @router.get("/recommendations/projects")
 async def get_personalized_projects(
     limit: int = 20,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get personalized project recommendations."""
@@ -204,7 +201,6 @@ async def get_personalized_projects(
 async def get_recommended_freelancers(
     project_id: Optional[str] = None,
     limit: int = 10,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get recommended freelancers for a client."""
@@ -242,7 +238,6 @@ async def get_autocomplete(
 @router.get("/searches/recent")
 async def get_recent_searches(
     limit: int = 10,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get user's recent searches."""
@@ -254,7 +249,6 @@ async def get_recent_searches(
 @router.post("/searches/save")
 async def save_search(
     request: SaveSearchRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Save a search for later."""

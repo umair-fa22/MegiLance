@@ -140,7 +140,6 @@ export default function ContractDetail({ contractId }: ContractDetailProps) {
     return diff;
   }, [contract]);
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   if (loading) {

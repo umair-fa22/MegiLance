@@ -45,7 +45,6 @@ const StatCard: React.FC<StatCardProps> = ({
 }) => {
   const { resolvedTheme } = useTheme();
 
-  if (!resolvedTheme) return null;
 
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 

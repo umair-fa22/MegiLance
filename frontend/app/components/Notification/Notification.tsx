@@ -118,7 +118,6 @@ const Notification: React.FC<NotificationProps> = ({
     }
   };
 
-  if (!resolvedTheme) return null;
 
   return (
     <div 

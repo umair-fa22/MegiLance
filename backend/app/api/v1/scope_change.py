@@ -25,7 +25,7 @@ async def get_scope_change_request(
     """Get details of a specific scope change request."""
     request = await ScopeChangeService.get_request(request_id)
     # Verify user is part of the contract
-    result = await execute_query(
+    result = execute_query(
         "SELECT client_id, freelancer_id FROM contracts WHERE id = ?",
         [request["contract_id"]]
     )
@@ -45,7 +45,7 @@ async def get_contract_scope_changes(
 ):
     """List all scope change requests for a specific contract."""
     # Verify access to contract
-    result = await execute_query(
+    result = execute_query(
         "SELECT client_id, freelancer_id FROM contracts WHERE id = ?",
         [contract_id]
     )

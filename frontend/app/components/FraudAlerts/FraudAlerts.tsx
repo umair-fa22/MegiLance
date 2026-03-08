@@ -149,7 +149,6 @@ export default function FraudAlerts({ className = '' }: FraudAlertsProps) {
   const [showBlockModal, setShowBlockModal] = useState(false);
   const [blockUserId, setBlockUserId] = useState<number | null>(null);
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   const toggleSignals = (alertId: string) => {

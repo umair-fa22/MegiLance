@@ -2,11 +2,15 @@
 # Configures different rate limits for authentication, API calls, and public endpoints
 # Supports: role-based limits, trusted IP bypass, dynamic limit configuration
 
+import functools
+import inspect
+
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
 from fastapi import Request
+from starlette.responses import Response as StarletteResponse
 
 
 def get_real_client_ip(request: Request) -> str:
@@ -34,6 +38,45 @@ def get_limiter():
     return limiter
 
 
+def _safe_limit(limit_string: str):
+    """
+    Create a rate limit decorator that safely handles endpoints returning Pydantic models.
+    SlowAPI requires a `response: Response` parameter to inject rate-limit headers.
+    This wrapper automatically adds one if the endpoint doesn't already have it.
+    """
+    slowapi_decorator = limiter.limit(limit_string)
+
+    def decorator(func):
+        sig = inspect.signature(func)
+        if "response" in sig.parameters:
+            return slowapi_decorator(func)
+
+        # Build a new signature that includes the original params + response
+        params = list(sig.parameters.values())
+        response_param = inspect.Parameter(
+            "response",
+            inspect.Parameter.KEYWORD_ONLY,
+            default=None,
+            annotation=StarletteResponse,
+        )
+        params.append(response_param)
+        new_sig = sig.replace(parameters=params)
+
+        if inspect.iscoroutinefunction(func):
+            @functools.wraps(func)
+            async def wrapper(*args, response: StarletteResponse = None, **kwargs):
+                return await func(*args, **kwargs)
+        else:
+            @functools.wraps(func)
+            def wrapper(*args, response: StarletteResponse = None, **kwargs):
+                return func(*args, **kwargs)
+
+        wrapper.__signature__ = new_sig
+        return slowapi_decorator(wrapper)
+
+    return decorator
+
+
 # Custom rate limit decorator functions for different endpoint types
 
 def auth_rate_limit():
@@ -43,7 +86,7 @@ def auth_rate_limit():
     Applied to: login, register, password reset
     Limit: 10 requests per minute to prevent brute force attacks
     """
-    return limiter.limit("10/minute")
+    return _safe_limit("10/minute")
 
 
 def password_reset_rate_limit():
@@ -53,7 +96,7 @@ def password_reset_rate_limit():
     Applied to: forgot password, reset password
     Limit: 3 requests per hour to prevent abuse
     """
-    return limiter.limit("3/hour")
+    return _safe_limit("3/hour")
 
 
 def api_rate_limit():
@@ -63,7 +106,7 @@ def api_rate_limit():
     Applied to: general API calls
     Limit: 100 requests per minute
     """
-    return limiter.limit("100/minute")
+    return _safe_limit("100/minute")
 
 
 def public_rate_limit():
@@ -73,7 +116,7 @@ def public_rate_limit():
     Applied to: health checks, public profiles, search
     Limit: 200 requests per minute
     """
-    return limiter.limit("200/minute")
+    return _safe_limit("200/minute")
 
 
 def strict_rate_limit():
@@ -83,7 +126,7 @@ def strict_rate_limit():
     Applied to: admin operations, bulk actions
     Limit: 10 requests per minute
     """
-    return limiter.limit("10/minute")
+    return _safe_limit("10/minute")
 
 
 def email_rate_limit():
@@ -93,7 +136,7 @@ def email_rate_limit():
     Applied to: verification email, password reset email
     Limit: 5 requests per hour to prevent email spam
     """
-    return limiter.limit("5/hour")
+    return _safe_limit("5/hour")
 
 
 # Rate limiting configuration helper

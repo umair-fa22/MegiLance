@@ -60,7 +60,7 @@ const AppChromeClient: React.FC<{ children: React.ReactNode }> = ({ children }) 
   const isMinimalChrome = isPortalOrAuthRoute(pathname);
 
   return (
-    <div className={cn(commonStyles.wrapper, themeStyles.wrapper)}>
+    <div className={cn(commonStyles.wrapper, themeStyles.wrapper)} suppressHydrationWarning>
       {!isMinimalChrome && <Header />}
       {!isMinimalChrome && (
         <div className={commonStyles.breadcrumbContainer}>

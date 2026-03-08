@@ -53,7 +53,6 @@ export default function CurrencySelector({
   const [convertedAmount, setConvertedAmount] = useState<number>(0);
 
   // Theme guard
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   // Fetch available currencies

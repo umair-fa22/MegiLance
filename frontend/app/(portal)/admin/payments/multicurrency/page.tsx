@@ -35,7 +35,6 @@ export default function MultiCurrencyPage() {
   const [currencies, setCurrencies] = useState(SUPPORTED_CURRENCIES);
   const [baseCurrency, setBaseCurrency] = useState('USD');
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   const toggleCurrency = (code: string) => {

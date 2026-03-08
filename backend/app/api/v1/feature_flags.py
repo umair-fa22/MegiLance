@@ -90,7 +90,6 @@ async def get_all_flags(
 @router.get("/check/{flag_name}")
 async def check_flag(
     flag_name: str,
-    ,
     current_user=Depends(get_current_active_user)
 ):
     """Check if a feature flag is enabled for the current user."""
@@ -114,7 +113,6 @@ async def check_flag(
 @router.post("/check-multiple")
 async def check_multiple_flags(
     request: FlagCheckRequest,
-    ,
     current_user=Depends(get_current_active_user)
 ):
     """Check multiple feature flags at once."""
@@ -140,7 +138,6 @@ async def check_multiple_flags(
 
 @router.get("/my-flags")
 async def get_my_flags(
-    ,
     current_user=Depends(get_current_active_user)
 ):
     """Get all feature flags and their status for the current user."""
@@ -165,7 +162,6 @@ async def get_my_flags(
 @router.post("/track-exposure")
 async def track_exposure(
     request: TrackExposureRequest,
-    ,
     current_user=Depends(get_current_active_user)
 ):
     """Track when a user is exposed to a feature variant (for analytics)."""
@@ -184,7 +180,6 @@ async def track_exposure(
 # Admin Endpoints
 @router.get("/admin/all")
 async def admin_get_all_flags(
-    ,
     current_user: User = Depends(require_admin)
 ):
     """Get all feature flags (admin only)."""
@@ -215,7 +210,6 @@ async def admin_get_all_flags(
 @router.get("/admin/{flag_name}")
 async def admin_get_flag(
     flag_name: str,
-    ,
     current_user: User = Depends(require_admin)
 ):
     """Get a specific flag details (admin only)."""
@@ -244,7 +238,6 @@ async def admin_get_flag(
 @router.post("/admin/create")
 async def admin_create_flag(
     request: CreateFlagRequest,
-    ,
     current_user: User = Depends(require_admin)
 ):
     """Create a new feature flag (admin only)."""
@@ -285,7 +278,6 @@ async def admin_create_flag(
 async def admin_update_flag(
     flag_name: str,
     request: UpdateFlagRequest,
-    ,
     current_user: User = Depends(require_admin)
 ):
     """Update a feature flag (admin only)."""
@@ -332,7 +324,6 @@ async def admin_update_flag(
 @router.delete("/admin/{flag_name}")
 async def admin_delete_flag(
     flag_name: str,
-    ,
     current_user: User = Depends(require_admin)
 ):
     """Delete a feature flag (admin only)."""
@@ -352,7 +343,6 @@ async def admin_delete_flag(
 async def admin_update_rollout(
     flag_name: str,
     percentage: int = Query(..., ge=0, le=100),
-    ,
     current_user: User = Depends(require_admin)
 ):
     """Quick update of rollout percentage (admin only)."""
@@ -377,7 +367,6 @@ async def admin_update_rollout(
 @router.get("/admin/{flag_name}/analytics")
 async def admin_get_flag_analytics(
     flag_name: str,
-    ,
     current_user: User = Depends(require_admin)
 ):
     """Get analytics for a specific flag (admin only)."""
@@ -405,7 +394,6 @@ async def admin_get_flag_analytics(
 
 @router.get("/admin/analytics/summary")
 async def admin_get_analytics_summary(
-    ,
     current_user: User = Depends(require_admin)
 ):
     """Get analytics summary for all flags (admin only)."""

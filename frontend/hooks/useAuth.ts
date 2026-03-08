@@ -125,32 +125,25 @@ export function useAuth(): UseAuthReturn {
     };
   }, []);
 
-  // Multi-tab session sync: listen for storage events to sync logout/login across tabs
+  // Multi-tab session sync: use a dedicated localStorage broadcast key
+  // (StorageEvent only fires for localStorage changes, not sessionStorage)
   useEffect(() => {
     const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === AUTH.TOKEN_KEY) {
-        if (!e.newValue) {
-          // Token removed in another tab — logout this tab too
+      if (e.key === 'auth_logout_broadcast') {
+        if (e.newValue === 'true') {
+          // Logout triggered in another tab
           if (isMounted.current) {
             setUser(null);
             setError(null);
           }
           sessionStorage.removeItem(AUTH.USER_KEY);
-        } else if (e.newValue && !user) {
-          // Token set in another tab — reload user
-          const cachedUser = sessionStorage.getItem(AUTH.USER_KEY);
-          if (cachedUser) {
-            try {
-              const parsed = JSON.parse(cachedUser);
-              if (isMounted.current) setUser(parsed);
-            } catch { /* invalid cache */ }
-          }
+          sessionStorage.removeItem(AUTH.TOKEN_KEY);
         }
       }
     };
     window.addEventListener('storage', handleStorageChange);
     return () => window.removeEventListener('storage', handleStorageChange);
-  }, [user]);
+  }, []);
 
   // Load user from storage on mount
   useEffect(() => {
@@ -182,6 +175,20 @@ export function useAuth(): UseAuthReturn {
           setError(null);
         }
         sessionStorage.setItem(AUTH.USER_KEY, JSON.stringify(normalized));
+
+        // Set up token refresh interval on page reload (refresh every 25 minutes)
+        if (refreshIntervalRef.current) clearInterval(refreshIntervalRef.current);
+        refreshIntervalRef.current = setInterval(async () => {
+          try {
+            const refreshed = await api.auth.refreshToken();
+            if (refreshed?.access_token) {
+              setAuthToken(refreshed.access_token);
+              setAuthCookie(refreshed.access_token);
+            }
+          } catch {
+            // Reactive refresh on 401 will handle this
+          }
+        }, 25 * 60 * 1000);
       } catch (err) {
         console.error('Failed to load user:', err);
         if (err instanceof APIError && err.status === 401) {
@@ -277,6 +284,9 @@ export function useAuth(): UseAuthReturn {
     sessionStorage.removeItem(AUTH.USER_KEY);
     localStorage.removeItem(AUTH.USER_KEY); // Clean up legacy
     localStorage.removeItem(AUTH.REFRESH_TOKEN_KEY);
+    // Broadcast logout to other tabs via localStorage (StorageEvent mechanism)
+    localStorage.setItem('auth_logout_broadcast', 'true');
+    localStorage.removeItem('auth_logout_broadcast');
     if (isMounted.current) setUser(null);
     if (refreshIntervalRef.current) {
       clearInterval(refreshIntervalRef.current);

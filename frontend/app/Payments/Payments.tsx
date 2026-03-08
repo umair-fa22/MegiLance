@@ -85,7 +85,7 @@ const Payments: React.FC = () => {
     loadData();
   }, [loadData]);
 
-  if (!mounted || !resolvedTheme) return null;
+  if (!mounted) return null;
 
   const fmt = (n: number) => n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 

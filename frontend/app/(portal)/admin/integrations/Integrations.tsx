@@ -128,7 +128,6 @@ export default function IntegrationsPage() {
     return integrations;
   }, [integrations, activeTab]);
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   return (

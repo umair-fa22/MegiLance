@@ -142,7 +142,7 @@ export default function AdminFeedbackPage() {
     showToast('Response sent successfully');
   };
 
-  if (!mounted || !resolvedTheme) return null;
+  if (!mounted) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   const filteredItems = feedbackItems.filter(item => {

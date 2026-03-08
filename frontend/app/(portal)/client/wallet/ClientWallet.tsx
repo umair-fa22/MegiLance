@@ -71,7 +71,6 @@ export default function ClientWallet() {
   // Balance visibility
   const [showBalance, setShowBalance] = useState(true);
 
-  if (!resolvedTheme) return null;
   const t = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   // Parse amounts

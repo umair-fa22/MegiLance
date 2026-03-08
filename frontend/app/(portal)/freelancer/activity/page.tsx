@@ -161,7 +161,6 @@ export default function ActivityPage() {
     }
   };
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   const unreadCount = activities.filter(a => !a.read).length;

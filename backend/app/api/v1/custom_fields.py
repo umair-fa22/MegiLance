@@ -115,7 +115,6 @@ async def create_field_definition(
     
     try:
         result = await custom_fields_service.create_field_definition(
-            ,
             user_id=str(current_user.get("id")),
             entity_type=request.entity_type,
             name=request.name,
@@ -146,7 +145,6 @@ async def get_field_definitions(
     """Get all field definitions for an entity type."""
     try:
         result = await custom_fields_service.get_field_definitions(
-            ,
             entity_type=entity_type,
             include_hidden=include_hidden
         )
@@ -182,7 +180,6 @@ async def update_field_definition(
     try:
         updates = request.dict(exclude_unset=True)
         result = await custom_fields_service.update_field_definition(
-            ,
             user_id=str(current_user.get("id")),
             field_id=field_id,
             updates=updates
@@ -204,7 +201,6 @@ async def delete_field_definition(
     
     try:
         result = await custom_fields_service.delete_field_definition(
-            ,
             user_id=str(current_user.get("id")),
             field_id=field_id
         )
@@ -226,7 +222,6 @@ async def set_field_value(
     """Set a custom field value for an entity."""
     try:
         result = await custom_fields_service.set_field_value(
-            ,
             user_id=str(current_user.get("id")),
             entity_type=entity_type,
             entity_id=entity_id,
@@ -248,7 +243,6 @@ async def set_multiple_field_values(
 ):
     """Set multiple custom field values at once."""
     result = await custom_fields_service.set_multiple_field_values(
-        ,
         user_id=str(current_user.get("id")),
         entity_type=entity_type,
         entity_id=entity_id,
@@ -267,7 +261,6 @@ async def get_field_values(
 ):
     """Get all custom field values for an entity."""
     result = await custom_fields_service.get_field_values(
-        ,
         entity_type=entity_type,
         entity_id=entity_id,
         include_empty=include_empty
@@ -288,7 +281,6 @@ async def create_field_group(
         raise HTTPException(status_code=403, detail="Admin access required")
     
     result = await custom_fields_service.create_field_group(
-        ,
         user_id=str(current_user.get("id")),
         entity_type=request.entity_type,
         name=request.name,
@@ -309,7 +301,6 @@ async def get_field_groups(
 ):
     """Get all field groups for an entity type."""
     result = await custom_fields_service.get_field_groups(
-        ,
         entity_type=entity_type
     )
     return result
@@ -328,7 +319,6 @@ async def export_field_definitions(
         raise HTTPException(status_code=403, detail="Admin access required")
     
     result = await custom_fields_service.export_field_definitions(
-        ,
         entity_type=entity_type
     )
     return result

@@ -15,6 +15,12 @@ import Link from 'next/link';
 import ProfileMenu, { ProfileMenuItem } from '@/app/components/ProfileMenu/ProfileMenu';
 import { clearAuthData } from '@/lib/api';
 import { useNotifications } from '@/hooks/useNotifications';
+import {
+  clientNavItems,
+  freelancerNavItems,
+  adminNavItems,
+  NavItem as ConfigNavItem
+} from '@/app/config/navigation';
 
 import commonStyles from './PortalNavbar.common.module.css';
 import lightStyles from './PortalNavbar.light.module.css';
@@ -287,6 +293,12 @@ const PortalNavbar: React.FC<PortalNavbarProps> = ({ userType = 'client', onMenu
               setShowSearchResults(e.target.value.length > 0);
             }}
             onFocus={() => searchQuery && setShowSearchResults(true)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && searchQuery.trim()) {
+                setShowSearchResults(false);
+                router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+              }
+            }}
           />
           {searchQuery && (
             <button 
@@ -298,31 +310,55 @@ const PortalNavbar: React.FC<PortalNavbarProps> = ({ userType = 'client', onMenu
             </button>
           )}
           
-          {/* Search Results Dropdown */}
-          {showSearchResults && (
-            <div className={cn(commonStyles.searchDropdown, styles.searchDropdown)}>
-              <div className={commonStyles.searchSection}>
-                <span className={commonStyles.searchSectionTitle}>Quick Actions</span>
-                {userType === 'client' && (
-                  <Link href="/client/post-job" className={commonStyles.searchItem}>
-                    <Briefcase size={14} /> Post a new job
-                  </Link>
+          {/* Search Results Dropdown — filters navigation items by query */}
+          {showSearchResults && (() => {
+            const q = searchQuery.toLowerCase();
+            const navItems = userType === 'admin' ? adminNavItems
+              : userType === 'freelancer' ? freelancerNavItems
+              : clientNavItems;
+            
+            // Flatten nav items including submenu children
+            const allItems: ConfigNavItem[] = [];
+            for (const item of navItems) {
+              if (item.label.toLowerCase().includes(q)) allItems.push(item);
+              if (item.submenu) {
+                for (const sub of item.submenu) {
+                  if (sub.label.toLowerCase().includes(q)) allItems.push(sub);
+                }
+              }
+            }
+            const matchedItems = allItems.slice(0, 6);
+
+            return (
+              <div className={cn(commonStyles.searchDropdown, styles.searchDropdown)}>
+                {matchedItems.length > 0 && (
+                  <div className={commonStyles.searchSection}>
+                    <span className={commonStyles.searchSectionTitle}>Pages</span>
+                    {matchedItems.map((item) => (
+                      <Link 
+                        key={item.href} 
+                        href={item.href} 
+                        className={commonStyles.searchItem}
+                        onClick={() => { setSearchQuery(''); setShowSearchResults(false); }}
+                      >
+                        <FileText size={14} /> {item.label}
+                      </Link>
+                    ))}
+                  </div>
                 )}
-                <Link href={`/${userType}/messages`} className={commonStyles.searchItem}>
-                  <MessageSquare size={14} /> View messages
-                </Link>
+                <div className={commonStyles.searchSection}>
+                  <span className={commonStyles.searchSectionTitle}>Actions</span>
+                  <Link 
+                    href={`/search?q=${encodeURIComponent(searchQuery.trim())}`} 
+                    className={commonStyles.searchItem}
+                    onClick={() => { setSearchQuery(''); setShowSearchResults(false); }}
+                  >
+                    <Search size={14} /> Search &quot;{searchQuery}&quot; across platform
+                  </Link>
+                </div>
               </div>
-              <div className={commonStyles.searchSection}>
-                <span className={commonStyles.searchSectionTitle}>Pages</span>
-                <Link href={`/${userType}/projects`} className={commonStyles.searchItem}>
-                  <FileText size={14} /> Projects
-                </Link>
-                <Link href={`/${userType}/settings`} className={commonStyles.searchItem}>
-                  <Settings size={14} /> Settings
-                </Link>
-              </div>
-            </div>
-          )}
+            );
+          })()}
         </div>
 
         <div className={commonStyles.rightSection}>

@@ -13,6 +13,10 @@ import { Clock, Banknote, Tag, User, CheckCircle } from 'lucide-react';
 import SimilarJobs from '@/app/components/Matching/SimilarJobs/SimilarJobs';
 import RecommendedFreelancers from '@/app/components/Matching/RecommendedFreelancers/RecommendedFreelancers';
 
+import commonStyles from './ProjectDetails.common.module.css';
+import lightStyles from './ProjectDetails.light.module.css';
+import darkStyles from './ProjectDetails.dark.module.css';
+
 export default function ProjectDetailsPage() {
   const { id } = useParams();
   const { resolvedTheme } = useTheme();
@@ -21,6 +25,8 @@ export default function ProjectDetailsPage() {
   const [loading, setLoading] = useState(true);
   const [showProposalBuilder, setShowProposalBuilder] = useState(false);
   const [user, setUser] = useState<any>(null);
+
+  const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   useEffect(() => {
     loadData();
@@ -42,23 +48,22 @@ export default function ProjectDetailsPage() {
   };
 
   if (loading) {
-    return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
+    return <div className={commonStyles.loadingState}>Loading...</div>;
   }
 
   if (!project) {
-    return <div className="text-center py-20">Project not found</div>;
+    return <div className={cn(commonStyles.notFoundState, themeStyles.notFoundState)}>Project not found</div>;
   }
 
   const isFreelancer = user?.role === 'freelancer';
-  const isDark = resolvedTheme === 'dark';
 
   if (showProposalBuilder) {
     return (
-      <div className="container mx-auto px-4 py-8">
+      <div className={commonStyles.proposalBuilderWrapper}>
         <Button 
           variant="ghost" 
           onClick={() => setShowProposalBuilder(false)}
-          className="mb-4"
+          className={commonStyles.backButton}
         >
           ← Back to Project Details
         </Button>
@@ -71,7 +76,6 @@ export default function ProjectDetailsPage() {
             max: project.budget_max || 0 
           }}
           onSubmit={() => {
-            // Redirect or show success
             router.push('/dashboard/proposals');
           }}
         />
@@ -81,23 +85,17 @@ export default function ProjectDetailsPage() {
 
   return (
     <PageTransition>
-      <div className={cn(
-        'min-h-screen py-8 px-4 md:px-8',
-        isDark ? 'bg-[#0a0a0c] text-white' : 'bg-gray-50 text-gray-900'
-      )}>
-        <div className="max-w-4xl mx-auto">
-          <div className={cn(
-            'rounded-xl p-8 mb-8',
-            isDark ? 'bg-white/5 border border-white/10' : 'bg-white shadow-sm border border-gray-200'
-          )}>
-            <div className="flex justify-between items-start mb-6">
+      <div className={cn(commonStyles.pageContainer, themeStyles.pageContainer)}>
+        <div className={commonStyles.innerContainer}>
+          <div className={cn(commonStyles.card, themeStyles.card)}>
+            <div className={commonStyles.cardHeader}>
               <div>
-                <h1 className="text-3xl font-bold mb-2">{project.title}</h1>
-                <div className="flex items-center gap-4 text-sm opacity-70">
-                  <span className="flex items-center gap-1">
+                <h1 className={commonStyles.title}>{project.title}</h1>
+                <div className={commonStyles.metaRow}>
+                  <span className={commonStyles.metaItem}>
                     <Clock size={14} /> Posted {new Date(project.created_at).toLocaleDateString()}
                   </span>
-                  <span className="flex items-center gap-1">
+                  <span className={commonStyles.metaItem}>
                     <Tag size={14} /> {project.category}
                   </span>
                 </div>
@@ -113,14 +111,11 @@ export default function ProjectDetailsPage() {
               )}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-              <div className={cn(
-                'p-4 rounded-lg',
-                isDark ? 'bg-white/5' : 'bg-gray-50'
-              )}>
-                <div className="text-sm opacity-70 mb-1">Budget</div>
-                <div className="font-bold text-lg flex items-center gap-2">
-                  <Banknote className="text-green-500" size={20} />
+            <div className={commonStyles.detailsGrid}>
+              <div className={cn(commonStyles.detailBox, themeStyles.detailBox)}>
+                <div className={commonStyles.detailLabel}>Budget</div>
+                <div className={commonStyles.detailValue}>
+                  <Banknote className={commonStyles.iconGreen} size={20} />
                   {project.budget_type === 'hourly' ? (
                     <span>${project.budget_min} - ${project.budget_max}/hr</span>
                   ) : (
@@ -129,44 +124,35 @@ export default function ProjectDetailsPage() {
                 </div>
               </div>
               
-              <div className={cn(
-                'p-4 rounded-lg',
-                isDark ? 'bg-white/5' : 'bg-gray-50'
-              )}>
-                <div className="text-sm opacity-70 mb-1">Experience Level</div>
-                <div className="font-bold text-lg flex items-center gap-2">
-                  <User className="text-blue-500" size={20} />
+              <div className={cn(commonStyles.detailBox, themeStyles.detailBox)}>
+                <div className={commonStyles.detailLabel}>Experience Level</div>
+                <div className={commonStyles.detailValue}>
+                  <User className={commonStyles.iconBlue} size={20} />
                   {project.experience_level}
                 </div>
               </div>
 
-              <div className={cn(
-                'p-4 rounded-lg',
-                isDark ? 'bg-white/5' : 'bg-gray-50'
-              )}>
-                <div className="text-sm opacity-70 mb-1">Status</div>
-                <div className="font-bold text-lg flex items-center gap-2">
-                  <CheckCircle className="text-purple-500" size={20} />
+              <div className={cn(commonStyles.detailBox, themeStyles.detailBox)}>
+                <div className={commonStyles.detailLabel}>Status</div>
+                <div className={commonStyles.detailValue}>
+                  <CheckCircle className={commonStyles.iconPurple} size={20} />
                   {project.status}
                 </div>
               </div>
             </div>
 
-            <div className="prose dark:prose-invert max-w-none mb-8">
-              <h3 className="text-xl font-bold mb-4">Description</h3>
-              <div className="whitespace-pre-wrap">{project.description}</div>
+            <div className={commonStyles.descriptionSection}>
+              <h3 className={commonStyles.sectionTitle}>Description</h3>
+              <div className={cn(commonStyles.descriptionText, themeStyles.descriptionText)}>{project.description}</div>
             </div>
 
             <div>
-              <h3 className="text-xl font-bold mb-4">Required Skills</h3>
-              <div className="flex flex-wrap gap-2">
+              <h3 className={commonStyles.sectionTitle}>Required Skills</h3>
+              <div className={commonStyles.skillsContainer}>
                 {project.skills?.map((skill: string) => (
                   <span 
                     key={skill}
-                    className={cn(
-                      'px-3 py-1 rounded-full text-sm',
-                      isDark ? 'bg-blue-500/20 text-blue-300' : 'bg-blue-100 text-blue-800'
-                    )}
+                    className={cn(commonStyles.skillTag, themeStyles.skillTag)}
                   >
                     {skill}
                   </span>
@@ -175,7 +161,6 @@ export default function ProjectDetailsPage() {
             </div>
           </div>
 
-          {/* AI Matching Section */}
           {user?.role === 'client' && (
              <RecommendedFreelancers projectId={id as string} />
           )}

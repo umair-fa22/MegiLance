@@ -149,7 +149,6 @@ export default function RecommendedFreelancers({
     return QUALITY_CONFIG.weak;
   };
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   if (loading && !isRefreshing) {

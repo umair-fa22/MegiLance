@@ -181,7 +181,6 @@ const ClientDashboard: React.FC = () => {
         <StatCard 
           title="Total Spent" 
           value={metrics.totalSpent} 
-          trend={12.5} 
           icon={DollarSign}
           sparklineData={spendingSparkline}
           sparklineColor="primary"
@@ -190,16 +189,13 @@ const ClientDashboard: React.FC = () => {
         <StatCard 
           title="Active Projects" 
           value={metrics.activeProjects.toString()} 
-          trend={-2.4} 
           icon={Briefcase}
-          sparklineData={[2, 3, 5, 4, 6, metrics.activeProjects]}
           sparklineColor="success"
           href="/client/projects"
         />
         <StatCard 
           title="Pending Proposals" 
           value={metrics.pendingProposals.toString()} 
-          trend={5.0} 
           icon={Clock}
           href="/client/projects"
         />

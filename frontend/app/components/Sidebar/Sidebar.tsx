@@ -1,7 +1,7 @@
 // @AI-HINT: This is the Sidebar component. It provides the main navigation for the application dashboard. It is designed to be responsive, themed, and accessible, with a collapsible state and mobile drawer support, using a per-component CSS module architecture.
 'use client';
 
-import React, { useState, useId, useCallback, useEffect } from 'react';
+import React, { useState, useId, useCallback, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 import { useTheme } from 'next-themes';
@@ -31,6 +31,14 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, toggleSidebar, userType,
   const uniqueId = useId();
   const sidebarId = `${uniqueId}-sidebar`;
   const navId = `${uniqueId}-nav`;
+  const sidebarRef = useRef<HTMLElement>(null);
+
+  // Kill phantom Turbopack animation that persists in compiled CSS
+  useEffect(() => {
+    if (sidebarRef.current) {
+      sidebarRef.current.style.animation = 'none';
+    }
+  }, []);
 
   // Handle keyboard shortcut for toggling sidebar
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
@@ -96,7 +104,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, toggleSidebar, userType,
 
   return (
     <aside
+      ref={sidebarRef}
       id={sidebarId}
+      data-sidebar="true"
+      data-mobile-open={isMobileOpen ? "true" : "false"}
       className={cn(
         commonStyles.sidebar,
         themeStyles.sidebar,

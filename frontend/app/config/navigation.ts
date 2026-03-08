@@ -77,73 +77,93 @@ export const footerNavItems = {
 // All users should use role-specific navigation (freelancer, client, or admin)
 export const dashboardNavItems: NavItem[] = [];
 
-// Freelancer-specific navigation
+// Freelancer-specific navigation — grouped with submenus for manageable sidebar
 export const freelancerNavItems: NavItem[] = [
   { label: 'Dashboard', href: '/freelancer/dashboard', icon: 'LayoutDashboard', section: 'Overview' },
   { label: 'Messages', href: '/freelancer/messages', icon: 'MessageSquare' },
   { label: 'Notifications', href: '/freelancer/notifications', icon: 'Bell' },
-  { label: 'Activity', href: '/freelancer/activity', icon: 'Activity' },
-  { label: 'Browse Jobs', href: '/freelancer/jobs', icon: 'Search', section: 'Work' },
-  { label: 'My Jobs', href: '/freelancer/my-jobs', icon: 'Briefcase' },
-  { label: 'Proposals', href: '/freelancer/proposals', icon: 'FileText' },
-  { label: 'Projects', href: '/freelancer/projects', icon: 'FolderGit2' },
-  { label: 'Contracts', href: '/freelancer/contracts', icon: 'FileText' },
-  { label: 'Gigs', href: '/freelancer/gigs', icon: 'Globe' },
-  { label: 'Job Alerts', href: '/freelancer/job-alerts', icon: 'Bell' },
-  { label: 'Saved Jobs', href: '/freelancer/saved-jobs', icon: 'Heart' },
-  { label: 'Time Tracking', href: '/freelancer/time-entries', icon: 'Clock', section: 'Finance' },
-  { label: 'Invoices', href: '/freelancer/invoices', icon: 'FileText' },
-  { label: 'Earnings', href: '/freelancer/earnings', icon: 'TrendingUp' },
-  { label: 'Wallet', href: '/freelancer/wallet', icon: 'Wallet' },
-  { label: 'Withdraw', href: '/freelancer/withdraw', icon: 'CreditCard' },
-  { label: 'Rate Cards', href: '/freelancer/rate-cards', icon: 'CreditCard' },
-  { label: 'Subscription', href: '/freelancer/subscription', icon: 'Star' },
-  { label: 'Profile', href: '/freelancer/profile', icon: 'User', section: 'Profile & Growth' },
+  { label: 'Jobs', href: '/freelancer/jobs', icon: 'Search', section: 'Work', submenu: [
+    { label: 'Browse Jobs', href: '/freelancer/jobs' },
+    { label: 'My Jobs', href: '/freelancer/my-jobs' },
+    { label: 'Saved Jobs', href: '/freelancer/saved-jobs' },
+    { label: 'Job Alerts', href: '/freelancer/job-alerts' },
+    { label: 'Gigs', href: '/freelancer/gigs' },
+  ]},
+  { label: 'Projects', href: '/freelancer/projects', icon: 'FolderGit2', submenu: [
+    { label: 'Active Projects', href: '/freelancer/projects' },
+    { label: 'Proposals', href: '/freelancer/proposals' },
+    { label: 'Contracts', href: '/freelancer/contracts' },
+  ]},
+  { label: 'Finance', href: '/freelancer/earnings', icon: 'Wallet', section: 'Finance', submenu: [
+    { label: 'Earnings', href: '/freelancer/earnings' },
+    { label: 'Invoices', href: '/freelancer/invoices' },
+    { label: 'Wallet', href: '/freelancer/wallet' },
+    { label: 'Withdraw', href: '/freelancer/withdraw' },
+    { label: 'Time Tracking', href: '/freelancer/time-entries' },
+    { label: 'Rate Cards', href: '/freelancer/rate-cards' },
+    { label: 'Subscription', href: '/freelancer/subscription' },
+  ]},
+  { label: 'Profile', href: '/freelancer/profile', icon: 'User', section: 'Growth' },
   { label: 'Portfolio', href: '/freelancer/portfolio', icon: 'Briefcase' },
   { label: 'Skills', href: '/freelancer/skills', icon: 'Wrench' },
-  { label: 'Assessments', href: '/freelancer/assessments', icon: 'Award' },
-  { label: 'Rank', href: '/freelancer/rank', icon: 'TrendingUp' },
-  { label: 'Reviews', href: '/freelancer/reviews', icon: 'Star' },
-  { label: 'Analytics', href: '/freelancer/analytics', icon: 'LineChart' },
+  { label: 'Analytics', href: '/freelancer/analytics', icon: 'LineChart', submenu: [
+    { label: 'Performance', href: '/freelancer/analytics' },
+    { label: 'Reviews', href: '/freelancer/reviews' },
+    { label: 'Rank', href: '/freelancer/rank' },
+    { label: 'Assessments', href: '/freelancer/assessments' },
+  ]},
   { label: 'Availability', href: '/freelancer/availability', icon: 'Calendar' },
   { label: 'Career', href: '/freelancer/career', icon: 'TrendingUp' },
-  { label: 'Teams', href: '/freelancer/teams', icon: 'Users', section: 'Collaboration' },
-  { label: 'Referrals', href: '/freelancer/referrals', icon: 'Heart' },
-  { label: 'Video Calls', href: '/freelancer/video-calls', icon: 'Video' },
-  { label: 'Files', href: '/freelancer/files', icon: 'FolderGit2' },
-  { label: 'Notes', href: '/freelancer/notes', icon: 'FileText' },
-  { label: 'Templates', href: '/freelancer/templates', icon: 'FileText', section: 'Tools' },
-  { label: 'Workflows', href: '/freelancer/workflows', icon: 'Settings' },
-  { label: 'Integrations', href: '/freelancer/integrations', icon: 'Globe' },
-  { label: 'Legal', href: '/freelancer/legal', icon: 'ShieldAlert' },
-  { label: 'Verification', href: '/freelancer/verification', icon: 'ShieldAlert' },
-  { label: 'Profile', href: '/freelancer/profile', icon: 'User', section: 'Account' },
+  { label: 'Collaborate', href: '/freelancer/teams', icon: 'Users', section: 'Tools', submenu: [
+    { label: 'Teams', href: '/freelancer/teams' },
+    { label: 'Video Calls', href: '/freelancer/video-calls' },
+    { label: 'Referrals', href: '/freelancer/referrals' },
+    { label: 'Files', href: '/freelancer/files' },
+    { label: 'Notes', href: '/freelancer/notes' },
+  ]},
+  { label: 'Automation', href: '/freelancer/templates', icon: 'Settings', submenu: [
+    { label: 'Templates', href: '/freelancer/templates' },
+    { label: 'Workflows', href: '/freelancer/workflows' },
+    { label: 'Integrations', href: '/freelancer/integrations' },
+  ]},
+  { label: 'Help', href: '/freelancer/help', icon: 'HelpCircle', section: 'Account' },
+  { label: 'Settings', href: '/freelancer/settings', icon: 'Settings', submenu: [
+    { label: 'General', href: '/freelancer/settings' },
+    { label: 'Security', href: '/freelancer/security' },
+    { label: 'Verification', href: '/freelancer/verification' },
+    { label: 'Legal', href: '/freelancer/legal' },
+  ]},
   { label: 'Support', href: '/freelancer/support', icon: 'HelpCircle' },
-  { label: 'Help', href: '/freelancer/help', icon: 'HelpCircle' },
-  { label: 'Settings', href: '/freelancer/settings', icon: 'Settings' },
-  { label: 'Security', href: '/freelancer/security', icon: 'Lock' },
 ];
 
-// Client-specific navigation
+// Client-specific navigation — grouped with submenus for clean sidebar
 export const clientNavItems: NavItem[] = [
   { label: 'Dashboard', href: '/client/dashboard', icon: 'LayoutDashboard', section: 'Overview' },
   { label: 'Messages', href: '/client/messages', icon: 'MessageSquare' },
   { label: 'Notifications', href: '/client/notifications', icon: 'Bell' },
-  { label: 'Post Job', href: '/client/post-job', icon: 'TrendingUp', section: 'Hiring' },
-  { label: 'Hire', href: '/client/hire', icon: 'Users' },
-  { label: 'Talent Search', href: '/client/search', icon: 'Search' },
-  { label: 'Browse Freelancers', href: '/client/freelancers', icon: 'Globe' },
-  { label: 'Projects', href: '/client/projects', icon: 'Briefcase', section: 'Projects' },
-  { label: 'Contracts', href: '/client/contracts', icon: 'FileText' },
-  { label: 'Invoices', href: '/client/invoices', icon: 'FileText' },
-  { label: 'Disputes', href: '/disputes', icon: 'Gavel' },
-  { label: 'Reports', href: '/client/reports', icon: 'BarChart3' },
-  { label: 'Payments', href: '/client/payments', icon: 'CreditCard', section: 'Finance' },
-  { label: 'Escrow', href: '/client/escrow', icon: 'Lock' },
-  { label: 'Wallet', href: '/client/wallet', icon: 'Wallet' },
-  { label: 'Reviews', href: '/client/reviews', icon: 'Star', section: 'Insights' },
-  { label: 'Analytics', href: '/client/analytics', icon: 'LineChart' },
-  { label: 'Favorites', href: '/favorites', icon: 'Heart' },
+  { label: 'Hiring', href: '/client/post-job', icon: 'TrendingUp', section: 'Hiring', submenu: [
+    { label: 'Post Job', href: '/client/post-job' },
+    { label: 'Hire', href: '/client/hire' },
+    { label: 'Talent Search', href: '/client/search' },
+    { label: 'Browse Freelancers', href: '/client/freelancers' },
+  ]},
+  { label: 'Projects', href: '/client/projects', icon: 'Briefcase', section: 'Projects', submenu: [
+    { label: 'All Projects', href: '/client/projects' },
+    { label: 'Contracts', href: '/client/contracts' },
+    { label: 'Invoices', href: '/client/invoices' },
+    { label: 'Disputes', href: '/disputes' },
+  ]},
+  { label: 'Finance', href: '/client/payments', icon: 'CreditCard', section: 'Finance', submenu: [
+    { label: 'Payments', href: '/client/payments' },
+    { label: 'Escrow', href: '/client/escrow' },
+    { label: 'Wallet', href: '/client/wallet' },
+  ]},
+  { label: 'Insights', href: '/client/reviews', icon: 'Star', section: 'Insights', submenu: [
+    { label: 'Reviews', href: '/client/reviews' },
+    { label: 'Analytics', href: '/client/analytics' },
+    { label: 'Reports', href: '/client/reports' },
+    { label: 'Favorites', href: '/favorites' },
+  ]},
   { label: 'Video Calls', href: '/client/video-calls', icon: 'Video', section: 'Account' },
   { label: 'Profile', href: '/client/profile', icon: 'User' },
   { label: 'Help', href: '/client/help', icon: 'HelpCircle' },
@@ -208,9 +228,11 @@ export const profileMenuItems: ProfileMenuItem[] = [
   { label: 'Notifications', href: '/notifications', icon: 'FaBell' },
   { label: 'Logout', onClick: () => {
     if (typeof window !== 'undefined') {
-      // Use the same clearAuthData as the rest of the app
-      const { clearAuthData } = require('@/lib/api');
-      clearAuthData();
+      // Clear all auth data and redirect
+      window.localStorage.removeItem('auth_token');
+      window.localStorage.removeItem('refresh_token');
+      window.localStorage.removeItem('user');
+      window.localStorage.removeItem('portal_area');
       window.location.href = '/login';
     }
   }, icon: 'FaSignOutAlt' },
@@ -251,41 +273,6 @@ export const getNavigationForUserType = (userType: 'freelancer' | 'client' | 'ad
     default:
       return publicNavItems;
   }
-};
-
-// Icon mapping for client-side resolution
-export const iconMap = {
-  FaHome: 'FaHome',
-  FaInfoCircle: 'FaInfoCircle',
-  FaMoneyBillWave: 'FaMoneyBillWave',
-  FaBlog: 'FaBlog',
-  FaEnvelope: 'FaEnvelope',
-  FaQuestionCircle: 'FaQuestionCircle',
-  FaTachometerAlt: 'FaTachometerAlt',
-  FaBriefcase: 'FaBriefcase',
-  FaComments: 'FaComments',
-  FaCreditCard: 'FaCreditCard',
-  FaCogs: 'FaCogs',
-  FaFileContract: 'FaFileContract',
-  FaPortrait: 'FaPortrait',
-  FaChartLine: 'FaChartLine',
-  FaWallet: 'FaWallet',
-  FaStar: 'FaStar',
-  FaBell: 'FaBell',
-  FaLifeRing: 'FaLifeRing',
-  FaRocket: 'FaRocket',
-  FaUsers: 'FaUsers',
-  FaRobot: 'FaRobot',
-  FaCalculator: 'FaCalculator',
-  FaShieldAlt: 'FaShieldAlt',
-  FaUser: 'FaUser',
-  FaSignOutAlt: 'FaSignOutAlt',
-  FaClock: 'FaClock',
-  FaFileInvoice: 'FaFileInvoice',
-  FaHeart: 'FaHeart',
-  FaLock: 'FaLock',
-  FaUndo: 'FaUndo',
-  FaTag: 'FaTag',
 };
 
 // Breadcrumb configuration

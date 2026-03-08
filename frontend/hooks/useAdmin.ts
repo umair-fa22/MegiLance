@@ -91,6 +91,9 @@ export function useAdminData() {
   const [recentActivity, setRecentActivity] = useState<RecentActivity[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const refetch = () => setRefreshKey(k => k + 1);
 
   useEffect(() => {
     let mounted = true;
@@ -188,7 +191,7 @@ export function useAdminData() {
 
     load();
     return () => { mounted = false; };
-  }, []);
+  }, [refreshKey]);
 
-  return { users, projects, payments, tickets, ai, kpis, systemStats, recentActivity, loading, error } as const;
+  return { users, projects, payments, tickets, ai, kpis, systemStats, recentActivity, loading, error, refetch } as const;
 } 

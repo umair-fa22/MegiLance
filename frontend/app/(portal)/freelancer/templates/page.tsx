@@ -173,7 +173,6 @@ export default function ProposalTemplatesPage() {
     setEditingTemplate({ ...editingTemplate, milestones: newMilestones });
   };
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   if (loading) {

@@ -288,13 +288,13 @@ class WorkflowAutomationService:
             templates = [t for t in templates if t.get("category") == category]
         return templates
     
-    async def get_template(self, template_id: str) -> Optional[Dict[str, Any]]:
+    def get_template(self, template_id: str) -> Optional[Dict[str, Any]]:
         for template in WORKFLOW_TEMPLATES:
             if template["id"] == template_id:
                 return template
         return None
     
-    async def get_template_categories(self) -> List[str]:
+    def get_template_categories(self) -> List[str]:
         categories = set()
         for template in WORKFLOW_TEMPLATES:
             categories.add(template.get("category", "Other"))
@@ -344,12 +344,12 @@ class WorkflowAutomationService:
         name: Optional[str] = None,
         customizations: Optional[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
-        template = await self.get_template(template_id)
+        template = self.get_template(template_id)
         if not template:
             return {"error": "Template not found"}
         
         workflow_name = name or f"{template['name']} (Copy)"
-        return await self.create_workflow(
+        return self.create_workflow(
             user_id=user_id,
             name=workflow_name,
             description=template.get("description"),
@@ -523,7 +523,7 @@ class WorkflowAutomationService:
                     pass
                 if trigger_cfg.get("type") == trigger_type.value:
                     matched += 1
-                    exec_result = await self._execute_actions(
+                    exec_result = self._execute_actions(
                         row["id"], row["user_id"],
                         json.loads(row.get("actions", "[]")),
                         json.loads(row.get("conditions", "[]")),
@@ -691,7 +691,7 @@ class WorkflowAutomationService:
         workflow_id: str,
         test_data: Optional[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
-        wf = await self.get_workflow(user_id, workflow_id)
+        wf = self.get_workflow(user_id, workflow_id)
         if not wf or wf.get("error"):
             return {"error": "Workflow not found"}
         
@@ -702,7 +702,7 @@ class WorkflowAutomationService:
         except ValueError:
             trigger_type = TriggerType.SCHEDULE
         
-        return await self._execute_actions(
+        return self._execute_actions(
             workflow_id, user_id,
             wf.get("actions", []),
             wf.get("conditions", []),
@@ -710,7 +710,7 @@ class WorkflowAutomationService:
         )
     
     # Trigger Types
-    async def get_available_triggers(self) -> List[Dict[str, Any]]:
+    def get_available_triggers(self) -> List[Dict[str, Any]]:
         """Get available trigger types"""
         triggers = []
         for trigger in TriggerType:
@@ -722,7 +722,7 @@ class WorkflowAutomationService:
         return triggers
     
     # Action Types
-    async def get_available_actions(self) -> List[Dict[str, Any]]:
+    def get_available_actions(self) -> List[Dict[str, Any]]:
         """Get available action types"""
         actions = []
         for action in ActionType:
@@ -734,7 +734,7 @@ class WorkflowAutomationService:
         return actions
     
     # Condition Operators
-    async def get_condition_operators(self) -> List[Dict[str, Any]]:
+    def get_condition_operators(self) -> List[Dict[str, Any]]:
         """Get available condition operators"""
         return [
             {"operator": op.value, "name": op.value.replace("_", " ").title()}

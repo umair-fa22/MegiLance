@@ -9,7 +9,7 @@ import Button from '@/app/components/Button/Button';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { useToaster } from '@/app/components/Toast/ToasterProvider';
-import { RotateCcw, CheckCircle, XCircle, DollarSign, Clock, Filter } from 'lucide-react';
+import { RotateCcw, CheckCircle, XCircle, DollarSign, Clock } from 'lucide-react';
 
 import commonStyles from '../AdminPayments.common.module.css';
 import lightStyles from '../AdminPayments.light.module.css';
@@ -27,11 +27,11 @@ interface Refund {
   updated_at?: string;
 }
 
-const statusColors: Record<string, string> = {
-  pending: '#F2C94C',
-  approved: '#27AE60',
-  rejected: '#e81123',
-  processed: '#4573df',
+const statusBadgeClass: Record<string, string> = {
+  pending: 'badgePending',
+  approved: 'badgeApproved',
+  rejected: 'badgeRejected',
+  processed: 'badgeProcessed',
 };
 
 const AdminPaymentsRefundsPage = () => {
@@ -59,9 +59,7 @@ const AdminPaymentsRefundsPage = () => {
 
   useEffect(() => { fetchRefunds(); }, [fetchRefunds]);
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
-  const isDark = resolvedTheme === 'dark';
 
   const handleAction = async (id: number, action: 'approve' | 'reject' | 'process') => {
     setActionLoading(id);
@@ -111,15 +109,15 @@ const AdminPaymentsRefundsPage = () => {
           <ScrollReveal delay={0.05}>
             <div className={commonStyles.summary}>
               <div className={cn(commonStyles.card, themeStyles.card)}>
-                <div className={cn(commonStyles.cardTitle, themeStyles.cardTitle)}><Clock size={14} style={{ display: 'inline', marginRight: 4 }} /> Pending</div>
+                <div className={cn(commonStyles.cardTitle, themeStyles.cardTitle)}><Clock size={14} className={commonStyles.cardTitleIcon} /> Pending</div>
                 <div className={cn(commonStyles.metric, themeStyles.metric)}>{pendingCount}</div>
               </div>
               <div className={cn(commonStyles.card, themeStyles.card)}>
-                <div className={cn(commonStyles.cardTitle, themeStyles.cardTitle)}><DollarSign size={14} style={{ display: 'inline', marginRight: 4 }} /> Approved Total</div>
+                <div className={cn(commonStyles.cardTitle, themeStyles.cardTitle)}><DollarSign size={14} className={commonStyles.cardTitleIcon} /> Approved Total</div>
                 <div className={cn(commonStyles.metric, themeStyles.metric)}>${approvedTotal.toFixed(2)}</div>
               </div>
               <div className={cn(commonStyles.card, themeStyles.card)}>
-                <div className={cn(commonStyles.cardTitle, themeStyles.cardTitle)}><RotateCcw size={14} style={{ display: 'inline', marginRight: 4 }} /> Total Requests</div>
+                <div className={cn(commonStyles.cardTitle, themeStyles.cardTitle)}><RotateCcw size={14} className={commonStyles.cardTitleIcon} /> Total Requests</div>
                 <div className={cn(commonStyles.metric, themeStyles.metric)}>{total}</div>
               </div>
             </div>
@@ -141,27 +139,27 @@ const AdminPaymentsRefundsPage = () => {
                 </thead>
                 <tbody>
                   {loading ? (
-                    <tr><td className={cn(commonStyles.td, themeStyles.td)} colSpan={7} style={{ textAlign: 'center', padding: '2rem' }}>Loading...</td></tr>
+                    <tr><td className={cn(commonStyles.td, themeStyles.td, commonStyles.emptyCell)} colSpan={7}>Loading...</td></tr>
                   ) : refunds.length === 0 ? (
-                    <tr><td className={cn(commonStyles.td, themeStyles.td)} colSpan={7} style={{ textAlign: 'center', padding: '2rem' }}>No refund requests found.</td></tr>
+                    <tr><td className={cn(commonStyles.td, themeStyles.td, commonStyles.emptyCell)} colSpan={7}>No refund requests found.</td></tr>
                   ) : (
                     refunds.map((r) => (
                       <tr key={r.id} className={commonStyles.row}>
                         <td className={cn(commonStyles.td, themeStyles.td)}>#{r.id}</td>
                         <td className={cn(commonStyles.td, themeStyles.td)}>#{r.payment_id}</td>
                         <td className={cn(commonStyles.td, themeStyles.td)}>${r.amount.toFixed(2)}</td>
-                        <td className={cn(commonStyles.td, themeStyles.td)} style={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis' }}>{r.reason}</td>
+                        <td className={cn(commonStyles.td, themeStyles.td, commonStyles.cellTruncate)}>{r.reason}</td>
                         <td className={cn(commonStyles.td, themeStyles.td)}>
-                          <span className={cn(commonStyles.badge, themeStyles.badge)} style={{ borderColor: statusColors[r.status] || '#888', color: statusColors[r.status] || '#888' }}>
+                          <span className={cn(commonStyles.badge, themeStyles.badge, commonStyles[statusBadgeClass[r.status] || 'badgeCancelled'])}>
                             {r.status}
                           </span>
                         </td>
                         <td className={cn(commonStyles.td, themeStyles.td)}>{new Date(r.created_at).toLocaleDateString()}</td>
                         <td className={cn(commonStyles.td, themeStyles.td)}>
                           {r.status === 'pending' && (
-                            <div style={{ display: 'flex', gap: 6 }}>
-                              <button onClick={() => handleAction(r.id, 'approve')} disabled={actionLoading === r.id} title="Approve" aria-label="Approve refund" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#27AE60' }}><CheckCircle size={18} /></button>
-                              <button onClick={() => handleAction(r.id, 'reject')} disabled={actionLoading === r.id} title="Reject" aria-label="Reject refund" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#e81123' }}><XCircle size={18} /></button>
+                            <div className={commonStyles.actionBtnGroup}>
+                              <button className={cn(commonStyles.actionBtn, commonStyles.approveBtn)} onClick={() => handleAction(r.id, 'approve')} disabled={actionLoading === r.id} title="Approve" aria-label="Approve refund"><CheckCircle size={18} /></button>
+                              <button className={cn(commonStyles.actionBtn, commonStyles.rejectBtn)} onClick={() => handleAction(r.id, 'reject')} disabled={actionLoading === r.id} title="Reject" aria-label="Reject refund"><XCircle size={18} /></button>
                             </div>
                           )}
                         </td>
@@ -172,9 +170,9 @@ const AdminPaymentsRefundsPage = () => {
               </table>
             </div>
             {total > 20 && (
-              <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: '1rem' }}>
+              <div className={commonStyles.pagination}>
                 <Button variant="ghost" size="sm" onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}>Previous</Button>
-                <span style={{ padding: '8px 12px', fontSize: 14, color: isDark ? '#ccc' : '#555' }}>Page {page}</span>
+                <span className={cn(commonStyles.pageIndicator, themeStyles.pageIndicator)}>Page {page}</span>
                 <Button variant="ghost" size="sm" onClick={() => setPage(p => p + 1)} disabled={refunds.length < 20}>Next</Button>
               </div>
             )}

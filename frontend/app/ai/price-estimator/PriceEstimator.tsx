@@ -238,7 +238,6 @@ const PriceEstimator: React.FC = () => {
     });
   };
 
-  if (!resolvedTheme) return null;
 
   return (
     <PageTransition>

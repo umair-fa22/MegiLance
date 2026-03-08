@@ -72,7 +72,6 @@ const BarChart: React.FC<BarChartProps> = ({ data, title, className, showValues 
   // Generate chart description for screen readers
   const chartDescription = data.map(item => `${item.label}: ${item.value}%`).join(', ');
 
-  if (!resolvedTheme) return null;
 
   return (
     <div

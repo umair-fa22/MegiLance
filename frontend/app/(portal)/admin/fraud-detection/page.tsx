@@ -180,7 +180,7 @@ export default function FraudDetectionPage() {
     }
   };
 
-  if (!mounted || !resolvedTheme) return null;
+  if (!mounted) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   const filteredTransactions = transactions.filter(t => {

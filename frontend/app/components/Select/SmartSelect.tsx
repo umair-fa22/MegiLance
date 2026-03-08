@@ -343,7 +343,7 @@ const SmartSelect = forwardRef<HTMLDivElement, SmartSelectProps>(
       },
       [onSearch]
     );
-
+  
     // Render selected value(s)
     const renderSelectedValue = () => {
       if (selectedOptions.length === 0) {

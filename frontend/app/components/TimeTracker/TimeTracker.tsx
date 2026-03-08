@@ -158,7 +158,6 @@ const TimeTracker: React.FC = () => {
     return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   };
 
-  if (!resolvedTheme) return null;
 
   return (
     <div className={cn(commonStyles.container, themeStyles.container)}>

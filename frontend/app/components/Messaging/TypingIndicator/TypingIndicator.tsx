@@ -10,7 +10,6 @@ import darkStyles from './TypingIndicator.dark.module.css';
 
 const TypingIndicator: React.FC = () => {
   const { resolvedTheme } = useTheme();
-  if (!resolvedTheme) return null;
 
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 

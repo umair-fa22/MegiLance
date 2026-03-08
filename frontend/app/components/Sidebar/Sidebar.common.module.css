@@ -18,6 +18,7 @@
   border-right-width: 1px;
   border-right-style: solid;
   will-change: width, transform;
+  animation: none !important;
 }
 
 /* ===== SIZE STATES ===== */
@@ -257,6 +258,7 @@
 @media (max-width: 768px) {
   .sidebar {
     z-index: 200;
+    display: none !important;
     transform: translateX(-100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -275,6 +277,7 @@
   
   /* Mobile drawer open state */
   .sidebarMobileOpen {
+    display: flex !important;
     transform: translateX(0) !important;
     width: 280px !important;
     box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);

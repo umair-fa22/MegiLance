@@ -58,7 +58,6 @@ class ExportJobResponse(BaseModel):
 # API Endpoints
 @router.get("/formats")
 async def get_export_formats(
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get available export formats."""
@@ -90,7 +89,6 @@ async def get_export_formats(
 async def request_export(
     request: ExportRequest,
     background_tasks: BackgroundTasks,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Request full data export."""
@@ -135,7 +133,6 @@ async def request_export(
 @router.get("/export/status/{job_id}")
 async def get_export_status(
     job_id: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Check export job status."""
@@ -155,7 +152,6 @@ async def get_export_status(
 @router.get("/export/download/{job_id}")
 async def download_export(
     job_id: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Download completed export."""
@@ -178,7 +174,6 @@ async def download_export(
 @router.get("/export/history")
 async def get_export_history(
     limit: int = 10,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get user's export history."""
@@ -195,7 +190,6 @@ async def get_export_history(
 @router.post("/import/validate")
 async def validate_import(
     request: ImportRequest,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Validate import data before processing."""
@@ -212,7 +206,6 @@ async def validate_import(
 @router.post("/import")
 async def import_data(
     request: ImportRequest,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Import data from backup."""
@@ -246,7 +239,6 @@ async def import_data(
 @router.post("/gdpr/request-deletion")
 async def request_data_deletion(
     request: DataDeletionRequest,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Request account and data deletion (GDPR)."""
@@ -268,7 +260,6 @@ async def request_data_deletion(
 
 @router.get("/gdpr/my-data")
 async def get_my_data_summary(
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get summary of all stored user data (GDPR)."""
@@ -282,7 +273,6 @@ async def get_my_data_summary(
 @router.post("/backup/schedule")
 async def schedule_backup(
     frequency: str = "weekly",  # daily, weekly, monthly
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Schedule automatic backups."""
@@ -306,7 +296,6 @@ async def schedule_backup(
 
 @router.delete("/backup/schedule")
 async def cancel_backup_schedule(
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Cancel scheduled backups."""

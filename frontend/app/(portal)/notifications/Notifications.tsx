@@ -149,7 +149,6 @@ const Notifications: React.FC = () => {
     notify({ title: 'Archived', description: n ? n.title : 'Notification archived', variant: 'info', duration: 2200 });
   };
 
-  if (!resolvedTheme) return null;
 
   if (loading) {
     return (

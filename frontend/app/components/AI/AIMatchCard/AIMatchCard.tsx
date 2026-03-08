@@ -80,7 +80,7 @@ const AIMatchCard: React.FC<AIMatchCardProps> = ({
     }
   }, [mounted, freelancer.matchScore]);
 
-  if (!mounted || !resolvedTheme) return null;
+  if (!mounted) return null;
 
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 

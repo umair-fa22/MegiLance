@@ -64,7 +64,6 @@ async def get_my_feed(
     Activities are aggregated and sorted by recency.
     """
     result = await activity_feed_service.get_feed(
-        ,
         user_id=str(current_user.get("id")),
         include_own=include_own,
         limit=limit
@@ -84,7 +83,6 @@ async def get_my_activities(
     types_list = activity_types.split(",") if activity_types else None
     
     result = await activity_feed_service.get_user_activities(
-        ,
         user_id=str(current_user.get("id")),
         viewer_id=str(current_user.get("id")),
         activity_types=types_list,
@@ -112,7 +110,6 @@ async def get_user_activities(
     types_list = activity_types.split(",") if activity_types else None
     
     result = await activity_feed_service.get_user_activities(
-        ,
         user_id=user_id,
         viewer_id=str(current_user.get("id")),
         activity_types=types_list,
@@ -140,7 +137,6 @@ async def create_activity(
     """
     try:
         result = await activity_feed_service.create_activity(
-            ,
             user_id=str(current_user.get("id")),
             activity_type=request.activity_type,
             data=request.data,
@@ -161,7 +157,6 @@ async def delete_activity(
     """Delete own activity."""
     try:
         result = await activity_feed_service.delete_activity(
-            ,
             user_id=str(current_user.get("id")),
             activity_id=activity_id
         )
@@ -181,7 +176,6 @@ async def follow_user(
     """Follow a user to see their activities in your feed."""
     try:
         result = await activity_feed_service.follow_user(
-            ,
             follower_id=str(current_user.get("id")),
             target_id=user_id
         )
@@ -198,7 +192,6 @@ async def unfollow_user(
 ):
     """Unfollow a user."""
     result = await activity_feed_service.unfollow_user(
-        ,
         follower_id=str(current_user.get("id")),
         target_id=user_id
     )
@@ -214,7 +207,6 @@ async def get_my_followers(
 ):
     """Get list of users following you."""
     result = await activity_feed_service.get_followers(
-        ,
         user_id=str(current_user.get("id")),
         limit=limit,
         offset=offset
@@ -231,7 +223,6 @@ async def get_my_following(
 ):
     """Get list of users you're following."""
     result = await activity_feed_service.get_following(
-        ,
         user_id=str(current_user.get("id")),
         limit=limit,
         offset=offset
@@ -249,7 +240,6 @@ async def get_user_followers(
 ):
     """Get followers of a specific user."""
     result = await activity_feed_service.get_followers(
-        ,
         user_id=user_id,
         limit=limit,
         offset=offset
@@ -267,7 +257,6 @@ async def get_user_following(
 ):
     """Get users that a specific user follows."""
     result = await activity_feed_service.get_following(
-        ,
         user_id=user_id,
         limit=limit,
         offset=offset
@@ -286,7 +275,6 @@ async def like_activity(
     """Like an activity."""
     try:
         result = await activity_feed_service.like_activity(
-            ,
             user_id=str(current_user.get("id")),
             activity_id=activity_id
         )
@@ -304,7 +292,6 @@ async def unlike_activity(
     """Unlike an activity."""
     try:
         result = await activity_feed_service.unlike_activity(
-            ,
             user_id=str(current_user.get("id")),
             activity_id=activity_id
         )
@@ -323,7 +310,6 @@ async def comment_on_activity(
     """Add a comment to an activity."""
     try:
         result = await activity_feed_service.comment_on_activity(
-            ,
             user_id=str(current_user.get("id")),
             activity_id=activity_id,
             comment=sanitize_text(request.comment, 1000)
@@ -342,7 +328,6 @@ async def get_privacy_settings(
 ):
     """Get current privacy settings."""
     result = await activity_feed_service.get_privacy_settings(
-        ,
         user_id=str(current_user.get("id"))
     )
     return result
@@ -365,7 +350,6 @@ async def update_privacy_settings(
     try:
         settings = request.dict(exclude_unset=True)
         result = await activity_feed_service.update_privacy_settings(
-            ,
             user_id=str(current_user.get("id")),
             settings=settings
         )
@@ -383,7 +367,6 @@ async def get_activity_stats(
 ):
     """Get activity statistics for current user."""
     result = await activity_feed_service.get_activity_stats(
-        ,
         user_id=str(current_user.get("id"))
     )
     return result
@@ -397,7 +380,6 @@ async def get_user_activity_stats(
 ):
     """Get activity statistics for a specific user."""
     result = await activity_feed_service.get_activity_stats(
-        ,
         user_id=user_id
     )
     return result
@@ -416,7 +398,6 @@ async def get_trending_activities(
     Ranked by engagement (likes and comments).
     """
     result = await activity_feed_service.get_trending_activities(
-        ,
         time_range_hours=hours,
         limit=limit
     )

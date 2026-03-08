@@ -26,7 +26,6 @@ export interface EmptyStateProps {
 
 const EmptyState: React.FC<EmptyStateProps> = ({ icon, animationData, animationWidth = 180, animationHeight = 180, title, description, action, className }) => {
   const { resolvedTheme } = useTheme();
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   return (

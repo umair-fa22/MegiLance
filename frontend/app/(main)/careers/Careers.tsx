@@ -84,7 +84,6 @@ const values = [
 
 const Careers: React.FC = () => {
   const { resolvedTheme } = useTheme();
-  if (!resolvedTheme) return null;
   const themed = resolvedTheme === 'dark' ? dark : light;
 
   return (

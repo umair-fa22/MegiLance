@@ -94,7 +94,6 @@ const Chatbot: React.FC = () => {
     startConversation();
   }, [API_URL]);
 
-  if (!resolvedTheme) return null;
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });

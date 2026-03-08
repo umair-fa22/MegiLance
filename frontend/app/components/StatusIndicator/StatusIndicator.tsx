@@ -33,7 +33,6 @@ const StatusIndicator: React.FC<StatusIndicatorProps> = ({ status, className }) 
   const config = statusConfig[status];
   
   // Prevent hydration mismatch or flash
-  if (!resolvedTheme) return null;
 
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 

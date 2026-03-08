@@ -75,7 +75,6 @@ const LinkedAccounts: React.FC = () => {
     }
   };
 
-  if (!resolvedTheme) return null;
 
   return (
     <div className={cn(common.section, themed.section)}>

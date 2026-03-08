@@ -45,7 +45,6 @@ const JobCard: React.FC<JobCardProps> = ({
   const { resolvedTheme } = useTheme();
   const [isSaved, setIsSaved] = useState(false);
 
-  if (!resolvedTheme) return null;
 
   const themeStyles = resolvedTheme === 'dark' ? dark : light;
 

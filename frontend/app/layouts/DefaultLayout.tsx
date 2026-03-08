@@ -18,7 +18,6 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   const { resolvedTheme } = useTheme();
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
-  if (!resolvedTheme) return null;
 
   return (
     <div className={cn(commonStyles.layout, themeStyles.layout)}>

@@ -151,7 +151,6 @@ const ContractDetailsPage: React.FC = () => {
     return contract.terms;
   }, [contract]);
 
-  if (!resolvedTheme) return null;
 
   if (loading) {
     return (

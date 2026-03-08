@@ -222,7 +222,6 @@ const FileUpload: React.FC<FileUploadProps> = ({
     }
   };
 
-  if (!resolvedTheme) return null;
 
   return (
     <div className={styles.container}>

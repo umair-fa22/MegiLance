@@ -96,7 +96,6 @@ const AIMonitoring: React.FC = () => {
     return cn(common.badge, common.badgeInfo);
   };
 
-  if (!resolvedTheme) return null;
 
   return (
     <PageTransition className={cn(common.page, themed.themeWrapper)}>

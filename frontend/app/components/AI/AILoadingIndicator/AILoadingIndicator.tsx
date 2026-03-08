@@ -69,7 +69,6 @@ export function AILoadingIndicator({
 }: AILoadingIndicatorProps) {
   const { resolvedTheme } = useTheme();
   
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   const renderIndicator = () => {
@@ -181,7 +180,6 @@ export function AIConfidenceMeter({
 }: AIConfidenceMeterProps) {
   const { resolvedTheme } = useTheme();
   
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   const clampedValue = Math.min(100, Math.max(0, value));
@@ -222,7 +220,6 @@ export function AISkeleton({
 }: AISkeletonProps) {
   const { resolvedTheme } = useTheme();
   
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   const typeClasses = {

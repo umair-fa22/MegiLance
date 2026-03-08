@@ -236,81 +236,120 @@ const MiniBarChart: React.FC<{ data: RevenueDataPoint[]; themeStyles: Record<str
 const AdminDashboard: React.FC = () => {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const { kpis, recentActivity, systemStats, loading } = useAdminData();
+  const { kpis, recentActivity, systemStats, loading, refetch } = useAdminData();
   const [lastRefresh, setLastRefresh] = useState<Date>(new Date());
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState<'overview' | 'health' | 'security'>('overview');
   const refreshInterval = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Simulated real-time health data (in production, poll /api/health/ready)
+  // System health data — polled from real backend endpoints
   const [healthData, setHealthData] = useState<SystemHealthData>({
     apiStatus: 'healthy',
     dbStatus: 'healthy',
-    cacheHitRate: 94.2,
-    avgResponseMs: 127,
-    p95ResponseMs: 312,
-    p99ResponseMs: 890,
-    activeConnections: 47,
-    memoryUsageMB: 256,
-    cpuUsagePercent: 23,
-    diskUsagePercent: 41,
-    uptime: '99.97%',
+    cacheHitRate: 0,
+    avgResponseMs: 0,
+    p95ResponseMs: 0,
+    p99ResponseMs: 0,
+    activeConnections: 0,
+    memoryUsageMB: 0,
+    cpuUsagePercent: 0,
+    diskUsagePercent: 0,
+    uptime: '—',
     lastChecked: new Date().toISOString(),
-    errorRate: 0.12,
-    requestsPerMin: 842,
+    errorRate: 0,
+    requestsPerMin: 0,
   });
 
-  // Revenue trend data
+  const fetchHealthData = useCallback(async () => {
+    try {
+      const [healthReady, healthMetrics] = await Promise.all([
+        fetch('/backend/api/health/ready').then(r => r.json()).catch(() => null),
+        fetch('/backend/api/health/metrics').then(r => r.json()).catch(() => null),
+      ]);
+
+      setHealthData(prev => ({
+        ...prev,
+        apiStatus: healthReady?.status === 'ready' ? 'healthy' : healthReady?.status === 'degraded' ? 'degraded' : prev.apiStatus,
+        dbStatus: healthReady?.db === 'ok' ? 'healthy' : 'degraded',
+        uptime: healthMetrics?.uptime_seconds
+          ? `${(healthMetrics.uptime_seconds / 86400).toFixed(1)}d`
+          : prev.uptime,
+        lastChecked: new Date().toISOString(),
+      }));
+    } catch {
+      // Keep last known state on failure
+    }
+  }, []);
+
+  // Revenue trend data — derived from systemStats with deterministic growth curve
   const revenueData: RevenueDataPoint[] = useMemo(() => {
     const months = ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'];
-    const totalRev = systemStats?.total_revenue ?? 50000;
+    const totalRev = systemStats?.total_revenue ?? 0;
+    const weights = [0.60, 0.68, 0.75, 0.80, 0.85, 0.90, 0.95, 1.00];
     return months.map((m, i) => ({
       month: m,
-      revenue: Math.round(totalRev * (0.6 + (i / months.length) * 0.5 + Math.random() * 0.15)),
-      transactions: Math.round(100 + i * 25 + Math.random() * 50),
+      revenue: Math.round(totalRev * weights[i] / months.length),
+      transactions: Math.round(80 + i * 30),
     }));
   }, [systemStats]);
 
-  // Geographic distribution
-  const geoData: GeoDistribution[] = useMemo(() => [
-    { country: 'United States', code: 'US', users: 1240, revenue: 120000, percentage: 35 },
-    { country: 'United Kingdom', code: 'GB', users: 680, revenue: 68000, percentage: 19 },
-    { country: 'Pakistan', code: 'PK', users: 520, revenue: 32000, percentage: 15 },
-    { country: 'India', code: 'IN', users: 410, revenue: 28000, percentage: 12 },
-    { country: 'Germany', code: 'DE', users: 290, revenue: 35000, percentage: 8 },
-    { country: 'Others', code: 'XX', users: 380, revenue: 29000, percentage: 11 },
-  ], []);
+  // Geographic distribution — fetched from real analytics API
+  const [geoData, setGeoData] = useState<GeoDistribution[]>([]);
 
-  // Security alerts
-  const [securityAlerts] = useState<SecurityAlert[]>([
-    { id: '1', type: 'brute_force', severity: 'high', message: '15 failed login attempts from 192.168.1.x', timestamp: new Date(Date.now() - 300000).toISOString(), resolved: false },
-    { id: '2', type: 'suspicious_payment', severity: 'medium', message: 'Unusual payment pattern: 5 transactions in 2 min', timestamp: new Date(Date.now() - 1200000).toISOString(), resolved: false },
-    { id: '3', type: 'rate_limit', severity: 'low', message: 'API rate limit reached for 3 IP addresses', timestamp: new Date(Date.now() - 3600000).toISOString(), resolved: true },
-  ]);
+  // Security alerts — fetched from fraud detection API
+  const [securityAlerts, setSecurityAlerts] = useState<SecurityAlert[]>([]);
 
   useEffect(() => { setMounted(true); }, []);
 
-  // Auto-refresh health every 30s
+  // Fetch geo distribution and security alerts on mount 
   useEffect(() => {
-    refreshInterval.current = setInterval(() => {
-      setHealthData(prev => ({
-        ...prev,
-        avgResponseMs: Math.max(50, prev.avgResponseMs + Math.round((Math.random() - 0.5) * 20)),
-        activeConnections: Math.max(10, prev.activeConnections + Math.round((Math.random() - 0.5) * 8)),
-        cpuUsagePercent: Math.min(95, Math.max(5, prev.cpuUsagePercent + Math.round((Math.random() - 0.5) * 6))),
-        requestsPerMin: Math.max(100, prev.requestsPerMin + Math.round((Math.random() - 0.5) * 80)),
-        cacheHitRate: Math.min(99.9, Math.max(80, prev.cacheHitRate + (Math.random() - 0.5) * 2)),
-        lastChecked: new Date().toISOString(),
-      }));
-    }, 30000);
-    return () => { if (refreshInterval.current) clearInterval(refreshInterval.current); };
+    async function loadExtras() {
+      try {
+        const [geoRes, fraudRes] = await Promise.all([
+          fetch('/backend/api/analytics/users/location-distribution').then(r => r.ok ? r.json() : null).catch(() => null),
+          fetch('/backend/api/admin/dashboard/fraud?limit=10').then(r => r.ok ? r.json() : null).catch(() => null),
+        ]);
+
+        if (geoRes && Array.isArray(geoRes)) {
+          const totalUsers = geoRes.reduce((sum: number, g: { count: number }) => sum + g.count, 0) || 1;
+          setGeoData(geoRes.slice(0, 6).map((g: { location: string; count: number }) => ({
+            country: g.location || 'Unknown',
+            code: g.location?.substring(0, 2).toUpperCase() || 'XX',
+            users: g.count,
+            revenue: 0,
+            percentage: Math.round((g.count / totalUsers) * 100),
+          })));
+        }
+
+        if (fraudRes && Array.isArray(fraudRes)) {
+          setSecurityAlerts(fraudRes.map((a: { id?: string; reason?: string; timestamp?: string; severity?: string }, i: number) => ({
+            id: String(a.id || i),
+            type: 'suspicious_payment' as const,
+            severity: (a.severity as SecurityAlert['severity']) || 'medium',
+            message: a.reason || 'Flagged transaction',
+            timestamp: a.timestamp || new Date().toISOString(),
+            resolved: false,
+          })));
+        }
+      } catch {
+        // Graceful degradation — empty arrays are fine
+      }
+    }
+    loadExtras();
   }, []);
+
+  // Poll real health data every 30s
+  useEffect(() => {
+    fetchHealthData();
+    refreshInterval.current = setInterval(fetchHealthData, 30000);
+    return () => { if (refreshInterval.current) clearInterval(refreshInterval.current); };
+  }, [fetchHealthData]);
 
   const handleRefresh = useCallback(() => {
     setIsRefreshing(true);
     setLastRefresh(new Date());
-    setTimeout(() => setIsRefreshing(false), 1500);
-  }, []);
+    Promise.all([refetch(), fetchHealthData()]).finally(() => setIsRefreshing(false));
+  }, [refetch, fetchHealthData]);
 
   const themeStyles = mounted && resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
@@ -331,16 +370,12 @@ const AdminDashboard: React.FC = () => {
   };
 
   const stats = useMemo(() => {
-    const sparkUsers = [120, 145, 180, 210, 250, 285, 310, 340];
-    const sparkRevenue = [3200, 3800, 4100, 3900, 4500, 5200, 5800, 6100];
-    const sparkProjects = [45, 52, 60, 58, 72, 80, 85, 90];
-
     if (!kpis || kpis.length === 0) return [
-      { title: 'Total Users', value: '—', trend: '+12.5%', icon: Users, accent: 'blue' as const, sparkline: sparkUsers, subtitle: 'vs last month' },
-      { title: 'Revenue', value: '—', trend: '+8.3%', icon: DollarSign, accent: 'green' as const, sparkline: sparkRevenue, subtitle: 'Monthly recurring' },
-      { title: 'Active Projects', value: '—', trend: '+5.2%', icon: Briefcase, accent: 'amber' as const, sparkline: sparkProjects, subtitle: 'Currently active' },
-      { title: 'System Health', value: '99.97%', trend: undefined, icon: Activity, accent: 'blue' as const, sparkline: [99.9, 99.8, 99.95, 99.97, 99.99, 99.95, 99.97, 99.97], subtitle: 'Last 30 days' },
-      { title: 'Contracts', value: String(systemStats?.total_contracts ?? '—'), trend: '+15.1%', icon: FileText, accent: 'purple' as const, sparkline: [20, 28, 35, 42, 38, 45, 52, 58], subtitle: 'Completed this month' },
+      { title: 'Total Users', value: '—', trend: undefined, icon: Users, accent: 'blue' as const, sparkline: undefined, subtitle: 'Loading...' },
+      { title: 'Revenue', value: '—', trend: undefined, icon: DollarSign, accent: 'green' as const, sparkline: undefined, subtitle: 'Loading...' },
+      { title: 'Active Projects', value: '—', trend: undefined, icon: Briefcase, accent: 'amber' as const, sparkline: undefined, subtitle: 'Loading...' },
+      { title: 'System Health', value: healthData.uptime, trend: undefined, icon: Activity, accent: 'blue' as const, sparkline: undefined, subtitle: 'Uptime' },
+      { title: 'Contracts', value: String(systemStats?.total_contracts ?? '—'), trend: undefined, icon: FileText, accent: 'purple' as const, sparkline: undefined, subtitle: 'Total completed' },
       { title: 'Pending Proposals', value: String(systemStats?.pending_proposals ?? '—'), trend: undefined, icon: Clock, accent: 'indigo' as const, sparkline: undefined, subtitle: 'Awaiting review' },
     ];
     return [
@@ -350,13 +385,13 @@ const AdminDashboard: React.FC = () => {
         trend: k.trend,
         icon: iconForLabel(k.label),
         accent: accentForLabel(k.label),
-        sparkline: k.label.includes('Users') ? sparkUsers : k.label.includes('Revenue') ? sparkRevenue : sparkProjects,
-        subtitle: k.label.includes('Users') ? 'vs last month' : k.label.includes('Revenue') ? 'Monthly recurring' : 'Currently active',
+        sparkline: undefined,
+        subtitle: k.label.includes('Users') ? 'Registered accounts' : k.label.includes('Revenue') ? 'Platform total' : k.label.includes('Projects') ? 'Currently active' : 'Awaiting review',
       })),
-      { title: 'Total Contracts', value: String(systemStats?.total_contracts ?? '—'), trend: '+15.1%', icon: FileText, accent: 'purple' as const, sparkline: [20, 28, 35, 42, 38, 45, 52, 58], subtitle: 'Completed this month' },
-      { title: 'Error Rate', value: `${healthData.errorRate}%`, trend: healthData.errorRate < 0.5 ? undefined : '+0.05%', icon: AlertCircle, accent: healthData.errorRate < 0.5 ? ('green' as const) : ('red' as const), sparkline: [0.05, 0.08, 0.12, 0.09, 0.11, 0.15, 0.12, 0.12], subtitle: 'Last 24 hours' },
+      { title: 'Total Contracts', value: String(systemStats?.total_contracts ?? '—'), trend: undefined, icon: FileText, accent: 'purple' as const, sparkline: undefined, subtitle: 'All time' },
+      { title: 'Error Rate', value: healthData.errorRate ? `${healthData.errorRate}%` : '—', trend: undefined, icon: AlertCircle, accent: healthData.errorRate < 0.5 ? ('green' as const) : ('red' as const), sparkline: undefined, subtitle: 'Last 24 hours' },
     ];
-  }, [kpis, systemStats, healthData.errorRate]);
+  }, [kpis, systemStats, healthData.errorRate, healthData.uptime]);
 
   const quickActions: Omit<QuickActionProps, 'themeStyles'>[] = [
     { label: 'Manage Users', href: '/admin/users', icon: Users, description: 'View, suspend, or verify accounts', badge: String(systemStats?.total_users ?? '') },

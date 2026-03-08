@@ -28,7 +28,6 @@ export default function AuthError({
     console.error('Auth error:', error);
   }, [error]);
 
-  if (!resolvedTheme) return null;
 
   return (
     <div

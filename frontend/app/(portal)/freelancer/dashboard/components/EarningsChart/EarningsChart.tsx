@@ -35,7 +35,9 @@ const CustomTooltip = ({ active, payload, label, themeStyles }: any) => {
 const EarningsChart: React.FC<EarningsChartProps> = ({ data }) => {
   const { resolvedTheme } = useTheme();
   const themeStyles = resolvedTheme === 'dark' ? dark : light;
-  const isDark = resolvedTheme === 'dark';
+  const chartColors = resolvedTheme === 'dark'
+    ? { grid: '#333', tick: '#a0a0a0' }
+    : { grid: '#e9ecef', tick: '#6c757d' };
 
   return (
     <div className={common.container}>
@@ -53,19 +55,19 @@ const EarningsChart: React.FC<EarningsChartProps> = ({ data }) => {
           <CartesianGrid 
             strokeDasharray="3 3" 
             vertical={false} 
-            stroke={isDark ? '#333' : '#e9ecef'} 
+            stroke={chartColors.grid} 
           />
           <XAxis 
             dataKey="month" 
             axisLine={false}
             tickLine={false}
-            tick={{ fill: isDark ? '#a0a0a0' : '#6c757d', fontSize: 12 }}
+            tick={{ fill: chartColors.tick, fontSize: 12 }}
             dy={10}
           />
           <YAxis 
             axisLine={false}
             tickLine={false}
-            tick={{ fill: isDark ? '#a0a0a0' : '#6c757d', fontSize: 12 }}
+            tick={{ fill: chartColors.tick, fontSize: 12 }}
             tickFormatter={(value) => `$${value/1000}k`}
           />
           <Tooltip content={<CustomTooltip themeStyles={themeStyles} />} />

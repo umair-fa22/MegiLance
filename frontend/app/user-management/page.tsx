@@ -42,7 +42,6 @@ const UserManagementPage: React.FC = () => {
     loadUsers();
   }, []);
 
-  if (!resolvedTheme) return null;
 
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 

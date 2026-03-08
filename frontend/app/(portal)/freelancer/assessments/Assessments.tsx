@@ -169,7 +169,6 @@ const AssessmentsPage: React.FC = () => {
     }
   };
 
-  if (!resolvedTheme) return null;
 
   return (
     <PageTransition>

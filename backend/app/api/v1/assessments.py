@@ -76,7 +76,6 @@ class AssessmentResultResponse(BaseModel):
 
 @router.get("/skills/available")
 async def get_available_skills(
-    ,
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -84,7 +83,7 @@ async def get_available_skills(
     
     Returns skills with question counts and difficulty levels.
     """
-    engine = get_assessment_engine(db)
+    engine = get_assessment_engine()
     skills = engine.get_available_skills()
     
     return {
@@ -100,7 +99,6 @@ async def get_available_skills(
 @router.post("/start")
 async def start_assessment(
     request: StartAssessmentRequest,
-    ,
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -123,7 +121,7 @@ async def start_assessment(
         )
     
     try:
-        engine = get_assessment_engine(db)
+        engine = get_assessment_engine()
         result = engine.create_assessment(
             user_id=current_user.id,
             skill=request.skill,
@@ -147,7 +145,6 @@ async def start_assessment(
 async def get_question(
     session_id: str,
     index: int,
-    ,
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -155,7 +152,7 @@ async def get_question(
     
     Returns question without correct answer.
     """
-    engine = get_assessment_engine(db)
+    engine = get_assessment_engine()
     _verify_session_owner(engine, session_id, current_user.id)
     question = engine.get_question(session_id, index)
     
@@ -175,7 +172,6 @@ async def get_question(
 async def submit_answer(
     session_id: str,
     request: SubmitAnswerRequest,
-    ,
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -183,7 +179,7 @@ async def submit_answer(
     
     Supports MCQ (int), multi-select (list), code (str).
     """
-    engine = get_assessment_engine(db)
+    engine = get_assessment_engine()
     _verify_session_owner(engine, session_id, current_user.id)
     result = engine.submit_answer(
         session_id=session_id,
@@ -201,7 +197,6 @@ async def submit_answer(
 async def record_focus_event(
     session_id: str,
     request: FocusEventRequest,
-    ,
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -209,7 +204,7 @@ async def record_focus_event(
     
     Used to detect tab switching during assessment.
     """
-    engine = get_assessment_engine(db)
+    engine = get_assessment_engine()
     _verify_session_owner(engine, session_id, current_user.id)
     engine.record_focus_event(session_id, request.event_type)
     
@@ -223,7 +218,6 @@ async def record_focus_event(
 @router.post("/session/{session_id}/complete")
 async def complete_assessment(
     session_id: str,
-    ,
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -231,7 +225,7 @@ async def complete_assessment(
     
     Triggers auto-grading and badge assignment.
     """
-    engine = get_assessment_engine(db)
+    engine = get_assessment_engine()
     _verify_session_owner(engine, session_id, current_user.id)
     result = engine.complete_assessment(session_id)
     
@@ -247,13 +241,12 @@ async def complete_assessment(
 @router.get("/session/{session_id}/results")
 async def get_assessment_results(
     session_id: str,
-    ,
     current_user: User = Depends(get_current_user)
 ):
     """
     Get results for a completed assessment
     """
-    engine = get_assessment_engine(db)
+    engine = get_assessment_engine()
     _verify_session_owner(engine, session_id, current_user.id)
     result = engine.complete_assessment(session_id)
     
@@ -275,7 +268,6 @@ async def get_assessment_results(
 
 @router.get("/profile")
 async def get_skill_profile(
-    ,
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -283,7 +275,7 @@ async def get_skill_profile(
     
     Returns all verified skills, badges, and assessment history.
     """
-    engine = get_assessment_engine(db)
+    engine = get_assessment_engine()
     profile = engine.get_user_skill_profile(current_user.id)
     
     return {
@@ -295,7 +287,6 @@ async def get_skill_profile(
 @router.get("/profile/{user_id}")
 async def get_user_skill_profile(
     user_id: int,
-    ,
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -303,7 +294,7 @@ async def get_user_skill_profile(
     
     Shows verified skills and badges only.
     """
-    engine = get_assessment_engine(db)
+    engine = get_assessment_engine()
     profile = engine.get_user_skill_profile(user_id)
     
     # Filter to only show passed assessments
@@ -323,7 +314,6 @@ async def get_user_skill_profile(
 async def get_skill_leaderboard(
     skill: str,
     limit: int = Query(default=10, ge=1, le=100),
-    ,
     current_user: User = Depends(get_current_user)
 ):
     """

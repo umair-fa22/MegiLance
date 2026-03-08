@@ -82,7 +82,7 @@ async def get_template_categories(
 ):
     """Get workflow template categories."""
     service = get_workflow_automation_service()
-    categories = await service.get_template_categories()
+    categories = service.get_template_categories()
     return {"categories": categories}
 
 
@@ -93,7 +93,7 @@ async def get_template(
 ):
     """Get a specific workflow template."""
     service = get_workflow_automation_service()
-    template = await service.get_template(template_id)
+    template = service.get_template(template_id)
     
     if not template:
         raise HTTPException(status_code=404, detail="Template not found")
@@ -105,12 +105,11 @@ async def get_template(
 @router.post("")
 async def create_workflow(
     request: CreateWorkflowRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a new workflow."""
     service = get_workflow_automation_service()
-    result = await service.create_workflow(
+    result = service.create_workflow(
         user_id=current_user["id"],
         name=request.name,
         description=request.description,
@@ -128,12 +127,11 @@ async def create_workflow(
 @router.post("/from-template")
 async def create_from_template(
     request: CreateFromTemplateRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create workflow from template."""
     service = get_workflow_automation_service()
-    result = await service.create_from_template(
+    result = service.create_from_template(
         user_id=current_user["id"],
         template_id=request.template_id,
         name=request.name,
@@ -150,7 +148,6 @@ async def create_from_template(
 async def get_my_workflows(
     status_filter: Optional[WorkflowStatus] = None,
     limit: int = Query(50, le=100),
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get current user's workflows."""
@@ -166,7 +163,6 @@ async def get_my_workflows(
 @router.get("/{workflow_id}")
 async def get_workflow(
     workflow_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get a specific workflow."""
@@ -183,7 +179,6 @@ async def get_workflow(
 async def update_workflow(
     workflow_id: str,
     request: UpdateWorkflowRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update a workflow."""
@@ -201,7 +196,6 @@ async def update_workflow(
 @router.delete("/{workflow_id}")
 async def delete_workflow(
     workflow_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Delete a workflow."""
@@ -214,7 +208,6 @@ async def delete_workflow(
 @router.post("/{workflow_id}/activate")
 async def activate_workflow(
     workflow_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Activate a workflow."""
@@ -226,7 +219,6 @@ async def activate_workflow(
 @router.post("/{workflow_id}/pause")
 async def pause_workflow(
     workflow_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Pause a workflow."""
@@ -240,7 +232,6 @@ async def pause_workflow(
 async def execute_workflow(
     workflow_id: str,
     request: Optional[ExecuteWorkflowRequest] = None,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Manually execute a workflow."""
@@ -258,7 +249,6 @@ async def execute_workflow(
 async def get_execution_history(
     workflow_id: Optional[str] = None,
     limit: int = Query(50, le=100),
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get workflow execution history."""
@@ -274,7 +264,6 @@ async def get_execution_history(
 @router.get("/history/{execution_id}")
 async def get_execution_details(
     execution_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get details of a workflow execution."""
@@ -297,7 +286,7 @@ async def get_available_triggers(
 ):
     """Get available trigger types."""
     service = get_workflow_automation_service()
-    triggers = await service.get_available_triggers()
+    triggers = service.get_available_triggers()
     return {"triggers": triggers}
 
 
@@ -307,7 +296,7 @@ async def get_available_actions(
 ):
     """Get available action types."""
     service = get_workflow_automation_service()
-    actions = await service.get_available_actions()
+    actions = service.get_available_actions()
     return {"actions": actions}
 
 
@@ -317,7 +306,7 @@ async def get_condition_operators(
 ):
     """Get available condition operators."""
     service = get_workflow_automation_service()
-    operators = await service.get_condition_operators()
+    operators = service.get_condition_operators()
     return {"operators": operators}
 
 
@@ -325,12 +314,11 @@ async def get_condition_operators(
 @router.get("/stats/summary")
 async def get_workflow_stats(
     period_days: int = Query(30, ge=1, le=365),
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get workflow statistics."""
     service = get_workflow_automation_service()
-    stats = await service.get_workflow_stats(current_user["id"], period_days)
+    stats = service.get_workflow_stats(current_user["id"], period_days)
     return {"statistics": stats}
 
 
@@ -340,7 +328,6 @@ async def admin_get_all_workflows(
     user_id: Optional[int] = None,
     status_filter: Optional[WorkflowStatus] = None,
     limit: int = Query(100, le=500),
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Admin: Get all workflows."""
@@ -357,7 +344,6 @@ async def admin_get_all_workflows(
 @router.get("/admin/stats")
 async def admin_get_global_stats(
     period_days: int = Query(30, ge=1, le=365),
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Admin: Get global workflow statistics."""

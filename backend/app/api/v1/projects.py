@@ -313,7 +313,7 @@ def create_project(
                                      budget_min, budget_max, experience_level, estimated_duration,
                                      skills, client_id, status, created_at, updated_at)
                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-                "params": [sanitize_text(project.title, MAX_TITLE_LENGTH), sanitize_text(project.description, MAX_DESCRIPTION_LENGTH), project.category, project.budget_type,
+                "params": [sanitize_text(project.title)[:MAX_TITLE_LENGTH], sanitize_text(project.description)[:MAX_DESCRIPTION_LENGTH], project.category, project.budget_type,
                  project.budget_min, project.budget_max, project.experience_level, 
                  project.estimated_duration, skills_str, current_user.id,
                  project.status or "open", now, now]

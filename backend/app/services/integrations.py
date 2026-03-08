@@ -281,7 +281,7 @@ class IntegrationsService:
         user_id: str
     ) -> List[UserIntegration]:
         """Get all integrations for a user."""
-        result = await execute_query(
+        result = execute_query(
             "SELECT * FROM user_integrations WHERE user_id = ? ORDER BY connected_at DESC",
             [str(user_id)]
         )
@@ -293,7 +293,7 @@ class IntegrationsService:
         integration_type: IntegrationType
     ) -> Optional[UserIntegration]:
         """Get a specific integration for a user."""
-        result = await execute_query(
+        result = execute_query(
             "SELECT * FROM user_integrations WHERE user_id = ? AND integration_type = ?",
             [str(user_id), integration_type.value]
         )
@@ -351,12 +351,12 @@ class IntegrationsService:
         refresh_token = f"refresh_{secrets.token_hex(16)}"
 
         # Remove existing integration of same type
-        await execute_query(
+        execute_query(
             "DELETE FROM user_integrations WHERE user_id = ? AND integration_type = ?",
             [str(user_id), integration_type.value]
         )
 
-        await execute_query(
+        execute_query(
             """INSERT INTO user_integrations
                (id, user_id, integration_type, status, access_token, refresh_token,
                 token_expires_at, workspace_name, settings, connected_at)
@@ -374,14 +374,14 @@ class IntegrationsService:
         integration_type: IntegrationType
     ) -> bool:
         """Disconnect an integration."""
-        result = await execute_query(
+        result = execute_query(
             "SELECT id FROM user_integrations WHERE user_id = ? AND integration_type = ?",
             [str(user_id), integration_type.value]
         )
         rows = parse_rows(result)
         if not rows:
             return False
-        await execute_query(
+        execute_query(
             "DELETE FROM user_integrations WHERE user_id = ? AND integration_type = ?",
             [str(user_id), integration_type.value]
         )
@@ -399,7 +399,7 @@ class IntegrationsService:
             return None
         
         merged = {**(integration.settings or {}), **settings}
-        await execute_query(
+        execute_query(
             "UPDATE user_integrations SET settings = ? WHERE user_id = ? AND integration_type = ?",
             [json.dumps(merged), str(user_id), integration_type.value]
         )
@@ -420,7 +420,7 @@ class IntegrationsService:
         
         # In production, make API call to test connection
         now = datetime.now(timezone.utc).isoformat()
-        await execute_query(
+        execute_query(
             "UPDATE user_integrations SET last_synced = ? WHERE user_id = ? AND integration_type = ?",
             [now, str(user_id), integration_type.value]
         )

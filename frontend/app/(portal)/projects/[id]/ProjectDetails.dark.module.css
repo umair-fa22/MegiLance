@@ -1,0 +1,28 @@
+/* @AI-HINT: Project details page — dark theme colors */
+
+.pageContainer {
+  background: var(--color-bg-primary, #0a0a0c);
+  color: #fff;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.detailBox {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.descriptionText {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.skillTag {
+  background: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
+}
+
+.notFoundState {
+  color: rgba(255, 255, 255, 0.6);
+}

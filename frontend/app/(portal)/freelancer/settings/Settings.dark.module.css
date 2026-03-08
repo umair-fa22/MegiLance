@@ -27,6 +27,7 @@
 
 .input {
   /* Uses global dark theme variables from Input component */
+  color: inherit;
 }
 
 .inputHint {
@@ -63,4 +64,8 @@
 .accountRow {
   border-color: #334155;
   background-color: #1e293b;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
 }

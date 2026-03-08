@@ -50,7 +50,6 @@ interface FreelancerRow {
 
 const Freelancers: React.FC = () => {
   const { resolvedTheme } = useTheme();
-  if (!resolvedTheme) return null;
   const themed = resolvedTheme === 'dark' ? dark : light;
   const { freelancers, loading, error } = useClientData();
 

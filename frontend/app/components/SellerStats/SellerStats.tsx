@@ -102,7 +102,6 @@ const requirementLabels: Record<string, string> = {
 const SellerStats: React.FC<SellerStatsProps> = ({ stats, className }) => {
   const { resolvedTheme } = useTheme();
 
-  if (!resolvedTheme) return null;
 
   const themed = resolvedTheme === 'dark' ? dark : light;
 

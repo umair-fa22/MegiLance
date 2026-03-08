@@ -1,6 +1,6 @@
 // @AI-HINT: Basic analytics context capturing page views & custom events.
 'use client';
-import React, { createContext, useCallback, useContext, useEffect, useRef } from 'react';
+import React, { createContext, Suspense, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 interface AnalyticsContextValue {
@@ -11,18 +11,25 @@ const AnalyticsContext = createContext<AnalyticsContextValue | undefined>(undefi
 
 const queue: any[] = [];
 
-// Create a separate component for the logic that uses hooks
-const AnalyticsContent: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const pathname = usePathname();
+// Isolated component that uses useSearchParams (which suspends during SSR)
+// Wrapped in its own Suspense boundary so children are NOT part of the fallback tree
+const SearchParamsTracker: React.FC<{ onParams: (params: string) => void }> = ({ onParams }) => {
   const search = useSearchParams();
+  useEffect(() => {
+    onParams(search?.toString() ?? '');
+  }, [search, onParams]);
+  return null; // renders nothing
+};
+
+export const AnalyticsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const pathname = usePathname();
   const lastRef = useRef<string | null>(null);
+  const [searchStr, setSearchStr] = useState('');
 
   const flush = () => {
     if (typeof window === 'undefined') return;
     if (queue.length) {
-      // In real impl send to endpoint
-      // navigator.sendBeacon('/api/analytics', JSON.stringify(queue.splice(0)));
-      queue.splice(0); // clear
+      queue.splice(0);
     }
   };
 
@@ -30,34 +37,27 @@ const AnalyticsContent: React.FC<{ children: React.ReactNode }> = ({ children })
     queue.push({ name, props, t: Date.now() });
   }, []);
 
+  const handleParams = useCallback((params: string) => {
+    setSearchStr(params);
+  }, []);
+
   // Track page view
   useEffect(() => {
-    const key = pathname + (search?.toString() ? '?' + search.toString() : '');
+    const key = pathname + (searchStr ? '?' + searchStr : '');
     if (lastRef.current !== key) {
-      track('page_view', { path: pathname, search: search?.toString() });
+      track('page_view', { path: pathname, search: searchStr });
       lastRef.current = key;
       flush();
     }
-  }, [pathname, search, track]);
+  }, [pathname, searchStr, track]);
 
   return (
     <AnalyticsContext.Provider value={{ track }}>
+      <Suspense fallback={null}>
+        <SearchParamsTracker onParams={handleParams} />
+      </Suspense>
       {children}
     </AnalyticsContext.Provider>
-  );
-};
-
-// Wrap the content with Suspense to handle useSearchParams during SSR
-import { Suspense } from 'react';
-
-export const AnalyticsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Always use the same structure on both server and client to avoid hydration mismatch
-  return (
-    <Suspense fallback={<AnalyticsContext.Provider value={{ track: () => {} }}>{children}</AnalyticsContext.Provider>}>
-      <AnalyticsContent>
-        {children}
-      </AnalyticsContent>
-    </Suspense>
   );
 };
 

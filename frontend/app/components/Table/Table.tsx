@@ -77,7 +77,6 @@ const Table: React.FC<TableProps> = ({
   const [sortColumn, setSortColumn] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>(null);
 
-  if (!resolvedTheme) return null;
 
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 

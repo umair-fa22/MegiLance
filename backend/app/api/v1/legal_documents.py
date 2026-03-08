@@ -58,7 +58,6 @@ class AttachToContractRequest(BaseModel):
 @router.get("/templates")
 async def get_templates(
     category: Optional[str] = Query(None, description="Filter by category"),
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get available legal document templates."""
@@ -69,7 +68,6 @@ async def get_templates(
 
 @router.get("/templates/categories")
 async def get_template_categories(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get list of template categories."""
@@ -81,7 +79,6 @@ async def get_template_categories(
 @router.get("/templates/{doc_type}")
 async def get_template(
     doc_type: DocumentType,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get a specific template."""
@@ -98,7 +95,6 @@ async def get_template(
 @router.post("/generate")
 async def generate_document(
     request: GenerateDocumentRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Generate a legal document from template."""
@@ -119,7 +115,6 @@ async def generate_document(
 @router.post("/preview")
 async def preview_document(
     request: PreviewDocumentRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Preview a document without saving."""
@@ -141,7 +136,6 @@ async def get_my_documents(
     status_filter: Optional[DocumentStatus] = None,
     doc_type_filter: Optional[DocumentType] = None,
     limit: int = Query(50, le=100),
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get current user's legal documents."""
@@ -158,7 +152,6 @@ async def get_my_documents(
 @router.get("/documents/{document_id}")
 async def get_document(
     document_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get a specific document."""
@@ -175,7 +168,6 @@ async def get_document(
 async def update_document(
     document_id: str,
     updates: Dict[str, Any],
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update a draft document."""
@@ -191,7 +183,6 @@ async def update_document(
 @router.delete("/documents/{document_id}")
 async def delete_document(
     document_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Delete a draft document."""
@@ -205,7 +196,6 @@ async def delete_document(
 async def request_signature(
     document_id: str,
     request: RequestSignatureRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Request e-signature on a document."""
@@ -225,7 +215,6 @@ async def request_signature(
 async def sign_document(
     document_id: str,
     request: SignDocumentRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Sign a document."""
@@ -245,7 +234,6 @@ async def sign_document(
 async def void_document(
     document_id: str,
     request: VoidDocumentRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Void a document."""
@@ -261,7 +249,6 @@ async def void_document(
 @router.get("/documents/{document_id}/signatures")
 async def get_document_signatures(
     document_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get signatures for a document."""
@@ -275,7 +262,6 @@ async def get_document_signatures(
 # Signature Requests (for signers)
 @router.get("/signature-requests")
 async def get_pending_signature_requests(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get pending signature requests for current user."""
@@ -290,7 +276,6 @@ async def get_pending_signature_requests(
 async def attach_to_contract(
     document_id: str,
     request: AttachToContractRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Attach document to a contract."""
@@ -310,7 +295,6 @@ async def attach_to_contract(
 @router.get("/contracts/{contract_id}/documents")
 async def get_contract_documents(
     contract_id: int,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get documents attached to a contract."""
@@ -324,7 +308,6 @@ async def get_contract_documents(
 async def export_document(
     document_id: str,
     format: str = Query("pdf", enum=["pdf", "docx", "html"]),
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Export document to specified format."""
@@ -341,7 +324,6 @@ async def export_document(
 @router.get("/documents/{document_id}/audit-trail")
 async def get_audit_trail(
     document_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get audit trail for a document."""
@@ -356,7 +338,6 @@ async def create_quick_nda(
     other_party_name: str,
     other_party_email: str,
     purpose: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Quickly create and send an NDA."""

@@ -34,7 +34,7 @@ class PasswordResetService:
         token = self.generate_reset_token()
         expiry = datetime.now(timezone.utc) + timedelta(hours=self.token_expiry_hours)
         
-        await execute_query(
+        execute_query(
             "UPDATE users SET password_reset_token = ?, password_reset_expires = ? WHERE id = ?",
             [token, expiry.isoformat(), user_id]
         )
@@ -51,7 +51,7 @@ class PasswordResetService:
         Returns:
             Dict with user data if token is valid and not expired, None otherwise
         """
-        result = await execute_query(
+        result = execute_query(
             "SELECT * FROM users WHERE password_reset_token = ? LIMIT 1",
             [token]
         )
@@ -84,7 +84,7 @@ class PasswordResetService:
             bool: True if password reset successful
         """
         now = datetime.now(timezone.utc).isoformat()
-        await execute_query(
+        execute_query(
             """UPDATE users SET hashed_password = ?, password_reset_token = NULL, 
                password_reset_expires = NULL, last_password_changed = ? WHERE id = ?""",
             [new_password_hash, now, user_id]
@@ -105,7 +105,7 @@ class PasswordResetService:
     
     async def invalidate_reset_token(self, user_id: int):
         """Manually invalidate a user's reset token."""
-        await execute_query(
+        execute_query(
             "UPDATE users SET password_reset_token = NULL, password_reset_expires = NULL WHERE id = ?",
             [user_id]
         )

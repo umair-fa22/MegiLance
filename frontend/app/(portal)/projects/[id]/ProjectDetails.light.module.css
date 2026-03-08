@@ -1,0 +1,29 @@
+/* @AI-HINT: Project details page — light theme colors */
+
+.pageContainer {
+  background: var(--color-bg-secondary, #f8f9fa);
+  color: var(--color-text-primary, #111827);
+}
+
+.card {
+  background: #fff;
+  border-color: var(--color-border, #e5e7eb);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.detailBox {
+  background: var(--color-bg-secondary, #f3f4f6);
+}
+
+.descriptionText {
+  color: var(--color-text-secondary, #374151);
+}
+
+.skillTag {
+  background: rgba(59, 130, 246, 0.1);
+  color: #1e40af;
+}
+
+.notFoundState {
+  color: var(--color-text-secondary, #6b7280);
+}

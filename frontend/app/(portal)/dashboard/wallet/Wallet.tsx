@@ -116,7 +116,6 @@ const Wallet: React.FC = () => {
     }
   };
 
-  if (!resolvedTheme) return null;
 
   if (loading) {
     return (

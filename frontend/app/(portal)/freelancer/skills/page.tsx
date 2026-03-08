@@ -140,7 +140,6 @@ export default function SkillsPage() {
     }
   };
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   return (

@@ -16,9 +16,7 @@ const eslintConfig = [
   },
   {
     rules: {
-      // @AI-HINT: The 'style' prop is used for dynamic theming with CSS custom properties.
-      // This is a deliberate architectural choice, so we disable the rule that forbids it.
-      "@next/next/no-inline-styles": "off",
+      // TypeScript best practices - style prop is used for dynamic theming with CSS custom properties
       
       // TypeScript best practices
       "@typescript-eslint/no-unused-vars": ["warn", { 

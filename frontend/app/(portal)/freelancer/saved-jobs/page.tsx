@@ -88,7 +88,6 @@ export default function SavedJobsPage() {
     return 'Just now';
   };
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   return (

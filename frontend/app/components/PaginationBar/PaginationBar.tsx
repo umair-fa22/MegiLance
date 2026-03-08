@@ -40,7 +40,6 @@ const PaginationBar: React.FC<PaginationBarProps> = ({
 }) => {
   const { resolvedTheme } = useTheme();
 
-  if (!resolvedTheme) return null;
 
   const themed = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 

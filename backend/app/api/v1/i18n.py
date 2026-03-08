@@ -130,7 +130,6 @@ async def detect_language(
 
 @router.get("/user/language")
 async def get_user_language(
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get user's preferred language."""
@@ -148,7 +147,6 @@ async def get_user_language(
 @router.put("/user/language")
 async def set_user_language(
     request: SetLanguageRequest,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Set user's preferred language."""
@@ -250,7 +248,6 @@ async def format_date(
 @router.post("/translations/add", include_in_schema=False)
 async def add_translation(
     request: AddTranslationRequest,
-    ,
     current_user: User = Depends(get_current_active_user),
     _admin = Depends(require_admin)
 ):

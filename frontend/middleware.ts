@@ -35,8 +35,8 @@ export function middleware(request: NextRequest) {
     // Prevent Adobe Flash/PDF cross-domain data loading  
     'X-Permitted-Cross-Domain-Policies': 'none',
     // Cross-Origin isolation headers for enhanced security
-    'Cross-Origin-Opener-Policy': 'same-origin',
-    'Cross-Origin-Resource-Policy': 'same-origin',
+    'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
+    'Cross-Origin-Resource-Policy': 'cross-origin',
   };
 
   Object.entries(securityHeaders).forEach(([key, value]) => {
@@ -98,9 +98,10 @@ export function middleware(request: NextRequest) {
     '/video-calls',
   ];
 
-  const isProtectedPath = protectedPaths.some(path => 
-    pathname === path.replace(/\/$/, '') || pathname.startsWith(path)
-  );
+  const isProtectedPath = protectedPaths.some(path => {
+    const normalizedPath = path.replace(/\/$/, '');
+    return pathname === normalizedPath || pathname.startsWith(normalizedPath + '/');
+  });
   
   // Check for auth token in cookies (httpOnly preferred)
   const authToken = request.cookies.get('auth_token')?.value;

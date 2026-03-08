@@ -26,6 +26,12 @@ _USER_CACHE_TTL = 300  # 5 minutes
 _USER_CACHE_MAX_SIZE = 500
 _user_cache_lock = threading.Lock()
 _user_cache: OrderedDict = OrderedDict()  # email -> {"ts": float, "data": dict}
+
+def invalidate_user_cache(email: str) -> None:
+    """Remove a user from the auth cache so the next request fetches fresh data."""
+    with _user_cache_lock:
+        _user_cache.pop(email, None)
+
 from app.models.user import User
 
 logger = logging.getLogger(__name__)
@@ -70,6 +76,9 @@ class UserProxy:
         self.location = row.get('location')
         self.profile_data = row.get('profile_data')
         self.two_factor_enabled = bool(row.get('two_factor_enabled', 0))
+        self.headline = row.get('headline')
+        self.experience_level = row.get('experience_level')
+        self.languages = row.get('languages')
         self.joined_at = row.get('joined_at')
         self.created_at = row.get('created_at')
         self.account_balance = row.get('account_balance', 0.0)
@@ -97,7 +106,7 @@ def authenticate_user(email: str, password: str) -> Optional[Any]:
             """SELECT id, email, hashed_password, is_active, is_verified, 
                       name, user_type, role, bio, skills, hourly_rate,
                       profile_image_url, location, profile_data, 
-                      two_factor_enabled, joined_at
+                      two_factor_enabled, joined_at, headline, experience_level, languages
                FROM users WHERE email = ?""",
             [email_lower]
         )
@@ -265,7 +274,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)) -> Union[User, UserPro
         result = execute_query(
             """SELECT id, email, name, hashed_password, role, user_type, is_active, is_verified, 
                       bio, skills, hourly_rate, profile_image_url, location, profile_data,
-                      two_factor_enabled, joined_at FROM users WHERE email = ?""",
+                      two_factor_enabled, joined_at, headline, experience_level, languages FROM users WHERE email = ?""",
             [email]
         )
         rows = parse_rows(result)
@@ -386,7 +395,7 @@ def get_user_by_email(email: str) -> Optional[UserProxy]:
             "SELECT id, email, hashed_password, is_active, is_verified, name, user_type, role, "
             "bio, skills, hourly_rate, profile_image_url, location, profile_data, "
             "two_factor_enabled, joined_at, created_at, account_balance, seller_level, "
-            "availability_status FROM users WHERE email = ?",
+            "availability_status, headline, experience_level, languages FROM users WHERE email = ?",
             [email.lower().strip()]
         )
         rows = parse_rows(result)
@@ -405,7 +414,7 @@ def get_user_by_id(user_id: int) -> Optional[UserProxy]:
             "SELECT id, email, hashed_password, is_active, is_verified, name, user_type, role, "
             "bio, skills, hourly_rate, profile_image_url, location, profile_data, "
             "two_factor_enabled, joined_at, created_at, account_balance, seller_level, "
-            "availability_status FROM users WHERE id = ?",
+            "availability_status, headline, experience_level, languages FROM users WHERE id = ?",
             [user_id]
         )
         rows = parse_rows(result)

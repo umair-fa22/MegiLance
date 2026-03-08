@@ -139,7 +139,6 @@ export default function FeedbackPage() {
     }
   };
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   const getTypeConfig = (type: string) => feedbackTypes.find(t => t.type === type) || feedbackTypes[0];

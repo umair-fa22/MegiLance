@@ -83,7 +83,6 @@ const BlogPostClient: React.FC = () => {
     } catch { /* noop */ }
   };
 
-  if (!resolvedTheme) return null;
 
   if (loading) {
     return (

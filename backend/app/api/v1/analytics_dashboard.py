@@ -72,7 +72,6 @@ class ExportDataRequest(BaseModel):
 @router.post("/dashboards")
 async def create_dashboard(
     request: CreateDashboardRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a custom dashboard."""
@@ -88,7 +87,6 @@ async def create_dashboard(
 
 @router.get("/dashboards")
 async def list_dashboards(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """List user's dashboards."""
@@ -100,7 +98,6 @@ async def list_dashboards(
 @router.get("/dashboards/{dashboard_id}")
 async def get_dashboard(
     dashboard_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get dashboard by ID."""
@@ -117,7 +114,6 @@ async def get_dashboard(
 async def update_dashboard(
     dashboard_id: str,
     updates: Dict[str, Any],
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update dashboard settings."""
@@ -134,7 +130,6 @@ async def update_dashboard(
 @router.delete("/dashboards/{dashboard_id}")
 async def delete_dashboard(
     dashboard_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Delete a dashboard."""
@@ -148,7 +143,6 @@ async def delete_dashboard(
 async def add_widget(
     dashboard_id: str,
     request: AddWidgetRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Add a widget to dashboard."""
@@ -168,7 +162,6 @@ async def update_widget(
     dashboard_id: str,
     widget_id: str,
     updates: Dict[str, Any],
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update widget settings."""
@@ -185,7 +178,6 @@ async def update_widget(
 async def delete_widget(
     dashboard_id: str,
     widget_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Delete a widget."""
@@ -197,7 +189,6 @@ async def delete_widget(
 # Metrics Endpoints
 @router.get("/metrics")
 async def get_available_metrics(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get list of available metrics."""
@@ -212,7 +203,6 @@ async def get_metric(
     granularity: TimeGranularity = TimeGranularity.DAY,
     start_date: Optional[str] = None,
     end_date: Optional[str] = None,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get metric data."""
@@ -227,7 +217,6 @@ async def get_metric(
 
 @router.get("/realtime")
 async def get_realtime_metrics(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get real-time metrics snapshot."""
@@ -240,7 +229,6 @@ async def get_realtime_metrics(
 @router.post("/kpis")
 async def set_kpi_target(
     request: SetKPITargetRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Set a KPI target."""
@@ -256,7 +244,6 @@ async def set_kpi_target(
 
 @router.get("/kpis/progress")
 async def get_kpi_progress(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get KPI progress."""
@@ -269,7 +256,6 @@ async def get_kpi_progress(
 @router.post("/alerts")
 async def create_alert_rule(
     request: CreateAlertRuleRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create an alert rule."""
@@ -286,7 +272,6 @@ async def create_alert_rule(
 
 @router.get("/alerts")
 async def get_alert_rules(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get user's alert rules."""
@@ -299,7 +284,6 @@ async def get_alert_rules(
 @router.post("/reports")
 async def generate_report(
     request: GenerateReportRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Generate analytics report."""
@@ -318,7 +302,6 @@ async def generate_report(
 @router.post("/export")
 async def export_data(
     request: ExportDataRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Export analytics data."""
@@ -338,7 +321,6 @@ async def export_data(
 async def get_comparison(
     metric_name: str,
     compare_with: str = "previous_period",
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Compare metrics."""
@@ -350,7 +332,6 @@ async def get_comparison(
 @router.get("/benchmarks/{category}")
 async def get_industry_benchmarks(
     category: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get industry benchmark comparison."""
@@ -364,7 +345,6 @@ async def get_industry_benchmarks(
 async def get_forecast(
     metric_name: str,
     forecast_days: int = 30,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get metric forecast."""
@@ -375,7 +355,6 @@ async def get_forecast(
 
 @router.get("/recommendations")
 async def get_recommendations(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get AI-powered recommendations."""

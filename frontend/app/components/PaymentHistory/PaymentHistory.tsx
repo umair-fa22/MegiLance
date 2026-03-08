@@ -46,7 +46,6 @@ export default function PaymentHistory({
   const [searchQuery, setSearchQuery] = useState('');
 
   // Theme guard
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   // Fetch payments

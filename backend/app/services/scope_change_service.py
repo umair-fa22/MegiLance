@@ -14,7 +14,7 @@ class ScopeChangeService:
     async def create_request(request: ScopeChangeCreate, user_id: int) -> Dict[str, Any]:
         """Create a scope change request for a contract."""
         # Verify contract exists and user is part of it
-        result = await execute_query(
+        result = execute_query(
             "SELECT id, client_id, freelancer_id, amount, end_date FROM contracts WHERE id = ?",
             [request.contract_id]
         )
@@ -30,7 +30,7 @@ class ScopeChangeService:
         new_deadline_str = request.new_deadline.isoformat() if request.new_deadline else None
         old_deadline_str = contract.get("end_date")
 
-        result = await execute_query(
+        result = execute_query(
             """INSERT INTO scope_change_requests 
                (contract_id, requested_by, title, description, reason, status,
                 old_amount, old_deadline, new_amount, new_deadline, created_at, updated_at)
@@ -47,7 +47,7 @@ class ScopeChangeService:
     @staticmethod
     async def get_request(request_id: int) -> Dict[str, Any]:
         """Get a single scope change request by ID."""
-        result = await execute_query(
+        result = execute_query(
             "SELECT * FROM scope_change_requests WHERE id = ?", [request_id]
         )
         rows = parse_rows(result)
@@ -58,7 +58,7 @@ class ScopeChangeService:
     @staticmethod
     async def get_by_contract(contract_id: int, skip: int = 0, limit: int = 100) -> List[Dict[str, Any]]:
         """Get all scope change requests for a contract."""
-        result = await execute_query(
+        result = execute_query(
             """SELECT * FROM scope_change_requests 
                WHERE contract_id = ? ORDER BY created_at DESC LIMIT ? OFFSET ?""",
             [contract_id, limit, skip]
@@ -71,7 +71,7 @@ class ScopeChangeService:
         request = await ScopeChangeService.get_request(request_id)
         
         # Get the contract
-        result = await execute_query(
+        result = execute_query(
             "SELECT id, client_id, freelancer_id FROM contracts WHERE id = ?",
             [request["contract_id"]]
         )
@@ -93,7 +93,7 @@ class ScopeChangeService:
                 raise HTTPException(status_code=403, detail="Only requester can cancel")
 
         now = datetime.now(timezone.utc).isoformat()
-        await execute_query(
+        execute_query(
             "UPDATE scope_change_requests SET status = ?, resolved_at = ?, updated_at = ? WHERE id = ?",
             [status_update.value, now, now, request_id]
         )
@@ -110,7 +110,7 @@ class ScopeChangeService:
                 params.append(request["new_deadline"])
             if updates:
                 params.append(request["contract_id"])
-                await execute_query(
+                execute_query(
                     f"UPDATE contracts SET {', '.join(updates)} WHERE id = ?",
                     params
                 )

@@ -46,6 +46,7 @@ const AccountSettingsPage = () => {
   const [twoFactorAuth, setTwoFactorAuth] = useState(false);
   
   const [isSaving, setIsSaving] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -55,10 +56,11 @@ const AccountSettingsPage = () => {
         setProfessionalTitle(user.title || '');
         setBio(user.bio || '');
         setEmail(user.email || '');
-        // Set other settings if available in user object
       } catch (error) {
         console.error('Failed to fetch profile', error);
         toaster.notify({ title: 'Error', description: 'Failed to load profile', variant: 'danger' });
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchProfile();
@@ -97,6 +99,17 @@ const AccountSettingsPage = () => {
           </header>
         </ScrollReveal>
 
+        {isLoading ? (
+          <div className={cn(commonStyles.content)}>
+            {[1, 2, 3].map((i) => (
+              <section key={i} className={cn(commonStyles.section)}>
+                <div className={cn(commonStyles.skeletonHeader, styles.skeleton)} />
+                <div className={cn(commonStyles.skeletonBlock, styles.skeleton)} />
+                <div className={cn(commonStyles.skeletonBlock, styles.skeleton)} style={{ width: '60%' }} />
+              </section>
+            ))}
+          </div>
+        ) : (
         <StaggerContainer delay={0.1} className={cn(commonStyles.content)}>
           {/* Profile Settings */}
           <section className={cn(commonStyles.section)}>
@@ -368,6 +381,7 @@ const AccountSettingsPage = () => {
             </form>
           </section>
         </StaggerContainer>
+        )}
       </div>
     </PageTransition>
   );

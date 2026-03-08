@@ -418,7 +418,7 @@ class AdvancedAIService:
         score = 0.0
 
         # Get user profile
-        result = await execute_query("""
+        result = execute_query("""
             SELECT name, bio, location, profile_image_url, created_at
             FROM users WHERE id = ?
         """, [user_id])
@@ -472,7 +472,7 @@ class AdvancedAIService:
 
         # Check proposal spam
         if action_type == "proposal_submission":
-            result = await execute_query("""
+            result = execute_query("""
                 SELECT COUNT(*) as cnt FROM proposals
                 WHERE freelancer_id = ? AND created_at > ?
             """, [user_id, (datetime.now(timezone.utc) - timedelta(hours=24)).isoformat()])
@@ -496,7 +496,7 @@ class AdvancedAIService:
 
         # Check for IP address sharing across multiple accounts
         try:
-            result = await execute_query("""
+            result = execute_query("""
                 SELECT ip_address, COUNT(DISTINCT user_id) as user_count
                 FROM user_sessions
                 WHERE ip_address IN (
@@ -720,7 +720,7 @@ class AdvancedAIService:
         - Find competitive sweet spot
         """
         # Get market rates from DB
-        result = await execute_query("""
+        result = execute_query("""
             SELECT AVG(budget_min) as avg_min, AVG(budget_max) as avg_max,
                    COUNT(*) as project_count
             FROM projects
@@ -739,7 +739,7 @@ class AdvancedAIService:
             project_count = int(rows[0].get("project_count", 0))
 
         # Get freelancer's win rate for conversion estimate
-        fr_result = await execute_query("""
+        fr_result = execute_query("""
             SELECT 
                 COUNT(*) as total_proposals,
                 SUM(CASE WHEN status = 'accepted' THEN 1 ELSE 0 END) as accepted
@@ -807,7 +807,7 @@ class AdvancedAIService:
 
     async def _get_project_details(self, project_id: int) -> Optional[Dict[str, Any]]:
         """Get project details"""
-        result = await execute_query("""
+        result = execute_query("""
             SELECT id, title, description, budget_min, budget_type,
                    skills_required, experience_level, category_id
             FROM projects WHERE id = ?
@@ -837,7 +837,7 @@ class AdvancedAIService:
 
     async def _get_active_freelancers(self) -> List[Dict[str, Any]]:
         """Get all active freelancers"""
-        result = await execute_query("""
+        result = execute_query("""
             SELECT id, name, skills, hourly_rate, experience_level,
                    location, timezone
             FROM users
@@ -887,7 +887,7 @@ def get_advanced_ai_service() -> AdvancedAIService:
 
 async def get_project_for_proposal(project_id: int) -> Optional[Dict[str, Any]]:
     """Get project details for proposal generation (Turso HTTP). Returns None if not found."""
-    result = await execute_query("""
+    result = execute_query("""
         SELECT p.id, p.title, p.description, p.budget_min, p.budget_max,
                p.budget_type, p.skills_required, p.experience_level
         FROM projects p WHERE p.id = ?
@@ -909,7 +909,7 @@ async def get_project_for_proposal(project_id: int) -> Optional[Dict[str, Any]]:
 
 async def get_user_profile_for_proposal(user_id) -> Dict[str, Any]:
     """Get user profile for proposal generation (Turso HTTP)."""
-    result = await execute_query("""
+    result = execute_query("""
         SELECT name, skills, hourly_rate, bio
         FROM users WHERE id = ?
     """, [user_id])

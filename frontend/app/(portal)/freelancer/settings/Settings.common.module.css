@@ -248,3 +248,27 @@
     gap: 1.5rem;
   }
 }
+
+/* Loading skeleton */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeletonHeader {
+  height: 1.5rem;
+  width: 40%;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  animation: shimmer 1.5s infinite linear;
+  background-size: 200% 100%;
+}
+
+.skeletonBlock {
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  animation: shimmer 1.5s infinite linear;
+  background-size: 200% 100%;
+}

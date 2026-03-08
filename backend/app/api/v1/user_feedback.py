@@ -63,7 +63,6 @@ class QuickFeedbackRequest(BaseModel):
 @router.post("")
 async def submit_feedback(
     request: SubmitFeedbackRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Submit feedback."""
@@ -84,7 +83,6 @@ async def get_my_feedback(
     status_filter: Optional[FeedbackStatus] = None,
     type_filter: Optional[FeedbackType] = None,
     limit: int = Query(50, le=100),
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get current user's submitted feedback."""
@@ -101,7 +99,6 @@ async def get_my_feedback(
 @router.get("/{feedback_id}")
 async def get_feedback(
     feedback_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get specific feedback details."""
@@ -119,7 +116,6 @@ async def get_feedback(
 async def vote_on_feedback(
     feedback_id: str,
     request: VoteRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Vote on feedback (upvote/downvote)."""
@@ -138,7 +134,6 @@ async def vote_on_feedback(
 @router.delete("/{feedback_id}/vote")
 async def remove_vote(
     feedback_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Remove vote from feedback."""
@@ -171,7 +166,6 @@ async def get_public_feedback_board(
 @router.post("/feature-request")
 async def submit_feature_request(
     request: FeatureRequestRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Submit a feature request."""
@@ -209,7 +203,6 @@ async def get_survey_templates(
 
 @router.get("/surveys/active")
 async def get_active_surveys(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get active surveys for current user."""
@@ -222,7 +215,6 @@ async def get_active_surveys(
 async def submit_survey_response(
     survey_id: str,
     request: SurveyResponseRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Submit survey response."""
@@ -239,7 +231,6 @@ async def submit_survey_response(
 @router.get("/nps/score")
 async def get_nps_score(
     period_days: int = Query(30, ge=7, le=365),
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get Net Promoter Score (admin)."""
@@ -255,7 +246,6 @@ async def get_nps_score(
 async def get_nps_trend(
     periods: int = Query(6, ge=1, le=12),
     period_type: str = Query("month", enum=["week", "month"]),
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get NPS trend over time (admin)."""
@@ -271,7 +261,6 @@ async def get_nps_trend(
 @router.get("/csat/score")
 async def get_csat_score(
     period_days: int = Query(30, ge=7, le=365),
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get Customer Satisfaction Score (admin)."""
@@ -287,7 +276,6 @@ async def get_csat_score(
 @router.post("/quick")
 async def submit_quick_feedback(
     request: QuickFeedbackRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Submit quick in-app feedback."""
@@ -308,7 +296,6 @@ async def submit_quick_feedback(
 @router.get("/admin/analytics")
 async def get_feedback_analytics(
     period_days: int = Query(30, ge=7, le=365),
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get feedback analytics (admin)."""
@@ -323,7 +310,6 @@ async def get_feedback_analytics(
 @router.get("/admin/sentiment")
 async def get_sentiment_analysis(
     period_days: int = Query(30, ge=7, le=365),
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get feedback sentiment analysis (admin)."""
@@ -339,7 +325,6 @@ async def get_sentiment_analysis(
 async def admin_update_feedback(
     feedback_id: str,
     updates: Dict[str, Any],
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update feedback status (admin)."""
@@ -354,7 +339,6 @@ async def admin_update_feedback(
 @router.post("/admin/surveys")
 async def admin_create_survey(
     request: CreateSurveyRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a new survey (admin)."""
@@ -376,7 +360,6 @@ async def admin_create_survey(
 @router.get("/admin/satisfaction-by-feature")
 async def get_satisfaction_by_feature(
     period_days: int = Query(30, ge=7, le=365),
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get satisfaction breakdown by feature (admin)."""

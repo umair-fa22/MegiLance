@@ -78,7 +78,6 @@ class CreateCustomClauseRequest(BaseModel):
 @router.get("/templates")
 async def get_contract_templates(
     contract_type: Optional[ContractType] = None,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get contract templates."""
@@ -90,7 +89,6 @@ async def get_contract_templates(
 @router.get("/templates/{template_id}")
 async def get_template_details(
     template_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get full template with content."""
@@ -111,7 +109,6 @@ async def get_template_details(
 async def get_clause_library(
     category: Optional[ClauseCategory] = None,
     search: Optional[str] = None,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get clause library."""
@@ -123,7 +120,6 @@ async def get_clause_library(
 @router.get("/clauses/{clause_id}")
 async def get_clause(
     clause_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get clause details."""
@@ -143,7 +139,6 @@ async def get_clause(
 @router.post("/contracts")
 async def create_contract_draft(
     request: CreateContractDraftRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a new contract draft."""
@@ -163,7 +158,6 @@ async def create_contract_draft(
 async def add_section(
     contract_id: str,
     request: AddSectionRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Add a section to contract."""
@@ -184,7 +178,6 @@ async def add_section(
 async def add_clause_to_contract(
     contract_id: str,
     request: AddClauseRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Add a clause from library to contract."""
@@ -212,7 +205,6 @@ async def update_section(
     contract_id: str,
     section_id: str,
     request: UpdateSectionRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update a contract section."""
@@ -232,7 +224,6 @@ async def update_section(
 async def remove_section(
     contract_id: str,
     section_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Remove a section from contract."""
@@ -251,7 +242,6 @@ async def remove_section(
 async def reorder_sections(
     contract_id: str,
     request: ReorderSectionsRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Reorder contract sections."""
@@ -270,7 +260,6 @@ async def reorder_sections(
 async def set_variables(
     contract_id: str,
     request: SetVariablesRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Set contract variables."""
@@ -288,7 +277,6 @@ async def set_variables(
 @router.get("/contracts/{contract_id}/preview")
 async def preview_contract(
     contract_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Preview contract with variables applied."""
@@ -301,7 +289,6 @@ async def preview_contract(
 async def export_contract(
     contract_id: str,
     format: str = "pdf",
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Export contract to file."""
@@ -321,7 +308,6 @@ async def export_contract(
 async def create_version(
     contract_id: str,
     request: CreateVersionRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a new version of the contract."""
@@ -339,7 +325,6 @@ async def create_version(
 @router.get("/contracts/{contract_id}/versions")
 async def get_versions(
     contract_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get contract version history."""
@@ -352,7 +337,6 @@ async def get_versions(
 async def compare_versions(
     contract_id: str,
     request: CompareVersionsRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Compare two contract versions."""
@@ -372,7 +356,6 @@ async def compare_versions(
 @router.post("/clauses/custom")
 async def create_custom_clause(
     request: CreateCustomClauseRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a custom clause."""
@@ -391,7 +374,6 @@ async def create_custom_clause(
 
 @router.get("/clauses/custom")
 async def get_user_custom_clauses(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get user's custom clauses."""

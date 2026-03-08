@@ -247,7 +247,6 @@ export default function PakistanPaymentOptions({
     onPaymentInitiate?.(details);
   };
 
-  if (!resolvedTheme) return null;
 
   return (
     <div className={cn(commonStyles.container, themeStyles.container)}>

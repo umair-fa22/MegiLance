@@ -47,7 +47,6 @@ const Badge: React.FC<BadgeProps> = ({
   const { resolvedTheme } = useTheme();
   
   // Don't render until theme is resolved
-  if (!resolvedTheme) return null;
   
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
   const isInteractive = !!onClick;

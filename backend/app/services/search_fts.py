@@ -22,7 +22,7 @@ class SearchService:
     async def ensure_fts_tables(self):
         """Create FTS5 virtual tables if they don't exist"""
         try:
-            await execute_query("""
+            execute_query("""
                 CREATE VIRTUAL TABLE IF NOT EXISTS projects_fts USING fts5(
                     project_id UNINDEXED,
                     title,
@@ -32,7 +32,7 @@ class SearchService:
                     tokenize = 'porter unicode61'
                 )
             """)
-            await execute_query("""
+            execute_query("""
                 CREATE VIRTUAL TABLE IF NOT EXISTS users_fts USING fts5(
                     user_id UNINDEXED,
                     name,
@@ -42,7 +42,7 @@ class SearchService:
                     tokenize = 'porter unicode61'
                 )
             """)
-            await execute_query("""
+            execute_query("""
                 CREATE VIRTUAL TABLE IF NOT EXISTS skills_fts USING fts5(
                     skill_id UNINDEXED,
                     name,
@@ -57,7 +57,7 @@ class SearchService:
     async def index_project(self, project_id: int, title: str, description: str, category: str, skills: Any):
         """Index a project for full-text search"""
         try:
-            await execute_query("DELETE FROM projects_fts WHERE project_id = ?", [project_id])
+            execute_query("DELETE FROM projects_fts WHERE project_id = ?", [project_id])
 
             skills_text = ""
             if skills:
@@ -70,7 +70,7 @@ class SearchService:
                 except (json.JSONDecodeError, TypeError, ValueError):
                     skills_text = str(skills)
 
-            await execute_query(
+            execute_query(
                 """INSERT INTO projects_fts (project_id, title, description, category, skills)
                    VALUES (?, ?, ?, ?, ?)""",
                 [project_id, title or "", description or "", category or "", skills_text]
@@ -81,7 +81,7 @@ class SearchService:
     async def index_user(self, user_id: int, name: str, bio: str, skills: Any, location: str):
         """Index a user for full-text search"""
         try:
-            await execute_query("DELETE FROM users_fts WHERE user_id = ?", [user_id])
+            execute_query("DELETE FROM users_fts WHERE user_id = ?", [user_id])
 
             skills_text = ""
             if skills:
@@ -94,7 +94,7 @@ class SearchService:
                 except (json.JSONDecodeError, TypeError, ValueError):
                     skills_text = str(skills)
 
-            await execute_query(
+            execute_query(
                 """INSERT INTO users_fts (user_id, name, bio, skills, location)
                    VALUES (?, ?, ?, ?, ?)""",
                 [user_id, name or "", bio or "", skills_text, location or ""]
@@ -105,9 +105,9 @@ class SearchService:
     async def index_skill(self, skill_id: int, name: str, category: str, description: str):
         """Index a skill for full-text search"""
         try:
-            await execute_query("DELETE FROM skills_fts WHERE skill_id = ?", [skill_id])
+            execute_query("DELETE FROM skills_fts WHERE skill_id = ?", [skill_id])
 
-            await execute_query(
+            execute_query(
                 """INSERT INTO skills_fts (skill_id, name, category, description)
                    VALUES (?, ?, ?, ?)""",
                 [skill_id, name or "", category or "", description or ""]
@@ -163,7 +163,7 @@ class SearchService:
 
         # Count total
         count_sql = sql_base.replace("p.*, fts.rank as search_rank", "COUNT(*) as total")
-        count_result = await execute_query(count_sql, params)
+        count_result = execute_query(count_sql, params)
         count_rows = parse_rows(count_result)
         total = count_rows[0]["total"] if count_rows else 0
 
@@ -171,7 +171,7 @@ class SearchService:
         sql_base += " LIMIT ? OFFSET ?"
         params.extend([limit, offset])
 
-        result = await execute_query(sql_base, params)
+        result = execute_query(sql_base, params)
         rows = parse_rows(result)
 
         projects = []
@@ -249,7 +249,7 @@ class SearchService:
 
         # Count total
         count_sql = sql_base.replace("u.*, fts.rank as search_rank", "COUNT(*) as total")
-        count_result = await execute_query(count_sql, params)
+        count_result = execute_query(count_sql, params)
         count_rows = parse_rows(count_result)
         total = count_rows[0]["total"] if count_rows else 0
 
@@ -257,7 +257,7 @@ class SearchService:
         sql_base += " LIMIT ? OFFSET ?"
         params.extend([limit, offset])
 
-        result = await execute_query(sql_base, params)
+        result = execute_query(sql_base, params)
         rows = parse_rows(result)
 
         freelancers = []
@@ -295,7 +295,7 @@ class SearchService:
         suggestions = []
 
         if type in ["all", "projects"]:
-            result = await execute_query(
+            result = execute_query(
                 "SELECT DISTINCT title FROM projects WHERE title LIKE ? LIMIT ?",
                 [f"%{query}%", limit]
             )
@@ -303,7 +303,7 @@ class SearchService:
             suggestions.extend([r["title"] for r in rows])
 
         if type in ["all", "skills"]:
-            result = await execute_query(
+            result = execute_query(
                 "SELECT DISTINCT name FROM skills WHERE name LIKE ? LIMIT ?",
                 [f"%{query}%", limit]
             )
@@ -316,25 +316,25 @@ class SearchService:
         """Get search analytics for admin dashboard using search_history table."""
         cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
 
-        total_result = await execute_query(
+        total_result = execute_query(
             "SELECT COUNT(*) as total FROM search_history WHERE searched_at >= ?", [cutoff]
         )
         total_rows = parse_rows(total_result)
         total_searches = int(total_rows[0]["total"]) if total_rows else 0
 
-        unique_result = await execute_query(
+        unique_result = execute_query(
             "SELECT COUNT(DISTINCT search_hash) as cnt FROM search_history WHERE searched_at >= ?", [cutoff]
         )
         unique_rows = parse_rows(unique_result)
         unique_queries = int(unique_rows[0]["cnt"]) if unique_rows else 0
 
-        avg_result = await execute_query(
+        avg_result = execute_query(
             "SELECT AVG(results_count) as avg_results FROM search_history WHERE searched_at >= ?", [cutoff]
         )
         avg_rows = parse_rows(avg_result)
         avg_results = round(float(avg_rows[0]["avg_results"]), 1) if avg_rows and avg_rows[0].get("avg_results") is not None else 0
 
-        popular_result = await execute_query(
+        popular_result = execute_query(
             """SELECT criteria, COUNT(*) as cnt FROM search_history
                WHERE searched_at >= ?
                GROUP BY search_hash ORDER BY cnt DESC LIMIT 10""",
@@ -350,7 +350,7 @@ class SearchService:
                 term = str(row["criteria"])[:50]
             popular_terms.append({"term": term, "count": row["cnt"]})
 
-        zero_result = await execute_query(
+        zero_result = execute_query(
             """SELECT criteria FROM search_history
                WHERE searched_at >= ? AND results_count = 0
                GROUP BY search_hash LIMIT 10""",
@@ -384,19 +384,19 @@ class SearchService:
 
     async def reindex_all(self) -> Dict[str, int]:
         """Reindex all projects, users, and skills"""
-        proj_result = await execute_query("SELECT id, title, description, category, skills FROM projects")
+        proj_result = execute_query("SELECT id, title, description, category, skills FROM projects")
         projects = parse_rows(proj_result)
         for p in projects:
             await self.index_project(p["id"], p["title"], p["description"], p["category"], p["skills"])
 
-        user_result = await execute_query(
+        user_result = execute_query(
             "SELECT id, name, bio, skills, location FROM users WHERE user_type = 'freelancer'"
         )
         users = parse_rows(user_result)
         for u in users:
             await self.index_user(u["id"], u["name"], u["bio"], u["skills"], u["location"])
 
-        skill_result = await execute_query("SELECT id, name, category, description FROM skills")
+        skill_result = execute_query("SELECT id, name, category, description FROM skills")
         skills_data = parse_rows(skill_result)
         for s in skills_data:
             await self.index_skill(s["id"], s["name"], s["category"], s["description"])

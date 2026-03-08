@@ -69,7 +69,6 @@ export default function BlogSearchPage() {
     ), 
   [q, allPosts]);
 
-  if (!resolvedTheme) return null;
 
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 

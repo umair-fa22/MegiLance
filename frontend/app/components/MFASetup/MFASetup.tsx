@@ -33,7 +33,6 @@ export default function MFASetup({ onComplete, onCancel }: MFASetupProps) {
   const [error, setError] = useState<string | null>(null);
   const [backupCodes, setBackupCodes] = useState<string[]>([]);
 
-  if (!resolvedTheme) return null;
 
   const setupMFA = async () => {
     setLoading(true);

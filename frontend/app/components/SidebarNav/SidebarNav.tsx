@@ -45,7 +45,8 @@ import {
   List,
   Activity,
   Heart,
-  Globe
+  Globe,
+  Flag
 } from 'lucide-react';
 import {
   clientNavItems,
@@ -90,6 +91,7 @@ const iconMap: Record<string, React.ReactNode> = {
   Globe: <Globe size={18} />,
   Mail: <Mail size={18} />,
   Home: <Home size={18} />,
+  Flag: <Flag size={18} />,
 };
 
 // Define the structure for a navigation item
@@ -154,6 +156,24 @@ const SidebarNav: React.FC<SidebarNavProps> = ({
         }
       })();
 
+  // Auto-expand submenus whose child matches the current route
+  React.useEffect(() => {
+    if (!pathname) return;
+    const autoOpen: Record<string, boolean> = {};
+    for (const item of computedNavItems) {
+      if (item.submenu) {
+        const childActive = item.submenu.some(
+          sub => pathname === sub.href || pathname.startsWith(sub.href + '/')
+        );
+        if (childActive) autoOpen[item.href] = true;
+      }
+    }
+    if (Object.keys(autoOpen).length > 0) {
+      setOpenSubmenus(prev => ({ ...prev, ...autoOpen }));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
+
   // Inject real-time badge counts for Messages and Notifications nav items
   const navItemsWithBadges = computedNavItems.map(item => {
     if (item.label === 'Messages' && unreadCounts.messages > 0) {
@@ -186,7 +206,11 @@ const SidebarNav: React.FC<SidebarNavProps> = ({
       <nav className={styles.sidebarNavNav}>
         <ul className={styles.sidebarNavList}>
           {navItemsWithBadges.map((item) => {
-            const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
+            const isDirectActive = pathname === item.href || pathname.startsWith(item.href + '/');
+            const isChildActive = item.submenu?.some(
+              sub => pathname === sub.href || pathname.startsWith(sub.href + '/')
+            ) ?? false;
+            const isActive = isDirectActive || isChildActive;
             const isSubmenuOpen = openSubmenus[item.href];
             
             return (

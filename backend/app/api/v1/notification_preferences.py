@@ -67,7 +67,6 @@ class RegisterPushTokenRequest(BaseModel):
 # Endpoints
 @router.get("")
 async def get_notification_settings(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get current user's notification settings."""
@@ -79,7 +78,6 @@ async def get_notification_settings(
 @router.put("")
 async def update_notification_settings(
     request: UpdateSettingsRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update notification settings."""
@@ -101,7 +99,6 @@ async def update_notification_settings(
 
 @router.get("/categories")
 async def get_notification_categories(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get all available notification categories."""
@@ -126,7 +123,6 @@ async def get_notification_channels(
 async def update_category_preference(
     category: NotificationCategory,
     request: CategoryPreferenceRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update preference for a specific notification category."""
@@ -145,7 +141,6 @@ async def update_category_preference(
 @router.put("/categories/bulk")
 async def update_bulk_preferences(
     request: BulkPreferencesRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Bulk update multiple category preferences."""
@@ -162,7 +157,6 @@ async def update_bulk_preferences(
 @router.post("/push/register")
 async def register_push_token(
     request: RegisterPushTokenRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Register a push notification token."""
@@ -179,7 +173,6 @@ async def register_push_token(
 
 @router.delete("/push")
 async def unregister_push_token(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Unregister push notification token."""
@@ -194,7 +187,6 @@ async def unregister_push_token(
 async def test_notification_delivery(
     category: NotificationCategory,
     channel: NotificationChannel,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Test if a notification would be delivered."""
@@ -221,7 +213,6 @@ async def test_notification_delivery(
 
 @router.post("/disable-all")
 async def disable_all_notifications(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Disable all notifications (except security alerts)."""
@@ -237,7 +228,6 @@ async def disable_all_notifications(
 
 @router.post("/enable-all")
 async def enable_all_notifications(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Enable all notifications with defaults."""
@@ -253,7 +243,6 @@ async def enable_all_notifications(
 
 @router.get("/quiet-hours/status")
 async def get_quiet_hours_status(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Check if currently in quiet hours."""

@@ -153,7 +153,6 @@ const ActionMenu: React.FC<ActionMenuProps> = ({
     }
   }, [isOpen, focusedIndex, actionableItems, handleClose, handleOpen]);
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   const handleItemClick = (item: ActionMenuItem) => {

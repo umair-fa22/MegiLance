@@ -52,7 +52,6 @@ const Projects: React.FC = () => {
     return filtered;
   }, [query, status, allProjects]);
 
-  if (!resolvedTheme) return null;
 
   if (loading) {
     return (

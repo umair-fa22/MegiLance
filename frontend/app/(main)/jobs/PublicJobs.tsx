@@ -122,7 +122,6 @@ const PublicJobs: React.FC = () => {
   const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
   const [debouncedSearch, setDebouncedSearch] = useState(filters.search);
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   // Debounced search

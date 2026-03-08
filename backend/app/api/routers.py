@@ -21,6 +21,7 @@ from .v1 import (
     rate_cards, proposal_templates,
     notes_tags, custom_statuses, search_advanced, realtime_notifications,
     ai_matching,
+    gamification,
     # Version 2.0 Advanced Features
     security, video_communication,
     # Now enabled - all modules working
@@ -108,6 +109,8 @@ api_router.include_router(realtime_notifications.router, prefix="/realtime", tag
 # AI-powered matching
 api_router.include_router(ai_matching.router, prefix="", tags=["ai-matching"])
 
+# Gamification
+api_router.include_router(gamification.router, prefix="", tags=["gamification"])
 
 # Analytics and reporting
 api_router.include_router(analytics.router, prefix="/analytics", tags=["analytics"])

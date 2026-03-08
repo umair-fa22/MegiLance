@@ -12,7 +12,7 @@ import re
 
 from app.models.user import User
 from app.schemas.user import UserCreate, UserRead, UserUpdate, ProfileCompleteUpdate
-from app.core.security import get_password_hash, get_current_user, require_admin
+from app.core.security import get_password_hash, get_current_user, require_admin, invalidate_user_cache
 from app.db.turso_http import get_turso_http
 from app.services.db_utils import paginate_params
 from app.services.profile_validation import is_profile_complete, get_missing_profile_fields
@@ -102,7 +102,8 @@ def _row_to_user_dict(row: list, columns: list = None) -> dict:
     if columns is None:
         columns = ["id", "email", "name", "role", "is_active", "user_type",
                     "joined_at", "created_at", "bio", "skills", "hourly_rate",
-                    "profile_image_url", "location", "profile_data"]
+                    "profile_image_url", "location", "profile_data",
+                    "headline", "experience_level", "languages"]
     
     # Build a dict from column names and row values
     raw = {}
@@ -123,6 +124,9 @@ def _row_to_user_dict(row: list, columns: list = None) -> dict:
         "hourly_rate": raw.get("hourly_rate"),
         "profile_image_url": _to_str(raw.get("profile_image_url")),
         "location": _to_str(raw.get("location")),
+        "headline": _to_str(raw.get("headline")),
+        "experience_level": _to_str(raw.get("experience_level")),
+        "languages": _to_str(raw.get("languages")),
     }
     
     # Parse profile_data if present
@@ -165,7 +169,8 @@ def list_users(
         turso = get_turso_http()
         result = turso.execute(
             """SELECT id, email, name, role, is_active, user_type, joined_at, created_at,
-                      bio, skills, hourly_rate, profile_image_url, location, profile_data 
+                      bio, skills, hourly_rate, profile_image_url, location, profile_data,
+                      headline, experience_level, languages
                FROM users ORDER BY created_at DESC LIMIT ? OFFSET ?""",
             [limit, offset]
         )
@@ -198,7 +203,8 @@ def get_current_user_profile(current_user: User = Depends(get_current_user)) -> 
         turso = get_turso_http()
         result = turso.execute(
             """SELECT id, email, name, role, is_active, user_type, joined_at, created_at,
-                      bio, skills, hourly_rate, profile_image_url, location, profile_data
+                      bio, skills, hourly_rate, profile_image_url, location, profile_data,
+                      headline, experience_level, languages
                FROM users WHERE id = ?""",
             [current_user.id]
         )
@@ -225,11 +231,17 @@ def update_current_user_profile(payload: UserUpdate, current_user: User = Depend
         updates = []
         params = []
         data = payload.dict(exclude_unset=True)
-        allowed_fields = {"name", "bio", "skills", "hourly_rate", "profile_image_url", "location"}
+        allowed_fields = {"name", "bio", "skills", "hourly_rate", "profile_image_url", "location", "headline", "experience_level", "languages"}
+        # Fields that need JSON serialization (list/dict types stored as TEXT in SQLite)
+        json_fields = {"skills", "languages", "education", "certifications", "work_history", "industry_focus"}
         for field, value in data.items():
             if field in allowed_fields:
                 updates.append(f"{field} = ?")
-                params.append(value)
+                if field in json_fields and isinstance(value, (list, dict)):
+                    import json as _json
+                    params.append(_json.dumps(value))
+                else:
+                    params.append(value)
         if not updates:
             raise HTTPException(status_code=400, detail="No valid fields to update")
         updates.append("updated_at = ?")
@@ -239,9 +251,12 @@ def update_current_user_profile(payload: UserUpdate, current_user: User = Depend
             f"UPDATE users SET {', '.join(updates)} WHERE id = ?",
             params
         )
+        # Invalidate auth cache so subsequent requests see updated profile
+        invalidate_user_cache(current_user.email)
         result = turso.execute(
             """SELECT id, email, name, role, is_active, user_type, joined_at, created_at,
-                      bio, skills, hourly_rate, profile_image_url, location, profile_data
+                      bio, skills, hourly_rate, profile_image_url, location, profile_data,
+                      headline, experience_level, languages
                FROM users WHERE id = ?""",
             [current_user.id]
         )
@@ -266,7 +281,8 @@ def get_user(user_id: int) -> dict:
         turso = get_turso_http()
         result = turso.execute(
             """SELECT id, email, name, role, is_active, user_type, joined_at, created_at,
-                      bio, skills, hourly_rate, profile_image_url, location, profile_data 
+                      bio, skills, hourly_rate, profile_image_url, location, profile_data,
+                      headline, experience_level, languages
                FROM users WHERE id = ?""",
             [user_id]
         )

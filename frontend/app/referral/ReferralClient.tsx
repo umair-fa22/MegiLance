@@ -24,7 +24,6 @@ const ReferralPage: React.FC = () => {
 
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
-  if (!resolvedTheme) return null;
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(referralData.referralLink).then(() => {

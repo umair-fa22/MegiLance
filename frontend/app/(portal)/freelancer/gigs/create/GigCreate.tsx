@@ -149,7 +149,6 @@ const GigCreate: React.FC = () => {
 
   const [tagInput, setTagInput] = useState('');
 
-  if (!resolvedTheme) return null;
 
   const themed = resolvedTheme === 'dark' ? dark : light;
 

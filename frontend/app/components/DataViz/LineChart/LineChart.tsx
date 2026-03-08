@@ -88,7 +88,6 @@ const LineChart: React.FC<LineChartProps> = ({
     }
   }, [data.length]);
 
-  if (!resolvedTheme) return null;
 
   const activeIndex = focusedIndex ?? hoveredIndex;
 

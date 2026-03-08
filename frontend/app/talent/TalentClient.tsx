@@ -93,7 +93,6 @@ const TalentDirectoryPage = () => {
     m.skills.some(s => s.toLowerCase().includes(q.toLowerCase()))
   );
 
-  if (!resolvedTheme) return null;
 
   return (
     <PageTransition>

@@ -113,7 +113,6 @@ class SEORequest(BaseModel):
 @router.post("/")
 async def create_portfolio(
     request: CreatePortfolioRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a new portfolio."""
@@ -131,7 +130,6 @@ async def create_portfolio(
 
 @router.get("/list")
 async def list_portfolios(
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """List user's portfolios."""
@@ -143,7 +141,6 @@ async def list_portfolios(
 @router.get("/{portfolio_id}")
 async def get_portfolio(
     portfolio_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get portfolio by ID."""
@@ -156,7 +153,6 @@ async def get_portfolio(
 async def update_portfolio(
     portfolio_id: str,
     request: UpdatePortfolioRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update portfolio settings."""
@@ -172,7 +168,6 @@ async def update_portfolio(
 @router.delete("/{portfolio_id}")
 async def delete_portfolio(
     portfolio_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Delete a portfolio."""
@@ -186,7 +181,6 @@ async def delete_portfolio(
 async def add_section(
     portfolio_id: str,
     request: AddSectionRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Add a section to portfolio."""
@@ -208,7 +202,6 @@ async def update_section(
     portfolio_id: str,
     section_id: str,
     request: UpdateSectionRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update a portfolio section."""
@@ -226,7 +219,6 @@ async def update_section(
 async def delete_section(
     portfolio_id: str,
     section_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Delete a portfolio section."""
@@ -239,7 +231,6 @@ async def delete_section(
 async def reorder_sections(
     portfolio_id: str,
     section_orders: List[Dict[str, Any]],
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Reorder portfolio sections."""
@@ -253,7 +244,6 @@ async def reorder_sections(
 async def add_showcase_project(
     portfolio_id: str,
     request: ShowcaseProjectRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Add a project to showcase."""
@@ -267,7 +257,6 @@ async def create_case_study(
     portfolio_id: str,
     project_id: str,
     request: CaseStudyRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Create a case study for a project."""
@@ -286,7 +275,6 @@ async def create_case_study(
 async def add_testimonial(
     portfolio_id: str,
     request: TestimonialRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Add a testimonial to portfolio."""
@@ -299,7 +287,6 @@ async def add_testimonial(
 async def request_testimonial(
     portfolio_id: str,
     request: TestimonialRequestRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Request testimonial from a client."""
@@ -319,7 +306,6 @@ async def request_testimonial(
 async def update_theme(
     portfolio_id: str,
     request: ThemeRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update portfolio theme."""
@@ -331,7 +317,6 @@ async def update_theme(
 @router.get("/templates/preview/{template}")
 async def preview_template(
     template: PortfolioTemplate,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Preview a template."""
@@ -345,7 +330,6 @@ async def preview_template(
 async def set_custom_domain(
     portfolio_id: str,
     request: CustomDomainRequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Set custom domain for portfolio."""
@@ -357,7 +341,6 @@ async def set_custom_domain(
 @router.post("/{portfolio_id}/domain/verify")
 async def verify_custom_domain(
     portfolio_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Verify custom domain DNS setup."""
@@ -370,7 +353,6 @@ async def verify_custom_domain(
 @router.post("/{portfolio_id}/publish")
 async def publish_portfolio(
     portfolio_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Publish portfolio."""
@@ -382,7 +364,6 @@ async def publish_portfolio(
 @router.post("/{portfolio_id}/unpublish")
 async def unpublish_portfolio(
     portfolio_id: str,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Unpublish portfolio."""
@@ -396,7 +377,6 @@ async def unpublish_portfolio(
 async def get_portfolio_analytics(
     portfolio_id: str,
     days: int = 30,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Get portfolio analytics."""
@@ -410,7 +390,6 @@ async def get_portfolio_analytics(
 async def update_seo_settings(
     portfolio_id: str,
     request: SEORequest,
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Update SEO settings."""
@@ -424,7 +403,6 @@ async def update_seo_settings(
 async def export_portfolio(
     portfolio_id: str,
     format: str = "html",
-    ,
     current_user = Depends(get_current_active_user)
 ):
     """Export portfolio as static site."""

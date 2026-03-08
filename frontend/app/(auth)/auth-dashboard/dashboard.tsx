@@ -33,7 +33,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userRole, user }) => {
         const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
         return { ...commonStyles, ...themeStyles };
     }, [resolvedTheme]);
-
+  
     return (
         <DashboardLayout user={user}>
             <div className={styles.header}>

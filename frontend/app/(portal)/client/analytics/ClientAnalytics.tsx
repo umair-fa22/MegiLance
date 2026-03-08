@@ -144,7 +144,6 @@ const ClientAnalytics: React.FC = () => {
   const totalProjects = Array.isArray(projects) ? projects.length : 0;
   const totalSpendingPeriod = spendingData.reduce((sum, d) => sum + d.amount, 0);
 
-  if (!resolvedTheme) return null;
 
   if (loading) {
     return (

@@ -99,7 +99,6 @@ export default function CareerPage() {
     }
   };
 
-  if (!resolvedTheme) return null;
 
   if (loading) {
     return (

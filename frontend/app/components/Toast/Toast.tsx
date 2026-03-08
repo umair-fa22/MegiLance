@@ -77,7 +77,6 @@ const Toast: React.FC<ToastProps> = ({
     }
   };
 
-  if (!resolvedTheme) return null;
 
   const baseClassName = cn(
     commonStyles.toast,

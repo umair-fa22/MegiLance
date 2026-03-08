@@ -50,7 +50,6 @@ class CreateScheduleRequest(BaseModel):
 @router.post("/tasks")
 async def create_task(
     request: CreateTaskRequest,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Create a new task."""
@@ -78,7 +77,6 @@ async def list_tasks(
     status: Optional[str] = None,
     task_type: Optional[str] = None,
     limit: int = 50,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """List user's tasks."""
@@ -104,7 +102,6 @@ async def list_tasks(
 @router.get("/tasks/{task_id}")
 async def get_task(
     task_id: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get task details."""
@@ -125,7 +122,6 @@ async def get_task(
 @router.post("/tasks/{task_id}/run")
 async def run_task(
     task_id: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Run a task immediately."""
@@ -147,7 +143,6 @@ async def run_task(
 @router.post("/tasks/{task_id}/cancel")
 async def cancel_task(
     task_id: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Cancel a pending task."""
@@ -175,7 +170,6 @@ async def cancel_task(
 @router.post("/schedules")
 async def create_schedule(
     request: CreateScheduleRequest,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Create a recurring schedule."""
@@ -206,7 +200,6 @@ async def create_schedule(
 @router.get("/schedules")
 async def list_schedules(
     enabled_only: bool = False,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """List user's schedules."""
@@ -223,7 +216,6 @@ async def list_schedules(
 @router.get("/schedules/{schedule_id}")
 async def get_schedule(
     schedule_id: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get schedule details."""
@@ -244,7 +236,6 @@ async def get_schedule(
 async def toggle_schedule(
     schedule_id: str,
     enabled: bool,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Enable or disable a schedule."""
@@ -266,7 +257,6 @@ async def toggle_schedule(
 @router.delete("/schedules/{schedule_id}")
 async def delete_schedule(
     schedule_id: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Delete a schedule."""
@@ -289,7 +279,6 @@ async def delete_schedule(
 async def get_task_history(
     task_type: Optional[str] = None,
     limit: int = 100,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get task execution history."""
@@ -305,7 +294,6 @@ async def get_task_history(
 
 @router.get("/statistics")
 async def get_statistics(
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get task statistics."""

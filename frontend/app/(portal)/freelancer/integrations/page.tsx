@@ -254,7 +254,6 @@ export default function IntegrationsPage() {
     }
   };
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   const filteredIntegrations = activeCategory === 'all'

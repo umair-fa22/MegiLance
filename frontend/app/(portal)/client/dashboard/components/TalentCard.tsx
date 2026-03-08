@@ -22,8 +22,6 @@ interface TalentCardProps {
 const TalentCard: React.FC<TalentCardProps> = ({ name, role, avatar, rating = 5.0, location, hourlyRate, headline, availabilityStatus, experienceLevel }) => {
   const { resolvedTheme } = useTheme();
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
-
-  if (!resolvedTheme) return null; // Prevent hydration mismatch
   
   return (
     <div className={cn(commonStyles.card, themeStyles.card)}>

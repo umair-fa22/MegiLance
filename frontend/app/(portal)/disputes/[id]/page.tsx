@@ -95,7 +95,6 @@ const UserDisputeDetailsPage: React.FC = () => {
     router.back();
   };
 
-  if (!resolvedTheme) return null;
 
   if (loading) {
     return (
@@ -121,7 +120,7 @@ const UserDisputeDetailsPage: React.FC = () => {
   const isResolved = dispute.status === 'resolved' || dispute.status === 'closed';
 
   return (
-    <div className={cn(styles.container, styles[resolvedTheme])}>
+    <div className={cn(styles.container)}>
       <Button 
         variant="ghost" 
         onClick={handleBack} 

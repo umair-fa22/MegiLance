@@ -1,0 +1,584 @@
+
+============================================================
+  MEGILANCE COMPREHENSIVE E2E TEST SUITE
+  2026-03-08 13:23:30
+  Test ID: e7246a69
+============================================================
+
+============================================================
+  1. HEALTH & INFRASTRUCTURE
+============================================================
+  Ô£à PASS: Health ready [200] status=ready
+  Ô£à PASS: Health live [200] status=ok
+  Ô£à PASS: Health metrics [200]
+  Ô£à PASS: Health root [200] status=healthy
+
+============================================================
+  2. AUTHENTICATION - Registration
+============================================================
+  Ô£à PASS: Register client [201] id=147
+  Ô£à PASS: Register freelancer [201] id=148
+  Ô£à PASS: Duplicate email rejected [400]
+  Ô£à PASS: Weak password rejected [400]
+  Ô£à PASS: Invalid email rejected [422]
+
+============================================================
+  3. AUTHENTICATION - Login & Tokens
+============================================================
+  Ô£à PASS: Login client [200] got_token
+  Ô£à PASS: Login freelancer [200] got_token
+  Ô£à PASS: Invalid login rejected [422]
+  Ô£à PASS: Get current user (client) [200] id=147
+  Ô£à PASS: Protected endpoint without auth [401]
+
+============================================================
+  4. USER PROFILE MANAGEMENT
+============================================================
+  Ô£à PASS: Client profile [200] id=147
+  Ô£à PASS: Update client profile [200] id=147
+  Ô£à PASS: Get updated profile [200] id=147
+  Ô£à PASS: Freelancer profile [200] id=148
+  Ô£à PASS: Update freelancer profile [200] id=148
+
+============================================================
+  5. PROJECTS (Client Flow)
+============================================================
+  Ô£à PASS: Create project [201] id=73
+  Ô£à PASS: List projects [200]
+  Ô£à PASS: Get project detail [200] id=73
+  Ô£à PASS: Public project listing [200]
+
+============================================================
+  6. PROPOSALS (Freelancer Flow)
+============================================================
+  ÔØî FAIL: Submit proposal [403] - Please complete your profile before submitting a proposal. Missing: bio (min 20 
+  Ô£à PASS: My proposals [200]
+  Ô£à PASS: Client views project proposals [200]
+
+============================================================
+  7. GIGS (Freelancer Marketplace)
+============================================================
+  Ô£à PASS: Create gig [201] id=11
+  Ô£à PASS: My gigs [200]
+  Ô£à PASS: Public gig listing [200]
+  Ô£à PASS: Public gig detail [404]
+
+============================================================
+  8. CONTRACTS & MILESTONES
+============================================================
+  Ô£à PASS: Create contract [404]
+  Ô£à PASS: List contracts (client) [200]
+  Ô£à PASS: List contracts (freelancer) [200]
+
+============================================================
+  9. MESSAGES & CONVERSATIONS
+============================================================
+  Ô£à PASS: Client messages [404]
+  Ô£à PASS: Unread message count [200]
+  Ô£à PASS: Send message to freelancer [201] id=40
+  Ô£à PASS: Conversations list [200]
+
+============================================================
+  10. NOTIFICATIONS
+============================================================
+  Ô£à PASS: Client notifications [200]
+  Ô£à PASS: Unread notification count [200]
+  Ô£à PASS: Mark all read [200]
+  Ô£à PASS: Freelancer notifications [200]
+
+============================================================
+  11. REVIEWS & RATINGS
+============================================================
+  Ô£à PASS: Client reviews [200]
+
+============================================================
+  12. WALLET & PAYMENTS
+============================================================
+  Ô£à PASS: Freelancer wallet balance [200]
+  Ô£à PASS: Wallet transactions [200]
+  Ô£à PASS: Wallet analytics [200]
+  Ô£à PASS: Client payments [200]
+  Ô£à PASS: Payment fee calculator [422]
+  Ô£à PASS: Payment stats [200]
+
+============================================================
+  13. INVOICES
+============================================================
+  Ô£à PASS: Client invoices [200]
+  Ô£à PASS: Invoice tax list [200]
+  Ô£à PASS: Freelancer invoices [200]
+
+============================================================
+  14. ESCROW
+============================================================
+  Ô£à PASS: Escrow list [200]
+
+============================================================
+  15. CATEGORIES, SKILLS & TAGS
+============================================================
+  Ô£à PASS: Categories list [200]
+  Ô£à PASS: Category tree [200]
+  Ô£à PASS: Skills list [200]
+  Ô£à PASS: Skill categories [200]
+  Ô£à PASS: Tags list [200]
+
+============================================================
+  16. SEARCH & MARKETPLACE
+============================================================
+  Ô£à PASS: Search projects [200]
+  Ô£à PASS: Search freelancers [200]
+  Ô£à PASS: Marketplace stats [200]
+  Ô£à PASS: Trending skills [200]
+  Ô£à PASS: Marketplace categories [200]
+  Ô£à PASS: Marketplace projects [200]
+  Ô£à PASS: Marketplace freelancers [200]
+
+============================================================
+  17. FREELANCER PUBLIC PROFILES
+============================================================
+  Ô£à PASS: Featured freelancers [200]
+  Ô£à PASS: Search freelancers [200]
+  Ô£à PASS: Freelancer profile by ID [404]
+
+============================================================
+  18. BLOG
+============================================================
+  Ô£à PASS: Blog posts list [200]
+
+============================================================
+  19. PORTFOLIO
+============================================================
+  Ô£à PASS: Get portfolio [200]
+  Ô£à PASS: Add portfolio item [422]
+
+============================================================
+  20. FAVORITES & SAVED SEARCHES
+============================================================
+  Ô£à PASS: Favorites list [200]
+  Ô£à PASS: Add favorite [201] id=13
+  Ô£à PASS: Saved searches [200]
+
+============================================================
+  21. SUPPORT TICKETS
+============================================================
+  Ô£à PASS: Create support ticket [422]
+  Ô£à PASS: List support tickets [200]
+
+============================================================
+  22. TIME ENTRIES
+============================================================
+  Ô£à PASS: Time entries list [200]
+  Ô£à PASS: Log time entry [422]
+
+============================================================
+  23. AVAILABILITY CALENDAR
+============================================================
+  Ô£à PASS: Get availability [200]
+  Ô£à PASS: Update availability [200]
+
+============================================================
+  24. DISPUTES & REFUNDS
+============================================================
+  Ô£à PASS: Disputes list [200]
+  Ô£à PASS: Refunds list [200]
+
+============================================================
+  25. PORTAL ENDPOINTS
+============================================================
+  Ô£à PASS: Client dashboard stats [200]
+  Ô£à PASS: Client portal projects [200]
+  Ô£à PASS: Client portal payments [200]
+  Ô£à PASS: Client portal proposals [200]
+  Ô£à PASS: Freelancer dashboard stats [200]
+  Ô£à PASS: Freelancer portal projects [200]
+  Ô£à PASS: Freelancer portal proposals [200]
+  Ô£à PASS: Freelancer portal notifications [200]
+  Ô£à PASS: Freelancer earnings [200]
+
+============================================================
+  26. SELLER STATS
+============================================================
+  Ô£à PASS: Seller stats [200]
+  Ô£à PASS: Seller leaderboard [200]
+  Ô£à PASS: Seller levels [200]
+
+============================================================
+  27. GAMIFICATION
+============================================================
+  Ô£à PASS: Achievements [200]
+  Ô£à PASS: Badges [200]
+  Ô£à PASS: Leaderboard [200]
+  Ô£à PASS: My rank [200]
+
+============================================================
+  28. AI SERVICES
+============================================================
+  Ô£à PASS: AI health [404]
+  Ô£à PASS: AI project matching [404]
+
+============================================================
+  29. KNOWLEDGE BASE & LEARNING
+============================================================
+  Ô£à PASS: KB articles [200]
+  Ô£à PASS: KB categories [200]
+  Ô£à PASS: KB FAQs [200]
+  Ô£à PASS: KB popular [200]
+  Ô£à PASS: KB search [200]
+  Ô£à PASS: Learning courses [200]
+  Ô£à PASS: Featured courses [200]
+
+============================================================
+  30. ASSESSMENTS
+============================================================
+  Ô£à PASS: Available assessments [200]
+  Ô£à PASS: My assessment results [200]
+
+============================================================
+  31. I18N (Internationalization)
+============================================================
+  Ô£à PASS: Available languages [200]
+  Ô£à PASS: English translations [200]
+
+============================================================
+  32. EXTERNAL PROJECTS
+============================================================
+  Ô£à PASS: External projects [200]
+  Ô£à PASS: External project categories [200]
+  Ô£à PASS: External project stats [200]
+
+============================================================
+  33. PRICE ESTIMATOR
+============================================================
+  Ô£à PASS: Price estimate [422]
+  Ô£à PASS: Price categories [200]
+
+============================================================
+  34. STANDALONE TOOLS
+============================================================
+  Ô£à PASS: Invoice generator options [200]
+  Ô£à PASS: Generate invoice [422]
+  Ô£à PASS: Contract builder options [200]
+  Ô£à PASS: Income calculator options [200]
+  Ô£à PASS: Calculate income [200]
+  Ô£à PASS: Scope plan [200]
+  Ô£à PASS: Expense tax options [200]
+  Ô£à PASS: Calculate expense tax [422]
+  Ô£à PASS: Analyze skills [200]
+  Ô£à PASS: Rate advisor [422]
+  Ô£à PASS: Generate proposal [422]
+
+============================================================
+  35. COMMUNITY
+============================================================
+  Ô£à PASS: Community questions [200]
+  Ô£à PASS: Community trending tags [200]
+
+============================================================
+  36. FEATURE FLAGS
+============================================================
+  Ô£à PASS: Feature flags [200]
+  ÔØî FAIL: My feature flags [401] - Invalid token
+
+============================================================
+  37. ANALYTICS
+============================================================
+  ÔØî TIMEOUT: Analytics dashboard
+  ÔØî FAIL: Analytics metrics [401] - Invalid token
+  ÔØî FAIL: Freelancer analytics [401] - Invalid token
+
+============================================================
+  38. COMPLIANCE
+============================================================
+  ÔØî FAIL: Compliance status [401] - Invalid token
+  ÔØî FAIL: Compliance consents [401] - Invalid token
+
+============================================================
+  39. INVITATIONS
+============================================================
+  ÔØî FAIL: Send invitation [401] - Invalid token
+  ÔØî FAIL: Sent invitations [401] - Invalid token
+  ÔØî FAIL: Received invitations [401] - Invalid token
+
+============================================================
+  40. JOB ALERTS
+============================================================
+  ÔØî FAIL: Job alerts list [401] - Invalid token
+  ÔØî FAIL: Create job alert [401] - Invalid token
+
+============================================================
+  41. ORGANIZATIONS & TEAMS
+============================================================
+  ÔØî FAIL: Organizations list [401] - Invalid token
+  ÔØî FAIL: Teams list [401] - Invalid token
+
+============================================================
+  42. TEMPLATES
+============================================================
+  ÔØî FAIL: Templates list [401] - Invalid token
+
+============================================================
+  43. NOTIFICATION PREFERENCES
+============================================================
+  ÔØî FAIL: Notification prefs [401] - Invalid token
+  ÔØî FAIL: Notification channels [401] - Invalid token
+  ÔØî FAIL: Notification categories [401] - Invalid token
+
+============================================================
+  44. 2FA
+============================================================
+  ÔØî FAIL: 2FA status [401] - Invalid token
+
+============================================================
+  45. API KEYS
+============================================================
+  ÔØî FAIL: API keys list [401] - Invalid token
+
+============================================================
+  46. WEBHOOKS
+============================================================
+  ÔØî FAIL: Webhooks list [401] - Invalid token
+
+============================================================
+  47. DATA EXPORT
+============================================================
+  ÔØî FAIL: Export list [401] - Invalid token
+  ÔØî FAIL: Export templates [401] - Invalid token
+  ÔØî FAIL: Export formats [401] - Invalid token
+  ÔØî FAIL: GDPR export status [401] - Invalid token
+
+============================================================
+  48. SKILL GRAPH
+============================================================
+  ÔØî FAIL: My skill graph [401] - Invalid token
+  ÔØî FAIL: Skill recommendations [401] - Invalid token
+
+============================================================
+  49. PK PAYMENTS
+============================================================
+  ÔØî FAIL: PK payment providers [401] - Invalid token
+  ÔØî FAIL: PK exchange rate [401] - Invalid token
+  Ô£à PASS: PK network status [200]
+
+============================================================
+  50. SECURITY TESTS
+============================================================
+  Ô£à PASS: SQL injection test (search) [200]
+  Ô£à PASS: SQL injection test (login) [422]
+  Ô£à PASS: XSS in name field [201] id=149
+  Ô£à PASS: Invalid JWT rejected [401]
+  Ô£à PASS: RBAC: freelancer blocked from admin [401]
+  Ô£à PASS: RBAC: freelancer blocked from users [401]
+
+============================================================
+  51. ADMIN ENDPOINTS
+============================================================
+  Ô£à PASS: Admin login attempt [401]
+  ÔÜá´©Å  SKIP: Admin endpoints (no admin credentials)
+
+============================================================
+  52. RATE CARDS
+============================================================
+  ÔØî FAIL: Rate cards list [401] - Invalid token
+
+============================================================
+  53. MODERATION
+============================================================
+  Ô£à PASS: Content types [200]
+  Ô£à PASS: Violation types [200]
+
+============================================================
+  54. EMAIL TEMPLATES
+============================================================
+  ÔØî FAIL: Email template types [401] - Invalid token
+
+============================================================
+  55. TIMEZONE
+============================================================
+  Ô£à PASS: Current timezone [200]
+  Ô£à PASS: Available timezones [200]
+
+============================================================
+  56. FILE VERSIONS
+============================================================
+  ÔØî FAIL: File version config [401] - Invalid token
+
+============================================================
+  57. REFERRALS
+============================================================
+  ÔØî FAIL: My referrals [401] - Invalid token
+
+============================================================
+  58. CUSTOM FIELDS & STATUSES
+============================================================
+  ÔØî FAIL: Custom field types [401] - Invalid token
+  ÔØî FAIL: Custom statuses [401] - Invalid token
+
+============================================================
+  59. NOTES & TAGS
+============================================================
+  ÔØî FAIL: Notes list [401] - Invalid token
+  ÔØî FAIL: Tags list [401] - Invalid token
+  ÔØî FAIL: Notes/tags stats [401] - Invalid token
+
+============================================================
+  60. PROPOSAL TEMPLATES
+============================================================
+  ÔØî FAIL: Proposal templates [401] - Invalid token
+
+============================================================
+  61. LEGAL DOCUMENTS
+============================================================
+  ÔØî FAIL: My legal documents [401] - Invalid token
+  ÔØî FAIL: Legal templates [401] - Invalid token
+  ÔØî FAIL: Signature requests [401] - Invalid token
+
+============================================================
+  62. SUBSCRIPTIONS
+============================================================
+  Ô£à PASS: Subscription plans [200]
+  ÔØî FAIL: My subscription [401] - Invalid token
+
+============================================================
+  63. WORKFLOW AUTOMATION
+============================================================
+  ÔØî FAIL: Workflows list [401] - Invalid token
+  Ô£à PASS: Workflow templates [200]
+
+============================================================
+  64. FEEDBACK SYSTEM
+============================================================
+  ÔØî FAIL: My feedback [401] - Invalid token
+  ÔØî FAIL: CSAT score [401] - Invalid token
+  Ô£à PASS: Public roadmap [200]
+  Ô£à PASS: Public feedback board [200]
+
+============================================================
+  65. PUBLIC CLIENT PROFILES
+============================================================
+  Ô£à PASS: Public client list [200]
+  Ô£à PASS: Public client profile [404]
+
+============================================================
+  66. MATCHING ENGINE
+============================================================
+  ÔØî FAIL: Matched projects [401] - Invalid token
+  ÔØî FAIL: Recommendations [401] - Invalid token
+  Ô£à PASS: Algorithm info [200]
+
+============================================================
+  67. AUDIT TRAIL
+============================================================
+  ÔØî FAIL: Audit logs [401] - Invalid token
+
+============================================================
+  68. CONTRACT BUILDER
+============================================================
+  ÔØî FAIL: Contract templates [401] - Invalid token
+  ÔØî FAIL: Contract clauses [401] - Invalid token
+
+============================================================
+  69. PORTFOLIO BUILDER
+============================================================
+  ÔØî FAIL: Portfolio builder [401] - Invalid token
+  ÔØî FAIL: Portfolio templates [401] - Invalid token
+
+============================================================
+  70. FRAUD DETECTION
+============================================================
+  ÔØî FAIL: My risk profile [401] - Invalid token
+
+============================================================
+  71. SOCIAL AUTH
+============================================================
+  Ô£à PASS: Social auth providers [200]
+
+============================================================
+  72. VERIFICATION
+============================================================
+  ÔØî FAIL: Verification status [401] - Invalid token
+
+============================================================
+  73. MULTICURRENCY
+============================================================
+  Ô£à PASS: Currencies list [200]
+  Ô£à PASS: Crypto list [200]
+
+============================================================
+  74. CLEANUP & LOGOUT
+============================================================
+  ÔØî FAIL: Client logout [401] - Invalid token
+  ÔØî FAIL: Freelancer logout [401] - Invalid token
+
+============================================================
+  FINAL RESULTS
+============================================================
+  Ô£à PASSED:  150
+  ÔØî FAILED:  57
+  ÔÜá´©Å  SKIPPED: 8
+  TOTAL:    215
+  PASS RATE: 69.8%
+
+============================================================
+  FAILURES (57)
+============================================================
+  [6. PROPOSALS (Freelancer Flow)] Submit proposal: expected [200, 201], got 403 - Please complete your profile before submitting a proposal. Missing: bio (min 20 
+  [36. FEATURE FLAGS] My feature flags: expected 2xx, got 401 - Invalid token
+  TIMEOUT: Analytics dashboard (GET /analytics/dashboard/client)
+  [37. ANALYTICS] Analytics metrics: expected 2xx, got 401 - Invalid token
+  [37. ANALYTICS] Freelancer analytics: expected 2xx, got 401 - Invalid token
+  [38. COMPLIANCE] Compliance status: expected 2xx, got 401 - Invalid token
+  [38. COMPLIANCE] Compliance consents: expected 2xx, got 401 - Invalid token
+  [39. INVITATIONS] Send invitation: expected [200, 201, 404, 422], got 401 - Invalid token
+  [39. INVITATIONS] Sent invitations: expected 2xx, got 401 - Invalid token
+  [39. INVITATIONS] Received invitations: expected 2xx, got 401 - Invalid token
+  [40. JOB ALERTS] Job alerts list: expected 2xx, got 401 - Invalid token
+  [40. JOB ALERTS] Create job alert: expected [200, 201, 422], got 401 - Invalid token
+  [41. ORGANIZATIONS & TEAMS] Organizations list: expected 2xx, got 401 - Invalid token
+  [41. ORGANIZATIONS & TEAMS] Teams list: expected 2xx, got 401 - Invalid token
+  [42. TEMPLATES] Templates list: expected 2xx, got 401 - Invalid token
+  [43. NOTIFICATION PREFERENCES] Notification prefs: expected 2xx, got 401 - Invalid token
+  [43. NOTIFICATION PREFERENCES] Notification channels: expected 2xx, got 401 - Invalid token
+  [43. NOTIFICATION PREFERENCES] Notification categories: expected 2xx, got 401 - Invalid token
+  [44. 2FA] 2FA status: expected 2xx, got 401 - Invalid token
+  [45. API KEYS] API keys list: expected 2xx, got 401 - Invalid token
+  [46. WEBHOOKS] Webhooks list: expected 2xx, got 401 - Invalid token
+  [47. DATA EXPORT] Export list: expected 2xx, got 401 - Invalid token
+  [47. DATA EXPORT] Export templates: expected 2xx, got 401 - Invalid token
+  [47. DATA EXPORT] Export formats: expected 2xx, got 401 - Invalid token
+  [47. DATA EXPORT] GDPR export status: expected [200, 404, 500], got 401 - Invalid token
+  [48. SKILL GRAPH] My skill graph: expected 2xx, got 401 - Invalid token
+  [48. SKILL GRAPH] Skill recommendations: expected 2xx, got 401 - Invalid token
+  [49. PK PAYMENTS] PK payment providers: expected 2xx, got 401 - Invalid token
+  [49. PK PAYMENTS] PK exchange rate: expected [200, 422], got 401 - Invalid token
+  [52. RATE CARDS] Rate cards list: expected 2xx, got 401 - Invalid token
+  [54. EMAIL TEMPLATES] Email template types: expected 2xx, got 401 - Invalid token
+  [56. FILE VERSIONS] File version config: expected 2xx, got 401 - Invalid token
+  [57. REFERRALS] My referrals: expected 2xx, got 401 - Invalid token
+  [58. CUSTOM FIELDS & STATUSES] Custom field types: expected 2xx, got 401 - Invalid token
+  [58. CUSTOM FIELDS & STATUSES] Custom statuses: expected 2xx, got 401 - Invalid token
+  [59. NOTES & TAGS] Notes list: expected 2xx, got 401 - Invalid token
+  [59. NOTES & TAGS] Tags list: expected 2xx, got 401 - Invalid token
+  [59. NOTES & TAGS] Notes/tags stats: expected 2xx, got 401 - Invalid token
+  [60. PROPOSAL TEMPLATES] Proposal templates: expected 2xx, got 401 - Invalid token
+  [61. LEGAL DOCUMENTS] My legal documents: expected 2xx, got 401 - Invalid token
+  [61. LEGAL DOCUMENTS] Legal templates: expected 2xx, got 401 - Invalid token
+  [61. LEGAL DOCUMENTS] Signature requests: expected 2xx, got 401 - Invalid token
+  [62. SUBSCRIPTIONS] My subscription: expected 2xx, got 401 - Invalid token
+  [63. WORKFLOW AUTOMATION] Workflows list: expected 2xx, got 401 - Invalid token
+  [64. FEEDBACK SYSTEM] My feedback: expected 2xx, got 401 - Invalid token
+  [64. FEEDBACK SYSTEM] CSAT score: expected [200, 403], got 401 - Invalid token
+  [66. MATCHING ENGINE] Matched projects: expected 2xx, got 401 - Invalid token
+  [66. MATCHING ENGINE] Recommendations: expected 2xx, got 401 - Invalid token
+  [67. AUDIT TRAIL] Audit logs: expected [200, 403], got 401 - Invalid token
+  [68. CONTRACT BUILDER] Contract templates: expected 2xx, got 401 - Invalid token
+  [68. CONTRACT BUILDER] Contract clauses: expected 2xx, got 401 - Invalid token
+  [69. PORTFOLIO BUILDER] Portfolio builder: expected 2xx, got 401 - Invalid token
+  [69. PORTFOLIO BUILDER] Portfolio templates: expected 2xx, got 401 - Invalid token
+  [70. FRAUD DETECTION] My risk profile: expected 2xx, got 401 - Invalid token
+  [72. VERIFICATION] Verification status: expected 2xx, got 401 - Invalid token
+  [74. CLEANUP & LOGOUT] Client logout: expected [200, 204, 422], got 401 - Invalid token
+  [74. CLEANUP & LOGOUT] Freelancer logout: expected [200, 204, 422], got 401 - Invalid token
+
+============================================================
+  Test completed at 14:07:58
+============================================================

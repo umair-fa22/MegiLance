@@ -63,7 +63,6 @@ async def create_comment(
     """
     try:
         result = await comments_service.create_comment(
-            ,
             user_id=str(current_user.get("id")),
             resource_type=request.resource_type,
             resource_id=request.resource_id,
@@ -94,7 +93,6 @@ async def get_comments(
     Returns flat list with threading info (use threaded endpoint for tree view).
     """
     result = await comments_service.get_comments(
-        ,
         resource_type=resource_type,
         resource_id=resource_id,
         include_deleted=include_deleted,
@@ -119,7 +117,6 @@ async def get_threaded_comments(
     Each comment includes its replies nested in a 'replies' array.
     """
     result = await comments_service.get_threaded_comments(
-        ,
         resource_type=resource_type,
         resource_id=resource_id,
         include_deleted=include_deleted
@@ -156,7 +153,6 @@ async def update_comment(
     """
     try:
         result = await comments_service.update_comment(
-            ,
             user_id=str(current_user.get("id")),
             comment_id=comment_id,
             content=sanitize_text(request.content, 10000)
@@ -181,7 +177,6 @@ async def delete_comment(
     try:
         is_admin = current_user.get("role") == "admin"
         result = await comments_service.delete_comment(
-            ,
             user_id=str(current_user.get("id")),
             comment_id=comment_id,
             is_admin=is_admin
@@ -209,7 +204,6 @@ async def add_reaction(
     """
     try:
         result = await comments_service.add_reaction(
-            ,
             user_id=str(current_user.get("id")),
             comment_id=comment_id,
             reaction=request.reaction
@@ -230,7 +224,6 @@ async def remove_reaction(
     """Remove a reaction from a comment."""
     try:
         result = await comments_service.remove_reaction(
-            ,
             user_id=str(current_user.get("id")),
             comment_id=comment_id,
             reaction=reaction
@@ -253,7 +246,6 @@ async def pin_comment(
     try:
         is_admin = current_user.get("role") == "admin"
         result = await comments_service.pin_comment(
-            ,
             user_id=str(current_user.get("id")),
             comment_id=comment_id,
             is_admin=is_admin
@@ -274,7 +266,6 @@ async def unpin_comment(
     try:
         is_admin = current_user.get("role") == "admin"
         result = await comments_service.unpin_comment(
-            ,
             user_id=str(current_user.get("id")),
             comment_id=comment_id,
             is_admin=is_admin
@@ -294,7 +285,6 @@ async def resolve_comment(
     """Mark a comment thread as resolved."""
     try:
         result = await comments_service.resolve_comment(
-            ,
             user_id=str(current_user.get("id")),
             comment_id=comment_id
         )
@@ -329,7 +319,6 @@ async def get_my_mentions(
 ):
     """Get comments where you are mentioned."""
     result = await comments_service.get_user_mentions(
-        ,
         user_id=str(current_user.get("id")),
         limit=limit
     )
@@ -347,7 +336,6 @@ async def get_comment_stats(
 ):
     """Get comment statistics for a resource."""
     result = await comments_service.get_comment_stats(
-        ,
         resource_type=resource_type,
         resource_id=resource_id
     )

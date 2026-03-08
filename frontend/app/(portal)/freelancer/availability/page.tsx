@@ -156,7 +156,6 @@ export default function AvailabilityPage() {
     return statusMap[status] || { label: status, color: '#64748b' };
   };
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   const tabs = [

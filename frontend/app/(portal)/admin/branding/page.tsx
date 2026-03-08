@@ -137,7 +137,6 @@ export default function BrandingPage() {
     setHasChanges(true);
   };
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   const tabs = [

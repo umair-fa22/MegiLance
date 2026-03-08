@@ -14,7 +14,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
 const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
   ({ className, variant = 'primary', ...props }, ref) => {
     const { resolvedTheme } = useTheme();
-    const styles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
+      const styles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
     const variantClass = styles[variant] || styles.primary;
 

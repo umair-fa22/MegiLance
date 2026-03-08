@@ -226,7 +226,6 @@ const Dropdown: React.FC<DropdownProps> = ({
     }
   }, [isOpen, focusedIndex, listId]);
 
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   return (

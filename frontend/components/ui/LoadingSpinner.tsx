@@ -29,7 +29,6 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   const { resolvedTheme } = useTheme();
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
-  if (!resolvedTheme) return null;
 
   const sizeMap = { sm: 20, md: 32, lg: 48 };
   const accessibleLabel = ariaLabel || text || 'Loading...';

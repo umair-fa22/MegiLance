@@ -37,7 +37,6 @@ const StarRating: React.FC<StarRatingProps> = ({
 }) => {
   const { resolvedTheme } = useTheme();
 
-  if (!resolvedTheme) return null;
 
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
   const pixelSize = sizeMap[size];

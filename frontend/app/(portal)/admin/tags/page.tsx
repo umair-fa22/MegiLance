@@ -112,7 +112,7 @@ export default function AdminTagsPage() {
     setEditTarget(tag);
   };
 
-  if (!mounted || !resolvedTheme) return null;
+  if (!mounted) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
   const filteredTags = tags.filter(t => t.name.toLowerCase().includes(search.toLowerCase()));
 

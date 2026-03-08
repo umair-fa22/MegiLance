@@ -2,9 +2,8 @@
    accessibility utilities, and premium animation keyframes. Component-specific styles 
    go in CSS Modules. */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.js";
 
 /* ============================================= */
 /*   BASE DOCUMENT STYLES                       */
@@ -21,7 +20,7 @@ html {
   -ms-text-size-adjust: 100%;
 }
 
-html, body, #__next {
+html, body {
   max-width: 100vw;
   overflow-x: hidden;
 }
@@ -399,4 +398,18 @@ This project follows strict CSS Module architecture:
 
 ⚠️ AI Agents: Only modify base styles and utilities here.
 */
+
+/* ============================================= */
+/*   MOBILE SIDEBAR OVERRIDE                    */
+/*   Turbopack generates a phantom animation     */
+/*   for the sidebar CSS module that prevents    */
+/*   mobile hiding. This global override fixes   */
+/*   it using the aside element directly.        */
+/* ============================================= */
+@media (max-width: 768px) {
+  aside {
+    display: none !important;
+    animation: none !important;
+  }
+}
 

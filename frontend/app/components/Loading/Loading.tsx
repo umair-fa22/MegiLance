@@ -31,7 +31,6 @@ const Loading: React.FC<LoadingProps> = ({
 }) => {
   const { resolvedTheme } = useTheme();
 
-  if (!resolvedTheme) return null;
 
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 

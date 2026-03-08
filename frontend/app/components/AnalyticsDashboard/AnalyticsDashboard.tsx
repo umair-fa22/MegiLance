@@ -42,7 +42,6 @@ export default function AnalyticsDashboard({ className = '' }: AnalyticsDashboar
   const [topProjects, setTopProjects] = useState<any[]>([]);
 
   // Theme guard
-  if (!resolvedTheme) return null;
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   useEffect(() => {

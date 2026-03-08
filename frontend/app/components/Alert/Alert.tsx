@@ -49,7 +49,6 @@ const Alert: React.FC<AlertProps> = ({
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   // Return null or a skeleton if the theme isn't loaded yet
-  if (!resolvedTheme) return null;
 
   // Use assertive for danger/warning, polite for info/success
   const ariaLive = variant === 'danger' || variant === 'warning' ? 'assertive' : 'polite';

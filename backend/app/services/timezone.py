@@ -128,11 +128,11 @@ class TimezoneService:
     
     async def get_current_time(
         self,
-        timezone: str
+        tz_name: str
     ) -> Dict[str, Any]:
         """Get current time in a specific timezone."""
         return {
-            "timezone": timezone,
+            "timezone": tz_name,
             "current_time": datetime.now(timezone.utc).isoformat(),
             "utc_offset": "-05:00",
             "is_dst": False

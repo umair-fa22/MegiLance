@@ -363,7 +363,7 @@ class StripeService:
         metadata = payment_intent.get("metadata", {})
         payment_id = metadata.get("payment_id")
         if payment_id:
-            await execute_query(
+            execute_query(
                 "UPDATE payments SET status = 'completed', stripe_payment_intent_id = ?, updated_at = ? WHERE id = ?",
                 [payment_intent["id"], datetime.now(timezone.utc).isoformat(), payment_id]
             )
@@ -374,7 +374,7 @@ class StripeService:
         metadata = payment_intent.get("metadata", {})
         payment_id = metadata.get("payment_id")
         if payment_id:
-            await execute_query(
+            execute_query(
                 "UPDATE payments SET status = 'failed', updated_at = ? WHERE id = ?",
                 [datetime.now(timezone.utc).isoformat(), payment_id]
             )
@@ -385,7 +385,7 @@ class StripeService:
         metadata = payment_intent.get("metadata", {})
         payment_id = metadata.get("payment_id")
         if payment_id:
-            await execute_query(
+            execute_query(
                 "UPDATE payments SET status = 'canceled', updated_at = ? WHERE id = ?",
                 [datetime.now(timezone.utc).isoformat(), payment_id]
             )
@@ -425,7 +425,7 @@ class StripeService:
 
     async def update_payment_status_turso(self, payment_id: int, new_status: str) -> None:
         """Update a payment record's status."""
-        await execute_query(
+        execute_query(
             "UPDATE payments SET status = ?, updated_at = datetime('now') WHERE id = ?",
             [new_status, payment_id]
         )
@@ -434,7 +434,7 @@ class StripeService:
         self, user_id: int, notification_type: str, title: str, content: str, data: dict
     ) -> None:
         """Create a payment-related notification."""
-        await execute_query(
+        execute_query(
             """INSERT INTO notifications 
             (user_id, notification_type, title, content, data, is_read, created_at, priority)
             VALUES (?, ?, ?, ?, ?, ?, datetime('now'), 'high')""",
@@ -443,7 +443,7 @@ class StripeService:
 
     async def complete_refund_turso(self, refund_id: int) -> None:
         """Mark a refund as completed."""
-        await execute_query(
+        execute_query(
             "UPDATE refunds SET status = 'completed', processed_at = datetime('now') WHERE id = ?",
             [refund_id]
         )

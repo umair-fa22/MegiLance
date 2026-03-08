@@ -61,7 +61,6 @@ const channels = [
 
 const Community: React.FC = () => {
   const { resolvedTheme } = useTheme();
-  if (!resolvedTheme) return null;
   const themed = resolvedTheme === 'dark' ? dark : light;
 
   return (

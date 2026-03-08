@@ -215,7 +215,6 @@ export default function Features() {
     coming: FEATURES.filter(f => f.status === 'coming-soon').length,
   }), []);
 
-  if (!resolvedTheme) return null;
   const t = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   return (

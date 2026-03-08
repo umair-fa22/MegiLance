@@ -42,7 +42,6 @@ class BypassTokenRequest(BaseModel):
 @router.get("/status")
 async def get_rate_limit_status(
     request: Request,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get current rate limit status for user."""
@@ -98,7 +97,6 @@ async def get_tier_limits(
 async def check_rate_limit(
     request: Request,
     endpoint: str = "/api/v1/",
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Check rate limit for a specific endpoint."""
@@ -119,7 +117,6 @@ async def check_rate_limit(
 
 @router.post("/reset")
 async def reset_rate_limits(
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Reset own rate limits (admin only)."""
@@ -138,7 +135,6 @@ async def reset_rate_limits(
 @router.post("/admin/block")
 async def block_identifier(
     request: BlockRequest,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Block an identifier (admin only)."""
@@ -159,7 +155,6 @@ async def block_identifier(
 @router.post("/admin/unblock/{identifier}")
 async def unblock_identifier(
     identifier: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Unblock an identifier (admin only)."""
@@ -178,7 +173,6 @@ async def unblock_identifier(
 
 @router.get("/admin/blocked")
 async def get_blocked_list(
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get list of blocked identifiers (admin only)."""
@@ -195,7 +189,6 @@ async def get_blocked_list(
 @router.post("/admin/bypass-token")
 async def create_bypass_token(
     request: BypassTokenRequest,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Create a rate limit bypass token (admin only)."""
@@ -217,7 +210,6 @@ async def create_bypass_token(
 @router.delete("/admin/bypass-token/{token}")
 async def revoke_bypass_token(
     token: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Revoke a bypass token (admin only)."""
@@ -237,7 +229,6 @@ async def revoke_bypass_token(
 @router.get("/admin/analytics")
 async def get_analytics(
     identifier: Optional[str] = None,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get rate limit analytics (admin only)."""
@@ -253,7 +244,6 @@ async def get_analytics(
 
 @router.get("/admin/abuse-report")
 async def get_abuse_report(
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Get abuse detection report (admin only)."""
@@ -270,7 +260,6 @@ async def get_abuse_report(
 @router.post("/admin/reset/{identifier}")
 async def admin_reset_limits(
     identifier: str,
-    ,
     current_user: User = Depends(get_current_active_user)
 ):
     """Reset rate limits for any identifier (admin only)."""
