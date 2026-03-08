@@ -324,7 +324,7 @@ const Signup: React.FC = () => {
                 onChange={handleChange}
                 error={errors.agreedToTerms}
               >
-                I agree to the <Link href="/terms" target="_blank" rel="noopener noreferrer" className={styles.forgotPasswordLink}>Terms</Link> & <Link href="/privacy" target="_blank" rel="noopener noreferrer" className={styles.forgotPasswordLink}>Privacy Policy</Link>.
+                I agree to the <Link href="/terms" target="_blank" rel="noopener noreferrer" className={styles.forgotPasswordLink}>Terms ↗</Link> & <Link href="/privacy" target="_blank" rel="noopener noreferrer" className={styles.forgotPasswordLink}>Privacy Policy ↗</Link>.
               </Checkbox>
 
               <Button type="submit" variant="primary" fullWidth className={styles.submitButton} isLoading={loading} disabled={loading}>

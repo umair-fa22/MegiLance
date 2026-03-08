@@ -175,8 +175,10 @@ const Payments: React.FC = () => {
           </StaggerContainer>
         ) : (
           <EmptyState
-            title="No Payments Found"
-            description="It looks like there are no payments matching your criteria. Try adjusting your filters."
+            title={payments.length === 0 ? "No Payments Yet" : "No Matching Payments"}
+            description={payments.length === 0
+              ? "Your payment history will appear here once you fund a project milestone."
+              : "No payments match your current filters. Try adjusting the status or date range."}
             icon={<SearchX size={48} />}
             animationData={walletAnimation}
             animationWidth={120}

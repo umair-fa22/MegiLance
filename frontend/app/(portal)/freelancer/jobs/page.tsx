@@ -112,7 +112,7 @@ export default function JobsPage() {
             <Search className="text-gray-400 ml-3" size={24} />
             <input 
               type="text" 
-              placeholder="Search for jobs, skills, or keywords..." 
+              placeholder="Search projects by title, skills, or keywords..." 
               className={cn(commonStyles.searchInput, themeStyles.searchInput)}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
@@ -228,7 +228,7 @@ export default function JobsPage() {
 
             <div className={commonStyles.resultsHeader}>
               <span className={cn(commonStyles.resultsCount, themeStyles.resultsCount)}>
-                {loading ? 'Searching...' : `${jobs.length} jobs found`}
+                {loading ? 'Searching...' : `${jobs.length} project${jobs.length !== 1 ? 's' : ''} found`}
               </span>
               <div className="lg:hidden">
                 <Button variant="outline" onClick={() => setShowFilters(!showFilters)}>
@@ -283,8 +283,8 @@ export default function JobsPage() {
                 ) : (
                   <div className={cn(commonStyles.emptyState, themeStyles.emptyState)}>
                     <Briefcase size={48} className={commonStyles.emptyIcon} />
-                    <h3 className={commonStyles.emptyTitle}>No jobs found</h3>
-                    <p className={commonStyles.emptyText}>Try adjusting your search filters or keywords.</p>
+                    <h3 className={commonStyles.emptyTitle}>No matching projects</h3>
+                    <p className={commonStyles.emptyText}>No projects match your current search and filters. Try broadening your criteria or check back later for new opportunities.</p>
                     <Button variant="primary" onClick={() => {
                       setQuery('');
                       setCategory('all');

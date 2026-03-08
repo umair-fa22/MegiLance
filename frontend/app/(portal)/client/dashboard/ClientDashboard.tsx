@@ -137,8 +137,8 @@ const ClientDashboard: React.FC = () => {
 
   // Quick actions for the grid
   const quickActions = [
-    { label: 'Post a Job', href: '/client/post-job', icon: Plus, color: 'primary' as const, desc: 'Create job listing' },
-    { label: 'Find Talent', href: '/client/hire', icon: Search, color: 'success' as const, desc: 'Browse freelancers' },
+    { label: 'Post a Project', href: '/client/post-job', icon: Plus, color: 'primary' as const, desc: 'Create a new project listing' },
+    { label: 'Browse Talent', href: '/client/hire', icon: Search, color: 'success' as const, desc: 'Find skilled freelancers' },
     { label: 'My Projects', href: '/client/projects', icon: Briefcase, color: 'info' as const, desc: `${metrics.activeProjects} active` },
     { label: 'Contracts', href: '/client/contracts', icon: FileText, color: 'warning' as const, desc: 'Manage agreements' },
     { label: 'Payments', href: '/client/payments', icon: CreditCard, color: 'danger' as const, desc: 'View transactions' },
@@ -164,12 +164,12 @@ const ClientDashboard: React.FC = () => {
         <div className={commonStyles.headerActions}>
           <Link href="/client/hire">
             <Button variant="outline" size="lg" iconBefore={<Search size={18} />}>
-              Find Talent
+              Browse Talent
             </Button>
           </Link>
           <Link href="/client/post-job">
             <Button variant="primary" size="lg" iconBefore={<Plus size={20} />}>
-              Post a Job
+              Post a Project
             </Button>
           </Link>
         </div>
@@ -211,7 +211,12 @@ const ClientDashboard: React.FC = () => {
       {error && (
         <div className={commonStyles.errorBanner} role="alert">
           <AlertCircle size={16} />
-          <p>Failed to load dashboard data. Please try refreshing the page.</p>
+          <div>
+            <p>Something went wrong loading your dashboard data.</p>
+            <button onClick={() => window.location.reload()} className={commonStyles.retryButton}>
+              Try Again
+            </button>
+          </div>
         </div>
       )}
 
@@ -238,6 +243,7 @@ const ClientDashboard: React.FC = () => {
       <div className={commonStyles.metricsRow}>
         <div className={cn(commonStyles.metricCard, themeStyles.metricCard)}>
           <ProgressRing value={metrics.completionRate} label="Completion Rate" size="lg" color="success" />
+          <span className={cn(commonStyles.metricHint, themeStyles.metricHint)}>% of projects delivered successfully</span>
         </div>
         <div className={cn(commonStyles.metricCard, themeStyles.metricCard)}>
           <ProgressRing
@@ -246,6 +252,7 @@ const ClientDashboard: React.FC = () => {
             size="lg"
             color="primary"
           />
+          <span className={cn(commonStyles.metricHint, themeStyles.metricHint)}>% of projects currently in progress</span>
         </div>
         <div className={cn(commonStyles.metricCard, themeStyles.metricCard)}>
           <div className={commonStyles.metricStats}>
@@ -289,14 +296,14 @@ const ClientDashboard: React.FC = () => {
               ))
             ) : (
               <EmptyState
-                title="No active projects"
-                description="Get started by posting your first job."
+                title="No active projects yet"
+                description="Post your first project to start hiring talented freelancers. It only takes a few minutes."
                 animationData={emptyBoxAnimation}
                 animationWidth={120}
                 animationHeight={120}
                 action={
                   <Link href="/client/post-job">
-                    <Button variant="primary" size="md">Post a Job</Button>
+                    <Button variant="primary" size="md" iconBefore={<Plus size={16} />}>Post Your First Project</Button>
                   </Link>
                 }
               />

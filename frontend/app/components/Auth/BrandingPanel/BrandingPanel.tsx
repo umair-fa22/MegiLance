@@ -42,7 +42,7 @@ const AuthBrandingPanel: React.FC<AuthBrandingPanelProps> = ({ roleConfig }) => 
   // Always render to avoid initial layout shift; theme styles will hydrate on mount.
 
   return (
-    <div className={styles.brandingPanel} style={{ height: '100vh', maxHeight: '100vh', overflow: 'hidden' }}>
+    <div className={styles.brandingPanel}>
       <SectionGlobe variant="blue" size="lg" position="center" />
       <div className={styles.brandingContent} style={{ position: 'relative', zIndex: 2 }}>
         <div className={styles.brandingIconWrapper}>

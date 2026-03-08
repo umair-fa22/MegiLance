@@ -1,5 +1,9 @@
 /* @AI-HINT: Dark theme styles for the premium Login component. Defines colors, backgrounds, and shadows for a sleek, modern interface. */
 
+.brandingSlot {
+  background-color: #1a2035;
+}
+
 .loginPage {
   /* Branding Panel */
   --branding-panel-bg: linear-gradient(135deg, #1a2035 0%, #0f172a 100%);

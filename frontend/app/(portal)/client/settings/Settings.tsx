@@ -55,7 +55,7 @@ const Settings: React.FC = () => {
         // Set other preferences if available in user object
       } catch (err) {
         console.error(err);
-        setError('Failed to load profile settings');
+        setError('Unable to load your profile. Please check your connection and refresh the page.');
       } finally {
         setLoading(false);
       }
@@ -79,7 +79,7 @@ const Settings: React.FC = () => {
       setTimeout(() => setSuccessMessage(null), 3000);
     } catch (err) {
       console.error(err);
-      setError('Failed to update profile');
+      setError('Could not save your changes. Please try again.');
     } finally {
       setSaving(false);
     }
@@ -87,7 +87,7 @@ const Settings: React.FC = () => {
 
   const renderContent = () => {
     if (loading) {
-      return <div className={styles.loading}>Loading settings...</div>;
+      return <div className={styles.loading}>Loading your settings…</div>;
     }
 
     switch (activeTab) {

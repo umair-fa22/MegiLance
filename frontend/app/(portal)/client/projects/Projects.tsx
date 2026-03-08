@@ -107,7 +107,19 @@ const Projects: React.FC = () => {
   }, [projects]);
 
   if (error) {
-    return <EmptyState title="Error" description="Failed to load projects. Please try again later." icon={<AlertTriangle size={48} />} animationData={errorAlertAnimation} animationWidth={120} animationHeight={120} />;
+    return (
+      <EmptyState
+        title="Unable to Load Projects"
+        description="We couldn't connect to the server. Please check your connection and try again."
+        icon={<AlertTriangle size={48} />}
+        animationData={errorAlertAnimation}
+        animationWidth={120}
+        animationHeight={120}
+        action={
+          <Button variant="primary" size="sm" onClick={() => window.location.reload()}>Try Again</Button>
+        }
+      />
+    );
   }
 
   return (
@@ -117,7 +129,7 @@ const Projects: React.FC = () => {
           <header className={common.header}>
             <div>
               <h1 className={common.title}>Projects</h1>
-              <p className={common.subtitle}>Manage all your ongoing and completed projects.</p>
+              <p className={common.subtitle}>Track progress, manage budgets, and review proposals across all your projects.</p>
             </div>
             <div className={common.actions}>
               <Button variant="secondary" iconBefore={<Download size={16} />} onClick={() => {
@@ -204,17 +216,30 @@ const Projects: React.FC = () => {
           </StaggerContainer>
         ) : (
           <EmptyState
-            title="No Projects Found"
-            description="It looks like there are no projects matching your criteria."
+            title={searchQuery || statusFilter !== 'All' ? 'No Matching Projects' : 'No Projects Yet'}
+            description={searchQuery || statusFilter !== 'All'
+              ? `No projects match your current filters. Try adjusting your search or status filter.`
+              : 'Get started by posting your first project. It only takes a few minutes to describe what you need.'
+            }
             icon={<SearchX size={48} />}
             animationData={searchingAnimation}
             animationWidth={120}
             animationHeight={120}
+            action={
+              searchQuery || statusFilter !== 'All' ? (
+                <Button variant="outline" size="sm" onClick={() => { setSearchQuery(''); setStatusFilter('All'); }}>Clear Filters</Button>
+              ) : (
+                <Button variant="primary" size="sm" iconBefore={<PlusCircle size={14} />} onClick={() => router.push('/client/post-job')}>Post a Project</Button>
+              )
+            }
           />
         )}
 
         {paginatedProjects.length > 0 && (
           <div className={common.paginationContainer}>
+            <span className={cn(common.paginationInfo, themed.paginationInfo)}>
+              Showing {(currentPage - 1) * itemsPerPage + 1}–{Math.min(currentPage * itemsPerPage, sortedProjects.length)} of {sortedProjects.length} project{sortedProjects.length !== 1 ? 's' : ''}
+            </span>
             <Pagination
               currentPage={currentPage}
               totalPages={Math.ceil(sortedProjects.length / itemsPerPage)}

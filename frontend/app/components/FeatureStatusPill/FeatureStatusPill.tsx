@@ -52,22 +52,22 @@ const statusConfig: Record<string, {
     styleKey: 'advanced'
   },
   working: { 
-    label: 'Working', 
+    label: 'Beta', 
     icon: Wrench,
     styleKey: 'working'
   },
   basic: { 
-    label: 'Basic', 
+    label: 'Early Access', 
     icon: AlertCircle,
     styleKey: 'basic'
   },
   development: { 
-    label: 'In Progress', 
+    label: 'Coming Soon', 
     icon: Clock,
     styleKey: 'development'
   },
   pending: { 
-    label: 'Pending', 
+    label: 'Coming Soon', 
     icon: Clock,
     styleKey: 'development'
   },

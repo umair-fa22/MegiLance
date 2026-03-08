@@ -45,14 +45,14 @@ interface Achievement {
 }
 
 const experienceLevelOptions = [
-  { value: '', label: 'Select level' },
+  { value: '', label: 'Choose your experience level' },
   { value: 'entry', label: 'Entry Level (0-2 years)' },
   { value: 'intermediate', label: 'Intermediate (2-5 years)' },
   { value: 'expert', label: 'Expert (5+ years)' },
 ];
 
 const availabilityHoursOptions = [
-  { value: '', label: 'Select availability' },
+  { value: '', label: 'Choose your weekly availability' },
   { value: 'full_time', label: 'Full Time (40+ hrs/week)' },
   { value: 'part_time', label: 'Part Time (20-30 hrs/week)' },
   { value: 'contract', label: 'Contract Only' },
@@ -61,7 +61,7 @@ const availabilityHoursOptions = [
 ];
 
 const projectSizeOptions = [
-  { value: '', label: 'Select preferred size' },
+  { value: '', label: 'Choose your preferred project budget' },
   { value: 'small', label: 'Small (<$1K)' },
   { value: 'medium', label: 'Medium ($1K-$10K)' },
   { value: 'large', label: 'Large ($10K-$50K)' },
@@ -69,9 +69,9 @@ const projectSizeOptions = [
 ];
 
 const visibilityOptions = [
-  { value: 'public', label: 'Public - Anyone can view' },
-  { value: 'unlisted', label: 'Unlisted - Only via link' },
-  { value: 'private', label: 'Private - Only you' },
+  { value: 'public', label: 'Public — Visible in search results and browse' },
+  { value: 'unlisted', label: 'Unlisted — Only accessible via direct link' },
+  { value: 'private', label: 'Private — Hidden from everyone except you' },
 ];
 
 const availabilityStatusOptions = [
@@ -218,7 +218,7 @@ const Profile: React.FC = () => {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validate()) { setStatus('Fix highlighted errors'); return; }
+    if (!validate()) { setStatus('Please fix the errors highlighted below before saving.'); return; }
     setSaving(true);
     try {
       const payload: Record<string, unknown> = {

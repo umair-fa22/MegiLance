@@ -233,7 +233,7 @@ const SidebarNav: React.FC<SidebarNavProps> = ({
                       isActive && themeStyles.navLinkActive
                     )}
                     aria-current={isActive ? 'page' : undefined}
-                    title={isCollapsed ? undefined : item.label}
+                    title={isCollapsed ? item.label : undefined}
                     data-testid={`sidebar-link-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
                     onClick={(e) => {
                       if (item.submenu) {

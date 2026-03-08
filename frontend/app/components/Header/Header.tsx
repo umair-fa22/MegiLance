@@ -42,10 +42,10 @@ const megaMenuData = {
         ]
       },
       {
-        title: 'Security',
+        title: 'Payments & Security',
         items: [
-          { name: 'Blockchain Escrow', href: '/#blockchain', icon: Lock, description: 'Secure payments', status: 'complete' as FeatureStatus },
-          { name: 'Milestone Payments', href: '/how-it-works#payments', icon: Shield, description: 'Protected transactions', status: 'complete' as FeatureStatus },
+          { name: 'Secure Escrow', href: '/how-it-works#payments', icon: Shield, description: 'Protected milestone payments', status: 'complete' as FeatureStatus },
+          { name: 'Milestone Payments', href: '/how-it-works#payments', icon: CreditCard, description: 'Pay per deliverable', status: 'complete' as FeatureStatus },
         ]
       }
     ]
@@ -58,7 +58,7 @@ const megaMenuData = {
         items: [
           { name: 'For Clients', href: '/clients', icon: Briefcase, description: 'Hire top talent', status: 'complete' as FeatureStatus },
           { name: 'For Freelancers', href: '/freelancers', icon: Users, description: 'Find great work', status: 'complete' as FeatureStatus },
-          { name: 'Teams', href: '/teams', icon: Building2, description: 'Collaborate & scale', status: 'working' as FeatureStatus },
+          { name: 'Teams', href: '/teams', icon: Building2, description: 'Collaborate & scale', status: 'development' as FeatureStatus },
         ]
       },
       {
@@ -77,8 +77,8 @@ const megaMenuData = {
         title: 'Help & Support',
         items: [
           { name: 'FAQ', href: '/faq', icon: HelpCircle, description: 'Common questions', status: 'complete' as FeatureStatus },
-          { name: 'Support', href: '/support', icon: Mail, description: 'Get help', status: 'working' as FeatureStatus },
-          { name: 'Blog', href: '/blog', icon: BookOpen, description: 'Insights & tips', status: 'working' as FeatureStatus },
+          { name: 'Support', href: '/support', icon: Mail, description: 'Get help', status: 'development' as FeatureStatus },
+          { name: 'Blog', href: '/blog', icon: BookOpen, description: 'Insights & tips', status: 'development' as FeatureStatus },
         ]
       },
       {
@@ -170,7 +170,7 @@ const Header: React.FC = () => {
           {/* Desktop Navigation */}
           <div className={commonStyles.navLinks}>
             {/* Explore - Featured Link */}
-            <Link href="/explore" className={cn(commonStyles.exploreLink, themeStyles.exploreLink)}>
+            <Link href="/explore" className={cn(commonStyles.exploreLink, themeStyles.exploreLink)} title="Explore all MegiLance features and capabilities">
               <Sparkles size={16} />
               Explore
             </Link>
@@ -256,12 +256,19 @@ const Header: React.FC = () => {
               </div>
             ))}
 
-            {/* Sign In Button */}
-            <Link href="/login" className={commonStyles.signInLink}>
-              <Button variant="primary" size="sm">
-                Sign In
-              </Button>
-            </Link>
+            {/* Auth Buttons */}
+            <div className={commonStyles.authButtons}>
+              <Link href="/login" className={commonStyles.signInLink}>
+                <Button variant="outline" size="sm">
+                  Sign In
+                </Button>
+              </Link>
+              <Link href="/signup" className={commonStyles.signUpLink}>
+                <Button variant="primary" size="sm">
+                  Get Started
+                </Button>
+              </Link>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}

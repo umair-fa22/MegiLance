@@ -291,12 +291,13 @@ const Login: React.FC = () => {
   }
 
   return (
-    <PageTransition className={styles.loginPage}>
+    <PageTransition>
+      <div className={styles.loginPage}>
       {/* Background Decor - REMOVED */}
       
       {/* Floating 3D Objects - REMOVED */}
       
-      <div className={styles.brandingSlot} style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', alignSelf: 'start' }}>
+      <div className={styles.brandingSlot}>
         <AuthBrandingPanel roleConfig={roleConfig[selectedRole]} />
       </div>
       <div className={styles.formPanel}>
@@ -416,13 +417,15 @@ const Login: React.FC = () => {
             </div>
 
             <div className={styles.formOptions}>
-              <Checkbox
-                name="remember"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-              >
-                Remember me
-              </Checkbox>
+              <span title="Stay signed in for 30 days on this device">
+                <Checkbox
+                  name="remember"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                >
+                  Remember me
+                </Checkbox>
+              </span>
               <div className={commonStyles.linksColumn}>
                 <Link href="/forgot-password" className={styles.forgotPasswordLink}>
                   Forgot Password?
@@ -444,6 +447,7 @@ const Login: React.FC = () => {
             <p>Don&apos;t have an account? <Link href="/signup">Create one now</Link></p>
           </StaggerItem>
         </StaggerContainer>
+      </div>
       </div>
     </PageTransition>
   );

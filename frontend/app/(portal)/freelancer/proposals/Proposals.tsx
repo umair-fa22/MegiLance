@@ -139,7 +139,7 @@ const Proposals: React.FC = () => {
       setProposals(transformedProposals);
     } catch (err) {
       console.error('Failed to fetch proposals:', err);
-      setError(err instanceof Error ? err.message : 'Failed to load proposals');
+      setError(err instanceof Error ? err.message : 'Unable to load your proposals. Please check your connection and try again.');
       setProposals([]);
     } finally {
       setLoading(false);
@@ -192,7 +192,7 @@ const Proposals: React.FC = () => {
         toaster.notify({ title: 'Success', description: 'Proposal successfully withdrawn.', variant: 'success' });
         fetchProposals();
       } catch (err) {
-        toaster.notify({ title: 'Error', description: 'Failed to withdraw proposal.', variant: 'danger' });
+        toaster.notify({ title: 'Error', description: 'Could not withdraw this proposal. It may have already been accepted or removed.', variant: 'danger' });
       }
       setWithdrawOpen(false);
       setPendingWithdrawId(null);
@@ -214,7 +214,7 @@ const Proposals: React.FC = () => {
         <ScrollReveal>
           <header className={cn(commonStyles.header, styles.header)}>
             <h1 className={cn(commonStyles.title, styles.title)}>My Proposals</h1>
-            <p className={cn(commonStyles.subtitle, styles.subtitle)}>Track and manage all your job proposals from a centralized dashboard.</p>
+            <p className={cn(commonStyles.subtitle, styles.subtitle)}>Track your submitted proposals, monitor their status, and manage pending bids.</p>
           </header>
         </ScrollReveal>
 
@@ -280,7 +280,7 @@ const Proposals: React.FC = () => {
                       : "Your search or filter criteria did not match any proposals."}
                   </p>
                   {proposals.length === 0 ? (
-                    <Button variant="primary" onClick={() => router.push('/jobs')}>Browse Jobs</Button>
+                    <Button variant="primary" onClick={() => router.push('/freelancer/find-work')}>Browse Projects</Button>
                   ) : (
                     <Button variant="secondary" onClick={() => { setQ(''); setStatusFilters([]); }}>Clear All Filters</Button>
                   )}

@@ -300,12 +300,15 @@ const Dashboard: React.FC = () => {
       <div className={commonStyles.metricsRow}>
         <div className={cn(commonStyles.metricCard, themeStyles.metricCard)}>
           <ProgressRing value={metrics.completionRate} label="Completion Rate" size="lg" color="success" />
+          <span className={cn(commonStyles.metricHint, themeStyles.metricHint)}>% of orders delivered vs. total accepted</span>
         </div>
         <div className={cn(commonStyles.metricCard, themeStyles.metricCard)}>
           <ProgressRing value={metrics.responseRate} label="Response Rate" size="lg" color="primary" />
+          <span className={cn(commonStyles.metricHint, themeStyles.metricHint)}>% of messages responded to within 24h</span>
         </div>
         <div className={cn(commonStyles.metricCard, themeStyles.metricCard)}>
           <ProgressRing value={metrics.onTimeRate} label="On-Time Delivery" size="lg" color="warning" />
+          <span className={cn(commonStyles.metricHint, themeStyles.metricHint)}>% of orders delivered before deadline</span>
         </div>
         <div className={cn(commonStyles.metricCard, themeStyles.metricCard)}>
           <div className={commonStyles.metricStats}>
@@ -317,7 +320,7 @@ const Dashboard: React.FC = () => {
             <div className={commonStyles.metricStatItem}>
               <TrendingUp size={16} className={commonStyles.metricIconSuccess} />
               <span className={cn(commonStyles.metricStatValue, themeStyles.metricStatValue)}>{metrics.jssScore}%</span>
-              <span className={cn(commonStyles.metricStatLabel, themeStyles.metricStatLabel)}>JSS Score</span>
+              <span className={cn(commonStyles.metricStatLabel, themeStyles.metricStatLabel)} title="Job Success Score (0-100) — updated weekly based on completion, on-time delivery, and client ratings">JSS Score</span>
             </div>
             <div className={commonStyles.metricStatItem}>
               <Zap size={16} className={commonStyles.metricIconPrimary} />
@@ -375,14 +378,14 @@ const Dashboard: React.FC = () => {
               ))
             ) : (
               <EmptyState
-                title="No jobs found"
-                description="We couldn&apos;t find any jobs matching your skills."
+                title="No matching jobs found"
+                description="We couldn&apos;t find jobs matching your skills yet. Update your profile to improve AI matching accuracy."
                 animationData={searchingAnimation}
                 animationWidth={120}
                 animationHeight={120}
                 action={
                   <Link href="/freelancer/profile">
-                    <Button variant="outline" size="sm">Update Profile</Button>
+                    <Button variant="outline" size="sm">Update Skills & Profile</Button>
                   </Link>
                 }
               />
@@ -407,7 +410,13 @@ const Dashboard: React.FC = () => {
 
           <div className={commonStyles.proposalList}>
             {proposals && proposals.length > 0 ? (
-              proposals.slice(0, 5).map((proposal) => (
+              proposals.slice(0, 5).map((proposal) => {
+                const statusLower = proposal.status.toLowerCase();
+                const statusColorClass = statusLower === 'accepted' ? commonStyles.statusAccepted
+                  : statusLower === 'rejected' || statusLower === 'declined' ? commonStyles.statusRejected
+                  : statusLower === 'pending' ? commonStyles.statusPending
+                  : commonStyles.statusDefault;
+                return (
                 <div key={proposal.id} className={cn(commonStyles.proposalCard, themeStyles.proposalCard)}>
                   <div className={commonStyles.proposalInfo}>
                     <h4 className={cn(themeStyles.proposalTitle)}>{proposal.projectTitle}</h4>
@@ -415,18 +424,24 @@ const Dashboard: React.FC = () => {
                       {new Date(proposal.sentDate).toLocaleDateString()}
                     </span>
                   </div>
-                  <span className={cn(commonStyles.proposalStatus, themeStyles.proposalStatus)}>
+                  <span className={cn(commonStyles.proposalStatus, themeStyles.proposalStatus, statusColorClass)}>
                     {proposal.status}
                   </span>
                 </div>
-              ))
+                );
+              })
             ) : (
               <EmptyState
                 title="No proposals yet"
-                description="Start applying to jobs to see them here."
+                description="Browse available projects and submit proposals to start earning. Your first proposal is the most important step!"
                 animationData={emptyBoxAnimation}
                 animationWidth={100}
                 animationHeight={100}
+                action={
+                  <Link href="/jobs">
+                    <Button variant="primary" size="sm" iconBefore={<Search size={14} />}>Browse Projects</Button>
+                  </Link>
+                }
               />
             )}
           </div>

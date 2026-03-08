@@ -463,7 +463,7 @@ export default function Earnings() {
                     ))}
                   </div>
                 ) : (
-                  <p className={cn(commonStyles.emptyText, t.emptyText)}>No earnings data yet</p>
+                  <p className={cn(commonStyles.emptyText, t.emptyText)}>No earnings yet. Your earnings will appear here once a client releases a milestone payment.</p>
                 )}
               </div>
             </div>
@@ -497,7 +497,7 @@ export default function Earnings() {
                   </div>
                 ))}
                 {transactions.length === 0 && (
-                  <p className={cn(commonStyles.emptyText, t.emptyText)}>No transactions yet</p>
+                  <p className={cn(commonStyles.emptyText, t.emptyText)}>No transactions yet. Payments, withdrawals, and fees will appear here.</p>
                 )}
               </div>
             </div>
@@ -585,7 +585,7 @@ export default function Earnings() {
                   </div>
                 ))}
                 {filteredTx.length === 0 && (
-                  <p className={cn(commonStyles.emptyText, t.emptyText)}>No matching transactions</p>
+                  <p className={cn(commonStyles.emptyText, t.emptyText)}>No transactions match your filters. Try changing the date range or transaction type.</p>
                 )}
               </div>
 

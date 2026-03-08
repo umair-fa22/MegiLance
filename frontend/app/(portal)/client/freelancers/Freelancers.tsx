@@ -495,7 +495,7 @@ const Freelancers: React.FC = () => {
               </div>
             ))
           )}
-          {!loading && error && <div className={cn(common.error, themed.error)}>Failed to load freelancers.</div>}
+          {!loading && error && <div className={cn(common.error, themed.error)}>Unable to load freelancers. Please check your connection and <button onClick={() => window.location.reload()} style={{textDecoration:'underline',cursor:'pointer',background:'none',border:'none',color:'inherit',fontWeight:600}}>try again</button>.</div>}
           {!loading && !error && paged.map(f => (
             <div key={f.id} className={cn(viewMode === 'list' ? common.listItem : common.gridItem, themed.cardWrapper)}>
               <div className={common.cardActions}>
@@ -521,8 +521,8 @@ const Freelancers: React.FC = () => {
           {!loading && sorted.length === 0 && (
             <div className={cn(common.emptyState, themed.emptyState)}>
               <Search size={48} strokeWidth={1.5} />
-              <h3>No Freelancers Found</h3>
-              <p>Try adjusting your search or filter criteria.</p>
+              <h3>No Matching Freelancers</h3>
+              <p>No freelancers match your current search and filters. Try broadening your criteria or removing some filters.</p>
               {hasActiveFilters && (
                 <Button variant="secondary" size="sm" onClick={clearFilters}>Clear All Filters</Button>
               )}

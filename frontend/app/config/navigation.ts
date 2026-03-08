@@ -83,9 +83,9 @@ export const freelancerNavItems: NavItem[] = [
   { label: 'Messages', href: '/freelancer/messages', icon: 'MessageSquare' },
   { label: 'Notifications', href: '/freelancer/notifications', icon: 'Bell' },
   { label: 'Jobs', href: '/freelancer/jobs', icon: 'Search', section: 'Work', submenu: [
-    { label: 'Browse Jobs', href: '/freelancer/jobs' },
-    { label: 'My Jobs', href: '/freelancer/my-jobs' },
-    { label: 'Saved Jobs', href: '/freelancer/saved-jobs' },
+    { label: 'Browse Projects', href: '/freelancer/jobs' },
+    { label: 'My Projects', href: '/freelancer/my-jobs' },
+    { label: 'Saved Projects', href: '/freelancer/saved-jobs' },
     { label: 'Job Alerts', href: '/freelancer/job-alerts' },
     { label: 'Gigs', href: '/freelancer/gigs' },
   ]},
@@ -142,7 +142,7 @@ export const clientNavItems: NavItem[] = [
   { label: 'Messages', href: '/client/messages', icon: 'MessageSquare' },
   { label: 'Notifications', href: '/client/notifications', icon: 'Bell' },
   { label: 'Hiring', href: '/client/post-job', icon: 'TrendingUp', section: 'Hiring', submenu: [
-    { label: 'Post Job', href: '/client/post-job' },
+    { label: 'Post a Project', href: '/client/post-job' },
     { label: 'Hire', href: '/client/hire' },
     { label: 'Talent Search', href: '/client/search' },
     { label: 'Browse Freelancers', href: '/client/freelancers' },

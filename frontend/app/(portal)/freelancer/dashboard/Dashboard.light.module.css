@@ -56,6 +56,7 @@
 }
 .metricStatValue { color: #0f172a; }
 .metricStatLabel { color: #64748b; }
+.metricHint { color: #94a3b8; }
 
 /* ── Timeline Section ───────────────── */
 .timelineSection { border-color: #e2e8f0; }

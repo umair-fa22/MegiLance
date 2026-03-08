@@ -296,7 +296,7 @@ const Contracts = () => {
         <ScrollReveal>
           <header className={styles.header}>
             <h1 className={styles.title}>Your Contracts</h1>
-            <p className={styles.subtitle}>View and manage all your smart contracts.</p>
+            <p className={styles.subtitle}>View and manage all your active and completed contracts with clients.</p>
           </header>
         </ScrollReveal>
 
@@ -536,7 +536,11 @@ const Contracts = () => {
                 )}
               </table>
               {sorted.length === 0 && (
-                <div role="status" aria-live="polite" className={styles.emptyState}>No contracts found.</div>
+                <div role="status" aria-live="polite" className={styles.emptyState}>
+                  {contracts.length === 0
+                    ? 'No contracts yet. Contracts are created when a client accepts your proposal.'
+                    : 'No contracts match your current filters. Try adjusting your search or status filter.'}
+                </div>
               )}
             </div>
           </ScrollReveal>
