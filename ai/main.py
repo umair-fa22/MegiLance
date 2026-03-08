@@ -173,32 +173,129 @@ Looking forward to working with you on this exciting project!"""
         
     return {"text": text, "method": "template-based"}
 
+# ── Sentiment Analysis (VADER-based) ────────────────────────────────────────
+from typing import Dict, Any
+
+# Import real sentiment analyzer
+try:
+    import sys, os
+    # Allow importing from backend if co-located (Docker setup)
+    _backend_path = os.path.join(os.path.dirname(__file__), "..", "backend")
+    if os.path.isdir(_backend_path) and _backend_path not in sys.path:
+        sys.path.insert(0, _backend_path)
+    from app.services.sentiment_analysis import SentimentAnalyzer
+    _sentiment_analyzer = SentimentAnalyzer()
+    logger.info("✅ VADER sentiment analyzer loaded")
+except ImportError:
+    # Fallback: embed a minimal analyzer locally
+    logger.warning("Backend sentiment module not found, using embedded VADER")
+    _sentiment_analyzer = None
+
+
+class _MinimalVADER:
+    """Lightweight VADER fallback if backend module is unavailable."""
+    LEXICON = {
+        "excellent": 3.2, "outstanding": 3.5, "amazing": 3.1, "fantastic": 3.1,
+        "wonderful": 3.0, "perfect": 3.0, "brilliant": 3.1, "superb": 3.3,
+        "great": 2.4, "good": 1.9, "love": 2.5, "best": 2.8, "awesome": 2.7,
+        "impressed": 2.3, "professional": 2.0, "recommend": 2.4, "satisfied": 2.1,
+        "happy": 2.2, "helpful": 2.0, "reliable": 2.1, "skilled": 2.0,
+        "nice": 1.3, "fine": 0.8, "okay": 0.5, "decent": 1.0,
+        "bad": -2.1, "poor": -2.2, "terrible": -3.0, "awful": -3.0,
+        "horrible": -3.1, "worst": -3.3, "hate": -2.8, "disappointed": -2.3,
+        "unprofessional": -2.5, "slow": -1.5, "late": -1.8, "broken": -2.0,
+        "useless": -2.5, "waste": -2.3, "scam": -3.5, "avoid": -2.8,
+        "fraud": -3.5, "rude": -2.5, "mediocre": -1.5,
+    }
+    NEGATE = {"not", "no", "never", "neither", "nobody", "nothing", "nor",
+              "cannot", "cant", "can't", "don't", "dont", "won't", "wont",
+              "didn't", "didnt", "isn't", "isnt", "wasn't", "wasnt", "without"}
+
+    def analyze(self, text: str) -> dict:
+        import re, math
+        words = re.findall(r"[\w']+", text.lower())
+        scores = []
+        for i, w in enumerate(words):
+            v = self.LEXICON.get(w, 0.0)
+            if v == 0:
+                continue
+            if any(words[j] in self.NEGATE for j in range(max(0, i - 3), i)):
+                v *= -0.74
+            scores.append(v)
+        raw = sum(scores)
+        compound = raw / math.sqrt(raw * raw + 15) if scores else 0.0
+        label = "positive" if compound >= 0.05 else "negative" if compound <= -0.05 else "neutral"
+        confidence = min(abs(compound) * 1.3 + 0.3, 1.0)
+        return {
+            "compound": round(compound, 4), "label": label,
+            "confidence": round(confidence, 3),
+            "positive": round(max(compound, 0), 3),
+            "negative": round(abs(min(compound, 0)), 3),
+            "neutral": round(1 - abs(compound), 3),
+        }
+
+    def analyze_review(self, text, rating=None):
+        base = self.analyze(text)
+        alignment = None
+        if rating is not None:
+            nr = (rating - 3.0) / 2.0
+            alignment = {
+                "rating_sentiment": round(nr, 2), "text_sentiment": base["compound"],
+                "aligned": abs(nr - base["compound"]) < 0.5,
+                "discrepancy": round(abs(nr - base["compound"]), 2),
+            }
+        base["rating_alignment"] = alignment
+        base["word_count"] = len(text.split())
+        return base
+
+
+def _get_analyzer():
+    return _sentiment_analyzer or _MinimalVADER()
+
+
+class SentimentBatchRequest(BaseModel):
+    reviews: List[dict]
+
+
+class ReviewSentimentRequest(BaseModel):
+    text: str
+    rating: Optional[float] = None
+
+
 @app.post("/ai/sentiment")
 async def analyze_sentiment(request: SentimentRequest):
-    """Analyze sentiment using keyword-based approach"""
-    text_lower = request.text.lower()
-    
-    positive_words = ['excellent', 'great', 'good', 'amazing', 'awesome', 'wonderful', 
-                     'fantastic', 'love', 'best', 'perfect', 'outstanding', 'brilliant',
-                     'satisfied', 'happy', 'pleased', 'impressed', 'recommend', 'professional']
-    negative_words = ['bad', 'poor', 'terrible', 'awful', 'horrible', 'worst', 'hate',
-                     'disappointed', 'unsatisfied', 'unprofessional', 'late', 'never',
-                     'waste', 'refund', 'scam', 'avoid']
-    
-    positive_count = sum(1 for word in positive_words if word in text_lower)
-    negative_count = sum(1 for word in negative_words if word in text_lower)
-    
-    if positive_count > negative_count:
-        sentiment = "POSITIVE"
-        score = min(0.95, 0.6 + (positive_count * 0.1))
-    elif negative_count > positive_count:
-        sentiment = "NEGATIVE"
-        score = min(0.95, 0.6 + (negative_count * 0.1))
-    else:
-        sentiment = "NEUTRAL"
-        score = 0.5
-    
-    return {"label": sentiment, "score": round(score, 2)}
+    """Analyze sentiment using VADER (Valence Aware Dictionary and sEntiment Reasoner)."""
+    analyzer = _get_analyzer()
+    result = analyzer.analyze(request.text)
+    # Keep backward compatible response keys
+    return {
+        "label": result["label"].upper(),
+        "score": result["confidence"],
+        "compound": result["compound"],
+        "positive": result["positive"],
+        "negative": result["negative"],
+        "neutral": result["neutral"],
+        "method": "vader",
+    }
+
+
+@app.post("/ai/sentiment/review")
+async def analyze_review_sentiment(request: ReviewSentimentRequest):
+    """Full review analysis with aspect-based sentiment and fake review detection."""
+    analyzer = _get_analyzer()
+    if hasattr(analyzer, "analyze_review"):
+        return analyzer.analyze_review(request.text, request.rating)
+    return analyzer.analyze(request.text)
+
+
+@app.post("/ai/sentiment/batch")
+async def analyze_batch_sentiment(request: SentimentBatchRequest):
+    """Batch analyze multiple reviews."""
+    analyzer = _get_analyzer()
+    if hasattr(analyzer, "analyze_batch"):
+        return analyzer.analyze_batch(request.reviews)
+    results = [analyzer.analyze(r.get("text", r.get("comment", ""))) for r in request.reviews]
+    return {"total": len(results), "reviews": results}
 
 @app.post("/ai/extract-skills")
 async def extract_skills(request: SkillExtractionRequest):

@@ -6,7 +6,7 @@ import Sidebar from '../Sidebar/Sidebar';
 import PortalNavbar from '../Layout/PortalNavbar/PortalNavbar';
 import PortalFooter from '../Layout/PortalFooter/PortalFooter';
 import MobileBottomNav from '../MobileBottomNav/MobileBottomNav';
-import { ChatbotAgent } from '@/app/components/AI';
+
 import CommandPalette from '@/app/components/CommandPalette/CommandPalette';
 
 import ErrorBoundary from '@/app/components/ErrorBoundary/ErrorBoundary';
@@ -205,9 +205,6 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <PortalFooter />
           </div>
 
-          <ErrorBoundary>
-            <ChatbotAgent />
-          </ErrorBoundary>
         </div>
 
         {/* Mobile bottom tab navigation */}

@@ -254,6 +254,8 @@
   height: calc(100vh - var(--header-height));
   z-index: 49;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   transition: right 0.3s ease;
   box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
 }
@@ -263,7 +265,7 @@
 }
 
 .mobileNav {
-  padding: 2rem 1.5rem;
+  padding: 2rem 1.5rem calc(80px + env(safe-area-inset-bottom, 0px));
   height: 100%;
   display: flex;
   flex-direction: column;

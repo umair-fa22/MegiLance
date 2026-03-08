@@ -5,12 +5,18 @@ import logging
 import secrets
 import json
 import re
+import math
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any, Tuple
 from enum import Enum
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 from app.db.turso_http import execute_query, parse_rows
+
+try:
+    from app.services.sentiment_analysis import sentiment_analyzer as _vader
+except ImportError:
+    _vader = None
 
 logger = logging.getLogger(__name__)
 
@@ -453,31 +459,33 @@ class AIChatbotService:
         return ChatIntent.UNKNOWN
     
     def _analyze_sentiment(self, message: str) -> SentimentLevel:
-        """Analyze sentiment of a message."""
+        """Analyze sentiment using VADER (with keyword fallback)."""
+        if _vader:
+            result = _vader.analyze(message)
+            compound = result["compound"]
+            if compound >= 0.5:
+                return SentimentLevel.VERY_POSITIVE
+            elif compound >= 0.05:
+                return SentimentLevel.POSITIVE
+            elif compound <= -0.5:
+                return SentimentLevel.VERY_NEGATIVE
+            elif compound <= -0.05:
+                return SentimentLevel.NEGATIVE
+            return SentimentLevel.NEUTRAL
+
+        # Fallback: keyword-based
         message_lower = message.lower()
-        
-        scores = {
-            SentimentLevel.VERY_NEGATIVE: 0,
-            SentimentLevel.NEGATIVE: 0,
-            SentimentLevel.NEUTRAL: 0,
-            SentimentLevel.POSITIVE: 0,
-            SentimentLevel.VERY_POSITIVE: 0
-        }
-        
+        scores = {level: 0 for level in SentimentLevel}
         for level, keywords in self.SENTIMENT_KEYWORDS.items():
             for keyword in keywords:
                 if keyword in message_lower:
                     scores[level] += 1
-        
-        # Get dominant sentiment
         max_score = max(scores.values())
         if max_score == 0:
             return SentimentLevel.NEUTRAL
-        
         for level, score in scores.items():
             if score == max_score:
                 return level
-        
         return SentimentLevel.NEUTRAL
     
     def _check_escalation_triggers(

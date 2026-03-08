@@ -383,9 +383,8 @@ class MatchingEngine:
         experience = self.calculate_experience_match_score(project, freelancer)
         availability = self.calculate_availability_score(freelancer_id)
         response_rate = self.calculate_response_rate(freelancer_id)
-
-        # Recency bonus: prefer recently active freelancers
         recency = self._calculate_recency_score(freelancer_id)
+        sentiment_score = self._calculate_sentiment_score(freelancer_id)
 
         factors = {
             "skill_match": skill_result["score"],
@@ -396,18 +395,20 @@ class MatchingEngine:
             "availability": availability,
             "response_rate": response_rate,
             "recency": recency,
+            "review_sentiment": sentiment_score,
         }
 
         # Configurable weights (sum = 1.0)
         weights = {
-            "skill_match": 0.30,
-            "success_rate": 0.15,
-            "avg_rating": 0.15,
-            "budget_match": 0.15,
+            "skill_match": 0.28,
+            "success_rate": 0.13,
+            "avg_rating": 0.13,
+            "budget_match": 0.13,
             "experience_match": 0.10,
             "availability": 0.05,
             "response_rate": 0.05,
             "recency": 0.05,
+            "review_sentiment": 0.08,
         }
 
         total_score = sum(factors[k] * weights[k] for k in factors)
@@ -438,6 +439,52 @@ class MatchingEngine:
 
     def _calculate_recency_score(self, freelancer_id: int) -> float:
         """Score based on how recently the freelancer was active."""
+
+    def _calculate_sentiment_score(self, freelancer_id: int) -> float:
+        """
+        Calculate a 0-1 sentiment score from review text analysis.
+        Uses VADER compound scores stored in sentiment_data or re-analyzes on the fly.
+        """
+        try:
+            # Try to get pre-computed sentiment data
+            result = execute_query(
+                "SELECT sentiment_data, comment, rating FROM reviews WHERE reviewee_id = ? AND is_public = 1",
+                [freelancer_id]
+            )
+            rows = parse_rows(result)
+            if not rows:
+                return 0.5  # Neutral for no reviews
+
+            compounds = []
+            for row in rows:
+                sd = row.get("sentiment_data")
+                if sd:
+                    try:
+                        data = json.loads(sd) if isinstance(sd, str) else sd
+                        if "compound" in data:
+                            compounds.append(float(data["compound"]))
+                            continue
+                    except (json.JSONDecodeError, TypeError, ValueError):
+                        pass
+                # Fallback: analyze on the fly
+                comment = row.get("comment")
+                if comment:
+                    try:
+                        from app.services.sentiment_analysis import sentiment_analyzer
+                        result_s = sentiment_analyzer.analyze(comment)
+                        compounds.append(result_s["compound"])
+                    except Exception:
+                        pass
+
+            if not compounds:
+                return 0.5
+
+            avg_compound = sum(compounds) / len(compounds)
+            # Map compound (-1 to +1) to score (0 to 1)
+            return round((avg_compound + 1.0) / 2.0, 4)
+        except Exception as e:
+            logger.warning("Sentiment score calculation failed: %s", e)
+            return 0.5
         result = execute_query(
             "SELECT MAX(created_at) as last_activity FROM proposals WHERE freelancer_id = ?",
             [freelancer_id]

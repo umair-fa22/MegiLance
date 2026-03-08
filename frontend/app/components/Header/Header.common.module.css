@@ -330,7 +330,7 @@
   display: none;
   flex-direction: column;
   gap: 0.75rem;
-  padding: 1rem;
+  padding: 1rem 1rem calc(80px + env(safe-area-inset-bottom, 0px));
   position: fixed;
   top: 53px;
   left: 0;
@@ -339,6 +339,7 @@
   z-index: 90;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   border-bottom: 1px solid;
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   backdrop-filter: blur(20px) saturate(180%);
@@ -352,7 +353,7 @@
 @media (min-width: 480px) {
   .mobileNavMenu {
     top: 57px;
-    padding: 1.25rem 1.25rem 1.5rem;
+    padding: 1.25rem 1.25rem calc(80px + env(safe-area-inset-bottom, 0px));
     bottom: auto;
     max-height: calc(100vh - 57px);
   }

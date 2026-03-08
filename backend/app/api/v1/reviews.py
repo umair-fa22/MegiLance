@@ -536,3 +536,45 @@ async def respond_to_review(
         "responded_at": now,
         "message": "Response added successfully"
     }
+
+
+# ── Sentiment Analysis Endpoints ──────────────────────────────────────
+
+
+@router.get("/{review_id}/sentiment", response_model=dict)
+async def get_review_sentiment(
+    review_id: int,
+    current_user=Depends(get_current_user),
+):
+    """Get AI sentiment analysis for a specific review."""
+    review = reviews_service.get_review_by_id(review_id)
+    if not review:
+        raise HTTPException(status_code=404, detail="Review not found")
+
+    text = review.get("comment", "")
+    rating = review.get("rating")
+    sentiment = reviews_service.analyze_review_sentiment(text, rating)
+    if sentiment is None:
+        raise HTTPException(status_code=503, detail="Sentiment analysis service unavailable")
+    return sentiment
+
+
+@router.get("/user/{user_id}/sentiment", response_model=dict)
+async def get_user_review_sentiment(
+    user_id: int,
+    current_user=Depends(get_current_user),
+):
+    """Get aggregated sentiment analysis across all reviews for a user."""
+    if not reviews_service.user_exists(user_id):
+        raise HTTPException(status_code=404, detail="User not found")
+
+    from app.services.sentiment_analysis import sentiment_analyzer
+    rows = reviews_service.query_reviews(
+        "reviewee_id = ? AND is_public = 1", [user_id, 100, 0]
+    )
+    review_dicts = [
+        {"text": r.get("comment", ""), "rating": r.get("rating")} for r in rows if r.get("comment")
+    ]
+    if not review_dicts:
+        return {"total": 0, "avg_compound": 0.0, "distribution": {}}
+    return sentiment_analyzer.analyze_batch(review_dicts)

@@ -48,3 +48,10 @@
   display: flex;
   flex-direction: column;
 }
+
+/* Push floating buttons above MobileBottomNav on portal mobile screens */
+@media (max-width: 768px) {
+  .portalOffset {
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}

@@ -2,10 +2,29 @@
 """Reviews Service - Data access layer for review and rating management."""
 
 import json
+import logging
 from datetime import datetime, timezone
 from typing import Optional, List, Dict, Any
 
 from app.db.turso_http import execute_query, parse_rows
+
+try:
+    from app.services.sentiment_analysis import sentiment_analyzer as _sa
+except ImportError:
+    _sa = None
+
+logger = logging.getLogger(__name__)
+
+
+def analyze_review_sentiment(text: str, rating: float = None) -> Optional[Dict[str, Any]]:
+    """Run sentiment analysis on review text. Returns None if analyser unavailable."""
+    if not _sa or not text:
+        return None
+    try:
+        return _sa.analyze_review(text, rating)
+    except Exception as exc:
+        logger.warning("Sentiment analysis failed: %s", exc)
+        return None
 
 
 def get_contract_by_id(contract_id: int) -> Optional[Dict[str, Any]]:
@@ -40,10 +59,14 @@ def create_review(
     now: str
 ) -> int:
     """Insert a new review and return its ID."""
+    # Auto-analyze sentiment of the review text
+    sentiment_data = analyze_review_sentiment(review_text, rating)
+    sentiment_json = json.dumps(sentiment_data) if sentiment_data else None
+
     execute_query(
         """INSERT INTO reviews (contract_id, reviewer_id, reviewee_id, rating, 
-                                rating_breakdown, comment, is_public, created_at, updated_at)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                                rating_breakdown, comment, is_public, sentiment_data, created_at, updated_at)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
         [
             contract_id,
             reviewer_id,
@@ -52,6 +75,7 @@ def create_review(
             json.dumps(rating_breakdown),
             review_text,
             1 if is_public else 0,
+            sentiment_json,
             now,
             now
         ]

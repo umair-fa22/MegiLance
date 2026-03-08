@@ -77,11 +77,11 @@ const AppChromeClient: React.FC<{ children: React.ReactNode }> = ({ children }) 
       {!isMinimalChrome && <PublicFooter />}
       
       {/* Right-side floating actions - ALWAYS VISIBLE */}
-      <FloatingActionButtons position="right">
+      <FloatingActionButtons position="right" className={isMinimalChrome ? commonStyles.portalOffset : undefined}>
         <ChatbotAgent />
       </FloatingActionButtons>
       {/* Left-side floating actions - ALWAYS VISIBLE */}
-      <FloatingActionButtons position="left">
+      <FloatingActionButtons position="left" className={isMinimalChrome ? commonStyles.portalOffset : undefined}>
         <ThemeToggleButton />
       </FloatingActionButtons>
       
