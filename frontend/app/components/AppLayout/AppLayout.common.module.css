@@ -83,6 +83,21 @@
   margin-top: auto;
 }
 
+/* ===== FLOATING CHATBOT ===== */
+.chatbotFloat {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1000;
+}
+
+@media (max-width: 768px) {
+  .chatbotFloat {
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+    right: 1rem;
+  }
+}
+
 /* ===== MOBILE OVERLAY BACKDROP ===== */
 .mobileOverlay {
   display: none;

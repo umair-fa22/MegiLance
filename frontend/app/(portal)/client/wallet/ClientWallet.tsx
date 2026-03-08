@@ -306,6 +306,28 @@ export default function ClientWallet() {
                   <Shield size={16} /> Deposit ${depositAmount || '0'}
                 </Button>
               </div>
+              {/* Deposit fee preview */}
+              {depositAmount && parseFloat(depositAmount) > 0 && (
+                <div className={cn(commonStyles.feePreview, t.feePreview)} role="status" aria-live="polite">
+                  <div className={commonStyles.feePreviewRow}>
+                    <span>Deposit Amount</span>
+                    <span className={commonStyles.feePreviewValue}>${parseFloat(depositAmount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                  </div>
+                  <div className={commonStyles.feePreviewRow}>
+                    <span>Processing Fee (2.9% + $0.30)</span>
+                    <span className={commonStyles.feePreviewValue}>
+                      ${(parseFloat(depositAmount) * 0.029 + 0.30).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </span>
+                  </div>
+                  <div className={cn(commonStyles.feePreviewDivider, t.feePreviewDivider)} />
+                  <div className={cn(commonStyles.feePreviewRow, commonStyles.feePreviewTotal)}>
+                    <span>Total Charged</span>
+                    <span className={commonStyles.feePreviewValue}>
+                      ${(parseFloat(depositAmount) * 1.029 + 0.30).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
           </ScrollReveal>
         )}

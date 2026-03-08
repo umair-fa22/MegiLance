@@ -74,5 +74,8 @@
 .addMethodCard:hover { border-color: #6b9aff; color: #6b9aff; }
 
 .securityInfo { background: #0a2e1a; color: #4ade80; }
+
+.feePreview { background: #13152a; border-color: #23263a; color: #9ca3af; }
+.feePreviewDivider { background: #23263a; }
 .securityTitle { color: #4ade80; }
 .securityText { color: #22c55e; }

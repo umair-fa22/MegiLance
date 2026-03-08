@@ -8,6 +8,7 @@ import PortalFooter from '../Layout/PortalFooter/PortalFooter';
 import MobileBottomNav from '../MobileBottomNav/MobileBottomNav';
 
 import CommandPalette from '@/app/components/CommandPalette/CommandPalette';
+import ChatbotAgent from '@/app/components/AI/ChatbotAgent/ChatbotAgent';
 
 import ErrorBoundary from '@/app/components/ErrorBoundary/ErrorBoundary';
 
@@ -217,6 +218,11 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         onClose={() => setCommandPaletteOpen(false)}
         userRole={area}
       />
+
+      {/* Floating AI Chatbot */}
+      <div className={commonStyles.chatbotFloat}>
+        <ChatbotAgent />
+      </div>
     </>
   );
 };

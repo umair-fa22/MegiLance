@@ -21,3 +21,17 @@
 .balanceAmount {
   color: #0f172a;
 }
+
+.feeBreakdown {
+  background-color: #f8fafc;
+  border-color: #e2e8f0;
+  color: #334155;
+}
+
+.feeDivider {
+  background-color: #e2e8f0;
+}
+
+.feeValueBold {
+  color: #0f172a;
+}

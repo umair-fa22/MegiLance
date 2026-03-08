@@ -3,7 +3,9 @@
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTheme } from 'next-themes';
+import { Info } from 'lucide-react';
 import api from '@/lib/api';
+import { apiFetch } from '@/lib/api/core';
 import TransactionRow from '@/app/components/TransactionRow/TransactionRow';
 import Button from '@/app/components/Button/Button';
 import { useFreelancerData } from '@/hooks/useFreelancer';
@@ -28,6 +30,22 @@ const Wallet: React.FC = () => {
   const { resolvedTheme } = useTheme();
   const { analytics, transactions, loading, error } = useFreelancerData();
   const toaster = useToaster();
+
+  // Fetch commission rate from seller stats
+  const [commissionRate, setCommissionRate] = useState<number>(20);
+  useEffect(() => {
+    const fetchRate = async () => {
+      try {
+        const data = await apiFetch('/seller-stats/me') as Record<string, unknown>;
+        const benefits = (data.benefits ?? {}) as Record<string, unknown>;
+        const reduced = (benefits.reduced_fees as number) ?? 0;
+        setCommissionRate(20 - reduced);
+      } catch {
+        // Default 20% if unavailable
+      }
+    };
+    fetchRate();
+  }, []);
   
   const styles = useMemo(() => {
     const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
@@ -206,6 +224,22 @@ const Wallet: React.FC = () => {
             <div className={styles.balanceCard}>
               <h2 className={styles.cardTitle}>Available Balance</h2>
               <p className={styles.balanceAmount}>${balance.toLocaleString()}</p>
+
+              {/* Fee breakdown info */}
+              <div className={styles.feeBreakdown} role="region" aria-label="Fee information">
+                <div className={styles.feeRow}>
+                  <span className={styles.feeLabel}>
+                    <Info size={13} aria-hidden="true" style={{ opacity: 0.6 }} />
+                    Platform Commission
+                  </span>
+                  <span className={styles.feeValue}>{commissionRate}%</span>
+                </div>
+                <div className={styles.feeDivider} />
+                <p className={styles.feeHint}>
+                  Your net earnings are credited after the {commissionRate}% platform fee. Level up your seller tier to reduce fees.
+                </p>
+              </div>
+
               <Button
                 variant="primary"
                 size="large"
@@ -330,6 +364,24 @@ const Wallet: React.FC = () => {
               {withdrawError && (
                 <div id="withdraw-error" role="alert" className={styles.error}>
                   {withdrawError}
+                </div>
+              )}
+              {/* Withdrawal preview */}
+              {withdrawAmount && parseFloat(withdrawAmount) > 0 && !withdrawError && (
+                <div className={styles.feeBreakdown} role="status" aria-live="polite">
+                  <div className={styles.feeRow}>
+                    <span className={styles.feeLabel}>Withdrawal Amount</span>
+                    <span className={styles.feeValue}>${parseFloat(withdrawAmount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                  </div>
+                  <div className={styles.feeRow}>
+                    <span className={styles.feeLabel}>Processing Fee</span>
+                    <span className={styles.feeValue}>$0.00</span>
+                  </div>
+                  <div className={styles.feeDivider} />
+                  <div className={styles.feeRow}>
+                    <span className={styles.feeLabelBold}>You&apos;ll Receive</span>
+                    <span className={styles.feeValueBold}>${parseFloat(withdrawAmount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                  </div>
                 </div>
               )}
               <div className={styles.modalActions}>

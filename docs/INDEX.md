@@ -25,6 +25,15 @@ Authoritative, structured documentation set following modern software engineerin
 - [Contributing Guide](Contributing.md)
 - [Changelog Policy](Changelog.md)
 
+## UX Research
+- [UX Research Hub](ux/README.md)
+- [User Personas](ux/PERSONAS.md)
+- [Jobs-to-be-Done](ux/JTBD.md)
+- [Journey Maps](ux/JOURNEY_MAPS.md)
+- [Design Principles](ux/DESIGN_PRINCIPLES.md)
+- [Accessibility Requirements](ux/ACCESSIBILITY.md)
+- [Gap Analysis](ux/GAP_ANALYSIS.md)
+
 ## Supporting Documents
 - [Risk Register & Mitigations](RiskRegister.md)
 - [Threat Model Summary](ThreatModel.md)

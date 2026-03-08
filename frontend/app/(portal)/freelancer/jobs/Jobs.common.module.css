@@ -262,6 +262,73 @@
   }
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .searchContainer {
+    margin-bottom: 1.5rem;
+  }
+
+  .searchBar {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .filters {
+    padding: 1rem;
+  }
+
+  .resultsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .quickChips {
+    gap: 6px;
+  }
+
+  .activeFilters {
+    padding: 6px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.75rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .searchInput {
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .header {
+    margin-bottom: 1rem;
+  }
+}
+
 .searchInput:focus-visible {
   outline: 2px solid var(--color-primary, #4573df);
   outline-offset: 2px;

@@ -197,6 +197,184 @@
   .insightsBox {
     flex-direction: column;
   }
+
+  .aiSuggestionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ─── AI Budget Suggestion ─── */
+
+.aiSuggestionBox {
+  padding: 1rem 1.125rem;
+  border-radius: var(--rounded-md);
+  border: 1px solid transparent;
+}
+
+.aiSuggestionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.aiSuggestionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.aiSuggestionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.4375rem 0.875rem;
+  border-radius: var(--rounded-md);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.aiSuggestionBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.aiSuggestionBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.aiSuggestionDesc {
+  font-size: 0.8125rem;
+  margin: 0.375rem 0 0;
+  opacity: 0.6;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+.aiResult {
+  margin-top: 0.75rem;
+  padding: 0.875rem;
+  border-radius: var(--rounded-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  overflow: hidden;
+}
+
+.aiResultRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8125rem;
+}
+
+.aiResultLabel {
+  opacity: 0.7;
+  font-weight: 500;
+}
+
+.aiResultValue {
+  font-size: 1.125rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.aiResultRange {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: 0.8125rem;
+}
+
+.aiConfidence {
+  font-weight: 500;
+}
+
+.aiConfidence[data-level="high"] {
+  color: #16a34a;
+}
+
+.aiConfidence[data-level="medium"] {
+  color: #d97706;
+}
+
+.aiConfidence[data-level="low"] {
+  color: #dc2626;
+}
+
+.aiApplyBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--rounded-md);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+  width: 100%;
+}
+
+.aiApplyBtn:hover {
+  transform: translateY(-1px);
+}
+
+.aiError {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  color: #dc2626;
+}
+
+/* ─── Fee Preview ─── */
+
+.feePreview {
+  padding: 0.75rem;
+  border-radius: var(--rounded-md);
+  border: 1px solid transparent;
+  margin-top: 0.375rem;
+  font-size: 0.8125rem;
+}
+
+.feePreviewRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.1875rem 0;
+}
+
+.feePreviewLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  opacity: 0.7;
+}
+
+.feePreviewDivider {
+  height: 1px;
+  margin: 0.375rem 0;
+}
+
+.feePreviewBold {
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 @media (max-width: 374px) {

@@ -42,3 +42,52 @@
   background-color: #eff6ff;
   color: #1e40af;
 }
+
+/* AI Suggestion */
+.aiSuggestionBox {
+  background-color: #faf5ff;
+  border-color: #e9d5ff;
+  color: #581c87;
+}
+
+.aiSuggestionBtn {
+  background-color: #7c3aed;
+  color: #ffffff;
+}
+
+.aiSuggestionBtn:hover:not(:disabled) {
+  background-color: #6d28d9;
+}
+
+.aiResult {
+  background-color: #f5f3ff;
+  border: 1px solid #ddd6fe;
+}
+
+.aiResultValue {
+  color: #4c1d95;
+}
+
+.aiApplyBtn {
+  background-color: #7c3aed;
+  color: #ffffff;
+}
+
+.aiApplyBtn:hover {
+  background-color: #6d28d9;
+}
+
+/* Fee Preview */
+.feePreview {
+  background-color: #f8fafc;
+  border-color: #e2e8f0;
+  color: #475569;
+}
+
+.feePreviewDivider {
+  background-color: #e2e8f0;
+}
+
+.feePreviewBold {
+  color: #0f172a;
+}

@@ -164,3 +164,52 @@
     transition: none;
   }
 }
+
+/* Fee breakdown section */
+.feeBreakdown {
+  border-radius: var(--border-radius-md);
+  padding: var(--space-3);
+  border: 1px solid;
+  font-size: var(--font-size-sm);
+}
+
+.feeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-1) 0;
+}
+
+.feeLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  opacity: 0.8;
+}
+
+.feeLabelBold {
+  font-weight: 600;
+}
+
+.feeValue {
+  font-family: var(--font-family-code);
+  font-weight: 500;
+}
+
+.feeValueBold {
+  font-family: var(--font-family-code);
+  font-weight: 700;
+}
+
+.feeDivider {
+  height: 1px;
+  margin: var(--space-2) 0;
+}
+
+.feeHint {
+  font-size: var(--font-size-xs);
+  opacity: 0.6;
+  margin: var(--space-1) 0 0 0;
+  line-height: 1.4;
+}

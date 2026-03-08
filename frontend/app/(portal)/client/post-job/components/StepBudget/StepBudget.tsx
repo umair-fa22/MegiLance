@@ -1,11 +1,11 @@
-// @AI-HINT: Enhanced StepBudget with budget calculator, market insights, and improved validation
+// @AI-HINT: Enhanced StepBudget with AI budget estimator, calculator, market insights, fee preview
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
-import { TrendingUp, Info, Calculator, CheckCircle, AlertTriangle } from 'lucide-react';
+import { TrendingUp, Info, Calculator, CheckCircle, AlertTriangle, Sparkles, Loader2, DollarSign } from 'lucide-react';
 import Input from '@/app/components/Input/Input';
 import Select from '@/app/components/Select/Select';
 import RadioGroup from '@/app/components/RadioGroup/RadioGroup';
@@ -27,6 +27,35 @@ const MARKET_RATES = {
   'DevOps': { hourlyMin: 70, hourlyMax: 180, fixedMin: 2000, fixedMax: 50000 },
 } as const;
 
+// Map PostJob categories to price estimator API categories
+const CATEGORY_MAP: Record<string, { category: string; service_type: string }> = {
+  'Web Development': { category: 'software_development', service_type: 'web_application' },
+  'Mobile Apps': { category: 'software_development', service_type: 'mobile_app' },
+  'UI/UX Design': { category: 'design_creative', service_type: 'ui_ux_design' },
+  'Data Science': { category: 'software_development', service_type: 'database_design' },
+  'AI/ML': { category: 'software_development', service_type: 'ai_ml_solution' },
+  'DevOps': { category: 'software_development', service_type: 'devops_infrastructure' },
+};
+
+// Map timeline to scope
+const TIMELINE_SCOPE_MAP: Record<string, string> = {
+  '1-2 weeks': 'small',
+  '2-4 weeks': 'medium',
+  '1-2 months': 'large',
+  '3-6 months': 'enterprise',
+  'Long-term': 'enterprise',
+};
+
+interface AIEstimate {
+  total: number;
+  low: number;
+  high: number;
+  hourlyRate: number;
+  hours: number;
+  confidence: number;
+  confidenceLevel: string;
+}
+
 interface StepBudgetProps {
   data: PostJobData;
   updateData: (update: Partial<PostJobData>) => void;
@@ -38,6 +67,11 @@ const StepBudget: React.FC<StepBudgetProps> = ({ data, updateData, errors }) => 
   const themed = resolvedTheme === 'dark' ? dark : light;
   const [showCalculator, setShowCalculator] = useState(false);
   const [estimatedHours, setEstimatedHours] = useState<number | null>(null);
+
+  // AI Estimate state
+  const [aiEstimate, setAiEstimate] = useState<AIEstimate | null>(null);
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiError, setAiError] = useState<string | null>(null);
 
   // Get market rates for the selected category
   const marketRates = useMemo(() => {
@@ -105,6 +139,66 @@ const StepBudget: React.FC<StepBudgetProps> = ({ data, updateData, errors }) => 
   };
 
   const statusIndicator = getStatusIndicator();
+
+  // AI Budget Estimator
+  const fetchAIEstimate = useCallback(async () => {
+    const mapping = CATEGORY_MAP[data.category || 'Web Development'];
+    if (!mapping) return;
+
+    setAiLoading(true);
+    setAiError(null);
+    try {
+      const scope = TIMELINE_SCOPE_MAP[data.timeline] || 'medium';
+      const res = await fetch('/api/price-estimator/estimate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          category: mapping.category,
+          service_type: mapping.service_type,
+          scope,
+          description: data.description || '',
+          features: data.skills.length > 0 ? data.skills : undefined,
+          quality_tier: 'standard',
+          experience_level: 'mid',
+          urgency: 'standard',
+          region: 'global_remote',
+        }),
+      });
+
+      if (!res.ok) throw new Error('Failed to get estimate');
+      const result = await res.json();
+
+      setAiEstimate({
+        total: Math.round(result.estimate.total_estimate),
+        low: Math.round(result.estimate.low_estimate),
+        high: Math.round(result.estimate.high_estimate),
+        hourlyRate: result.estimate.hourly_rate,
+        hours: result.estimate.total_hours,
+        confidence: result.confidence.score,
+        confidenceLevel: result.confidence.level,
+      });
+    } catch {
+      setAiError('Could not get AI estimate. Try again later.');
+    } finally {
+      setAiLoading(false);
+    }
+  }, [data.category, data.timeline, data.description, data.skills]);
+
+  const applyAIEstimate = useCallback(() => {
+    if (!aiEstimate) return;
+    updateData({
+      budgetAmount: aiEstimate.total,
+      budgetType: 'Fixed',
+    });
+  }, [aiEstimate, updateData]);
+
+  // Platform fee preview
+  const feePreview = useMemo(() => {
+    if (!data.budgetAmount || data.budgetAmount <= 0) return null;
+    const platformFee = data.budgetAmount * 0.20;
+    const freelancerReceives = data.budgetAmount - platformFee;
+    return { platformFee, freelancerReceives };
+  }, [data.budgetAmount]);
 
   return (
     <motion.div
@@ -182,6 +276,76 @@ const StepBudget: React.FC<StepBudgetProps> = ({ data, updateData, errors }) => 
         </div>
       </div>
 
+      {/* AI Budget Suggestion */}
+      <div className={cn(common.aiSuggestionBox, themed.aiSuggestionBox)} role="region" aria-label="AI Budget Suggestion">
+        <div className={common.aiSuggestionHeader}>
+          <div className={common.aiSuggestionTitle}>
+            <Sparkles size={18} />
+            <span>AI Budget Estimator</span>
+          </div>
+          <button
+            type="button"
+            className={cn(common.aiSuggestionBtn, themed.aiSuggestionBtn)}
+            onClick={fetchAIEstimate}
+            disabled={aiLoading}
+          >
+            {aiLoading ? <Loader2 size={14} className={common.spinner} /> : <Sparkles size={14} />}
+            {aiLoading ? 'Analyzing...' : aiEstimate ? 'Re-estimate' : 'Get AI Estimate'}
+          </button>
+        </div>
+        <p className={common.aiSuggestionDesc}>
+          Get a data-driven budget suggestion based on your job category, skills, and timeline.
+        </p>
+
+        <AnimatePresence>
+          {aiEstimate && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className={cn(common.aiResult, themed.aiResult)}
+            >
+              <div className={common.aiResultRow}>
+                <span className={common.aiResultLabel}>Suggested Budget</span>
+                <span className={cn(common.aiResultValue, themed.aiResultValue)}>
+                  ${aiEstimate.total.toLocaleString()}
+                </span>
+              </div>
+              <div className={common.aiResultRow}>
+                <span className={common.aiResultLabel}>Range</span>
+                <span className={common.aiResultRange}>
+                  ${aiEstimate.low.toLocaleString()} – ${aiEstimate.high.toLocaleString()}
+                </span>
+              </div>
+              <div className={common.aiResultRow}>
+                <span className={common.aiResultLabel}>Est. Hours</span>
+                <span>{aiEstimate.hours}h @ ${aiEstimate.hourlyRate}/hr</span>
+              </div>
+              <div className={common.aiResultRow}>
+                <span className={common.aiResultLabel}>Confidence</span>
+                <span className={common.aiConfidence} data-level={aiEstimate.confidenceLevel}>
+                  {aiEstimate.confidence}% ({aiEstimate.confidenceLevel})
+                </span>
+              </div>
+              <button
+                type="button"
+                className={cn(common.aiApplyBtn, themed.aiApplyBtn)}
+                onClick={applyAIEstimate}
+              >
+                <DollarSign size={14} />
+                Apply ${aiEstimate.total.toLocaleString()} as budget
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {aiError && (
+          <p className={common.aiError} role="alert">
+            <AlertTriangle size={14} /> {aiError}
+          </p>
+        )}
+      </div>
+
       <div className={common.form_group}>
         <RadioGroup
           label="Budget Type"
@@ -213,6 +377,29 @@ const StepBudget: React.FC<StepBudgetProps> = ({ data, updateData, errors }) => 
           <div id="budget-analysis" className={cn(common.analysisRow, statusIndicator.className)}>
             {statusIndicator.icon}
             <span>{budgetAnalysis.message}</span>
+          </div>
+        )}
+
+        {/* Platform Fee Preview */}
+        {feePreview && (
+          <div className={cn(common.feePreview, themed.feePreview)} role="status" aria-live="polite">
+            <div className={common.feePreviewRow}>
+              <span>Your budget</span>
+              <span>${data.budgetAmount!.toLocaleString()}</span>
+            </div>
+            <div className={common.feePreviewRow}>
+              <span className={common.feePreviewLabel}>
+                <Info size={12} /> Platform fee (20%)
+              </span>
+              <span>−${feePreview.platformFee.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+            </div>
+            <div className={common.feePreviewDivider} />
+            <div className={common.feePreviewRow}>
+              <span className={common.feePreviewBold}>Freelancer receives</span>
+              <span className={cn(common.feePreviewBold, themed.feePreviewBold)}>
+                ${feePreview.freelancerReceives.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              </span>
+            </div>
           </div>
         )}
       </div>
