@@ -1,68 +1,39 @@
 /* @AI-HINT: Public talent directory - dark theme */
 
-.main {
-  background: linear-gradient(170deg, #0f172a 0%, #0f172a 40%, #0f1225 100%);
-}
+.main { background: linear-gradient(170deg, #0f172a 0%, #0f172a 40%, #0f1225 100%); }
+.title { color: #f1f5f9; }
+.subtitle { color: #94a3b8; }
 
-.title {
-  color: #f1f5f9;
-}
+/* Badge */
+.badge { background: #1e293b; color: #93b4ff; }
 
-.subtitle {
-  color: #94a3b8;
-}
+/* Stats */
+.statItem { color: #f8fafc; }
 
-.searchInput {
-  background: rgba(30, 41, 59, 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-color: rgba(51, 65, 85, 0.6);
-  color: #f1f5f9;
-}
+/* Search */
+.searchBar { background: rgba(30,41,59,0.6); border-color: rgba(51,65,85,0.6); }
+.searchInput { background: transparent; color: #f1f5f9; }
+.searchInput::placeholder { color: #64748b; }
 
-.searchInput::placeholder {
-  color: #64748b;
-}
+/* Category pills */
+.catPill { background: #1e293b; border-color: #334155; color: #94a3b8; }
+.catPill:hover { background: #0f172a; }
+.catPillActive { background: #1e293b; color: #93b4ff; border-color: #6b8ef9; }
 
-.searchInput:focus {
-  border-color: #6b8ef9;
-  box-shadow: 0 0 0 2px rgba(107, 142, 249, 0.3);
-}
+/* Cards */
+.card { background: rgba(30,41,59,0.5); backdrop-filter: blur(10px); border-color: rgba(51,65,85,0.5); }
+.card:hover { box-shadow: 0 8px 24px rgba(69,115,223,0.15); }
+.name { color: #f1f5f9; }
+.role { color: #94a3b8; }
+.rankBadge { background: linear-gradient(135deg, #6b8ef9, #4573df); color: #ffffff; }
+.skillTag { background-color: #0f172a; border-color: #334155; color: #cbd5e1; }
+.viewProfileBtn { color: #6b8ef9; }
+.emptyState { color: #94a3b8; }
 
-.card {
-  background: rgba(30, 41, 59, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-color: rgba(51, 65, 85, 0.5);
-}
-
-.card:hover {
-  box-shadow: 0 8px 24px rgba(69, 115, 223, 0.15);
-}
-
-.name {
-  color: #f1f5f9;
-}
-
-.role {
-  color: #94a3b8;
-}
-
-.rankBadge {
-  background: linear-gradient(135deg, #6b8ef9, #4573df);
-  color: #ffffff;
-}
-
-.skillTag {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #cbd5e1;
-}
-
-.viewProfileBtn {
-  color: #6b8ef9;
-}
-
-.emptyState {
-  color: #94a3b8;
-}
+/* CTA box */
+.ctaBox { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 1px solid #334155; }
+.ctaTitle { color: #f8fafc; }
+.ctaDesc { color: #94a3b8; }
+.ctaBtn { background: #6b8de6; color: #fff; }
+.ctaBtnOutline { border-color: #334155; color: #f8fafc; }
+.ctaBtnOutline:hover { background: #1e293b; }

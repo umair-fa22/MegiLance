@@ -1,5 +1,4 @@
-/* @AI-HINT: Common styles for Pricing: layout, spacing, animation. */
-/* AI-HINT: Common styles for the main pricing page. Defines layout, typography, and structure for the header, billing toggle, and grid. */
+/* @AI-HINT: Common styles for Pricing: layout, spacing, animation, comparison table, FAQ. */
 
 .root {
   max-width: 1200px;
@@ -12,31 +11,20 @@
 
 .header {
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 56px;
 }
 
-.heroRow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.heroContent {
-  flex: 1 1 55%;
-  text-align: left;
-  max-width: 550px;
-}
-
-@media (max-width: 900px) {
-  .heroRow {
-    flex-direction: column;
-    text-align: center;
-  }
-  .heroContent {
-    text-align: center;
-    max-width: 100%;
-  }
+.heroBadge {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, rgba(69, 115, 223, 0.12), rgba(102, 126, 234, 0.12));
+  color: #4573df;
 }
 
 .title {
@@ -49,74 +37,12 @@
 }
 
 .subtitle {
-  max-width: 550px;
+  max-width: 600px;
+  margin: 0 auto;
   font-size: 1.125rem;
   line-height: 1.7;
   letter-spacing: 0.01em;
   opacity: 0.85;
-}
-
-.toggleContainer {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-bottom: 64px;
-}
-
-.toggleLabel {
-  font-family: var(--font-family-body);
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.toggleSwitch {
-  width: 52px;
-  height: 28px;
-  border-radius: 999px;
-  padding: 4px;
-  display: flex;
-  cursor: pointer;
-  border: none;
-  box-sizing: border-box;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.toggleSwitch:hover {
-  transform: scale(1.05);
-}
-
-.toggleHandle {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.discountBadge {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 4px 10px;
-  border-radius: 8px;
 }
 
 .grid {
@@ -124,9 +50,165 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
-  align-items: stretch; /* Ensure cards in a row stretch to the same height */
+  align-items: stretch;
 }
 
+/* ---- How It Works Section ---- */
+.howSection {
+  width: 100%;
+  margin-top: 80px;
+}
+
+.sectionHeading {
+  font-family: var(--font-family-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.howGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.howCard {
+  border-radius: 16px;
+  padding: 32px;
+  border: 1px solid;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.howCard:hover { transform: translateY(-4px); }
+
+.howIcon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+
+.howTitle {
+  font-family: var(--font-family-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.howDesc {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  opacity: 0.85;
+}
+
+/* ---- Comparison Table ---- */
+.comparisonSection {
+  width: 100%;
+  margin-top: 80px;
+}
+
+.tableWrapper {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid;
+}
+
+.comparisonTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.tableHead {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-bottom: 1px solid;
+}
+
+.tableHeadCenter { text-align: center; }
+
+.tableHeadHighlight {
+  position: relative;
+}
+.tableHeadHighlight::after {
+  content: 'Popular';
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: #4573df;
+  color: #fff;
+}
+
+.tableRow { border-bottom: 1px solid; }
+.tableRow:last-child { border-bottom: none; }
+
+.tableCell { padding: 12px 16px; }
+.tableCellCenter { text-align: center; }
+
+.checkIcon { color: #27AE60; margin: 0 auto; }
+.dashIcon { opacity: 0.3; font-size: 1.1rem; }
+.cellText { font-weight: 500; font-size: 0.85rem; }
+
+/* ---- FAQ ---- */
+.faqSection {
+  width: 100%;
+  max-width: 720px;
+  margin: 80px auto 0;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faqItem {
+  border-radius: 12px;
+  border: 1px solid;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+.faqItem:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+
+.faqQuestion {
+  width: 100%;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: left;
+  gap: 12px;
+}
+
+.faqChevron {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+}
+
+.faqAnswer {
+  padding: 0 20px 16px;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+.faqItemOpen {}
+
+/* ---- Note ---- */
 .note {
   margin-top: 48px;
   font-size: 0.9rem;
@@ -137,28 +219,23 @@
   padding: 1rem;
 }
 
-/* Responsive adjustments */
+.noteLink {
+  color: #4573df;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+/* ---- Responsive ---- */
 @media (max-width: 1024px) {
-  .grid {
-    grid-template-columns: 1fr;
-    max-width: 450px;
-  }
+  .grid { grid-template-columns: 1fr; max-width: 450px; }
+  .howGrid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
-  .root {
-    padding: 60px 16px;
-  }
-
-  .title {
-    font-size: 2rem;
-  }
-
-  .subtitle {
-    font-size: 1rem;
-  }
-
-  .toggleContainer {
-    margin-bottom: 48px;
-  }
+  .root { padding: 60px 16px; }
+  .title { font-size: 2rem; }
+  .subtitle { font-size: 1rem; }
+  .comparisonTable { font-size: 0.8rem; }
+  .tableHead, .tableCell { padding: 10px 8px; }
+  .tableHeadHighlight::after { display: none; }
 }

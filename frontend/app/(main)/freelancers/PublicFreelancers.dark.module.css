@@ -82,3 +82,14 @@
 .mobilePanel { background: #1e293b; }
 .mobilePanelHeader { border-bottom-color: #334155; color: #f1f5f9; }
 .mobilePanelFooter { border-top-color: #334155; }
+
+/* Hero Stats */
+.heroStatItem { color: #f8fafc; }
+
+/* Bottom CTA */
+.bottomCta { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 1px solid #334155; }
+.bottomCtaTitle { color: #f8fafc; }
+.bottomCtaDesc { color: #94a3b8; }
+.ctaBtn { background: #6b8de6; color: #fff; }
+.ctaBtnOutline { border-color: #334155; color: #f8fafc; }
+.ctaBtnOutline:hover { background: #1e293b; }

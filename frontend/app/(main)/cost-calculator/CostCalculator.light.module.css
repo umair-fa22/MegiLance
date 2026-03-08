@@ -1,0 +1,36 @@
+/* @AI-HINT: CostCalculator light theme */
+
+.page { background: #fff; }
+.hero { background: linear-gradient(135deg, #f0f4ff 0%, #e8efff 50%, #fff 100%); }
+.heroIcon { background: #eef2ff; color: #4573df; }
+.heroTitle { color: #111827; }
+.gradient { background: linear-gradient(135deg, #4573df, #6b5ce7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.heroDesc { color: #4b5563; }
+
+.section { background: #fff; }
+.sectionTitle { color: #111827; }
+
+.inputPanel { background: #f9fafb; border: 1px solid #e5e7eb; }
+.panelTitle { color: #111827; }
+.label { color: #374151; }
+.select { background: #fff; border-color: #d1d5db; color: #111827; }
+.slider { background: #e5e7eb; accent-color: #4573df; }
+.rateInfo { color: #6b7280; }
+
+.resultsPanel { background: #f9fafb; border: 1px solid #e5e7eb; }
+.resultCardFt { background: #fef2f2; color: #991b1b; }
+.resultValueFt { color: #dc2626; }
+.resultCardUpwork { background: #fff7ed; color: #9a3412; }
+.resultValueUpwork { color: #ea580c; }
+.resultCardMgl { background: #f0fdf4; color: #166534; }
+.resultValueMgl { color: #16a34a; }
+
+.savingsBox { background: linear-gradient(135deg, #ecfdf5, #d1fae5); }
+.savingsTitle { color: #166534; }
+.savingsAmount { color: #059669; }
+.savingsPercent { color: #047857; }
+.upworkSaving { color: #4573df; }
+
+.faqItem { background: #f9fafb; border: 1px solid #e5e7eb; }
+.faqQ { color: #111827; }
+.faqA { color: #4b5563; }

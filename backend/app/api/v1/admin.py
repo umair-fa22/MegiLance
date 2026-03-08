@@ -504,3 +504,31 @@ async def get_admin_reports(
             "total_revenue": 0
         }
     }
+
+
+# ============ Live Project Fetcher ============
+
+@router.post("/admin/projects/fetch-live")
+async def fetch_live_projects(
+    limit: int = Query(25, ge=1, le=100, description="Max projects per source"),
+    sources: Optional[str] = Query(
+        None,
+        description="Comma-separated sources: remoteok,remotive,freelancer (default: all)"
+    ),
+    admin: User = Depends(get_admin_user),
+):
+    """Fetch REAL live projects from public APIs (RemoteOK, Remotive, Freelancer.com)."""
+    from app.services.live_project_fetcher import fetch_and_seed_live_projects
+
+    source_list = None
+    if sources:
+        source_list = [s.strip() for s in sources.split(",") if s.strip()]
+
+    result = fetch_and_seed_live_projects(
+        limit_per_source=limit,
+        sources=source_list,
+    )
+    return {
+        "message": f"Fetched {result['fetched']} projects, inserted {result['inserted']} new",
+        **result,
+    }

@@ -1,17 +1,18 @@
-// @AI-HINT: Enhanced Job Search Page for Freelancers. Features real-time filtering, AI matching, skeleton loading, and responsive layout.
+// @AI-HINT: Enhanced Job Search Page for Freelancers. Features real-time filtering, AI matching, skeleton loading, pagination, and responsive layout.
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { searchApi, projectsApi } from '@/lib/api';
+import api from '@/lib/api';
 import { Button } from '@/app/components/Button';
 import Input from '@/app/components/Input/Input';
 import Select from '@/app/components/Select/Select';
 import JobCard from '@/app/components/JobCard/JobCard';
 import { PageTransition, StaggerContainer, StaggerItem } from '@/app/components/Animations';
 import Skeleton from '@/app/components/Animations/Skeleton/Skeleton';
-import { Search, Filter, X, Briefcase, RefreshCw } from 'lucide-react';
+import { Search, Filter, X, Briefcase, RefreshCw, ChevronLeft, ChevronRight, Sparkles, TrendingUp, Zap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import commonStyles from './Jobs.common.module.css';
 import lightStyles from './Jobs.light.module.css';
@@ -26,10 +27,20 @@ interface Job {
   budget_max: number;
   budget_type: 'fixed' | 'hourly';
   skills: string[];
+  created_at: string;
   posted_at: string;
+  client_name: string;
   client_rating: number;
-  match_score?: number; // AI Match Score
+  match_score?: number;
+  is_verified?: boolean;
+  experience_level?: string;
+  estimated_duration?: string;
+  proposals_count?: number;
+  category?: string;
+  status?: string;
 }
+
+const PAGE_SIZE = 12;
 
 export default function JobsPage() {
   const { resolvedTheme } = useTheme();
@@ -41,6 +52,8 @@ export default function JobsPage() {
   const [loading, setLoading] = useState(true);
   const [showFilters, setShowFilters] = useState(false);
   const [activeTab, setActiveTab] = useState<'best-matches' | 'most-recent' | 'saved'>('best-matches');
+  const [page, setPage] = useState(1);
+  const [totalJobs, setTotalJobs] = useState(0);
   
   // Filters
   const [category, setCategory] = useState('all');
@@ -49,13 +62,39 @@ export default function JobsPage() {
   const [experienceLevel, setExperienceLevel] = useState('all');
   const [projectLength, setProjectLength] = useState('all');
 
+  // User skills for quick filter suggestions
+  const [userSkills, setUserSkills] = useState<string[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const me: any = await api.auth.me();
+        const skills = Array.isArray(me.skills)
+          ? me.skills
+          : me.skills ? String(me.skills).split(',').map((s: string) => s.trim()).filter(Boolean) : [];
+        setUserSkills(skills.slice(0, 8));
+      } catch { /* ok */ }
+    })();
+  }, []);
+
   const fetchJobs = useCallback(async () => {
     setLoading(true);
     try {
       let response: any;
-      const filters: any = {};
+      const filters: any = {
+        page,
+        page_size: PAGE_SIZE,
+        status: 'open',
+      };
       if (category !== 'all') filters.category = category;
+      if (budgetType !== 'all') filters.budget_type = budgetType;
       if (minBudget) filters.budget_min = parseInt(minBudget);
+      if (experienceLevel !== 'all') filters.experience_level = experienceLevel;
+      if (projectLength !== 'all') filters.estimated_duration = projectLength;
+      
+      if (activeTab === 'most-recent') {
+        filters.sort = 'newest';
+      }
       
       if (query) {
         response = await searchApi.projects(query, filters);
@@ -64,31 +103,35 @@ export default function JobsPage() {
       }
       
       // Handle different API response structures
-      const data = Array.isArray(response) ? response : (response.projects || []);
+      const data = Array.isArray(response) ? response : (response.projects || response.items || []);
+      const total = Array.isArray(response) ? response.length : (response.total || response.count || data.length);
       
-      // Normalize data — use API values or sensible defaults
-      const enrichedData = data.map((job: any) => ({
+      // Normalize data
+      const enrichedData: Job[] = data.map((job: any) => ({
         ...job,
+        posted_at: job.posted_at || job.created_at || new Date().toISOString(),
         match_score: job.match_score || null,
         client_rating: job.client_rating || null,
         is_verified: job.is_verified ?? false,
-        client_name: job.client_name || 'Anonymous Client'
+        client_name: job.client_name || 'Anonymous Client',
+        skills: Array.isArray(job.skills) ? job.skills : (typeof job.skills === 'string' ? job.skills.split(',').map((s: string) => s.trim()).filter(Boolean) : []),
       }));
       
       // Sort based on tab
       if (activeTab === 'best-matches') {
-        enrichedData.sort((a: any, b: any) => (b.match_score || 0) - (a.match_score || 0));
-      } else if (activeTab === 'most-recent') {
-        enrichedData.sort((a: any, b: any) => new Date(b.posted_at).getTime() - new Date(a.posted_at).getTime());
+        enrichedData.sort((a, b) => (b.match_score || 0) - (a.match_score || 0));
       }
       
       setJobs(enrichedData);
+      setTotalJobs(total);
     } catch (error) {
       console.error('Failed to fetch jobs:', error);
+      setJobs([]);
+      setTotalJobs(0);
     } finally {
       setLoading(false);
     }
-  }, [query, category, minBudget, activeTab, experienceLevel, projectLength]);
+  }, [query, category, budgetType, minBudget, activeTab, experienceLevel, projectLength, page]);
 
   // Debounce search
   useEffect(() => {
@@ -97,6 +140,23 @@ export default function JobsPage() {
     }, 500);
     return () => clearTimeout(timer);
   }, [fetchJobs]);
+
+  // Reset page when filters change
+  useEffect(() => {
+    setPage(1);
+  }, [query, category, budgetType, minBudget, activeTab, experienceLevel, projectLength]);
+
+  const totalPages = Math.max(1, Math.ceil(totalJobs / PAGE_SIZE));
+
+  const clearAllFilters = () => {
+    setQuery('');
+    setCategory('all');
+    setBudgetType('all');
+    setMinBudget('');
+    setExperienceLevel('all');
+    setProjectLength('all');
+    setPage(1);
+  };
 
 
   return (
@@ -119,6 +179,65 @@ export default function JobsPage() {
             />
             <Button variant="primary" size="lg" onClick={fetchJobs}>Search</Button>
           </div>
+
+          {/* Quick skill filter chips */}
+          {userSkills.length > 0 && (
+            <div className={cn(commonStyles.quickChips, themeStyles.quickChips)}>
+              <span className={cn(commonStyles.quickChipsLabel, themeStyles.quickChipsLabel)}>
+                <Zap size={14} /> Your skills:
+              </span>
+              {userSkills.map(skill => (
+                <button
+                  key={skill}
+                  type="button"
+                  className={cn(
+                    commonStyles.quickChip,
+                    themeStyles.quickChip,
+                    query === skill && commonStyles.quickChipActive,
+                    query === skill && themeStyles.quickChipActive
+                  )}
+                  onClick={() => setQuery(prev => prev === skill ? '' : skill)}
+                >
+                  {skill}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Active filters indicator */}
+          {(category !== 'all' || budgetType !== 'all' || minBudget || experienceLevel !== 'all' || projectLength !== 'all') && (
+            <div className={cn(commonStyles.activeFilters, themeStyles.activeFilters)}>
+              <span className={cn(commonStyles.activeFiltersLabel, themeStyles.activeFiltersLabel)}>Active filters:</span>
+              {category !== 'all' && (
+                <span className={cn(commonStyles.filterTag, themeStyles.filterTag)}>
+                  {category} <button type="button" onClick={() => setCategory('all')} aria-label="Remove filter"><X size={12} /></button>
+                </span>
+              )}
+              {budgetType !== 'all' && (
+                <span className={cn(commonStyles.filterTag, themeStyles.filterTag)}>
+                  {budgetType} <button type="button" onClick={() => setBudgetType('all')} aria-label="Remove filter"><X size={12} /></button>
+                </span>
+              )}
+              {minBudget && (
+                <span className={cn(commonStyles.filterTag, themeStyles.filterTag)}>
+                  ${minBudget}+ <button type="button" onClick={() => setMinBudget('')} aria-label="Remove filter"><X size={12} /></button>
+                </span>
+              )}
+              {experienceLevel !== 'all' && (
+                <span className={cn(commonStyles.filterTag, themeStyles.filterTag)}>
+                  {experienceLevel} <button type="button" onClick={() => setExperienceLevel('all')} aria-label="Remove filter"><X size={12} /></button>
+                </span>
+              )}
+              {projectLength !== 'all' && (
+                <span className={cn(commonStyles.filterTag, themeStyles.filterTag)}>
+                  {projectLength.replace(/_/g, ' ')} <button type="button" onClick={() => setProjectLength('all')} aria-label="Remove filter"><X size={12} /></button>
+                </span>
+              )}
+              <button type="button" className={cn(commonStyles.clearAllBtn, themeStyles.clearAllBtn)} onClick={clearAllFilters}>
+                Clear all
+              </button>
+            </div>
+          )}
         </div>
 
         <div className={commonStyles.layout}>
@@ -285,15 +404,35 @@ export default function JobsPage() {
                     <Briefcase size={48} className={commonStyles.emptyIcon} />
                     <h3 className={commonStyles.emptyTitle}>No matching projects</h3>
                     <p className={commonStyles.emptyText}>No projects match your current search and filters. Try broadening your criteria or check back later for new opportunities.</p>
-                    <Button variant="primary" onClick={() => {
-                      setQuery('');
-                      setCategory('all');
-                      setBudgetType('all');
-                      setMinBudget('');
-                    }}>Clear Filters</Button>
+                    <Button variant="primary" onClick={clearAllFilters}>Clear Filters</Button>
                   </div>
                 )}
               </StaggerContainer>
+            )}
+
+            {/* Pagination */}
+            {!loading && totalPages > 1 && (
+              <div className={cn(commonStyles.pagination, themeStyles.pagination)}>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  disabled={page <= 1}
+                  onClick={() => setPage(p => Math.max(1, p - 1))}
+                >
+                  <ChevronLeft size={16} /> Previous
+                </Button>
+                <span className={cn(commonStyles.pageInfo, themeStyles.pageInfo)}>
+                  Page {page} of {totalPages}
+                </span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  disabled={page >= totalPages}
+                  onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                >
+                  Next <ChevronRight size={16} />
+                </Button>
+              </div>
             )}
           </main>
         </div>

@@ -87,7 +87,7 @@ def insert_user(
 def get_user_by_email(email: str) -> Optional[Dict[str, Any]]:
     """Fetch a user by email, returning a parsed user dict or None."""
     result = execute_query(
-        """SELECT id, email, is_active, name, user_type, bio, skills,
+        """SELECT id, email, is_active, name, user_type, role, bio, skills,
            hourly_rate, profile_image_url, location, profile_data, joined_at
            FROM users WHERE email = ?""",
         [email]
@@ -148,7 +148,7 @@ def update_user_fields(user_id: int, update_data: Dict[str, Any]) -> Any:
 def get_user_by_id(user_id: int) -> Optional[Dict[str, Any]]:
     """Fetch a user by ID, returning a parsed user dict or None."""
     result = execute_query(
-        """SELECT id, email, is_active, name, user_type, bio, skills,
+        """SELECT id, email, is_active, name, user_type, role, bio, skills,
            hourly_rate, profile_image_url, location, profile_data, joined_at
            FROM users WHERE id = ?""",
         [user_id]

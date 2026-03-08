@@ -167,6 +167,23 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
+.shareTabBar {
+  border-bottom-color: #e2e8f0;
+}
+
+.shareTabBtn {
+  color: #64748b;
+}
+
+.shareTabBtn:hover {
+  color: #1e293b;
+}
+
+.shareTabBtnActive {
+  color: #4573df;
+  border-bottom-color: #4573df;
+}
+
 .shareModalHeader {
   border-color: rgba(0, 0, 0, 0.08);
 }

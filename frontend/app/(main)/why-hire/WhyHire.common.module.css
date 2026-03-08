@@ -1,0 +1,80 @@
+/* @AI-HINT: WhyHire common layout — structure, grid, spacing, responsive */
+
+.page { width: 100%; }
+
+.hero {
+  padding: 6rem 1.5rem 4rem;
+  text-align: center;
+}
+.heroInner { max-width: 800px; margin: 0 auto; }
+.heroTitle { font-size: 3rem; font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; }
+.gradient { display: inline; }
+.heroDesc { font-size: 1.25rem; line-height: 1.6; margin-bottom: 2rem; max-width: 640px; margin-left: auto; margin-right: auto; }
+.heroCtas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+.section { padding: 5rem 1.5rem; }
+.inner { max-width: 1120px; margin: 0 auto; }
+.sectionTitle { font-size: 2.25rem; font-weight: 700; text-align: center; margin-bottom: 1rem; }
+.sectionSub { font-size: 1.1rem; text-align: center; margin-bottom: 3rem; }
+
+/* Reasons */
+.reasonsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.reasonCard {
+  padding: 2rem 1.5rem;
+  border-radius: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.reasonCard:hover { transform: translateY(-4px); }
+.reasonIcon {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1rem;
+}
+.reasonTitle { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+.reasonDesc { font-size: 0.95rem; line-height: 1.55; }
+
+/* Savings */
+.savingsSection { }
+.savingsTable { border-radius: 16px; overflow: hidden; max-width: 860px; margin: 0 auto; }
+.savingsRow {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.5fr 1fr;
+  padding: 1rem 1.5rem;
+  align-items: center;
+}
+.savingsHeader { font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.savingsRole { font-weight: 600; }
+.savingsFt { }
+.savingsFl { }
+.savingsPercent { font-weight: 700; }
+
+/* FAQ */
+.faqList { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
+.faqItem { border-radius: 12px; overflow: hidden; }
+.faqQ {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  padding: 1.25rem 1.5rem; cursor: pointer; border: none;
+  font-size: 1rem; font-weight: 600; text-align: left;
+  background: transparent;
+}
+.faqA { padding: 0 1.5rem 1.25rem; line-height: 1.6; font-size: 0.95rem; }
+
+/* Final CTA */
+.finalCta { padding: 5rem 1.5rem; text-align: center; border-radius: 0; }
+.ctaTitle { font-size: 2.25rem; font-weight: 700; margin-bottom: 1rem; }
+.ctaDesc { font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .reasonsGrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .heroTitle { font-size: 2rem; }
+  .reasonsGrid { grid-template-columns: 1fr; }
+  .savingsRow { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .savingsHeader { display: none; }
+}

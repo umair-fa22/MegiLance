@@ -258,6 +258,7 @@ def register_user(request: Request, payload: UserCreate):
         is_active=bool(user_data.get("is_active")),
         name=_safe_str(user_data.get("name")),
         user_type=_safe_str(user_data.get("user_type")),
+        role=_safe_str(user_data.get("role")) or _safe_str(user_data.get("user_type")),
         bio=_safe_str(user_data.get("bio")),
         skills=_safe_str(user_data.get("skills")),
         hourly_rate=float(user_data.get("hourly_rate") or 0),
@@ -316,6 +317,7 @@ def login_user(request: Request, credentials: LoginRequest):
             is_active=bool(user.is_active),
             name=_safe_str(user.name),
             user_type=_safe_str(user.user_type),
+            role=_safe_str(getattr(user, 'role', None)) or _safe_str(user.user_type),
             bio=_safe_str(user.bio),
             skills=_safe_str(user.skills),
             hourly_rate=float(user.hourly_rate) if user.hourly_rate else None,
@@ -348,6 +350,7 @@ def login_user(request: Request, credentials: LoginRequest):
         is_active=bool(user.is_active),
         name=_safe_str(user.name),
         user_type=user_type_str,
+        role=_safe_str(getattr(user, 'role', None)) or user_type_str,
         bio=_safe_str(user.bio),
         skills=_safe_str(user.skills),
         hourly_rate=float(user.hourly_rate) if user.hourly_rate else None,
@@ -505,12 +508,15 @@ def read_users_me(current_user: User = Depends(get_current_active_user)):
         except (json.JSONDecodeError, ValueError):
             pass
             
+    user_type = _safe_str(current_user.user_type)
+    role = _safe_str(getattr(current_user, 'role', None)) or user_type
     return UserRead(
         id=current_user.id,
         email=_safe_str(current_user.email),
         is_active=bool(current_user.is_active),
         name=_safe_str(current_user.name),
-        user_type=_safe_str(current_user.user_type),
+        user_type=user_type,
+        role=role,
         bio=_safe_str(current_user.bio),
         skills=_safe_str(current_user.skills),
         hourly_rate=float(current_user.hourly_rate) if current_user.hourly_rate else None,
@@ -626,6 +632,7 @@ def update_user_me(
         is_active=bool(user_data.get("is_active")),
         name=_safe_str(user_data.get("name")),
         user_type=_safe_str(user_data.get("user_type")),
+        role=_safe_str(user_data.get("role")) or _safe_str(user_data.get("user_type")),
         bio=_safe_str(user_data.get("bio")),
         skills=_safe_str(user_data.get("skills")),
         hourly_rate=float(user_data.get("hourly_rate") or 0),

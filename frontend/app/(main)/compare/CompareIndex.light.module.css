@@ -1,0 +1,13 @@
+/* @AI-HINT: CompareIndex light */
+.page { background: #fff; }
+.hero { background: linear-gradient(135deg, #f0f4ff 0%, #e8efff 50%, #fff 100%); }
+.heroIcon { background: #eef2ff; color: #4573df; }
+.heroTitle { color: #111827; }
+.gradient { background: linear-gradient(135deg, #4573df, #6b5ce7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.heroDesc { color: #4b5563; }
+.section { background: #fff; }
+.card { background: #f9fafb; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.card:hover { box-shadow: 0 8px 24px rgba(69,115,223,0.12); }
+.cardTitle { color: #111827; }
+.cardDesc { color: #6b7280; }
+.cardLink { color: #4573df; }

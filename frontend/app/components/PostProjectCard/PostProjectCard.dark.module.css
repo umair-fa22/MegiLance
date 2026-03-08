@@ -1,0 +1,51 @@
+/* @AI-HINT: Dark theme for PostProjectCard embed generator */
+
+.wrapper {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+}
+
+.header {
+  border-bottom: 1px solid #1e293b;
+}
+
+.headerTitle { color: #f8fafc; }
+.headerSub { color: #94a3b8; }
+
+.controls {
+  border-bottom: 1px solid #1e293b;
+  padding-bottom: 1rem;
+}
+
+.controlLabel { color: #94a3b8; }
+
+.toggleBtn {
+  background: #1e293b;
+  color: #94a3b8;
+}
+.toggleBtn:hover { background: #334155; }
+.toggleBtnActive {
+  background: #4573df !important;
+  color: #fff !important;
+}
+
+.tabBar { border-bottom-color: #1e293b; }
+.tab { color: #94a3b8; }
+.tab:hover { color: #f8fafc; }
+.tabActive {
+  color: #5b8aef !important;
+  border-bottom-color: #5b8aef !important;
+}
+
+.previewArea {
+  background: repeating-conic-gradient(#0c1322 0% 25%, #0f172a 0% 50%) 50% / 20px 20px;
+}
+
+.codeArea { border: 1px solid #1e293b; }
+.codeToolbar { background: #1e293b; border-bottom: 1px solid #334155; }
+.codeLabel { color: #94a3b8; }
+.copyBtn { color: #5b8aef; }
+.copyBtn:hover { background: rgba(91, 138, 239, 0.1); }
+.codeBlock { background: #0c1322; color: #cbd5e1; }
+
+.quickActions { border-top-color: #1e293b; }

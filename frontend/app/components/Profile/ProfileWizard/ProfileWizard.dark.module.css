@@ -1,4 +1,4 @@
-/* Dark theme colors for ProfileWizard */
+/* Dark theme colors for enhanced ProfileWizard */
 
 .container {
   background-color: #0f172a;
@@ -10,6 +10,24 @@
 
 .subtitle {
   color: #94a3b8;
+}
+
+.profileScore {
+  background-color: #1a2744;
+  border: 1px solid #2a3a5c;
+}
+
+.scoreCircle {
+  color: #5b8aef;
+}
+
+.scoreLabel {
+  color: #5b8aef;
+}
+
+.hintItem {
+  background-color: #3d2800;
+  color: #ffb74d;
 }
 
 .progressBar {
@@ -26,6 +44,10 @@
 
 .stepIcon {
   background-color: #1e293b;
+  color: #64748b;
+}
+
+.stepDescription {
   color: #64748b;
 }
 
@@ -47,6 +69,59 @@
 
 .stepCompleted .stepTitle {
   color: #27ae60;
+}
+
+.portfolioEmpty {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #94a3b8;
+}
+
+.portfolioCard {
+  border-color: #334155;
+  background-color: #1e293b;
+}
+
+.portfolioCardHeader {
+  background-color: #162032;
+  border-bottom: 1px solid #334155;
+}
+
+.skipLink {
+  color: #94a3b8;
+}
+
+.skipLink:hover {
+  color: #5b8aef;
+  background-color: #1a2744;
+}
+
+.errorText {
+  color: #f87171;
+  background-color: #2d1215;
+}
+
+.completionCard {
+  background: linear-gradient(135deg, #1a2744 0%, #162a1f 100%);
+  color: #f8fafc;
+}
+
+.completionTitle {
+  color: #f8fafc;
+}
+
+.completionSubtitle {
+  color: #94a3b8;
+}
+
+.completionStat {
+  background-color: #1e293b;
+  color: #5b8aef;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.actions {
+  border-color: #334155;
 }
 
 .content {

@@ -1,0 +1,162 @@
+/* @AI-HINT: Common styles for PostProjectCard - layout, structure, controls. Matches HireMeCard pattern. */
+
+.wrapper {
+  border-radius: var(--border-radius-xl, 1rem);
+  overflow: hidden;
+}
+
+.header {
+  padding: var(--spacing-4, 1rem) var(--spacing-5, 1.25rem);
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1, 0.25rem);
+}
+
+.headerTitle {
+  font-family: var(--font-family-headings, 'Poppins', sans-serif);
+  font-size: var(--font-size-lg, 1.125rem);
+  font-weight: 700;
+  margin: 0;
+}
+
+.headerSub {
+  font-size: var(--font-size-sm, 0.875rem);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Controls row */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-5, 1.25rem);
+  padding: 0 var(--spacing-5, 1.25rem) var(--spacing-4, 1rem);
+}
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2, 0.5rem);
+}
+
+.controlLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1, 0.25rem);
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.toggleGroup {
+  display: flex;
+  border-radius: var(--border-radius-md, 0.5rem);
+  overflow: hidden;
+}
+
+.toggleBtn {
+  padding: var(--spacing-2, 0.5rem) var(--spacing-3, 0.75rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.toggleBtnActive {
+  font-weight: 600;
+}
+
+/* Tab bar */
+.tabBar {
+  display: flex;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  margin: 0 var(--spacing-5, 1.25rem);
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1, 0.25rem);
+  padding: var(--spacing-2, 0.5rem) var(--spacing-4, 1rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tabActive {
+  font-weight: 600;
+}
+
+/* Preview area */
+.previewArea {
+  padding: var(--spacing-6, 1.5rem) var(--spacing-5, 1.25rem);
+  display: flex;
+  justify-content: center;
+  min-height: 180px;
+}
+
+/* Code area */
+.codeArea {
+  margin: 0 var(--spacing-5, 1.25rem) var(--spacing-4, 1rem);
+  border-radius: var(--border-radius-lg, 0.75rem);
+  overflow: hidden;
+}
+
+.codeToolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-2, 0.5rem) var(--spacing-3, 0.75rem);
+}
+
+.codeLabel {
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.copyBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1, 0.25rem);
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: var(--spacing-1, 0.25rem) var(--spacing-2, 0.5rem);
+  border-radius: var(--border-radius-sm, 0.375rem);
+  transition: background 0.15s;
+}
+
+.codeBlock {
+  padding: var(--spacing-4, 1rem);
+  margin: 0;
+  font-family: var(--font-family-code, 'JetBrains Mono', monospace);
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 260px;
+}
+
+/* Quick actions */
+.quickActions {
+  display: flex;
+  gap: var(--spacing-2, 0.5rem);
+  padding: var(--spacing-4, 1rem) var(--spacing-5, 1.25rem);
+  border-top-width: 1px;
+  border-top-style: solid;
+}

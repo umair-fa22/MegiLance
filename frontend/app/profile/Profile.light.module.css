@@ -42,6 +42,10 @@
   color: transparent;
 }
 
+.headline {
+  color: #475569;
+}
+
 .bio {
   color: #64748b;
 }
@@ -50,6 +54,14 @@
   background: linear-gradient(135deg, rgba(69, 115, 223, 0.1), rgba(69, 115, 223, 0.05));
   color: #4573df;
   border: 1px solid rgba(69, 115, 223, 0.2);
+}
+
+.locationBadge {
+  color: #64748b;
+}
+
+.socialLink {
+  color: #4573df;
 }
 
 .sectionTitle {
@@ -64,4 +76,72 @@
 
 .emptyState h3 {
   color: #1f2937;
+}
+
+/* Share Modal Light Theme */
+.shareModal {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+}
+
+.shareModalHeader {
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.shareModalHeader h3 {
+  color: #0f172a;
+}
+
+.closeBtn {
+  color: #64748b;
+}
+
+.closeBtn:hover {
+  background: #f1f5f9;
+}
+
+.shareTabBtn {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.shareTabBtn:hover {
+  background: #e2e8f0;
+}
+
+.shareTabBtnActive {
+  background: #4573df !important;
+  color: #fff !important;
+}
+
+.shareLinkRow {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.shareLinkInput {
+  color: #334155;
+}
+
+.shareCopyBtn {
+  color: #4573df;
+}
+
+.shareCopyBtn:hover {
+  background: rgba(69, 115, 223, 0.08);
+}
+
+.shareAction {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+}
+
+.shareAction:hover {
+  background: #e2e8f0;
+}
+
+.shareHint {
+  color: #64748b;
 }

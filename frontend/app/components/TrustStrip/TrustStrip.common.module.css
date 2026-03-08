@@ -1,0 +1,26 @@
+/* @AI-HINT: TrustStrip common layout */
+.strip { width: 100%; padding: 1.5rem; }
+.inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: center; gap: 2.5rem; flex-wrap: wrap;
+}
+
+.stat { display: flex; align-items: center; gap: 0.5rem; }
+.statIcon { display: flex; }
+.statValue { font-size: 1.1rem; font-weight: 700; }
+.statLabel { font-size: 0.85rem; }
+
+.guarantee { display: flex; align-items: center; gap: 0.5rem; }
+.gIcon { display: flex; }
+.gText { font-size: 0.9rem; font-weight: 500; }
+
+.compact {
+  display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;
+  padding: 0.75rem;
+}
+.compactItem { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.8rem; font-weight: 500; }
+
+@media (max-width: 640px) {
+  .inner { gap: 1.25rem; }
+  .stat, .guarantee { flex-direction: column; text-align: center; gap: 0.25rem; }
+}

@@ -59,3 +59,14 @@
 .pageNum { color: #64748b; }
 .pageNum:hover { background: #f1f5f9; color: #0f172a; }
 .pageNumActive { background: #4573df !important; color: #fff !important; }
+
+/* Quick Skill Chips */
+.quickChips { background: #f8fafc; border: 1px solid #e2e8f0; }
+.quickChipsLabel { color: #64748b; }
+.quickChip { background: #fff; color: #475569; border-color: #e2e8f0; }
+.quickChip:hover { background: #f1f5f9; border-color: #cbd5e1; color: #1e293b; }
+.quickChipActive { background: #4573df !important; color: #fff !important; border-color: #4573df !important; }
+.activeChipsBar { border-color: #e2e8f0; }
+.activeChipsCount { color: #4573df; }
+.clearChipsBtn { color: #e81123; }
+.clearChipsBtn:hover { background: rgba(232, 17, 35, 0.08); }

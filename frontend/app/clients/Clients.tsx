@@ -1,17 +1,15 @@
-// @AI-HINT: Clients page with real data from API, theme-aware styling, animated sections, accessible structure.
+// @AI-HINT: Clients page — marketing + real data from API, theme-aware, animated.
 'use client';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-// Lazy load cards to keep initial bundle lean
 const ClientLogoCard = dynamic(() => import('./components/ClientLogoCard'));
 const CaseStudyCard = dynamic(() => import('./components/CaseStudyCard'));
 import EmptyState from '@/app/components/EmptyState/EmptyState';
 import { useToaster } from '@/app/components/Toast/ToasterProvider';
-import { PageTransition, ScrollReveal, StaggerContainer } from '@/components/Animations';
+import { PageTransition, ScrollReveal, StaggerContainer, StaggerItem } from '@/components/Animations';
 import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';
 import common from './Clients.common.module.css';
 import light from './Clients.light.module.css';
@@ -45,6 +43,22 @@ const fallbackLogos: ClientData[] = [];
 
 const cases: { title: string; desc: string; media: string }[] = [];
 
+const benefits = [
+  { icon: '🎯', title: 'AI-Matched Talent', desc: 'Our ranking engine evaluates skills, experience, and past performance to surface the best candidates for your project.' },
+  { icon: '🔒', title: 'Secure Payments', desc: 'Milestone-based escrow protects your budget. Pay only when deliverables meet your approval — zero risk.' },
+  { icon: '⚡', title: 'Fast Hiring', desc: 'Post a project and receive qualified proposals within hours, not weeks. Average time to first hire: 48 hours.' },
+  { icon: '📊', title: 'Full Transparency', desc: 'Real-time dashboards, time logs, and progress reports keep you in control from kick-off to delivery.' },
+  { icon: '🛡️', title: 'IP & NDA Protection', desc: 'Standard NDA templates and IP assignment clauses built into every contract. Your code stays yours.' },
+  { icon: '🌍', title: 'Global Talent Pool', desc: 'Access verified freelancers across 40+ countries. Filter by timezone, language, and availability.' },
+];
+
+const howSteps = [
+  { num: '01', title: 'Post Your Project', desc: 'Describe what you need, set a budget range, and specify required skills. Takes under 5 minutes.' },
+  { num: '02', title: 'Review AI Proposals', desc: 'We rank applicants by relevance. Compare portfolios, ratings, and rates side by side.' },
+  { num: '03', title: 'Hire & Collaborate', desc: 'Award the project, set milestones, and start working together through our built-in tools.' },
+  { num: '04', title: 'Pay on Delivery', desc: 'Release escrow when you are satisfied. Leave a review to help the community grow.' },
+];
+
 interface Metric {
   label: string;
   value: string;
@@ -60,6 +74,7 @@ const defaultMetrics: Metric[] = [
 
 const Clients: React.FC = () => {
   const { resolvedTheme } = useTheme();
+  if (!resolvedTheme) return null;
   const themed = resolvedTheme === 'dark' ? dark : light;
   const { notify } = useToaster();
 
@@ -68,62 +83,33 @@ const Clients: React.FC = () => {
   const [clients, setClients] = useState<ClientData[]>([]);
   const [industries, setIndustries] = useState<string[]>([ALL, 'AI', 'Fintech', 'E-commerce', 'Healthcare']);
   const [stats, setStats] = useState<ClientStats | null>(null);
-  const [apiError, setApiError] = useState(false);
 
-  // Fetch real client data from API
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        // Fetch clients, stats, and industries in parallel
         const [clientsRes, statsRes, industriesRes] = await Promise.all([
           fetch('/api/v1/public-clients/featured'),
           fetch('/api/v1/public-clients/stats'),
           fetch('/api/v1/public-clients/industries'),
         ]);
-
-        if (clientsRes.ok) {
-          const clientsData = await clientsRes.json();
-          setClients(clientsData.length > 0 ? clientsData : fallbackLogos);
-        } else {
-          setClients(fallbackLogos);
-          setApiError(true);
-        }
-
-        if (statsRes.ok) {
-          const statsData = await statsRes.json();
-          setStats(statsData);
-        }
-
-        if (industriesRes.ok) {
-          const industriesData = await industriesRes.json();
-          if (industriesData.length > 0) {
-            setIndustries([ALL, ...industriesData]);
-          }
-        }
-      } catch (error) {
-        console.error('Failed to fetch client data:', error);
-        setClients(fallbackLogos);
-        setApiError(true);
-      } finally {
-        setIsLoading(false);
-      }
+        if (clientsRes.ok) { const d = await clientsRes.json(); setClients(d.length > 0 ? d : fallbackLogos); }
+        else { setClients(fallbackLogos); }
+        if (statsRes.ok) { setStats(await statsRes.json()); }
+        if (industriesRes.ok) { const d = await industriesRes.json(); if (d.length > 0) setIndustries([ALL, ...d]); }
+      } catch { setClients(fallbackLogos); } finally { setIsLoading(false); }
     };
-
     fetchData();
   }, []);
 
-  // Dynamic metrics based on API stats
   const metrics: Metric[] = useMemo(() => {
-    if (stats) {
-      return [
-        { label: 'Total Clients', value: stats.total_clients.toString(), detail: 'Trusted companies worldwide' },
-        { label: 'Projects Completed', value: stats.total_projects.toString(), detail: 'Successfully delivered' },
-        { label: 'Satisfaction Rate', value: `${stats.satisfaction_rate}%`, detail: 'Client happiness score' },
-        { label: 'Talent Matching', value: 'AI-Powered', detail: 'ML-powered ranking' },
-      ];
-    }
-    return defaultMetrics;
+    if (!stats) return defaultMetrics;
+    return [
+      { label: 'Total Clients', value: stats.total_clients.toString(), detail: 'Trusted companies worldwide' },
+      { label: 'Projects Completed', value: stats.total_projects.toString(), detail: 'Successfully delivered' },
+      { label: 'Satisfaction Rate', value: `${stats.satisfaction_rate}%`, detail: 'Client happiness score' },
+      { label: 'Talent Matching', value: 'AI-Powered', detail: 'ML-powered ranking' },
+    ];
   }, [stats]);
 
   const filtered = useMemo(
@@ -159,72 +145,57 @@ const Clients: React.FC = () => {
         <div className={common.container}>
           <ScrollReveal>
             <header className={common.header}>
-              <h1 className={common.title}>Our Clients</h1>
-              <p className={common.subtitle}>Trusted by high-velocity teams across AI, fintech, e‑commerce, and healthcare.</p>
+              <span className={cn(common.heroBadge, themed.heroBadge)}>For Clients</span>
+              <h1 className={common.title}>Hire Top Freelancers — Without the Guesswork</h1>
+              <p className={common.subtitle}>
+                Post a project, let AI match the best talent, and pay only when you&apos;re satisfied. Trusted by teams shipping real products.
+              </p>
+              <div className={common.heroCtas}>
+                <a href="/signup" className={cn(common.heroBtn, themed.heroBtn)}>Post a Project — Free</a>
+                <a href="/talent" className={cn(common.heroBtnOutline, themed.heroBtnOutline)}>Browse Talent</a>
+              </div>
             </header>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.1}>
-            <div
-              className={common.controls}
-              role="toolbar"
-              aria-label="Filter clients by industry"
-            >
-              {industries.map((c) => {
-                const active = selected === c;
-                return (
-                  <button
-                    key={c}
-                    type="button"
-                    className={cn(common.chip, themed.chip, active && common.chipActive)}
-                    aria-pressed={active}
-                    data-active={active || undefined}
-                    onClick={() => onSelect(c)}
-                  >
-                    {c}
-                  </button>
-                );
-              })}
-            </div>
-          </ScrollReveal>
-
-          <section aria-label="Client logos">
-            <StaggerContainer className={common.grid} delay={0.2}>
-              {isLoading && (
-                Array.from({ length: 8 }).map((_, i) => (
-                  <div key={`s-${i}`} className={cn(common.logoCard, common.skeleton)} aria-hidden="true" />
-                ))
-              )}
-              {!isLoading && filtered.length === 0 && (
-                <div className={common.gridSpanAll}>
-                  <EmptyState
-                    title="No clients in this category"
-                    description="Try a different industry or contact our team for a tailored walkthrough."
-                    action={
-                      <a href="/contact" className={common.button} aria-label="Contact sales">
-                        Contact Sales
-                      </a>
-                    }
-                  />
-                </div>
-              )}
-              {!isLoading && filtered.length > 0 && (
-                filtered.map((client) => (
-                  <ClientLogoCard 
-                    key={client.id} 
-                    name={client.company_name || client.name} 
-                    src={client.logo_url || '/images/clients/placeholder.svg'} 
-                    industry={client.industry}
-                    projectCount={client.project_count}
-                    description={client.description}
-                  />
-                ))
-              )}
+          {/* Why MegiLance */}
+          <section className={common.section} aria-label="Benefits">
+            <ScrollReveal>
+              <h2 className={cn(common.sectionTitle, themed.sectionTitle)}>Why Clients Choose MegiLance</h2>
+            </ScrollReveal>
+            <StaggerContainer className={common.benefitsGrid} delay={0.08}>
+              {benefits.map((b) => (
+                <StaggerItem key={b.title}>
+                  <div className={cn(common.benefitCard, themed.benefitCard)}>
+                    <span className={common.benefitIcon}>{b.icon}</span>
+                    <h3 className={cn(common.benefitTitle, themed.benefitTitle)}>{b.title}</h3>
+                    <p className={cn(common.benefitDesc, themed.benefitDesc)}>{b.desc}</p>
+                  </div>
+                </StaggerItem>
+              ))}
             </StaggerContainer>
           </section>
 
+          {/* How It Works */}
+          <section className={common.section} aria-label="How it works">
+            <ScrollReveal>
+              <h2 className={cn(common.sectionTitle, themed.sectionTitle)}>How It Works</h2>
+            </ScrollReveal>
+            <div className={common.stepsRow}>
+              {howSteps.map((s) => (
+                <ScrollReveal key={s.num}>
+                  <div className={cn(common.stepCard, themed.stepCard)}>
+                    <span className={cn(common.stepNum, themed.stepNum)}>{s.num}</span>
+                    <h3 className={cn(common.stepTitle, themed.stepTitle)}>{s.title}</h3>
+                    <p className={cn(common.stepDesc, themed.stepDesc)}>{s.desc}</p>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </section>
+
+          {/* Metrics */}
           <section className={common.section} aria-label="Impact metrics">
-            <h2 className={common.sectionTitle}>Impact Metrics</h2>
+            <h2 className={cn(common.sectionTitle, themed.sectionTitle)}>Impact Metrics</h2>
             <ul className={common.metricGrid} role="list">
               {metrics.map(m => (
                 <li key={m.label} className={cn(common.metricCard, themed.metricCard)}>
@@ -236,38 +207,80 @@ const Clients: React.FC = () => {
             </ul>
           </section>
 
-          <section className={common.section} aria-label="Case studies">
-            <h2 className={common.sectionTitle}>Case Studies</h2>
-            <StaggerContainer className={common.caseGrid} delay={0.4}>
-              {cases.map((c) => (
-                <CaseStudyCard key={c.title} title={c.title} description={c.desc} media={c.media} />
+          {/* Client Logos */}
+          <section className={common.section} aria-label="Our clients">
+            <ScrollReveal>
+              <h2 className={cn(common.sectionTitle, themed.sectionTitle)}>Trusted By</h2>
+            </ScrollReveal>
+            <ScrollReveal delay={0.1}>
+              <div className={common.controls} role="toolbar" aria-label="Filter clients by industry">
+                {industries.map((c) => {
+                  const active = selected === c;
+                  return (
+                    <button
+                      key={c}
+                      type="button"
+                      className={cn(common.chip, themed.chip, active && common.chipActive)}
+                      aria-pressed={active}
+                      data-active={active || undefined}
+                      onClick={() => onSelect(c)}
+                    >
+                      {c}
+                    </button>
+                  );
+                })}
+              </div>
+            </ScrollReveal>
+            <StaggerContainer className={common.grid} delay={0.2}>
+              {isLoading && Array.from({ length: 8 }).map((_, i) => (
+                <div key={`s-${i}`} className={cn(common.logoCard, common.skeleton)} aria-hidden="true" />
+              ))}
+              {!isLoading && filtered.length === 0 && (
+                <div className={common.gridSpanAll}>
+                  <EmptyState
+                    title="No clients in this category"
+                    description="Try a different industry or contact our team for a tailored walkthrough."
+                    action={<a href="/contact" className={cn(common.heroBtn, themed.heroBtn)} aria-label="Contact sales">Contact Sales</a>}
+                  />
+                </div>
+              )}
+              {!isLoading && filtered.length > 0 && filtered.map((client) => (
+                <ClientLogoCard
+                  key={client.id}
+                  name={client.company_name || client.name}
+                  src={client.logo_url || '/images/clients/placeholder.svg'}
+                  industry={client.industry}
+                  projectCount={client.project_count}
+                  description={client.description}
+                />
               ))}
             </StaggerContainer>
           </section>
 
-          <section className={common.section} aria-label="Call to action">
-            <ScrollReveal className={common.cta} delay={0.5}>
-              <a
-                href="/contact"
-                className={common.button}
-                aria-label="Contact sales"
-                onClick={() =>
-                  notify({ title: 'Opening contact', description: 'We’ll help you get started.', variant: 'success', duration: 2500 })
-                }
-              >
-                Contact Sales
-              </a>
-              <a
-                href="/jobs"
-                className={cn(common.button, common.buttonSecondary)}
-                aria-label="Find talent"
-                onClick={() =>
-                  notify({ title: 'Explore talent', description: 'Curated experts across domains.', variant: 'info', duration: 2500 })
-                }
-              >
-                Find Talent
-              </a>
-            </ScrollReveal>
+          {/* Case Studies (conditional) */}
+          {cases.length > 0 && (
+            <section className={common.section} aria-label="Case studies">
+              <ScrollReveal>
+                <h2 className={cn(common.sectionTitle, themed.sectionTitle)}>Case Studies</h2>
+              </ScrollReveal>
+              <StaggerContainer className={common.caseGrid} delay={0.4}>
+                {cases.map((c) => (
+                  <CaseStudyCard key={c.title} title={c.title} description={c.desc} media={c.media} />
+                ))}
+              </StaggerContainer>
+            </section>
+          )}
+
+          {/* CTA */}
+          <section className={cn(common.ctaBox, themed.ctaBox)} aria-label="Call to action">
+            <h2 className={cn(common.ctaBoxTitle, themed.ctaBoxTitle)}>Ready to build your dream team?</h2>
+            <p className={cn(common.ctaBoxDesc, themed.ctaBoxDesc)}>
+              Post your first project for free and see matched talent in under 48 hours.
+            </p>
+            <div className={common.heroCtas}>
+              <a href="/signup" className={cn(common.heroBtn, themed.heroBtn)}>Get Started Free</a>
+              <a href="/contact" className={cn(common.heroBtnOutline, themed.heroBtnOutline)}>Talk to Sales</a>
+            </div>
           </section>
         </div>
       </main>

@@ -1,0 +1,11 @@
+/* @AI-HINT: TrustStrip light */
+.strip { background: #f8fafc; border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb; }
+.stat { color: #111827; }
+.statIcon { color: #4573df; }
+.statValue { color: #111827; }
+.statLabel { color: #6b7280; }
+.guarantee { color: #111827; }
+.gIcon { color: #16a34a; }
+.gText { color: #374151; }
+.compact { background: #f8fafc; }
+.compactItem { color: #6b7280; }

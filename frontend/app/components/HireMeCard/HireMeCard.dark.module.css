@@ -1,0 +1,107 @@
+/* @AI-HINT: Dark theme colors for HireMeCard */
+
+.wrapper {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+.header {
+  border-bottom-color: #334155;
+}
+
+.headerTitle {
+  color: #f8fafc;
+}
+
+.headerSub {
+  color: #94a3b8;
+}
+
+.controls {
+  background: #1a2744;
+  border-bottom-color: #334155;
+}
+
+.controlLabel {
+  color: #94a3b8;
+}
+
+.toggleGroup {
+  border-color: #334155;
+}
+
+.toggleBtn {
+  color: #94a3b8;
+  border-right-color: #334155;
+}
+
+.toggleBtn:hover {
+  background: #1e293b;
+  color: #f8fafc;
+}
+
+.toggleBtnActive {
+  background: #4573df;
+  color: #ffffff;
+}
+
+.toggleBtnActive:hover {
+  background: #5b8aef;
+  color: #ffffff;
+}
+
+.tabBar {
+  border-bottom-color: #334155;
+}
+
+.tab {
+  color: #94a3b8;
+}
+
+.tab:hover {
+  color: #f8fafc;
+}
+
+.tabActive {
+  color: #5b8aef;
+  border-bottom-color: #5b8aef;
+}
+
+.previewArea {
+  background: #1a2744;
+}
+
+.codeToolbar {
+  background: #162032;
+  border-bottom-color: #334155;
+}
+
+.codeLabel {
+  color: #94a3b8;
+}
+
+.copyBtn {
+  background: #1e293b;
+  border-color: #334155;
+  color: #5b8aef;
+}
+
+.copyBtn:hover {
+  background: #2a3a5c;
+}
+
+.codeBlock {
+  background: #0c1524;
+  color: #cbd5e1;
+}
+
+.quickActions {
+  background: #1a2744;
+  border-top-color: #334155;
+}
+
+.toggleBtn:focus-visible,
+.tab:focus-visible,
+.copyBtn:focus-visible {
+  outline-color: #5b8aef;
+}

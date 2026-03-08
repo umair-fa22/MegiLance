@@ -259,6 +259,12 @@
   border-top: 1px solid transparent;
 }
 
+/* ── Profile Completeness Widget ──────────────────── */
+.profileCompletenessWidget {
+  margin-top: 1rem;
+  border-radius: 14px;
+}
+
 /* ── Platform Insight Card ──────────────────────── */
 .insightCard {
   margin-top: 1rem;

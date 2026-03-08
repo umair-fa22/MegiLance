@@ -90,3 +90,56 @@
 .emptyText {
   color: #a0aec0;
 }
+
+/* Quick chips */
+.quickChips {
+  background: transparent;
+}
+
+.quickChipsLabel {
+  color: #94a3b8;
+}
+
+.quickChip {
+  background: #1e293b;
+  color: #94a3b8;
+  border-color: #334155;
+}
+
+.quickChip:hover {
+  background: #2a3a5c;
+  color: #f8fafc;
+}
+
+.quickChipActive {
+  background: #4573df;
+  color: #ffffff;
+  border-color: #4573df;
+}
+
+/* Active filters */
+.activeFilters {
+  background: #2d2006;
+}
+
+.activeFiltersLabel {
+  color: #fbbf24;
+}
+
+.filterTag {
+  background: #1e293b;
+  color: #fbbf24;
+  border: 1px solid #92400e;
+}
+
+.filterTag button {
+  color: #fbbf24;
+}
+
+.clearAllBtn {
+  color: #5b8aef;
+}
+
+.clearAllBtn:hover {
+  color: #7da5f5;
+}

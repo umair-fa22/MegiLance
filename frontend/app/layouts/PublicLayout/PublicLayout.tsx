@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import commonStyles from './PublicLayout.common.module.css';
 import lightStyles from './PublicLayout.light.module.css';
 import darkStyles from './PublicLayout.dark.module.css';
+import SmartBanner from '@/app/components/SmartBanner/SmartBanner';
 
 type Props = { children: React.ReactNode };
 
@@ -24,6 +25,12 @@ const PublicLayout: React.FC<Props> = ({ children }) => {
 
   return (
     <div className={styles.root}>
+      <SmartBanner
+        id="launch-promo"
+        text="🚀 Post your first project free — AI matches you with top freelancers in 24h"
+        ctaText="Post a Project"
+        href="/post-project"
+      />
 
       {/* @AI-HINT: PublicLayout - Marketing container only; AppChrome owns the sole <main id="main-content">. */}
       <div className={styles.main} role="presentation">

@@ -13,6 +13,7 @@ import { AIRateEstimator } from '@/app/components/AI';
 import commonStyles from './Profile.common.module.css';
 import lightStyles from './Profile.light.module.css';
 import darkStyles from './Profile.dark.module.css';
+import HireMeCard from '@/app/components/HireMeCard/HireMeCard';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
@@ -90,6 +91,7 @@ const Profile: React.FC = () => {
   const [rateEstimate, setRateEstimate] = useState<any>(null);
   const [estimatingRate, setEstimatingRate] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
+  const [shareTab, setShareTab] = useState<'links' | 'embed'>('links');
   const [userId, setUserId] = useState<number | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -252,7 +254,7 @@ const Profile: React.FC = () => {
         testimonials_enabled: testimonialsEnabled,
         profile_visibility: profileVisibility,
       };
-      await (api.auth as any).updateProfile(payload);
+      await api.auth.updateProfile(payload as any);
       setStatus('Profile saved successfully!');
       const updated: any = await api.auth.me();
       setProfileSlug(updated.profile_slug || '');
@@ -267,11 +269,17 @@ const Profile: React.FC = () => {
     setEstimatingRate(true);
     try {
       const user: any = await api.auth.me();
-      const result = await (api as any).ai?.estimateFreelancerRate?.(user.id, {
-        skills: skills.split(',').map(s => s.trim()).filter(Boolean),
-        average_rating: 0, completed_projects: 0,
-      });
-      setRateEstimate(result);
+      const skillList = skills.split(',').map(s => s.trim()).filter(Boolean);
+      if (api.ai && typeof (api.ai as any).estimateFreelancerRate === 'function') {
+        const result = await (api.ai as any).estimateFreelancerRate(user.id, {
+          skills: skillList,
+          average_rating: 0,
+          completed_projects: 0,
+        });
+        setRateEstimate(result);
+      } else {
+        setRateEstimate({ estimated_rate: 25, message: 'AI rate estimation is not available. Set your rate based on market research.' });
+      }
     } catch { /* ignore */ } finally { setEstimatingRate(false); }
   };
 
@@ -709,50 +717,91 @@ const Profile: React.FC = () => {
           </div>
         </form>
 
-        {/* Share Modal */}
+        {/* Share & Embed Modal */}
         {showShareModal && (
           <div className={styles.modalOverlay} onClick={() => setShowShareModal(false)} role="dialog" aria-modal="true" aria-label="Share profile">
             <div className={styles.shareModal} onClick={e => e.stopPropagation()}>
               <div className={styles.shareModalHeader}>
-                <h2>Share Your Profile</h2>
+                <h2>Share & Embed Profile</h2>
                 <button onClick={() => setShowShareModal(false)} className={styles.closeBtn} aria-label="Close">×</button>
               </div>
+
+              {/* Tab toggle: Share Links vs Embed Card */}
+              <div className={styles.shareTabBar}>
+                <button
+                  type="button"
+                  className={`${styles.shareTabBtn} ${shareTab === 'links' ? styles.shareTabBtnActive : ''}`}
+                  onClick={() => setShareTab('links')}
+                >
+                  Share Links
+                </button>
+                <button
+                  type="button"
+                  className={`${styles.shareTabBtn} ${shareTab === 'embed' ? styles.shareTabBtnActive : ''}`}
+                  onClick={() => setShareTab('embed')}
+                >
+                  Hire Me Card
+                </button>
+              </div>
+
               <div className={styles.shareModalContent}>
-                <p>Share your freelancer profile to get noticed by potential clients!</p>
-                <div className={styles.shareUrlBox}>
-                  <input type="text" readOnly value={profileUrl} className={styles.shareUrlInput} aria-label="Profile URL" />
-                  <Button type="button" variant="primary" size="sm" onClick={copyProfileLink}>
-                    {copied ? 'Copied!' : 'Copy'}
-                  </Button>
-                </div>
-                <div className={styles.shareModalButtons}>
-                  <Button type="button" variant="outline" onClick={shareToLinkedIn} fullWidth>
-                    Share on LinkedIn
-                  </Button>
-                  <Button type="button" variant="outline" onClick={shareToTwitter} fullWidth>
-                    Share on Twitter / X
-                  </Button>
-                  <Button type="button" variant="outline" onClick={() => {
-                    window.open(`mailto:?subject=${encodeURIComponent(`Check out my freelancer profile`)}&body=${encodeURIComponent(`Hi,\n\nCheck out my freelancer profile on MegiLance:\n${profileUrl}\n\n${headline || tagline || ''}`)}`, '_self');
-                  }} fullWidth>
-                    Share via Email
-                  </Button>
-                  <Button type="button" variant="outline" onClick={() => {
-                    window.open(`https://wa.me/?text=${encodeURIComponent(`Check out my freelancer profile: ${profileUrl}`)}`, '_blank', 'noopener');
-                  }} fullWidth>
-                    Share on WhatsApp
-                  </Button>
-                </div>
-                <div className={styles.shareHints}>
-                  <h4>Tips for sharing:</h4>
-                  <ul>
-                    <li>Add this link to your resume / CV</li>
-                    <li>Include it in your email signature</li>
-                    <li>Post it on professional social networks</li>
-                    <li>Use it on job boards and applications</li>
-                    <li>Add it to your portfolio website</li>
-                  </ul>
-                </div>
+                {shareTab === 'links' && (
+                  <>
+                    <p>Share your freelancer profile to get noticed by potential clients!</p>
+                    <div className={styles.shareUrlBox}>
+                      <input type="text" readOnly value={profileUrl} className={styles.shareUrlInput} aria-label="Profile URL" />
+                      <Button type="button" variant="primary" size="sm" onClick={copyProfileLink}>
+                        {copied ? 'Copied!' : 'Copy'}
+                      </Button>
+                    </div>
+                    <div className={styles.shareModalButtons}>
+                      <Button type="button" variant="outline" onClick={shareToLinkedIn} fullWidth>
+                        Share on LinkedIn
+                      </Button>
+                      <Button type="button" variant="outline" onClick={shareToTwitter} fullWidth>
+                        Share on Twitter / X
+                      </Button>
+                      <Button type="button" variant="outline" onClick={() => {
+                        window.open(`mailto:?subject=${encodeURIComponent(`Check out my freelancer profile`)}&body=${encodeURIComponent(`Hi,\n\nCheck out my freelancer profile on MegiLance:\n${profileUrl}\n\n${headline || tagline || ''}`)}`, '_self');
+                      }} fullWidth>
+                        Share via Email
+                      </Button>
+                      <Button type="button" variant="outline" onClick={() => {
+                        window.open(`https://wa.me/?text=${encodeURIComponent(`Check out my freelancer profile: ${profileUrl}`)}`, '_blank', 'noopener');
+                      }} fullWidth>
+                        Share on WhatsApp
+                      </Button>
+                    </div>
+                    <div className={styles.shareHints}>
+                      <h4>Tips for sharing:</h4>
+                      <ul>
+                        <li>Add this link to your resume / CV</li>
+                        <li>Include it in your email signature</li>
+                        <li>Post it on professional social networks</li>
+                        <li>Use it on job boards and applications</li>
+                        <li>Add it to your portfolio website</li>
+                      </ul>
+                    </div>
+                  </>
+                )}
+
+                {shareTab === 'embed' && (
+                  <HireMeCard
+                    data={{
+                      name: name,
+                      title: title || headline || 'Freelancer',
+                      avatarUrl: profileImageUrl || undefined,
+                      skills: skills.split(',').map(s => s.trim()).filter(Boolean),
+                      hourlyRate: hourlyRate || undefined,
+                      availabilityStatus: availabilityStatus,
+                      profileUrl: profileUrl,
+                      tagline: tagline || undefined,
+                      location: location || undefined,
+                      experienceLevel: experienceLevel || undefined,
+                    }}
+                    showGenerator={true}
+                  />
+                )}
               </div>
             </div>
           </div>

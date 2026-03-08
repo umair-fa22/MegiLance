@@ -1,0 +1,7 @@
+/* @AI-HINT: SmartBanner dark */
+.banner { background: linear-gradient(90deg, #1e3a8a, #4c1d95); }
+.bannerText { color: #e5e7eb; }
+.bannerCta { color: #fff; background: rgba(255,255,255,0.15); padding: 0.3rem 0.75rem; border-radius: 100px; }
+.bannerCta:hover { background: rgba(255,255,255,0.25); }
+.bannerClose { color: rgba(255,255,255,0.6); }
+.bannerClose:hover { color: #fff; background: rgba(255,255,255,0.1); }

@@ -16,6 +16,7 @@ import StatCard from '@/app/components/StatCard/StatCard';
 import SellerStats, { SellerStatsData } from '@/app/components/SellerStats/SellerStats';
 import ActivityTimeline, { type TimelineEvent } from '@/app/components/ActivityTimeline/ActivityTimeline';
 import ProgressRing from '@/app/components/ProgressRing/ProgressRing';
+import ProfileCompleteness from '@/app/components/ProfileCompleteness/ProfileCompleteness';
 import EarningsChart from './components/EarningsChart/EarningsChart';
 import JobCard from './components/JobCard';
 import { 
@@ -445,6 +446,9 @@ const Dashboard: React.FC = () => {
               />
             )}
           </div>
+
+          {/* Profile Completeness Widget */}
+          <ProfileCompleteness showDetails={true} />
         </div>
       </div>
     </div>

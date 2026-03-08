@@ -1,0 +1,34 @@
+/* @AI-HINT: WhyHire dark theme colours */
+
+.page { background: #0f1117; }
+.hero { background: linear-gradient(135deg, #0f1117 0%, #161b2e 50%, #0f1117 100%); }
+.heroTitle { color: #f3f4f6; }
+.gradient { background: linear-gradient(135deg, #6b8bef, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.heroDesc { color: #9ca3af; }
+
+.section { background: #0f1117; }
+.sectionTitle { color: #f3f4f6; }
+.sectionSub { color: #9ca3af; }
+
+.reasonCard { background: #1a1f2e; border: 1px solid #2d3348; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+.reasonCard:hover { box-shadow: 0 8px 24px rgba(107,139,239,0.15); }
+.reasonIcon { background: rgba(69,115,223,0.15); color: #6b8bef; }
+.reasonTitle { color: #f3f4f6; }
+.reasonDesc { color: #9ca3af; }
+
+.savingsSection { background: #141826; }
+.savingsTable { background: #1a1f2e; border: 1px solid #2d3348; }
+.savingsHeader { background: #4573df; color: #fff; }
+.savingsRow { border-bottom: 1px solid #2d3348; }
+.savingsRole { color: #f3f4f6; }
+.savingsFt { color: #6b7280; text-decoration: line-through; }
+.savingsFl { color: #f3f4f6; }
+.savingsPercent { color: #4ade80; }
+
+.faqItem { background: #1a1f2e; border: 1px solid #2d3348; }
+.faqQ { color: #f3f4f6; }
+.faqA { color: #9ca3af; }
+
+.finalCta { background: linear-gradient(135deg, #1e3a8a, #4c1d95); }
+.ctaTitle { color: #fff; }
+.ctaDesc { color: rgba(255,255,255,0.8); }

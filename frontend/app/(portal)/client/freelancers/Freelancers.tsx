@@ -16,7 +16,7 @@ import Badge from '@/app/components/Badge/Badge';
 import {
   Search, Download, Star, MapPin, DollarSign,
   ChevronDown, ChevronUp, X, Users, BarChart3,
-  Grid3X3, List, SlidersHorizontal, Bookmark, BookmarkCheck, Zap
+  Grid3X3, List, SlidersHorizontal, Bookmark, BookmarkCheck, Zap, Sparkles
 } from 'lucide-react';
 
 import common from './Freelancers.common.module.css';
@@ -89,6 +89,26 @@ const Freelancers: React.FC = () => {
   const [sortKey, setSortKey] = useState<SortKey>('matchScore');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc');
 
+  // --- Quick skill chips ---
+  const [selectedSkills, setSelectedSkills] = useState<Set<string>>(new Set());
+
+  const popularSkills = useMemo(() => {
+    const freq: Record<string, number> = {};
+    rows.forEach(f => f.skills.forEach(s => { freq[s] = (freq[s] || 0) + 1; }));
+    return Object.entries(freq)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 12)
+      .map(([skill]) => skill);
+  }, [rows]);
+
+  const toggleSkillChip = useCallback((skill: string) => {
+    setSelectedSkills(prev => {
+      const next = new Set(prev);
+      if (next.has(skill)) next.delete(skill); else next.add(skill);
+      return next;
+    });
+  }, []);
+
   // --- Shortlist ---
   const [shortlist, setShortlist] = useState<Set<string>>(new Set());
   const [showShortlistOnly, setShowShortlistOnly] = useState(false);
@@ -120,6 +140,10 @@ const Freelancers: React.FC = () => {
       if (expLevel !== 'All' && f.experienceLevel !== expLevel) return false;
       if (f.hourlyRate < minRate || f.hourlyRate > maxRate) return false;
       if (f.rating < minRating) return false;
+      if (selectedSkills.size > 0) {
+        const has = f.skills.some(s => selectedSkills.has(s));
+        if (!has) return false;
+      }
       if (q && !(
         f.name.toLowerCase().includes(q) ||
         f.title.toLowerCase().includes(q) ||
@@ -128,7 +152,7 @@ const Freelancers: React.FC = () => {
       )) return false;
       return true;
     });
-  }, [rows, query, availability, expLevel, minRate, maxRate, minRating, showShortlistOnly, shortlist]);
+  }, [rows, query, availability, expLevel, minRate, maxRate, minRating, showShortlistOnly, shortlist, selectedSkills]);
 
   // --- Sorting ---
   const sorted = useMemo(() => {
@@ -162,7 +186,7 @@ const Freelancers: React.FC = () => {
     return sorted.slice(start, start + pageSize);
   }, [sorted, pageSafe, pageSize]);
 
-  React.useEffect(() => { setPage(1); }, [sortKey, sortDir, query, availability, pageSize, expLevel, minRate, maxRate, minRating, showShortlistOnly]);
+  React.useEffect(() => { setPage(1); }, [sortKey, sortDir, query, availability, pageSize, expLevel, minRate, maxRate, minRating, showShortlistOnly, selectedSkills]);
 
   // --- Aggregate stats ---
   const stats = useMemo(() => {
@@ -201,9 +225,10 @@ const Freelancers: React.FC = () => {
     setMaxRate(500);
     setMinRating(0);
     setShowShortlistOnly(false);
+    setSelectedSkills(new Set());
   };
 
-  const hasActiveFilters = query || availability !== 'All' || expLevel !== 'All' || minRate > 0 || maxRate < 500 || minRating > 0 || showShortlistOnly;
+  const hasActiveFilters = query || availability !== 'All' || expLevel !== 'All' || minRate > 0 || maxRate < 500 || minRating > 0 || showShortlistOnly || selectedSkills.size > 0;
 
   return (
     <PageTransition className={cn(common.page, themed.page)}>
@@ -247,6 +272,39 @@ const Freelancers: React.FC = () => {
             </div>
           )}
         </ScrollReveal>
+
+        {/* Quick skill chips */}
+        {!loading && popularSkills.length > 0 && (
+          <ScrollReveal className={cn(common.quickChips, themed.quickChips)} delay={0.08}>
+            <div className={common.quickChipsHeader}>
+              <Sparkles size={16} />
+              <span className={cn(common.quickChipsLabel, themed.quickChipsLabel)}>Popular Skills</span>
+            </div>
+            <div className={common.quickChipsList}>
+              {popularSkills.map(skill => (
+                <button
+                  key={skill}
+                  className={cn(common.quickChip, themed.quickChip, selectedSkills.has(skill) && cn(common.quickChipActive, themed.quickChipActive))}
+                  onClick={() => toggleSkillChip(skill)}
+                  aria-pressed={selectedSkills.has(skill)}
+                >
+                  {skill}
+                  {selectedSkills.has(skill) && <X size={12} />}
+                </button>
+              ))}
+            </div>
+            {selectedSkills.size > 0 && (
+              <div className={common.activeChipsBar}>
+                <span className={cn(common.activeChipsCount, themed.activeChipsCount)}>
+                  {selectedSkills.size} skill{selectedSkills.size > 1 ? 's' : ''} selected
+                </span>
+                <button className={cn(common.clearChipsBtn, themed.clearChipsBtn)} onClick={() => setSelectedSkills(new Set())}>
+                  <X size={12} /> Clear skills
+                </button>
+              </div>
+            )}
+          </ScrollReveal>
+        )}
 
         {/* Search + Controls bar */}
         <ScrollReveal className={cn(common.controlsSection, themed.controlsSection)} delay={0.1}>

@@ -9,6 +9,7 @@ import { User, Briefcase, Eye, EyeOff } from 'lucide-react';
 import api from '@/lib/api';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { isPreviewMode } from '@/app/utils/flags';
+import { trackSignupStart, trackSignupComplete } from '@/lib/tracking';
 
 import Button from '@/app/components/Button/Button';
 import Input from '@/app/components/Input/Input';
@@ -164,6 +165,7 @@ const Signup: React.FC = () => {
     }
     if (validate()) {
       setLoading(true);
+      trackSignupStart(selectedRole, 'email');
       try {
         await api.auth.register({
           email: formData.email,
@@ -172,6 +174,7 @@ const Signup: React.FC = () => {
           role: selectedRole,
         });
 
+        trackSignupComplete(selectedRole, 'email');
         // Show verification notice
         router.push('/verify-email?registered=true');
       } catch (error: any) {

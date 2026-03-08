@@ -348,6 +348,20 @@ const PublicFreelancers: React.FC = () => {
             <span className={cn(common.badge, themed.badge)}>Top Global Talent</span>
             <h1 className={cn(common.title, themed.title)}>Hire Top Freelancers</h1>
             <p className={cn(common.subtitle, themed.subtitle)}>Find verified experts for any project. {filteredFreelancers.length > 0 ? `${filteredFreelancers.length}+ professionals available.` : ''}</p>
+            <div className={common.heroStats}>
+              <div className={cn(common.heroStatItem, themed.heroStatItem)}>
+                <strong>500+</strong><span>Vetted Freelancers</span>
+              </div>
+              <div className={cn(common.heroStatItem, themed.heroStatItem)}>
+                <strong>40+</strong><span>Countries</span>
+              </div>
+              <div className={cn(common.heroStatItem, themed.heroStatItem)}>
+                <strong>4.8</strong><span>Avg Rating</span>
+              </div>
+              <div className={cn(common.heroStatItem, themed.heroStatItem)}>
+                <strong>48h</strong><span>Avg First Hire</span>
+              </div>
+            </div>
             <div className={common.searchSection}>
               <div className={cn(common.searchBar, themed.searchBar)}>
                 <Search className={common.searchIcon} size={20} />
@@ -491,6 +505,20 @@ const PublicFreelancers: React.FC = () => {
             )}
           </div>
         </div>
+
+        {/* Bottom CTA */}
+        <section className={cn(common.bottomCta, themed.bottomCta)}>
+          <h2 className={cn(common.bottomCtaTitle, themed.bottomCtaTitle)}>
+            Are you a freelancer?
+          </h2>
+          <p className={cn(common.bottomCtaDesc, themed.bottomCtaDesc)}>
+            Join our community, get matched with projects, and grow your career.
+          </p>
+          <div className={common.bottomCtaButtons}>
+            <Link href="/signup" className={cn(common.ctaBtn, themed.ctaBtn)}>Create Free Profile</Link>
+            <Link href="/how-it-works" className={cn(common.ctaBtnOutline, themed.ctaBtnOutline)}>Learn More</Link>
+          </div>
+        </section>
 
         {/* Mobile Filters */}
         {showMobileFilters && (

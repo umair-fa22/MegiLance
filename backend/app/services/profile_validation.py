@@ -26,10 +26,21 @@ FREELANCER_FIELDS = {
 
 def is_profile_complete(user: User) -> bool:
     """
-    Check if user profile is complete enough to perform actions.
-    A profile is considered complete if it scores >= 60%.
+    Check if user profile is complete enough to submit proposals.
+    Only checks truly essential fields — name, skills, and hourly_rate for freelancers.
+    The full completeness score is used for the profile progress UI, not for blocking actions.
     """
-    return get_profile_completeness(user) >= 60
+    if not (user.name or (getattr(user, 'first_name', None) and getattr(user, 'last_name', None))):
+        return False
+
+    is_freelancer = getattr(user, 'user_type', '') in ('freelancer', 'Freelancer')
+    if is_freelancer:
+        if not user.skills or len(user.skills) <= 2:
+            return False
+        if not getattr(user, 'hourly_rate', None) or float(getattr(user, 'hourly_rate', 0)) <= 0:
+            return False
+
+    return True
 
 
 def get_profile_completeness(user: User) -> int:
@@ -72,34 +83,17 @@ def get_profile_completeness(user: User) -> int:
 
 
 def get_missing_profile_fields(user: User) -> List[str]:
-    """Get list of missing profile fields with descriptions"""
+    """Get list of missing essential profile fields"""
     missing = []
 
-    if not (user.name or (user.first_name and user.last_name)):
+    if not (user.name or (getattr(user, 'first_name', None) and getattr(user, 'last_name', None))):
         missing.append("name")
-
-    if not user.bio or len(user.bio) <= 20:
-        missing.append("bio (min 20 chars)")
-
-    if not user.location:
-        missing.append("location")
-
-    if not getattr(user, 'profile_image_url', None):
-        missing.append("profile photo")
 
     is_freelancer = getattr(user, 'user_type', '') in ('freelancer', 'Freelancer')
     if is_freelancer:
         if not user.skills or len(user.skills) <= 2:
             missing.append("skills")
-        if not getattr(user, 'hourly_rate', None):
+        if not getattr(user, 'hourly_rate', None) or float(getattr(user, 'hourly_rate', 0)) <= 0:
             missing.append("hourly rate")
-        if not getattr(user, 'headline', None):
-            missing.append("headline")
-        if not getattr(user, 'experience_level', None):
-            missing.append("experience level")
-        if not getattr(user, 'languages', None):
-            missing.append("languages")
-        if not getattr(user, 'timezone', None):
-            missing.append("timezone")
 
     return missing

@@ -91,6 +91,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/press', changeFrequency: 'monthly', priority: 0.6 },
 
     // Growth / acquisition
+    { path: '/post-project', changeFrequency: 'weekly', priority: 0.92 },
+    { path: '/why-hire', changeFrequency: 'monthly', priority: 0.88 },
+    { path: '/cost-calculator', changeFrequency: 'monthly', priority: 0.82 },
+    { path: '/compare', changeFrequency: 'monthly', priority: 0.85 },
+    { path: '/compare/upwork', changeFrequency: 'monthly', priority: 0.82 },
+    { path: '/compare/fiverr', changeFrequency: 'monthly', priority: 0.82 },
+    { path: '/compare/toptal', changeFrequency: 'monthly', priority: 0.78 },
+    { path: '/compare/freelancer-com', changeFrequency: 'monthly', priority: 0.78 },
     { path: '/referral', changeFrequency: 'monthly', priority: 0.62 },
     { path: '/install', changeFrequency: 'yearly', priority: 0.5 },
 

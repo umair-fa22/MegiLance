@@ -1,0 +1,203 @@
+/* @AI-HINT: Layout/structure for HireMeCard - embeddable card generator */
+
+.wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+
+.header {
+  padding: 16px 20px;
+  border-bottom: 1px solid transparent;
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.headerTitle {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.headerSub {
+  font-size: 13px;
+  margin: 0;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 12px 20px;
+  border-bottom: 1px solid transparent;
+}
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.controlLabel {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toggleGroup {
+  display: flex;
+  gap: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+
+.toggleBtn {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-right: 1px solid transparent;
+  transition: background 0.15s, color 0.15s;
+}
+
+.toggleBtn:last-child {
+  border-right: none;
+}
+
+.toggleBtnActive {
+  font-weight: 700;
+}
+
+/* Tab bar */
+.tabBar {
+  display: flex;
+  border-bottom: 1px solid transparent;
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.tabActive {
+  font-weight: 700;
+}
+
+/* Preview */
+.previewArea {
+  padding: 24px 20px;
+  display: flex;
+  justify-content: center;
+  min-height: 160px;
+}
+
+/* Code area */
+.codeArea {
+  padding: 0;
+}
+
+.codeToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  border-bottom: 1px solid transparent;
+}
+
+.codeLabel {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.copyBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.codeBlock {
+  margin: 0;
+  padding: 16px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-x: auto;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+/* Quick actions bar */
+.quickActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-top: 1px solid transparent;
+}
+
+/* Focus indicators for accessibility */
+.toggleBtn:focus-visible,
+.tab:focus-visible,
+.copyBtn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .controls {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .previewArea {
+    padding: 16px 12px;
+  }
+
+  .codeBlock {
+    font-size: 11px;
+    padding: 12px;
+  }
+
+  .quickActions {
+    flex-direction: column;
+  }
+
+  .quickActions > * {
+    width: 100%;
+  }
+}

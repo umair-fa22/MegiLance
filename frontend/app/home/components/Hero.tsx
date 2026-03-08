@@ -148,24 +148,24 @@ const Hero: React.FC = () => {
                 commonStyles.delay4
               )}
             >
-              <Link href="/features" className={commonStyles.ctaLink}>
+              <Link href="/post-project" className={commonStyles.ctaLink}>
                 <Button 
                   variant="primary" 
                   size="lg" 
                   className={cn(commonStyles.primaryCta, styles.primaryCta)}
                 >
-                  Explore
+                  Post a Project Free
                   <ArrowRight size={18} className={commonStyles.ctaIcon} />
                 </Button>
               </Link>
-              <Link href="/about" className={commonStyles.ctaLink}>
+              <Link href="/signup" className={commonStyles.ctaLink}>
                 <Button 
                   variant="outline" 
                   size="lg"
                   className={cn(commonStyles.secondaryCta, styles.secondaryCta)}
                 >
                   <PlayCircle size={18} />
-                  About
+                  Join as Freelancer
                 </Button>
               </Link>
             </div>

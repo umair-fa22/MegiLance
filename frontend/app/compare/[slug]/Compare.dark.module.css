@@ -1,0 +1,29 @@
+/* @AI-HINT: Compare page — dark theme */
+
+.page { background: #0b0f19; color: #e0e0e0; }
+.hero { background: linear-gradient(135deg, #0d1225 0%, #131833 100%); }
+.heroTitle { color: #f0f0f0; }
+.heroDesc { color: #a0a0b0; }
+.badge { background: rgba(91, 138, 245, 0.15); color: #7ba4f7; }
+
+.section { background: #0b0f19; }
+.sectionTitle { color: #f0f0f0; }
+
+.table { border: 1px solid #1c2040; }
+.tableHeader { background: #161d35; color: #f0f0f0; border-bottom: 2px solid #4573df; }
+.tableRow { border-bottom: 1px solid #1c2040; }
+.tableFeature { color: #c0c0d0; }
+.tableBrand { color: #7ba4f7; }
+.tableCompetitor { color: #666; }
+
+.switchSection { background: #0e1225; }
+.switchCard { background: #12172a; border: 1px solid #1c2040; }
+
+.faqItem { background: #12172a; border: 1px solid #1c2040; }
+.faqQ { color: #f0f0f0; }
+.faqA { color: #9a9ab0; }
+
+.bottomCta { background: linear-gradient(135deg, #1a2a5c 0%, #2d1d5c 100%); }
+.ctaIcon { color: rgba(255,255,255,0.8); }
+.ctaTitle { color: #fff; }
+.ctaDesc { color: rgba(255,255,255,0.7); }

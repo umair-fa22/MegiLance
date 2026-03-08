@@ -1,0 +1,40 @@
+/* @AI-HINT: Email capture — layout, structure */
+
+.wrapper { padding: 2rem; border-radius: 16px; width: 100%; }
+
+/* Variants */
+.card { max-width: 600px; margin: 2rem auto; text-align: center; }
+.banner { max-width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 1.5rem 2rem; }
+.inline { display: flex; align-items: center; gap: 1.5rem; padding: 1rem 0; max-width: 100%; }
+
+.textContent { margin-bottom: 1.25rem; }
+.banner .textContent { margin-bottom: 0; flex: 1; }
+.inline .textContent { margin-bottom: 0; flex: 1; }
+
+.iconBadge { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; margin-bottom: 0.75rem; }
+.banner .iconBadge { margin-bottom: 0; margin-right: 0.75rem; display: flex; }
+
+.headline { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.35rem; }
+.subtext { font-size: 0.9rem; line-height: 1.5; }
+
+.form { width: 100%; }
+.banner .form { flex-shrink: 0; width: auto; min-width: 360px; }
+
+.inputGroup { display: flex; gap: 0.5rem; align-items: center; }
+
+.input { flex: 1; padding: 0.65rem 1rem; border-radius: 8px; border: 1px solid transparent; font-size: 0.95rem; outline: none; min-width: 0; }
+
+.submitBtn { flex-shrink: 0; white-space: nowrap; }
+
+.error { font-size: 0.8rem; margin-top: 0.5rem; }
+.privacy { font-size: 0.75rem; margin-top: 0.5rem; }
+.privacy a { text-decoration: underline; }
+
+.successState { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; padding: 1rem; }
+.successText { font-size: 1rem; font-weight: 600; }
+
+@media (max-width: 768px) {
+  .banner { flex-direction: column; text-align: center; }
+  .banner .form { width: 100%; min-width: 0; }
+  .inline { flex-direction: column; text-align: center; }
+}

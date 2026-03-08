@@ -542,6 +542,72 @@
   font-family: 'JetBrains Mono', monospace;
 }
 
+/* --- Quick Skill Chips --- */
+.quickChips {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-2);
+}
+.quickChipsHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+.quickChipsLabel {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.quickChipsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+}
+.quickChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.quickChipActive {
+  font-weight: 600;
+}
+.activeChipsBar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding-top: var(--spacing-2);
+  border-top: 1px solid;
+}
+.activeChipsCount {
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+}
+.clearChipsBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
 /* --- Responsive --- */
 @media (max-width: 1024px) {
   .advancedFilters {
@@ -559,6 +625,9 @@
   .advancedFilters { grid-template-columns: 1fr 1fr; }
   .compareGrid { font-size: var(--font-size-xs); }
   .quickStats { flex-direction: column; gap: var(--spacing-2); }
+  .quickChips { padding: var(--spacing-2) var(--spacing-3); }
+  .quickChipsList { gap: var(--spacing-1); }
+  .quickChip { padding: 4px 10px; font-size: var(--font-size-xs); }
 }
 
 @media (max-width: 480px) {

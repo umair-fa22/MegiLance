@@ -35,6 +35,7 @@ import {
   Star,
 } from 'lucide-react';
 
+import ProfileCompleteness from '@/app/components/ProfileCompleteness/ProfileCompleteness';
 import StatCard from './components/StatCard';
 import ProjectCard from './components/ProjectCard';
 import TalentCard from './components/TalentCard';
@@ -349,6 +350,9 @@ const ClientDashboard: React.FC = () => {
               />
             )}
           </div>
+
+          {/* Profile Completeness */}
+          <ProfileCompleteness showDetails className={commonStyles.profileCompletenessWidget} />
 
           {/* Platform Insights Mini Card */}
           <div className={cn(commonStyles.insightCard, themeStyles.insightCard)}>

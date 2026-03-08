@@ -1,0 +1,13 @@
+/* @AI-HINT: CompareIndex dark */
+.page { background: #0f1117; }
+.hero { background: linear-gradient(135deg, #0f1117 0%, #161b2e 50%, #0f1117 100%); }
+.heroIcon { background: rgba(69,115,223,0.15); color: #6b8bef; }
+.heroTitle { color: #f3f4f6; }
+.gradient { background: linear-gradient(135deg, #6b8bef, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.heroDesc { color: #9ca3af; }
+.section { background: #0f1117; }
+.card { background: #1a1f2e; border: 1px solid #2d3348; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+.card:hover { box-shadow: 0 8px 24px rgba(107,139,239,0.15); }
+.cardTitle { color: #f3f4f6; }
+.cardDesc { color: #9ca3af; }
+.cardLink { color: #6b8bef; }

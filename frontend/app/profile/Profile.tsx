@@ -1,15 +1,18 @@
 // @AI-HINT: This is the Profile page root component for clients/admins. Uses API for data and 3-file CSS pattern.
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import UserAvatar from '../components/UserAvatar/UserAvatar';
 import ProjectCard, { ProjectCardProps } from '../components/ProjectCard/ProjectCard';
+import PostProjectCard from '@/app/components/PostProjectCard/PostProjectCard';
+import Button from '@/app/components/Button/Button';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
+import { Share2, Link2, Copy, Check, X } from 'lucide-react';
 import commonStyles from './Profile.common.module.css';
 import lightStyles from './Profile.light.module.css';
 import darkStyles from './Profile.dark.module.css';
@@ -49,8 +52,34 @@ const Profile: React.FC = () => {
   const [user, setUser] = useState<ApiUser | null>(null);
   const [projects, setProjects] = useState<ProjectCardProps[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [shareTab, setShareTab] = useState<'links' | 'embed'>('links');
+  const [linkCopied, setLinkCopied] = useState(false);
 
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
+
+  const styles = useMemo(() => {
+    const merged: Record<string, string> = {};
+    for (const key of new Set([...Object.keys(commonStyles), ...Object.keys(themeStyles)])) {
+      merged[key] = cn((commonStyles as any)[key], (themeStyles as any)[key]);
+    }
+    return merged;
+  }, [themeStyles]);
+
+  const profileUrl = typeof window !== 'undefined'
+    ? `${window.location.origin}/freelancers/${user?.id}`
+    : '';
+
+  const copyProfileLink = useCallback(() => {
+    navigator.clipboard.writeText(profileUrl);
+    setLinkCopied(true);
+    setTimeout(() => setLinkCopied(false), 2500);
+  }, [profileUrl]);
+
+  const activeProjectCount = projects.filter(p => p.status === 'In Progress' || p.status === 'Pending').length;
+  const completedCount = projects.filter(p => p.status === 'Completed').length;
+  const completionRate = projects.length > 0 ? Math.round((completedCount / projects.length) * 100) : 0;
+  const projectCategories = [...new Set(projects.flatMap(p => p.tags || []))];
 
   const fetchUserProfile = useCallback(async () => {
     try {
@@ -143,31 +172,42 @@ const Profile: React.FC = () => {
                 size="large" 
               />
               <div className={commonStyles.headerInfo}>
-                <h1 className={cn(commonStyles.name, themeStyles.name)}>
-                  {user?.full_name || 'Your Name'}
-                </h1>
+                <div className={commonStyles.headerTop}>
+                  <h1 className={cn(commonStyles.name, themeStyles.name)}>
+                    {user?.full_name || 'Your Name'}
+                  </h1>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    type="button"
+                    onClick={() => setShowShareModal(true)}
+                    title="Share your profile"
+                  >
+                    <Share2 size={16} /> Share
+                  </Button>
+                </div>
                 {user?.headline && (
-                  <p style={{ fontSize: '1.05rem', fontWeight: 500, opacity: 0.85, margin: '2px 0 4px' }}>
+                  <p className={cn(commonStyles.headline, themeStyles.headline)}>
                     {user.headline}
                   </p>
                 )}
                 <p className={cn(commonStyles.bio, themeStyles.bio)}>
                   {user?.bio || 'Add a bio to tell others about yourself.'}
                 </p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', marginTop: '4px' }}>
+                <div className={commonStyles.metaRow}>
                   <span className={cn(commonStyles.role, themeStyles.role)}>
                     {user?.role === 'client' ? '👔 Client' : user?.role === 'admin' ? '🛡️ Admin' : '👤 User'}
                   </span>
                   {user?.location && (
-                    <span style={{ fontSize: '0.85rem', opacity: 0.7 }}>📍 {user.location}</span>
+                    <span className={cn(commonStyles.locationBadge, themeStyles.locationBadge)}>📍 {user.location}</span>
                   )}
                 </div>
                 {(user?.linkedin_url || user?.github_url || user?.website_url || user?.twitter_url) && (
-                  <div style={{ display: 'flex', gap: '12px', marginTop: '8px', flexWrap: 'wrap' }}>
-                    {user.linkedin_url && <a href={user.linkedin_url} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.85rem', color: '#4573df' }}>LinkedIn</a>}
-                    {user.github_url && <a href={user.github_url} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.85rem', color: '#4573df' }}>GitHub</a>}
-                    {user.twitter_url && <a href={user.twitter_url} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.85rem', color: '#4573df' }}>Twitter</a>}
-                    {user.website_url && <a href={user.website_url} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.85rem', color: '#4573df' }}>Website</a>}
+                  <div className={commonStyles.socialLinks}>
+                    {user.linkedin_url && <a href={user.linkedin_url} target="_blank" rel="noopener noreferrer" className={cn(commonStyles.socialLink, themeStyles.socialLink)}>LinkedIn</a>}
+                    {user.github_url && <a href={user.github_url} target="_blank" rel="noopener noreferrer" className={cn(commonStyles.socialLink, themeStyles.socialLink)}>GitHub</a>}
+                    {user.twitter_url && <a href={user.twitter_url} target="_blank" rel="noopener noreferrer" className={cn(commonStyles.socialLink, themeStyles.socialLink)}>Twitter</a>}
+                    {user.website_url && <a href={user.website_url} target="_blank" rel="noopener noreferrer" className={cn(commonStyles.socialLink, themeStyles.socialLink)}>Website</a>}
                   </div>
                 )}
               </div>
@@ -204,6 +244,110 @@ const Profile: React.FC = () => {
             )}
           </main>
         </div>
+
+        {/* Share Modal */}
+        {showShareModal && (
+          <div className={styles.modalOverlay} onClick={() => setShowShareModal(false)} role="dialog" aria-modal="true" aria-label="Share profile">
+            <div className={styles.shareModal} onClick={e => e.stopPropagation()}>
+              <div className={styles.shareModalHeader}>
+                <h3>Share Profile</h3>
+                <button onClick={() => setShowShareModal(false)} className={styles.closeBtn} aria-label="Close"><X size={18} /></button>
+              </div>
+
+              {/* Tab toggle */}
+              <div className={styles.shareTabBar}>
+                <button
+                  className={cn(styles.shareTabBtn, shareTab === 'links' && styles.shareTabBtnActive)}
+                  onClick={() => setShareTab('links')}
+                >
+                  Share Links
+                </button>
+                <button
+                  className={cn(styles.shareTabBtn, shareTab === 'embed' && styles.shareTabBtnActive)}
+                  onClick={() => setShareTab('embed')}
+                >
+                  Project Card
+                </button>
+              </div>
+
+              {shareTab === 'links' && (
+                <div className={styles.shareContent}>
+                  {/* Copy profile link */}
+                  <div className={styles.shareLinkRow}>
+                    <Link2 size={16} />
+                    <input
+                      readOnly
+                      value={profileUrl}
+                      className={styles.shareLinkInput}
+                      onClick={e => (e.target as HTMLInputElement).select()}
+                    />
+                    <button onClick={copyProfileLink} className={styles.shareCopyBtn}>
+                      {linkCopied ? <Check size={16} /> : <Copy size={16} />}
+                    </button>
+                  </div>
+
+                  {/* Social sharing */}
+                  <div className={styles.shareActions}>
+                    <a
+                      href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(profileUrl)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.shareAction}
+                    >
+                      LinkedIn
+                    </a>
+                    <a
+                      href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Check out my profile on MegiLance!`)}&url=${encodeURIComponent(profileUrl)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.shareAction}
+                    >
+                      X / Twitter
+                    </a>
+                    <a
+                      href={`mailto:?subject=${encodeURIComponent('My MegiLance Profile')}&body=${encodeURIComponent(`Check out my profile: ${profileUrl}`)}`}
+                      className={styles.shareAction}
+                    >
+                      Email
+                    </a>
+                    <a
+                      href={`https://wa.me/?text=${encodeURIComponent(`Check out my MegiLance profile: ${profileUrl}`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.shareAction}
+                    >
+                      WhatsApp
+                    </a>
+                  </div>
+                </div>
+              )}
+
+              {shareTab === 'embed' && user?.role === 'client' && (
+                <div className={styles.shareContent}>
+                  <PostProjectCard
+                    data={{
+                      companyName: user.full_name || 'Company',
+                      headline: user.headline || 'Hiring on MegiLance',
+                      avatarUrl: user.profile_picture_url,
+                      activeProjects: activeProjectCount,
+                      projectCategories: projectCategories,
+                      location: user.location,
+                      profileUrl: profileUrl,
+                      postProjectUrl: `${typeof window !== 'undefined' ? window.location.origin : ''}/client/projects`,
+                      completionRate: completionRate,
+                    }}
+                  />
+                </div>
+              )}
+
+              {shareTab === 'embed' && user?.role !== 'client' && (
+                <div className={styles.shareContent}>
+                  <p className={styles.shareHint}>Embeddable cards are available for client accounts.</p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </PageTransition>
   );

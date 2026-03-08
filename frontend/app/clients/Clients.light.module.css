@@ -3,17 +3,38 @@
 .themeWrapper { background: #f8fafc; color: #0f172a; }
 .subtitle { color: #475569; }
 
+/* Hero */
+.heroBadge { background: #e0e7ff; color: #3b52b5; }
+.heroBtn { background: #4573df; color: #ffffff; }
+.heroBtnOutline { border-color: #cbd5e1; color: #0f172a; background: transparent; }
+.heroBtnOutline:hover { background: #f1f5f9; }
+
+/* Benefits */
+.benefitCard { background: #ffffff; border-color: #e2e8f0; }
+.benefitCard:hover { box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+.benefitTitle { color: #0f172a; }
+.benefitDesc { color: #475569; }
+
+/* Steps */
+.stepCard { background: #ffffff; border-color: #e2e8f0; }
+.stepNum { color: #4573df; }
+.stepTitle { color: #0f172a; }
+.stepDesc { color: #64748b; }
+
+/* Section title */
+.sectionTitle { color: #0f172a; }
+
+/* Chips */
 .chip { background: #ffffff; border: 1px solid #e2e8f0; color: #0f172a; }
 .chip:hover { background: #f8fafc; }
 
+/* Logos */
 .logoCard { background: #ffffff; border: 1px solid #e2e8f0; }
-.caseCard { background: #ffffff; border: 1px solid #e2e8f0; }
-.caseTitle { color: #0f172a; }
-.caseDesc { color: #475569; }
 
+/* Metrics */
 .metricCard { background: #ffffff; border: 1px solid #e2e8f0; color: #0f172a; }
 
-.button { background: #4573df; color: #ffffff; }
-.button:hover { filter: brightness(1.05); }
-.buttonSecondary { color: #0f172a; border: 1px solid #e2e8f0; background: transparent; }
-.buttonSecondary:hover { background: #f8fafc; }
+/* CTA box */
+.ctaBox { background: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 100%); }
+.ctaBoxTitle { color: #0f172a; }
+.ctaBoxDesc { color: #334155; }

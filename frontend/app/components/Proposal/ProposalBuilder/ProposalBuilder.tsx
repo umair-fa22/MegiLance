@@ -206,40 +206,13 @@ const ProposalBuilder: React.FC<ProposalBuilderProps> = ({
         estimated_hours: parseInt(proposalData.estimatedHours) || 0,
         hourly_rate: parseFloat(proposalData.hourlyRate) || 0,
         availability: proposalData.availability,
-        attachments: JSON.stringify(proposalData.attachments),
-        is_draft: true,
-        // Required by api.ts type but might be ignored by backend if is_draft is true
-        proposed_rate: parseFloat(proposalData.hourlyRate) || 0,
-        estimated_duration: proposalData.availability
       };
 
       let draft: any;
       if (draftId) {
         draft = await api.proposals.update(draftId, payload);
       } else {
-        // Use a specific endpoint for draft creation if needed, or just create with is_draft=true
-        // The original code used /proposals/draft for POST
-        // api.ts doesn't have createDraft, so we might need to use apiFetch directly or add it.
-        // But wait, the original code used /proposals/draft for POST, and /proposals/{id} for PUT.
-        // api.proposals.create uses /proposals/
-        
-        // I will use apiFetch directly for draft creation to match original endpoint
-        draft = await (api as any).proposals.create({ ...payload, is_draft: true });
-        // Actually, if the backend supports is_draft in /proposals/, then api.proposals.create is fine.
-        // But the original code used /proposals/draft.
-        // Let's assume I should use the same endpoint as original.
-        // Since I can't easily add arbitrary methods to api.ts without editing it again, 
-        // and I already edited it, I will just use api.proposals.create and hope backend handles it,
-        // OR I will use the generic apiFetch if I exported it? No I didn't export apiFetch.
-        
-        // Let's check if I can use api.proposals.create.
-        // If the backend distinguishes via is_draft flag, it should be fine.
-        // If not, I might need to add createDraft to api.ts.
-        
-        // For now, I will assume api.proposals.create works if I pass is_draft: true.
-        // If the original code used a specific endpoint, it might be because of different validation rules.
-        
-        // Let's try to use api.proposals.create.
+        draft = await api.proposals.saveDraft(payload);
       }
 
       if (draft && !draftId) {
@@ -291,26 +264,24 @@ const ProposalBuilder: React.FC<ProposalBuilderProps> = ({
     
     setLoading(true);
     try {
-      await api.proposals.create({
+      const payload = {
         project_id: projectId,
         cover_letter: proposalData.coverLetter,
         bid_amount: parseFloat(proposalData.bidAmount),
         estimated_hours: parseInt(proposalData.estimatedHours),
         hourly_rate: parseFloat(proposalData.hourlyRate),
         availability: proposalData.availability,
-        attachments: JSON.stringify(proposalData.attachments),
-        status: 'submitted',
-        is_draft: false,
-        proposed_rate: parseFloat(proposalData.hourlyRate),
-        estimated_duration: proposalData.availability
-      } as any);
+      };
 
-      // Delete draft if exists
       if (draftId) {
-        await api.proposals.delete(draftId);
+        // Submit existing draft
+        await api.proposals.submitDraft(draftId);
+      } else {
+        await api.proposals.create(payload);
       }
+
       onSubmit?.();
-      router.push('/dashboard/proposals?submitted=true');
+      router.push(`/projects/${projectId}?submitted=true`);
     } catch (error: any) {
       setErrors({ general: error.message || 'Failed to submit proposal' });
     } finally {

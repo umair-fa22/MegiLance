@@ -1,67 +1,29 @@
-/* AI-HINT: Light theme overrides for Teams page. */
+/* @AI-HINT: Light theme for Teams page. */
 
-.themeWrapper {
-  background: linear-gradient(170deg, #f0f4ff 0%, #f8fafc 40%, #faf8ff 100%);
-  color: #0f172a;
-}
+.themeWrapper { background: linear-gradient(170deg, #f0f4ff 0%, #f8fafc 40%, #faf8ff 100%); color: #0f172a; }
+.title { color: #0f172a; }
+.subtitle { color: #64748b; }
+.badge { background: rgba(69,115,223,0.1); color: #4573df; }
 
-.subtitle {
-  color: #64748b;
-}
+.statItem { color: #0f172a; }
+.sectionTitle { color: #0f172a; }
+.sectionDesc { color: #64748b; }
 
-.card {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(226, 232, 240, 0.5);
-}
+.modelCard { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-color: rgba(226,232,240,0.6); }
+.modelCard:hover { box-shadow: 0 8px 24px rgba(69,115,223,0.1); }
+.modelTitle { color: #0f172a; }
+.modelDesc { color: #64748b; }
 
-.card:hover {
-  box-shadow: 0 8px 24px rgba(69, 115, 223, 0.12);
-}
+.stepCard { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-color: rgba(226,232,240,0.6); }
+.stepNum { color: #4573df; }
+.stepTitle { color: #0f172a; }
+.stepDesc { color: #64748b; }
 
-.name {
-  color: #0f172a;
-}
+.capChip { background: #fff; border-color: #e2e8f0; color: #334155; }
+.capChip:hover { background: #f0f4ff; border-color: #4573df; color: #4573df; }
 
-.role,
-.bio {
-  color: #64748b;
-}
-
-.valueCard {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(226, 232, 240, 0.5);
-}
-
-.valueCard:hover {
-  box-shadow: 0 8px 20px rgba(69, 115, 223, 0.1);
-}
-
-.valueTitle {
-  color: #0f172a;
-}
-
-.button {
-  background: linear-gradient(135deg, #4573df 0%, #2563eb 100%);
-  color: #ffffff;
-  box-shadow: 0 4px 14px rgba(69, 115, 223, 0.3);
-}
-
-.button:hover {
-  filter: brightness(1.05);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(69, 115, 223, 0.4);
-}
-
-.buttonSecondary {
-  color: #475569;
-  border: 1px solid #e2e8f0;
-  backdrop-filter: blur(8px);
-}
-
-.buttonSecondary:hover {
-  background: rgba(255, 255, 255, 0.5);
-}
+.ctaBox { background: linear-gradient(135deg, #4573df 0%, #2563eb 100%); border-color: transparent; color: #fff; }
+.button { background: #fff; color: #4573df; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.button:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+.buttonSecondary { background: transparent; color: #fff; border-color: rgba(255,255,255,0.4); }
+.buttonSecondary:hover { background: rgba(255,255,255,0.15); }

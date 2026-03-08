@@ -279,7 +279,7 @@ const ProjectWizard: React.FC = () => {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      const project: any = await (api.projects as any).create?.({
+      const project: any = await api.projects.create({
         title: projectData.title,
         description: projectData.description,
         category: projectData.category,
@@ -289,13 +289,19 @@ const ProjectWizard: React.FC = () => {
         budget_type: projectData.budgetType,
         experience_level: projectData.experienceLevel,
         estimated_duration: projectData.duration,
-        attachments: projectData.attachments,
-        status: 'OPEN',
+        status: 'open',
       });
 
-      router.push(`/dashboard/projects?new=${project.id}`);
+      router.push(`/client/projects/${project.id}?new=true`);
     } catch (error: any) {
-      setErrors({ general: error.message || 'Failed to create project' });
+      const message = error?.message || 'Failed to create project';
+      if (message.includes('profile')) {
+        setErrors({ general: 'Please complete your profile before posting a project.' });
+      } else if (message.includes('401') || message.includes('unauthorized')) {
+        setErrors({ general: 'Please log in to post a project.' });
+      } else {
+        setErrors({ general: message });
+      }
     } finally {
       setLoading(false);
     }

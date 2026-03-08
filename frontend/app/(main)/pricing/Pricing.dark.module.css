@@ -1,38 +1,25 @@
-﻿/* AI-HINT: Dark theme styles for the main pricing page. Defines colors for text, the billing toggle, and badges in dark mode. */
+﻿/* @AI-HINT: Dark theme colors for Pricing page – text, cards, table, FAQ. */
 
-.title {
-  color: #f8fafc;
-}
+.title { color: #f8fafc; }
+.subtitle { color: #94a3b8; }
+.note { color: #94a3b8; }
 
-.subtitle {
-  color: #94a3b8;
-}
+/* How It Works cards */
+.howCard { background: #1a1f2e; border-color: #2d3548; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+.howCard:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.35); }
+.howIcon { background: rgba(69,115,223,0.15); color: #6b8de6; }
+.howTitle { color: #f1f5f9; }
+.howDesc { color: #94a3b8; }
 
-.toggleLabel {
-  color: #94a3b8;
-}
+/* Comparison table */
+.tableWrapper { border-color: #2d3548; background: #111827; }
+.tableHead { background: #1a1f2e; border-color: #2d3548; color: #f1f5f9; }
+.tableRow { border-color: #1e293b; }
+.tableRow:nth-child(even) { background: rgba(255,255,255,0.02); }
+.tableCell { color: #cbd5e1; }
 
-.toggleLabel.activeLabel {
-  color: #6b8de6;
-}
-
-.toggleSwitch {
-  background-color: #1e293b;
-}
-
-.toggleSwitch[aria-label*='annual'] {
-  justify-content: flex-end;
-}
-
-.toggleHandle {
-  background-color: #1d2127;
-}
-
-.discountBadge {
-  background-color: #0e172d;
-  color: #ffffff;
-}
-
-.note {
-  color: #94a3b8;
-}
+/* FAQ */
+.faqItem { border-color: #2d3548; background: #1a1f2e; }
+.faqQuestion { color: #f1f5f9; }
+.faqAnswer { color: #94a3b8; }
+.sectionHeading { color: #f1f5f9; }
