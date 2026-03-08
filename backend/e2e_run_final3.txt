@@ -1,0 +1,346 @@
+
+============================================================
+  MEGILANCE COMPREHENSIVE E2E TEST SUITE
+  2026-03-08 17:13:09
+  Test ID: 51ea82d7
+============================================================
+
+============================================================
+  1. HEALTH & INFRASTRUCTURE
+============================================================
+  Ô£à PASS: Health ready [200] status=ready
+  Ô£à PASS: Health live [200] status=ok
+  Ô£à PASS: Health metrics [200]
+  Ô£à PASS: Health root [200] status=healthy
+
+============================================================
+  2. AUTHENTICATION - Registration
+============================================================
+  Ô£à PASS: Register client [201] id=164
+  Ô£à PASS: Register freelancer [201] id=165
+  Ô£à PASS: Duplicate email rejected [400]
+  Ô£à PASS: Weak password rejected [400]
+  Ô£à PASS: Invalid email rejected [422]
+
+============================================================
+  3. AUTHENTICATION - Login & Tokens
+============================================================
+  Ô£à PASS: Login client [200] got_token
+  Ô£à PASS: Login freelancer [200] got_token
+  Ô£à PASS: Invalid login rejected [422]
+  Ô£à PASS: Get current user (client) [200] id=164
+  Ô£à PASS: Protected endpoint without auth [401]
+
+============================================================
+  4. USER PROFILE MANAGEMENT
+============================================================
+  Ô£à PASS: Client profile [200] id=164
+  Ô£à PASS: Update client profile [200] id=164
+  Ô£à PASS: Get updated profile [200] id=164
+  Ô£à PASS: Freelancer profile [200] id=165
+  Ô£à PASS: Update freelancer profile [200] id=165
+
+============================================================
+  5. PROJECTS (Client Flow)
+============================================================
+  Ô£à PASS: Create project [201] id=78
+  Ô£à PASS: List projects [200]
+  Ô£à PASS: Get project detail [200] id=78
+  Ô£à PASS: Public project listing [200]
+
+============================================================
+  6. PROPOSALS (Freelancer Flow)
+============================================================
+  Ô£à PASS: Submit proposal [201] id=31
+  Ô£à PASS: My proposals [200]
+  Ô£à PASS: Get proposal detail [200] id=31
+  Ô£à PASS: Client views project proposals [200]
+
+============================================================
+  7. GIGS (Freelancer Marketplace)
+============================================================
+  Ô£à PASS: Create gig [201] id=16
+  Ô£à PASS: My gigs [200]
+  Ô£à PASS: Public gig listing [200]
+  Ô£à PASS: Public gig detail [404]
+
+============================================================
+  8. CONTRACTS & MILESTONES
+============================================================
+  Ô£à PASS: Create contract [400]
+  Ô£à PASS: List contracts (client) [200]
+  Ô£à PASS: List contracts (freelancer) [200]
+
+============================================================
+  9. MESSAGES & CONVERSATIONS
+============================================================
+  Ô£à PASS: Client messages [404]
+  Ô£à PASS: Unread message count [200]
+  Ô£à PASS: Send message to freelancer [201] id=45
+  Ô£à PASS: Conversations list [200]
+
+============================================================
+  10. NOTIFICATIONS
+============================================================
+  Ô£à PASS: Client notifications [200]
+  Ô£à PASS: Unread notification count [200]
+  Ô£à PASS: Mark all read [200]
+  Ô£à PASS: Freelancer notifications [200]
+
+============================================================
+  11. REVIEWS & RATINGS
+============================================================
+  Ô£à PASS: Client reviews [200]
+
+============================================================
+  12. WALLET & PAYMENTS
+============================================================
+  Ô£à PASS: Freelancer wallet balance [200]
+  Ô£à PASS: Wallet transactions [200]
+  Ô£à PASS: Wallet analytics [200]
+  Ô£à PASS: Client payments [200]
+  Ô£à PASS: Payment fee calculator [422]
+  Ô£à PASS: Payment stats [200]
+
+============================================================
+  13. INVOICES
+============================================================
+  Ô£à PASS: Client invoices [200]
+  Ô£à PASS: Invoice tax list [200]
+  Ô£à PASS: Freelancer invoices [200]
+
+============================================================
+  14. ESCROW
+============================================================
+  Ô£à PASS: Escrow list [200]
+
+============================================================
+  15. CATEGORIES, SKILLS & TAGS
+============================================================
+  Ô£à PASS: Categories list [200]
+  Ô£à PASS: Category tree [200]
+  Ô£à PASS: Skills list [200]
+  Ô£à PASS: Skill categories [200]
+  Ô£à PASS: Tags list [200]
+
+============================================================
+  16. SEARCH & MARKETPLACE
+============================================================
+  Ô£à PASS: Search projects [200]
+  Ô£à PASS: Search freelancers [200]
+  Ô£à PASS: Marketplace stats [200]
+  Ô£à PASS: Trending skills [200]
+  Ô£à PASS: Marketplace categories [200]
+  Ô£à PASS: Marketplace projects [200]
+  Ô£à PASS: Marketplace freelancers [200]
+
+============================================================
+  17. FREELANCER PUBLIC PROFILES
+============================================================
+  Ô£à PASS: Featured freelancers [200]
+  Ô£à PASS: Search freelancers [200]
+  Ô£à PASS: Freelancer profile by ID [404]
+
+============================================================
+  18. BLOG
+============================================================
+  Ô£à PASS: Blog posts list [200]
+
+============================================================
+  19. PORTFOLIO
+============================================================
+  Ô£à PASS: Get portfolio [200]
+  Ô£à PASS: Add portfolio item [422]
+
+============================================================
+  20. FAVORITES & SAVED SEARCHES
+============================================================
+  Ô£à PASS: Favorites list [200]
+  Ô£à PASS: Add favorite [201] id=18
+  Ô£à PASS: Saved searches [200]
+
+============================================================
+  21. SUPPORT TICKETS
+============================================================
+  Ô£à PASS: Create support ticket [422]
+  Ô£à PASS: List support tickets [200]
+
+============================================================
+  22. TIME ENTRIES
+============================================================
+  Ô£à PASS: Time entries list [200]
+  Ô£à PASS: Log time entry [422]
+
+============================================================
+  23. AVAILABILITY CALENDAR
+============================================================
+  Ô£à PASS: Get availability [200]
+  Ô£à PASS: Update availability [200]
+
+============================================================
+  24. DISPUTES & REFUNDS
+============================================================
+  Ô£à PASS: Disputes list [200]
+  Ô£à PASS: Refunds list [200]
+
+============================================================
+  25. PORTAL ENDPOINTS
+============================================================
+  Ô£à PASS: Client dashboard stats [200]
+  Ô£à PASS: Client portal projects [200]
+  Ô£à PASS: Client portal payments [200]
+  Ô£à PASS: Client portal proposals [200]
+  Ô£à PASS: Freelancer dashboard stats [200]
+  Ô£à PASS: Freelancer portal projects [200]
+  Ô£à PASS: Freelancer portal proposals [200]
+  Ô£à PASS: Freelancer portal notifications [200]
+  Ô£à PASS: Freelancer earnings [200]
+
+============================================================
+  26. SELLER STATS
+============================================================
+  Ô£à PASS: Seller stats [200]
+  Ô£à PASS: Seller leaderboard [200]
+  Ô£à PASS: Seller levels [200]
+
+============================================================
+  27. GAMIFICATION
+============================================================
+  Ô£à PASS: Achievements [200]
+  Ô£à PASS: Badges [200]
+  Ô£à PASS: Leaderboard [200]
+  Ô£à PASS: My rank [200]
+
+============================================================
+  28. AI SERVICES
+============================================================
+  Ô£à PASS: AI health [404]
+  Ô£à PASS: AI project matching [404]
+
+============================================================
+  29. KNOWLEDGE BASE & LEARNING
+============================================================
+  Ô£à PASS: KB articles [200]
+  Ô£à PASS: KB categories [200]
+  Ô£à PASS: KB FAQs [200]
+  Ô£à PASS: KB popular [200]
+  Ô£à PASS: KB search [200]
+  Ô£à PASS: Learning courses [200]
+  Ô£à PASS: Featured courses [200]
+
+============================================================
+  30. ASSESSMENTS
+============================================================
+  Ô£à PASS: Available assessments [200]
+  Ô£à PASS: My assessment results [200]
+
+============================================================
+  31. I18N (Internationalization)
+============================================================
+  Ô£à PASS: Available languages [200]
+  Ô£à PASS: English translations [200]
+
+============================================================
+  32. EXTERNAL PROJECTS
+============================================================
+  Ô£à PASS: External projects [200]
+  Ô£à PASS: External project categories [200]
+  Ô£à PASS: External project stats [200]
+
+============================================================
+  33. PRICE ESTIMATOR
+============================================================
+  Ô£à PASS: Price estimate [422]
+  Ô£à PASS: Price categories [200]
+
+============================================================
+  34. STANDALONE TOOLS
+============================================================
+  Ô£à PASS: Invoice generator options [200]
+  Ô£à PASS: Generate invoice [422]
+  Ô£à PASS: Contract builder options [200]
+  Ô£à PASS: Income calculator options [200]
+  Ô£à PASS: Calculate income [200]
+  Ô£à PASS: Scope plan [200]
+  Ô£à PASS: Expense tax options [200]
+  Ô£à PASS: Calculate expense tax [422]
+  Ô£à PASS: Analyze skills [200]
+  Ô£à PASS: Rate advisor [422]
+  Ô£à PASS: Generate proposal [422]
+
+============================================================
+  35. COMMUNITY
+============================================================
+  Ô£à PASS: Community questions [200]
+  Ô£à PASS: Community trending tags [200]
+
+============================================================
+  36. FEATURE FLAGS
+============================================================
+  Ô£à PASS: Feature flags [200]
+  Ô£à PASS: My feature flags [200]
+
+============================================================
+  37. ANALYTICS
+============================================================
+  Ô£à PASS: Analytics dashboard [200]
+  Ô£à PASS: Analytics metrics [200]
+  Ô£à PASS: Freelancer analytics [200]
+
+============================================================
+  38. COMPLIANCE
+============================================================
+  Ô£à PASS: Compliance status [200]
+  Ô£à PASS: Compliance consents [200]
+
+============================================================
+  39. INVITATIONS
+============================================================
+  Ô£à PASS: Send invitation [404]
+  Ô£à PASS: Sent invitations [200]
+  Ô£à PASS: Received invitations [200]
+
+============================================================
+  40. JOB ALERTS
+============================================================
+  Ô£à PASS: Job alerts list [200]
+  Ô£à PASS: Create job alert [201] id=17
+
+============================================================
+  41. ORGANIZATIONS & TEAMS
+============================================================
+  Ô£à PASS: Organizations list [200]
+  Ô£à PASS: Teams list [200]
+
+============================================================
+  42. TEMPLATES
+============================================================
+  Ô£à PASS: Templates list [200]
+
+============================================================
+  43. NOTIFICATION PREFERENCES
+============================================================
+  Ô£à PASS: Notification prefs [200]
+  Ô£à PASS: Notification channels [200]
+  Ô£à PASS: Notification categories [200]
+
+============================================================
+  44. 2FA
+============================================================
+  Ô£à PASS: 2FA status [200] status=disabled
+
+============================================================
+  45. API KEYS
+============================================================
+  Ô£à PASS: API keys list [200]
+
+============================================================
+  46. WEBHOOKS
+============================================================
+  Ô£à PASS: Webhooks list [200]
+
+============================================================
+  47. DATA EXPORT
+============================================================
+  Ô£à PASS: Export list [200]
+  Ô£à PASS: Export templates [200]

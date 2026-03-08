@@ -37,29 +37,40 @@ def req(method, path, token=None, body=None, expected=None, label=""):
     headers = {}
     if token:
         headers["Authorization"] = f"Bearer {token}"
-    try:
-        if method == "GET":
-            r = requests.get(url, headers=headers, timeout=TIMEOUT)
-        elif method == "POST":
-            r = requests.post(url, json=body, headers=headers, timeout=TIMEOUT)
-        elif method == "PUT":
-            r = requests.put(url, json=body, headers=headers, timeout=TIMEOUT)
-        elif method == "PATCH":
-            r = requests.patch(url, json=body, headers=headers, timeout=TIMEOUT)
-        elif method == "DELETE":
-            r = requests.delete(url, headers=headers, timeout=TIMEOUT)
-        else:
-            r = requests.request(method, url, json=body, headers=headers, timeout=TIMEOUT)
-    except requests.exceptions.Timeout:
-        results["fail"] += 1
-        failures.append(f"  TIMEOUT: {label} ({method} {path})")
-        print(f"  \u274c TIMEOUT: {label}")
-        return None, None
-    except Exception as e:
-        results["fail"] += 1
-        failures.append(f"  ERROR: {label} - {e}")
-        print(f"  \u274c ERROR: {label} - {type(e).__name__}")
-        return None, None
+    time.sleep(0.15)  # Rate-limit to avoid overwhelming the backend
+    for attempt in range(3):
+        try:
+            if method == "GET":
+                r = requests.get(url, headers=headers, timeout=TIMEOUT)
+            elif method == "POST":
+                r = requests.post(url, json=body, headers=headers, timeout=TIMEOUT)
+            elif method == "PUT":
+                r = requests.put(url, json=body, headers=headers, timeout=TIMEOUT)
+            elif method == "PATCH":
+                r = requests.patch(url, json=body, headers=headers, timeout=TIMEOUT)
+            elif method == "DELETE":
+                r = requests.delete(url, headers=headers, timeout=TIMEOUT)
+            else:
+                r = requests.request(method, url, json=body, headers=headers, timeout=TIMEOUT)
+            break
+        except requests.exceptions.Timeout:
+            results["fail"] += 1
+            failures.append(f"  TIMEOUT: {label} ({method} {path})")
+            print(f"  \u274c TIMEOUT: {label}")
+            return None, None
+        except (requests.exceptions.ConnectionError, ConnectionRefusedError):
+            if attempt < 2:
+                time.sleep(2 * (attempt + 1))
+                continue
+            results["fail"] += 1
+            failures.append(f"  ERROR: {label} - ConnectionError")
+            print(f"  \u274c ERROR: {label} - ConnectionError")
+            return None, None
+        except Exception as e:
+            results["fail"] += 1
+            failures.append(f"  ERROR: {label} - {e}")
+            print(f"  \u274c ERROR: {label} - {type(e).__name__}")
+            return None, None
 
     status = r.status_code
     try:
