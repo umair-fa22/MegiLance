@@ -16,3 +16,6 @@
 ============================================================
   2. AUTHENTICATION - Registration
 ============================================================
+  Ô£à PASS: Register client [201] id=156
+  Ô£à PASS: Register freelancer [201] id=157
+  Ô£à PASS: Duplicate email rejected [400]
