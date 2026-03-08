@@ -31,7 +31,7 @@ const websiteJsonLd = buildWebSiteJsonLd();
 const orgJsonLd = buildOrganizationJsonLd();
 const appJsonLd = buildSoftwareAppJsonLd();
 const navJsonLd = buildSiteNavigationJsonLd();
-const ratingJsonLd = buildAggregateRatingJsonLd(4.8, 2500);
+const ratingJsonLd = buildAggregateRatingJsonLd(0, 0);
 
 // Flatten top keywords for root metadata (Semrush-validated, highest volume first)
 const rootKeywords = [

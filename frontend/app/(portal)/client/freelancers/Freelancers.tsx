@@ -66,7 +66,7 @@ const Freelancers: React.FC = () => {
       hourlyRate: typeof f.rate === 'number' ? f.rate : parseFloat(String(f.rate || '0').replace(/[^0-9.]/g, '')),
       location: f.location ?? 'Remote',
       skills: Array.isArray(f.skills) ? f.skills : [],
-      rating: f.rating ?? 4.5,
+      rating: f.rating ?? 0,
       availability: (f.availability_status as string) ?? (f.availability as string) ?? 'available',
       experienceLevel: f.experience_level ?? '',
       languages: f.languages ?? '',

@@ -77,8 +77,8 @@ export function HireSkillClient({ skill, industries, relatedSkills }: HireSkillC
               <span className={cn(commonStyles.statLabel, themed.statLabel)}>Category</span>
             </div>
             <div className={cn(commonStyles.statItem, themed.statItem)}>
-              <span className={commonStyles.statValue}>500+</span>
-              <span className={cn(commonStyles.statLabel, themed.statLabel)}>Available</span>
+              <span className={commonStyles.statValue}>Browse</span>
+              <span className={cn(commonStyles.statLabel, themed.statLabel)}>Available Talent</span>
             </div>
           </div>
 

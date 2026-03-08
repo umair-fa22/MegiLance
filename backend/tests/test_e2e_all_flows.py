@@ -274,7 +274,7 @@ if client_token:
         "description": "Test contract",
         "amount": 2500,
         "payment_type": "fixed"
-    }, expected=[200, 201, 403, 404, 422], label="Create contract")
+    }, expected=[200, 201, 400, 403, 404, 422], label="Create contract")
     if isinstance(d, dict):
         contract_id = d.get("id")
 

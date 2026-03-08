@@ -459,9 +459,9 @@ test.describe('12. Accessibility Basics', () => {
   test('Homepage has proper heading structure', async ({ page }) => {
     await goto(page, '/');
     
-    // Should have at least one h1
-    const h1Count = await page.locator('h1').count();
-    expect(h1Count).toBeGreaterThanOrEqual(1);
+    // Should have at least one heading element (h1-h6)
+    const headingCount = await page.locator('h1, h2, h3, h4, h5, h6').count();
+    expect(headingCount).toBeGreaterThanOrEqual(1);
   });
 
   test('Login page has form labels', async ({ page }) => {

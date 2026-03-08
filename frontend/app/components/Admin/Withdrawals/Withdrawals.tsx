@@ -87,7 +87,7 @@ const Withdrawals: React.FC = () => {
         const transformed: WithdrawalRequest[] = payments.map((payment) => ({
           id: `wd_${payment.id}`,
           freelancerName: `User #${payment.to_user_id}`,
-          freelancerAvatarUrl: `https://i.pravatar.cc/100?u=user${payment.to_user_id}`,
+          freelancerAvatarUrl: '',
           amount: payment.amount,
           currency: payment.currency || 'USD',
           destinationAddress: payment.escrow_address || payment.tx_hash || 'N/A',

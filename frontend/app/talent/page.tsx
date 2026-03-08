@@ -4,8 +4,8 @@ import { buildMeta, buildCollectionPageJsonLd, buildBreadcrumbJsonLd, buildItemL
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMeta({
-    title: 'Freelancer Website Directory - Browse 10,000+ Verified Freelance Experts',
-    description: 'Explore MegiLance\'s freelancer website directory with 10,000+ verified experts. Find freelance web developers, freelance website designers, UI/UX designers, AI/ML engineers, and 50+ skill categories. Best freelance websites for hiring talent.',
+    title: 'Freelancer Website Directory - Browse Verified Freelance Experts',
+    description: 'Explore MegiLance\'s freelancer website directory with verified experts. Find freelance web developers, freelance website designers, UI/UX designers, AI/ML engineers, and 50+ skill categories. Best freelance websites for hiring talent.',
     path: '/talent',
     keywords: getKeywordsForPage(['transactional', 'technology', 'industry'], [
       'freelancer website', 'best freelance websites', 'freelance web developer',

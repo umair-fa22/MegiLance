@@ -1,7 +1,7 @@
-// @AI-HINT: Testimonials page with theme-aware styling, animated sections, and accessible structure.
+// @AI-HINT: Testimonials page fetching real reviews from API, with theme-aware styling, animated sections, and accessible structure.
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
@@ -19,65 +19,59 @@ import dark from './Testimonials.dark.module.css';
 const ALL = 'All';
 const categories = [ALL, 'Clients', 'Freelancers', 'Enterprise'];
 
-const testimonials = [
-  {
-    name: 'Nora Patel',
-    role: 'Head of Product, AtlasAI',
-    category: 'Enterprise',
-    quote:
-      'MegiLance delivered production-ready velocity with uncompromising quality. Our AI rollout landed ahead of schedule.',
-    avatar: '/images/testimonials/nora.jpg',
-  },
-  {
-    name: 'Samir Rahman',
-    role: 'Senior iOS Engineer',
-    category: 'Freelancers',
-    quote:
-      'The platform finally treats freelancers as first-class partners. Transparent escrow and fast payouts changed my workflow.',
-    avatar: '/images/testimonials/samir.jpg',
-  },
-  {
-    name: 'Emily Stone',
-    role: 'Founder, Crisp Labs',
-    category: 'Clients',
-    quote:
-      'We shipped a polished MVP in weeks. The talent quality and tooling are on par with the best in the industry.',
-    avatar: '/images/testimonials/emily.jpg',
-  },
-  {
-    name: 'Diego Morales',
-    role: 'Blockchain Architect',
-    category: 'Freelancers',
-    quote:
-      'Audited contracts and clear milestones gave me confidence to focus on building. The experience feels premium end-to-end.',
-    avatar: '/images/testimonials/diego.jpg',
-  },
-  {
-    name: 'Hannah Lee',
-    role: 'VP Engineering, NovaCloud',
-    category: 'Enterprise',
-    quote:
-      'Security reviews and compliance were top-notch. MegiLance matched our bar on reliability and controls.',
-    avatar: '/images/testimonials/hannah.jpg',
-  },
-  {
-    name: 'Ava Johnson',
-    role: 'Founder, PixelMint',
-    category: 'Clients',
-    quote:
-      'Immaculate UI quality. The teams shipped with taste and precision you rarely see.',
-    avatar: '/images/testimonials/ava.jpg',
-  },
-];
+interface ReviewData {
+  name: string;
+  role: string;
+  category: string;
+  quote: string;
+  avatar: string;
+}
 
 const Testimonials: React.FC = () => {
   const { resolvedTheme } = useTheme();
   const themed = resolvedTheme === 'dark' ? dark : light;
 
   const [selected, setSelected] = useState<string>(ALL);
+  const [testimonials, setTestimonials] = useState<ReviewData[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const res = await fetch('/api/v1/reviews?limit=20');
+        if (res.ok) {
+          const data = await res.json();
+          const reviews = (data.reviews || data || []);
+          setTestimonials(reviews.map((r: any) => {
+            const role = r.reviewer_role || r.reviewer?.title || 'MegiLance User';
+            let category = 'Freelancers';
+            if (r.reviewer_type === 'client' || role.toLowerCase().includes('founder') || role.toLowerCase().includes('ceo') || role.toLowerCase().includes('manager')) {
+              category = 'Clients';
+            }
+            if (role.toLowerCase().includes('enterprise') || role.toLowerCase().includes('vp') || role.toLowerCase().includes('director')) {
+              category = 'Enterprise';
+            }
+            return {
+              name: r.reviewer_name || r.reviewer?.name || 'Verified User',
+              role,
+              category,
+              quote: r.review_text || r.comment || r.text || '',
+              avatar: r.reviewer_avatar || r.reviewer?.avatar_url || '',
+            };
+          }));
+        }
+      } catch {
+        // No reviews available yet
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchReviews();
+  }, []);
+
   const filtered = useMemo(
     () => (selected === ALL ? testimonials : testimonials.filter((t) => t.category === selected)),
-    [selected]
+    [selected, testimonials]
   );
 
   return (
@@ -124,16 +118,27 @@ const Testimonials: React.FC = () => {
           </ScrollReveal>
 
           <section aria-label="Testimonials">
+            {loading ? (
+              <div className={common.grid}>
+                {[1, 2, 3].map((i) => (
+                  <div key={i} style={{ height: 200, borderRadius: 12, opacity: 0.08, background: 'currentColor' }} />
+                ))}
+              </div>
+            ) : filtered.length === 0 ? (
+              <div style={{ textAlign: 'center', padding: '3rem 0', opacity: 0.6 }}>
+                <p>No reviews yet{selected !== ALL ? ` in ${selected}` : ''}. Be the first to share your experience!</p>
+              </div>
+            ) : (
             <motion.div layout className={common.grid}>
               <AnimatePresence mode="popLayout">
-                {filtered.map((t) => (
+                {filtered.map((t, idx) => (
                   <motion.figure
                     layout
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3 }}
-                    key={t.name}
+                    key={`${t.name}-${idx}`}
                     className={cn(common.card, themed.card)}
                   >
                     <div className={common.quoteWrapper}>
@@ -141,14 +146,20 @@ const Testimonials: React.FC = () => {
                       <blockquote className={cn(common.quote, themed.quote)}>“{t.quote}”</blockquote>
                     </div>
                     <figcaption className={cn(common.person, themed.person)}>
-                      <Image
-                        className={common.avatar}
-                        src={t.avatar}
-                        alt={`${t.name} avatar`}
-                        width={48}
-                        height={48}
-                        loading="lazy"
-                      />
+                      {t.avatar ? (
+                        <Image
+                          className={common.avatar}
+                          src={t.avatar}
+                          alt={`${t.name} avatar`}
+                          width={48}
+                          height={48}
+                          loading="lazy"
+                        />
+                      ) : (
+                        <span className={common.avatar} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 48, height: 48, borderRadius: '50%', background: 'var(--color-primary, #4573df)', color: '#fff', fontWeight: 600, fontSize: 16 }}>
+                          {t.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)}
+                        </span>
+                      )}
                       <div className={common.personDetails}>
                         <div className={cn(common.name, themed.name)}>{t.name}</div>
                         <div className={cn(common.role, themed.role)}>{t.role}</div>
@@ -158,6 +169,7 @@ const Testimonials: React.FC = () => {
                 ))}
               </AnimatePresence>
             </motion.div>
+            )}
           </section>
 
           <ScrollReveal>

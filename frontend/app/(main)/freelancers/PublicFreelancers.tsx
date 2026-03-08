@@ -448,7 +448,7 @@ const PublicFreelancers: React.FC = () => {
                     <Link href={`/freelancers/${f.profileSlug || f.id}`} className={cn(common.card, themed.card)} aria-label={`View ${f.name}'s profile`}>
                       <div className={common.cardHeader}>
                         <div className={common.avatarWrapper}>
-                          <img src={f.avatarUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(f.name)}&background=random&size=80`} alt={f.name} className={common.avatar} loading="lazy" width={64} height={64} />
+                          <img src={f.avatarUrl || '/images/default-avatar.svg'} alt={f.name} className={common.avatar} loading="lazy" width={64} height={64} />
                           {f.availabilityStatus === 'available' && (
                             <span className={common.onlineDot} aria-label="Available now" />
                           )}

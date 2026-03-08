@@ -11,12 +11,7 @@ import light from './Teams.light.module.css';
 import dark from './Teams.dark.module.css';
 
 const team = [
-  { name: 'Megi Lawson', role: 'Founder & CEO', bio: 'Product-centric leader focused on experience, quality, and velocity.', avatar: 'https://ui-avatars.com/api/?name=Megi+Lawson&background=4573df&color=fff&size=128' },
-  { name: 'Daniel Park', role: 'CTO', bio: 'Systems thinker shipping secure, scalable platforms.', avatar: 'https://ui-avatars.com/api/?name=Daniel+Park&background=6366f1&color=fff&size=128' },
-  { name: 'Aisha Khan', role: 'Head of Design', bio: 'Designing premium, accessible interfaces with purpose.', avatar: 'https://ui-avatars.com/api/?name=Aisha+Khan&background=10b981&color=fff&size=128' },
-  { name: 'Luis Garcia', role: 'Lead Blockchain Engineer', bio: 'Delivering audited, resilient smart contracts.', avatar: 'https://ui-avatars.com/api/?name=Luis+Garcia&background=f59e0b&color=fff&size=128' },
-  { name: 'Sofia Rossi', role: 'Lead Frontend Engineer', bio: 'Building delightful, high-performance UI.', avatar: 'https://ui-avatars.com/api/?name=Sofia+Rossi&background=ec4899&color=fff&size=128' },
-  { name: 'Ethan Chen', role: 'Head of Growth', bio: 'Data-driven acquisition and retention strategies.', avatar: 'https://ui-avatars.com/api/?name=Ethan+Chen&background=8b5cf6&color=fff&size=128' },
+  { name: 'Ghulam Abbas', role: 'Full-Stack Developer & Project Lead', bio: 'FYP student at COMSATS University Islamabad. Designed and built the complete MegiLance platform — frontend, backend, AI, and DevOps.', avatar: '' },
 ];
 
 const values = [
@@ -46,8 +41,8 @@ const Teams: React.FC = () => {
         <div className={common.container}>
           <ScrollReveal>
             <header className={common.header}>
-              <h1 className={common.title}>Meet the Team</h1>
-              <p className={common.subtitle}>Builders, designers, and operators crafting the future of freelance work.</p>
+              <h1 className={common.title}>Meet the Developer</h1>
+              <p className={common.subtitle}>The mind behind MegiLance — a Final Year Project at COMSATS University Islamabad.</p>
             </header>
           </ScrollReveal>
 
@@ -55,14 +50,20 @@ const Teams: React.FC = () => {
             <StaggerContainer className={common.grid} delay={0.1}>
               {team.map((p) => (
                 <article key={p.name} className={common.card} aria-labelledby={`name-${p.name}`}>
-                  <img
-                    className={common.avatar}
-                    src={p.avatar}
-                    alt={`${p.name} avatar`}
-                    width={64}
-                    height={64}
-                    loading="lazy"
-                  />
+                  {p.avatar ? (
+                    <img
+                      className={common.avatar}
+                      src={p.avatar}
+                      alt={`${p.name} avatar`}
+                      width={64}
+                      height={64}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <span className={common.avatar} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 64, height: 64, borderRadius: '50%', background: '#4573df', color: '#fff', fontWeight: 700, fontSize: 22 }}>
+                      {p.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)}
+                    </span>
+                  )}
                   <div className={common.person}>
                     <h3 id={`name-${p.name}`} className={common.name}>{p.name}</h3>
                     <span className={common.role}>{p.role}</span>

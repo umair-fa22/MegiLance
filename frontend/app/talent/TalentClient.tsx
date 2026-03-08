@@ -40,7 +40,7 @@ async function fetchFreelancers(): Promise<TalentProfile[]> {
       role: f.title || f.headline || 'Freelancer',
       rank: f.ai_score || Math.floor(f.rating * 20) || 0,
       skills: f.skills || [],
-      avatar: f.profile_image_url || f.avatar_url || `https://i.pravatar.cc/120?img=${idx + 10}`,
+      avatar: f.profile_image_url || f.avatar_url || '',
     }));
   } catch (err) {
     console.error('[TalentClient] Failed to fetch freelancers:', err);

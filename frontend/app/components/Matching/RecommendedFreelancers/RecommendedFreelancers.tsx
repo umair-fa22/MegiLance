@@ -68,53 +68,7 @@ export default function RecommendedFreelancers({
       if (response && response.matches && response.matches.length > 0) {
         setFreelancers(response.matches);
       } else {
-        setFreelancers([
-          {
-            id: '1',
-            name: 'Sarah Jenkins',
-            title: 'Senior React Developer',
-            hourly_rate: 85,
-            skills: ['React', 'TypeScript', 'Node.js', 'GraphQL'],
-            match_score: 0.96,
-            match_quality: 'excellent',
-            match_reasons: ['Strong React experience', 'Within budget range', 'Excellent reviews'],
-            why_good_fit: 'Expert in React with 96% skill match and 4.9 rating across 47 completed projects',
-            rating: 4.9,
-            completed_projects: 47,
-            available: true,
-            response_rate: 95
-          },
-          {
-            id: '2',
-            name: 'Michael Chen',
-            title: 'Full Stack Engineer',
-            hourly_rate: 95,
-            skills: ['Vue.js', 'Python', 'AWS', 'Docker'],
-            match_score: 0.89,
-            match_quality: 'strong',
-            match_reasons: ['Backend expertise', 'High success rate'],
-            why_good_fit: 'Full-stack expertise with strong backend focus and AWS deployment experience',
-            rating: 4.8,
-            completed_projects: 62,
-            available: true,
-            response_rate: 88
-          },
-          {
-            id: '3',
-            name: 'Jessica Wu',
-            title: 'UI/UX Developer',
-            hourly_rate: 75,
-            skills: ['Figma', 'CSS', 'React', 'Tailwind'],
-            match_score: 0.78,
-            match_quality: 'good',
-            match_reasons: ['Design skills match', 'Available immediately'],
-            why_good_fit: 'Design-focused developer with excellent UI/UX portfolio',
-            rating: 4.7,
-            completed_projects: 31,
-            available: true,
-            response_rate: 92
-          }
-        ]);
+        setFreelancers([]);
       }
     } catch (error) {
       console.error('Failed to fetch recommended freelancers:', error);

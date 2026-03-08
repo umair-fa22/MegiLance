@@ -5,7 +5,7 @@ import { buildMeta, buildBreadcrumbJsonLd, buildAggregateRatingJsonLd, jsonLdScr
 export async function generateMetadata(): Promise<Metadata> {
   return buildMeta({
     title: 'Success Stories & Testimonials - Real Results from Real Users',
-    description: 'Read authentic success stories from MegiLance clients and freelancers. See how businesses scaled with top talent and freelancers grew their careers. 4.8★ average rating across 2,500+ reviews.',
+    description: 'Read authentic success stories from MegiLance clients and freelancers. See how businesses scaled with top talent and freelancers grew their careers.',
     path: '/testimonials',
     keywords: [
       'MegiLance reviews', 'freelance platform reviews', 'MegiLance testimonials',
@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Page() {
   return (
     <>
-      <script {...jsonLdScriptProps(buildAggregateRatingJsonLd(4.8, 2500))} />
+      <script {...jsonLdScriptProps(buildAggregateRatingJsonLd(0, 0))} />
       <script {...jsonLdScriptProps(
         buildBreadcrumbJsonLd([{ name: 'Testimonials', path: '/testimonials' }])
       )} />

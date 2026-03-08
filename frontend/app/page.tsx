@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'MegiLance - Best Freelancer Website | Hire Top Freelancers Online',
-    description: 'Join 50,000+ professionals on MegiLance. Find freelance jobs online or hire top freelance developers, designers & writers. AI-powered matching, escrow payments, zero commission. Best Upwork & Fiverr alternative.',
+    description: 'Join professionals on MegiLance. Find freelance jobs online or hire top freelance developers, designers & writers. AI-powered matching, escrow payments, zero commission. Best Upwork & Fiverr alternative.',
     url: BASE_URL,
     siteName: SITE_NAME,
     type: 'website',

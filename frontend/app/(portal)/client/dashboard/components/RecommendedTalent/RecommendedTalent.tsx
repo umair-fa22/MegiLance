@@ -45,7 +45,7 @@ const RecommendedTalent: React.FC = () => {
               id: String(rec.freelancer_id),
               name: rec.freelancer_name,
               title: rec.freelancer_bio ? rec.freelancer_bio.substring(0, 30) + '...' : 'Freelancer',
-              avatarUrl: rec.profile_image_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(rec.freelancer_name)}&background=random`,
+              avatarUrl: rec.profile_image_url || '',
               matchScore: Math.round((rec.match_score || 0) * 100),
               skills: rec.match_factors?.skill_match ? ['High Skill Match'] : ['Top Rated'],
               hourlyRate: rec.hourly_rate || 0,

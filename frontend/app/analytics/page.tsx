@@ -35,14 +35,14 @@ const AnalyticsPage: React.FC = () => {
           const data = await metricsApi.getDashboard();
           if (data) {
             setStats([
-              { label: 'Total Users', value: String(data.total_users ?? '0'), change: '+12%', positive: true, icon: <Users size={22} /> },
-              { label: 'Active Projects', value: String(data.active_projects ?? '0'), change: '+8%', positive: true, icon: <Briefcase size={22} /> },
-              { label: 'Revenue', value: `$${Number(data.revenue ?? 0).toLocaleString()}`, change: '+15%', positive: true, icon: <DollarSign size={22} /> },
-              { label: 'Proposals', value: String(data.total_proposals ?? '0'), change: '+5%', positive: true, icon: <FileText size={22} /> },
-              { label: 'Avg Rating', value: String(data.avg_rating ?? '4.5'), change: '+0.2', positive: true, icon: <Star size={22} /> },
-              { label: 'Completion Rate', value: `${data.completion_rate ?? 85}%`, change: '+3%', positive: true, icon: <TrendingUp size={22} /> },
-              { label: 'Avg Response Time', value: `${data.avg_response_hours ?? 2}h`, change: '-12%', positive: true, icon: <Clock size={22} /> },
-              { label: 'Active Contracts', value: String(data.active_contracts ?? '0'), change: '+10%', positive: true, icon: <BarChart3 size={22} /> },
+              { label: 'Total Users', value: String(data.total_users ?? '0'), change: '--', positive: true, icon: <Users size={22} /> },
+              { label: 'Active Projects', value: String(data.active_projects ?? '0'), change: '--', positive: true, icon: <Briefcase size={22} /> },
+              { label: 'Revenue', value: `$${Number(data.revenue ?? 0).toLocaleString()}`, change: '--', positive: true, icon: <DollarSign size={22} /> },
+              { label: 'Proposals', value: String(data.total_proposals ?? '0'), change: '--', positive: true, icon: <FileText size={22} /> },
+              { label: 'Avg Rating', value: String(data.avg_rating ?? 'N/A'), change: '--', positive: true, icon: <Star size={22} /> },
+              { label: 'Completion Rate', value: data.completion_rate ? `${data.completion_rate}%` : 'N/A', change: '--', positive: true, icon: <TrendingUp size={22} /> },
+              { label: 'Avg Response Time', value: data.avg_response_hours ? `${data.avg_response_hours}h` : 'N/A', change: '--', positive: true, icon: <Clock size={22} /> },
+              { label: 'Active Contracts', value: String(data.active_contracts ?? '0'), change: '--', positive: true, icon: <BarChart3 size={22} /> },
             ]);
             setLoading(false);
             return;

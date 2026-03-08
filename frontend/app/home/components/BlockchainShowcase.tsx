@@ -141,20 +141,20 @@ const BlockchainShowcase: React.FC = () => {
 
         <div className={commonStyles.stats}>
           <div className={commonStyles.stat}>
-            <AnimatedStat rawValue="$2.5M+" />
-            <div className={commonStyles.statLabel}>Processed in USDC</div>
+            <AnimatedStat rawValue="USDC" />
+            <div className={commonStyles.statLabel}>Stablecoin Payments</div>
           </div>
           <div className={commonStyles.stat}>
-            <AnimatedStat rawValue="99.99%" />
-            <div className={commonStyles.statLabel}>Transaction Success Rate</div>
+            <AnimatedStat rawValue="On-Chain" />
+            <div className={commonStyles.statLabel}>Verified Transactions</div>
           </div>
           <div className={commonStyles.stat}>
-            <AnimatedStat rawValue="<30s" />
-            <div className={commonStyles.statLabel}>Average Settlement Time</div>
+            <AnimatedStat rawValue="Fast" />
+            <div className={commonStyles.statLabel}>Settlement Time</div>
           </div>
           <div className={commonStyles.stat}>
-            <AnimatedStat rawValue="0.5%" />
-            <div className={commonStyles.statLabel}>Transaction Fee</div>
+            <AnimatedStat rawValue="Low" />
+            <div className={commonStyles.statLabel}>Transaction Fees</div>
           </div>
         </div>
 

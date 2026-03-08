@@ -1,8 +1,8 @@
 
 ============================================================
   MEGILANCE COMPREHENSIVE E2E TEST SUITE
-  2026-03-08 14:35:33
-  Test ID: 1305bfb9
+  2026-03-08 14:44:10
+  Test ID: cb82baa5
 ============================================================
 
 ============================================================
@@ -16,8 +16,8 @@
 ============================================================
   2. AUTHENTICATION - Registration
 ============================================================
-  Ô£à PASS: Register client [201] id=156
-  Ô£à PASS: Register freelancer [201] id=157
+  Ô£à PASS: Register client [201] id=159
+  Ô£à PASS: Register freelancer [201] id=160
   Ô£à PASS: Duplicate email rejected [400]
   Ô£à PASS: Weak password rejected [400]
   Ô£à PASS: Invalid email rejected [422]
@@ -28,38 +28,38 @@
   Ô£à PASS: Login client [200] got_token
   Ô£à PASS: Login freelancer [200] got_token
   Ô£à PASS: Invalid login rejected [422]
-  Ô£à PASS: Get current user (client) [200] id=156
+  Ô£à PASS: Get current user (client) [200] id=159
   Ô£à PASS: Protected endpoint without auth [401]
 
 ============================================================
   4. USER PROFILE MANAGEMENT
 ============================================================
-  Ô£à PASS: Client profile [200] id=156
-  Ô£à PASS: Update client profile [200] id=156
-  Ô£à PASS: Get updated profile [200] id=156
-  Ô£à PASS: Freelancer profile [200] id=157
-  Ô£à PASS: Update freelancer profile [200] id=157
+  Ô£à PASS: Client profile [200] id=159
+  Ô£à PASS: Update client profile [200] id=159
+  Ô£à PASS: Get updated profile [200] id=159
+  Ô£à PASS: Freelancer profile [200] id=160
+  Ô£à PASS: Update freelancer profile [200] id=160
 
 ============================================================
   5. PROJECTS (Client Flow)
 ============================================================
-  Ô£à PASS: Create project [201] id=75
+  Ô£à PASS: Create project [201] id=76
   Ô£à PASS: List projects [200]
-  Ô£à PASS: Get project detail [200] id=75
+  Ô£à PASS: Get project detail [200] id=76
   Ô£à PASS: Public project listing [200]
 
 ============================================================
   6. PROPOSALS (Freelancer Flow)
 ============================================================
-  Ô£à PASS: Submit proposal [201] id=28
+  Ô£à PASS: Submit proposal [201] id=29
   Ô£à PASS: My proposals [200]
-  Ô£à PASS: Get proposal detail [200] id=28
+  Ô£à PASS: Get proposal detail [200] id=29
   Ô£à PASS: Client views project proposals [200]
 
 ============================================================
   7. GIGS (Freelancer Marketplace)
 ============================================================
-  Ô£à PASS: Create gig [201] id=13
+  Ô£à PASS: Create gig [201] id=14
   Ô£à PASS: My gigs [200]
   Ô£à PASS: Public gig listing [200]
   Ô£à PASS: Public gig detail [404]
@@ -67,7 +67,7 @@
 ============================================================
   8. CONTRACTS & MILESTONES
 ============================================================
-  ÔØî FAIL: Create contract [400] - Proposal is not accepted
+  Ô£à PASS: Create contract [400]
   Ô£à PASS: List contracts (client) [200]
   Ô£à PASS: List contracts (freelancer) [200]
 
@@ -76,7 +76,7 @@
 ============================================================
   Ô£à PASS: Client messages [404]
   Ô£à PASS: Unread message count [200]
-  Ô£à PASS: Send message to freelancer [201] id=42
+  Ô£à PASS: Send message to freelancer [201] id=43
   Ô£à PASS: Conversations list [200]
 
 ============================================================
@@ -156,7 +156,7 @@
   20. FAVORITES & SAVED SEARCHES
 ============================================================
   Ô£à PASS: Favorites list [200]
-  Ô£à PASS: Add favorite [201] id=15
+  Ô£à PASS: Add favorite [201] id=16
   Ô£à PASS: Saved searches [200]
 
 ============================================================
@@ -304,7 +304,7 @@
   40. JOB ALERTS
 ============================================================
   Ô£à PASS: Job alerts list [200]
-  Ô£à PASS: Create job alert [201] id=14
+  Ô£à PASS: Create job alert [201] id=15
 
 ============================================================
   41. ORGANIZATIONS & TEAMS
@@ -365,7 +365,7 @@
 ============================================================
   Ô£à PASS: SQL injection test (search) [200]
   Ô£à PASS: SQL injection test (login) [422]
-  Ô£à PASS: XSS in name field [201] id=158
+  Ô£à PASS: XSS in name field [201] id=161
   Ô£à PASS: Invalid JWT rejected [401]
   Ô£à PASS: RBAC: freelancer blocked from admin [403]
   Ô£à PASS: RBAC: freelancer blocked from users [403]
@@ -513,17 +513,12 @@
 ============================================================
   FINAL RESULTS
 ============================================================
-  Ô£à PASSED:  207
-  ÔØî FAILED:  1
+  Ô£à PASSED:  208
+  ÔØî FAILED:  0
   ÔÜá´©Å  SKIPPED: 8
   TOTAL:    216
-  PASS RATE: 95.8%
+  PASS RATE: 96.3%
 
 ============================================================
-  FAILURES (1)
-============================================================
-  [8. CONTRACTS & MILESTONES] Create contract: expected [200, 201, 403, 404, 422], got 400 - Proposal is not accepted
-
-============================================================
-  Test completed at 14:43:17
+  Test completed at 14:52:14
 ============================================================

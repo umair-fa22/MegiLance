@@ -109,7 +109,7 @@ export function HireSkillIndustryClient({
 
           <div className={commonStyles.heroStats}>
             <div className={cn(commonStyles.statItem, themeStyles.statItem)}>
-              <span className={commonStyles.statValue}>1,000+</span>
+              <span className={commonStyles.statValue}>Browse</span>
               <span className={commonStyles.statLabel}>{skill.name}s Available</span>
             </div>
             <div className={cn(commonStyles.statItem, themeStyles.statItem)}>
@@ -117,7 +117,7 @@ export function HireSkillIndustryClient({
               <span className={commonStyles.statLabel}>Average Rate</span>
             </div>
             <div className={cn(commonStyles.statItem, themeStyles.statItem)}>
-              <span className={commonStyles.statValue}>24hr</span>
+              <span className={commonStyles.statValue}>Fast</span>
               <span className={commonStyles.statLabel}>Avg Response Time</span>
             </div>
           </div>

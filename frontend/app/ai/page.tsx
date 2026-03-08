@@ -33,7 +33,7 @@ const aiFeatures = [
     href: '/ai/chatbot',
     status: 'Live',
     color: 'blue',
-    stats: '50K+ queries answered'
+    stats: 'Instant answers'
   },
   {
     title: 'Price Estimator',
@@ -42,7 +42,7 @@ const aiFeatures = [
     href: '/ai/price-estimator',
     status: 'Live',
     color: 'green',
-    stats: '95% accuracy rate'
+    stats: 'Data-driven pricing'
   },
   {
     title: 'Fraud Detection',
@@ -51,7 +51,7 @@ const aiFeatures = [
     href: '/ai/fraud-check',
     status: 'Live',
     color: 'red',
-    stats: '99.9% threat detection'
+    stats: 'Real-time protection'
   },
   {
     title: 'Smart Matching',
@@ -60,7 +60,7 @@ const aiFeatures = [
     href: '/explore',
     status: 'Live',
     color: 'purple',
-    stats: '92% match accuracy'
+    stats: 'ML-powered matching'
   },
   {
     title: 'Proposal Generator',
@@ -69,7 +69,7 @@ const aiFeatures = [
     href: '/portal/freelancer',
     status: 'Live',
     color: 'orange',
-    stats: '3x higher win rate'
+    stats: 'Professional templates'
   },
   {
     title: 'Sentiment Analysis',
@@ -114,15 +114,15 @@ const capabilities = [
   { icon: BarChart3, label: 'Predictive Analytics', desc: 'Forecast trends and outcomes' },
   { icon: Users, label: 'Behavioral Analysis', desc: 'Understand user patterns' },
   { icon: Lock, label: 'Security Intelligence', desc: 'Real-time threat detection' },
-  { icon: Globe, label: 'Multi-language Support', desc: '50+ languages supported' },
+  { icon: Globe, label: 'Multi-language Support', desc: 'Multiple languages supported' },
   { icon: Layers, label: 'Deep Learning', desc: 'Advanced neural networks' },
 ];
 
 const stats = [
-  { value: '10M+', label: 'AI Predictions Made' },
-  { value: '99.5%', label: 'Uptime Reliability' },
-  { value: '< 100ms', label: 'Response Time' },
-  { value: '50+', label: 'AI Models Deployed' },
+  { value: 'ML', label: 'AI-Powered Platform' },
+  { value: 'High', label: 'Uptime Reliability' },
+  { value: 'Fast', label: 'Response Time' },
+  { value: 'Multi', label: 'AI Models Integrated' },
 ];
 
 const AIHubPage = () => {

@@ -40,35 +40,10 @@ interface ClientStats {
   satisfaction_rate: number;
 }
 
-// Fallback demo data when API is unavailable
-const fallbackLogos: ClientData[] = [
-  { id: '1', name: 'AtlasAI', company_name: 'AtlasAI Corp', industry: 'AI', logo_url: '/images/clients/placeholder.svg', description: 'AI research company', project_count: 12, joined_date: '2024-01-15' },
-  { id: '2', name: 'NovaBank', company_name: 'NovaBank Inc', industry: 'Fintech', logo_url: '/images/clients/placeholder.svg', description: 'Digital banking platform', project_count: 8, joined_date: '2024-02-20' },
-  { id: '3', name: 'PixelMint', company_name: 'PixelMint LLC', industry: 'E-commerce', logo_url: '/images/clients/placeholder.svg', description: 'E-commerce solutions', project_count: 15, joined_date: '2024-03-10' },
-  { id: '4', name: 'CureWell', company_name: 'CureWell Health', industry: 'Healthcare', logo_url: '/images/clients/placeholder.svg', description: 'Healthcare technology', project_count: 6, joined_date: '2024-04-05' },
-  { id: '5', name: 'CortexCloud', company_name: 'CortexCloud AI', industry: 'AI', logo_url: '/images/clients/placeholder.svg', description: 'Cloud AI services', project_count: 20, joined_date: '2024-01-25' },
-  { id: '6', name: 'VoltPay', company_name: 'VoltPay Systems', industry: 'Fintech', logo_url: '/images/clients/placeholder.svg', description: 'Payment processing', project_count: 10, joined_date: '2024-02-28' },
-  { id: '7', name: 'ShopSphere', company_name: 'ShopSphere Global', industry: 'E-commerce', logo_url: '/images/clients/placeholder.svg', description: 'Global marketplace', project_count: 18, joined_date: '2024-03-15' },
-  { id: '8', name: 'Medisphere', company_name: 'Medisphere Labs', industry: 'Healthcare', logo_url: '/images/clients/placeholder.svg', description: 'Medical diagnostics', project_count: 9, joined_date: '2024-04-12' },
-];
+// Empty fallback when API is unavailable
+const fallbackLogos: ClientData[] = [];
 
-const cases = [
-  {
-    title: 'AI-assisted onboarding reduced time-to-value by 42%',
-    desc: 'Enterprise-grade workflows and fine-tuned models improved user activation and retention.',
-    media: '/images/cases/placeholder.svg',
-  },
-  {
-    title: 'Payments reliability at 99.99% with audited contracts',
-    desc: 'Escrow releases, milestone tracking, and dispute resolution led to higher trust and volume.',
-    media: '/images/cases/placeholder.svg',
-  },
-  {
-    title: 'Design system refresh accelerated shipping by 3x',
-    desc: 'A premium, accessible component library unified teams and improved build velocity.',
-    media: '/images/cases/placeholder.svg',
-  },
-];
+const cases: { title: string; desc: string; media: string }[] = [];
 
 interface Metric {
   label: string;
@@ -77,10 +52,10 @@ interface Metric {
 }
 
 const defaultMetrics: Metric[] = [
-  { label: 'Avg. Activation Lift', value: '+42%', detail: 'AI-guided onboarding flows' },
-  { label: 'Payment Reliability', value: '99.99%', detail: 'Audited escrow contracts' },
-  { label: 'Shipping Velocity', value: '3×', detail: 'Unified component system' },
-  { label: 'Talent Match Accuracy', value: '92%', detail: 'ML-powered ranking' },
+  { label: 'Total Clients', value: '—', detail: 'Loading...' },
+  { label: 'Projects Completed', value: '—', detail: 'Loading...' },
+  { label: 'Satisfaction Rate', value: '—', detail: 'Loading...' },
+  { label: 'Talent Matching', value: 'AI', detail: 'ML-powered ranking' },
 ];
 
 const Clients: React.FC = () => {
@@ -145,7 +120,7 @@ const Clients: React.FC = () => {
         { label: 'Total Clients', value: stats.total_clients.toString(), detail: 'Trusted companies worldwide' },
         { label: 'Projects Completed', value: stats.total_projects.toString(), detail: 'Successfully delivered' },
         { label: 'Satisfaction Rate', value: `${stats.satisfaction_rate}%`, detail: 'Client happiness score' },
-        { label: 'Talent Match Accuracy', value: '92%', detail: 'ML-powered ranking' },
+        { label: 'Talent Matching', value: 'AI-Powered', detail: 'ML-powered ranking' },
       ];
     }
     return defaultMetrics;

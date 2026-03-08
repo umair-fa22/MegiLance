@@ -31,10 +31,10 @@ import dark from './Enterprise.dark.module.css';
 
 // Enterprise stats
 const stats = [
-  { label: 'Enterprise Features', value: '20+', icon: Building2, description: 'Built-in capabilities' },
+  { label: 'Enterprise Features', value: 'Full Suite', icon: Building2, description: 'Built-in capabilities' },
   { label: 'Talent Pool', value: 'Global', icon: Users, description: 'Vetted professionals' },
-  { label: 'Countries', value: '80+', icon: Globe, description: 'Worldwide coverage' },
-  { label: 'Uptime SLA', value: '99.9%', icon: TrendingUp, description: 'Platform reliability' },
+  { label: 'Reach', value: 'Worldwide', icon: Globe, description: 'International coverage' },
+  { label: 'Platform', value: 'Reliable', icon: TrendingUp, description: 'High availability' },
 ];
 
 // Core features
@@ -43,7 +43,7 @@ const coreFeatures = [
     icon: Shield,
     title: 'Enterprise-Grade Security',
     description: 'SOC 2 Type II certified, end-to-end encryption, and advanced threat protection. Your data is protected by bank-level security standards.',
-    highlight: 'SOC 2 Certified'
+    highlight: 'Secure'
   },
   {
     icon: Users,
@@ -61,7 +61,7 @@ const coreFeatures = [
     icon: Settings,
     title: 'Custom Integrations',
     description: 'Seamless integration with your existing tools - SAP, Workday, Oracle, Salesforce, and custom REST/GraphQL APIs.',
-    highlight: '50+ Integrations'
+    highlight: 'API Ready'
   },
   {
     icon: Lock,
@@ -73,7 +73,7 @@ const coreFeatures = [
     icon: Zap,
     title: 'AI-Powered Matching',
     description: 'Our proprietary AI analyzes skills, experience, and work style to find the perfect talent match in minutes, not weeks.',
-    highlight: '95% Match Rate'
+    highlight: 'AI-Powered'
   },
 ];
 

@@ -8,7 +8,7 @@ import { PageTransition, ScrollReveal, StaggerContainer } from '@/components/Ani
 import { useAdminData } from '@/hooks/useAdmin';
 import Modal from '@/app/components/Modal/Modal';
 import Button from '@/app/components/Button/Button';
-import api from '@/lib/api';
+import { supportTicketsApi } from '@/lib/api';
 import common from './AdminSupport.common.module.css';
 import light from './AdminSupport.light.module.css';
 import dark from './AdminSupport.dark.module.css';
@@ -165,7 +165,7 @@ const AdminSupport: React.FC = () => {
       showToast(`Ticket assigned to ${name.trim()}`);
     } else {
       try {
-        await api.supportTickets.reply(selectedTicket.id, `Assigned to ${name.trim()}`);
+        await supportTicketsApi.reply(selectedTicket.id, `Assigned to ${name.trim()}`);
         // Update local state to reflect assignment
         showToast(`Ticket assigned to ${name.trim()}`);
       } catch {
@@ -182,7 +182,7 @@ const AdminSupport: React.FC = () => {
       showToast('Ticket resolved!');
     } else {
       try {
-        await api.supportTickets.close(selectedTicket.id);
+        await supportTicketsApi.close(selectedTicket.id);
         showToast('Ticket resolved!');
       } catch {
         showToast('Failed to resolve ticket. Please try again.', 'error');
