@@ -25,7 +25,7 @@ httpx==0.28.1   # Async HTTP client (already in testing, moved here)
 # Rate Limiting
 slowapi==0.1.9
 # Stripe Payment Integration
-stripe==11.5.0
+stripe==14.4.1
 # WebSocket Real-time Features
 python-socketio==5.14.3
 
