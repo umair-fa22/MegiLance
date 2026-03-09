@@ -1,11 +1,7 @@
-/* @AI-HINT: Invoice management light theme */
+/* @AI-HINT: Invoice management light theme colors */
 
 .container {
   background-color: #f8fafc;
-}
-
-.loading {
-  color: #64748b;
 }
 
 .title {
@@ -16,19 +12,35 @@
   color: #64748b;
 }
 
-.createButton {
-  background-color: #4573df;
-  color: #ffffff;
-}
-
-.createButton:hover {
-  background-color: #3b5fc9;
-}
-
 /* Stats */
 .statCard {
   background-color: #ffffff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-color: #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.statCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.statIconBlue {
+  background-color: #dbeafe;
+  color: #2563eb;
+}
+
+.statIconGreen {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.statIconOrange {
+  background-color: #fff7ed;
+  color: #ea580c;
+}
+
+.statIconRed {
+  background-color: #fee2e2;
+  color: #dc2626;
 }
 
 .statLabel {
@@ -40,39 +52,65 @@
 }
 
 .statValuePaid {
-  color: #22c55e;
+  color: #16a34a;
 }
 
 .statValuePending {
-  color: #f59e0b;
+  color: #ea580c;
 }
 
 .statValueOverdue {
-  color: #ef4444;
+  color: #dc2626;
+}
+
+/* Search */
+.searchBar {
+  background-color: #ffffff;
+  border-color: #e2e8f0;
+}
+
+.searchBar:focus-within {
+  border-color: #4573df;
+}
+
+.searchIcon {
+  color: #94a3b8;
+}
+
+.searchInput {
+  color: #0f172a;
+}
+
+.searchInput::placeholder {
+  color: #94a3b8;
+}
+
+.clearSearch {
+  color: #94a3b8;
+}
+
+.clearSearch:hover {
+  background-color: #f1f5f9;
+  color: #475569;
 }
 
 /* Filters */
 .filters {
-  background-color: #ffffff;
-  padding: 0.5rem;
-  border-radius: 12px;
+  background-color: #f1f5f9;
 }
 
 .filterButton {
-  border-color: transparent;
   color: #64748b;
-  background-color: transparent;
 }
 
 .filterButton:hover {
-  background-color: #f1f5f9;
+  background-color: #e2e8f0;
   color: #0f172a;
 }
 
 .filterActive {
   background-color: #4573df;
   color: #ffffff;
-  border-color: #4573df;
 }
 
 .filterActive:hover {
@@ -80,14 +118,24 @@
   color: #ffffff;
 }
 
+/* Loading & Empty */
+.loadingState {
+  color: #64748b;
+}
+
+.emptyState {
+  color: #64748b;
+}
+
 /* Invoice Card */
 .invoiceCard {
   background-color: #ffffff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-color: #e2e8f0;
 }
 
 .invoiceCard:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .invoiceNumber {
@@ -110,7 +158,7 @@
   color: #94a3b8;
 }
 
-/* Status */
+/* Status badges */
 .statusPaid {
   background-color: #dcfce7;
   color: #166534;
@@ -133,22 +181,25 @@
 
 .statusCancelled {
   background-color: #f1f5f9;
-  color: #64748b;
+  color: #94a3b8;
 }
 
 /* Action Buttons */
 .actionButton {
   background-color: #f1f5f9;
   color: #475569;
+  border-color: #e2e8f0;
 }
 
 .actionButton:hover {
   background-color: #e2e8f0;
+  color: #0f172a;
 }
 
 .actionButtonPrimary {
   background-color: #4573df;
   color: #ffffff;
+  border-color: #4573df;
 }
 
 .actionButtonPrimary:hover {
@@ -158,65 +209,56 @@
 .actionButtonDanger {
   background-color: #fee2e2;
   color: #991b1b;
+  border-color: #fecaca;
 }
 
 .actionButtonDanger:hover {
   background-color: #fecaca;
 }
 
-/* Empty State */
-.emptyState {
-  color: #64748b;
-}
-
 /* Modal */
 .modal {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modalContent {
   background-color: #ffffff;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
-.modalHeader {
-  border-color: #e2e8f0;
-}
-
-.modalHeader h2 {
+.modalTitle {
   color: #0f172a;
 }
 
-.closeButton {
-  background-color: #f1f5f9;
+.modalClose {
   color: #64748b;
 }
 
-.closeButton:hover {
-  background-color: #e2e8f0;
+.modalClose:hover {
+  background-color: #f1f5f9;
   color: #0f172a;
 }
 
-.modalFooter {
-  border-color: #e2e8f0;
-}
-
 /* Form */
-.formGroup label {
+.formLabel {
   color: #374151;
 }
 
-.input, .textarea {
+.input {
   background-color: #ffffff;
   border-color: #e2e8f0;
   color: #0f172a;
 }
 
-.input:focus, .textarea:focus {
+.input:focus {
   border-color: #4573df;
 }
 
+.input::placeholder {
+  color: #94a3b8;
+}
+
 /* Items */
+.itemsTitle {
+  color: #0f172a;
+}
+
 .itemsHeader {
   color: #64748b;
   border-color: #e2e8f0;
@@ -227,12 +269,11 @@
 }
 
 .removeButton {
-  background-color: #fee2e2;
-  color: #991b1b;
+  color: #dc2626;
 }
 
 .removeButton:hover:not(:disabled) {
-  background-color: #fecaca;
+  background-color: #fee2e2;
 }
 
 .addItemButton {
@@ -241,39 +282,17 @@
 }
 
 .addItemButton:hover {
-  background-color: #f8fafc;
   border-color: #4573df;
   color: #4573df;
+  background-color: #eff6ff;
 }
 
 .totalSection {
-  background-color: #f8fafc;
-}
-
-.totalAmount {
-  color: #0f172a;
-}
-
-/* Buttons */
-.primaryButton {
-  background-color: #4573df;
-  color: #ffffff;
-}
-
-.primaryButton:hover:not(:disabled) {
-  background-color: #3b5fc9;
-}
-
-.secondaryButton {
   border-color: #e2e8f0;
   color: #374151;
 }
 
-.secondaryButton:hover {
-  background-color: #f1f5f9;
-}
-
-/* Invoice Detail */
+/* Detail */
 .detailClientName {
   color: #0f172a;
 }
@@ -284,22 +303,34 @@
 
 .detailMeta {
   background-color: #f8fafc;
+  border-radius: 8px;
+  padding: 0.75rem;
 }
 
-.detailLabel {
-  font-size: 0.75rem;
+.metaLabel {
   color: #64748b;
 }
 
-.detailItems th {
-  color: #64748b;
+.detailItems {
+  color: #374151;
 }
 
-.detailItems th,
-.detailItems td {
+.detailNotes {
   border-color: #e2e8f0;
+  color: #475569;
 }
 
-.detailItems tfoot td {
-  border-color: #cbd5e1;
+.confirmText {
+  color: #475569;
+}
+
+/* Toast */
+.toast {
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+.toastError {
+  background-color: #dc2626;
+  color: #ffffff;
 }

@@ -1,4 +1,4 @@
-/* AI-HINT: Light theme overrides for portal Help page. */
+/* AI-HINT: Light theme overrides for portal Help page — search, categories, FAQ, tutorials, status, contact, ticket form. */
 
 .themeWrapper {
   background: linear-gradient(170deg, #f0f4ff 0%, #f8fafc 40%, #faf8ff 100%);
@@ -7,6 +7,28 @@
 
 .subtitle {
   color: #475569;
+}
+
+.searchInput {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(226, 232, 240, 0.8);
+  color: #0f172a;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.searchInput::placeholder {
+  color: #94a3b8;
+}
+
+.quickLink {
+  background: rgba(255, 255, 255, 0.7);
+  color: #334155;
+  border: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.quickLink:hover {
+  background: rgba(69, 115, 223, 0.08);
+  color: #4573df;
 }
 
 .card {
@@ -22,6 +44,11 @@
   border-color: rgba(69, 115, 223, 0.2);
 }
 
+.cardIcon {
+  background: rgba(69, 115, 223, 0.08);
+  color: #4573df;
+}
+
 .cardTitle {
   color: #0f172a;
 }
@@ -30,6 +57,122 @@
   color: #475569;
 }
 
+.cardMeta {
+  color: #4573df;
+}
+
+/* FAQ */
+.faqFilter {
+  background: rgba(241, 245, 249, 0.7);
+  color: #475569;
+  border-color: rgba(226, 232, 240, 0.5);
+}
+
+.faqFilter:hover {
+  background: rgba(69, 115, 223, 0.06);
+  color: #4573df;
+}
+
+.faqFilterActive {
+  background: #4573df;
+  color: #ffffff;
+  border-color: #4573df;
+}
+
+.faqItem {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(226, 232, 240, 0.6);
+}
+
+.faqItemExpanded {
+  border-color: rgba(69, 115, 223, 0.2);
+  box-shadow: 0 4px 12px rgba(69, 115, 223, 0.08);
+}
+
+.faqAnswer {
+  color: #475569;
+}
+
+.emptyResult {
+  background: rgba(241, 245, 249, 0.5);
+  color: #475569;
+}
+
+/* Tutorials */
+.tutorialCard {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.tutorialCard:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.tutorialThumb {
+  background: linear-gradient(135deg, rgba(69, 115, 223, 0.08) 0%, rgba(147, 51, 234, 0.06) 100%);
+  color: #4573df;
+}
+
+.tutorialViews {
+  color: #94a3b8;
+}
+
+/* Status */
+.statusBar {
+  background: rgba(39, 174, 96, 0.06);
+  border: 1px solid rgba(39, 174, 96, 0.15);
+}
+
+.statusMeta {
+  color: #475569;
+}
+
+/* Contact */
+.contactCard {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.contactCard:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Ticket Form */
+.ticketForm {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.formLabel {
+  color: #334155;
+}
+
+.formInput {
+  background: rgba(248, 250, 252, 0.8);
+  border-color: rgba(226, 232, 240, 0.8);
+  color: #0f172a;
+}
+
+.formInput::placeholder {
+  color: #94a3b8;
+}
+
+.formTextarea {
+  background: rgba(248, 250, 252, 0.8);
+  border-color: rgba(226, 232, 240, 0.8);
+  color: #0f172a;
+}
+
+.formTextarea::placeholder {
+  color: #94a3b8;
+}
+
+.ticketSuccess {
+  color: #27AE60;
+}
+
+/* Legacy */
 .item {
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(8px);
@@ -46,6 +189,12 @@
   background: linear-gradient(135deg, #4573df 0%, #2563eb 100%);
   color: #ffffff;
   box-shadow: 0 4px 14px rgba(69, 115, 223, 0.3);
+}
+
+.buttonSecondary {
+  background: rgba(255, 255, 255, 0.8);
+  color: #334155;
+  border-color: rgba(226, 232, 240, 0.8);
 }
 
 .button:hover {

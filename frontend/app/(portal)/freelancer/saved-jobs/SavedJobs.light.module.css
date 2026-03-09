@@ -1,73 +1,57 @@
-/* Light Theme */
-.container {
-  background: #fff;
-}
+/* @AI-HINT: Light theme for enhanced Saved Jobs page */
+.container { background: #f8fafc; }
+.title { color: #0f172a; }
+.subtitle { color: #64748b; }
 
-.title {
-  color: #1a1a1a;
-}
+/* Stats */
+.statCard { background: #ffffff; border-color: #e2e8f0; }
+.statValue { color: #0f172a; }
+.statLabel { color: #94a3b8; }
 
-.subtitle {
-  color: #64748b;
-}
+/* Toolbar */
+.toolbar { background: transparent; }
+.searchInput { background: #ffffff; border-color: #e2e8f0; color: #0f172a; }
+.sortSelect { background: #ffffff; border-color: #e2e8f0; color: #374151; }
+.filterToggle { border-color: #e2e8f0; color: #64748b; }
+.filterToggle:hover { background: #f1f5f9; }
 
-.emptyState {
-  background: #f9fafb;
-  color: #64748b;
-}
+/* Filter Panel */
+.filterPanel { background: #ffffff; border: 1px solid #e2e8f0; }
+.filterLabel { color: #374151; }
+.filterChip { color: #64748b; }
+.filterChip:hover { background: #f1f5f9; }
+.filterChipActive { background: #4573df; color: #ffffff; }
 
-.emptyState h3 {
-  color: #1a1a1a;
-}
+/* Bulk / Select */
+.bulkBar { background: #fef3c7; color: #92400e; }
+.selectAllRow { color: #64748b; }
 
+/* Empty */
+.emptyState { background: #f9fafb; color: #64748b; }
+.emptyState h3 { color: #1a1a1a; }
+
+/* Cards */
 .jobCard {
-  background: #fff;
+  background: #ffffff;
   border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
-
 .jobCard:hover {
   border-color: #4573df;
-  box-shadow: 0 4px 12px rgba(69, 115, 223, 0.1);
+  box-shadow: 0 4px 12px rgba(69,115,223,0.1);
+  transform: translateY(-1px);
 }
+.jobCardSelected { border-color: #4573df; background: #f0f4ff; }
+.jobTitle { color: #1a1a1a; }
+.savedTime { color: #94a3b8; background: #f1f5f9; padding: 2px 8px; border-radius: 4px; }
+.clientName { color: #64748b; }
+.description { color: #374151; }
+.skill { background: #eef2ff; color: #4573df; }
+.budget { color: #1a1a1a; }
+.budgetType { background: #f1f5f9; color: #64748b; }
+.proposals { color: #64748b; }
+.jobFooter { border-color: #e2e8f0; }
 
-.jobTitle {
-  color: #1a1a1a;
-}
-
-.savedTime {
-  color: #94a3b8;
-  background: #f1f5f9;
-  padding: 2px 8px;
-  border-radius: 4px;
-}
-
-.clientName {
-  color: #64748b;
-}
-
-.description {
-  color: #374151;
-}
-
-.skill {
-  background: #eef2ff;
-  color: #4573df;
-}
-
-.budget {
-  color: #1a1a1a;
-}
-
-.budgetType {
-  background: #f1f5f9;
-  color: #64748b;
-}
-
-.proposals {
-  color: #64748b;
-}
-
-.jobFooter {
-  border-color: #e2e8f0;
-}
+/* Notes */
+.noteInput { background: #ffffff; border-color: #e2e8f0; color: #0f172a; }
+.noteDisplay { background: #fef9e7; color: #92400e; }

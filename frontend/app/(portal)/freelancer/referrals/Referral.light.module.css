@@ -12,6 +12,46 @@
   color: #64748b;
 }
 
+/* Tier Card */
+.tierCard {
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.tierLabel {
+  color: #64748b;
+}
+
+.tierName {
+  color: #1a202c;
+}
+
+.tierReward {
+  color: #22c55e;
+}
+
+.tierProgressLabel {
+  color: #64748b;
+}
+
+.tierProgressValue {
+  color: #1a202c;
+}
+
+.tierProgressBar {
+  background-color: #e2e8f0;
+}
+
+.tierProgressFill {
+  background: linear-gradient(90deg, #4573df, #3b82f6);
+}
+
+.tierPerk {
+  background-color: #f0f4ff;
+  color: #4573df;
+}
+
+/* Code Card */
 .codeCard {
   background: linear-gradient(135deg, #4573df, #3b5fc7);
   color: white;
@@ -46,6 +86,7 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* Stats */
 .statCard {
   background-color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -59,6 +100,33 @@
   color: #64748b;
 }
 
+/* Funnel */
+.funnelCard {
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.funnelTitle {
+  color: #1a202c;
+}
+
+.funnelStepLabel {
+  color: #475569;
+}
+
+.funnelStepValue {
+  color: #1a202c;
+}
+
+.funnelBar {
+  background-color: #e2e8f0;
+}
+
+.funnelBarFill {
+  background: linear-gradient(90deg, #4573df, #3b82f6);
+}
+
+/* Milestone */
 .milestoneCard {
   background-color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -82,6 +150,7 @@
   color: #166534;
 }
 
+/* Share */
 .shareCard {
   background-color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -91,9 +160,12 @@
   color: #1a202c;
 }
 
-.shareInput {
+.shareLinkInput {
   background-color: #f8fafc;
   border-color: #e2e8f0;
+}
+
+.shareInput {
   color: #1a202c;
 }
 
@@ -126,6 +198,27 @@
   color: white;
 }
 
+/* Tabs */
+.tabs {
+  background-color: #f1f5f9;
+}
+
+.tab {
+  color: #64748b;
+}
+
+.tab:hover {
+  background-color: rgba(69, 115, 223, 0.06);
+  color: #4573df;
+}
+
+.tabActive {
+  background-color: white;
+  color: #4573df;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* How It Works */
 .howItWorks {
   background-color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -140,6 +233,10 @@
   color: white;
 }
 
+.stepIcon {
+  color: #4573df;
+}
+
 .step h4 {
   color: #1a202c;
 }
@@ -148,6 +245,39 @@
   color: #64748b;
 }
 
+/* Tiers Overview */
+.tiersOverview {
+  border-top-color: #e2e8f0;
+}
+
+.tiersOverview h4 {
+  color: #1a202c;
+}
+
+.tierItem {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.tierItemActive {
+  background-color: #f0f4ff;
+  border-color: #4573df;
+  box-shadow: 0 2px 8px rgba(69, 115, 223, 0.15);
+}
+
+.tierItemName {
+  color: #1a202c;
+}
+
+.tierItemReward {
+  color: #22c55e;
+}
+
+.tierItemReq {
+  color: #94a3b8;
+}
+
+/* Referrals Card */
 .referralsCard {
   background-color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -157,12 +287,30 @@
   color: #1a202c;
 }
 
+.filterBtn {
+  color: #64748b;
+}
+
+.filterBtn:hover {
+  background-color: #f1f5f9;
+}
+
+.filterBtnActive {
+  background-color: #4573df;
+  color: white;
+}
+
 .emptyState {
   color: #94a3b8;
 }
 
 .referralItem {
   background-color: #f8fafc;
+}
+
+.referralAvatar {
+  background-color: #e8ecf4;
+  color: #4573df;
 }
 
 .referralEmail {
@@ -177,12 +325,22 @@
   color: #22c55e;
 }
 
+/* Rewards */
 .rewardsCard {
   background-color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-.rewardTotal span, .rewardPending span {
+.rewardsTitle {
+  color: #1a202c;
+}
+
+.rewardBox {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.rewardBox span {
   color: #64748b;
 }
 
@@ -190,8 +348,134 @@
   color: #22c55e;
 }
 
-.rewardPending strong {
+.rewardPendingBox strong {
   color: #f59e0b;
+}
+
+.rewardAvailable strong {
+  color: #4573df;
+}
+
+/* Reward History */
+.rewardHistory {
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.rewardHistory h3 {
+  color: #1a202c;
+}
+
+.rewardHistoryItem {
+  background-color: #f8fafc;
+}
+
+.rewardHistoryIcon {
+  background-color: #dcfce7;
+  color: #22c55e;
+}
+
+.rewardHistoryDesc {
+  color: #1a202c;
+}
+
+.rewardHistoryDate {
+  color: #94a3b8;
+}
+
+.rewardHistoryAmount {
+  color: #22c55e;
+}
+
+/* Leaderboard */
+.leaderboardCard {
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.leaderboardCard h3 {
+  color: #1a202c;
+}
+
+.leaderboardEntry {
+  background-color: #f8fafc;
+}
+
+.leaderboardEntryCurrent {
+  background-color: #f0f4ff;
+  border: 1px solid #4573df20;
+}
+
+.leaderboardRank {
+  background-color: #e2e8f0;
+  color: #475569;
+}
+
+.leaderboardName {
+  color: #1a202c;
+}
+
+.leaderboardStats {
+  color: #64748b;
+}
+
+.leaderboardNote {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
+/* Modal */
+.modal {
+  background-color: white;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.modalHeader {
+  border-bottom-color: #e2e8f0;
+  color: #1a202c;
+}
+
+.modalClose {
+  color: #64748b;
+}
+
+.modalClose:hover {
+  background-color: #f1f5f9;
+  color: #1a202c;
+}
+
+.modalFooter {
+  border-top-color: #e2e8f0;
+}
+
+.formLabel {
+  color: #475569;
+}
+
+.removeEmailBtn {
+  color: #ef4444;
+}
+
+.removeEmailBtn:hover {
+  background-color: #fef2f2;
+}
+
+.addEmailBtn {
+  color: #4573df;
+}
+
+.addEmailBtn:hover {
+  color: #3b5fc7;
+}
+
+.messageTextarea {
+  background-color: white;
+  border-color: #e2e8f0;
+  color: #1a202c;
+}
+
+.messageTextarea:focus {
+  border-color: #4573df;
 }
 
 .inviteForm {

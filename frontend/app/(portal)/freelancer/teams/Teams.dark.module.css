@@ -1,13 +1,15 @@
-/* @AI-HINT: Teams page - dark theme colors */
+/* @AI-HINT: Teams dark theme - colors only */
 
 .container {
   background-color: #0f172a;
+  color: #e2e8f0;
 }
 
-.loading {
+.loadingState {
   color: #94a3b8;
 }
 
+/* Header */
 .title {
   color: #f1f5f9;
 }
@@ -19,7 +21,12 @@
 /* Stats */
 .statCard {
   background-color: #1e293b;
-  border: 1px solid #334155;
+  border-color: #334155;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.statCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .statValue {
@@ -30,9 +37,80 @@
   color: #94a3b8;
 }
 
+.statIconBlue {
+  background-color: rgba(69, 115, 223, 0.2);
+  color: #6b9aef;
+}
+
+.statIconGreen {
+  background-color: rgba(39, 174, 96, 0.2);
+  color: #4ade80;
+}
+
+.statIconOrange {
+  background-color: rgba(255, 152, 0, 0.2);
+  color: #ffb74d;
+}
+
+.statIconPurple {
+  background-color: rgba(139, 92, 246, 0.2);
+  color: #a78bfa;
+}
+
+/* Toolbar */
+.toolbar {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+.searchIcon {
+  color: #64748b;
+}
+
+.searchInput {
+  color: #f1f5f9;
+  border-color: #334155;
+  background-color: #0f172a;
+}
+
+.searchInput::placeholder {
+  color: #64748b;
+}
+
+.searchInput:focus {
+  background-color: #0f172a;
+}
+
+.clearSearch {
+  color: #64748b;
+}
+
+.clearSearch:hover {
+  background-color: #334155;
+  color: #94a3b8;
+}
+
+.filterChip {
+  color: #94a3b8;
+  background-color: #0f172a;
+  border-color: #334155;
+}
+
+.filterChip:hover {
+  background-color: #334155;
+  color: #e2e8f0;
+}
+
+.filterChipActive {
+  background-color: #4573df;
+  color: #ffffff;
+  border-color: #4573df;
+}
+
 /* Tabs */
 .tabs {
   background-color: #1e293b;
+  border-color: #334155;
 }
 
 .tab {
@@ -40,72 +118,89 @@
 }
 
 .tab:hover {
-  color: #e2e8f0;
+  color: #f1f5f9;
+  background-color: #334155;
 }
 
 .activeTab {
-  background-color: #334155;
-  color: #60a5fa;
+  background-color: #4573df;
+  color: #ffffff;
+}
+
+.tabBadge {
+  background-color: rgba(69, 115, 223, 0.25);
+  color: #6b9aef;
+}
+
+.activeTab .tabBadge {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* Result Count */
+.resultCount {
+  color: #64748b;
 }
 
 /* Member Card */
 .memberCard {
   background-color: #1e293b;
-  border: 1px solid #334155;
+  border-color: #334155;
 }
 
 .memberCard:hover {
   border-color: #475569;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .avatar {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: #334155;
+  color: #94a3b8;
 }
 
 .memberName {
   color: #f1f5f9;
 }
 
-.ownerBadge {
-  background-color: rgba(245, 158, 11, 0.2);
-  color: #fbbf24;
-}
-
 .memberEmail {
   color: #94a3b8;
 }
 
-.memberMeta {
+.memberMetaRow {
   color: #64748b;
 }
 
-/* Role Badges */
-.roleOwner {
-  background-color: rgba(245, 158, 11, 0.2);
-  color: #fbbf24;
+/* Expanded Details */
+.expandedDetails {
+  border-top-color: #334155;
+  background-color: #162032;
 }
 
-.roleAdmin {
-  background-color: rgba(59, 130, 246, 0.2);
-  color: #60a5fa;
+.detailTitle {
+  color: #94a3b8;
 }
 
-.roleMember {
-  background-color: rgba(34, 197, 94, 0.2);
+.permTag {
+  background-color: rgba(39, 174, 96, 0.15);
   color: #4ade80;
 }
 
-.roleViewer {
-  background-color: rgba(100, 116, 139, 0.2);
-  color: #94a3b8;
+.detailItem {
+  background-color: #0f172a;
 }
 
 /* Invite Card */
 .inviteCard {
   background-color: #1e293b;
-  border: 1px solid #334155;
+  border-color: #334155;
+}
+
+.inviteCard:hover {
+  border-color: #475569;
+}
+
+.inviteIconWrap {
+  background-color: rgba(69, 115, 223, 0.2);
+  color: #6b9aef;
 }
 
 .inviteEmail {
@@ -113,143 +208,186 @@
 }
 
 .inviteMeta {
-  color: #94a3b8;
-}
-
-.expiresAt {
   color: #64748b;
 }
 
 /* Empty State */
 .emptyState {
   background-color: #1e293b;
+  border: 1px dashed #334155;
   color: #94a3b8;
 }
 
-/* Role Card */
+/* Roles Tab */
 .roleCard {
   background-color: #1e293b;
-  border: 1px solid #334155;
+  border-color: #334155;
+}
+
+.roleCard:hover {
+  border-color: #475569;
+}
+
+.roleIcon_owner {
+  background-color: rgba(242, 201, 76, 0.2);
+  color: #fbbf24;
+}
+
+.roleIcon_admin {
+  background-color: rgba(69, 115, 223, 0.2);
+  color: #6b9aef;
+}
+
+.roleIcon_member {
+  background-color: rgba(39, 174, 96, 0.2);
+  color: #4ade80;
+}
+
+.roleIcon_viewer {
+  background-color: rgba(148, 163, 184, 0.2);
+  color: #94a3b8;
+}
+
+.roleCardName {
+  color: #f1f5f9;
+}
+
+.roleCardCount {
+  color: #64748b;
+}
+
+.roleCardDesc {
+  color: #94a3b8;
+}
+
+.rolePermItem {
+  background-color: #0f172a;
+  color: #94a3b8;
+}
+
+/* Permissions Matrix */
+.matrixSection {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+.matrixTitle {
+  color: #f1f5f9;
+}
+
+.matrixHeaderCell {
+  color: #94a3b8;
+  background-color: #162032;
+  border-bottom: 2px solid #334155;
+}
+
+.matrixRow {
+  border-bottom: 1px solid #1e293b;
+}
+
+.matrixRow:hover {
+  background-color: #162032;
+}
+
+.matrixCell {
+  color: #e2e8f0;
+}
+
+/* Modal */
+.modal {
+  background-color: #1e293b;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.modalOverlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modalTitle {
+  color: #f1f5f9;
+}
+
+.modalClose {
+  color: #64748b;
+}
+
+.modalClose:hover {
+  background-color: #334155;
+  color: #94a3b8;
+}
+
+.modalHeader {
+  border-bottom-color: #334155;
+}
+
+.modalFooter {
+  border-top-color: #334155;
+  background-color: #162032;
+}
+
+/* Form */
+.label {
+  color: #e2e8f0;
+}
+
+.removeEmailBtn {
+  background-color: #334155;
+  color: #64748b;
+}
+
+.removeEmailBtn:hover {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+.addEmailBtn {
+  color: #6b9aef;
+}
+
+.addEmailBtn:hover {
+  color: #4573df;
+}
+
+/* Role Options */
+.roleOption {
+  background-color: #0f172a;
+  border-color: #334155;
+}
+
+.roleOption:hover {
+  background-color: #1e293b;
+  border-color: #475569;
+}
+
+.selectedRole {
+  background-color: rgba(69, 115, 223, 0.12);
+  border-color: #4573df;
 }
 
 .roleName {
   color: #f1f5f9;
 }
 
-.roleCount {
+.roleDesc {
   color: #94a3b8;
 }
 
-.roleDescription {
-  color: #94a3b8;
-}
-
-/* Buttons */
-.primaryButton {
-  background-color: #4573df;
-  color: #ffffff;
-}
-
-.primaryButton:hover {
-  background-color: #5b85e8;
-}
-
-.secondaryButton {
-  background-color: #334155;
+.roleEditInfo {
   color: #e2e8f0;
 }
 
-.secondaryButton:hover {
-  background-color: #475569;
-}
-
-.dangerButton {
-  background-color: rgba(239, 68, 68, 0.2);
-  color: #f87171;
-}
-
-.dangerButton:hover {
-  background-color: rgba(239, 68, 68, 0.3);
-}
-
-.actionButton {
-  background-color: #334155;
-  color: #e2e8f0;
-}
-
-.actionButton:hover {
-  background-color: #475569;
-}
-
-/* Modal */
-.modal {
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.modalContent {
-  background-color: #1e293b;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-}
-
-.modalHeader {
-  border-bottom-color: #334155;
-  color: #f1f5f9;
-}
-
-.modalFooter {
-  border-top-color: #334155;
-}
-
-.closeButton {
-  color: #94a3b8;
-}
-
-.modalText {
-  color: #e2e8f0;
-}
-
-/* Form */
-.input,
-.select {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #f1f5f9;
-}
-
-.input:focus,
-.select:focus {
-  border-color: #4573df;
-  box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2);
-}
-
-.input::placeholder {
-  color: #64748b;
-}
-
-/* Role Options */
-.roleOption {
-  background-color: #0f172a;
-  color: #e2e8f0;
-}
-
-.roleOption:hover {
-  background-color: #1e293b;
-}
-
-.roleSelected {
-  background-color: rgba(69, 115, 223, 0.2);
-  border-color: #4573df;
-}
-
-.optionDesc {
-  color: #94a3b8;
-}
-
+/* Confirm */
 .confirmText {
   color: #e2e8f0;
 }
 
+/* Toast */
 .toast {
   background: #27ae60;
-  color: #fff;
+  color: #ffffff;
+}
+
+.toastError {
+  background: #e81123;
+  color: #ffffff;
 }

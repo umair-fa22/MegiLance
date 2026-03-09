@@ -1,45 +1,45 @@
-// @AI-HINT: Premium Hero component - the production-ready first impression. Features animated gradient mesh background, glassmorphism cards, floating 3D elements, and engaging micro-interactions.
+// @AI-HINT: Action-oriented Hero — search bar, popular categories, and clear value props. Designed like Upwork/Toptal for real-world usability.
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { 
   ArrowRight, 
-  PlayCircle, 
-  Sparkles, 
+  Search,
   ShieldCheck, 
-  Bot, 
-  Globe, 
-  Star, 
-  Users, 
-  TrendingUp, 
-  Award,
   Zap,
   CheckCircle2,
-  ChevronRight
+  Code,
+  Palette,
+  Smartphone,
+  BarChart3,
+  PenTool,
+  Video
 } from 'lucide-react';
 
 import Button from '@/app/components/Button/Button';
-import StatItem from './StatItem';
-import { 
-  FloatingCube, 
-  FloatingSphere, 
-  FloatingRing, 
-  ParticlesSystem,
-  OrbitingElements 
-} from '@/app/components/3D';
 
 import commonStyles from './Hero.common.module.css';
 import lightStyles from './Hero.light.module.css';
 import darkStyles from './Hero.dark.module.css';
 
+const POPULAR_CATEGORIES = [
+  { label: 'Web Development', icon: Code, href: '/explore?category=web-development' },
+  { label: 'UI/UX Design', icon: Palette, href: '/explore?category=ui-ux-design' },
+  { label: 'Mobile Apps', icon: Smartphone, href: '/explore?category=mobile-apps' },
+  { label: 'Data Science', icon: BarChart3, href: '/explore?category=data-science' },
+  { label: 'Content Writing', icon: PenTool, href: '/explore?category=content-writing' },
+  { label: 'Video & Animation', icon: Video, href: '/explore?category=video-animation' },
+];
+
 const Hero: React.FC = () => {
   const { resolvedTheme } = useTheme();
+  const router = useRouter();
   const [mounted, setMounted] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [searchQuery, setSearchQuery] = useState('');
   
   const styles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
@@ -47,18 +47,12 @@ const Hero: React.FC = () => {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Interactive mouse tracking for premium parallax effect
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
-    const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
-    setMousePosition({ x: x * 20, y: y * 20 });
-  }, []);
+  const handleSearch = useCallback((e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/explore?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  }, [searchQuery, router]);
 
   if (!mounted) {
     return (
@@ -75,179 +69,107 @@ const Hero: React.FC = () => {
   return (
     <section 
       className={cn(commonStyles.heroContainer, styles.heroContainer)}
-      onMouseMove={handleMouseMove}
-      aria-label="Hero"
+      aria-label="Find freelance talent or work"
     >
-      {/* Premium animated mesh gradient background */}
+      {/* Background */}
       <div className={cn(commonStyles.meshBackground, styles.meshBackground)} />
-      
-      {/* Background particles - REMOVED */}
-      
-      {/* Floating orbs with parallax - REMOVED */}
-
-      {/* Grid pattern overlay */}
-      <div className={cn(commonStyles.gridPattern, styles.gridPattern)} />
 
       <div className={commonStyles.contentWrapper}>
-        <div className={commonStyles.heroGrid}>
-          {/* Left Column: Content */}
-          <div className={commonStyles.leftColumn}>
-            {/* Announcement badge */}
-            <Link 
-              href="/features" 
-              className={cn(
-                commonStyles.announcementBadge, 
-                styles.announcementBadge,
-                isVisible && commonStyles.fadeInUp,
-                commonStyles.delay1
-              )}
-            >
-              <span className={cn(commonStyles.badgeIcon, styles.badgeIcon)}>
-                <Sparkles size={14} />
-              </span>
-              <span className={commonStyles.badgeText}>
-                New: AI-powered instant matching is here
-              </span>
-              <ChevronRight size={16} className={commonStyles.badgeArrow} />
-            </Link>
+        {/* Main headline — direct and clear */}
+        <h1 className={cn(commonStyles.mainHeading, styles.mainHeading)}>
+          <span className={commonStyles.headingLine}>Hire expert freelancers</span>
+          <span className={cn(commonStyles.headingGradient, styles.headingGradient)}>
+            for any project
+          </span>
+        </h1>
 
-            {/* Main headline with gradient text */}
-            <h1 
-              className={cn(
-                commonStyles.mainHeading, 
-                styles.mainHeading,
-                isVisible && commonStyles.fadeInUp,
-                commonStyles.delay2
-              )}
-            >
-              <span className={commonStyles.headingLine}>Where Elite Talent</span>
-              <span className={cn(commonStyles.headingGradient, styles.headingGradient)}>
-                Meets Innovation
-              </span>
-            </h1>
+        {/* Short, direct value prop */}
+        <p className={cn(commonStyles.subheading, styles.subheading)}>
+          Post a project, get matched with vetted professionals in minutes. 
+          Secure payments, milestone tracking, and AI-powered talent matching included.
+        </p>
 
-            {/* Value proposition */}
-            <p 
-              className={cn(
-                commonStyles.subheading, 
-                styles.subheading,
-                isVisible && commonStyles.fadeInUp,
-                commonStyles.delay3
-              )}
+        {/* Search bar — the primary action */}
+        <form onSubmit={handleSearch} className={cn(commonStyles.searchForm, styles.searchForm)} role="search">
+          <div className={cn(commonStyles.searchInputWrapper, styles.searchInputWrapper)}>
+            <Search size={20} className={cn(commonStyles.searchIcon, styles.searchIcon)} aria-hidden="true" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder='Try "React developer", "Logo design", "SEO expert"...'
+              className={cn(commonStyles.searchInput, styles.searchInput)}
+              aria-label="Search for freelancers or projects"
+            />
+            <Button 
+              type="submit" 
+              variant="primary" 
+              size="md"
+              className={cn(commonStyles.searchButton, styles.searchButton)}
             >
-              Experience the future of work with MegiLance. Our AI-powered matching engine connects elite talent 
-              with innovative projects instantly, while blockchain integration ensures secure, low-fee payments. 
-              Built for the modern gig economy.
-            </p>
-
-            {/* CTA buttons */}
-            <div 
-              className={cn(
-                commonStyles.ctaGroup,
-                isVisible && commonStyles.fadeInUp,
-                commonStyles.delay4
-              )}
-            >
-              <Link href="/post-project" className={commonStyles.ctaLink}>
-                <Button 
-                  variant="primary" 
-                  size="lg" 
-                  className={cn(commonStyles.primaryCta, styles.primaryCta)}
-                >
-                  Post a Project Free
-                  <ArrowRight size={18} className={commonStyles.ctaIcon} />
-                </Button>
-              </Link>
-              <Link href="/signup" className={commonStyles.ctaLink}>
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  className={cn(commonStyles.secondaryCta, styles.secondaryCta)}
-                >
-                  <PlayCircle size={18} />
-                  Join as Freelancer
-                </Button>
-              </Link>
-            </div>
-
-            {/* Social proof row - REMOVED as per user request */}
-            
-             {/* Trust badges - REMOVED as per user request */}
+              Search
+              <ArrowRight size={16} />
+            </Button>
           </div>
+        </form>
 
-          {/* Right Column: 3D Visuals */}
-          <div className={commonStyles.rightColumn}>
-            <div className={commonStyles.visualContainer}>
-               {/* Enhanced 3D floating objects - Repositioned for Right Column */}
-              <div className={cn(commonStyles.floating3D, commonStyles.floating3DTopLeft)}>
-                <FloatingCube size={50} />
-              </div>
-              <div className={cn(commonStyles.floating3D, commonStyles.floating3DTopRight)}>
-                <FloatingSphere size={70} variant="purple" />
-              </div>
-              <div className={cn(commonStyles.floating3D, commonStyles.floating3DBottomLeft)}>
-                <FloatingRing size={80} thickness={6} />
-              </div>
-              <div className={cn(commonStyles.floating3D, commonStyles.floating3DBottomRight)}>
-                <FloatingSphere size={55} variant="orange" />
-              </div>
-              <div className={cn(commonStyles.floating3D, commonStyles.floating3DCenterRight)}>
-                <FloatingCube size={35} />
-              </div>
-              <div className={cn(commonStyles.floating3D, commonStyles.floating3DCenterLeft)}>
-                <OrbitingElements count={4} size={120} />
-              </div>
+        {/* Quick popular searches */}
+        <div className={cn(commonStyles.popularSearches, styles.popularSearches)}>
+          <span className={cn(commonStyles.popularLabel, styles.popularLabel)}>Popular:</span>
+          {['React Developer', 'WordPress', 'Logo Design', 'Python', 'Content Writer'].map((term) => (
+            <Link 
+              key={term} 
+              href={`/explore?q=${encodeURIComponent(term)}`}
+              className={cn(commonStyles.popularTag, styles.popularTag)}
+            >
+              {term}
+            </Link>
+          ))}
+        </div>
 
-              {/* Feature pills - Floating in 3D space */}
-              <div className={cn(commonStyles.floatingPill, commonStyles.pill1, styles.floatingPill)}>
-                <Bot size={16} />
-                <span>AI Smart Matching</span>
-              </div>
-              <div className={cn(commonStyles.floatingPill, commonStyles.pill2, styles.floatingPill)}>
-                <Zap size={16} />
-                <span>Instant Payments</span>
-              </div>
-              <div className={cn(commonStyles.floatingPill, commonStyles.pill3, styles.floatingPill)}>
-                <ShieldCheck size={16} />
-                <span>Blockchain Escrow</span>
-              </div>
-            </div>
+        {/* CTA buttons */}
+        <div className={commonStyles.ctaGroup}>
+          <Link href="/signup?role=client">
+            <Button variant="primary" size="lg" className={cn(commonStyles.primaryCta, styles.primaryCta)}>
+              Post a Project — It&apos;s Free
+              <ArrowRight size={18} />
+            </Button>
+          </Link>
+          <Link href="/signup?role=freelancer">
+            <Button variant="outline" size="lg" className={cn(commonStyles.secondaryCta, styles.secondaryCta)}>
+              Earn as a Freelancer
+            </Button>
+          </Link>
+        </div>
+
+        {/* Value props — concrete benefits, not vague marketing */}
+        <div className={cn(commonStyles.valueProps, styles.valueProps)}>
+          <div className={cn(commonStyles.valueProp, styles.valueProp)}>
+            <CheckCircle2 size={16} />
+            <span>No upfront fees</span>
+          </div>
+          <div className={cn(commonStyles.valueProp, styles.valueProp)}>
+            <ShieldCheck size={16} />
+            <span>Escrow payment protection</span>
+          </div>
+          <div className={cn(commonStyles.valueProp, styles.valueProp)}>
+            <Zap size={16} />
+            <span>AI-matched in under 24h</span>
           </div>
         </div>
 
-        {/* Stats grid with glassmorphism - Full Width Bottom (FYP Report Statistics) */}
-        <div 
-          className={cn(
-            commonStyles.statsContainer,
-            isVisible && commonStyles.fadeInUp,
-            commonStyles.delay5
-          )}
-        >
-          <div className={cn(commonStyles.statsGrid, styles.statsGrid)}>
-            <StatItem 
-              value={98} 
-              label="AI Match Accuracy" 
-              suffix="%"
-              icon={<Bot size={20} />} 
-            />
-            <StatItem 
-              value={5} 
-              label="Platform Fee (Low)" 
-              suffix="%"
-              icon={<Award size={20} />} 
-            />
-            <StatItem 
-              value={0} 
-              label="Payment Delays" 
-              suffix="s"
-              icon={<Zap size={20} />} 
-            />
-            <StatItem 
-              value={100} 
-              label="Secure Escrow" 
-              suffix="%"
-              icon={<ShieldCheck size={20} />} 
-            />
+        {/* Browse by category — actionable grid */}
+        <div className={cn(commonStyles.categoriesSection, styles.categoriesSection)}>
+          <h2 className={cn(commonStyles.categoriesTitle, styles.categoriesTitle)}>
+            Browse by category
+          </h2>
+          <div className={commonStyles.categoriesGrid}>
+            {POPULAR_CATEGORIES.map(({ label, icon: Icon, href }) => (
+              <Link key={label} href={href} className={cn(commonStyles.categoryCard, styles.categoryCard)}>
+                <Icon size={24} className={cn(commonStyles.categoryIcon, styles.categoryIcon)} />
+                <span className={cn(commonStyles.categoryLabel, styles.categoryLabel)}>{label}</span>
+              </Link>
+            ))}
           </div>
         </div>
       </div>

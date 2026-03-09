@@ -28,16 +28,16 @@ interface SecurityBadge {
 }
 
 const trustIndicators: TrustIndicator[] = [
-  { id: 1, icon: <Users size={24} />, value: 98, label: "AI Match Accuracy", suffix: "%" },
-  { id: 2, icon: <Award size={24} />, value: 80, label: "Fee Savings", suffix: "%" },
-  { id: 3, icon: <Zap size={24} />, value: 2, label: "Transaction Time", suffix: "s" },
-  { id: 4, icon: <Shield size={24} />, value: 100, label: "Secure Escrow", suffix: "%" },
+  { id: 1, icon: <Users size={24} />, value: 5, label: "Average Proposals", suffix: "+" },
+  { id: 2, icon: <Award size={24} />, value: 0, label: "Platform Fee", suffix: "%" },
+  { id: 3, icon: <Zap size={24} />, value: 24, label: "Hour Avg. Response", suffix: "h" },
+  { id: 4, icon: <Shield size={24} />, value: 100, label: "Escrow Protected", suffix: "%" },
 ];
 
 const securityBadges: SecurityBadge[] = [
-  { id: 1, title: "Bank-Level Security", description: "256-bit encryption for all data", icon: <Shield size={20} /> },
-  { id: 2, title: "Verified Reviews", description: "AI-moderated feedback system", icon: <Star size={20} /> },
-  { id: 3, title: "Instant Payments", description: "USDC blockchain transactions", icon: <Zap size={20} /> },
+  { id: 1, title: "Escrow Protection", description: "Funds held safely until work is approved", icon: <Shield size={20} /> },
+  { id: 2, title: "Verified Profiles", description: "Identity and skills verification", icon: <Star size={20} /> },
+  { id: 3, title: "Secure Payments", description: "Encrypted transactions and payouts", icon: <Zap size={20} /> },
 ];
 
 const TrustIndicators: React.FC = () => {
@@ -47,9 +47,9 @@ const TrustIndicators: React.FC = () => {
   return (
     <div className={cn(commonStyles.trustContainer, styles.trustContainer)}>
       <div className={cn(commonStyles.trustHeader, styles.trustHeader)}>
-        <h2 className={cn(commonStyles.trustTitle, styles.trustTitle)}>Engineered for Performance</h2>
+        <h2 className={cn(commonStyles.trustTitle, styles.trustTitle)}>Built for Real Work</h2>
         <p className={cn(commonStyles.trustSubtitle, styles.trustSubtitle)}>
-          Built on advanced AI and Blockchain technology for maximum efficiency and security.
+          Everything you need to post projects, hire freelancers, and manage payments with confidence.
         </p>
       </div>
 

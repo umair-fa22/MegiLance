@@ -1,30 +1,50 @@
-﻿.header { border-bottom-color: #e2e8f0; }
-.header h1 { color: #0f172a; }
-.header p { color: #64748b; }
+﻿/* @AI-HINT: Light theme for enhanced Reviews page */
+.pageWrapper { background: #f8fafc; }
+.header { border-bottom-color: #e2e8f0; }
+.headerTitle { color: #0f172a; }
+.headerSubtitle { color: #64748b; }
 
-.summaryCard {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
-}
+.summaryCard { background: #fff; border-color: #e2e8f0; }
+.summaryLabel { color: #64748b; }
+.summaryScore { color: #4573df; }
+.summaryCount { color: #94a3b8; }
 
-.summaryCard h2 { color: #64748b; }
-.summaryRatingScore { color: #4573df; }
-.summaryCard .reviewCount { color: #94a3b8; }
+.distributionCard, .subRatingsCard { background: #fff; border-color: #e2e8f0; }
+.distributionTitle { color: #0f172a; }
+.distRow { color: #0f172a; }
+.distLabel { color: #64748b; }
+.distBarBg { background: #e2e8f0; }
+.distCount { color: #64748b; }
 
-.reviewItem {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
-}
+.subRatingLabel { color: #64748b; }
+.subRatingBarBg { background: #e2e8f0; }
+.subRatingValue { color: #0f172a; }
 
-.reviewItem:hover {
-  border-color: #4573df;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-}
+.toolbar { background: transparent; }
+.searchWrap { background: transparent; }
+.searchInput { background: #fff; border-color: #e2e8f0; color: #0f172a; }
+.searchInput:focus { border-color: #4573df; }
+.sortSelect { background: #fff; border-color: #e2e8f0; color: #0f172a; }
+.clearFilter { border-color: #e2e8f0; color: #64748b; }
+.resultCount { color: #94a3b8; }
 
-.reviewItemInfo .clientName { color: #0f172a; }
-.reviewItemInfo .projectName { color: #64748b; }
-.reviewItemRating .date { color: #94a3b8; }
-.reviewItemComment { color: #64748b; }
+.reviewItem { background: #fff; border-color: #e2e8f0; }
+.reviewItem:hover { border-color: #4573df; }
+.clientName { color: #0f172a; }
+.projectName { color: #64748b; }
+.date { color: #94a3b8; }
+.reviewItemComment { color: #475569; }
 
 .star { color: #F2C94C; }
-.star.empty { color: #e2e8f0; }
+
+.expandBtn { color: #4573df; }
+.replyBtn { color: #4573df; }
+.replyTextarea { background: #fff; border-color: #e2e8f0; color: #0f172a; }
+
+.responseBlock { background: #f1f5f9; }
+.responseLabel { color: #4573df; }
+.responseText { color: #475569; }
+
+.loadingState { color: #64748b; }
+.errorState { border-color: #e2e8f0; color: #475569; }
+.emptyState { border-color: #e2e8f0; color: #475569; }

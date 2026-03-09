@@ -1,4 +1,4 @@
-/* @AI-HINT: Dark theme for premium Hero - Sophisticated dark aesthetic with glowing accents and deep gradients */
+/* @AI-HINT: Dark theme for action-oriented Hero — deep dark aesthetic with glowing accents */
 
 .heroContainer {
   background: linear-gradient(180deg, #0f172a 0%, #0f172a 40%, #1e293b 100%);
@@ -6,65 +6,13 @@
 
 .meshBackground {
   background: 
-    radial-gradient(ellipse at 20% 30%, rgba(69, 115, 223, 0.18) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(99, 102, 241, 0.14) 0%, transparent 40%),
-    radial-gradient(ellipse at 40% 80%, rgba(255, 152, 0, 0.1) 0%, transparent 40%),
-    radial-gradient(ellipse at 90% 70%, rgba(16, 185, 129, 0.08) 0%, transparent 35%);
-}
-
-.orb {
-  opacity: 0.5;
-}
-
-.orb:nth-child(1) {
-  background: linear-gradient(135deg, rgba(69, 115, 223, 0.4), rgba(99, 102, 241, 0.25));
-}
-
-.orb:nth-child(2) {
-  background: linear-gradient(135deg, rgba(255, 152, 0, 0.3), rgba(251, 191, 36, 0.2));
-}
-
-.orb:nth-child(3) {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(52, 211, 153, 0.15));
-}
-
-.gridPattern {
-  background-image: 
-    linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-/* Announcement Badge */
-.announcementBadge {
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(17, 24, 39, 0.9));
-  color: #93c5fd;
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  box-shadow: 
-    0 4px 20px rgba(0, 0, 0, 0.3),
-    0 0 40px rgba(69, 115, 223, 0.1);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.announcementBadge:hover {
-  background: linear-gradient(135deg, rgba(30, 41, 59, 1), rgba(17, 24, 39, 1));
-  box-shadow: 
-    0 8px 30px rgba(0, 0, 0, 0.4),
-    0 0 60px rgba(69, 115, 223, 0.15);
-  border-color: rgba(99, 102, 241, 0.35);
-  color: #bfdbfe;
-}
-
-.badgeIcon {
-  background: linear-gradient(135deg, rgba(69, 115, 223, 0.25), rgba(99, 102, 241, 0.15));
-  color: #93c5fd;
+    radial-gradient(ellipse at 20% 30%, rgba(69, 115, 223, 0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(99, 102, 241, 0.10) 0%, transparent 40%);
 }
 
 /* Heading */
 .mainHeading {
   color: #f8fafc;
-  text-shadow: 0 0 80px rgba(69, 115, 223, 0.3);
 }
 
 .headingGradient {
@@ -72,34 +20,73 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.3));
 }
 
 .subheading {
   color: #94a3b8;
 }
 
+/* Search */
+.searchInputWrapper {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1.5px solid rgba(71, 85, 105, 0.6);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.searchInputWrapper:focus-within {
+  border-color: #6366f1;
+}
+
+.searchIcon {
+  color: #64748b;
+}
+
+.searchInput {
+  color: #f1f5f9;
+}
+
+.searchInput::placeholder {
+  color: #64748b;
+}
+
+/* Popular searches */
+.popularSearches {
+  color: #94a3b8;
+}
+
+.popularLabel {
+  color: #94a3b8;
+}
+
+.popularTag {
+  background: rgba(30, 41, 59, 0.6);
+  color: #94a3b8;
+  border: 1px solid rgba(71, 85, 105, 0.5);
+}
+
+.popularTag:hover {
+  background: rgba(30, 41, 59, 0.9);
+  color: #e2e8f0;
+  border-color: rgba(99, 102, 241, 0.35);
+}
+
 /* CTA Buttons */
 .primaryCta {
-  background: linear-gradient(135deg, #4573df 0%, #6366f1 100%);
-  box-shadow: 
-    0 4px 20px rgba(69, 115, 223, 0.4),
-    0 0 40px rgba(99, 102, 241, 0.2);
+  box-shadow:
+    0 4px 20px rgba(69, 115, 223, 0.35),
+    0 0 40px rgba(99, 102, 241, 0.15);
 }
 
 .primaryCta:hover {
-  background: linear-gradient(135deg, #5b7de8 0%, #7c7ff8 100%);
-  box-shadow: 
-    0 8px 30px rgba(69, 115, 223, 0.5),
-    0 0 60px rgba(99, 102, 241, 0.3);
+  box-shadow:
+    0 8px 30px rgba(69, 115, 223, 0.45),
+    0 0 60px rgba(99, 102, 241, 0.25);
 }
 
 .secondaryCta {
   background: rgba(30, 41, 59, 0.6);
   color: #e2e8f0;
   border: 1.5px solid rgba(71, 85, 105, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
 .secondaryCta:hover {
@@ -108,87 +95,39 @@
   color: #93c5fd;
 }
 
-/* Social Proof */
-.avatarStack {
-  background: transparent;
-}
-
-.avatar {
-  background: linear-gradient(135deg, #312e81, #3730a3);
-  color: #c7d2fe;
-  border: 2px solid rgba(30, 41, 59, 0.8);
-  box-shadow: 
-    0 2px 8px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(99, 102, 241, 0.1);
-}
-
-.avatar:nth-child(2) { background: linear-gradient(135deg, #1e3a5f, #1e40af); color: #93c5fd; }
-.avatar:nth-child(3) { background: linear-gradient(135deg, #064e3b, #047857); color: #6ee7b7; }
-.avatar:nth-child(4) { background: linear-gradient(135deg, #78350f, #b45309); color: #fcd34d; }
-.avatar:nth-child(5) { background: linear-gradient(135deg, #831843, #be185d); color: #f9a8d4; }
-
-.proofStars {
-  color: #fbbf24;
-  filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.4));
-}
-
-.ratingText {
-  color: #e2e8f0;
-  margin-left: 0.375rem;
-}
-
-.proofLabel {
+/* Value Props */
+.valueProps {
   color: #94a3b8;
 }
 
-/* Feature Pills */
-.floatingPill {
-  background: rgba(30, 41, 59, 0.6);
-  color: #cbd5e1;
-  border: 1px solid rgba(71, 85, 105, 0.5);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.floatingPill:hover {
-  background: rgba(30, 41, 59, 0.8);
-  border-color: rgba(99, 102, 241, 0.35);
-  box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(99, 102, 241, 0.1);
-  color: #f1f5f9;
-}
-
-.floatingPill svg {
-  color: #93c5fd;
-}
-
-/* Stats Grid */
-.statsGrid {
-  background: rgba(17, 24, 39, 0.6);
-  border: 1px solid rgba(55, 65, 81, 0.5);
-  box-shadow: 
-    0 4px 24px rgba(0, 0, 0, 0.3),
-    0 0 60px rgba(69, 115, 223, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-
-/* Trust Badges */
-.trustBadge {
-  background: rgba(30, 41, 59, 0.5);
+.valueProp {
   color: #94a3b8;
-  border: 1px solid rgba(55, 65, 81, 0.5);
 }
 
-.trustBadge svg {
+.valueProp svg {
   color: #34d399;
 }
 
-.trustBadge:hover {
-  background: rgba(30, 41, 59, 0.7);
+/* Categories */
+.categoriesTitle {
+  color: #e2e8f0;
+}
+
+.categoryCard {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(71, 85, 105, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.categoryCard:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.12);
+}
+
+.categoryIcon {
+  color: #93c5fd;
+}
+
+.categoryLabel {
   color: #cbd5e1;
-  border-color: rgba(71, 85, 105, 0.6);
 }

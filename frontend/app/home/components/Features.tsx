@@ -16,23 +16,23 @@ import darkStyles from './Features.dark.module.css';
 const featuresData = [
   {
     icon: <Cpu />,
-    title: 'AI-Powered Precision',
-    description: 'Leverage our suite of AI tools to estimate project costs, generate proposals, and automate your entire workflow with unparalleled accuracy.',
+    title: 'AI-Powered Matching',
+    description: 'Get matched with the right freelancers based on skills, budget, availability, and past project success — automatically.',
   },
   {
     icon: <ShieldCheck />,
-    title: 'Bulletproof Security',
-    description: 'Experience peace of mind with our secure USDC payment system, featuring transparent, low-fee transactions and on-chain verification.',
+    title: 'Secure Escrow Payments',
+    description: 'Funds are held in escrow and released only when milestones are approved. No risk for either side.',
   },
   {
     icon: <Globe />,
-    title: 'Borderless Opportunities',
-    description: 'Connect with a curated, global network of clients and discover high-value projects that perfectly match your skills and professional ambition.',
+    title: 'Global Talent Pool',
+    description: 'Access developers, designers, and writers worldwide. Filter by skills, timezone, and hourly rate.',
   },
   {
     icon: <Wallet />,
-    title: 'Sovereign Wallet',
-    description: 'Manage your earnings with a built-in, non-custodial wallet that gives you absolute control and ownership over your funds.',
+    title: 'Transparent Pricing',
+    description: 'Clear fee structure with no hidden costs. Track every payment, milestone, and invoice from your dashboard.',
   },
 ];
 
@@ -55,9 +55,9 @@ const Features: React.FC = () => {
             ariaLabel="AI-powered features illustration"
             className="mx-auto mb-2"
           />
-          <h2 className={cn(commonStyles.title, themeStyles.title)}>A Smarter Way to Work</h2>
+          <h2 className={cn(commonStyles.title, themeStyles.title)}>Everything You Need to Get Work Done</h2>
           <p className={cn(commonStyles.subtitle, themeStyles.subtitle)}>
-            We&apos;ve built a next-generation freelance ecosystem with tools and security you can trust.
+            Post projects, find talent, manage contracts, and pay securely — all in one platform.
           </p>
         </div>
         <div className={cn(commonStyles.grid)}>

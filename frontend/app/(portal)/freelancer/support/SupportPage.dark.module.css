@@ -2,9 +2,43 @@
 .header h1 { color: #f8fafc; }
 .header p { color: #94a3b8; }
 
+.quickLink {
+  background: #0f172a;
+  border-color: #334155;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.quickLink:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.quickLinkLabel { color: #f8fafc; }
+.quickLinkDesc { color: #94a3b8; }
+
 .card {
   background-color: #0f172a;
   border-color: #334155;
 }
 
 .cardTitle { color: #f8fafc; }
+
+.priorityLabel { color: #f8fafc; }
+
+.faqSearchInput {
+  background: #1e293b;
+  color: #f8fafc;
+  border-color: #334155;
+}
+
+.faqSearchInput:focus {
+  border-color: #4573df;
+  box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2);
+}
+
+.ticketItem {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.ticketSubject { color: #f8fafc; }
+.ticketDate { color: #94a3b8; }

@@ -1,12 +1,17 @@
-/* Common Styles */
+/* @AI-HINT: Common styles for Saved Jobs with search, sort, filters, notes, bulk actions */
 .container {
-  padding: 2rem;
-  max-width: 1000px;
+  padding: 1.5rem 2rem;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
-.header {
-  margin-bottom: 2rem;
+.header { margin-bottom: 1.5rem; }
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .title {
@@ -18,11 +23,154 @@
   margin: 0 0 0.25rem 0;
 }
 
-.subtitle {
-  font-size: 0.95rem;
-  margin: 0;
+.subtitle { font-size: 0.95rem; margin: 0; }
+
+/* Stats Row */
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.statCard {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid;
+}
+.statValue { font-size: 1.15rem; font-weight: 700; }
+.statLabel { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+.searchWrap {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.searchIcon {
+  position: absolute;
+  left: 0.75rem;
+  pointer-events: none;
+  opacity: 0.5;
+}
+.searchInput {
+  width: 100%;
+  padding: 0.55rem 2rem 0.55rem 2.25rem;
+  border-radius: 8px;
+  border: 1px solid;
+  font-size: 0.9rem;
+  outline: none;
+}
+.searchInput:focus { border-color: #4573df; box-shadow: 0 0 0 2px rgba(69,115,223,0.15); }
+.searchClear {
+  position: absolute;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem;
+  display: flex;
+  border-radius: 4px;
+}
+.toolbarRight {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.sortWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.sortSelect {
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid;
+  font-size: 0.85rem;
+  outline: none;
+}
+.filterToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid;
+  font-size: 0.85rem;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.15s ease;
+}
+.filterToggleActive { font-weight: 600; }
+
+/* Filter Panel */
+.filterPanel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+.filterLabel { font-size: 0.85rem; font-weight: 600; margin-right: 0.25rem; }
+.filterChip {
+  padding: 0.3rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.15s ease;
+}
+.filterChipActive { font-weight: 600; }
+
+/* Bulk Bar */
+.bulkBar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
 }
 
+/* Select All Row */
+.selectAllRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.35rem 0;
+  margin-bottom: 0.25rem;
+}
+.selectAllBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
+.resultsCount { font-size: 0.8rem; opacity: 0.7; }
+
+/* Empty State */
 .emptyState {
   display: flex;
   flex-direction: column;
@@ -31,139 +179,113 @@
   padding: 4rem 2rem;
   text-align: center;
   border-radius: 12px;
-  gap: 1rem;
+  gap: 0.75rem;
 }
+.emptyState h3 { margin: 0; font-size: 1.25rem; font-weight: 600; }
+.emptyState p { margin: 0; max-width: 300px; }
 
-.emptyState h3 {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.emptyState p {
-  margin: 0;
-  max-width: 300px;
-}
-
+/* Job List & Cards */
 .jobsList {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
 }
-
 .jobCard {
+  display: flex;
+  gap: 0.75rem;
   border-radius: 12px;
-  padding: 1.5rem;
-  transition: transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    color 0.2s ease,
-    opacity 0.2s ease;
+  padding: 1.25rem 1.5rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
 }
-
-.jobHeader {
-  margin-bottom: 1rem;
+.jobCardSelected { border-width: 2px; }
+.jobCheckbox {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 0.1rem;
 }
+.jobCheckbox button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+}
+.jobContent { flex: 1; min-width: 0; }
 
+.jobHeader { margin-bottom: 0.75rem; }
 .jobTitleRow {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 1rem;
 }
-
-.jobTitle {
-  font-size: 1.15rem;
-  font-weight: 600;
-  margin: 0;
-  flex: 1;
-}
-
-.savedTime {
-  font-size: 0.75rem;
-  white-space: nowrap;
-}
-
-.clientName {
-  font-size: 0.85rem;
-  margin: 0.25rem 0 0 0;
-}
+.jobTitle { font-size: 1.1rem; font-weight: 600; margin: 0; flex: 1; }
+.savedTime { font-size: 0.75rem; white-space: nowrap; display: flex; align-items: center; gap: 0.25rem; }
+.clientName { font-size: 0.85rem; margin: 0.25rem 0 0; display: flex; align-items: center; gap: 0.35rem; }
 
 .description {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin: 0 0 1rem 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin: 0 0 0.75rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
+.skills { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
+.skill { padding: 3px 10px; border-radius: 16px; font-size: 0.78rem; font-weight: 500; }
 
-.skill {
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 500;
+/* Notes */
+.noteEdit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+.noteInput {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid;
+  font-size: 0.85rem;
+  resize: vertical;
+  outline: none;
+  font-family: inherit;
+}
+.noteInput:focus { border-color: #4573df; }
+.noteActions { display: flex; gap: 0.35rem; }
+.noteDisplay {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  line-height: 1.4;
 }
 
 .jobFooter {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(0,0,0,0.08);
 }
-
-.jobMeta {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.budget {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-.budgetType {
-  font-weight: 400;
-  font-size: 0.75rem;
-  padding: 2px 8px;
-  border-radius: 4px;
-}
-
-.proposals {
-  font-size: 0.85rem;
-}
-
-.actions {
-  display: flex;
-  gap: 0.5rem;
-}
+.jobMeta { display: flex; gap: 1.25rem; align-items: center; }
+.budget { display: flex; align-items: center; gap: 0.4rem; font-weight: 600; font-size: 0.95rem; }
+.budgetType { font-weight: 400; font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; }
+.proposals { font-size: 0.82rem; display: flex; align-items: center; gap: 0.3rem; }
+.actions { display: flex; gap: 0.35rem; }
 
 @media (max-width: 640px) {
-  .jobFooter {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: stretch;
-  }
-  
-  .actions {
-    justify-content: flex-end;
-  }
-  
-  .jobTitleRow {
-    flex-direction: column;
-    gap: 0.25rem;
-  }
+  .container { padding: 1rem; }
+  .jobCard { flex-direction: column; }
+  .jobFooter { flex-direction: column; gap: 0.75rem; align-items: stretch; }
+  .actions { justify-content: flex-end; }
+  .jobTitleRow { flex-direction: column; gap: 0.25rem; }
+  .statsRow { grid-template-columns: repeat(2, 1fr); }
+  .toolbar { flex-direction: column; }
 }

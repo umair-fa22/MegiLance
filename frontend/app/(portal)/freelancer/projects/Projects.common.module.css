@@ -11,6 +11,13 @@
   gap: 1rem;
 }
 
+.headerActions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .title {
   font-size: 1.75rem;
   font-weight: 700;
@@ -22,6 +29,57 @@
   margin: 0;
 }
 
+/* KPI Stats */
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.statCard {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  transition: transform 0.2s;
+}
+
+.statCard:hover {
+  transform: translateY(-1px);
+}
+
+.statIcon {
+  opacity: 0.7;
+}
+
+.statIconActive {
+  color: var(--color-success, #27AE60);
+}
+
+.statIconCompleted {
+  color: var(--color-primary, #4573df);
+}
+
+.statIconBudget {
+  color: var(--color-warning, #F2C94C);
+}
+
+.statValue {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.statLabel {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* Filters */
 .filters {
   display: flex;
   gap: 1rem;
@@ -192,6 +250,15 @@
     flex-direction: column;
   }
   
+  .headerActions {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .statsRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
   .projectsGrid {
     grid-template-columns: 1fr;
   }
@@ -199,6 +266,60 @@
   .projectActions {
     flex-direction: column;
   }
+}
+
+/* Results bar */
+.resultsBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0 0.25rem;
+}
+
+.resultCount {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+}
+
+.pageBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 0.5rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pageBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pageBtnActive {
+  font-weight: 600;
+}
+
+.pageEllipsis {
+  padding: 0 4px;
+  opacity: 0.5;
+  font-size: 0.875rem;
 }
 
 .searchInput:focus-visible {

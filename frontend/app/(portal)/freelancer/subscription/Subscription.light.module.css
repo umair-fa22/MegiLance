@@ -4,12 +4,12 @@
   background-color: #f8fafc;
 }
 
-.loading {
-  color: #64748b;
-}
-
 .title {
   color: #1e293b;
+}
+
+.titleIcon {
+  color: #4573df;
 }
 
 .subtitle {
@@ -30,13 +30,38 @@
   color: #1e293b;
 }
 
-.currentPlanMeta {
+.planIconCircle {
+  background-color: #eff6ff;
+}
+
+.currentPlanDetails {
   color: #64748b;
+}
+
+.detailItem {
+  color: #64748b;
+}
+
+/* Quick Usage */
+.usageMeterLabel {
+  color: #64748b;
+}
+
+.usageMeterValue {
+  color: #1e293b;
+}
+
+.usageBar {
+  background-color: #e2e8f0;
 }
 
 .cancelNotice {
   background-color: #fef3c7;
   color: #92400e;
+}
+
+.cancelLink {
+  color: #dc2626;
 }
 
 /* Tabs */
@@ -58,7 +83,7 @@
   color: #ffffff;
 }
 
-/* Billing Toggle */
+/* Plans Controls */
 .billingToggle {
   background-color: #f1f5f9;
 }
@@ -78,10 +103,55 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
+.compareBtn {
+  color: #4573df;
+  border-color: #e2e8f0;
+}
+
+.compareBtn:hover {
+  background-color: #eff6ff;
+}
+
+/* Compare Table */
+.compareTable {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+.compareHeader {
+  background-color: #f8fafc;
+  color: #1e293b;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.comparePlanHead {
+  color: #1e293b;
+}
+
+.compareRow {
+  border-top: 1px solid #f1f5f9;
+}
+
+.compareRow:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+.compareFeatureLabel {
+  color: #475569;
+}
+
+.compareCell {
+  color: #1e293b;
+}
+
 /* Plan Card */
 .planCard {
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
+}
+
+.planCard:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 .popularPlan {
@@ -92,6 +162,10 @@
 .popularBadge {
   background-color: #4573df;
   color: #ffffff;
+}
+
+.planTierIcon {
+  background-color: #f1f5f9;
 }
 
 .planName {
@@ -106,6 +180,26 @@
   color: #64748b;
 }
 
+.priceOriginal {
+  color: #94a3b8;
+}
+
+.planLimits {
+  background-color: #f8fafc;
+}
+
+.limitItem {
+  color: #475569;
+}
+
+.showFeatures {
+  color: #4573df;
+}
+
+.showFeatures:hover {
+  color: #3b62c4;
+}
+
 .feature {
   color: #475569;
 }
@@ -117,6 +211,7 @@
 
 .planButton:hover:not(:disabled) {
   background-color: #3b62c4;
+  box-shadow: 0 4px 12px rgba(69, 115, 223, 0.25);
 }
 
 .currentButton {
@@ -124,8 +219,18 @@
   color: #64748b;
 }
 
-/* Billing Panel */
-.billingPanel {
+.downgradeButton {
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.downgradeButton:hover {
+  background-color: #e2e8f0;
+}
+
+/* Usage Section */
+.usageSection {
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
 }
@@ -134,26 +239,94 @@
   color: #1e293b;
 }
 
-.updatePaymentButton {
-  background-color: #f1f5f9;
-  color: #475569;
-}
-
-.updatePaymentButton:hover {
-  background-color: #e2e8f0;
-}
-
-.tableHeader {
-  background-color: #f8fafc;
+.sectionDesc {
   color: #64748b;
 }
 
-.tableRow {
-  border-color: #e2e8f0;
+.usageCard {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.usageCardIcon {
+  background-color: #eff6ff;
+  color: #4573df;
+}
+
+.usageCardTitle {
+  color: #64748b;
+}
+
+.usageUsed {
   color: #1e293b;
 }
 
-.amount {
+.usageLimit {
+  color: #94a3b8;
+}
+
+.usageBarLg {
+  background-color: #e2e8f0;
+}
+
+.usageBarFillLg {
+  background: linear-gradient(90deg, #4573df, #60a5fa);
+}
+
+.usagePercent {
+  color: #64748b;
+}
+
+.upgradePrompt {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+}
+
+.upgradePrompt strong {
+  color: #1e293b;
+}
+
+.upgradePrompt p {
+  color: #475569;
+}
+
+/* Billing Section */
+.billingSection {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+.billingSectionHeader h3 {
+  color: #1e293b;
+}
+
+.billingSectionHeader p {
+  color: #64748b;
+}
+
+.billingList {
+  border: 1px solid #e2e8f0;
+}
+
+.billingListHeader {
+  background-color: #f8fafc;
+  color: #64748b;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.billingRow {
+  border-top-color: #f1f5f9;
+}
+
+.billingDate {
+  color: #475569;
+}
+
+.billingDesc {
+  color: #64748b;
+}
+
+.billingAmount {
   color: #1e293b;
 }
 
@@ -161,26 +334,95 @@
   color: #4573df;
 }
 
-.cancelSection {
+.invoiceLink:hover {
+  color: #3b62c4;
+}
+
+.noInvoice {
+  color: #94a3b8;
+}
+
+/* Empty State */
+.emptyState {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+}
+
+.emptyState h4 {
+  color: #1e293b;
+}
+
+/* Modal */
+.modal {
+  background-color: #ffffff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.modalHeader {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.modalHeader h3 {
+  color: #1e293b;
+}
+
+.modalClose {
+  color: #64748b;
+}
+
+.modalClose:hover {
+  background-color: #f1f5f9;
+}
+
+.modalText {
+  color: #475569;
+}
+
+.reasonItem {
+  background-color: #f8fafc;
   border-color: #e2e8f0;
 }
 
-.cancelButton {
-  background-color: #fee2e2;
-  color: #dc2626;
+.reasonItem:hover {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
 }
 
-.cancelButton:hover {
-  background-color: #fecaca;
+.reasonSelected {
+  background-color: #eff6ff;
+  border-color: #4573df;
+  color: #1e293b;
 }
 
+.confirmWarning {
+  background-color: #fef2f2;
+  color: #991b1b;
+}
+
+.loseFeatures {
+  background-color: #fef3c7;
+}
+
+.loseFeatures h4 {
+  color: #92400e;
+}
+
+.loseFeatures li {
+  color: #78350f;
+}
+
+.modalFooter {
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Toast */
 .toast {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(39, 174, 96, 0.3);
-  color: #166534;
+  background-color: #1e293b;
+  color: #ffffff;
 }
 
 .toastError {
-  border-color: rgba(232, 17, 35, 0.3);
-  color: #991b1b;
+  background-color: #dc2626;
+  color: #ffffff;
 }

@@ -1,17 +1,24 @@
 // @AI-HINT: Unified communication center with messages, notifications, and announcements
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Button from '../../../components/Button/Button';
+import Button from '@/app/components/Button/Button';
+import Badge from '@/app/components/Badge/Badge';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
-import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';
 import commonStyles from './Communication.common.module.css';
 import lightStyles from './Communication.light.module.css';
 import darkStyles from './Communication.dark.module.css';
+import {
+  Inbox, Send, Star, Bell, Megaphone, Search, X, Mail,
+  Paperclip, Reply, Forward, Archive, CheckCircle, Info,
+  AlertTriangle, AlertCircle, Clock, MessageSquare, Pen,
+  ChevronLeft, Eye, EyeOff, StarOff, Trash2, MoreVertical,
+  Plus, FileText, ExternalLink
+} from 'lucide-react';
 
 interface Message {
   id: string;
@@ -49,6 +56,28 @@ interface Announcement {
 
 type TabType = 'inbox' | 'sent' | 'starred' | 'notifications' | 'announcements';
 
+const TAB_CONFIG: { id: TabType; label: string; icon: typeof Inbox }[] = [
+  { id: 'inbox', label: 'Inbox', icon: Inbox },
+  { id: 'sent', label: 'Sent', icon: Send },
+  { id: 'starred', label: 'Starred', icon: Star },
+  { id: 'notifications', label: 'Notifications', icon: Bell },
+  { id: 'announcements', label: 'Announcements', icon: Megaphone },
+];
+
+const NOTIF_ICONS = {
+  success: CheckCircle,
+  info: Info,
+  warning: AlertTriangle,
+  error: AlertCircle,
+};
+
+const PRIORITY_CONFIG = {
+  low: { label: 'Low', variant: 'default' as const },
+  normal: { label: 'Normal', variant: 'primary' as const },
+  high: { label: 'High', variant: 'warning' as const },
+  urgent: { label: 'Urgent', variant: 'danger' as const },
+};
+
 export default function CommunicationPage() {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -62,6 +91,7 @@ export default function CommunicationPage() {
   const [composeData, setComposeData] = useState({ to: '', subject: '', content: '' });
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -71,16 +101,14 @@ export default function CommunicationPage() {
   const loadCommunicationData = async () => {
     setLoading(true);
     try {
-      // Fetch real communication data from API
       const { messagesApi, notificationsApi } = await import('@/lib/api');
 
       const [inboxRes, sentRes, notifRes] = await Promise.all([
-        (messagesApi as any).getConversations?.({ folder: 'inbox' }).catch((e: unknown) => { console.error('Inbox load failed:', e); return null; }),
-        (messagesApi as any).getConversations?.({ folder: 'sent' }).catch((e: unknown) => { console.error('Sent load failed:', e); return null; }),
-        (notificationsApi as any).list?.().catch((e: unknown) => { console.error('Notifications load failed:', e); return null; }),
+        (messagesApi as any).getConversations?.({ folder: 'inbox' }).catch(() => null),
+        (messagesApi as any).getConversations?.({ folder: 'sent' }).catch(() => null),
+        (notificationsApi as any).list?.().catch(() => null),
       ]);
 
-      // Transform API data or use defaults
       const inboxArray = Array.isArray(inboxRes) ? inboxRes : inboxRes?.messages || inboxRes?.items || [];
       if (inboxArray.length > 0) {
         setMessages(inboxArray.map((m: any) => ({
@@ -125,10 +153,9 @@ export default function CommunicationPage() {
         })));
       }
 
-      // Fetch announcements from API
       try {
         const { default: api } = await import('@/lib/api');
-        const announcementsRes = await (api as any).announcements?.list?.().catch((e: unknown) => { console.error('Announcements load failed:', e); return null; });
+        const announcementsRes = await (api as any).announcements?.list?.().catch(() => null);
         const announcementArray = Array.isArray(announcementsRes) ? announcementsRes : announcementsRes?.announcements || announcementsRes?.items || [];
         setAnnouncements(announcementArray.map((a: any) => ({
           id: a.id?.toString(),
@@ -148,316 +175,506 @@ export default function CommunicationPage() {
     }
   };
 
-  const handleMarkAsRead = async (messageId: string) => {
-    setMessages(prev =>
-      prev.map(m => (m.id === messageId ? { ...m, is_read: true } : m))
-    );
+  const handleMarkAsRead = (messageId: string) => {
+    setMessages(prev => prev.map(m => (m.id === messageId ? { ...m, is_read: true } : m)));
   };
 
-  const handleToggleStar = async (messageId: string) => {
-    setMessages(prev =>
-      prev.map(m => (m.id === messageId ? { ...m, is_starred: !m.is_starred } : m))
-    );
+  const handleToggleStar = (messageId: string) => {
+    setMessages(prev => prev.map(m => (m.id === messageId ? { ...m, is_starred: !m.is_starred } : m)));
+  };
+
+  const handleMarkAllRead = () => {
+    if (activeTab === 'notifications') {
+      setNotifications(prev => prev.map(n => ({ ...n, is_read: true })));
+      showToast('All notifications marked as read', 'success');
+    } else {
+      setMessages(prev => prev.map(m => ({ ...m, is_read: true })));
+      showToast('All messages marked as read', 'success');
+    }
   };
 
   const handleSendMessage = async () => {
     if (!composeData.to || !composeData.subject || !composeData.content) return;
-
     try {
-      // await communicationCenterApi.sendMessage(composeData);
       setIsComposing(false);
       setComposeData({ to: '', subject: '', content: '' });
-      // Refresh sent messages
+      showToast('Message sent successfully!', 'success');
     } catch (error) {
       console.error('Failed to send message:', error);
+      showToast('Failed to send message', 'error');
     }
   };
 
-  const handleMarkNotificationRead = async (notifId: string) => {
-    setNotifications(prev =>
-      prev.map(n => (n.id === notifId ? { ...n, is_read: true } : n))
-    );
+  const handleMarkNotificationRead = (notifId: string) => {
+    setNotifications(prev => prev.map(n => (n.id === notifId ? { ...n, is_read: true } : n)));
+  };
+
+  const showToast = (message: string, type: 'success' | 'error') => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 4000);
   };
 
   const getUnreadCount = (type: TabType) => {
     switch (type) {
-      case 'inbox':
-        return messages.filter(m => !m.is_read).length;
-      case 'starred':
-        return messages.filter(m => m.is_starred).length;
-      case 'notifications':
-        return notifications.filter(n => !n.is_read).length;
-      default:
-        return 0;
+      case 'inbox': return messages.filter(m => !m.is_read).length;
+      case 'starred': return messages.filter(m => m.is_starred).length;
+      case 'notifications': return notifications.filter(n => !n.is_read).length;
+      case 'announcements': return announcements.length;
+      default: return 0;
     }
   };
 
-  const filteredMessages = messages.filter(m => {
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      return (
-        m.subject.toLowerCase().includes(query) ||
-        m.sender_name.toLowerCase().includes(query) ||
-        m.preview.toLowerCase().includes(query)
+  const currentMessages = useMemo(() => {
+    let list = activeTab === 'sent' ? sentMessages : messages;
+    if (activeTab === 'starred') list = messages.filter(m => m.is_starred);
+
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      list = list.filter(m =>
+        m.subject.toLowerCase().includes(q) ||
+        m.sender_name.toLowerCase().includes(q) ||
+        m.preview.toLowerCase().includes(q)
       );
     }
-    if (activeTab === 'starred') return m.is_starred;
-    return true;
-  });
+    return list;
+  }, [messages, sentMessages, activeTab, searchQuery]);
+
+  const filteredNotifications = useMemo(() => {
+    if (!searchQuery.trim()) return notifications;
+    const q = searchQuery.toLowerCase();
+    return notifications.filter(n =>
+      n.title.toLowerCase().includes(q) || n.message.toLowerCase().includes(q)
+    );
+  }, [notifications, searchQuery]);
+
+  const filteredAnnouncements = useMemo(() => {
+    if (!searchQuery.trim()) return announcements;
+    const q = searchQuery.toLowerCase();
+    return announcements.filter(a =>
+      a.title.toLowerCase().includes(q) || a.content.toLowerCase().includes(q)
+    );
+  }, [announcements, searchQuery]);
+
+  const formatTimeAgo = (dateStr: string) => {
+    const diff = Date.now() - new Date(dateStr).getTime();
+    const mins = Math.floor(diff / 60000);
+    const hours = Math.floor(diff / 3600000);
+    const days = Math.floor(diff / 86400000);
+    if (mins < 5) return 'Just now';
+    if (mins < 60) return `${mins}m ago`;
+    if (hours < 24) return `${hours}h ago`;
+    if (days < 7) return `${days}d ago`;
+    return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  };
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes < 1024) return `${bytes} B`;
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  };
+
+  const unreadMessages = messages.filter(m => !m.is_read).length;
+  const unreadNotifications = notifications.filter(n => !n.is_read).length;
+  const isMessageTab = activeTab === 'inbox' || activeTab === 'sent' || activeTab === 'starred';
 
   if (!mounted) return null;
-
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   return (
     <PageTransition>
-      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-        <AnimatedOrb variant="purple" size={500} blur={90} opacity={0.1} className="absolute top-[-10%] right-[-10%]" />
-        <AnimatedOrb variant="blue" size={400} blur={70} opacity={0.08} className="absolute bottom-[-10%] left-[-10%]" />
-        <ParticlesSystem count={15} className="absolute inset-0" />
-        <div className="absolute top-[60%] right-[15%] opacity-10"><FloatingCube /></div>
-        <div className="absolute top-[20%] left-[10%] opacity-10"><FloatingSphere /></div>
-      </div>
       <div className={cn(commonStyles.container, themeStyles.container)}>
+        {/* Header */}
         <ScrollReveal>
-          <div className={cn(commonStyles.header, themeStyles.header)}>
-            <div>
+          <div className={commonStyles.header}>
+            <div className={commonStyles.headerText}>
               <h1 className={cn(commonStyles.title, themeStyles.title)}>
+                <MessageSquare size={28} className={commonStyles.titleIcon} />
                 Communication Center
               </h1>
               <p className={cn(commonStyles.subtitle, themeStyles.subtitle)}>
-                Manage all your messages, notifications, and platform announcements
+                Messages, notifications, and platform announcements
               </p>
             </div>
-            <Button variant="primary" onClick={() => setIsComposing(true)}>
-              Compose Message
-            </Button>
+            <div className={commonStyles.headerActions}>
+              {((isMessageTab && unreadMessages > 0) || (activeTab === 'notifications' && unreadNotifications > 0)) && (
+                <Button variant="ghost" size="sm" onClick={handleMarkAllRead}>
+                  <Eye size={14} /> Mark all read
+                </Button>
+              )}
+              <Button variant="primary" onClick={() => setIsComposing(true)}>
+                <Pen size={16} /> Compose
+              </Button>
+            </div>
           </div>
         </ScrollReveal>
 
+        {/* Stats */}
+        <StaggerContainer delay={0.1} className={commonStyles.stats}>
+          <StaggerItem>
+            <div className={cn(commonStyles.statCard, themeStyles.statCard)}>
+              <div className={cn(commonStyles.statIcon, themeStyles.statIconBlue)}>
+                <Inbox size={20} />
+              </div>
+              <div className={commonStyles.statContent}>
+                <span className={cn(commonStyles.statValue, themeStyles.statValue)}>{messages.length}</span>
+                <span className={cn(commonStyles.statLabel, themeStyles.statLabel)}>Messages</span>
+              </div>
+            </div>
+          </StaggerItem>
+          <StaggerItem>
+            <div className={cn(commonStyles.statCard, themeStyles.statCard)}>
+              <div className={cn(commonStyles.statIcon, themeStyles.statIconRed)}>
+                <Mail size={20} />
+              </div>
+              <div className={commonStyles.statContent}>
+                <span className={cn(commonStyles.statValue, themeStyles.statValue)}>{unreadMessages}</span>
+                <span className={cn(commonStyles.statLabel, themeStyles.statLabel)}>Unread</span>
+              </div>
+            </div>
+          </StaggerItem>
+          <StaggerItem>
+            <div className={cn(commonStyles.statCard, themeStyles.statCard)}>
+              <div className={cn(commonStyles.statIcon, themeStyles.statIconOrange)}>
+                <Bell size={20} />
+              </div>
+              <div className={commonStyles.statContent}>
+                <span className={cn(commonStyles.statValue, themeStyles.statValue)}>{notifications.length}</span>
+                <span className={cn(commonStyles.statLabel, themeStyles.statLabel)}>Notifications</span>
+              </div>
+            </div>
+          </StaggerItem>
+          <StaggerItem>
+            <div className={cn(commonStyles.statCard, themeStyles.statCard)}>
+              <div className={cn(commonStyles.statIcon, themeStyles.statIconPurple)}>
+                <Megaphone size={20} />
+              </div>
+              <div className={commonStyles.statContent}>
+                <span className={cn(commonStyles.statValue, themeStyles.statValue)}>{announcements.length}</span>
+                <span className={cn(commonStyles.statLabel, themeStyles.statLabel)}>Announcements</span>
+              </div>
+            </div>
+          </StaggerItem>
+        </StaggerContainer>
+
         {/* Search Bar */}
-        <ScrollReveal delay={0.1} className={cn(commonStyles.searchBar, themeStyles.searchBar)}>
-          <input
-            type="text"
-            placeholder="Search messages..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className={cn(commonStyles.searchInput, themeStyles.searchInput)}
-          />
+        <ScrollReveal delay={0.15}>
+          <div className={cn(commonStyles.searchBar, themeStyles.searchBar)}>
+            <Search size={16} className={cn(commonStyles.searchIcon, themeStyles.searchIcon)} />
+            <input
+              type="text"
+              placeholder={isMessageTab ? 'Search messages...' : activeTab === 'notifications' ? 'Search notifications...' : 'Search announcements...'}
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              className={cn(commonStyles.searchInput, themeStyles.searchInput)}
+            />
+            {searchQuery && (
+              <button onClick={() => setSearchQuery('')} className={cn(commonStyles.clearSearch, themeStyles.clearSearch)}>
+                <X size={14} />
+              </button>
+            )}
+          </div>
         </ScrollReveal>
 
         {/* Tabs */}
-        <ScrollReveal delay={0.2} className={cn(commonStyles.tabs, themeStyles.tabs)}>
-          {(['inbox', 'sent', 'starred', 'notifications', 'announcements'] as TabType[]).map(tab => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={cn(
-                commonStyles.tab,
-                themeStyles.tab,
-                activeTab === tab && commonStyles.tabActive,
-                activeTab === tab && themeStyles.tabActive
-              )}
-            >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
-              {getUnreadCount(tab) > 0 && (
-                <span className={cn(commonStyles.badge, themeStyles.badge)}>
-                  {getUnreadCount(tab)}
-                </span>
-              )}
-            </button>
-          ))}
+        <ScrollReveal delay={0.2}>
+          <div className={cn(commonStyles.tabs, themeStyles.tabs)}>
+            {TAB_CONFIG.map(tab => {
+              const Icon = tab.icon;
+              const count = getUnreadCount(tab.id);
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => { setActiveTab(tab.id); setSelectedMessage(null); }}
+                  className={cn(
+                    commonStyles.tab,
+                    themeStyles.tab,
+                    activeTab === tab.id && commonStyles.tabActive,
+                    activeTab === tab.id && themeStyles.tabActive
+                  )}
+                >
+                  <Icon size={16} />
+                  <span>{tab.label}</span>
+                  {count > 0 && (
+                    <span className={cn(commonStyles.tabBadge, themeStyles.tabBadge)}>{count}</span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
         </ScrollReveal>
 
         {/* Main Content */}
-        <div className={cn(commonStyles.content, themeStyles.content)}>
+        <div className={commonStyles.content}>
           {loading ? (
-            <div className={commonStyles.loading}>Loading...</div>
+            <div className={cn(commonStyles.loadingState, themeStyles.loadingState)}>
+              <MessageSquare size={32} className={commonStyles.loadingIcon} />
+              <p>Loading communications...</p>
+            </div>
           ) : (
             <>
-              {/* Messages List */}
-              {(activeTab === 'inbox' || activeTab === 'sent' || activeTab === 'starred') && (
-                <div className={commonStyles.splitView}>
-                  <StaggerContainer className={cn(commonStyles.messageList, themeStyles.messageList)}>
-                    {filteredMessages.length === 0 ? (
+              {/* Messages View */}
+              {isMessageTab && (
+                <div className={cn(commonStyles.splitView, selectedMessage && commonStyles.hasSelection)}>
+                  {/* Message List */}
+                  <div className={cn(commonStyles.messageList, themeStyles.messageList)}>
+                    <div className={cn(commonStyles.listHeader, themeStyles.listHeader)}>
+                      <span>{currentMessages.length} message{currentMessages.length !== 1 ? 's' : ''}</span>
+                    </div>
+                    {currentMessages.length === 0 ? (
                       <div className={cn(commonStyles.emptyState, themeStyles.emptyState)}>
-                        <p>No messages found</p>
+                        <Inbox size={36} className={commonStyles.emptyIcon} />
+                        <h3 className={commonStyles.emptyTitle}>
+                          {searchQuery ? 'No messages match your search' : `No ${activeTab === 'starred' ? 'starred' : activeTab} messages`}
+                        </h3>
+                        <p className={commonStyles.emptyText}>
+                          {searchQuery ? 'Try a different search term' : activeTab === 'inbox' ? 'Your inbox is empty' : 'Nothing here yet'}
+                        </p>
                       </div>
                     ) : (
-                      filteredMessages.map(message => (
-                        <StaggerItem
-                          key={message.id}
-                          onClick={() => {
-                            setSelectedMessage(message);
-                            handleMarkAsRead(message.id);
-                          }}
-                          className={cn(
-                            commonStyles.messageItem,
-                            themeStyles.messageItem,
-                            !message.is_read && commonStyles.unread,
-                            !message.is_read && themeStyles.unread,
-                            selectedMessage?.id === message.id && commonStyles.selected,
-                            selectedMessage?.id === message.id && themeStyles.selected
-                          )}
-                        >
-                          <div className={commonStyles.messageHeader}>
-                            <div className={commonStyles.senderInfo}>
-                              <div className={cn(commonStyles.avatar, themeStyles.avatar)}>
-                                {message.sender_name.charAt(0)}
-                              </div>
-                              <div>
-                                <span className={cn(commonStyles.senderName, themeStyles.senderName)}>
-                                  {message.sender_name}
-                                </span>
-                                <span className={cn(commonStyles.messageDate, themeStyles.messageDate)}>
-                                  {new Date(message.created_at).toLocaleDateString()}
-                                </span>
-                              </div>
-                            </div>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleToggleStar(message.id);
-                              }}
+                      <StaggerContainer className={commonStyles.messageListItems}>
+                        {currentMessages.map(message => (
+                          <StaggerItem key={message.id}>
+                            <div
+                              onClick={() => { setSelectedMessage(message); handleMarkAsRead(message.id); }}
                               className={cn(
-                                commonStyles.starBtn,
-                                themeStyles.starBtn,
-                                message.is_starred && commonStyles.starred,
-                                message.is_starred && themeStyles.starred
+                                commonStyles.messageItem,
+                                themeStyles.messageItem,
+                                !message.is_read && commonStyles.unread,
+                                !message.is_read && themeStyles.unread,
+                                selectedMessage?.id === message.id && commonStyles.selected,
+                                selectedMessage?.id === message.id && themeStyles.selected
                               )}
                             >
-                              ★
-                            </button>
-                          </div>
-                          <h4 className={cn(commonStyles.messageSubject, themeStyles.messageSubject)}>
-                            {message.subject}
-                          </h4>
-                          <p className={cn(commonStyles.messagePreview, themeStyles.messagePreview)}>
-                            {message.preview}
-                          </p>
-                        </StaggerItem>
-                      ))
+                              <div className={commonStyles.messageTop}>
+                                <div className={commonStyles.senderInfo}>
+                                  <div className={cn(commonStyles.avatar, themeStyles.avatar)}>
+                                    {message.sender_avatar ? (
+                                      <img src={message.sender_avatar} alt={message.sender_name} />
+                                    ) : (
+                                      <span>{message.sender_name.charAt(0).toUpperCase()}</span>
+                                    )}
+                                  </div>
+                                  <div className={commonStyles.senderMeta}>
+                                    <span className={cn(commonStyles.senderName, themeStyles.senderName)}>
+                                      {message.sender_name}
+                                    </span>
+                                    <span className={cn(commonStyles.messageDate, themeStyles.messageDate)}>
+                                      {formatTimeAgo(message.created_at)}
+                                    </span>
+                                  </div>
+                                </div>
+                                <button
+                                  onClick={e => { e.stopPropagation(); handleToggleStar(message.id); }}
+                                  className={cn(
+                                    commonStyles.starBtn,
+                                    themeStyles.starBtn,
+                                    message.is_starred && commonStyles.starred,
+                                    message.is_starred && themeStyles.starred
+                                  )}
+                                  aria-label={message.is_starred ? 'Unstar message' : 'Star message'}
+                                >
+                                  <Star size={16} fill={message.is_starred ? 'currentColor' : 'none'} />
+                                </button>
+                              </div>
+                              <h4 className={cn(commonStyles.messageSubject, themeStyles.messageSubject)}>
+                                {message.subject}
+                              </h4>
+                              <p className={cn(commonStyles.messagePreview, themeStyles.messagePreview)}>
+                                {message.preview}
+                              </p>
+                              {message.attachments && message.attachments.length > 0 && (
+                                <div className={cn(commonStyles.attachmentBadge, themeStyles.attachmentBadge)}>
+                                  <Paperclip size={12} /> {message.attachments.length} attachment{message.attachments.length > 1 ? 's' : ''}
+                                </div>
+                              )}
+                            </div>
+                          </StaggerItem>
+                        ))}
+                      </StaggerContainer>
                     )}
-                  </StaggerContainer>
+                  </div>
 
                   {/* Message Detail */}
-                  <ScrollReveal className={cn(commonStyles.messageDetail, themeStyles.messageDetail)}>
+                  <div className={cn(commonStyles.messageDetail, themeStyles.messageDetail)}>
                     {selectedMessage ? (
                       <>
                         <div className={cn(commonStyles.detailHeader, themeStyles.detailHeader)}>
-                          <h2>{selectedMessage.subject}</h2>
-                          <div className={commonStyles.detailMeta}>
-                            <span>From: {selectedMessage.sender_name}</span>
-                            <span>{new Date(selectedMessage.created_at).toLocaleString()}</span>
+                          <button
+                            className={cn(commonStyles.backBtn, themeStyles.backBtn)}
+                            onClick={() => setSelectedMessage(null)}
+                            aria-label="Back to list"
+                          >
+                            <ChevronLeft size={20} />
+                          </button>
+                          <div className={commonStyles.detailHeaderInfo}>
+                            <h2 className={cn(commonStyles.detailSubject, themeStyles.detailSubject)}>
+                              {selectedMessage.subject}
+                            </h2>
+                            <div className={cn(commonStyles.detailMeta, themeStyles.detailMeta)}>
+                              <span>
+                                <Mail size={12} /> From: <strong>{selectedMessage.sender_name}</strong>
+                              </span>
+                              <span>
+                                <Clock size={12} /> {formatTimeAgo(selectedMessage.created_at)}
+                              </span>
+                            </div>
                           </div>
                         </div>
                         <div className={cn(commonStyles.detailContent, themeStyles.detailContent)}>
                           <p>{selectedMessage.content}</p>
+
+                          {selectedMessage.attachments && selectedMessage.attachments.length > 0 && (
+                            <div className={commonStyles.attachmentSection}>
+                              <h4 className={cn(commonStyles.attachmentTitle, themeStyles.attachmentTitle)}>
+                                <Paperclip size={14} /> Attachments ({selectedMessage.attachments.length})
+                              </h4>
+                              <div className={commonStyles.attachmentGrid}>
+                                {selectedMessage.attachments.map((att, idx) => (
+                                  <a
+                                    key={idx}
+                                    href={att.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={cn(commonStyles.attachmentItem, themeStyles.attachmentItem)}
+                                  >
+                                    <FileText size={16} />
+                                    <div className={commonStyles.attachmentInfo}>
+                                      <span className={commonStyles.attachmentName}>{att.name}</span>
+                                      <span className={commonStyles.attachmentSize}>{formatFileSize(att.size)}</span>
+                                    </div>
+                                    <ExternalLink size={14} className={commonStyles.attachmentLink} />
+                                  </a>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                         </div>
-                        <div className={commonStyles.detailActions}>
-                          <Button variant="primary" size="sm">Reply</Button>
-                          <Button variant="secondary" size="sm">Forward</Button>
-                          <Button variant="ghost" size="sm">Archive</Button>
+                        <div className={cn(commonStyles.detailActions, themeStyles.detailActions)}>
+                          <Button variant="primary" size="sm">
+                            <Reply size={14} /> Reply
+                          </Button>
+                          <Button variant="secondary" size="sm">
+                            <Forward size={14} /> Forward
+                          </Button>
+                          <Button variant="ghost" size="sm">
+                            <Archive size={14} /> Archive
+                          </Button>
                         </div>
                       </>
                     ) : (
                       <div className={cn(commonStyles.noSelection, themeStyles.noSelection)}>
+                        <Mail size={40} className={commonStyles.noSelectionIcon} />
                         <p>Select a message to view</p>
                       </div>
                     )}
-                  </ScrollReveal>
+                  </div>
                 </div>
               )}
 
               {/* Notifications */}
               {activeTab === 'notifications' && (
-                <StaggerContainer className={cn(commonStyles.notificationList, themeStyles.notificationList)}>
-                  {notifications.length === 0 ? (
+                <StaggerContainer className={commonStyles.notificationList}>
+                  {filteredNotifications.length === 0 ? (
                     <div className={cn(commonStyles.emptyState, themeStyles.emptyState)}>
-                      <p>No notifications</p>
+                      <Bell size={36} className={commonStyles.emptyIcon} />
+                      <h3 className={commonStyles.emptyTitle}>
+                        {searchQuery ? 'No notifications match your search' : 'No notifications'}
+                      </h3>
+                      <p className={commonStyles.emptyText}>
+                        {searchQuery ? 'Try a different search term' : 'You\'re all caught up!'}
+                      </p>
                     </div>
                   ) : (
-                    notifications.map(notif => (
-                      <StaggerItem
-                        key={notif.id}
-                        onClick={() => handleMarkNotificationRead(notif.id)}
-                        className={cn(
-                          commonStyles.notificationItem,
-                          themeStyles.notificationItem,
-                          commonStyles[`notif${notif.type.charAt(0).toUpperCase() + notif.type.slice(1)}`],
-                          themeStyles[`notif${notif.type.charAt(0).toUpperCase() + notif.type.slice(1)}`],
-                          !notif.is_read && commonStyles.unreadNotif,
-                          !notif.is_read && themeStyles.unreadNotif
-                        )}
-                      >
-                        <div className={cn(commonStyles.notifIcon, themeStyles.notifIcon)}>
-                          {notif.type === 'success' && '✓'}
-                          {notif.type === 'info' && 'ℹ'}
-                          {notif.type === 'warning' && '⚠'}
-                          {notif.type === 'error' && '✕'}
-                        </div>
-                        <div className={commonStyles.notifContent}>
-                          <h4 className={cn(commonStyles.notifTitle, themeStyles.notifTitle)}>
-                            {notif.title}
-                          </h4>
-                          <p className={cn(commonStyles.notifMessage, themeStyles.notifMessage)}>
-                            {notif.message}
-                          </p>
-                          <span className={cn(commonStyles.notifDate, themeStyles.notifDate)}>
-                            {new Date(notif.created_at).toLocaleString()}
-                          </span>
-                        </div>
-                        {notif.action_url && (
-                          <Button variant="link" size="sm">View</Button>
-                        )}
-                      </StaggerItem>
-                    ))
+                    filteredNotifications.map(notif => {
+                      const NotifIcon = NOTIF_ICONS[notif.type];
+                      return (
+                        <StaggerItem key={notif.id}>
+                          <div
+                            onClick={() => handleMarkNotificationRead(notif.id)}
+                            className={cn(
+                              commonStyles.notificationItem,
+                              themeStyles.notificationItem,
+                              commonStyles[`notif_${notif.type}`],
+                              themeStyles[`notif_${notif.type}`],
+                              !notif.is_read && commonStyles.unreadNotif,
+                              !notif.is_read && themeStyles.unreadNotif
+                            )}
+                          >
+                            <div className={cn(commonStyles.notifIcon, themeStyles.notifIcon, commonStyles[`notifIcon_${notif.type}`], themeStyles[`notifIcon_${notif.type}`])}>
+                              <NotifIcon size={18} />
+                            </div>
+                            <div className={commonStyles.notifContent}>
+                              <h4 className={cn(commonStyles.notifTitle, themeStyles.notifTitle)}>
+                                {notif.title}
+                                {!notif.is_read && <span className={commonStyles.newDot} />}
+                              </h4>
+                              <p className={cn(commonStyles.notifMessage, themeStyles.notifMessage)}>
+                                {notif.message}
+                              </p>
+                              <span className={cn(commonStyles.notifDate, themeStyles.notifDate)}>
+                                <Clock size={12} /> {formatTimeAgo(notif.created_at)}
+                              </span>
+                            </div>
+                            {notif.action_url && (
+                              <Button variant="ghost" size="sm">
+                                <ExternalLink size={14} /> View
+                              </Button>
+                            )}
+                          </div>
+                        </StaggerItem>
+                      );
+                    })
                   )}
                 </StaggerContainer>
               )}
 
               {/* Announcements */}
               {activeTab === 'announcements' && (
-                <StaggerContainer className={cn(commonStyles.announcementList, themeStyles.announcementList)}>
-                  {announcements.length === 0 ? (
+                <StaggerContainer className={commonStyles.announcementList}>
+                  {filteredAnnouncements.length === 0 ? (
                     <div className={cn(commonStyles.emptyState, themeStyles.emptyState)}>
-                      <p>No announcements</p>
+                      <Megaphone size={36} className={commonStyles.emptyIcon} />
+                      <h3 className={commonStyles.emptyTitle}>
+                        {searchQuery ? 'No announcements match your search' : 'No announcements'}
+                      </h3>
+                      <p className={commonStyles.emptyText}>
+                        {searchQuery ? 'Try a different search term' : 'Check back later for platform updates'}
+                      </p>
                     </div>
                   ) : (
-                    announcements.map(announcement => (
-                      <StaggerItem
-                        key={announcement.id}
-                        className={cn(
-                          commonStyles.announcementItem,
-                          themeStyles.announcementItem,
-                          commonStyles[`priority${announcement.priority.charAt(0).toUpperCase() + announcement.priority.slice(1)}`],
-                          themeStyles[`priority${announcement.priority.charAt(0).toUpperCase() + announcement.priority.slice(1)}`]
-                        )}
-                      >
-                        <div className={commonStyles.announcementHeader}>
-                          <h3 className={cn(commonStyles.announcementTitle, themeStyles.announcementTitle)}>
-                            {announcement.title}
-                          </h3>
-                          <span className={cn(
-                            commonStyles.priorityBadge,
-                            themeStyles.priorityBadge,
-                            commonStyles[`badge${announcement.priority.charAt(0).toUpperCase() + announcement.priority.slice(1)}`],
-                            themeStyles[`badge${announcement.priority.charAt(0).toUpperCase() + announcement.priority.slice(1)}`]
+                    filteredAnnouncements.map(announcement => {
+                      const priorityConfig = PRIORITY_CONFIG[announcement.priority];
+                      return (
+                        <StaggerItem key={announcement.id}>
+                          <div className={cn(
+                            commonStyles.announcementItem,
+                            themeStyles.announcementItem,
+                            commonStyles[`priority_${announcement.priority}`]
                           )}>
-                            {announcement.priority}
-                          </span>
-                        </div>
-                        <p className={cn(commonStyles.announcementContent, themeStyles.announcementContent)}>
-                          {announcement.content}
-                        </p>
-                        <div className={cn(commonStyles.announcementMeta, themeStyles.announcementMeta)}>
-                          <span>Posted: {new Date(announcement.created_at).toLocaleDateString()}</span>
-                          {announcement.expires_at && (
-                            <span>Expires: {new Date(announcement.expires_at).toLocaleDateString()}</span>
-                          )}
-                        </div>
-                      </StaggerItem>
-                    ))
+                            <div className={commonStyles.announcementHeader}>
+                              <div className={commonStyles.announcementTitleRow}>
+                                <Megaphone size={18} className={cn(commonStyles.announcementIcon, themeStyles.announcementIcon)} />
+                                <h3 className={cn(commonStyles.announcementTitle, themeStyles.announcementTitle)}>
+                                  {announcement.title}
+                                </h3>
+                              </div>
+                              <Badge variant={priorityConfig.variant}>{priorityConfig.label}</Badge>
+                            </div>
+                            <p className={cn(commonStyles.announcementContent, themeStyles.announcementContent)}>
+                              {announcement.content}
+                            </p>
+                            <div className={cn(commonStyles.announcementMeta, themeStyles.announcementMeta)}>
+                              <span><Clock size={12} /> Posted {formatTimeAgo(announcement.created_at)}</span>
+                              {announcement.expires_at && (
+                                <span>
+                                  <AlertTriangle size={12} /> Expires {new Date(announcement.expires_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </StaggerItem>
+                      );
+                    })
                   )}
                 </StaggerContainer>
               )}
@@ -467,58 +684,80 @@ export default function CommunicationPage() {
 
         {/* Compose Modal */}
         {isComposing && (
-          <div className={cn(commonStyles.modal, themeStyles.modal)}>
-            <div className={cn(commonStyles.modalContent, themeStyles.modalContent)}>
-              <div className={cn(commonStyles.modalHeader, themeStyles.modalHeader)}>
-                <h2>New Message</h2>
+          <div className={commonStyles.modalOverlay} onClick={() => setIsComposing(false)}>
+            <div className={cn(commonStyles.modal, themeStyles.modal)} onClick={e => e.stopPropagation()}>
+              <div className={commonStyles.modalHeader}>
+                <h2 className={cn(commonStyles.modalTitle, themeStyles.modalTitle)}>
+                  <Pen size={20} /> New Message
+                </h2>
                 <button
+                  className={cn(commonStyles.modalClose, themeStyles.modalClose)}
                   onClick={() => setIsComposing(false)}
-                  className={cn(commonStyles.closeBtn, themeStyles.closeBtn)}
+                  aria-label="Close modal"
                 >
-                  ×
+                  <X size={20} />
                 </button>
               </div>
               <div className={commonStyles.composeForm}>
                 <div className={commonStyles.formGroup}>
-                  <label>To:</label>
+                  <label className={cn(commonStyles.formLabel, themeStyles.formLabel)}>
+                    <Mail size={14} /> To
+                  </label>
                   <input
                     type="text"
                     value={composeData.to}
-                    onChange={(e) => setComposeData(prev => ({ ...prev, to: e.target.value }))}
+                    onChange={e => setComposeData(prev => ({ ...prev, to: e.target.value }))}
                     placeholder="Recipient username or email"
                     className={cn(commonStyles.input, themeStyles.input)}
                   />
                 </div>
                 <div className={commonStyles.formGroup}>
-                  <label>Subject:</label>
+                  <label className={cn(commonStyles.formLabel, themeStyles.formLabel)}>
+                    <FileText size={14} /> Subject
+                  </label>
                   <input
                     type="text"
                     value={composeData.subject}
-                    onChange={(e) => setComposeData(prev => ({ ...prev, subject: e.target.value }))}
+                    onChange={e => setComposeData(prev => ({ ...prev, subject: e.target.value }))}
                     placeholder="Message subject"
                     className={cn(commonStyles.input, themeStyles.input)}
                   />
                 </div>
                 <div className={commonStyles.formGroup}>
-                  <label>Message:</label>
+                  <label className={cn(commonStyles.formLabel, themeStyles.formLabel)}>
+                    <MessageSquare size={14} /> Message
+                  </label>
                   <textarea
                     value={composeData.content}
-                    onChange={(e) => setComposeData(prev => ({ ...prev, content: e.target.value }))}
+                    onChange={e => setComposeData(prev => ({ ...prev, content: e.target.value }))}
                     placeholder="Write your message..."
                     rows={8}
                     className={cn(commonStyles.textarea, themeStyles.textarea)}
                   />
                 </div>
                 <div className={commonStyles.modalActions}>
-                  <Button variant="secondary" onClick={() => setIsComposing(false)}>
+                  <Button variant="ghost" onClick={() => setIsComposing(false)}>
                     Cancel
                   </Button>
                   <Button variant="primary" onClick={handleSendMessage}>
-                    Send Message
+                    <Send size={14} /> Send Message
                   </Button>
                 </div>
               </div>
             </div>
+          </div>
+        )}
+
+        {/* Toast */}
+        {toast && (
+          <div className={cn(
+            commonStyles.toast,
+            themeStyles.toast,
+            toast.type === 'error' && commonStyles.toastError,
+            toast.type === 'error' && themeStyles.toastError
+          )}>
+            {toast.type === 'success' ? <CheckCircle size={16} /> : <AlertCircle size={16} />}
+            <span>{toast.message}</span>
           </div>
         )}
       </div>

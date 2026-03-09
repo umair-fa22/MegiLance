@@ -1,4 +1,4 @@
-/* @AI-HINT: Light theme for premium Hero - Clean, modern aesthetic with subtle gradients and glassmorphism */
+/* @AI-HINT: Light theme for action-oriented Hero — search bar, categories, clean aesthetic */
 
 .heroContainer {
   background: linear-gradient(180deg, #ffffff 0%, #f8fafc 40%, #eff6ff 100%);
@@ -6,58 +6,8 @@
 
 .meshBackground {
   background: 
-    radial-gradient(ellipse at 20% 30%, rgba(69, 115, 223, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
-    radial-gradient(ellipse at 40% 80%, rgba(255, 152, 0, 0.06) 0%, transparent 40%),
-    radial-gradient(ellipse at 90% 70%, rgba(16, 185, 129, 0.05) 0%, transparent 35%);
-}
-
-.orb {
-  opacity: 0.4;
-}
-
-.orb:nth-child(1) {
-  background: linear-gradient(135deg, rgba(69, 115, 223, 0.3), rgba(99, 102, 241, 0.2));
-}
-
-.orb:nth-child(2) {
-  background: linear-gradient(135deg, rgba(255, 152, 0, 0.25), rgba(251, 191, 36, 0.15));
-}
-
-.orb:nth-child(3) {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(52, 211, 153, 0.1));
-}
-
-.gridPattern {
-  background-image: 
-    linear-gradient(rgba(69, 115, 223, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(69, 115, 223, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-/* Announcement Badge */
-.announcementBadge {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.9));
-  color: #4573df;
-  border: 1px solid rgba(69, 115, 223, 0.15);
-  box-shadow: 
-    0 4px 20px rgba(69, 115, 223, 0.1),
-    0 1px 3px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.announcementBadge:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(248, 250, 252, 1));
-  box-shadow: 
-    0 8px 30px rgba(69, 115, 223, 0.15),
-    0 2px 6px rgba(0, 0, 0, 0.06);
-  border-color: rgba(69, 115, 223, 0.25);
-}
-
-.badgeIcon {
-  background: linear-gradient(135deg, rgba(69, 115, 223, 0.15), rgba(99, 102, 241, 0.1));
-  color: #4573df;
+    radial-gradient(ellipse at 20% 30%, rgba(69, 115, 223, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(99, 102, 241, 0.06) 0%, transparent 40%);
 }
 
 /* Heading */
@@ -76,111 +26,115 @@
   color: #475569;
 }
 
+/* Search */
+.searchForm {
+  /* no theme override needed */
+}
+
+.searchInputWrapper {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.searchInputWrapper:focus-within {
+  border-color: #4573df;
+}
+
+.searchIcon {
+  color: #94a3b8;
+}
+
+.searchInput {
+  color: #0f172a;
+}
+
+.searchInput::placeholder {
+  color: #94a3b8;
+}
+
+.searchButton {
+  /* inherits Button primary styles */
+}
+
+/* Popular searches */
+.popularSearches {
+  color: #64748b;
+}
+
+.popularLabel {
+  color: #475569;
+}
+
+.popularTag {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.popularTag:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
 /* CTA Buttons */
 .primaryCta {
-  background: linear-gradient(135deg, #4573df 0%, #6366f1 100%);
-  box-shadow: 
-    0 4px 14px rgba(69, 115, 223, 0.4),
-    0 2px 4px rgba(69, 115, 223, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 14px rgba(69, 115, 223, 0.3);
 }
 
 .primaryCta:hover {
-  background: linear-gradient(135deg, #3b65d4 0%, #5b5ff8 100%);
-  box-shadow: 
-    0 8px 28px rgba(69, 115, 223, 0.45),
-    0 4px 10px rgba(69, 115, 223, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 28px rgba(69, 115, 223, 0.35);
 }
 
 .secondaryCta {
   background: rgba(255, 255, 255, 0.8);
   color: #374151;
-  border: 1.5px solid rgba(209, 213, 219, 0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid #d1d5db;
 }
 
 .secondaryCta:hover {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(69, 115, 223, 0.3);
+  background: #ffffff;
+  border-color: #4573df;
   color: #4573df;
 }
 
-/* Social Proof */
-.avatarStack {
-  background: transparent;
-}
-
-.avatar {
-  background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
-  color: #4573df;
-  border: 2px solid #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.avatar:nth-child(2) { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
-.avatar:nth-child(3) { background: linear-gradient(135deg, #d1fae5, #a7f3d0); color: #059669; }
-.avatar:nth-child(4) { background: linear-gradient(135deg, #fef3c7, #fde68a); color: #d97706; }
-.avatar:nth-child(5) { background: linear-gradient(135deg, #fce7f3, #fbcfe8); color: #db2777; }
-
-.proofStars {
-  color: #f59e0b;
-}
-
-.ratingText {
-  color: #374151;
-  margin-left: 0.375rem;
-}
-
-.proofLabel {
+/* Value Props */
+.valueProps {
   color: #64748b;
 }
 
-/* Feature Pills */
-.floatingPill {
-  background: rgba(255, 255, 255, 0.8);
-  color: #374151;
-  border: 1px solid rgba(229, 231, 235, 0.8);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+.valueProp {
+  color: #475569;
 }
 
-.floatingPill:hover {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(69, 115, 223, 0.25);
-  box-shadow: 0 4px 12px rgba(69, 115, 223, 0.1);
-  color: #1e293b;
-}
-
-.floatingPill svg {
-  color: #4573df;
-}
-
-/* Stats Grid */
-.statsGrid {
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(229, 231, 235, 0.6);
-  box-shadow: 
-    0 4px 24px rgba(0, 0, 0, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-/* Trust Badges */
-.trustBadge {
-  background: rgba(241, 245, 249, 0.8);
-  color: #64748b;
-  border: 1px solid rgba(226, 232, 240, 0.8);
-}
-
-.trustBadge svg {
+.valueProp svg {
   color: #10b981;
 }
 
-.trustBadge:hover {
-  background: rgba(241, 245, 249, 1);
-  color: #475569;
+/* Categories */
+.categoriesSection {
+  /* no theme override needed */
+}
+
+.categoriesTitle {
+  color: #1e293b;
+}
+
+.categoryCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.categoryCard:hover {
+  border-color: #4573df;
+  box-shadow: 0 4px 16px rgba(69, 115, 223, 0.12);
+}
+
+.categoryIcon {
+  color: #4573df;
+}
+
+.categoryLabel {
+  color: #374151;
 }

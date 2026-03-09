@@ -111,3 +111,229 @@
   border-color: rgba(245, 158, 11, 0.4);
   background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, #1e293b 100%);
 }
+
+/* Header stats */
+.headerStats { }
+.headerStat {
+  background: rgba(69, 115, 223, 0.12);
+  color: #6b8de6;
+}
+
+/* Benefits */
+.benefitsList { }
+.benefitTag {
+  background: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+}
+
+/* Section tabs */
+.sectionTabs {
+  background: #1e293b;
+}
+
+.sectionTab {
+  color: #94a3b8;
+}
+
+.sectionTabActive {
+  background: #334155;
+  color: #f8fafc;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Section desc */
+.sectionDesc {
+  color: #94a3b8;
+}
+
+/* Empty states */
+.emptyBadges {
+  color: #64748b;
+}
+
+.emptyLeaderboard {
+  color: #64748b;
+}
+
+/* Badge footer */
+.badgeDate {
+  color: #64748b;
+}
+
+/* Leaderboard */
+.leaderboardEntry {
+  background: rgba(30, 41, 59, 0.5);
+}
+
+.leaderboardEntry:hover {
+  background: #334155;
+}
+
+.leaderboardEntryCurrent {
+  border-color: #4573df;
+  background: rgba(69, 115, 223, 0.08);
+}
+
+.leaderboardPosition {
+  background: #334155;
+  color: #94a3b8;
+}
+
+.leaderboardAvatar {
+  background: #334155;
+  color: #cbd5e1;
+}
+
+.leaderboardName {
+  color: #f8fafc;
+}
+
+.leaderboardRank {
+  color: #94a3b8;
+}
+
+.leaderboardPoints {
+  color: #6b8de6;
+}
+
+/* Period toggle */
+.periodToggle {
+  background: #1e293b;
+}
+
+.periodBtn {
+  color: #94a3b8;
+}
+
+.periodBtn:hover {
+  color: #f8fafc;
+}
+
+.periodBtnActive {
+  background: #334155;
+  color: #f8fafc;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* XP Breakdown */
+.xpBreakdown { }
+
+.xpItem { }
+
+.xpItemSource {
+  color: #f8fafc;
+}
+
+.xpItemPoints {
+  color: #6b8de6;
+}
+
+.xpItemBar {
+  background: #334155;
+}
+
+.xpItemPercent {
+  color: #64748b;
+}
+
+/* Recent XP */
+.recentXP { }
+
+.subSectionTitle {
+  color: #f8fafc;
+}
+
+.recentXPItem {
+  background: rgba(30, 41, 59, 0.5);
+}
+
+.xpBadge {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.recentXPSource {
+  color: #f8fafc;
+}
+
+.recentXPDesc {
+  color: #94a3b8;
+}
+
+.recentXPTime {
+  color: #64748b;
+}
+
+/* Earn cards */
+.earnCard {
+  background: #1e293b;
+  border: 1px solid #334155;
+}
+
+.earnCard:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.earnTitle {
+  color: #f8fafc;
+}
+
+.earnPoints {
+  color: #6b8de6;
+}
+
+.earnArrow {
+  color: #64748b;
+}
+
+/* Tips card */
+.tipsCard {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.15);
+}
+
+.tipsTitle {
+  color: #f8fafc;
+}
+
+.tipsList {
+  color: #cbd5e1;
+}
+
+/* Tier benefits */
+.tierBenefits { }
+.tierBenefit {
+  color: #94a3b8;
+}
+
+/* Badge modal */
+.badgeModal {
+  background: #1e293b;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.modalClose {
+  background: #334155;
+  color: #94a3b8;
+}
+
+.modalClose:hover {
+  background: #475569;
+}
+
+.badgeModalName {
+  color: #f8fafc;
+}
+
+.badgeModalDesc {
+  color: #cbd5e1;
+}
+
+.badgeModalCondition {
+  background: #334155;
+  color: #cbd5e1;
+}
+
+.badgeModalDate {
+  color: #64748b;
+}

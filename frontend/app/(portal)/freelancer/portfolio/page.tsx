@@ -1,7 +1,7 @@
 // @AI-HINT: Public portfolio showcase for displaying freelancer work and projects
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { portfolioShowcaseApi as _portfolioShowcaseApi } from '@/lib/api';
@@ -9,7 +9,11 @@ import Button from '@/app/components/Button/Button';
 import Input from '@/app/components/Input/Input';
 import Select from '@/app/components/Select/Select';
 import Textarea from '@/app/components/Textarea/Textarea';
-import { Plus, Settings, Trash2, Edit3, Star, Eye, Heart, X } from 'lucide-react';
+import {
+  Plus, Settings, Trash2, Edit3, Star, Eye, Heart, X, Search,
+  Briefcase, ExternalLink, Link2, Grid3x3, LayoutList, LayoutGrid,
+  Image, CheckCircle, AlertTriangle, FolderOpen, Tag, User, Calendar
+} from 'lucide-react';
 import commonStyles from './Portfolio.common.module.css';
 import lightStyles from './Portfolio.light.module.css';
 import darkStyles from './Portfolio.dark.module.css';
@@ -65,10 +69,10 @@ const categoryOptions = [
   { value: 'other', label: 'Other' },
 ];
 
-const layoutOptions = [
-  { value: 'grid', icon: '⊞', label: 'Grid' },
-  { value: 'masonry', icon: '▦', label: 'Masonry' },
-  { value: 'list', icon: '☰', label: 'List' },
+const LAYOUT_OPTIONS = [
+  { value: 'grid', icon: <Grid3x3 size={16} />, label: 'Grid' },
+  { value: 'masonry', icon: <LayoutGrid size={16} />, label: 'Masonry' },
+  { value: 'list', icon: <LayoutList size={16} />, label: 'List' },
 ];
 
 export default function PortfolioShowcasePage() {
@@ -77,12 +81,12 @@ export default function PortfolioShowcasePage() {
   const [settings, setSettings] = useState<PortfolioSettings | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState('all');
-  const [viewMode, setViewMode] = useState<'preview' | 'edit'>('preview');
+  const [searchQuery, setSearchQuery] = useState('');
   const [showItemModal, setShowItemModal] = useState(false);
   const [editingItem, setEditingItem] = useState<PortfolioItem | null>(null);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
-  // New item form
   const [newItem, setNewItem] = useState({
     title: '',
     description: '',
@@ -96,6 +100,11 @@ export default function PortfolioShowcasePage() {
   const [tagInput, setTagInput] = useState('');
   const [saving, setSaving] = useState(false);
   const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
+
+  const showToast = useCallback((message: string, type: 'success' | 'error' = 'success') => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 3500);
+  }, []);
 
   useEffect(() => {
     loadPortfolio();
@@ -124,15 +133,17 @@ export default function PortfolioShowcasePage() {
       setSaving(true);
       if (editingItem) {
         await portfolioShowcaseApi.update(editingItem.id, newItem);
+        showToast('Project updated');
       } else {
         await portfolioShowcaseApi.create(newItem);
+        showToast('Project added');
       }
       setShowItemModal(false);
       setEditingItem(null);
       resetItemForm();
       loadPortfolio();
     } catch (error) {
-      console.error('Failed to save item:', error);
+      showToast('Failed to save project', 'error');
     } finally {
       setSaving(false);
     }
@@ -142,9 +153,10 @@ export default function PortfolioShowcasePage() {
     try {
       await portfolioShowcaseApi.delete(id);
       setDeleteTargetId(null);
+      showToast('Project deleted');
       loadPortfolio();
     } catch (error) {
-      console.error('Failed to delete item:', error);
+      showToast('Failed to delete project', 'error');
     }
   };
 
@@ -154,8 +166,9 @@ export default function PortfolioShowcasePage() {
       setItems(prev =>
         prev.map(i => (i.id === item.id ? { ...i, featured: !i.featured } : i))
       );
+      showToast(item.featured ? 'Removed from featured' : 'Added to featured');
     } catch (error) {
-      console.error('Failed to toggle featured:', error);
+      showToast('Failed to update', 'error');
     }
   };
 
@@ -169,11 +182,7 @@ export default function PortfolioShowcasePage() {
       setItems(prev =>
         prev.map(i =>
           i.id === item.id
-            ? {
-                ...i,
-                likes: item.user_liked ? i.likes - 1 : i.likes + 1,
-                user_liked: !i.user_liked,
-              }
+            ? { ...i, likes: item.user_liked ? i.likes - 1 : i.likes + 1, user_liked: !i.user_liked }
             : i
         )
       );
@@ -189,8 +198,9 @@ export default function PortfolioShowcasePage() {
       setSaving(true);
       await portfolioShowcaseApi.updateSettings(settings);
       setShowSettingsModal(false);
+      showToast('Settings saved');
     } catch (error) {
-      console.error('Failed to save settings:', error);
+      showToast('Failed to save settings', 'error');
     } finally {
       setSaving(false);
     }
@@ -198,14 +208,8 @@ export default function PortfolioShowcasePage() {
 
   const resetItemForm = () => {
     setNewItem({
-      title: '',
-      description: '',
-      category: 'web-development',
-      tags: [],
-      images: [],
-      link: '',
-      client_name: '',
-      featured: false,
+      title: '', description: '', category: 'web-development',
+      tags: [], images: [], link: '', client_name: '', featured: false,
     });
     setTagInput('');
   };
@@ -213,14 +217,9 @@ export default function PortfolioShowcasePage() {
   const editItem = (item: PortfolioItem) => {
     setEditingItem(item);
     setNewItem({
-      title: item.title,
-      description: item.description,
-      category: item.category,
-      tags: item.tags,
-      images: item.images,
-      link: item.link || '',
-      client_name: item.client_name || '',
-      featured: item.featured,
+      title: item.title, description: item.description, category: item.category,
+      tags: item.tags, images: item.images, link: item.link || '',
+      client_name: item.client_name || '', featured: item.featured,
     });
     setShowItemModal(true);
   };
@@ -234,11 +233,18 @@ export default function PortfolioShowcasePage() {
 
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
-  const filteredItems = activeCategory === 'all'
-    ? items
-    : items.filter(i => i.category === activeCategory);
+  const filteredItems = items.filter(item => {
+    const matchesCategory = activeCategory === 'all' || item.category === activeCategory;
+    const matchesSearch = !searchQuery ||
+      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
+    return matchesCategory && matchesSearch;
+  });
 
   const featuredItems = items.filter(i => i.featured);
+  const totalViews = items.reduce((sum, i) => sum + i.views, 0);
+  const totalLikes = items.reduce((sum, i) => sum + i.likes, 0);
 
   return (
     <PageTransition>
@@ -246,10 +252,13 @@ export default function PortfolioShowcasePage() {
         <ScrollReveal>
           <div className={commonStyles.header}>
             <div className={commonStyles.headerTop}>
-              <div>
-                <h1 className={cn(commonStyles.title, themeStyles.title)}>Portfolio Showcase</h1>
+              <div className={commonStyles.headerText}>
+                <h1 className={cn(commonStyles.title, themeStyles.title)}>
+                  <Briefcase size={24} className={commonStyles.titleIcon} />
+                  Portfolio Showcase
+                </h1>
                 <p className={cn(commonStyles.subtitle, themeStyles.subtitle)}>
-                  Manage and display your best work • {items.length} projects
+                  Manage and display your best work
                 </p>
               </div>
               <div className={commonStyles.headerActions}>
@@ -258,25 +267,55 @@ export default function PortfolioShowcasePage() {
                 </Button>
                 <Button
                   variant="primary"
-                  onClick={() => {
-                    resetItemForm();
-                    setEditingItem(null);
-                    setShowItemModal(true);
-                  }}
+                  onClick={() => { resetItemForm(); setEditingItem(null); setShowItemModal(true); }}
                 >
                   <Plus size={16} /> Add Project
                 </Button>
               </div>
             </div>
 
+            {/* Stats */}
+            <div className={commonStyles.statsRow}>
+              <div className={cn(commonStyles.statChip, themeStyles.statChip)}>
+                <FolderOpen size={14} /> {items.length} Projects
+              </div>
+              <div className={cn(commonStyles.statChip, themeStyles.statChip)}>
+                <Star size={14} /> {featuredItems.length} Featured
+              </div>
+              <div className={cn(commonStyles.statChip, themeStyles.statChip)}>
+                <Eye size={14} /> {totalViews} Views
+              </div>
+              <div className={cn(commonStyles.statChip, themeStyles.statChip)}>
+                <Heart size={14} /> {totalLikes} Likes
+              </div>
+            </div>
+
             {settings?.public_url && (
               <div className={cn(commonStyles.publicUrl, themeStyles.publicUrl)}>
-                <span>🔗 Public Portfolio:</span>
+                <Link2 size={14} />
+                <span>Public Portfolio:</span>
                 <a href={settings.public_url} target="_blank" rel="noopener noreferrer">
-                  {settings.public_url}
+                  {settings.public_url} <ExternalLink size={12} />
                 </a>
               </div>
             )}
+
+            {/* Search */}
+            <div className={cn(commonStyles.searchBar, themeStyles.searchBar)}>
+              <Search size={16} className={cn(commonStyles.searchIcon, themeStyles.searchIcon)} />
+              <input
+                type="text"
+                placeholder="Search projects..."
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                className={cn(commonStyles.searchInput, themeStyles.searchInput)}
+              />
+              {searchQuery && (
+                <button onClick={() => setSearchQuery('')} className={cn(commonStyles.clearSearch, themeStyles.clearSearch)}>
+                  <X size={14} />
+                </button>
+              )}
+            </div>
 
             <div className={commonStyles.controls}>
               <div className={cn(commonStyles.categories, themeStyles.categories)}>
@@ -297,7 +336,7 @@ export default function PortfolioShowcasePage() {
               </div>
 
               <div className={commonStyles.layoutToggle}>
-                {layoutOptions.map(opt => (
+                {LAYOUT_OPTIONS.map(opt => (
                   <button
                     key={opt.value}
                     onClick={() => setSettings(prev => prev ? { ...prev, layout: opt.value as typeof prev.layout } : prev)}
@@ -308,6 +347,7 @@ export default function PortfolioShowcasePage() {
                       settings?.layout === opt.value && themeStyles.layoutActive
                     )}
                     title={opt.label}
+                    aria-label={`${opt.label} layout`}
                   >
                     {opt.icon}
                   </button>
@@ -319,33 +359,31 @@ export default function PortfolioShowcasePage() {
 
         {loading ? (
           <div className={cn(commonStyles.loading, themeStyles.loading)}>
+            <Briefcase size={28} className={commonStyles.loadingIcon} />
             Loading portfolio...
           </div>
         ) : items.length === 0 ? (
           <ScrollReveal>
             <div className={cn(commonStyles.emptyState, themeStyles.emptyState)}>
-              <span className={commonStyles.emptyIcon}>🎨</span>
+              <Image size={40} className={commonStyles.emptyIcon} />
               <h3 className={cn(commonStyles.emptyTitle, themeStyles.emptyTitle)}>
                 Start Building Your Portfolio
               </h3>
               <p className={cn(commonStyles.emptyDesc, themeStyles.emptyDesc)}>
                 Add your best projects to showcase your skills to potential clients
               </p>
-              <button
-                onClick={() => setShowItemModal(true)}
-                className={cn(commonStyles.emptyBtn, themeStyles.emptyBtn)}
-              >
-                Add Your First Project
-              </button>
+              <Button variant="primary" onClick={() => setShowItemModal(true)}>
+                <Plus size={16} /> Add Your First Project
+              </Button>
             </div>
           </ScrollReveal>
         ) : (
           <>
-            {featuredItems.length > 0 && activeCategory === 'all' && (
+            {featuredItems.length > 0 && activeCategory === 'all' && !searchQuery && (
               <div className={commonStyles.featuredSection}>
                 <ScrollReveal>
                   <h2 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>
-                    ⭐ Featured Work
+                    <Star size={18} /> Featured Work
                   </h2>
                 </ScrollReveal>
                 <StaggerContainer className={commonStyles.featuredGrid}>
@@ -357,18 +395,10 @@ export default function PortfolioShowcasePage() {
                       <div className={commonStyles.cardImage}>
                         <img src={item.thumbnail || '/placeholder.jpg'} alt={item.title} />
                         <div className={commonStyles.cardOverlay}>
-                          <button
-                            onClick={() => editItem(item)}
-                            className={commonStyles.overlayBtn}
-                            aria-label={`Edit ${item.title}`}
-                          >
+                          <button onClick={() => editItem(item)} className={commonStyles.overlayBtn} aria-label={`Edit ${item.title}`}>
                             <Edit3 size={16} />
                           </button>
-                          <button
-                            onClick={() => setDeleteTargetId(item.id)}
-                            className={commonStyles.overlayBtn}
-                            aria-label={`Delete ${item.title}`}
-                          >
+                          <button onClick={() => setDeleteTargetId(item.id)} className={commonStyles.overlayBtn} aria-label={`Delete ${item.title}`}>
                             <Trash2 size={16} />
                           </button>
                         </div>
@@ -382,7 +412,7 @@ export default function PortfolioShowcasePage() {
                         </p>
                         <div className={commonStyles.cardStats}>
                           <span className={cn(commonStyles.stat, themeStyles.stat)}>
-                            👁️ {item.views}
+                            <Eye size={13} /> {item.views}
                           </span>
                           <button
                             onClick={() => handleLike(item)}
@@ -393,7 +423,7 @@ export default function PortfolioShowcasePage() {
                               item.user_liked && themeStyles.liked
                             )}
                           >
-                            ❤️ {item.likes}
+                            <Heart size={13} fill={item.user_liked ? 'currentColor' : 'none'} /> {item.likes}
                           </button>
                         </div>
                       </div>
@@ -403,64 +433,76 @@ export default function PortfolioShowcasePage() {
               </div>
             )}
 
-            <StaggerContainer className={cn(
-              commonStyles.portfolioGrid,
-              settings?.layout === 'list' && commonStyles.listLayout,
-              settings?.layout === 'masonry' && commonStyles.masonryLayout
-            )}>
-              {filteredItems.map(item => (
-                <StaggerItem
-                  key={item.id}
-                  className={cn(commonStyles.portfolioCard, themeStyles.portfolioCard)}
-                >
-                  <div className={commonStyles.cardImage}>
-                    <img src={item.thumbnail || '/placeholder.jpg'} alt={item.title} />
-                    {item.featured && (
-                      <span className={cn(commonStyles.featuredBadge, themeStyles.featuredBadge)}>
-                        ⭐ Featured
-                      </span>
-                    )}
-                    <div className={commonStyles.cardOverlay}>
-                      <button onClick={() => toggleFeatured(item)} className={commonStyles.overlayBtn} aria-label={item.featured ? `Unfeature ${item.title}` : `Feature ${item.title}`}>
-                        <Star size={16} fill={item.featured ? 'currentColor' : 'none'} />
-                      </button>
-                      <button onClick={() => editItem(item)} className={commonStyles.overlayBtn} aria-label={`Edit ${item.title}`}>
-                        <Edit3 size={16} />
-                      </button>
-                      <button onClick={() => setDeleteTargetId(item.id)} className={commonStyles.overlayBtn} aria-label={`Delete ${item.title}`}>
-                        <Trash2 size={16} />
-                      </button>
-                    </div>
-                  </div>
-                  <div className={commonStyles.cardContent}>
-                    <span className={cn(commonStyles.cardCategory, themeStyles.cardCategory)}>
-                      {categoryOptions.find(c => c.value === item.category)?.label}
-                    </span>
-                    <h3 className={cn(commonStyles.cardTitle, themeStyles.cardTitle)}>{item.title}</h3>
-                    <div className={commonStyles.cardTags}>
-                      {item.tags.slice(0, 3).map(tag => (
-                        <span key={tag} className={cn(commonStyles.tag, themeStyles.tag)}>
-                          {tag}
+            {filteredItems.length === 0 ? (
+              <div className={cn(commonStyles.emptyState, themeStyles.emptyState)}>
+                <Search size={32} className={commonStyles.emptyIcon} />
+                <h3 className={cn(commonStyles.emptyTitle, themeStyles.emptyTitle)}>No matching projects</h3>
+                <p className={cn(commonStyles.emptyDesc, themeStyles.emptyDesc)}>
+                  Try adjusting your search or category filter
+                </p>
+              </div>
+            ) : (
+              <StaggerContainer className={cn(
+                commonStyles.portfolioGrid,
+                settings?.layout === 'list' && commonStyles.listLayout,
+                settings?.layout === 'masonry' && commonStyles.masonryLayout
+              )}>
+                {filteredItems.map(item => (
+                  <StaggerItem
+                    key={item.id}
+                    className={cn(commonStyles.portfolioCard, themeStyles.portfolioCard)}
+                  >
+                    <div className={commonStyles.cardImage}>
+                      <img src={item.thumbnail || '/placeholder.jpg'} alt={item.title} />
+                      {item.featured && (
+                        <span className={cn(commonStyles.featuredBadge, themeStyles.featuredBadge)}>
+                          <Star size={11} /> Featured
                         </span>
-                      ))}
+                      )}
+                      <div className={commonStyles.cardOverlay}>
+                        <button onClick={() => toggleFeatured(item)} className={commonStyles.overlayBtn} aria-label={item.featured ? `Unfeature ${item.title}` : `Feature ${item.title}`}>
+                          <Star size={16} fill={item.featured ? 'currentColor' : 'none'} />
+                        </button>
+                        <button onClick={() => editItem(item)} className={commonStyles.overlayBtn} aria-label={`Edit ${item.title}`}>
+                          <Edit3 size={16} />
+                        </button>
+                        <button onClick={() => setDeleteTargetId(item.id)} className={commonStyles.overlayBtn} aria-label={`Delete ${item.title}`}>
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
                     </div>
-                    <div className={commonStyles.cardStats}>
-                      <span className={cn(commonStyles.stat, themeStyles.stat)}>👁️ {item.views}</span>
-                      <button
-                        onClick={() => handleLike(item)}
-                        className={cn(
-                          commonStyles.likeBtn,
-                          themeStyles.likeBtn,
-                          item.user_liked && commonStyles.liked
-                        )}
-                      >
-                        ❤️ {item.likes}
-                      </button>
+                    <div className={commonStyles.cardContent}>
+                      <span className={cn(commonStyles.cardCategory, themeStyles.cardCategory)}>
+                        {categoryOptions.find(c => c.value === item.category)?.label}
+                      </span>
+                      <h3 className={cn(commonStyles.cardTitle, themeStyles.cardTitle)}>{item.title}</h3>
+                      <div className={commonStyles.cardTags}>
+                        {item.tags.slice(0, 3).map(tag => (
+                          <span key={tag} className={cn(commonStyles.tag, themeStyles.tag)}>
+                            <Tag size={10} /> {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <div className={commonStyles.cardStats}>
+                        <span className={cn(commonStyles.stat, themeStyles.stat)}>
+                          <Eye size={13} /> {item.views}
+                        </span>
+                        <button
+                          onClick={() => handleLike(item)}
+                          className={cn(
+                            commonStyles.likeBtn,
+                            themeStyles.likeBtn,
+                            item.user_liked && commonStyles.liked
+                          )}
+                        >
+                          <Heart size={13} fill={item.user_liked ? 'currentColor' : 'none'} /> {item.likes}
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            )}
           </>
         )}
 
@@ -470,7 +512,7 @@ export default function PortfolioShowcasePage() {
             <div className={cn(commonStyles.modal, themeStyles.modal)} onClick={(e) => e.stopPropagation()}>
               <div className={cn(commonStyles.modalHeader, themeStyles.modalHeader)}>
                 <h2 className={cn(commonStyles.modalTitle, themeStyles.modalTitle)}>
-                  {editingItem ? 'Edit Project' : 'Add New Project'}
+                  {editingItem ? <><Edit3 size={18} /> Edit Project</> : <><Plus size={18} /> Add New Project</>}
                 </h2>
                 <button
                   onClick={() => setShowItemModal(false)}
@@ -478,7 +520,7 @@ export default function PortfolioShowcasePage() {
                   disabled={saving}
                   aria-label="Close dialog"
                 >
-                  ×
+                  <X size={18} />
                 </button>
               </div>
 
@@ -502,7 +544,9 @@ export default function PortfolioShowcasePage() {
                     />
                   </div>
                   <div className={commonStyles.formGroup}>
-                    <label className={cn(commonStyles.label, themeStyles.label)}>Client Name</label>
+                    <label className={cn(commonStyles.label, themeStyles.label)}>
+                      <User size={13} /> Client Name
+                    </label>
                     <Input
                       value={newItem.client_name}
                       onChange={(e) => setNewItem(prev => ({ ...prev, client_name: e.target.value }))}
@@ -522,7 +566,9 @@ export default function PortfolioShowcasePage() {
                 </div>
 
                 <div className={commonStyles.formGroup}>
-                  <label className={cn(commonStyles.label, themeStyles.label)}>Project Link</label>
+                  <label className={cn(commonStyles.label, themeStyles.label)}>
+                    <ExternalLink size={13} /> Project Link
+                  </label>
                   <Input
                     type="url"
                     value={newItem.link}
@@ -532,7 +578,9 @@ export default function PortfolioShowcasePage() {
                 </div>
 
                 <div className={commonStyles.formGroup}>
-                  <label className={cn(commonStyles.label, themeStyles.label)}>Tags</label>
+                  <label className={cn(commonStyles.label, themeStyles.label)}>
+                    <Tag size={13} /> Tags
+                  </label>
                   <div className={commonStyles.tagInputRow}>
                     <Input
                       value={tagInput}
@@ -550,7 +598,7 @@ export default function PortfolioShowcasePage() {
                         <span key={tag} className={cn(commonStyles.selectedTag, themeStyles.selectedTag)}>
                           {tag}
                           <button onClick={() => setNewItem(prev => ({ ...prev, tags: prev.tags.filter(t => t !== tag) }))} aria-label={`Remove tag ${tag}`}>
-                            ×
+                            <X size={12} />
                           </button>
                         </span>
                       ))}
@@ -565,7 +613,7 @@ export default function PortfolioShowcasePage() {
                     onChange={(e) => setNewItem(prev => ({ ...prev, featured: e.target.checked }))}
                   />
                   <span className={cn(commonStyles.checkboxText, themeStyles.checkboxText)}>
-                    Feature this project
+                    <Star size={13} /> Feature this project
                   </span>
                 </label>
               </div>
@@ -591,7 +639,7 @@ export default function PortfolioShowcasePage() {
             <div className={cn(commonStyles.modal, themeStyles.modal)} onClick={(e) => e.stopPropagation()}>
               <div className={cn(commonStyles.modalHeader, themeStyles.modalHeader)}>
                 <h2 className={cn(commonStyles.modalTitle, themeStyles.modalTitle)}>
-                  Portfolio Settings
+                  <Settings size={18} /> Portfolio Settings
                 </h2>
                 <button
                   onClick={() => setShowSettingsModal(false)}
@@ -646,12 +694,7 @@ export default function PortfolioShowcasePage() {
 
               <div className={cn(commonStyles.modalFooter, themeStyles.modalFooter)}>
                 <Button variant="ghost" onClick={() => setShowSettingsModal(false)}>Cancel</Button>
-                <Button
-                  variant="primary"
-                  onClick={saveSettings}
-                  disabled={saving}
-                  isLoading={saving}
-                >
+                <Button variant="primary" onClick={saveSettings} disabled={saving} isLoading={saving}>
                   Save Settings
                 </Button>
               </div>
@@ -662,8 +705,12 @@ export default function PortfolioShowcasePage() {
         {/* Delete Confirmation Modal */}
         {deleteTargetId && (
           <div className={commonStyles.modalOverlay} onClick={() => setDeleteTargetId(null)}>
-            <div className={cn(commonStyles.modal, themeStyles.modal)} onClick={(e) => e.stopPropagation()}>
-              <h2 className={cn(commonStyles.modalTitle, themeStyles.modalTitle)}>Delete Project</h2>
+            <div className={cn(commonStyles.modal, commonStyles.confirmModal, themeStyles.modal)} onClick={(e) => e.stopPropagation()}>
+              <div className={cn(commonStyles.modalHeader, themeStyles.modalHeader)}>
+                <h2 className={cn(commonStyles.modalTitle, themeStyles.modalTitle)}>
+                  <AlertTriangle size={18} /> Delete Project
+                </h2>
+              </div>
               <div className={commonStyles.modalContent}>
                 <p className={cn(commonStyles.confirmText, themeStyles.confirmText)}>
                   Are you sure you want to delete this portfolio item? This action cannot be undone.
@@ -671,9 +718,23 @@ export default function PortfolioShowcasePage() {
               </div>
               <div className={cn(commonStyles.modalFooter, themeStyles.modalFooter)}>
                 <Button variant="ghost" onClick={() => setDeleteTargetId(null)}>Cancel</Button>
-                <Button variant="danger" onClick={() => handleDeleteItem(deleteTargetId)}>Delete</Button>
+                <Button variant="danger" onClick={() => handleDeleteItem(deleteTargetId)}>
+                  <Trash2 size={14} /> Delete
+                </Button>
               </div>
             </div>
+          </div>
+        )}
+
+        {/* Toast */}
+        {toast && (
+          <div className={cn(
+            commonStyles.toast,
+            themeStyles.toast,
+            toast.type === 'error' && themeStyles.toastError
+          )}>
+            {toast.type === 'error' ? <AlertTriangle size={16} /> : <CheckCircle size={16} />}
+            {toast.message}
           </div>
         )}
       </div>

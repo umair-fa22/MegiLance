@@ -169,3 +169,104 @@
 .mentorRate {
   color: #27ae60;
 }
+
+/* Tabs */
+.tabs {
+  background: #f1f5f9;
+}
+
+.tab {
+  color: #64748b;
+}
+
+.tabActive {
+  background: #fff;
+  color: #1a1a1a;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* Stat icon wrapper */
+.statIconWrapper {
+  background: rgba(69, 115, 223, 0.08);
+}
+
+.statValue {
+  color: #4573df;
+}
+
+/* Progress bar */
+.progressBarTrack {
+  background: #e2e8f0;
+}
+
+/* Certifications */
+.certsList { }
+.certBadge {
+  background: rgba(34, 197, 94, 0.1);
+  color: #16a34a;
+}
+
+/* Goals header */
+.goalsStats {
+  color: #64748b;
+}
+
+/* Milestones */
+.milestonesToggle {
+  color: #475569;
+}
+
+.milestoneName {
+  color: #1e293b;
+}
+
+.milestoneDuration {
+  color: #94a3b8;
+}
+
+.milestoneItem:not(:last-child)::after {
+  background: #e2e8f0;
+}
+
+/* Expertise tags */
+.expertiseTag {
+  background: #f0f4ff;
+  color: #4573df;
+}
+
+/* Modal */
+.modal {
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.modalTitle {
+  color: #0f172a;
+}
+
+.modalClose {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.modalClose:hover {
+  background: #e2e8f0;
+}
+
+.formLabel {
+  color: #374151;
+}
+
+.formSelect {
+  background: #fff;
+  border-color: #d1d5db;
+  color: #1e293b;
+}
+
+.recItemTitle {
+  color: #0f172a;
+}
+
+.skillName {
+  color: #0f172a;
+}

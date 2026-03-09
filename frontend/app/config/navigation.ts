@@ -23,11 +23,8 @@ export interface ProfileMenuItem {
 export const publicNavItems: NavItem[] = [
   { label: 'Home', href: '/', icon: 'FaHome' },
   { label: 'How It Works', href: '/how-it-works', icon: 'FaInfoCircle' },
+  { label: 'Explore', href: '/explore', icon: 'FaSearch' },
   { label: 'Pricing', href: '/pricing', icon: 'FaMoneyBillWave' },
-  { label: 'About', href: '/about', icon: 'FaInfoCircle' },
-  { label: 'Blog', href: '/blog', icon: 'FaBlog' },
-  { label: 'Contact', href: '/contact', icon: 'FaEnvelope' },
-  { label: 'FAQ', href: '/faq', icon: 'FaQuestionCircle' },
 ];
 
 // Footer navigation links
@@ -35,41 +32,22 @@ export const footerNavItems = {
   company: [
     { label: 'About Us', href: '/about' },
     { label: 'How It Works', href: '/how-it-works' },
-    { label: 'Careers', href: '/careers' },
     { label: 'Blog', href: '/blog' },
-    { label: 'Press', href: '/press' },
-    { label: 'Testimonials', href: '/testimonials' },
-    { label: 'Teams', href: '/teams' },
-    { label: 'Referral', href: '/referral' },
   ],
   services: [
     { label: 'For Freelancers', href: '/freelancers' },
     { label: 'For Clients', href: '/clients' },
-    { label: 'AI Tools', href: '/ai/chatbot' },
-    { label: 'Fraud Check', href: '/ai/fraud-check' },
-    { label: 'Price Estimator', href: '/ai/price-estimator' },
     { label: 'Pricing', href: '/pricing' },
-    { label: 'Enterprise', href: '/enterprise' },
   ],
   support: [
     { label: 'Help Center', href: '/help' },
     { label: 'Contact Us', href: '/contact' },
     { label: 'FAQ', href: '/faq' },
-    { label: 'Community', href: '/community' },
-    { label: 'Status', href: '/status' },
-    { label: 'Forgot Password', href: '/forgot-password' },
-    { label: 'Reset Password', href: '/reset-password' },
-    { label: 'Support', href: '/support' },
-    { label: 'Install', href: '/install' },
-    { label: 'Onboarding', href: '/onboarding' },
-    { label: 'Search', href: '/search' },
-    { label: 'Wallet', href: '/wallet' },
   ],
   legal: [
     { label: 'Privacy Policy', href: '/privacy' },
     { label: 'Terms of Service', href: '/terms' },
     { label: 'Cookie Policy', href: '/cookies' },
-    { label: 'Security', href: '/security' },
   ],
 };
 
@@ -77,140 +55,48 @@ export const footerNavItems = {
 // All users should use role-specific navigation (freelancer, client, or admin)
 export const dashboardNavItems: NavItem[] = [];
 
-// Freelancer-specific navigation — grouped with submenus for manageable sidebar
+// Freelancer-specific navigation — streamlined to essential items only
 export const freelancerNavItems: NavItem[] = [
   { label: 'Dashboard', href: '/freelancer/dashboard', icon: 'LayoutDashboard', section: 'Overview' },
-  { label: 'Messages', href: '/freelancer/messages', icon: 'MessageSquare' },
+  { label: 'Find Work', href: '/freelancer/jobs', icon: 'Search' },
+  { label: 'My Projects', href: '/freelancer/projects', icon: 'Briefcase', section: 'Work' },
+  { label: 'Proposals', href: '/freelancer/proposals', icon: 'FileText' },
+  { label: 'Contracts', href: '/freelancer/contracts', icon: 'FolderGit2' },
+  { label: 'Messages', href: '/freelancer/messages', icon: 'MessageSquare', section: 'Communication' },
   { label: 'Notifications', href: '/freelancer/notifications', icon: 'Bell' },
-  { label: 'Jobs', href: '/freelancer/jobs', icon: 'Search', section: 'Work', submenu: [
-    { label: 'Browse Projects', href: '/freelancer/jobs' },
-    { label: 'My Projects', href: '/freelancer/my-jobs' },
-    { label: 'Saved Projects', href: '/freelancer/saved-jobs' },
-    { label: 'Job Alerts', href: '/freelancer/job-alerts' },
-    { label: 'Gigs', href: '/freelancer/gigs' },
-  ]},
-  { label: 'Projects', href: '/freelancer/projects', icon: 'FolderGit2', submenu: [
-    { label: 'Active Projects', href: '/freelancer/projects' },
-    { label: 'Proposals', href: '/freelancer/proposals' },
-    { label: 'Contracts', href: '/freelancer/contracts' },
-  ]},
-  { label: 'Finance', href: '/freelancer/earnings', icon: 'Wallet', section: 'Finance', submenu: [
-    { label: 'Earnings', href: '/freelancer/earnings' },
-    { label: 'Invoices', href: '/freelancer/invoices' },
-    { label: 'Wallet', href: '/freelancer/wallet' },
-    { label: 'Withdraw', href: '/freelancer/withdraw' },
-    { label: 'Time Tracking', href: '/freelancer/time-entries' },
-    { label: 'Rate Cards', href: '/freelancer/rate-cards' },
-    { label: 'Subscription', href: '/freelancer/subscription' },
-  ]},
-  { label: 'Profile', href: '/freelancer/profile', icon: 'User', section: 'Growth' },
-  { label: 'Portfolio', href: '/freelancer/portfolio', icon: 'Briefcase' },
-  { label: 'Skills', href: '/freelancer/skills', icon: 'Wrench' },
-  { label: 'Analytics', href: '/freelancer/analytics', icon: 'LineChart', submenu: [
-    { label: 'Performance', href: '/freelancer/analytics' },
-    { label: 'Reviews', href: '/freelancer/reviews' },
-    { label: 'Rank', href: '/freelancer/rank' },
-    { label: 'Assessments', href: '/freelancer/assessments' },
-  ]},
-  { label: 'Availability', href: '/freelancer/availability', icon: 'Calendar' },
-  { label: 'Career', href: '/freelancer/career', icon: 'TrendingUp' },
-  { label: 'Collaborate', href: '/freelancer/teams', icon: 'Users', section: 'Tools', submenu: [
-    { label: 'Teams', href: '/freelancer/teams' },
-    { label: 'Video Calls', href: '/freelancer/video-calls' },
-    { label: 'Referrals', href: '/freelancer/referrals' },
-    { label: 'Files', href: '/freelancer/files' },
-    { label: 'Notes', href: '/freelancer/notes' },
-  ]},
-  { label: 'Automation', href: '/freelancer/templates', icon: 'Settings', submenu: [
-    { label: 'Templates', href: '/freelancer/templates' },
-    { label: 'Workflows', href: '/freelancer/workflows' },
-    { label: 'Integrations', href: '/freelancer/integrations' },
-  ]},
-  { label: 'Help', href: '/freelancer/help', icon: 'HelpCircle', section: 'Account' },
-  { label: 'Settings', href: '/freelancer/settings', icon: 'Settings', submenu: [
-    { label: 'General', href: '/freelancer/settings' },
-    { label: 'Security', href: '/freelancer/security' },
-    { label: 'Verification', href: '/freelancer/verification' },
-    { label: 'Legal', href: '/freelancer/legal' },
-  ]},
-  { label: 'Support', href: '/freelancer/support', icon: 'HelpCircle' },
+  { label: 'Earnings', href: '/freelancer/earnings', icon: 'Wallet', section: 'Finance' },
+  { label: 'Profile', href: '/freelancer/profile', icon: 'User', section: 'Account' },
+  { label: 'Reviews', href: '/freelancer/reviews', icon: 'Star' },
+  { label: 'Settings', href: '/freelancer/settings', icon: 'Settings' },
 ];
 
-// Client-specific navigation — grouped with submenus for clean sidebar
+// Client-specific navigation — streamlined to essential items only
 export const clientNavItems: NavItem[] = [
   { label: 'Dashboard', href: '/client/dashboard', icon: 'LayoutDashboard', section: 'Overview' },
-  { label: 'Messages', href: '/client/messages', icon: 'MessageSquare' },
+  { label: 'Post a Project', href: '/client/post-job', icon: 'TrendingUp' },
+  { label: 'My Projects', href: '/client/projects', icon: 'Briefcase', section: 'Projects' },
+  { label: 'Contracts', href: '/client/contracts', icon: 'FileText' },
+  { label: 'Messages', href: '/client/messages', icon: 'MessageSquare', section: 'Communication' },
   { label: 'Notifications', href: '/client/notifications', icon: 'Bell' },
-  { label: 'Hiring', href: '/client/post-job', icon: 'TrendingUp', section: 'Hiring', submenu: [
-    { label: 'Post a Project', href: '/client/post-job' },
-    { label: 'Hire', href: '/client/hire' },
-    { label: 'Talent Search', href: '/client/search' },
-    { label: 'Browse Freelancers', href: '/client/freelancers' },
-  ]},
-  { label: 'Projects', href: '/client/projects', icon: 'Briefcase', section: 'Projects', submenu: [
-    { label: 'All Projects', href: '/client/projects' },
-    { label: 'Contracts', href: '/client/contracts' },
-    { label: 'Invoices', href: '/client/invoices' },
-    { label: 'Disputes', href: '/disputes' },
-  ]},
-  { label: 'Finance', href: '/client/payments', icon: 'CreditCard', section: 'Finance', submenu: [
-    { label: 'Payments', href: '/client/payments' },
-    { label: 'Escrow', href: '/client/escrow' },
-    { label: 'Wallet', href: '/client/wallet' },
-  ]},
-  { label: 'Insights', href: '/client/reviews', icon: 'Star', section: 'Insights', submenu: [
-    { label: 'Reviews', href: '/client/reviews' },
-    { label: 'Analytics', href: '/client/analytics' },
-    { label: 'Reports', href: '/client/reports' },
-    { label: 'Favorites', href: '/favorites' },
-  ]},
-  { label: 'Video Calls', href: '/client/video-calls', icon: 'Video', section: 'Account' },
-  { label: 'Profile', href: '/client/profile', icon: 'User' },
-  { label: 'Help', href: '/client/help', icon: 'HelpCircle' },
+  { label: 'Payments', href: '/client/payments', icon: 'CreditCard', section: 'Finance' },
+  { label: 'Find Talent', href: '/client/search', icon: 'Search', section: 'Hiring' },
+  { label: 'Profile', href: '/client/profile', icon: 'User', section: 'Account' },
+  { label: 'Reviews', href: '/client/reviews', icon: 'Star' },
   { label: 'Settings', href: '/client/settings', icon: 'Settings' },
-  { label: 'Security', href: '/client/security', icon: 'Lock' },
 ];
 
-// Admin navigation — grouped with submenus for better UX
+// Admin navigation — streamlined to essential management items
 export const adminNavItems: NavItem[] = [
   { label: 'Dashboard', href: '/admin/dashboard', icon: 'LayoutDashboard', section: 'Overview' },
   { label: 'Analytics', href: '/admin/analytics', icon: 'LineChart' },
-  { label: 'Metrics', href: '/admin/metrics', icon: 'BarChart3' },
-  { label: 'Search Analytics', href: '/admin/search-analytics', icon: 'Search' },
   { label: 'Users', href: '/admin/users', icon: 'Users', section: 'Management' },
   { label: 'Projects', href: '/admin/projects', icon: 'Briefcase' },
   { label: 'Messages', href: '/admin/messages', icon: 'MessageSquare' },
   { label: 'Disputes', href: '/admin/disputes', icon: 'Gavel' },
-  { label: 'Categories', href: '/admin/categories', icon: 'List', section: 'Content' },
-  { label: 'Skills', href: '/admin/skills', icon: 'Wrench' },
-  { label: 'Tags', href: '/admin/tags', icon: 'Tag' },
-  { label: 'Blog', href: '/admin/blog', icon: 'Globe' },
-  { label: 'Branding', href: '/admin/branding', icon: 'Star' },
-  { label: 'Payments', href: '/admin/payments', icon: 'CreditCard', section: 'Financial', submenu: [
-    { label: 'Transactions', href: '/admin/payments' },
-    { label: 'Refunds', href: '/admin/refunds' },
-    { label: 'Billing', href: '/admin/billing' },
-  ]},
+  { label: 'Payments', href: '/admin/payments', icon: 'CreditCard', section: 'Financial' },
   { label: 'Content Moderation', href: '/admin/moderation', icon: 'ShieldAlert', section: 'Security' },
-  { label: 'Fraud Detection', href: '/admin/fraud-detection', icon: 'ShieldAlert' },
-  { label: 'Security', href: '/admin/security', icon: 'Lock' },
   { label: 'Audit Logs', href: '/admin/audit', icon: 'FileText' },
-  { label: 'Compliance', href: '/admin/compliance', icon: 'ShieldAlert' },
-  { label: 'Reports', href: '/admin/reports', icon: 'BarChart3', section: 'Analytics' },
-  { label: 'Email Templates', href: '/admin/email-templates', icon: 'Mail' },
-  { label: 'Feature Flags', href: '/admin/feature-flags', icon: 'Flag' },
-  { label: 'Integrations', href: '/admin/integrations', icon: 'Globe' },
-  { label: 'AI Monitoring', href: '/admin/ai-monitoring', icon: 'Bot', section: 'System' },
-  { label: 'System Health', href: '/admin/health', icon: 'Activity' },
-  { label: 'API Keys', href: '/admin/api-keys', icon: 'Lock' },
-  { label: 'Webhooks', href: '/admin/webhooks', icon: 'Globe' },
-  { label: 'Calendar', href: '/admin/calendar', icon: 'Calendar' },
-  { label: 'Data Export', href: '/admin/export', icon: 'FileText' },
-  { label: 'Feedback', href: '/admin/feedback', icon: 'Mail', section: 'Settings' },
-  { label: 'Video Calls', href: '/admin/video-calls', icon: 'Video' },
-  { label: 'Support', href: '/admin/support', icon: 'HelpCircle' },
-  { label: 'Help', href: '/admin/help', icon: 'HelpCircle' },
-  { label: 'Profile', href: '/admin/profile', icon: 'User' },
+  { label: 'System Health', href: '/admin/health', icon: 'Activity', section: 'System' },
   { label: 'Settings', href: '/admin/settings', icon: 'Settings' },
 ];
 

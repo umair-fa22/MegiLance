@@ -1,12 +1,41 @@
-﻿/* @AI-HINT: Light theme styles for the MyJobs page. */
-.container {
-  background-color: #ffffff;
-}
+﻿/* @AI-HINT: Light theme styles for the enhanced MyJobs page. */
+.container { background-color: #f8fafc; }
+.header { border-bottom: none; }
+.title { color: #0f172a; }
+.subtitle { color: #64748b; }
 
-.title {
-  color: #0f172a;
-}
+/* KPI */
+.kpiCard { background: #ffffff; border-color: #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.kpiCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.kpiValue { color: #0f172a; }
+.kpiLabel { color: #94a3b8; }
 
-.subtitle {
-  color: #64748b;
-}
+/* Filters */
+.filterBar { background: #ffffff; border-color: #e2e8f0; }
+.filterBtn { color: #64748b; }
+.filterBtn:hover { background: #f1f5f9; color: #0f172a; }
+.filterBtnActive { background: #4573df; color: #ffffff; }
+
+/* Tabs */
+.tab { color: #64748b; }
+.tab:hover { color: #0f172a; }
+.tabActive { color: #4573df; }
+
+/* Grids */
+.gridsContainer { color: #0f172a; }
+
+/* Quick Actions */
+.quickActions { background: #ffffff; border-color: #e2e8f0; }
+.quickAction { color: #475569; background: #f8fafc; }
+.quickAction:hover { background: #e2e8f0; color: #0f172a; }
+
+/* Drawer */
+.drawer { background: #ffffff; box-shadow: -4px 0 24px rgba(0,0,0,0.12); }
+.statusBadge { background: #e0f2fe; color: #0369a1; }
+.progressBar { background: #4573df; }
+.milestoneItem { border-color: #e2e8f0; background: #fafafa; }
+
+/* Empty / Loading */
+.emptyState { border-color: #cbd5e1; color: #64748b; }
+.loadingState { color: #64748b; }
+.spinner { border-top-color: #4573df; }

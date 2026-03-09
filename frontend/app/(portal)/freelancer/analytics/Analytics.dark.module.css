@@ -1,30 +1,36 @@
-﻿/* @AI-HINT: Dark theme styles for the refactored Analytics page. */
-.title {
-  color: #f8fafc;
-}
+﻿/* @AI-HINT: Dark theme styles for enhanced Analytics page. */
+.container { background: #0f172a; }
+.title { color: #f8fafc; }
+.subtitle { color: #94a3b8; }
 
-.subtitle {
-  color: #94a3b8;
-}
+.select { background: #1e293b; border-color: #334155; color: #f8fafc; }
+.select:focus { border-color: #60a5fa; box-shadow: 0 0 0 2px rgba(96,165,250,0.2); }
 
-.kpiCard {
-  background-color: #0f172a;
-  border-color: #334155;
-}
+.loadingState { color: #94a3b8; }
+.errorState { color: #f87171; }
 
-.kpiLabel {
-  color: #94a3b8;
-}
+.kpiCard { background: #1e293b; border-color: #334155; }
+.kpiLabel { color: #94a3b8; }
+.kpiValue { color: #f8fafc; }
 
-.kpiValue {
-  color: #f8fafc;
-}
+.perfRow {}
+.perfCard { background: #1e293b; border-color: #334155; }
+.perfValue { color: #f8fafc; }
+.perfLabel { color: #94a3b8; }
 
-.chartCard {
-  background-color: #0f172a;
-  border-color: #334155;
-}
+.chartCard { background: #1e293b; border-color: #334155; }
+.cardTitle { color: #f8fafc; }
 
-.cardTitle {
-  color: #f8fafc;
-}
+.goalsCard { background: #1e293b; border-color: #334155; }
+.goalItem {}
+.goalLabel { color: #f8fafc; }
+.goalPct { color: #60a5fa; }
+.goalBarBg { background: #334155; }
+.goalMeta { color: #64748b; }
+
+.skillsCard { background: #1e293b; border-color: #334155; }
+.skillDemandItem {}
+.skillRank { color: #64748b; }
+.skillName { color: #f8fafc; }
+.skillBarBg { background: #334155; }
+.skillDemandValue { color: #f8fafc; }

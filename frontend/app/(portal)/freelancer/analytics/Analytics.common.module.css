@@ -1,218 +1,345 @@
-/* @AI-HINT: Common, theme-independent styles for the refactored Analytics page. */
+/* @AI-HINT: Common, theme-independent styles for enhanced Analytics page. */
 .container {
-  padding: var(--space-6) 0;
+  padding: var(--space-6) var(--space-4);
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: var(--space-6);
 }
 
-.header {
-  padding: 0 var(--space-2);
+/* ── Header ── */
+.header { padding: 0; }
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-4);
+  flex-wrap: wrap;
 }
 
 .title {
   font-family: var(--font-family-heading);
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 700;
   margin: 0;
   letter-spacing: -0.03em;
   line-height: 1.2;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
 .subtitle {
   font-size: 15px;
   margin: var(--space-1) 0 0;
-  letter-spacing: 0.01em;
-  line-height: 1.6;
-  opacity: 0.85;
+  line-height: 1.5;
 }
 
-.mainContent {
+.headerControls {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
 }
 
+.exportGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.select {
+  padding: 8px 12px;
+  border: 1.5px solid;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.selectSmall { padding: 8px 10px; }
+
+/* ── Loading / Error ── */
+.loadingState, .errorState {
+  text-align: center;
+  padding: var(--space-8) 0;
+  font-size: 15px;
+}
+
+/* ── KPI Grid ── */
 .kpiGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-4);
 }
 
 .kpiCard {
   border: 1.5px solid;
-  border-radius: 16px;
-  padding: 1.25rem;
+  border-radius: 14px;
+  padding: 1rem 1.15rem;
   display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+  align-items: flex-start;
+  gap: 0.75rem;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .kpiCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.04);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+}
+
+.kpiIcon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kpiIcon_blue { background: rgba(69,115,223,0.12); color: #4573df; }
+.kpiIcon_purple { background: rgba(139,92,246,0.12); color: #8b5cf6; }
+.kpiIcon_green { background: rgba(39,174,96,0.12); color: #27ae60; }
+.kpiIcon_orange { background: rgba(255,152,0,0.12); color: #ff9800; }
+.kpiIcon_teal { background: rgba(20,184,166,0.12); color: #14b8a6; }
+.kpiIcon_amber { background: rgba(245,158,11,0.12); color: #f59e0b; }
+
+.kpiBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 }
 
 .kpiLabel {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.01em;
   text-transform: uppercase;
-  opacity: 0.8;
+  letter-spacing: 0.04em;
 }
 
 .kpiValue {
   font-family: var(--font-family-heading);
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 700;
   letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.kpiTrend {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  border-radius: 6px;
+  padding: 2px 6px;
+}
+
+.trendUp { color: #16a34a; background: rgba(22,163,74,0.1); }
+.trendDown { color: #dc2626; background: rgba(220,38,38,0.1); }
+.trendNeutral { color: #94a3b8; background: rgba(148,163,184,0.1); }
+
+/* ── Performance Row ── */
+.perfRow {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.perfCard {
+  flex: 1 1 180px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0.85rem 1.1rem;
+  border-radius: 12px;
+  border: 1.5px solid;
+}
+
+.perfIconGreen { color: #27ae60; }
+.perfIconBlue { color: #4573df; }
+.perfIconPurple { color: #8b5cf6; }
+
+.perfValue {
+  font-family: var(--font-family-heading);
+  font-size: 20px;
+  font-weight: 700;
   line-height: 1.1;
 }
 
+.perfLabel {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ── Chart Grid ── */
 .chartGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-6);
-  align-items: flex-start;
+  gap: var(--space-5);
 }
 
 .chartCard {
   border: 1.5px solid;
-  border-radius: 16px;
-  padding: 1.5rem;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+  border-radius: 14px;
+  padding: 1.25rem;
+  transition: box-shadow 0.25s ease;
 }
 
 .chartCard:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
 }
 
 .cardTitle {
   font-family: var(--font-family-heading);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  margin: 0 0 var(--space-5) 0;
-  letter-spacing: -0.01em;
-  line-height: 1.3;
+  margin: 0 0 var(--space-4) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
-/* Toolbar */
-.toolbar {
+/* ── Bottom Grid: Goals + Skills ── */
+.bottomGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+
+.goalsCard, .skillsCard {
+  border: 1.5px solid;
+  border-radius: 14px;
+  padding: 1.25rem;
+}
+
+/* Goals */
+.goalsList {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.goalItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.goalHeader {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
-.select {
-  padding: 10px 14px;
-  border: 1.5px solid;
-  border-radius: 10px;
-  font-size: 14px;
-  letter-spacing: 0.01em;
-  transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+.goalLabel {
+  font-size: 13px;
+  font-weight: 600;
 }
 
-.button {
-  padding: 10px 16px;
-  border: 1.5px solid;
-  border-radius: 10px;
-  background: transparent;
-  cursor: pointer;
+.goalPct {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.goalBarBg {
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.goalBar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+
+.goalBarProgress { background: #4573df; }
+.goalBarComplete { background: #27ae60; }
+
+.goalMeta {
+  font-size: 12px;
+}
+
+/* Skill Demand */
+.skillDemandList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.skillDemandItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.skillRank {
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 24px;
+}
+
+.skillName {
   font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.01em;
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 80px;
 }
 
-.button:hover {
-  transform: translateY(-1px);
-}
-
-.toolbarInfo {
-  font-size: 13px;
-  letter-spacing: 0.01em;
-  opacity: 0.85;
-}
-
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
+.skillBarBg {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }
 
-/* Slot for Saved Views on toolbar */
-.savedViewsSlot {
-  margin-left: auto;
-  min-width: 240px;
+.skillBar {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #4573df, #8b5cf6);
+  transition: width 0.5s ease;
+}
+
+.skillDemandValue {
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 32px;
+  text-align: right;
+}
+
+.skillTrend {
+  display: flex;
+  align-items: center;
 }
 
 /* ── Responsive ── */
-@media (max-width: 768px) {
-  .title {
-    font-size: clamp(1.5rem, 4vw, 2rem);
-  }
-
-  .subtitle {
-    font-size: 14px;
-  }
-
-  .toolbar {
-    flex-wrap: wrap;
-  }
-
-  .input {
-    min-width: 0;
-    width: 100%;
-  }
-
-  .savedViewsSlot {
-    min-width: 0;
-    width: 100%;
-    margin-left: 0;
-  }
-
-  .statsGrid {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 900px) {
+  .chartGrid, .bottomGrid {
+    grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 374px) {
-  .title {
-    font-size: 1.375rem;
+@media (max-width: 768px) {
+  .headerTop { flex-direction: column; }
+
+  .title { font-size: clamp(1.35rem, 4vw, 1.75rem); }
+
+  .kpiGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .statsGrid {
-    grid-template-columns: 1fr;
-  }
+  .perfRow { flex-direction: column; }
+}
 
-  .statValue {
-    font-size: 1.5rem;
-  }
+@media (max-width: 480px) {
+  .kpiGrid { grid-template-columns: 1fr; }
+  .headerControls { width: 100%; justify-content: flex-start; }
 }

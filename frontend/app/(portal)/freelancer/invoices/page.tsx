@@ -1,7 +1,7 @@
 // @AI-HINT: Invoice management page - Create, view, track invoices with payment status
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { invoicesApi } from '@/lib/api';
@@ -14,6 +14,12 @@ import darkStyles from './Invoices.dark.module.css';
 import Button from '@/app/components/Button/Button';
 import Input from '@/app/components/Input/Input';
 import Textarea from '@/app/components/Textarea/Textarea';
+import {
+  FileText, DollarSign, CheckCircle, Clock, AlertTriangle,
+  Plus, Send, Edit2, Download, Trash2, X, Search,
+  RotateCw, Eye, Receipt, Calendar, User, Mail,
+  Briefcase, Hash, AlertCircle, ChevronDown, MoreVertical
+} from 'lucide-react';
 
 interface Invoice {
   id: number;
@@ -37,24 +43,28 @@ interface InvoiceItem {
   amount: number;
 }
 
+const STATUS_CONFIG = {
+  all: { label: 'All', icon: FileText },
+  draft: { label: 'Draft', icon: Edit2 },
+  sent: { label: 'Sent', icon: Send },
+  paid: { label: 'Paid', icon: CheckCircle },
+  overdue: { label: 'Overdue', icon: AlertTriangle },
+} as const;
+
 export default function InvoicesPage() {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(true);
   const [invoices, setInvoices] = useState<Invoice[]>([]);
   const [filter, setFilter] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [selectedInvoice, setSelectedInvoice] = useState<Invoice | null>(null);
-  
-  // Stats
-  const [stats, setStats] = useState({
-    total: 0,
-    paid: 0,
-    pending: 0,
-    overdue: 0,
-  });
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+  const [deleteTargetId, setDeleteTargetId] = useState<number | null>(null);
 
-  // New invoice form
+  const [stats, setStats] = useState({ total: 0, paid: 0, pending: 0, overdue: 0 });
+
   const [newInvoice, setNewInvoice] = useState({
     client_name: '',
     client_email: '',
@@ -63,9 +73,6 @@ export default function InvoicesPage() {
     notes: '',
     items: [{ description: '', quantity: 1, rate: 0, amount: 0 }] as InvoiceItem[],
   });
-  
-  // Delete confirmation
-  const [deleteTargetId, setDeleteTargetId] = useState<number | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -75,25 +82,21 @@ export default function InvoicesPage() {
   const loadInvoices = async () => {
     try {
       setLoading(true);
-      const response = await invoicesApi.list({ 
-        status: filter !== 'all' ? filter : undefined 
+      const response = await invoicesApi.list({
+        status: filter !== 'all' ? filter : undefined
       }) as any;
-      
-      // Use API data if available, otherwise show empty state
+
       let invoiceData: Invoice[] = [];
-      
-      if (response && (response.invoices?.length > 0 || Array.isArray(response) && response.length > 0)) {
+      if (response && (response.invoices?.length > 0 || (Array.isArray(response) && response.length > 0))) {
         invoiceData = response.invoices || response;
       }
 
       setInvoices(invoiceData);
 
-      // Calculate stats from the invoice data
       const total = invoiceData.reduce((sum, inv) => sum + inv.amount, 0);
       const paid = invoiceData.filter(inv => inv.status === 'paid').reduce((sum, inv) => sum + inv.amount, 0);
       const pending = invoiceData.filter(inv => ['sent', 'draft'].includes(inv.status)).reduce((sum, inv) => sum + inv.amount, 0);
       const overdue = invoiceData.filter(inv => inv.status === 'overdue').reduce((sum, inv) => sum + inv.amount, 0);
-
       setStats({ total, paid, pending, overdue });
     } catch (error) {
       console.error('Failed to load invoices:', error);
@@ -102,7 +105,13 @@ export default function InvoicesPage() {
     }
   };
 
+  const showToast = (message: string, type: 'success' | 'error') => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 4000);
+  };
+
   const handleCreateInvoice = async () => {
+    if (!newInvoice.client_name || !newInvoice.client_email || !newInvoice.due_date) return;
     try {
       const invoiceData = {
         ...newInvoice,
@@ -111,39 +120,38 @@ export default function InvoicesPage() {
       await invoicesApi.create(invoiceData);
       setShowCreateModal(false);
       setNewInvoice({
-        client_name: '',
-        client_email: '',
-        project_title: '',
-        due_date: '',
-        notes: '',
+        client_name: '', client_email: '', project_title: '',
+        due_date: '', notes: '',
         items: [{ description: '', quantity: 1, rate: 0, amount: 0 }],
       });
+      showToast('Invoice created successfully!', 'success');
       loadInvoices();
     } catch (error) {
       console.error('Failed to create invoice:', error);
+      showToast('Failed to create invoice', 'error');
     }
   };
 
   const handleSendInvoice = async (invoiceId: number) => {
     try {
       await invoicesApi.send(invoiceId);
+      showToast('Invoice sent successfully!', 'success');
       loadInvoices();
     } catch (error) {
       console.error('Failed to send invoice:', error);
+      showToast('Failed to send invoice', 'error');
     }
-  };
-
-  const handleDeleteInvoice = async (invoiceId: number) => {
-    setDeleteTargetId(invoiceId);
   };
 
   const confirmDeleteInvoice = async () => {
     if (!deleteTargetId) return;
     try {
       await invoicesApi.delete(deleteTargetId);
+      showToast('Invoice deleted', 'success');
       loadInvoices();
     } catch (error) {
       console.error('Failed to delete invoice:', error);
+      showToast('Failed to delete invoice', 'error');
     } finally {
       setDeleteTargetId(null);
     }
@@ -153,7 +161,7 @@ export default function InvoicesPage() {
     const items = [...newInvoice.items];
     items[index] = { ...items[index], [field]: value };
     if (field === 'quantity' || field === 'rate') {
-      items[index].amount = Number(items[index].quantity) * Number(items[index].rate);
+      items[index].amount = Math.round(Number(items[index].quantity) * Number(items[index].rate) * 100) / 100;
     }
     setNewInvoice({ ...newInvoice, items });
   };
@@ -167,11 +175,10 @@ export default function InvoicesPage() {
 
   const removeItem = (index: number) => {
     if (newInvoice.items.length === 1) return;
-    const items = newInvoice.items.filter((_, i) => i !== index);
-    setNewInvoice({ ...newInvoice, items });
+    setNewInvoice({ ...newInvoice, items: newInvoice.items.filter((_, i) => i !== index) });
   };
 
-  const getStatusColor = (status: string) => {
+  const getStatusStyle = (status: string) => {
     switch (status) {
       case 'paid': return 'statusPaid';
       case 'sent': return 'statusSent';
@@ -182,21 +189,33 @@ export default function InvoicesPage() {
     }
   };
 
+  const getStatusIcon = (status: string) => {
+    switch (status) {
+      case 'paid': return <CheckCircle size={14} />;
+      case 'sent': return <Send size={14} />;
+      case 'overdue': return <AlertTriangle size={14} />;
+      case 'draft': return <Edit2 size={14} />;
+      case 'cancelled': return <X size={14} />;
+      default: return <FileText size={14} />;
+    }
+  };
+
   const formatCurrency = (amount: number, currency = 'USD') => {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(amount);
   };
 
-  if (!mounted) return null;
-
-  const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
-
-  if (loading) {
-    return (
-      <div className={cn(commonStyles.container, themeStyles.container)}>
-        <div className={cn(commonStyles.loading, themeStyles.loading)}>Loading invoices...</div>
-      </div>
+  const filteredInvoices = useMemo(() => {
+    if (!searchQuery.trim()) return invoices;
+    const q = searchQuery.toLowerCase();
+    return invoices.filter(inv =>
+      inv.client_name.toLowerCase().includes(q) ||
+      inv.invoice_number.toLowerCase().includes(q) ||
+      inv.project_title.toLowerCase().includes(q)
     );
-  }
+  }, [invoices, searchQuery]);
+
+  if (!mounted) return null;
+  const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   return (
     <PageTransition>
@@ -204,93 +223,138 @@ export default function InvoicesPage() {
         {/* Header */}
         <ScrollReveal>
           <div className={commonStyles.header}>
-            <div>
-              <h1 className={cn(commonStyles.title, themeStyles.title)}>Invoices</h1>
+            <div className={commonStyles.headerText}>
+              <h1 className={cn(commonStyles.title, themeStyles.title)}>
+                <Receipt size={28} className={commonStyles.titleIcon} />
+                Invoices
+              </h1>
               <p className={cn(commonStyles.subtitle, themeStyles.subtitle)}>
                 Create and manage invoices for your projects
               </p>
             </div>
-            <Button
-              variant="primary"
-              onClick={() => setShowCreateModal(true)}
-            >
-              + Create Invoice
+            <Button variant="primary" onClick={() => setShowCreateModal(true)}>
+              <Plus size={16} /> Create Invoice
             </Button>
           </div>
         </ScrollReveal>
 
         {/* Stats */}
-        <ScrollReveal delay={0.1}>
-          <div className={commonStyles.statsGrid}>
+        <StaggerContainer delay={0.1} className={commonStyles.statsGrid}>
+          <StaggerItem>
             <div className={cn(commonStyles.statCard, themeStyles.statCard)}>
-              <span className={commonStyles.statIcon}>💰</span>
-              <div>
-                <p className={cn(commonStyles.statLabel, themeStyles.statLabel)}>Total Invoiced</p>
-                <p className={cn(commonStyles.statValue, themeStyles.statValue)}>{formatCurrency(stats.total)}</p>
+              <div className={cn(commonStyles.statIcon, themeStyles.statIconBlue)}>
+                <DollarSign size={20} />
+              </div>
+              <div className={commonStyles.statContent}>
+                <span className={cn(commonStyles.statLabel, themeStyles.statLabel)}>Total Invoiced</span>
+                <span className={cn(commonStyles.statValue, themeStyles.statValue)}>{formatCurrency(stats.total)}</span>
               </div>
             </div>
-            <div className={cn(commonStyles.statCard, themeStyles.statCard, commonStyles.statPaid)}>
-              <span className={commonStyles.statIcon}>✓</span>
-              <div>
-                <p className={cn(commonStyles.statLabel, themeStyles.statLabel)}>Paid</p>
-                <p className={cn(commonStyles.statValue, themeStyles.statValuePaid)}>{formatCurrency(stats.paid)}</p>
+          </StaggerItem>
+          <StaggerItem>
+            <div className={cn(commonStyles.statCard, themeStyles.statCard)}>
+              <div className={cn(commonStyles.statIcon, themeStyles.statIconGreen)}>
+                <CheckCircle size={20} />
+              </div>
+              <div className={commonStyles.statContent}>
+                <span className={cn(commonStyles.statLabel, themeStyles.statLabel)}>Paid</span>
+                <span className={cn(commonStyles.statValue, themeStyles.statValuePaid)}>{formatCurrency(stats.paid)}</span>
               </div>
             </div>
-            <div className={cn(commonStyles.statCard, themeStyles.statCard, commonStyles.statPending)}>
-              <span className={commonStyles.statIcon}>⏳</span>
-              <div>
-                <p className={cn(commonStyles.statLabel, themeStyles.statLabel)}>Pending</p>
-                <p className={cn(commonStyles.statValue, themeStyles.statValuePending)}>{formatCurrency(stats.pending)}</p>
+          </StaggerItem>
+          <StaggerItem>
+            <div className={cn(commonStyles.statCard, themeStyles.statCard)}>
+              <div className={cn(commonStyles.statIcon, themeStyles.statIconOrange)}>
+                <Clock size={20} />
+              </div>
+              <div className={commonStyles.statContent}>
+                <span className={cn(commonStyles.statLabel, themeStyles.statLabel)}>Pending</span>
+                <span className={cn(commonStyles.statValue, themeStyles.statValuePending)}>{formatCurrency(stats.pending)}</span>
               </div>
             </div>
-            <div className={cn(commonStyles.statCard, themeStyles.statCard, commonStyles.statOverdue)}>
-              <span className={commonStyles.statIcon}>⚠️</span>
-              <div>
-                <p className={cn(commonStyles.statLabel, themeStyles.statLabel)}>Overdue</p>
-                <p className={cn(commonStyles.statValue, themeStyles.statValueOverdue)}>{formatCurrency(stats.overdue)}</p>
+          </StaggerItem>
+          <StaggerItem>
+            <div className={cn(commonStyles.statCard, themeStyles.statCard)}>
+              <div className={cn(commonStyles.statIcon, themeStyles.statIconRed)}>
+                <AlertTriangle size={20} />
+              </div>
+              <div className={commonStyles.statContent}>
+                <span className={cn(commonStyles.statLabel, themeStyles.statLabel)}>Overdue</span>
+                <span className={cn(commonStyles.statValue, themeStyles.statValueOverdue)}>{formatCurrency(stats.overdue)}</span>
               </div>
             </div>
+          </StaggerItem>
+        </StaggerContainer>
+
+        {/* Search + Filters */}
+        <ScrollReveal delay={0.15}>
+          <div className={cn(commonStyles.searchBar, themeStyles.searchBar)}>
+            <Search size={16} className={cn(commonStyles.searchIcon, themeStyles.searchIcon)} />
+            <input
+              type="text"
+              placeholder="Search invoices by client, number, or project..."
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              className={cn(commonStyles.searchInput, themeStyles.searchInput)}
+            />
+            {searchQuery && (
+              <button onClick={() => setSearchQuery('')} className={cn(commonStyles.clearSearch, themeStyles.clearSearch)}>
+                <X size={14} />
+              </button>
+            )}
           </div>
         </ScrollReveal>
 
-        {/* Filters */}
         <ScrollReveal delay={0.2}>
           <div className={cn(commonStyles.filters, themeStyles.filters)}>
-            {['all', 'draft', 'sent', 'paid', 'overdue'].map((f) => (
-              <button
-                key={f}
-                className={cn(
-                  commonStyles.filterButton,
-                  themeStyles.filterButton,
-                  filter === f && commonStyles.filterActive,
-                  filter === f && themeStyles.filterActive
-                )}
-                onClick={() => setFilter(f)}
-              >
-                {f.charAt(0).toUpperCase() + f.slice(1)}
-              </button>
-            ))}
+            {Object.entries(STATUS_CONFIG).map(([key, config]) => {
+              const Icon = config.icon;
+              return (
+                <button
+                  key={key}
+                  className={cn(
+                    commonStyles.filterButton,
+                    themeStyles.filterButton,
+                    filter === key && commonStyles.filterActive,
+                    filter === key && themeStyles.filterActive
+                  )}
+                  onClick={() => setFilter(key)}
+                >
+                  <Icon size={14} />
+                  <span>{config.label}</span>
+                </button>
+              );
+            })}
           </div>
         </ScrollReveal>
 
-        {/* Invoices List */}
+        {/* Invoice List */}
         <div className={commonStyles.invoicesList}>
-          {invoices.length === 0 ? (
+          {loading ? (
+            <div className={cn(commonStyles.loadingState, themeStyles.loadingState)}>
+              <Receipt size={32} className={commonStyles.loadingIcon} />
+              <p>Loading invoices...</p>
+            </div>
+          ) : filteredInvoices.length === 0 ? (
             <ScrollReveal delay={0.3}>
               <div className={cn(commonStyles.emptyState, themeStyles.emptyState)}>
-                <span className={commonStyles.emptyIcon}>📄</span>
-                <p>No invoices found</p>
-                <Button
-                  variant="primary"
-                  onClick={() => setShowCreateModal(true)}
-                >
-                  Create your first invoice
-                </Button>
+                <FileText size={40} className={commonStyles.emptyIcon} />
+                <h3 className={commonStyles.emptyTitle}>
+                  {searchQuery ? 'No invoices match your search' : 'No invoices found'}
+                </h3>
+                <p className={commonStyles.emptyText}>
+                  {searchQuery ? 'Try a different search term' : 'Create your first invoice to get started'}
+                </p>
+                {!searchQuery && (
+                  <Button variant="primary" onClick={() => setShowCreateModal(true)}>
+                    <Plus size={14} /> Create Invoice
+                  </Button>
+                )}
               </div>
             </ScrollReveal>
           ) : (
             <StaggerContainer delay={0.3}>
-              {invoices.map((invoice) => (
+              {filteredInvoices.map(invoice => (
                 <StaggerItem key={invoice.id}>
                   <div
                     className={cn(commonStyles.invoiceCard, themeStyles.invoiceCard)}
@@ -299,14 +363,14 @@ export default function InvoicesPage() {
                     <div className={commonStyles.invoiceHeader}>
                       <div className={commonStyles.invoiceInfo}>
                         <span className={cn(commonStyles.invoiceNumber, themeStyles.invoiceNumber)}>
-                          {invoice.invoice_number}
+                          <Hash size={14} /> {invoice.invoice_number}
                         </span>
                         <span className={cn(
                           commonStyles.status,
-                          commonStyles[getStatusColor(invoice.status)],
-                          themeStyles[getStatusColor(invoice.status)]
+                          commonStyles[getStatusStyle(invoice.status)],
+                          themeStyles[getStatusStyle(invoice.status)]
                         )}>
-                          {invoice.status}
+                          {getStatusIcon(invoice.status)} {invoice.status}
                         </span>
                       </div>
                       <span className={cn(commonStyles.invoiceAmount, themeStyles.invoiceAmount)}>
@@ -316,15 +380,15 @@ export default function InvoicesPage() {
                     <div className={commonStyles.invoiceBody}>
                       <div className={commonStyles.clientInfo}>
                         <span className={cn(commonStyles.clientName, themeStyles.clientName)}>
-                          {invoice.client_name}
+                          <User size={14} /> {invoice.client_name}
                         </span>
                         <span className={cn(commonStyles.projectTitle, themeStyles.projectTitle)}>
-                          {invoice.project_title}
+                          <Briefcase size={14} /> {invoice.project_title}
                         </span>
                       </div>
                       <div className={cn(commonStyles.invoiceDates, themeStyles.invoiceDates)}>
-                        <span>Created: {new Date(invoice.created_at).toLocaleDateString()}</span>
-                        <span>Due: {new Date(invoice.due_date).toLocaleDateString()}</span>
+                        <span><Calendar size={12} /> Created: {new Date(invoice.created_at).toLocaleDateString()}</span>
+                        <span><Clock size={12} /> Due: {new Date(invoice.due_date).toLocaleDateString()}</span>
                       </div>
                     </div>
                     <div className={commonStyles.invoiceActions}>
@@ -332,38 +396,38 @@ export default function InvoicesPage() {
                         <>
                           <button
                             className={cn(commonStyles.actionButton, themeStyles.actionButtonPrimary)}
-                            onClick={(e) => { e.stopPropagation(); handleSendInvoice(invoice.id); }}
+                            onClick={e => { e.stopPropagation(); handleSendInvoice(invoice.id); }}
                           >
-                            📤 Send
+                            <Send size={14} /> Send
                           </button>
                           <button
                             className={cn(commonStyles.actionButton, themeStyles.actionButton)}
-                            onClick={(e) => { e.stopPropagation(); }}
+                            onClick={e => { e.stopPropagation(); }}
                           >
-                            ✏️ Edit
+                            <Edit2 size={14} /> Edit
                           </button>
                         </>
                       )}
                       {invoice.status === 'sent' && (
                         <button
                           className={cn(commonStyles.actionButton, themeStyles.actionButton)}
-                          onClick={(e) => { e.stopPropagation(); }}
+                          onClick={e => { e.stopPropagation(); handleSendInvoice(invoice.id); }}
                         >
-                          🔄 Resend
+                          <RotateCw size={14} /> Resend
                         </button>
                       )}
                       <button
                         className={cn(commonStyles.actionButton, themeStyles.actionButton)}
-                        onClick={(e) => { e.stopPropagation(); }}
+                        onClick={e => { e.stopPropagation(); }}
                       >
-                        📥 Download
+                        <Download size={14} /> Download
                       </button>
                       {invoice.status === 'draft' && (
                         <button
                           className={cn(commonStyles.actionButton, themeStyles.actionButtonDanger)}
-                          onClick={(e) => { e.stopPropagation(); handleDeleteInvoice(invoice.id); }}
+                          onClick={e => { e.stopPropagation(); setDeleteTargetId(invoice.id); }}
                         >
-                          🗑️ Delete
+                          <Trash2 size={14} /> Delete
                         </button>
                       )}
                     </div>
@@ -376,58 +440,71 @@ export default function InvoicesPage() {
 
         {/* Create Invoice Modal */}
         {showCreateModal && (
-          <div className={cn(commonStyles.modal, themeStyles.modal)}>
-            <div className={cn(commonStyles.modalContent, themeStyles.modalContent)}>
+          <div className={commonStyles.modalOverlay} onClick={() => setShowCreateModal(false)}>
+            <div className={cn(commonStyles.modal, themeStyles.modal)} onClick={e => e.stopPropagation()}>
               <div className={commonStyles.modalHeader}>
-                <h2>Create Invoice</h2>
+                <h2 className={cn(commonStyles.modalTitle, themeStyles.modalTitle)}>
+                  <Plus size={20} /> Create Invoice
+                </h2>
                 <button
-                  className={cn(commonStyles.closeButton, themeStyles.closeButton)}
+                  className={cn(commonStyles.modalClose, themeStyles.modalClose)}
                   onClick={() => setShowCreateModal(false)}
+                  aria-label="Close"
                 >
-                  ✕
+                  <X size={20} />
                 </button>
               </div>
 
               <div className={commonStyles.modalBody}>
                 <div className={commonStyles.formGrid}>
                   <div className={commonStyles.formGroup}>
-                    <label>Client Name *</label>
+                    <label className={cn(commonStyles.formLabel, themeStyles.formLabel)}>
+                      <User size={14} /> Client Name *
+                    </label>
                     <Input
                       value={newInvoice.client_name}
-                      onChange={(e) => setNewInvoice({ ...newInvoice, client_name: e.target.value })}
+                      onChange={e => setNewInvoice({ ...newInvoice, client_name: e.target.value })}
                       placeholder="Enter client name"
                     />
                   </div>
                   <div className={commonStyles.formGroup}>
-                    <label>Client Email *</label>
+                    <label className={cn(commonStyles.formLabel, themeStyles.formLabel)}>
+                      <Mail size={14} /> Client Email *
+                    </label>
                     <Input
                       type="email"
                       value={newInvoice.client_email}
-                      onChange={(e) => setNewInvoice({ ...newInvoice, client_email: e.target.value })}
+                      onChange={e => setNewInvoice({ ...newInvoice, client_email: e.target.value })}
                       placeholder="client@email.com"
                     />
                   </div>
                   <div className={commonStyles.formGroup}>
-                    <label>Project Title</label>
+                    <label className={cn(commonStyles.formLabel, themeStyles.formLabel)}>
+                      <Briefcase size={14} /> Project Title
+                    </label>
                     <Input
                       value={newInvoice.project_title}
-                      onChange={(e) => setNewInvoice({ ...newInvoice, project_title: e.target.value })}
+                      onChange={e => setNewInvoice({ ...newInvoice, project_title: e.target.value })}
                       placeholder="Project name"
                     />
                   </div>
                   <div className={commonStyles.formGroup}>
-                    <label>Due Date *</label>
+                    <label className={cn(commonStyles.formLabel, themeStyles.formLabel)}>
+                      <Calendar size={14} /> Due Date *
+                    </label>
                     <Input
                       type="date"
                       value={newInvoice.due_date}
-                      onChange={(e) => setNewInvoice({ ...newInvoice, due_date: e.target.value })}
+                      onChange={e => setNewInvoice({ ...newInvoice, due_date: e.target.value })}
                     />
                   </div>
                 </div>
 
                 <div className={commonStyles.itemsSection}>
-                  <h3>Line Items</h3>
-                  <div className={commonStyles.itemsHeader}>
+                  <h3 className={cn(commonStyles.itemsTitle, themeStyles.itemsTitle)}>
+                    <FileText size={16} /> Line Items
+                  </h3>
+                  <div className={cn(commonStyles.itemsHeader, themeStyles.itemsHeader)}>
                     <span>Description</span>
                     <span>Qty</span>
                     <span>Rate</span>
@@ -439,23 +516,24 @@ export default function InvoicesPage() {
                       <input
                         type="text"
                         value={item.description}
-                        onChange={(e) => updateItem(index, 'description', e.target.value)}
+                        onChange={e => updateItem(index, 'description', e.target.value)}
                         className={cn(commonStyles.input, themeStyles.input)}
                         placeholder="Service description"
                       />
                       <input
                         type="number"
                         value={item.quantity}
-                        onChange={(e) => updateItem(index, 'quantity', parseFloat(e.target.value) || 0)}
+                        onChange={e => updateItem(index, 'quantity', parseFloat(e.target.value) || 0)}
                         className={cn(commonStyles.input, themeStyles.input, commonStyles.inputSmall)}
                         min="1"
                       />
                       <input
                         type="number"
                         value={item.rate}
-                        onChange={(e) => updateItem(index, 'rate', parseFloat(e.target.value) || 0)}
+                        onChange={e => updateItem(index, 'rate', parseFloat(e.target.value) || 0)}
                         className={cn(commonStyles.input, themeStyles.input, commonStyles.inputSmall)}
                         min="0"
+                        step="0.01"
                       />
                       <span className={cn(commonStyles.itemAmount, themeStyles.itemAmount)}>
                         {formatCurrency(item.amount)}
@@ -464,16 +542,14 @@ export default function InvoicesPage() {
                         className={cn(commonStyles.removeButton, themeStyles.removeButton)}
                         onClick={() => removeItem(index)}
                         disabled={newInvoice.items.length === 1}
+                        aria-label="Remove item"
                       >
-                        ✕
+                        <X size={14} />
                       </button>
                     </div>
                   ))}
-                  <button
-                    className={cn(commonStyles.addItemButton, themeStyles.addItemButton)}
-                    onClick={addItem}
-                  >
-                    + Add Line Item
+                  <button className={cn(commonStyles.addItemButton, themeStyles.addItemButton)} onClick={addItem}>
+                    <Plus size={14} /> Add Line Item
                   </button>
                 </div>
 
@@ -485,10 +561,10 @@ export default function InvoicesPage() {
                 </div>
 
                 <div className={commonStyles.formGroup}>
-                  <label>Notes</label>
+                  <label className={cn(commonStyles.formLabel, themeStyles.formLabel)}>Notes</label>
                   <Textarea
                     value={newInvoice.notes || ''}
-                    onChange={(e) => setNewInvoice({ ...newInvoice, notes: e.target.value })}
+                    onChange={e => setNewInvoice({ ...newInvoice, notes: e.target.value })}
                     placeholder="Additional notes or payment terms..."
                     rows={3}
                   />
@@ -496,18 +572,13 @@ export default function InvoicesPage() {
               </div>
 
               <div className={commonStyles.modalFooter}>
-                <Button
-                  variant="ghost"
-                  onClick={() => setShowCreateModal(false)}
-                >
-                  Cancel
-                </Button>
+                <Button variant="ghost" onClick={() => setShowCreateModal(false)}>Cancel</Button>
                 <Button
                   variant="primary"
                   onClick={handleCreateInvoice}
                   disabled={!newInvoice.client_name || !newInvoice.client_email || !newInvoice.due_date}
                 >
-                  Create Invoice
+                  <Receipt size={14} /> Create Invoice
                 </Button>
               </div>
             </div>
@@ -516,50 +587,63 @@ export default function InvoicesPage() {
 
         {/* Invoice Detail Modal */}
         {selectedInvoice && (
-          <div className={cn(commonStyles.modal, themeStyles.modal)}>
-            <div className={cn(commonStyles.modalContent, themeStyles.modalContent, commonStyles.detailModal)}>
+          <div className={commonStyles.modalOverlay} onClick={() => setSelectedInvoice(null)}>
+            <div className={cn(commonStyles.modal, themeStyles.modal, commonStyles.detailModal)} onClick={e => e.stopPropagation()}>
               <div className={commonStyles.modalHeader}>
-                <h2>{selectedInvoice.invoice_number}</h2>
+                <h2 className={cn(commonStyles.modalTitle, themeStyles.modalTitle)}>
+                  <FileText size={20} /> {selectedInvoice.invoice_number}
+                </h2>
                 <button
-                  className={cn(commonStyles.closeButton, themeStyles.closeButton)}
+                  className={cn(commonStyles.modalClose, themeStyles.modalClose)}
                   onClick={() => setSelectedInvoice(null)}
+                  aria-label="Close"
                 >
-                  ✕
+                  <X size={20} />
                 </button>
               </div>
 
               <div className={commonStyles.invoiceDetail}>
                 <div className={commonStyles.detailHeader}>
                   <div>
-                    <h3 className={themeStyles.detailClientName}>{selectedInvoice.client_name}</h3>
-                    <p className={themeStyles.detailClientEmail}>{selectedInvoice.client_email}</p>
+                    <h3 className={cn(commonStyles.detailClientName, themeStyles.detailClientName)}>
+                      <User size={16} /> {selectedInvoice.client_name}
+                    </h3>
+                    <p className={cn(commonStyles.detailClientEmail, themeStyles.detailClientEmail)}>
+                      <Mail size={14} /> {selectedInvoice.client_email}
+                    </p>
                   </div>
                   <span className={cn(
                     commonStyles.status,
-                    commonStyles[getStatusColor(selectedInvoice.status)],
-                    themeStyles[getStatusColor(selectedInvoice.status)]
+                    commonStyles[getStatusStyle(selectedInvoice.status)],
+                    themeStyles[getStatusStyle(selectedInvoice.status)]
                   )}>
-                    {selectedInvoice.status}
+                    {getStatusIcon(selectedInvoice.status)} {selectedInvoice.status}
                   </span>
                 </div>
 
                 <div className={cn(commonStyles.detailMeta, themeStyles.detailMeta)}>
-                  <div>
-                    <span className={themeStyles.detailLabel}>Project</span>
+                  <div className={commonStyles.metaItem}>
+                    <span className={cn(commonStyles.metaLabel, themeStyles.metaLabel)}>
+                      <Briefcase size={12} /> Project
+                    </span>
                     <span>{selectedInvoice.project_title}</span>
                   </div>
-                  <div>
-                    <span className={themeStyles.detailLabel}>Created</span>
+                  <div className={commonStyles.metaItem}>
+                    <span className={cn(commonStyles.metaLabel, themeStyles.metaLabel)}>
+                      <Calendar size={12} /> Created
+                    </span>
                     <span>{new Date(selectedInvoice.created_at).toLocaleDateString()}</span>
                   </div>
-                  <div>
-                    <span className={themeStyles.detailLabel}>Due Date</span>
+                  <div className={commonStyles.metaItem}>
+                    <span className={cn(commonStyles.metaLabel, themeStyles.metaLabel)}>
+                      <Clock size={12} /> Due Date
+                    </span>
                     <span>{new Date(selectedInvoice.due_date).toLocaleDateString()}</span>
                   </div>
                 </div>
 
                 <div className={cn(commonStyles.detailItems, themeStyles.detailItems)}>
-                  <h4>Items</h4>
+                  <h4><FileText size={14} /> Items</h4>
                   <table>
                     <thead>
                       <tr>
@@ -587,18 +671,26 @@ export default function InvoicesPage() {
                     </tfoot>
                   </table>
                 </div>
+
+                {selectedInvoice.notes && (
+                  <div className={cn(commonStyles.detailNotes, themeStyles.detailNotes)}>
+                    <h4>Notes</h4>
+                    <p>{selectedInvoice.notes}</p>
+                  </div>
+                )}
               </div>
 
               <div className={commonStyles.modalFooter}>
-                <Button variant="ghost">
-                  📥 Download PDF
+                <Button variant="ghost" size="sm">
+                  <Download size={14} /> Download PDF
                 </Button>
                 {selectedInvoice.status === 'draft' && (
                   <Button
                     variant="primary"
+                    size="sm"
                     onClick={() => { handleSendInvoice(selectedInvoice.id); setSelectedInvoice(null); }}
                   >
-                    📤 Send Invoice
+                    <Send size={14} /> Send Invoice
                   </Button>
                 )}
               </div>
@@ -606,21 +698,40 @@ export default function InvoicesPage() {
           </div>
         )}
 
-        {/* Delete Confirmation Modal */}
+        {/* Delete Confirmation */}
         {deleteTargetId && (
-          <div className={cn(commonStyles.modal, themeStyles.modal)}>
-            <div className={cn(commonStyles.modalContent, themeStyles.modalContent)}>
+          <div className={commonStyles.modalOverlay} onClick={() => setDeleteTargetId(null)}>
+            <div className={cn(commonStyles.modal, themeStyles.modal, commonStyles.confirmModal)} onClick={e => e.stopPropagation()}>
               <div className={commonStyles.modalHeader}>
-                <h2>Confirm Delete</h2>
+                <h2 className={cn(commonStyles.modalTitle, themeStyles.modalTitle)}>
+                  <AlertCircle size={20} /> Confirm Delete
+                </h2>
               </div>
               <div className={commonStyles.modalBody}>
-                <p>Are you sure you want to delete this invoice? This action cannot be undone.</p>
+                <p className={cn(commonStyles.confirmText, themeStyles.confirmText)}>
+                  Are you sure you want to delete this invoice? This action cannot be undone.
+                </p>
               </div>
               <div className={commonStyles.modalFooter}>
                 <Button variant="ghost" onClick={() => setDeleteTargetId(null)}>Cancel</Button>
-                <Button variant="danger" onClick={confirmDeleteInvoice}>Delete Invoice</Button>
+                <Button variant="danger" onClick={confirmDeleteInvoice}>
+                  <Trash2 size={14} /> Delete Invoice
+                </Button>
               </div>
             </div>
+          </div>
+        )}
+
+        {/* Toast */}
+        {toast && (
+          <div className={cn(
+            commonStyles.toast,
+            themeStyles.toast,
+            toast.type === 'error' && commonStyles.toastError,
+            toast.type === 'error' && themeStyles.toastError
+          )}>
+            {toast.type === 'success' ? <CheckCircle size={16} /> : <AlertCircle size={16} />}
+            <span>{toast.message}</span>
           </div>
         )}
       </div>

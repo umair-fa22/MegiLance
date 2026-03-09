@@ -12,8 +12,6 @@ import Features from './components/Features';
 import HowItWorks from './components/HowItWorks';
 import Testimonials from './components/Testimonials';
 import { ScrollReveal } from '../components/Animations/ScrollReveal';
-import EmailCapture from '../components/EmailCapture/EmailCapture';
-import FloatingCTA from '../components/FloatingCTA/FloatingCTA';
 
 import commonStyles from './Home.common.module.css';
 import lightStyles from './Home.light.module.css';
@@ -66,24 +64,7 @@ const Home: React.FC = () => {
               </ScrollReveal>
             </div>
           </div>
-
-          {/* Email Capture */}
-          <div className={commonStyles.homeSection}>
-            <div className={commonStyles.sectionContainer}>
-              <ScrollReveal width="100%" direction="up">
-                <EmailCapture
-                  headline="Get the Latest Freelance Insights"
-                  subtext="Join 10,000+ businesses getting weekly tips on hiring freelancers and scaling with remote talent."
-                  buttonLabel="Subscribe Free"
-                  source="homepage"
-                  variant="card"
-                />
-              </ScrollReveal>
-            </div>
-          </div>
         </div>
-
-        <FloatingCTA />
       </div>
   );
 };

@@ -1,0 +1,141 @@
+/* @AI-HINT: Activity Feed - dark theme colors */
+
+.container {
+  background: linear-gradient(170deg, #0f172a 0%, #0f172a 40%, #0f1225 100%);
+  color: #f1f5f9;
+}
+
+.title {
+  color: #f1f5f9;
+}
+
+.subtitle {
+  color: #94a3b8;
+}
+
+.markAllButton {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.markAllButton:hover {
+  background-color: #2563eb;
+}
+
+.filters {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.filterButton {
+  background-color: transparent;
+  color: #94a3b8;
+}
+
+.filterButton:hover {
+  background-color: #334155;
+  color: #f1f5f9;
+}
+
+.filterActive {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.filterActive:hover {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.loading {
+  color: #94a3b8;
+}
+
+/* Empty State */
+.emptyState {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.emptyTitle {
+  color: #f1f5f9;
+}
+
+.emptyDesc {
+  color: #94a3b8;
+}
+
+/* Timeline */
+.dateHeader {
+  color: #94a3b8;
+}
+
+/* Activity Card */
+.activityCard {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.activityCard:hover {
+  border-color: rgba(69, 115, 223, 0.3);
+  box-shadow: 0 8px 24px rgba(69, 115, 223, 0.12);
+  transform: translateY(-2px);
+}
+
+.unread {
+  border-left-color: #3b82f6;
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.activityIcon {
+  background-color: #334155;
+}
+
+.activityAction {
+  color: #60a5fa;
+}
+
+.activityTime {
+  color: #64748b;
+}
+
+.activityTitle {
+  color: #f1f5f9;
+}
+
+.activityDesc {
+  color: #94a3b8;
+}
+
+.relatedLink {
+  color: #60a5fa;
+}
+
+.relatedLink:hover {
+  color: #93c5fd;
+}
+
+.unreadDot {
+  background-color: #3b82f6;
+}
+
+/* Load More */
+.loadMoreButton {
+  background: linear-gradient(135deg, #4573df, #6366f1);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(69, 115, 223, 0.3);
+}
+
+.loadMoreButton:hover {
+  box-shadow: 0 6px 20px rgba(69, 115, 223, 0.4);
+  transform: translateY(-1px);
+}

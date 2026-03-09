@@ -15,6 +15,12 @@
   gap: 1rem;
 }
 
+.headerActions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
 .title {
   font-size: 2rem;
   font-weight: 700;
@@ -25,6 +31,113 @@
 .subtitle {
   font-size: 1rem;
   margin: 0;
+}
+
+/* Ambassador Tier Card */
+.tierCard {
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  border-radius: 16px;
+}
+
+.tierContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.tierLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tierIconWrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tierInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.tierLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.tierName {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.tierReward {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.tierRight {
+  flex: 1;
+  min-width: 240px;
+  max-width: 400px;
+}
+
+.tierProgressInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.tierProgressLabel {
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.tierProgressValue {
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.tierProgressBar {
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.tierProgressFill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.tierPerks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tierPerk {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 500;
 }
 
 /* Code Card */
@@ -63,18 +176,20 @@
 }
 
 .copyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
   padding: 0.5rem 1rem;
   border-radius: 8px;
   font-weight: 500;
   font-size: 0.875rem;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    color 0.2s ease,
-    opacity 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.copyBtn:hover {
+  transform: scale(1.05);
 }
 
 .codeHint {
@@ -111,6 +226,16 @@
   border-radius: 16px;
 }
 
+.statIconWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem;
+}
+
 .statIcon {
   font-size: 2rem;
   margin-bottom: 0.5rem;
@@ -124,6 +249,56 @@
 
 .statLabel {
   font-size: 0.875rem;
+}
+
+/* Referral Funnel */
+.funnelCard {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 16px;
+}
+
+.funnelTitle {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.funnelSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.funnelStep {}
+
+.funnelStepHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.375rem;
+}
+
+.funnelStepLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.funnelStepValue {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.funnelBar {
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.funnelBarFill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.6s ease;
 }
 
 /* Milestone Card */
@@ -144,6 +319,9 @@
   margin: 0;
   font-size: 1.125rem;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .milestoneProgress {
@@ -175,6 +353,8 @@
   white-space: nowrap;
 }
 
+.milestoneAchieved {}
+
 /* Share Card */
 .shareCard {
   padding: 1.5rem;
@@ -183,6 +363,9 @@
 }
 
 .shareTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   margin: 0 0 1rem 0;
   font-size: 1.125rem;
   font-weight: 600;
@@ -194,27 +377,42 @@
   margin-bottom: 1rem;
 }
 
-.shareInput {
+.shareLinkInput {
   flex: 1;
-  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.75rem;
   border-radius: 8px;
-  font-size: 0.875rem;
   border: 1px solid;
 }
 
+.shareInput {
+  flex: 1;
+  padding: 0.75rem 0;
+  font-size: 0.875rem;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8125rem;
+}
+
 .copyLinkBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   font-weight: 500;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    color 0.2s ease,
-    opacity 0.2s ease;
+  transition: all 0.2s ease;
   white-space: nowrap;
+}
+
+.copyLinkBtn:hover {
+  transform: translateY(-1px);
 }
 
 .socialButtons {
@@ -229,17 +427,43 @@
   font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
-  transition: transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    color 0.2s ease,
-    opacity 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .socialBtn:hover {
   transform: translateY(-2px);
 }
+
+/* Custom Tab Navigation */
+.tabs {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 12px;
+  margin-bottom: 0;
+  overflow-x: auto;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  transform: translateY(-1px);
+}
+
+.tabActive {}
 
 /* Tab Content */
 .tabContent {
@@ -277,7 +501,12 @@
   justify-content: center;
   font-size: 1.5rem;
   font-weight: 700;
-  margin: 0 auto 1rem;
+  margin: 0 auto 0.75rem;
+}
+
+.stepIcon {
+  margin: 0 auto 0.75rem;
+  display: block;
 }
 
 .step h4 {
@@ -290,26 +519,101 @@
   font-size: 0.875rem;
 }
 
+/* Ambassador Tiers Overview */
+.tiersOverview {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid;
+}
+
+.tiersOverview h4 {
+  text-align: center;
+  margin: 0 0 1.25rem 0;
+  font-size: 1.125rem;
+}
+
+.tiersList {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding: 0.25rem 0;
+}
+
+.tierItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  min-width: 130px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.tierItemActive {
+  transform: scale(1.05);
+}
+
+.tierItemName {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.tierItemReward {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.tierItemReq {
+  font-size: 0.75rem;
+}
+
 /* Referrals Card */
 .referralsCard {
   padding: 1.5rem;
   border-radius: 16px;
 }
 
-.referralsCard h3 {
-  margin: 0 0 1.5rem 0;
+.referralsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.referralsHeader h3 {
+  margin: 0;
   font-size: 1.125rem;
 }
+
+.filterBtns {
+  display: flex;
+  gap: 0.375rem;
+}
+
+.filterBtn {
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.filterBtnActive {}
 
 .emptyState {
   text-align: center;
   padding: 3rem;
-}
-
-.emptyState span {
-  font-size: 3rem;
-  display: block;
-  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .emptyState p {
@@ -324,16 +628,34 @@
 
 .referralItem {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 0.75rem;
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.referralItem:hover {
+  transform: translateX(2px);
+}
+
+.referralAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
 }
 
 .referralInfo {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  flex: 1;
 }
 
 .referralEmail {
@@ -342,6 +664,9 @@
 
 .referralDate {
   font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .referralStatus {
@@ -353,33 +678,309 @@
 .rewardPaid {
   font-weight: 600;
   font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
 }
 
-/* Rewards Card */
+/* Rewards Tab */
+.rewardsTab {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .rewardsCard {
   padding: 2rem;
   border-radius: 16px;
-  text-align: center;
+}
+
+.rewardsTitle {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
 }
 
 .rewardsSummary {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.rewardTotal, .rewardPending {
+.rewardBox {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border-radius: 12px;
+}
+
+.rewardBox div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.rewardBox span {
+  font-size: 0.8125rem;
+}
+
+.rewardBox strong {
+  font-size: 1.25rem;
+}
+
+.rewardTotal {}
+.rewardPendingBox {}
+.rewardAvailable {}
+
+/* Reward History */
+.rewardHistory {
+  padding: 1.5rem;
+  border-radius: 16px;
+}
+
+.rewardHistory h3 {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.rewardHistoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.rewardHistoryItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+.rewardHistoryIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rewardHistoryInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.rewardHistoryDesc {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.rewardHistoryDate {
+  font-size: 0.75rem;
+}
+
+.rewardHistoryAmount {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Leaderboard */
+.leaderboardCard {
+  padding: 1.5rem;
+  border-radius: 16px;
+}
+
+.leaderboardCard h3 {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.leaderboardList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.leaderboardEntry {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.leaderboardEntryCurrent {}
+
+.leaderboardRank {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.leaderboardInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.leaderboardName {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.leaderboardStats {
+  font-size: 0.8125rem;
+}
+
+.leaderboardNote {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  margin-top: 0.5rem;
+}
+
+/* Modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 16px;
+  animation: scaleIn 0.2s ease;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid;
+}
+
+.modalHeader h3 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 6px;
+  display: flex;
+  transition: all 0.2s ease;
+}
+
+.modalBody {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid;
+}
+
+.formGroup {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.rewardTotal strong, .rewardPending strong {
-  font-size: 2rem;
+.formLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
-/* Invite Form */
+.emailRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.emailRow > div:first-child {
+  flex: 1;
+}
+
+.removeEmailBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.375rem;
+  border-radius: 6px;
+  display: flex;
+  transition: all 0.2s ease;
+}
+
+.addEmailBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.375rem 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.messageTextarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid;
+  font-size: 0.875rem;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 0.2s ease;
+}
+
+/* Invite Form (legacy compat) */
 .inviteForm {
   display: flex;
   flex-direction: column;
@@ -391,6 +992,16 @@
   justify-content: flex-end;
   gap: 0.75rem;
   margin-top: 0.5rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 /* Responsive */
@@ -417,7 +1028,36 @@
   }
 
   .rewardsSummary {
+    grid-template-columns: 1fr;
+  }
+
+  .tierContent {
     flex-direction: column;
-    gap: 1.5rem;
+  }
+
+  .tierRight {
+    max-width: 100%;
+  }
+
+  .tabs {
+    overflow-x: auto;
+  }
+
+  .headerActions {
+    width: 100%;
+  }
+
+  .headerActions button {
+    flex: 1;
+  }
+
+  .referralsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filterBtns {
+    width: 100%;
+    overflow-x: auto;
   }
 }

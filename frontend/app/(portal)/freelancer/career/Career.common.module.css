@@ -43,6 +43,15 @@
   border-radius: 12px;
 }
 
+.statIconWrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .statIcon {
   font-size: 2rem;
 }
@@ -59,6 +68,39 @@
 
 .statInfo span {
   font-size: 0.875rem;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.35rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  background: transparent;
+}
+
+.tab:hover {
+  opacity: 0.8;
+}
+
+.tabActive {
+  font-weight: 600;
 }
 
 /* Tab Content */
@@ -92,6 +134,14 @@
   font-weight: 600;
 }
 
+.levelBadge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
 .skillProgress {
   margin-bottom: 1rem;
 }
@@ -101,6 +151,41 @@
   justify-content: space-between;
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
+}
+
+.progressValue {
+  font-weight: 600;
+}
+
+.progressBarTrack {
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+
+/* Certifications */
+.certsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.15);
+}
+
+.certBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
 }
 
 .skillStats {
@@ -230,6 +315,34 @@
   max-width: 800px;
 }
 
+.goalsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.goalsStats {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.deadlineWarning {
+  font-size: 0.8rem;
+  margin-bottom: 0.75rem;
+}
+
+.overdue {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.urgent {
+  color: #f59e0b;
+  font-weight: 600;
+}
+
 .emptyCard {
   padding: 3rem;
   text-align: center;
@@ -349,6 +462,196 @@
   margin-bottom: 1rem;
 }
 
+.mentorDot {
+  opacity: 0.4;
+}
+
+/* Expertise tags */
+.expertiseTag {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Milestones */
+.milestonesSection {
+  margin-bottom: 1rem;
+}
+
+.milestonesToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.toggleIcon {
+  transition: transform 0.2s;
+}
+
+.toggleIconOpen {
+  transform: rotate(90deg);
+}
+
+.milestonesList {
+  padding: 0.5rem 0;
+}
+
+.milestoneItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  position: relative;
+}
+
+.milestoneItem:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 24px;
+  bottom: -8px;
+  width: 2px;
+  border-radius: 1px;
+}
+
+.milestoneDot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #94a3b8;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.milestoneDotDone {
+  background: #22c55e;
+  border-color: #22c55e;
+}
+
+.milestoneInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.milestoneName {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.milestoneDuration {
+  font-size: 0.75rem;
+}
+
+/* Modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 16px;
+  overflow: hidden;
+  animation: scaleIn 0.25s ease;
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+}
+
+.modalHeader h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.modalClose {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.modalBody {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.15);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.formLabel {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.formSelect {
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid;
+  font-size: 0.9rem;
+  outline: none;
+  width: 100%;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .container {
@@ -366,6 +669,19 @@
   .skillsGrid,
   .pathsGrid,
   .mentorsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .tabs {
+    gap: 0.25rem;
+  }
+
+  .tab {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .formRow {
     grid-template-columns: 1fr;
   }
 }

@@ -8,6 +8,20 @@
   color: #64748b;
 }
 
+.statCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.statValue {
+  color: #1a1a2e;
+}
+
+.statLabel {
+  color: #64748b;
+}
+
 .filters {
   background: #ffffff;
   border: 1px solid #e2e8f0;
@@ -30,6 +44,14 @@
   border-color: #e2e8f0;
 }
 
+.resultsBar {
+  color: #64748b;
+}
+
+.resultCount {
+  color: #64748b;
+}
+
 .projectCard {
   background: #ffffff;
   border: 1px solid #e2e8f0;
@@ -50,4 +72,20 @@
 
 .progressFill {
   background: linear-gradient(90deg, #4573df, #6b8cff);
+}
+
+.pageBtn {
+  background: #f1f5f9;
+  color: #1a1a2e;
+  border-color: #e2e8f0;
+}
+
+.pageBtn:hover:not(:disabled) {
+  background: #e2e8f0;
+}
+
+.pageBtnActive {
+  background: #4573df;
+  color: #ffffff;
+  border-color: #4573df;
 }

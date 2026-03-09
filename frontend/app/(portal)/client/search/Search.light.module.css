@@ -4,9 +4,24 @@
 .subtitle { color: #64748b; }
 .searchSection { background: #ffffff; border: 1px solid #e2e8f0; }
 .searchInput { background: #f1f5f9; color: #1a1a2e; border-color: #e2e8f0; }
+.searchInput:focus { border-color: #4573df; }
 .filterInput { background: #f1f5f9; color: #1a1a2e; border-color: #e2e8f0; }
+.filterLabel { color: #64748b; }
+.filterToggle { color: #64748b; border-color: #e2e8f0; }
+.filterToggle:hover { background: #f1f5f9; }
+.clearFilters { color: #e81123; }
+.availabilityToggle { color: #64748b; border-color: #e2e8f0; }
+.availabilityToggle:hover { background: #f1f5f9; }
+.resultsBar { background: #ffffff; border: 1px solid #e2e8f0; }
+.resultCount { color: #1a1a2e; }
+.sortSelect { color: #1a1a2e; border-color: #e2e8f0; }
 .freelancerCard { background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
 .freelancerCard:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
 .name { color: #1a1a2e; }
 .titleText { color: #64748b; }
+.jobCount { color: #64748b; }
 .skillTag { background: rgba(69, 115, 223, 0.1); color: #4573df; }
+.moreSkills { color: #94a3b8; }
+.pageBtn { color: #64748b; border-color: #e2e8f0; }
+.pageBtn:hover:not(:disabled) { background: #f1f5f9; border-color: #d1d9e6; }
+.pageBtnActive { background: #4573df; color: white; border-color: #4573df; }

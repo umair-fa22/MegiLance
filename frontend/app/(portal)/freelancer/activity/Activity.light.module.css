@@ -13,19 +13,91 @@
   color: #64748b;
 }
 
-.markAllButton {
-  background-color: #3b82f6;
-  color: #ffffff;
+.refreshBtn {
+  background-color: #f1f5f9;
+  color: #64748b;
 }
 
-.markAllButton:hover {
-  background-color: #2563eb;
+.refreshBtn:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
 }
 
+/* Stats Bar */
+.statsBar {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.statIconTotal {
+  background-color: #eff6ff;
+  color: #3b82f6;
+}
+
+.statIconUnread {
+  background-color: #fef3c7;
+  color: #f59e0b;
+}
+
+.statIconToday {
+  background-color: #dcfce7;
+  color: #10b981;
+}
+
+.statValue {
+  color: #0f172a;
+}
+
+.statLabel {
+  color: #94a3b8;
+}
+
+/* Search */
+.searchBox {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #e2e8f0;
+}
+
+.searchBox:focus-within {
+  border-color: #4573df;
+  box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
+}
+
+.searchInput {
+  color: #0f172a;
+}
+
+.searchInput::placeholder {
+  color: #94a3b8;
+}
+
+/* Time Period */
+.timePeriod {
+  background-color: #f1f5f9;
+}
+
+.timeBtn {
+  color: #64748b;
+  background-color: transparent;
+}
+
+.timeBtn:hover {
+  color: #0f172a;
+  background-color: #e2e8f0;
+}
+
+.timeBtnActive {
+  background-color: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Filters */
 .filters {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
 }
@@ -41,12 +113,12 @@
 }
 
 .filterActive {
-  background-color: #3b82f6;
+  background-color: #4573df;
   color: #ffffff;
 }
 
 .filterActive:hover {
-  background-color: #2563eb;
+  background-color: #3b62c4;
   color: #ffffff;
 }
 
@@ -58,9 +130,8 @@
 .emptyState {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  color: #94a3b8;
 }
 
 .emptyTitle {
@@ -76,19 +147,22 @@
   color: #64748b;
 }
 
+.dateCount {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
 /* Activity Card */
 .activityCard {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .activityCard:hover {
   border-color: rgba(69, 115, 223, 0.2);
-  box-shadow: 0 8px 24px rgba(69, 115, 223, 0.1);
-  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(69, 115, 223, 0.08);
 }
 
 .unread {
@@ -96,12 +170,17 @@
   background-color: #f0f9ff;
 }
 
+.connector {
+  background-color: #e2e8f0;
+}
+
 .activityIcon {
   background-color: #f1f5f9;
 }
 
-.activityAction {
-  color: #3b82f6;
+.typeBadge {
+  background-color: #f8fafc;
+  color: #475569;
 }
 
 .activityTime {
@@ -116,26 +195,60 @@
   color: #64748b;
 }
 
-.relatedLink {
+/* Metadata */
+.metadata {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.metaKey {
+  color: #94a3b8;
+}
+
+.metaValue {
+  color: #0f172a;
+}
+
+/* Actions */
+.viewLink {
   color: #3b82f6;
 }
 
-.relatedLink:hover {
+.viewLink:hover {
   color: #2563eb;
+}
+
+.expandBtn {
+  color: #64748b;
+}
+
+.expandBtn:hover {
+  color: #0f172a;
+}
+
+.markReadBtn {
+  color: #10b981;
+}
+
+.markReadBtn:hover {
+  color: #059669;
 }
 
 .unreadDot {
   background-color: #3b82f6;
 }
 
-/* Load More */
-.loadMoreButton {
-  background: linear-gradient(135deg, #4573df, #6366f1);
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(69, 115, 223, 0.3);
+.showingCount {
+  color: #94a3b8;
 }
 
-.loadMoreButton:hover {
-  box-shadow: 0 6px 20px rgba(69, 115, 223, 0.4);
-  transform: translateY(-1px);
+/* Toast */
+.toast {
+  background-color: #1e293b;
+  color: #ffffff;
+}
+
+.toastError {
+  background-color: #dc2626;
+  color: #ffffff;
 }

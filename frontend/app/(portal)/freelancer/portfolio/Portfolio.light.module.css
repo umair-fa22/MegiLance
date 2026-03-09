@@ -1,201 +1,69 @@
 /* @AI-HINT: Portfolio Showcase page - light theme */
 
-.container {
-  background: #f9fafb;
-}
+.container { background: #f9fafb; }
+.title { color: #111827; }
+.subtitle { color: #64748b; }
 
-.title {
-  color: #111827;
-}
+/* Stats */
+.statChip { background: #f1f5f9; color: #374151; }
 
-.subtitle {
-  color: #64748b;
-}
+/* Public URL */
+.publicUrl { background: #eff6ff; color: #374151; }
+.publicUrl a { color: #4573df; }
 
-.settingsBtn {
-  background: #f1f5f9;
-  color: #374151;
-}
+/* Search */
+.searchBar { background: #fff; border: 1px solid #e2e8f0; }
+.searchIcon { color: #94a3b8; }
+.searchInput { color: #111827; }
+.searchInput::placeholder { color: #94a3b8; }
+.clearSearch { color: #94a3b8; }
+.clearSearch:hover { background: #f1f5f9; color: #374151; }
 
-.settingsBtn:hover {
-  background: #e2e8f0;
-}
+/* Categories */
+.categories { /* no extra bg */ }
+.categoryBtn { background: #f1f5f9; color: #64748b; }
+.categoryBtn:hover { background: #e2e8f0; }
+.categoryActive { background: #4573df; color: #fff; }
 
-.addBtn {
-  background: linear-gradient(135deg, #4573df 0%, #3b82f6 100%);
-  color: #fff;
-}
+/* Layout Toggle */
+.layoutBtn { background: transparent; color: #64748b; }
+.layoutBtn:hover, .layoutActive { background: #fff; color: #111827; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
 
-.addBtn:hover {
-  box-shadow: 0 4px 12px rgba(69, 115, 223, 0.25);
-}
+/* Loading */
+.loading { color: #64748b; }
 
-.publicUrl {
-  background: #f1f5f9;
-  color: #374151;
-}
+/* Empty State */
+.emptyState { background: #f1f5f9; }
+.emptyTitle { color: #111827; }
+.emptyDesc { color: #64748b; }
 
-.publicUrl a {
-  color: #4573df;
-}
+/* Section Title */
+.sectionTitle { color: #111827; }
 
-.categoryBtn {
-  background: #f1f5f9;
-  color: #64748b;
-}
+/* Cards */
+.featuredCard, .portfolioCard { background: #fff; border: 1px solid #e2e8f0; }
+.featuredCard:hover, .portfolioCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.featuredBadge { background: #fef3c7; color: #92400e; }
+.cardCategory { color: #4573df; }
+.cardTitle { color: #111827; }
+.cardDesc { color: #64748b; }
+.tag { background: #f1f5f9; color: #374151; }
+.stat { color: #64748b; }
+.likeBtn { color: #64748b; }
+.liked { color: #ef4444; }
 
-.categoryBtn:hover {
-  background: #e2e8f0;
-}
-
-.categoryActive {
-  background: #4573df;
-  color: #fff;
-}
-
-.layoutToggle {
-  background: #f1f5f9;
-}
-
-.layoutBtn {
-  background: transparent;
-  color: #64748b;
-}
-
-.layoutBtn:hover,
-.layoutActive {
-  background: #fff;
-  color: #111827;
-}
-
-.loading {
-  color: #64748b;
-}
-
-.emptyState {
-  background: #f1f5f9;
-  color: #64748b;
-}
-
-.emptyTitle {
-  color: #111827;
-}
-
-.emptyBtn {
-  background: linear-gradient(135deg, #4573df 0%, #3b82f6 100%);
-  color: #fff;
-}
-
-.sectionTitle {
-  color: #111827;
-}
-
-.featuredCard,
-.portfolioCard {
-  background: #fff;
-  border: 1px solid #e2e8f0;
-}
-
-.featuredCard:hover,
-.portfolioCard:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.featuredBadge {
-  background: #fef3c7;
-  color: #92400e;
-}
-
-.cardCategory {
-  color: #4573df;
-}
-
-.cardTitle {
-  color: #111827;
-}
-
-.cardDesc {
-  color: #64748b;
-}
-
-.tag {
-  background: #f1f5f9;
-  color: #374151;
-}
-
-.stat {
-  color: #64748b;
-}
-
-.likeBtn {
-  color: #64748b;
-}
-
-.liked {
-  color: #ef4444;
-}
-
-.modal {
-  background: #fff;
-}
-
-.modalHeader {
-  border-color: #e2e8f0;
-}
-
-.closeButton {
-  color: #64748b;
-}
-
-.closeButton:hover {
-  background: #f1f5f9;
-}
-
-.input,
-.select,
-.textarea {
-  background: #fff;
-  border: 1px solid #cbd5e1;
-  color: #111827;
-}
-
-.input:focus,
-.select:focus,
-.textarea:focus {
-  border-color: #4573df;
-  box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
-}
-
-.addTagBtn {
-  background: #f1f5f9;
-  color: #374151;
-}
-
-.selectedTag {
-  background: #e0e7ff;
-  color: #3730a3;
-}
-
-.modalFooter {
-  border-color: #e2e8f0;
-}
-
-.cancelBtn {
-  background: #f1f5f9;
-  color: #374151;
-}
-
-.cancelBtn:hover {
-  background: #e2e8f0;
-}
-
-.saveBtn {
-  background: linear-gradient(135deg, #4573df 0%, #3b82f6 100%);
-  color: #fff;
-}
-
-.saveBtn:hover {
-  box-shadow: 0 4px 12px rgba(69, 115, 223, 0.25);
-}
-
+/* Modal */
+.modal { background: #fff; border: 1px solid #e2e8f0; }
+.modalHeader { border-color: #e2e8f0; }
+.modalTitle { color: #111827; }
+.closeButton { color: #64748b; }
+.closeButton:hover { background: #f1f5f9; }
+.label { color: #374151; }
+.selectedTag { background: #e0e7ff; color: #3730a3; }
+.checkboxText { color: #374151; }
+.modalFooter { border-color: #e2e8f0; }
 .confirmText { color: #4b5563; }
+
+/* Toast */
+.toast { background: #065f46; color: #fff; }
+.toastError { background: #991b1b; color: #fff; }

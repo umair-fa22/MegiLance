@@ -1,0 +1,185 @@
+/* @AI-HINT: Subscription page - dark theme colors */
+
+.container {
+  background-color: #0f172a;
+}
+
+.loading {
+  color: #94a3b8;
+}
+
+.title {
+  color: #f1f5f9;
+}
+
+.subtitle {
+  color: #94a3b8;
+}
+
+/* Current Plan */
+.currentPlan {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+}
+
+.currentPlanLabel {
+  color: #94a3b8;
+}
+
+.currentPlanName {
+  color: #f1f5f9;
+}
+
+.currentPlanMeta {
+  color: #94a3b8;
+}
+
+.cancelNotice {
+  background-color: #422006;
+  color: #fcd34d;
+}
+
+/* Tabs */
+.tabs {
+  border-color: #334155;
+}
+
+.tab {
+  color: #94a3b8;
+}
+
+.tab:hover {
+  background-color: #334155;
+  color: #f1f5f9;
+}
+
+.tabActive {
+  background-color: #4573df;
+  color: #ffffff;
+}
+
+/* Billing Toggle */
+.billingToggle {
+  background-color: #1e293b;
+}
+
+.toggleOption {
+  background-color: transparent;
+  color: #94a3b8;
+}
+
+.toggleOption:hover {
+  color: #f1f5f9;
+}
+
+.toggleActive {
+  background-color: #334155;
+  color: #f1f5f9;
+}
+
+/* Plan Card */
+.planCard {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+}
+
+.popularPlan {
+  border-color: #4573df;
+  box-shadow: 0 4px 20px rgba(69, 115, 223, 0.2);
+}
+
+.popularBadge {
+  background-color: #4573df;
+  color: #ffffff;
+}
+
+.planName {
+  color: #f1f5f9;
+}
+
+.priceAmount {
+  color: #f1f5f9;
+}
+
+.pricePeriod {
+  color: #94a3b8;
+}
+
+.feature {
+  color: #cbd5e1;
+}
+
+.planButton {
+  background-color: #4573df;
+  color: #ffffff;
+}
+
+.planButton:hover:not(:disabled) {
+  background-color: #5b84e9;
+}
+
+.currentButton {
+  background-color: #334155;
+  color: #94a3b8;
+}
+
+/* Billing Panel */
+.billingPanel {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+}
+
+.sectionTitle {
+  color: #f1f5f9;
+}
+
+.updatePaymentButton {
+  background-color: #334155;
+  color: #cbd5e1;
+}
+
+.updatePaymentButton:hover {
+  background-color: #475569;
+}
+
+.tableHeader {
+  background-color: #0f172a;
+  color: #94a3b8;
+}
+
+.tableRow {
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+.amount {
+  color: #f1f5f9;
+}
+
+.invoiceLink {
+  color: #60a5fa;
+}
+
+.cancelSection {
+  border-color: #334155;
+}
+
+.cancelButton {
+  background-color: #450a0a;
+  color: #fca5a5;
+}
+
+.cancelButton:hover {
+  background-color: #7f1d1d;
+}
+
+.toast {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(39, 174, 96, 0.4);
+  color: #4ade80;
+}
+
+.toastError {
+  border-color: rgba(232, 17, 35, 0.4);
+  color: #f87171;
+}

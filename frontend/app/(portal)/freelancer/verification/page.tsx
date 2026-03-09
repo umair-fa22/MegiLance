@@ -1,12 +1,18 @@
-// @AI-HINT: Verification Center - ID verification and trust badges
+// @AI-HINT: Verification Center - ID verification, trust tiers, and verified badges
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { PageTransition, ScrollReveal, StaggerContainer, StaggerItem } from '@/app/components/Animations';
 import { apiFetch } from '@/lib/api/core';
+import Button from '@/app/components/Button/Button';
+import {
+  ShieldCheck, Mail, Phone, CreditCard, Target, MapPin, IdCard,
+  CheckCircle, Clock, XCircle, Circle, Upload, FileText, Lock,
+  ChevronRight, Award, Star, Crown, X, AlertTriangle, Info, RefreshCw
+} from 'lucide-react';
 import commonStyles from './Verification.common.module.css';
 import lightStyles from './Verification.light.module.css';
 import darkStyles from './Verification.dark.module.css';
@@ -18,7 +24,6 @@ interface VerificationItem {
   description: string;
   status: 'verified' | 'pending' | 'unverified' | 'failed';
   verifiedAt?: string;
-  badge?: string;
   required: boolean;
 }
 
@@ -32,6 +37,22 @@ interface VerificationTier {
   achieved: boolean;
 }
 
+const TYPE_ICONS: Record<string, React.ReactNode> = {
+  email: <Mail size={22} />,
+  phone: <Phone size={22} />,
+  identity: <IdCard size={22} />,
+  payment: <CreditCard size={22} />,
+  skills: <Target size={22} />,
+  address: <MapPin size={22} />,
+};
+
+const TIER_ICONS: Record<string, React.ReactNode> = {
+  basic: <Circle size={20} />,
+  verified: <CheckCircle size={20} />,
+  trusted: <Star size={20} />,
+  elite: <Crown size={20} />,
+};
+
 export default function VerificationPage() {
   const { resolvedTheme } = useTheme();
   const router = useRouter();
@@ -42,6 +63,13 @@ export default function VerificationPage() {
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [selectedVerification, setSelectedVerification] = useState<VerificationItem | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+
+  const showToast = useCallback((message: string, type: 'success' | 'error' = 'success') => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 3500);
+  }, []);
 
   useEffect(() => {
     setMounted(true);
@@ -51,25 +79,22 @@ export default function VerificationPage() {
   const fetchVerificationData = async () => {
     setLoading(true);
     try {
-      // Fetch real verification data from API
       const { verificationApi, authApi } = await import('@/lib/api') as any;
-      
+
       const [verificationStatus, userProfile] = await Promise.all([
         verificationApi.getStatus().catch(() => null),
         authApi.me().catch(() => null),
       ]);
 
-      // Build verifications from API response or use defaults
       const defaultVerifications: VerificationItem[] = [
-        { id: 'v1', type: 'email', name: 'Email Verification', description: 'Verify your email address to receive notifications', status: 'unverified', badge: '✉️', required: true },
-        { id: 'v2', type: 'phone', name: 'Phone Verification', description: 'Add SMS authentication for extra security', status: 'unverified', badge: '📱', required: false },
-        { id: 'v3', type: 'identity', name: 'Identity Verification', description: 'Verify your identity with government-issued ID', status: 'unverified', badge: '🪪', required: true },
-        { id: 'v4', type: 'payment', name: 'Payment Method', description: 'Add a verified payment method for transactions', status: 'unverified', badge: '💳', required: true },
-        { id: 'v5', type: 'skills', name: 'Skills Assessment', description: 'Pass skill tests to earn verified badges', status: 'unverified', badge: '🎯', required: false },
-        { id: 'v6', type: 'address', name: 'Address Verification', description: 'Verify your business or home address', status: 'unverified', badge: '📍', required: false },
+        { id: 'v1', type: 'email', name: 'Email Verification', description: 'Verify your email address to receive notifications', status: 'unverified', required: true },
+        { id: 'v2', type: 'phone', name: 'Phone Verification', description: 'Add SMS authentication for extra security', status: 'unverified', required: false },
+        { id: 'v3', type: 'identity', name: 'Identity Verification', description: 'Verify your identity with government-issued ID', status: 'unverified', required: true },
+        { id: 'v4', type: 'payment', name: 'Payment Method', description: 'Add a verified payment method for transactions', status: 'unverified', required: true },
+        { id: 'v5', type: 'skills', name: 'Skills Assessment', description: 'Pass skill tests to earn verified skill badges', status: 'unverified', required: false },
+        { id: 'v6', type: 'address', name: 'Address Verification', description: 'Verify your business or home address', status: 'unverified', required: false },
       ];
 
-      // Update verification statuses from API response
       if (verificationStatus || userProfile) {
         const emailVerified = userProfile?.email_verified || verificationStatus?.email_verified;
         const phoneVerified = userProfile?.phone_verified || verificationStatus?.phone_verified;
@@ -80,10 +105,10 @@ export default function VerificationPage() {
 
         defaultVerifications[0].status = emailVerified ? 'verified' : 'unverified';
         if (emailVerified) defaultVerifications[0].verifiedAt = new Date().toISOString();
-        
+
         defaultVerifications[1].status = phoneVerified ? 'verified' : 'unverified';
         if (phoneVerified) defaultVerifications[1].verifiedAt = new Date().toISOString();
-        
+
         defaultVerifications[2].status = identityVerified === 'pending' ? 'pending' : identityVerified ? 'verified' : 'unverified';
         defaultVerifications[3].status = paymentVerified ? 'verified' : 'unverified';
         defaultVerifications[4].status = skillsVerified ? 'verified' : 'unverified';
@@ -91,43 +116,31 @@ export default function VerificationPage() {
       }
 
       const verifiedCount = defaultVerifications.filter(v => v.status === 'verified').length;
-      
+
       const defaultTiers: VerificationTier[] = [
         {
-          id: 'basic',
-          name: 'Basic',
-          level: 1,
+          id: 'basic', name: 'Basic', level: 1,
           requirements: ['Email verified'],
           benefits: ['Create profile', 'Browse jobs', 'Send messages'],
-          badgeColor: '#94a3b8',
-          achieved: verifiedCount >= 1
+          badgeColor: '#94a3b8', achieved: verifiedCount >= 1
         },
         {
-          id: 'verified',
-          name: 'Verified',
-          level: 2,
+          id: 'verified', name: 'Verified', level: 2,
           requirements: ['Email verified', 'Phone verified', 'Payment method added'],
           benefits: ['Submit proposals', 'Priority in search', 'Verified badge'],
-          badgeColor: '#3b82f6',
-          achieved: verifiedCount >= 3
+          badgeColor: '#3b82f6', achieved: verifiedCount >= 3
         },
         {
-          id: 'trusted',
-          name: 'Trusted',
-          level: 3,
+          id: 'trusted', name: 'Trusted', level: 3,
           requirements: ['Identity verified', 'Skills assessment passed', '5+ completed jobs'],
           benefits: ['Top search ranking', 'Reduced fees', 'Premium support', 'Trusted badge'],
-          badgeColor: '#8b5cf6',
-          achieved: verifiedCount >= 5
+          badgeColor: '#8b5cf6', achieved: verifiedCount >= 5
         },
         {
-          id: 'elite',
-          name: 'Elite',
-          level: 4,
+          id: 'elite', name: 'Elite', level: 4,
           requirements: ['All verifications complete', '20+ completed jobs', '4.8+ rating'],
           benefits: ['Featured profile', 'Dedicated manager', 'Exclusive opportunities', 'Elite badge'],
-          badgeColor: '#f59e0b',
-          achieved: verifiedCount >= 6
+          badgeColor: '#f59e0b', achieved: verifiedCount >= 6
         }
       ];
 
@@ -147,35 +160,33 @@ export default function VerificationPage() {
       setSelectedVerification(verification);
       setShowUploadModal(true);
     } else if (verification.type === 'skills') {
-      // Redirect to skills assessment
       router.push('/freelancer/assessments');
     }
   };
 
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
   const handleUpload = async () => {
     if (!selectedVerification || !selectedFile) return;
-    
+
     setUploading(true);
     try {
       const formData = new FormData();
       formData.append('document', selectedFile);
       formData.append('document_type', selectedVerification.type === 'identity' ? 'national_id' : 'address_proof');
-      
+
       await apiFetch('/verification/upload-document', {
         method: 'POST',
         body: formData,
       });
-      
-      setVerifications(prev => prev.map(v => 
+
+      setVerifications(prev => prev.map(v =>
         v.id === selectedVerification.id ? { ...v, status: 'pending' as const } : v
       ));
       setShowUploadModal(false);
       setSelectedVerification(null);
       setSelectedFile(null);
+      showToast('Document submitted for review');
     } catch (error: any) {
-      console.error('Upload failed:', error?.detail || error);
+      showToast(error?.detail || 'Upload failed', 'error');
     } finally {
       setUploading(false);
     }
@@ -188,16 +199,16 @@ export default function VerificationPage() {
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'verified': return '✅';
-      case 'pending': return '⏳';
-      case 'failed': return '❌';
-      default: return '○';
+      case 'verified': return <CheckCircle size={14} />;
+      case 'pending': return <Clock size={14} />;
+      case 'failed': return <XCircle size={14} />;
+      default: return <Circle size={14} />;
     }
   };
 
   const verifiedCount = verifications.filter(v => v.status === 'verified').length;
   const totalCount = verifications.length;
-  const progressPercent = Math.round((verifiedCount / totalCount) * 100);
+  const progressPercent = totalCount > 0 ? Math.round((verifiedCount / totalCount) * 100) : 0;
 
   const currentTier = tiers.filter(t => t.achieved).pop();
   const nextTier = tiers.find(t => !t.achieved);
@@ -211,17 +222,26 @@ export default function VerificationPage() {
       <div className={cn(commonStyles.container, themeStyles.container)}>
         <ScrollReveal>
           <div className={commonStyles.header}>
-            <div>
-              <h1 className={cn(commonStyles.title, themeStyles.title)}>Verification Center</h1>
+            <div className={commonStyles.headerText}>
+              <h1 className={cn(commonStyles.title, themeStyles.title)}>
+                <ShieldCheck size={24} className={commonStyles.titleIcon} />
+                Verification Center
+              </h1>
               <p className={cn(commonStyles.subtitle, themeStyles.subtitle)}>
                 Build trust and unlock more opportunities by verifying your profile
               </p>
             </div>
+            <Button variant="secondary" size="sm" onClick={fetchVerificationData}>
+              <RefreshCw size={14} /> Refresh
+            </Button>
           </div>
         </ScrollReveal>
 
         {loading ? (
-          <div className={cn(commonStyles.loading, themeStyles.loading)}>Loading verification status...</div>
+          <div className={cn(commonStyles.loadingState, themeStyles.loadingState)}>
+            <ShieldCheck size={32} className={commonStyles.loadingIcon} />
+            Loading verification status...
+          </div>
         ) : (
           <>
             {/* Progress Overview */}
@@ -230,7 +250,7 @@ export default function VerificationPage() {
                 <div className={commonStyles.progressHeader}>
                   <div>
                     <h2 className={cn(commonStyles.progressTitle, themeStyles.progressTitle)}>
-                      Verification Progress
+                      <Award size={18} /> Verification Progress
                     </h2>
                     <p className={cn(commonStyles.progressSubtitle, themeStyles.progressSubtitle)}>
                       {verifiedCount} of {totalCount} verifications complete
@@ -239,52 +259,59 @@ export default function VerificationPage() {
                   {currentTier && (
                     <div className={commonStyles.currentTier}>
                       <span className={cn(commonStyles.tierBadge, themeStyles.tierBadge)} style={{ backgroundColor: currentTier.badgeColor }}>
-                        {currentTier.name}
+                        {TIER_ICONS[currentTier.id]} {currentTier.name}
                       </span>
                     </div>
                   )}
                 </div>
-                <div className={commonStyles.progressBar}>
-                  <div 
-                    className={cn(commonStyles.progressFill, themeStyles.progressFill)} 
+                <div className={cn(commonStyles.progressBar, themeStyles.progressBar)}>
+                  <div
+                    className={cn(commonStyles.progressFill, themeStyles.progressFill)}
                     style={{ width: `${progressPercent}%` }}
                   />
                 </div>
-                {nextTier && (
-                  <p className={cn(commonStyles.nextTierHint, themeStyles.nextTierHint)}>
-                    Complete more verifications to reach <strong>{nextTier.name}</strong> tier
-                  </p>
-                )}
+                <div className={commonStyles.progressStats}>
+                  <span className={cn(commonStyles.progressPercent, themeStyles.progressPercent)}>
+                    {progressPercent}%
+                  </span>
+                  {nextTier && (
+                    <p className={cn(commonStyles.nextTierHint, themeStyles.nextTierHint)}>
+                      <ChevronRight size={14} /> Complete more verifications to reach <strong>{nextTier.name}</strong> tier
+                    </p>
+                  )}
+                </div>
               </div>
             </ScrollReveal>
 
-            {/* Tiers Overview */}
-            <div className={cn(commonStyles.tiersSection, themeStyles.tiersSection)}>
+            {/* Tiers */}
+            <div className={commonStyles.tiersSection}>
               <ScrollReveal>
-                <h3 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Trust Tiers</h3>
+                <h3 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>
+                  <Star size={18} /> Trust Tiers
+                </h3>
               </ScrollReveal>
               <StaggerContainer className={commonStyles.tiersGrid}>
-                {tiers.map((tier, index) => (
-                  <StaggerItem 
-                    key={tier.id} 
+                {tiers.map((tier) => (
+                  <StaggerItem
+                    key={tier.id}
                     className={cn(
-                      commonStyles.tierCard, 
+                      commonStyles.tierCard,
                       themeStyles.tierCard,
                       tier.achieved && commonStyles.tierAchieved,
                       tier.achieved && themeStyles.tierAchieved
                     )}
                   >
-                    <div 
+                    <div
                       className={commonStyles.tierIcon}
                       style={{ backgroundColor: tier.badgeColor }}
                     >
-                      {tier.achieved ? '✓' : index + 1}
+                      {tier.achieved ? <CheckCircle size={20} /> : TIER_ICONS[tier.id]}
                     </div>
                     <h4 className={cn(commonStyles.tierName, themeStyles.tierName)}>{tier.name}</h4>
                     <ul className={commonStyles.tierBenefits}>
                       {tier.benefits.slice(0, 2).map((benefit, idx) => (
                         <li key={idx} className={cn(commonStyles.tierBenefit, themeStyles.tierBenefit)}>
-                          {benefit}
+                          <CheckCircle size={10} /> {benefit}
                         </li>
                       ))}
                       {tier.benefits.length > 2 && (
@@ -301,25 +328,28 @@ export default function VerificationPage() {
             {/* Verification Items */}
             <div className={commonStyles.verificationsSection}>
               <ScrollReveal>
-                <h3 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Verifications</h3>
+                <h3 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>
+                  <ShieldCheck size={18} /> Verifications
+                </h3>
               </ScrollReveal>
               <StaggerContainer className={commonStyles.verificationsList}>
                 {verifications.map(verification => (
                   <StaggerItem key={verification.id} className={cn(commonStyles.verificationCard, themeStyles.verificationCard)}>
-                    <div className={commonStyles.verificationIcon}>
-                      {verification.badge}
+                    <div className={cn(commonStyles.verificationIcon, themeStyles.verificationIcon)}>
+                      {TYPE_ICONS[verification.type]}
                     </div>
                     <div className={commonStyles.verificationInfo}>
                       <div className={commonStyles.verificationHeader}>
                         <h4 className={cn(commonStyles.verificationName, themeStyles.verificationName)}>
                           {verification.name}
                           {verification.required && (
-                            <span className={commonStyles.requiredBadge}>Required</span>
+                            <span className={cn(commonStyles.requiredBadge, themeStyles.requiredBadge)}>Required</span>
                           )}
                         </h4>
                         <span className={cn(
                           commonStyles.status,
-                          commonStyles[`status${verification.status.charAt(0).toUpperCase() + verification.status.slice(1)}`]
+                          commonStyles[`status${verification.status.charAt(0).toUpperCase() + verification.status.slice(1)}` as keyof typeof commonStyles],
+                          themeStyles[`status${verification.status.charAt(0).toUpperCase() + verification.status.slice(1)}` as keyof typeof themeStyles]
                         )}>
                           {getStatusIcon(verification.status)} {verification.status}
                         </span>
@@ -329,31 +359,33 @@ export default function VerificationPage() {
                       </p>
                       {verification.verifiedAt && (
                         <span className={cn(commonStyles.verifiedDate, themeStyles.verifiedDate)}>
-                          Verified on {new Date(verification.verifiedAt).toLocaleDateString()}
+                          <CheckCircle size={12} /> Verified on {new Date(verification.verifiedAt).toLocaleDateString()}
                         </span>
                       )}
                     </div>
                     <div className={commonStyles.verificationAction}>
                       {verification.status === 'unverified' && (
-                        <button
-                          className={cn(commonStyles.verifyButton, themeStyles.verifyButton)}
+                        <Button
+                          variant="primary"
+                          size="sm"
                           onClick={() => handleVerify(verification)}
                         >
                           Verify
-                        </button>
+                        </Button>
                       )}
                       {verification.status === 'pending' && (
                         <span className={cn(commonStyles.pendingLabel, themeStyles.pendingLabel)}>
-                          Under Review
+                          <Clock size={12} /> Under Review
                         </span>
                       )}
                       {verification.status === 'failed' && (
-                        <button
-                          className={cn(commonStyles.retryButton, themeStyles.retryButton)}
+                        <Button
+                          variant="warning"
+                          size="sm"
                           onClick={() => handleVerify(verification)}
                         >
-                          Retry
-                        </button>
+                          <RefreshCw size={14} /> Retry
+                        </Button>
                       )}
                     </div>
                   </StaggerItem>
@@ -367,62 +399,82 @@ export default function VerificationPage() {
         {showUploadModal && selectedVerification && (
           <div className={commonStyles.modalOverlay} onClick={() => !uploading && setShowUploadModal(false)}>
             <div className={cn(commonStyles.modal, themeStyles.modal)} onClick={e => e.stopPropagation()}>
-              <div className={commonStyles.modalHeader}>
+              <div className={cn(commonStyles.modalHeader, themeStyles.modalHeader)}>
                 <h2 className={cn(commonStyles.modalTitle, themeStyles.modalTitle)}>
-                  {selectedVerification.name}
+                  {TYPE_ICONS[selectedVerification.type]} {selectedVerification.name}
                 </h2>
-                <button 
-                  className={commonStyles.closeButton} 
+                <button
+                  className={cn(commonStyles.closeButton, themeStyles.closeButton)}
                   onClick={() => !uploading && setShowUploadModal(false)}
                   disabled={uploading}
+                  aria-label="Close modal"
                 >
-                  ×
+                  <X size={18} />
                 </button>
               </div>
               <div className={commonStyles.modalContent}>
                 <p className={cn(commonStyles.modalDesc, themeStyles.modalDesc)}>
-                  {selectedVerification.type === 'identity' 
+                  {selectedVerification.type === 'identity'
                     ? 'Please upload a clear photo of your government-issued ID (passport, driver\'s license, or national ID card).'
                     : 'Please upload a document proving your address (utility bill, bank statement, etc.).'
                   }
                 </p>
                 <div className={cn(commonStyles.uploadArea, themeStyles.uploadArea)}>
-                  <input 
-                    type="file" 
-                    accept="image/*,.pdf" 
-                    className={commonStyles.fileInput} 
+                  <input
+                    type="file"
+                    accept="image/*,.pdf"
+                    className={commonStyles.fileInput}
                     onChange={handleFileChange}
                   />
                   <div className={commonStyles.uploadPlaceholder}>
-                    <span className={commonStyles.uploadIcon}>{selectedFile ? '✓' : '📄'}</span>
-                    <span>{selectedFile ? selectedFile.name : 'Click to upload or drag and drop'}</span>
+                    <span className={cn(commonStyles.uploadIcon, themeStyles.uploadIcon)}>
+                      {selectedFile ? <CheckCircle size={28} /> : <Upload size={28} />}
+                    </span>
+                    <span className={cn(commonStyles.uploadText, themeStyles.uploadText)}>
+                      {selectedFile ? selectedFile.name : 'Click to upload or drag and drop'}
+                    </span>
                     <span className={cn(commonStyles.uploadHint, themeStyles.uploadHint)}>
-                      PNG, JPG, or PDF up to 10MB
+                      <FileText size={12} /> PNG, JPG, or PDF up to 10MB
                     </span>
                   </div>
                 </div>
                 <div className={cn(commonStyles.securityNote, themeStyles.securityNote)}>
-                  <span>🔒</span>
+                  <Lock size={14} />
                   <span>Your documents are encrypted and handled securely. We never share your personal information.</span>
                 </div>
               </div>
-              <div className={commonStyles.modalActions}>
-                <button
-                  className={cn(commonStyles.cancelButton, themeStyles.cancelButton)}
+              <div className={cn(commonStyles.modalActions, themeStyles.modalActions)}>
+                <Button
+                  variant="secondary"
+                  size="md"
                   onClick={() => setShowUploadModal(false)}
                   disabled={uploading}
                 >
                   Cancel
-                </button>
-                <button
-                  className={cn(commonStyles.submitButton, themeStyles.submitButton)}
+                </Button>
+                <Button
+                  variant="primary"
+                  size="md"
                   onClick={handleUpload}
                   disabled={uploading || !selectedFile}
+                  isLoading={uploading}
                 >
-                  {uploading ? 'Uploading...' : 'Submit for Review'}
-                </button>
+                  <Upload size={14} /> Submit for Review
+                </Button>
               </div>
             </div>
+          </div>
+        )}
+
+        {/* Toast */}
+        {toast && (
+          <div className={cn(
+            commonStyles.toast,
+            themeStyles.toast,
+            toast.type === 'error' && themeStyles.toastError
+          )}>
+            {toast.type === 'error' ? <AlertTriangle size={16} /> : <CheckCircle size={16} />}
+            {toast.message}
           </div>
         )}
       </div>
