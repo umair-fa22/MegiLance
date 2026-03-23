@@ -34,9 +34,9 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 const contactInfo = [
-  { icon: Mail, text: 'fyp.megilance@comsats.edu.pk', href: 'mailto:fyp.megilance@comsats.edu.pk' },
-  { icon: Phone, text: '+92 (42) 111-001-007', href: 'tel:+9242111001007' },
-  { icon: MapPin, text: 'COMSATS University Islamabad, Lahore Campus', href: 'https://lahore.comsats.edu.pk/' },
+  { icon: Mail, text: 'support@megilance.site', href: 'mailto:support@megilance.site' },
+  { icon: Phone, text: 'Available via email', href: 'mailto:support@megilance.site' },
+  { icon: MapPin, text: 'Global remote team', href: '#' },
 ];
 
 const Contact: React.FC = () => {
