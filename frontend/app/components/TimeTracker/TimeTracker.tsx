@@ -89,8 +89,8 @@ const TimeTracker: React.FC = () => {
           setSelectedContractId(hourly[0].id.toString());
         }
       }
-    } catch (error) {
-      console.error('Failed to fetch contracts:', error);
+    } catch {
+      // Failed to fetch contracts
     }
   };
 
@@ -108,8 +108,8 @@ const TimeTracker: React.FC = () => {
           setDescription(running.description || '');
         }
       }
-    } catch (error) {
-      console.error('Failed to check active timer:', error);
+    } catch {
+      // Failed to check active timer
     }
   };
 
@@ -126,8 +126,7 @@ const TimeTracker: React.FC = () => {
         description
       );
       setActiveEntry(entry);
-    } catch (error) {
-      console.error('Failed to start timer:', error);
+    } catch {
       showToast('Failed to start timer', 'error');
     } finally {
       setLoading(false);
@@ -143,8 +142,7 @@ const TimeTracker: React.FC = () => {
       setActiveEntry(null);
       setDescription('');
       // Optionally refresh list or show summary
-    } catch (error) {
-      console.error('Failed to stop timer:', error);
+    } catch {
       showToast('Failed to stop timer', 'error');
     } finally {
       setLoading(false);

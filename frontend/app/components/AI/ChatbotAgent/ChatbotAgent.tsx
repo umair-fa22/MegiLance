@@ -119,7 +119,6 @@ const ChatbotAgent: React.FC = () => {
         suggestedActions: ['How do I get started?', 'Find freelancers', 'Post a project']
       }]);
     } catch (error) {
-      console.error('Failed to start conversation:', error);
       // Enter offline mode - allow local responses
       setIsOfflineMode(true);
       setConversationId('offline-' + Date.now()); // Set a fake ID to enable input
@@ -232,8 +231,7 @@ const ChatbotAgent: React.FC = () => {
       if (!isOpen) {
         setUnreadCount(prev => prev + 1);
       }
-    } catch (error) {
-      console.error('Failed to send message:', error);
+    } catch {
       // Fall back to offline mode on error
       const offlineData = getOfflineResponse(userText);
       const errorMessage: Message = {

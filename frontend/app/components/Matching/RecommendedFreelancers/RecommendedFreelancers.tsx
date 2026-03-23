@@ -70,8 +70,7 @@ export default function RecommendedFreelancers({
       } else {
         setFreelancers([]);
       }
-    } catch (error) {
-      console.error('Failed to fetch recommended freelancers:', error);
+    } catch {
       setFreelancers([]);
     } finally {
       setLoading(false);

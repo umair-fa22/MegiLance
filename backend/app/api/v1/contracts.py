@@ -219,7 +219,7 @@ def create_direct_contract(
                 retainer_amount,
                 retainer_frequency,
                 hire_data.rate,  # contract_amount
-                fee_info["fee"],  # tiered platform_fee
+                fee_info["platform_fee"],  # tiered platform_fee
                 "active",
                 hire_data.start_date.isoformat() if hire_data.start_date else now,
                 hire_data.end_date.isoformat() if hire_data.end_date else None,
@@ -372,7 +372,7 @@ def create_contract(
                 contract.retainer_amount,
                 contract.retainer_frequency,
                 contract.amount,  # contract_amount
-                fee_info["fee"],  # tiered platform_fee
+                fee_info["platform_fee"],  # tiered platform_fee
                 contract.amount,  # contract_amount
                 contract.amount * 0.1,  # platform_fee 10%
                 "active",

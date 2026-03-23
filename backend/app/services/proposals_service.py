@@ -1,4 +1,5 @@
 # @AI-HINT: Service layer for proposals CRUD - all execute_query calls for proposals router
+# @FIX-MARKER: Updated fee_info key access to use 'platform_fee' instead of 'fee'
 """
 Proposals Service - Business logic and data access for proposal management.
 Handles proposal CRUD, acceptance/rejection, and contract auto-creation.
@@ -416,7 +417,7 @@ def accept_proposal(proposal_id: int, proposal: dict, client_id: int) -> Optiona
 
     from app.api.v1.payments import calculate_tiered_fee
     fee_info = calculate_tiered_fee(contract_amount, lifetime_billing)
-    platform_fee = fee_info["fee"]
+    platform_fee = fee_info["platform_fee"]
 
     start_date = now
     end_date = (datetime.now(timezone.utc) + timedelta(days=30)).isoformat()

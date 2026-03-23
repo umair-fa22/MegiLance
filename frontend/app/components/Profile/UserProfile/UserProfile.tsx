@@ -102,8 +102,8 @@ const UserProfile: React.FC<UserProfileProps> = ({ userId }) => {
         workHistory: data.work_history ? (typeof data.work_history === 'string' ? JSON.parse(data.work_history) : data.work_history) : [],
         achievements: data.achievements ? (typeof data.achievements === 'string' ? JSON.parse(data.achievements) : data.achievements) : [],
       });
-    } catch (error) {
-      console.error('Failed to load profile:', error);
+    } catch {
+      setProfile(null);
     } finally {
       setLoading(false);
     }
@@ -122,8 +122,8 @@ const UserProfile: React.FC<UserProfileProps> = ({ userId }) => {
         completedAt: item.created_at,
       }));
       setPortfolio(mappedPortfolio);
-    } catch (error) {
-      console.error('Failed to load portfolio:', error);
+    } catch {
+      // Failed to load portfolio
     }
   };
 
@@ -146,8 +146,9 @@ const UserProfile: React.FC<UserProfileProps> = ({ userId }) => {
         },
       }));
       setReviews(mappedReviews);
-    } catch (error) {
-      console.error('Failed to load reviews:', error);
+    } catch {
+      // Failed to load reviews
+    }
     }
   };
 

@@ -195,7 +195,6 @@ const AdvancedFileUpload: React.FC<AdvancedFileUploadProps> = ({
         })
       );
     } catch (error: any) {
-      console.error('Upload error:', error);
       setUploadedFiles((prev) =>
         prev.map((f) =>
           files.find((uf) => uf.id === f.id)

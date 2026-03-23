@@ -74,8 +74,7 @@ export default function ProfileCompleteness({ className, showDetails = true, com
       try {
         const response = await api.users.getProfileCompleteness();
         setData(response as ProfileCompletenessData);
-      } catch (err) {
-        console.error('Failed to fetch profile completeness:', err);
+      } catch {
         setError('Unable to load profile status');
       } finally {
         setLoading(false);

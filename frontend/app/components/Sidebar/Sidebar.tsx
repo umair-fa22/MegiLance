@@ -75,8 +75,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, toggleSidebar, userType,
           role: parsedUser.user_type || parsedUser.role || userType
         });
       }
-    } catch (e) {
-      console.error('Failed to parse user from localStorage', e);
+    } catch {
+      // Failed to parse user from localStorage
     }
   }, [userType]);
 

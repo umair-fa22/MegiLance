@@ -75,7 +75,7 @@ function detectFlagReason(review: APIReview): { reason: string; shouldFlag: bool
   return { reason: '', shouldFlag: false };
 }
 
-const FlaggedReviews: React.FC = () => {
+export default function FlaggedReviews() {
   const { resolvedTheme } = useTheme();
   const [reviews, setReviews] = useState<FlaggedReview[]>([]);
   const [loading, setLoading] = useState(true);
@@ -146,8 +146,9 @@ const FlaggedReviews: React.FC = () => {
     if (newStatus === 'Removed') {
       try {
         await api.reviews.delete(Number(id));
-      } catch (err) {
-        console.error('Error removing review:', err);
+      } catch {
+        // Review removal failed, revert optimistic update
+        setReviews(prev => prev.map(review => (review.id === id ? { ...review, status: 'Pending' } : review)));
       }
     }
   };

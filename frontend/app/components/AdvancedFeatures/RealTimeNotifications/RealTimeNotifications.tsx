@@ -161,8 +161,8 @@ const RealTimeNotifications: React.FC<RealTimeNotificationsProps> = ({
         method: 'PUT',
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
-    } catch (error) {
-      console.error('[Notifications] Failed to mark as read:', error);
+    } catch {
+      // Failed to mark as read, optimistic update already applied
     }
   }, []);
 
@@ -175,8 +175,8 @@ const RealTimeNotifications: React.FC<RealTimeNotificationsProps> = ({
         method: 'PUT',
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
-    } catch (error) {
-      console.error('[Notifications] Failed to mark all as read:', error);
+    } catch {
+      // Failed to mark all as read, optimistic update already applied
     }
   }, []);
 
@@ -207,8 +207,8 @@ const RealTimeNotifications: React.FC<RealTimeNotificationsProps> = ({
         method: 'DELETE',
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
-    } catch (error) {
-      console.error('[Notifications] Failed to delete notification:', error);
+    } catch {
+      // Failed to delete notification, optimistic update already applied
     }
   }, []);
 

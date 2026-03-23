@@ -53,8 +53,8 @@ const ProposalAICopilot: React.FC<ProposalAICopilotProps> = ({
       });
 
       setGeneratedContent(response.content);
-    } catch (error) {
-      console.error('AI Generation failed:', error);
+    } catch {
+      setGeneratedContent('');
     } finally {
       setLoading(false);
     }

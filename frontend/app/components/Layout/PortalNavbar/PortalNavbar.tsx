@@ -92,8 +92,8 @@ const PortalNavbar: React.FC<PortalNavbarProps> = ({ userType = 'client', onMenu
           avatar: parsedUser.profile_image_url || parsedUser.avatar
         });
       }
-    } catch (e) {
-      console.error('Failed to parse user', e);
+    } catch {
+      // Failed to parse user data
     }
     
     // Fetch real notifications via hook (handled by useNotifications)

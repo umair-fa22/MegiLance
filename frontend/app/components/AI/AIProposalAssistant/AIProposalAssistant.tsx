@@ -15,11 +15,11 @@ interface AIProposalAssistantProps {
   className?: string;
 }
 
-const AIProposalAssistant: React.FC<AIProposalAssistantProps> = ({
+export default function AIProposalAssistant({
   onGenerate,
   onInsert,
   className
-}) => {
+}: AIProposalAssistantProps) {
   const { resolvedTheme } = useTheme();
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
   
@@ -34,8 +34,8 @@ const AIProposalAssistant: React.FC<AIProposalAssistantProps> = ({
     try {
       const text = await onGenerate(type);
       setGeneratedText(text);
-    } catch (error) {
-      console.error('AI Generation failed:', error);
+    } catch {
+      // AI generation failed, user will see the empty state
     } finally {
       setIsLoading(false);
     }
@@ -116,6 +116,4 @@ const AIProposalAssistant: React.FC<AIProposalAssistantProps> = ({
       )}
     </div>
   );
-};
-
-export default AIProposalAssistant;
+}

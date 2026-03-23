@@ -66,8 +66,8 @@ export default function CurrencySelector({
           setCurrencies(data.fiat || []);
           setCryptoCurrencies(data.crypto || []);
         }
-      } catch (error) {
-        console.error('Failed to fetch currencies:', error);
+      } catch {
+        // Failed to fetch currencies, will use defaults or empty list
       } finally {
         setIsLoading(false);
       }
@@ -94,8 +94,8 @@ export default function CurrencySelector({
           setExchangeRate(data);
           setConvertedAmount(amount * data.rate);
         }
-      } catch (error) {
-        console.error('Failed to fetch exchange rate:', error);
+      } catch {
+        // Failed to fetch exchange rate, will show cached rate or none
       }
     };
 

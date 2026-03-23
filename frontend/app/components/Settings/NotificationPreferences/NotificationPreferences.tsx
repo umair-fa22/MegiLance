@@ -98,8 +98,8 @@ const NotificationPreferences: React.FC = () => {
         if (data.preferences) setPreferences(data.preferences);
         if (data.digest) setDigest(data.digest);
       }
-    } catch (error) {
-      console.error('Failed to load preferences:', error);
+    } catch {
+      // Failed to load preferences, use defaults
     } finally {
       setLoading(false);
     }
@@ -123,8 +123,8 @@ const NotificationPreferences: React.FC = () => {
 
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
-    } catch (error) {
-      console.error('Failed to save preferences:', error);
+    } catch {
+      // Failed to save preferences
     } finally {
       setSaving(false);
     }

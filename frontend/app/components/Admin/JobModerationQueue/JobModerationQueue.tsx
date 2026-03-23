@@ -129,7 +129,7 @@ const JobCard: React.FC<JobCardProps> = ({ job, onModerate, themeStyles, isExpan
   );
 };
 
-const JobModerationQueue: React.FC = () => {
+const JobModerationQueue = () => {
   const { resolvedTheme } = useTheme();
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
@@ -198,10 +198,9 @@ const JobModerationQueue: React.FC = () => {
       // Update local state regardless of API response for optimistic UI
       setJobs(prev => prev.map(job => (job.id === id ? { ...job, status: newStatus } : job)));
       
-    } catch (err) {
-      console.error('Error moderating job:', err);
-      // Still update UI for demo purposes
-      setJobs(prev => prev.map(job => (job.id === id ? { ...job, status: newStatus } : job)));
+    } catch {
+      // Revert optimistic update on error
+      setJobs(prev => prev.map(job => (job.id === id ? { ...job, status: 'Pending' } : job)));
     }
   };
 

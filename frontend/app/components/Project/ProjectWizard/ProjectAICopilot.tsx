@@ -95,8 +95,8 @@ const ProjectAICopilot: React.FC<ProjectAICopilotProps> = ({ onApply }) => {
       };
 
       setGeneratedData(mockStructuredData);
-    } catch (error) {
-      console.error('AI Generation failed:', error);
+    } catch {
+      setGeneratedData(null);
     } finally {
       setLoading(false);
     }

@@ -118,7 +118,7 @@ const UserCard: React.FC<{ user: DisplayUser; themeStyles: typeof lightStyles; o
   );
 };
 
-const UserSearchTable: React.FC = () => {
+export default function UserSearchTable() {
   const { resolvedTheme } = useTheme();
   const [users, setUsers] = useState<DisplayUser[]>([]);
   const [loading, setLoading] = useState(true);
@@ -157,8 +157,8 @@ const UserSearchTable: React.FC = () => {
       
       // Refresh user list
       fetchUsers();
-    } catch (err) {
-      console.error('Error toggling user status:', err);
+    } catch {
+      // Toggle status failed, silently fail and let user retry
     }
   }, [fetchUsers]);
 

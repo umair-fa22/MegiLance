@@ -81,8 +81,8 @@ const FeasibilityAnalyzer: React.FC<FeasibilityAnalyzerProps> = ({
         timeline_days: timelineDays,
       });
       setResult(response);
-    } catch (error) {
-      console.error('Feasibility analysis failed:', error);
+    } catch {
+      setResult(null);
     } finally {
       setLoading(false);
     }

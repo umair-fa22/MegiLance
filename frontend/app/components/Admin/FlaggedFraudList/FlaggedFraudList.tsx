@@ -45,7 +45,7 @@ interface FraudCheckResult {
   recommendation: string;
 }
 
-const FlaggedFraudList: React.FC = () => {
+export default function FlaggedFraudList() {
   const { resolvedTheme } = useTheme();
   const [items, setItems] = useState<FlaggedItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -88,9 +88,8 @@ const FlaggedFraudList: React.FC = () => {
                 riskScore: fraudResult.risk_score,
               });
             }
-          } catch (err) {
+          } catch {
             // Continue with other users if one fails
-            console.warn(`Failed to check fraud for user ${user.id}`);
           }
         }
 
@@ -229,6 +228,4 @@ const FlaggedFraudList: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default FlaggedFraudList;
+}

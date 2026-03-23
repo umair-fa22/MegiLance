@@ -201,8 +201,7 @@ export default function PakistanPaymentOptions({
             });
           }
         }
-      } catch (error) {
-        console.error('Failed to connect wallet:', error);
+      } catch {
         // MetaMask failed silently or show notification
       }
     } else {

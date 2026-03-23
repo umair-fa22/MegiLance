@@ -117,13 +117,13 @@ def _safe_str(val):
     return safe_str(val)
 
 
-@router.post("/register", response_model=UserRead, status_code=status.HTTP_201_CREATED)
+@router.post("/register", response_model=AuthResponse, status_code=status.HTTP_201_CREATED)
 @auth_rate_limit()
 def register_user(request: Request, payload: UserCreate):
     """
     Register a new user
-    
-    Creates a new user account in Turso database.
+
+    Creates a new user account in Turso database and returns auth tokens.
     """
     # Validate email format
     if not validate_email(payload.email):
@@ -252,13 +252,22 @@ def register_user(request: Request, payload: UserCreate):
     except Exception as e:
         logger.warning("Failed to send verification email to %s: %s", payload.email, e)
 
-    return UserRead(
-        id=int(user_data.get("id", 0)),
-        email=_safe_str(user_data.get("email")),
+    # Create tokens for new user
+    user_id = int(user_data.get("id", 0))
+    email_str = _safe_str(user_data.get("email"))
+    user_type_str = _safe_str(user_data.get("user_type")) or ""
+
+    custom_claims: Dict[str, Any] = {"user_id": user_id, "role": user_type_str}
+    access_token = create_access_token(subject=email_str, custom_claims=custom_claims)
+    refresh_token = create_refresh_token(subject=email_str, custom_claims=custom_claims)
+
+    user_read = UserRead(
+        id=user_id,
+        email=email_str,
         is_active=bool(user_data.get("is_active")),
         name=_safe_str(user_data.get("name")),
-        user_type=_safe_str(user_data.get("user_type")),
-        role=_safe_str(user_data.get("role")) or _safe_str(user_data.get("user_type")),
+        user_type=user_type_str,
+        role=_safe_str(user_data.get("role")) or user_type_str,
         bio=_safe_str(user_data.get("bio")),
         skills=_safe_str(user_data.get("skills")),
         hourly_rate=float(user_data.get("hourly_rate") or 0),
@@ -267,6 +276,12 @@ def register_user(request: Request, payload: UserCreate):
         title=_safe_str(user_data.get("title")),
         portfolio_url=_safe_str(user_data.get("portfolio_url")),
         joined_at=user_data.get("joined_at")
+    )
+
+    return AuthResponse(
+        access_token=access_token,
+        refresh_token=refresh_token,
+        user=user_read
     )
 
 

@@ -1,0 +1,407 @@
+# GitHub Copilot Configuration for MegiLance 2.0
+
+**Purpose**: Optimize GitHub Copilot suggestion patterns for consistency with project standards.
+
+---
+
+## 🎯 Copilot Settings (VS Code)
+
+Add to `.vscode/settings.json`:
+
+```json
+{
+  "github.copilot.enable": {
+    "plaintext": false,
+    "markdown": false,
+    "scm": false,
+    "yaml": true,
+    "python": true,
+    "tsx": true,
+    "typescript": true,
+    "javascript": true,
+    "css": false
+  },
+  "github.copilot.advanced": {
+    "debug.overrideChatModel": "gpt-4o"
+  },
+  "editor.inlineSuggest.enabled": true,
+  "editor.inlineSuggest.mode": "blockinline",
+  "github.copilot.chat.launchChat": true,
+  "github.copilot.chat.locales": ["en"],
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "python.defaultInterpreterPath": "${workspaceFolder}/backend/.venv/bin/python",
+  "python.linting.pylintEnabled": true,
+  "python.linting.pylintArgs": ["--disable=C0111,C0103"],
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "[tsx]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
+```
+
+---
+
+## 🤖 Copilot Chat Prompts (Quick Commands)
+
+Save these as snippets or Copilot commands:
+
+### Backend (Python/FastAPI)
+```
+@copilot /fix-types - Add type hints to function
+@copilot /add-docstring - Generate comprehensive docstring
+@copilot /optimize-db - Optimize database query for N+1 issues
+@copilot /add-validation - Add Pydantic schema validation
+@copilot /add-tests - Generate comprehensive test cases
+@copilot /add-error-handling - Add proper error handling with logging
+@copilot /security-audit - Check code for security vulnerabilities
+```
+
+### Frontend (React/TypeScript)
+```
+@copilot /add-types - Add TypeScript interfaces
+@copilot /add-accessibility - Add ARIA labels and semantic HTML
+@copilot /optimize-render - Optimize component rendering performance
+@copilot /add-tests - Generate Jest tests
+@copilot /add-styles - Create CSS modules for component
+@copilot /check-a11y - Audit for accessibility issues
+@copilot /responsive-fix - Make component responsive
+```
+
+---
+
+## 📋 Copilot Prompting Strategy
+
+### For Code Suggestions
+```
+📌 CONTEXT: I'm working on [feature] in [file]
+🎯 GOAL: [specific task]
+📝 REQUIREMENTS:
+  - Use [framework/library]
+  - Follow [coding standard]
+  - Handle [edge case]
+  - Include [tests/types/docs]
+```
+
+**Example**:
+```
+📌 CONTEXT: Adding project filtering to the Client dashboard
+🎯 GOAL: Create a filter component with date range and status
+📝 REQUIREMENTS:
+  - Use React Hook Form + Zod for validation
+  - Match existing Button/Card styling
+  - Add unit tests with Jest
+  - ARIA labels for accessibility
+```
+
+### For Bug Fixes
+```
+🐛 BUG: [What's broken]
+🔍 SYMPTOMS: [Error message or behavior]
+📍 LOCATION: [File path and line]
+✅ EXPECTED: [What should happen]
+❌ ACTUAL: [What's happening now]
+```
+
+### For Refactoring
+```
+♻️ REFACTOR: [Current code pattern]
+🎯 TARGET: [Desired pattern]
+✅ GOALS: [Performance/readability/maintainability improvements]
+⚠️ CONSTRAINTS: [Breaking changes to avoid, existing dependencies]
+```
+
+---
+
+## 🚫 Copilot Configuration by Language
+
+### TypeScript/TSX (Frontend)
+**Enabled**: ✅ Full suggestions
+**Model**: GPT-4o preferred
+**Context**: Full file + related interfaces
+
+```json
+"[typescript]": {
+  "editor.suggest.showTypeParameters": true,
+  "editor.suggest.showSnippets": true
+}
+```
+
+**Expected Suggestions**:
+- Component file structures
+- Type definitions
+- Test templates
+- Accessibility patterns
+- Style merging with `cn()`
+
+### Python (Backend)
+**Enabled**: ✅ Full suggestions
+**Model**: GPT-4o preferred
+
+```json
+"[python]": {
+  "editor.formatOnSave": true,
+  "editor.rulers": [88]
+}
+```
+
+**Expected Suggestions**:
+- Async/await patterns
+- Type hints
+- Pydantic schemas
+- Service layer abstractions
+- API route handlers
+
+### CSS Modules
+**Enabled**: ⚠️ Use with caution
+**Guidance**: Reference existing `.light.module.css` and `.dark.module.css` files
+
+```json
+"[css]": {
+  "editor.suggest.enabled": false
+}
+```
+
+---
+
+## 🤖 Copilot Slash Commands Reference
+
+| Command | Use Case | Example |
+|---------|----------|---------|
+| `/explain` | Understand complex code | `/explain how this async function works` |
+| `/tests` | Generate test cases | `/tests for the validateEmail function` |
+| `/fix` | Suggest bug fixes | `/fix the memory leak in this component` |
+| `/doc` | Generate documentation | `/doc this API endpoint` |
+| `/refactor` | Suggest improvements | `/refactor this component for performance` |
+| `/review` | Code review suggestions | `/review this authentication flow` |
+
+---
+
+## 🎯 Preferred Copilot Behaviors
+
+### ✅ ALWAYS Suggest
+- [ ] Type hints for function parameters
+- [ ] Comprehensive docstrings
+- [ ] Error handling with try-catch
+- [ ] Unit test files
+- [ ] Pydantic schemas for validation
+- [ ] ARIA attributes for accessibility
+- [ ] CSS modules over inline styles
+- [ ] Async/await for I/O operations
+
+### ❌ NEVER Suggest (Disable)
+- [ ] Inline comments for obvious code
+- [ ] Deprecated packages
+- [ ] Breaking style changes
+- [ ] SQL queries (use ORM)
+- [ ] Hardcoded secrets/tokens
+- [ ] Global state mutations
+- [ ] Synchronous API calls
+
+### ⚠️ Suggest with Caution
+- [ ] Complex regex patterns (verify correctness)
+- [ ] Database migrations (review carefully)
+- [ ] Authentication logic (security audit needed)
+- [ ] Third-party library versions (check compatibility)
+- [ ] Performance optimizations (measure before/after)
+
+---
+
+## 🔄 Copilot-Assisted Workflow
+
+### 1. File Creation
+```
+1. Ask Copilot: "Generate a new LoginForm component following our patterns"
+2. Copilot suggests file structure
+3. Review: Component, props interface, styles, tests
+4. Verify: Types, accessibility, error handling
+5. Commit: Single focused commit
+```
+
+### 2. Feature Implementation
+```
+1. Create empty function/component
+2. Let Copilot suggest implementation
+3. Accept/modify suggestions based on project patterns
+4. Run tests immediately: `npm run test`
+5. Add error handling if missing
+6. Commit with clear message
+```
+
+### 3. Bug Investigation
+```
+1. Share error stack trace with Copilot
+2. Ask: "What's likely causing this?"
+3. Copilot suggests possible causes
+4. Check those areas first
+5. Fix identified issue
+6. Add test to prevent regression
+```
+
+### 4. Code Review
+```
+1. Ask: "/review this function for security"
+2. Copilot checks for:
+   - Type safety
+   - Error handling
+   - Performance issues
+   - Security vulnerabilities
+   - Style violations
+3. Apply suggested fixes
+4. Verify tests still pass
+```
+
+---
+
+## 📊 Copilot Context Management
+
+### To Improve Suggestions
+1. **File-level context**: Open related files in split editor
+2. **Project context**: Reference specific patterns in conversation
+3. **Type information**: Share TypeScript interfaces and Pydantic models
+4. **Requirements**: Explicitly state constraints and goals
+5. **Examples**: Show existing code that Copilot should match
+
+### Example Multifile Context:
+```
+Open in VS Code:
+- frontend/app/components/Button/Button.tsx (existing pattern)
+- frontend/app/components/Card/Card.tsx (related component)
+- frontend/app/(portal)/dashboard/page.tsx (usage context)
+
+Ask Copilot: "Create a new ProjectCard component matching Button and Card patterns"
+```
+
+---
+
+## 🔒 Copilot Security Guidelines
+
+**DO**:
+- ✅ Use Copilot for code structure and patterns
+- ✅ Let Copilot generate test cases
+- ✅ Ask Copilot to review code for vulnerabilities
+- ✅ Use Copilot to add validation logic
+
+**DON'T**:
+- ❌ Accept authentication code without review
+- ❌ Deploy suggested code without testing
+- ❌ Accept database query without ORM verification
+- ❌ Trust Copilot with API keys or secrets
+- ❌ Use Copilot suggestions for cryptography unchanged
+
+---
+
+## 🎓 Training Copilot for Your Project
+
+### Week 1: Learn Patterns
+1. Share frontend component structure (Button, Card, Form)
+2. Share backend router structure (auth, projects)
+3. Show type definitions and schemas
+4. Provide CSS module examples
+
+### Week 2: Specialized Knowledge
+1. Show testing patterns (Jest, Pytest)
+2. Share database query patterns (ORM usage)
+3. Provide accessibility requirements
+4. Show error handling patterns
+
+### Week 3: Refinement
+1. Review Copilot suggestions
+2. Provide feedback on patterns Copilot misses
+3. Share specific project conventions
+4. Refinement based on actual usage
+
+---
+
+## 🚀 Quick Test: Verify Copilot Setup
+
+```bash
+# 1. Create test file
+echo "def hello(name: str) -> str:" > test_copilot.py
+
+# 2. Position cursor after ":"
+# 3. Press Ctrl+/ (Windows) or Cmd+/ (Mac)
+# 4. Wait for suggestion (should complete docstring + return)
+
+# Expected suggestion:
+# """Return a greeting message."""
+# return f"Hello, {name}!"
+
+# If Copilot doesn't suggest, check:
+# - GitHub Copilot extension enabled
+# - Signed into GitHub
+# - settings.json has correct Python path
+# - File has proper syntax
+```
+
+---
+
+## 📞 Troubleshooting Copilot
+
+| Issue | Solution |
+|-------|----------|
+| No suggestions appearing | Check extension enabled, GitHub logged in, file saved |
+| Suggestions are irrelevant | Provide more context in chat, share related code |
+| Copilot suggests deprecated code | Update training with current patterns |
+| Performance suggestions wrong | Review and modify; Copilot may not know project constraints |
+| Type hints missing in suggestions | Add types to function signature first |
+
+---
+
+## 🔗 Useful Copilot Chat Contexts
+
+### Share These in Chat
+1. **Type definitions**: Your main TypeScript interfaces
+2. **Style patterns**: CSS module examples
+3. **API patterns**: Your FastAPI router structure
+4. **Test patterns**: Example Jest and Pytest tests
+5. **Error handling**: How errors are logged and displayed
+
+### Example Chat Session:
+```
+User: How should I implement the ProjectFiltering component?
+
+@Copilot Here's our Card component pattern: [paste Card.tsx]
+Here's our Form component pattern: [paste Form.tsx]
+Here's our existing filter in Dashboard: [paste code]
+
+Generate a ProjectFilter component that:
+- Uses React Hook Form + Zod
+- Matches Card styling pattern
+- Follows our accessibility standards
+- Includes Jest tests
+```
+
+---
+
+## ✅ Copilot Acceptance Criteria
+
+Verify Copilot suggestions meet these before accepting:
+
+- [ ] **Types**: All parameters and returns typed (TypeScript)
+- [ ] **Tests**: Proposed code includes test cases
+- [ ] **Accessibility**: ARIA labels present where needed
+- [ ] **Security**: No hardcoded secrets, proper validation
+- [ ] **Style**: Matches project code style and patterns
+- [ ] **Performance**: No N+1 queries, efficient algorithms
+- [ ] **Error Handling**: Graceful error messages
+- [ ] **Documentation**: Functions have docstrings
+- [ ] **Dependencies**: Uses existing libraries (no new packages)
+- [ ] **Backwards Compatible**: No breaking changes
+
+---
+
+**Last Updated**: March 24, 2026
+**Integration Level**: Full (Chat, Inline, Slash Commands)

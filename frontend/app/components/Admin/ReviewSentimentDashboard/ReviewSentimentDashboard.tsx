@@ -34,8 +34,8 @@ const ReviewSentimentDashboard: React.FC = () => {
         setLoading(true);
         const stats = await adminApi.getPlatformReviewStats();
         setData(stats);
-      } catch (error) {
-        console.error('Failed to fetch review stats', error);
+      } catch {
+        // Failed to fetch review stats
       } finally {
         setLoading(false);
       }

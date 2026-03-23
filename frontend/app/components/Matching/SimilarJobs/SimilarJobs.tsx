@@ -74,8 +74,7 @@ export default function SimilarJobs({ projectId, description, limit = 3 }: Simil
             ]);
         }
        
-      } catch (error) {
-        console.error('Failed to fetch similar jobs:', error);
+      } catch {
          // Fallback to mock data on error
          setJobs([
             {

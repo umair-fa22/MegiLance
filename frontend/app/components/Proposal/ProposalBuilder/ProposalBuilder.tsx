@@ -191,8 +191,8 @@ const ProposalBuilder: React.FC<ProposalBuilderProps> = ({
           milestones: [],
         });
       }
-    } catch (error) {
-      console.error('Failed to load draft:', error);
+    } catch {
+      // Failed to load draft
     }
   };
 
@@ -218,8 +218,8 @@ const ProposalBuilder: React.FC<ProposalBuilderProps> = ({
       if (draft && !draftId) {
         setDraftId(draft.id);
       }
-    } catch (error) {
-      console.error('Failed to save draft:', error);
+    } catch {
+      // Draft save failed, user can retry
     } finally {
       setSavingDraft(false);
     }

@@ -40,14 +40,15 @@ export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, E
     
     // Call custom error handler if provided
     this.props.onError?.(error, info);
-    
-    // Log error with context for debugging
-    console.error('MegiLance ErrorBoundary caught an error:', {
-      error: error.message,
-      stack: error.stack,
-      componentStack: info.componentStack,
-      timestamp: new Date().toISOString(),
-    });
+
+    // Log error only in development or when needed for debugging
+    if (typeof window !== 'undefined' && (process.env.NODE_ENV === 'development' || process.env.DEBUG_ERRORS)) {
+      console.error('Error caught in boundary:', {
+        error: error.message,
+        stack: error.stack,
+        timestamp: new Date().toISOString(),
+      });
+    }
 
     // Report to error tracking service in production
     if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {

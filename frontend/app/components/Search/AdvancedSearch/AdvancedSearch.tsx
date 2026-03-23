@@ -166,8 +166,8 @@ const AdvancedSearch: React.FC = () => {
     try {
       const data: any = await (api.searches as any).getSaved?.() || [];
       setSavedSearches(data);
-    } catch (error) {
-      console.error('Failed to load saved searches:', error);
+    } catch {
+      // Failed to load saved searches
     }
   };
 
@@ -189,8 +189,8 @@ const AdvancedSearch: React.FC = () => {
       const data: any = await (api.search as any).suggestions?.(query) || [];
       setSuggestions(data);
       setShowSuggestions(true);
-    } catch (error) {
-      console.error('Failed to fetch suggestions:', error);
+    } catch {
+      // Failed to fetch suggestions
     }
   }, []);
 
@@ -234,8 +234,8 @@ const AdvancedSearch: React.FC = () => {
       await loadSavedSearches();
       setShowSaveDialog(false);
       setSearchName('');
-    } catch (error) {
-      console.error('Failed to save search:', error);
+    } catch {
+      // Failed to save search
     }
   };
 
@@ -248,8 +248,8 @@ const AdvancedSearch: React.FC = () => {
     try {
       await (api.searches as any).delete?.(id);
       await loadSavedSearches();
-    } catch (error) {
-      console.error('Failed to delete search:', error);
+    } catch {
+      // Failed to delete search
     }
   };
 

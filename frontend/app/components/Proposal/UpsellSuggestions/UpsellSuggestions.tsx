@@ -61,8 +61,8 @@ const UpsellSuggestions: React.FC<UpsellSuggestionsProps> = ({
         proposal_content: proposalContent,
       });
       setSuggestions(response.suggestions);
-    } catch (error) {
-      console.error('Upsell generation failed:', error);
+    } catch {
+      setSuggestions([]);
     } finally {
       setLoading(false);
     }

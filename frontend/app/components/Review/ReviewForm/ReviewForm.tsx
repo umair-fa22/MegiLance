@@ -126,8 +126,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
 
       setSubmitted(true);
       onSubmit?.();
-    } catch (error) {
-      console.error('Failed to submit review:', error);
+    } catch {
       setToast({message: 'Failed to submit review. Please try again.', type: 'error'});
       setTimeout(() => setToast(null), 3000);
     } finally {
