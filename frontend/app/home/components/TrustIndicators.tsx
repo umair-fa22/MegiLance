@@ -4,7 +4,7 @@
 import React, { useRef } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { Shield, Award, Users, Zap, Globe, Star } from 'lucide-react';
+import { Shield, Award, Users, Zap, Star } from 'lucide-react'
 import useAnimatedCounter from '@/hooks/useAnimatedCounter';
 
 import commonStyles from './TrustIndicators.common.module.css';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
-import { Clock, ArrowRight, MapPin, DollarSign } from 'lucide-react';
+import { Clock } from 'lucide-react'
 import Link from 'next/link';
 import Button from '@/app/components/Button/Button';
 import commonStyles from './JobCard.common.module.css';

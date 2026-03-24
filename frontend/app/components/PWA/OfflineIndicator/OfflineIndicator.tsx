@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Wifi, WifiOff } from 'lucide-react';
+import { WifiOff } from 'lucide-react'
 import { cn } from '@/lib/utils';
 import commonStyles from './OfflineIndicator.common.module.css';
 import lightStyles from './OfflineIndicator.light.module.css';

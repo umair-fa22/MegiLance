@@ -5,7 +5,7 @@ import React, { useMemo, useState } from 'react';
 import Skeleton from '@/app/components/Animations/Skeleton/Skeleton';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { PageTransition, ScrollReveal, StaggerContainer } from '@/components/Animations';
+import { PageTransition, ScrollReveal } from '@/components/Animations'
 import { useAdminData } from '@/hooks/useAdmin';
 import common from './AdminProjects.common.module.css';
 import light from './AdminProjects.light.module.css';

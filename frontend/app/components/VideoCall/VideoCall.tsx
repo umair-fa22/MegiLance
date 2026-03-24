@@ -37,7 +37,6 @@ export default function VideoCall({ callId, participants = [], onEnd }: VideoCal
   const localStreamRef = useRef<MediaStream | null>(null);
   const peerConnectionRef = useRef<RTCPeerConnection | null>(null);
 
-
   useEffect(() => {
     initializeCall();
     return () => {

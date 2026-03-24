@@ -14,7 +14,6 @@ const Terms: React.FC = () => {
   const { resolvedTheme } = useTheme();
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
-
   return (
     <PageTransition>
       <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">

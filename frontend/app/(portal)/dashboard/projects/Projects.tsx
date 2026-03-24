@@ -52,7 +52,6 @@ const Projects: React.FC = () => {
     return filtered;
   }, [query, status, allProjects]);
 
-
   if (loading) {
     return (
       <main className={cn(common.page, themed.themeWrapper)}>

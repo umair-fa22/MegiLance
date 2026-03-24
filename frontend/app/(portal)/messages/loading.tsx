@@ -1,8 +1,6 @@
 // @AI-HINT: Loading skeleton for messages route - simulates conversation list + chat area
 'use client';
 
-import React from 'react';
-
 export default function MessagesLoading() {
   return (
     <div

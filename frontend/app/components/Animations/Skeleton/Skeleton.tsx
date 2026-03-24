@@ -1,7 +1,6 @@
 // @AI-HINT: Premium skeleton loader component with per-component CSS modules for loading placeholders
 'use client';
 
-import React from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import styles from './Skeleton.common.module.css';

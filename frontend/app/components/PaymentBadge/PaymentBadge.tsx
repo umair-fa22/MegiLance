@@ -6,8 +6,6 @@ import commonStyles from './PaymentBadge.common.module.css';
 import lightStyles from './PaymentBadge.light.module.css';
 import darkStyles from './PaymentBadge.dark.module.css';
 
-
-
 export type PaymentStatus = 'paid' | 'pending' | 'failed';
 
 export interface PaymentBadgeProps {

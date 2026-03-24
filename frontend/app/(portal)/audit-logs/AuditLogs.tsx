@@ -98,7 +98,6 @@ const AuditLogs: React.FC = () => {
 
   const selected = logs.find(l => l.id === selectedId) || null;
 
-
   if (loading) {
     return (
       <PageTransition className={cn(common.page, themed.themeWrapper)}>

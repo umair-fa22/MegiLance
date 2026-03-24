@@ -238,7 +238,6 @@ const PriceEstimator: React.FC = () => {
     });
   };
 
-
   return (
     <PageTransition>
       <div className={cn(commonStyles.container, themeStyles.container)}>

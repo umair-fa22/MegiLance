@@ -207,7 +207,6 @@ const Proposals: React.FC = () => {
     router.push(`/freelancer/proposals/${id}/edit`);
   };
 
-
   return (
     <PageTransition>
       <div className={cn(commonStyles.container, styles.container)}>

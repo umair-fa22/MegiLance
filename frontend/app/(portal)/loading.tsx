@@ -2,7 +2,6 @@
 // Uses Next.js loading.js convention - wrapped in Suspense automatically
 'use client';
 
-import React from 'react';
 import { LottieAnimation, loadingDotsAnimation } from '@/app/components/Animations/LottieAnimation';
 
 export default function PortalLoading() {

@@ -42,7 +42,6 @@ const UserManagementPage: React.FC = () => {
     loadUsers();
   }, []);
 
-
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   const handleInvite = async () => {

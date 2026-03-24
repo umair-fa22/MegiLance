@@ -2,7 +2,6 @@
 // This file demonstrates comprehensive testing of the Input component,
 // including testing props, user interactions, and various states.
 
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Input from '@/app/components/Input/Input';

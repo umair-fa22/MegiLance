@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import Button from '@/app/components/Button/Button';
 import Loading from '@/app/components/Loading/Loading';
-import { Activity, Server, Database, Wifi, CheckCircle, AlertTriangle, XCircle, RefreshCw } from 'lucide-react';
+import { Activity, Server, Database, CheckCircle, AlertTriangle, XCircle, RefreshCw } from 'lucide-react'
 import { apiFetch } from '@/lib/api/core';
 
 import commonStyles from './Health.common.module.css';

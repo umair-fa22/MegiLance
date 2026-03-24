@@ -3,13 +3,10 @@
 
 import React, { useState, useEffect } from 'react';
 
-import { cn } from '@/lib/utils';
 import Button from '@/app/components/Button/Button';
 import commonStyles from './UpdateNotification.common.module.css';
 import lightStyles from './UpdateNotification.light.module.css';
 import darkStyles from './UpdateNotification.dark.module.css';
-
-
 
 const UpdateNotification: React.FC = () => {
   const [isUpdateAvailable, setUpdateAvailable] = useState(false);

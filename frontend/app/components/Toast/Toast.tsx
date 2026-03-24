@@ -77,7 +77,6 @@ const Toast: React.FC<ToastProps> = ({
     }
   };
 
-
   const baseClassName = cn(
     commonStyles.toast,
     themeStyles.toast,

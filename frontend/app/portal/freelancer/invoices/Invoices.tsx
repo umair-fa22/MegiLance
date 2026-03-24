@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { invoicesApi } from '@/lib/api';
 import type { Invoice, InvoiceFormData, InvoiceItem, Contract } from '@/types/api';
-import { FileText, Plus, Send, DollarSign, Calendar, Download, X, Check, Eye } from 'lucide-react';
+import { FileText, Plus, Send, Download, X, Check, Eye } from 'lucide-react'
 import Modal from '@/app/components/Modal/Modal';
 import Button from '@/app/components/Button/Button';
 import commonStyles from './Invoices.common.module.css';

@@ -6,7 +6,6 @@ import React from 'react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { DollarSign, Briefcase, ListTodo, Users } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { useDashboardData } from '@/hooks/useDashboardData';
 
 import commonStyles from './DashboardActivityFeed.common.module.css';

@@ -3,7 +3,6 @@
 
 import React, { useMemo, useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { cn } from '@/lib/utils';
 import { usePersistedState } from '@/app/lib/hooks/usePersistedState';
 import DataToolbar, { SortOption } from '@/app/components/DataToolbar/DataToolbar';
 import PaginationBar from '@/app/components/PaginationBar/PaginationBar';

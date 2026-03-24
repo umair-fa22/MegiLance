@@ -1,7 +1,6 @@
 // @AI-HINT: Portal route for Client Analytics page.
 'use client';
 
-import React from 'react';
 import ClientAnalytics from './ClientAnalytics';
 
 const ClientAnalyticsPage = () => {

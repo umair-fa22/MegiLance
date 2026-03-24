@@ -2,7 +2,6 @@
 
 'use client';
 
-import React from 'react';
 import Clients from './Clients';
 
 const ClientsPage = () => {

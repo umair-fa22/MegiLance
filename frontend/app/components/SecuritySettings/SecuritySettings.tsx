@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { Shield, Key, Smartphone, History, Laptop, Globe, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Shield, Key, History, Laptop } from 'lucide-react'
 import { PageTransition, ScrollReveal, StaggerContainer, StaggerItem } from '@/app/components/Animations';
 import Button from '@/app/components/Button/Button';
 import LinkedAccounts from '@/app/components/LinkedAccounts/LinkedAccounts';

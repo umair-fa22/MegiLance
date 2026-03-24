@@ -4,8 +4,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { FileCode, Database, Package, Globe, Activity, Server, Code2, Layers } from 'lucide-react';
-import { motion, useInView, useSpring, useMotionValue, useTransform, useAnimation } from 'framer-motion';
+import { Database, Globe, Activity, Server, Code2, Layers } from 'lucide-react'
+import { motion, useInView, useSpring, useMotionValue, useTransform } from 'framer-motion'
 
 import commonStyles from './ProjectStats.common.module.css';
 import lightStyles from './ProjectStats.light.module.css';

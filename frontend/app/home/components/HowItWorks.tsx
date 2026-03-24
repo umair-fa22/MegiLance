@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { useTheme } from 'next-themes';
-import { UserPlus, Search, Handshake, ClipboardList, Users, FileSignature } from 'lucide-react';
+import { Search, ClipboardList, Users, FileSignature } from 'lucide-react'
 import { cn } from '@/lib/utils';
 
 import StepCard from './StepCard';

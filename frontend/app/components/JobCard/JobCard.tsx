@@ -45,7 +45,6 @@ const JobCard: React.FC<JobCardProps> = ({
   const { resolvedTheme } = useTheme();
   const [isSaved, setIsSaved] = useState(false);
 
-
   const themeStyles = resolvedTheme === 'dark' ? dark : light;
 
   const displayBudget = budgetMin !== undefined && budgetMax !== undefined

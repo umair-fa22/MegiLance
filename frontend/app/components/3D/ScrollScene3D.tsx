@@ -2,7 +2,6 @@
 'use client';
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { useTheme } from 'next-themes';
 import styles from './ScrollScene3D.common.module.css';
 
 // ==========================================

@@ -54,4 +54,3 @@ const StepReview: React.FC<StepReviewProps> = ({ freelancerId, title, rateType, 
 };
 
 export default StepReview;
-

@@ -14,7 +14,7 @@ import { PageTransition, ScrollReveal } from '@/components/Animations';
 import Button from '@/app/components/Button/Button';
 import Badge from '@/app/components/Badge/Badge';
 import Modal from '@/app/components/Modal/Modal';
-import { User, DollarSign, Clock, CheckCircle, XCircle, MessageSquare, Star, ShieldAlert } from 'lucide-react';
+import { User, DollarSign, Clock, CheckCircle, XCircle, MessageSquare, ShieldAlert } from 'lucide-react'
 import { FraudAlertBanner } from '@/app/components/AI';
 import common from './ProjectDetail.common.module.css';
 import light from './ProjectDetail.light.module.css';

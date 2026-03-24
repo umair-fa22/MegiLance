@@ -8,7 +8,7 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { timeEntriesApi, contractsApi } from '@/lib/api';
 import type { TimeEntry, TimeEntrySummary, Contract } from '@/types/api';
-import { Play, Square, Clock, DollarSign, Calendar, Check, X, Download } from 'lucide-react';
+import { Play, Square, Clock, DollarSign, Calendar, Check, X } from 'lucide-react'
 import Button from '@/app/components/Button/Button';
 import Modal from '@/app/components/Modal/Modal';
 

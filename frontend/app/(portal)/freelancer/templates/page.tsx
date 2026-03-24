@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { FileText, BarChart3, Star, Eye, Pencil, Copy, Trash2, Plus } from 'lucide-react';
+import { FileText, BarChart3, Star, Eye, Pencil, Copy, Trash2 } from 'lucide-react'
 import { proposalTemplatesApi as _proposalTemplatesApi } from '@/lib/api';
 import Button from '@/app/components/Button/Button';
 import Modal from '@/app/components/Modal/Modal';

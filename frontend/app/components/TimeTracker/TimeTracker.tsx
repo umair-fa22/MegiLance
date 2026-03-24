@@ -156,7 +156,6 @@ export default function TimeTracker() {
     return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   };
 
-
   return (
     <div className={cn(commonStyles.container, themeStyles.container)}>
       <div className={commonStyles.activeIndicator} style={{ opacity: activeEntry ? 1 : 0 }} />

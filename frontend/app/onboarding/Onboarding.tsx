@@ -6,8 +6,7 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { z } from 'zod';
-import { ZodError } from 'zod';
-import { User, Briefcase, Sparkles, Wallet, ChevronRight, ChevronLeft, CheckCircle } from 'lucide-react';
+import { User, Briefcase, ChevronRight, ChevronLeft, CheckCircle } from 'lucide-react'
 import Button from '@/app/components/Button/Button';
 import Input from '@/app/components/Input/Input';
 import Textarea from '@/app/components/Textarea/Textarea';
@@ -15,7 +14,7 @@ import TagsInput from '@/app/components/TagsInput/TagsInput';
 import Select from '@/app/components/Select/Select';
 import FileUpload from '@/app/components/FileUpload/FileUpload';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
-import { LottieAnimation, welcomeWaveAnimation, aiSparkleAnimation, walletAnimation } from '@/app/components/Animations/LottieAnimation';
+import { LottieAnimation, welcomeWaveAnimation, walletAnimation } from '@/app/components/Animations/LottieAnimation'
 import api from '@/lib/api';
 
 import commonStyles from './Onboarding.common.module.css';
@@ -91,7 +90,6 @@ const Onboarding: React.FC = () => {
   });
 
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
-
 
   const clearFieldError = (field: string) => {
     setErrors((prev) => {

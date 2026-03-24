@@ -1,7 +1,6 @@
 // @AI-HINT: This component renders the vertical navigation for the settings pages, using the current pathname to highlight the active link. It's designed to be theme-aware and responsive.
 'use client';
 
-import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';

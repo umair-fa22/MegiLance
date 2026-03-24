@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation'
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import {

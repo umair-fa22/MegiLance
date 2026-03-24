@@ -7,7 +7,6 @@ import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { LogOut, Gauge, Briefcase, Users, Sun, Moon } from 'lucide-react';
 import { User } from '../../types';
-import { cn } from '@/lib/utils';
 
 import commonStyles from './Sidebar.common.module.css';
 import lightStyles from './Sidebar.light.module.css';

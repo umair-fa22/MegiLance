@@ -5,7 +5,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { useNotifications, type Notification } from '@/hooks/useNotifications';
+import { useNotifications } from '@/hooks/useNotifications'
 import Button from '@/app/components/Button/Button';
 import {
   Bell, BellOff, Check, CheckCheck, Trash2, ExternalLink,
@@ -91,7 +91,6 @@ export default function Notifications() {
     if (!notif.is_read) markAsRead(notif.id);
     if (notif.action_url) router.push(notif.action_url);
   }, [markAsRead, router]);
-
 
   // Skeleton loading
   if (loading && notifications.length === 0) {

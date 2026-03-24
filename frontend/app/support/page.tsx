@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import SupportClient from './SupportClient';
-import { buildMeta, buildBreadcrumbJsonLd, buildContactPageJsonLd, jsonLdScriptProps, getKeywordsForPage } from '@/lib/seo';
+import { buildMeta, buildBreadcrumbJsonLd, buildContactPageJsonLd, jsonLdScriptProps } from '@/lib/seo'
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMeta({

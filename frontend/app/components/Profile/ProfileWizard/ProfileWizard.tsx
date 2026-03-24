@@ -1,7 +1,7 @@
 // @AI-HINT: Enhanced profile completion wizard with progress tracking, skip options, profile score, and completion celebration
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';

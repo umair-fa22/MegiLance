@@ -1,5 +1,4 @@
 // @AI-HINT: Community page route for the (main) layout.
-import React from 'react';
 import type { Metadata } from 'next';
 import { buildMeta, buildBreadcrumbJsonLd, jsonLdScriptProps } from '@/lib/seo';
 import Community from './Community';

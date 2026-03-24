@@ -1,8 +1,6 @@
 // @AI-HINT: Loading skeleton for search route - shows search bar + result cards
 'use client';
 
-import React from 'react';
-
 export default function SearchLoading() {
   return (
     <div

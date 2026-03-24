@@ -246,7 +246,6 @@ export default function PakistanPaymentOptions({
     onPaymentInitiate?.(details);
   };
 
-
   return (
     <div className={cn(commonStyles.container, themeStyles.container)}>
       {/* Testnet Banner - FREE Testing Mode */}

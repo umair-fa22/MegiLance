@@ -1,5 +1,4 @@
 // @AI-HINT: Next.js route for Press, delegates to Press component.
-import React from 'react';
 import type { Metadata } from 'next';
 import { buildMeta, buildBreadcrumbJsonLd, jsonLdScriptProps } from '@/lib/seo';
 import Press from './Press';

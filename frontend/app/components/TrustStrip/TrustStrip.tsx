@@ -1,7 +1,6 @@
 // @AI-HINT: Reusable social proof strip — stats, guarantees, and trust badges for landing pages
 'use client';
 
-import React from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { ShieldCheck, Star, Users, Zap, Award, Lock } from 'lucide-react';

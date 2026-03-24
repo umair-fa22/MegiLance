@@ -1,8 +1,6 @@
 // @AI-HINT: Loading skeleton for dashboard route - shows layout skeleton while data loads
 'use client';
 
-import React from 'react';
-
 export default function DashboardLoading() {
   return (
     <div

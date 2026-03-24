@@ -1,7 +1,6 @@
 // @AI-HINT: Enterprise portal footer with status indicator, version, keyboard hint, and professional links
 'use client';
 
-import React from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';

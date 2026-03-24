@@ -1,5 +1,4 @@
 // @AI-HINT: Status page route for the (main) layout.
-import React from 'react';
 import type { Metadata } from 'next';
 import { buildMeta } from '@/lib/seo';
 import Status from './Status';

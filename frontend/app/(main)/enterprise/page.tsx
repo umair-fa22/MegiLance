@@ -1,5 +1,4 @@
 // @AI-HINT: Public Enterprise page. Investor-grade marketing placeholder; server component.
-import React from 'react';
 import type { Metadata } from 'next';
 import { buildMeta, buildBreadcrumbJsonLd, jsonLdScriptProps } from '@/lib/seo';
 import Enterprise from './Enterprise';
@@ -26,5 +25,3 @@ export default function EnterprisePage() {
     </>
   );
 }
-
- 

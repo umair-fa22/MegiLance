@@ -2,9 +2,7 @@
 // real-time status monitoring, offline mode support, and modern UI.
 'use client';
 
-import React from 'react';
 import ChatbotEnhanced from './ChatbotEnhanced';
-
 
 const ChatbotPage = () => {
   return <ChatbotEnhanced />;

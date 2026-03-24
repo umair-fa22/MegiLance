@@ -9,17 +9,13 @@ import DashboardMetrics from './components/DashboardMetrics/DashboardMetrics';
 import DashboardRecentProjects from './components/DashboardRecentProjects/DashboardRecentProjects';
 import DashboardActivityFeed from './components/DashboardActivityFeed/DashboardActivityFeed';
 import DashboardLayout from './components/DashboardLayout/DashboardLayout'; // Import the new layout
-import { cn } from '@/lib/utils';
 import commonStyles from './dashboard.common.module.css';
 import lightStyles from './dashboard.light.module.css';
 import darkStyles from './dashboard.dark.module.css';
 
-
 // @AI-HINT: This is the main Dashboard component, serving as the central hub for all roles.
 // It has been completely redesigned with a premium, production-ready UI and layout.
 // It uses a responsive grid to ensure a perfect experience on all devices.
-
-
 
 interface DashboardProps {
   userRole: 'admin' | 'client' | 'freelancer';

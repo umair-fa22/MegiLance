@@ -10,7 +10,7 @@ import Badge from '@/app/components/Badge/Badge';
 import Select from '@/app/components/Select/Select';
 import Input from '@/app/components/Input/Input';
 import Button from '@/app/components/Button/Button';
-import { ChevronDown, ChevronsUpDown, ArrowUp, ArrowDown, Loader2 } from 'lucide-react';
+import { ChevronsUpDown, ArrowUp, ArrowDown, Loader2 } from 'lucide-react'
 
 import commonStyles from './AuditLog.common.module.css';
 import lightStyles from './AuditLog.light.module.css';

@@ -22,7 +22,6 @@ const OfflinePage: React.FC = () => {
     return () => window.removeEventListener('online', handleOnline);
   }, []);
 
-
   const themed = resolvedTheme === 'dark' ? dark : light;
 
   return (

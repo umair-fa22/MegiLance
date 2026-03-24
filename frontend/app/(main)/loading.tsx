@@ -1,6 +1,5 @@
 // @AI-HINT: Loading UI for public marketing routes
 // Uses Next.js loading.js convention for instant Suspense boundaries
-import React from 'react';
 import MegaLoader from '../components/Loading/MegaLoader';
 
 export default function MainLoading() {

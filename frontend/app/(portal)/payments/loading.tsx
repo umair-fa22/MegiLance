@@ -1,8 +1,6 @@
 // @AI-HINT: Loading skeleton for payments route - shows balance card + transaction list
 'use client';
 
-import React from 'react';
-
 export default function PaymentsLoading() {
   return (
     <div

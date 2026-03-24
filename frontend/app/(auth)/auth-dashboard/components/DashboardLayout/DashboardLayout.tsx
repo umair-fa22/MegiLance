@@ -4,7 +4,6 @@
 
 import React from 'react';
 import { useTheme } from 'next-themes';
-import { cn } from '@/lib/utils';
 import { User } from '../../types';
 
 import Sidebar from '../Sidebar/Sidebar';

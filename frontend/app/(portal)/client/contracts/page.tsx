@@ -203,7 +203,6 @@ export default function ClientContractsPage() {
     URL.revokeObjectURL(url);
   }, [contracts]);
 
-
   return (
     <PageTransition>
       <div className={cn(commonStyles.page, themeStyles.theme)}>

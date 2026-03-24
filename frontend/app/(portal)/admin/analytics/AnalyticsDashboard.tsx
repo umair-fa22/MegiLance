@@ -245,7 +245,6 @@ const AnalyticsDashboard: React.FC = () => {
     },
   };
 
-
   if (loading) {
     return (
       <div className={s('container')}>

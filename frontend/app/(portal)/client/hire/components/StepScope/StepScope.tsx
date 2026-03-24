@@ -60,4 +60,3 @@ const StepScope: React.FC<StepScopeProps> = ({ title, setTitle, description, set
 };
 
 export default StepScope;
-

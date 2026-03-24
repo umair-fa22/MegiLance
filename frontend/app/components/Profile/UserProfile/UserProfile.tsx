@@ -59,7 +59,6 @@ export default function UserProfile({ userId }: UserProfileProps) {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [selectedPortfolioItem, setSelectedPortfolioItem] = useState<PortfolioItem | null>(null);
 
-
   const themed = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   useEffect(() => {

@@ -304,7 +304,6 @@ function MultiStepForm<T extends Record<string, unknown>>({
     [currentStep, totalSteps, isFirstStep, isLastStep, isSubmitting, goNext, goPrev, goToStep]
   );
 
-
   return (
     <div className={cn(commonStyles.wizard, className)}>
       {/* Progress Header */}

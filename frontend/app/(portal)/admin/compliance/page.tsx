@@ -10,7 +10,7 @@ import Badge from '@/app/components/Badge/Badge';
 import EmptyState from '@/app/components/EmptyState/EmptyState';
 import Loader from '@/app/components/Loader/Loader';
 import { PageTransition, ScrollReveal, StaggerContainer, StaggerItem } from '@/app/components/Animations';
-import { Shield, RefreshCw, FileText, Clock, CheckCircle, AlertTriangle, XCircle } from 'lucide-react';
+import { Shield, RefreshCw, FileText, Clock, AlertTriangle } from 'lucide-react'
 import { apiFetch } from '@/lib/api/core';
 import commonStyles from './Compliance.common.module.css';
 import lightStyles from './Compliance.light.module.css';

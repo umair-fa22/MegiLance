@@ -1,8 +1,6 @@
 // @AI-HINT: Loading skeleton for contracts route - shows contract cards
 'use client';
 
-import React from 'react';
-
 export default function ContractsLoading() {
   return (
     <div

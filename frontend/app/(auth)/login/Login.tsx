@@ -54,8 +54,6 @@ const roleConfig = {
   },
 };
 
-
-
 // @AI-HINT: The main Login component, orchestrating the layout and state. It's structured for clarity, separating the branding panel from the login form.
 const Login: React.FC = () => {
   const { resolvedTheme } = useTheme();

@@ -1,7 +1,6 @@
 // @AI-HINT: Portal route for Notifications - uses shared Notifications component with WebSocket, pagination, icons
 'use client';
 
-import React from 'react';
 import dynamic from 'next/dynamic';
 
 const Notifications = dynamic(() => import('@/app/components/Notifications/Notifications'), {

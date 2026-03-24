@@ -4,7 +4,7 @@
 import React from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { Grid, List, Search, Package } from 'lucide-react';
+import { Grid, List, Package } from 'lucide-react'
 import GigCard, { GigCardProps } from '@/app/components/GigCard/GigCard';
 import Button from '@/app/components/Button/Button';
 import common from './GigGrid.common.module.css';
@@ -71,7 +71,6 @@ const GigGrid: React.FC<GigGridProps> = ({
   className,
 }) => {
   const { resolvedTheme } = useTheme();
-
 
   const themed = resolvedTheme === 'dark' ? dark : light;
 

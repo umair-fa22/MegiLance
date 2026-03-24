@@ -1,7 +1,6 @@
 // @AI-HINT: This is the Next.js route file for the Onboarding page. It delegates to the Onboarding component.
 'use client';
 
-import React from 'react';
 import Onboarding from './Onboarding';
 
 const OnboardingPage = () => {

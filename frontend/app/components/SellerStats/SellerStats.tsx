@@ -102,7 +102,6 @@ const requirementLabels: Record<string, string> = {
 const SellerStats: React.FC<SellerStatsProps> = ({ stats, className }) => {
   const { resolvedTheme } = useTheme();
 
-
   const themed = resolvedTheme === 'dark' ? dark : light;
 
   // Defensive: ensure level is always a full SellerLevel object

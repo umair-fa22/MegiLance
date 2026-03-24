@@ -1,11 +1,10 @@
 // @AI-HINT: Client component for hire directory page with proper 3-file CSS module theme support
 'use client';
 
-import React from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { PageTransition, ScrollReveal, StaggerContainer } from '@/app/components/Animations';
+import { PageTransition, ScrollReveal } from '@/app/components/Animations'
 import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';
 import commonStyles from './Hire.common.module.css';
 import lightStyles from './Hire.light.module.css';

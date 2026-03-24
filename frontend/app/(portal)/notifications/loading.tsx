@@ -1,8 +1,6 @@
 // @AI-HINT: Loading skeleton for notifications route
 'use client';
 
-import React from 'react';
-
 export default function NotificationsLoading() {
   return (
     <div

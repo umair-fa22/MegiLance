@@ -11,7 +11,7 @@ import Card from '@/app/components/Card/Card';
 import Input from '@/app/components/Input/Input';
 import Select from '@/app/components/Select/Select';
 import UserAvatar from '@/app/components/UserAvatar/UserAvatar';
-import { Check, X, Search, ListFilter, Building2, CalendarDays, ShieldAlert, ChevronDown, ChevronUp, Loader2, AlertTriangle, RefreshCw } from 'lucide-react';
+import { Check, X, Search, ListFilter, Building2, CalendarDays, ChevronDown, ChevronUp, Loader2, AlertTriangle, RefreshCw } from 'lucide-react'
 
 import commonStyles from './JobModerationQueue.common.module.css';
 import lightStyles from './JobModerationQueue.light.module.css';
@@ -231,7 +231,6 @@ const JobModerationQueue = () => {
       if (sortOrder === 'risk-asc') return riskOrder[a.riskLevel] - riskOrder[b.riskLevel];
       return 0;
     });
-
 
   return (
     <div className={cn(commonStyles.container, themeStyles.container)}>

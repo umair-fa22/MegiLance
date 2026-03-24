@@ -16,7 +16,7 @@ import EmptyState from '@/app/components/EmptyState/EmptyState';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
-import { Search, Plus, Edit3, Trash2, Star, StarOff, CheckCircle, Tag, Layers } from 'lucide-react';
+import { Search, Plus, Edit3, Trash2, StarOff, CheckCircle } from 'lucide-react'
 import commonStyles from './Skills.common.module.css';
 import lightStyles from './Skills.light.module.css';
 import darkStyles from './Skills.dark.module.css';

@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 import Button from '@/app/components/Button/Button';
 import Select from '@/app/components/Select/Select';
 import Loading from '@/app/components/Loading/Loading';
-import { portalApi, analyticsApi } from '@/lib/api';
+import { portalApi } from '@/lib/api'
 import { PageTransition, ScrollReveal } from '@/components/Animations';
 import { 
   BarChart3, 

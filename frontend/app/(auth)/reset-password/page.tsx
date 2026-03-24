@@ -1,7 +1,6 @@
 // @AI-HINT: This is the Next.js route file for the Reset Password page. It delegates to the ResetPassword component.
 'use client';
 
-import React from 'react';
 import ResetPassword from './ResetPassword';
 
 const ResetPasswordPage = () => {

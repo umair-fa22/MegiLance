@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { ShieldCheck, UserCheck, Briefcase, Rocket, type LucideIcon } from 'lucide-react';
+import { ShieldCheck, UserCheck, Briefcase, Rocket } from 'lucide-react'
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import Button from '@/app/components/Button/Button';
@@ -138,4 +138,3 @@ const DevQuickLogin: React.FC<DevQuickLoginProps> = ({ onCredentialSelect, onAut
 };
 
 export default DevQuickLogin;
-

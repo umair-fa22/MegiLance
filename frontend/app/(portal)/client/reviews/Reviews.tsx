@@ -240,7 +240,6 @@ const Reviews: React.FC = () => {
     return 'warning';
   };
 
-
   // Loading skeleton
   if (loading) {
     return (

@@ -149,7 +149,6 @@ const GigCreate: React.FC = () => {
 
   const [tagInput, setTagInput] = useState('');
 
-
   const themed = resolvedTheme === 'dark' ? dark : light;
 
   const updateForm = useCallback((updates: Partial<GigForm>) => {

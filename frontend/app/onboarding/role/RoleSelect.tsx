@@ -41,7 +41,6 @@ const RoleSelect: React.FC = () => {
 
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
-
   const handleContinue = async () => {
     if (!selected) return;
 

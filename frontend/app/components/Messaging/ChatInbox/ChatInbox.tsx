@@ -117,7 +117,6 @@ const ChatInbox: React.FC<ChatInboxProps> = ({ onConversationSelect }) => {
     onConversationSelect?.(convo.id);
   };
 
-
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   if (loading) {

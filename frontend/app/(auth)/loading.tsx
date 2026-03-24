@@ -1,6 +1,5 @@
 // @AI-HINT: Loading UI for auth routes (login, signup, etc.)
 // Uses Next.js loading.js file convention for instant Suspense boundaries
-import React from 'react';
 import styles from './AuthShared.module.css';
 
 export default function AuthLoading() {

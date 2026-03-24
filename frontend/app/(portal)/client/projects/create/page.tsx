@@ -5,7 +5,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { Sparkles, ArrowLeft, Save, Loader2 } from 'lucide-react';
+import { ArrowLeft, Save } from 'lucide-react'
 import api, { aiApi } from '@/lib/api';
 import Input from '@/app/components/Input/Input';
 import Select from '@/app/components/Select/Select';

@@ -1,8 +1,6 @@
 // @AI-HINT: Loading skeleton for settings route - shows settings sections
 'use client';
 
-import React from 'react';
-
 export default function SettingsLoading() {
   return (
     <div

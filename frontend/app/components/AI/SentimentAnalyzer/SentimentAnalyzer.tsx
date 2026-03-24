@@ -103,4 +103,3 @@ const SentimentAnalyzer: React.FC<SentimentAnalyzerProps> = ({
 };
 
 export default SentimentAnalyzer;
-

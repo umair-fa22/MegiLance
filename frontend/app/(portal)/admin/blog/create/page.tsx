@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { blogApi, CreateBlogPost } from '@/lib/api/blog';
 import BlogPostForm from '../_components/BlogPostForm';
 

@@ -45,7 +45,6 @@ const StatCard: React.FC<StatCardProps> = ({
 }) => {
   const { resolvedTheme } = useTheme();
 
-
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   const isPositive = trend !== undefined && trend > 0;

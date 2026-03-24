@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import DashboardWidget from '@/app/components/DashboardWidget/DashboardWidget';

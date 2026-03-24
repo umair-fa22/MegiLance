@@ -105,7 +105,6 @@ const DisputeDetailsPage: React.FC = () => {
     router.back();
   };
 
-
   if (loading) {
     return (
       <div className={cn(styles.container, styles.loadingState)}>

@@ -222,7 +222,6 @@ const FileUpload: React.FC<FileUploadProps> = ({
     }
   };
 
-
   return (
     <div className={styles.container}>
       {label && (

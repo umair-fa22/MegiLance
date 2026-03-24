@@ -1,6 +1,6 @@
 // @AI-HINT: Interactive cost calculator — shows savings hiring freelancers on MegiLance vs full-time or competitors
 import type { Metadata } from 'next';
-import { buildMeta, buildBreadcrumbJsonLd, buildFAQJsonLd, jsonLdScriptProps, BASE_URL } from '@/lib/seo';
+import { buildMeta, buildBreadcrumbJsonLd, buildFAQJsonLd, jsonLdScriptProps } from '@/lib/seo'
 import CostCalculatorClient from './CostCalculatorClient';
 
 const faqs = [

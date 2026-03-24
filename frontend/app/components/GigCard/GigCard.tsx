@@ -70,7 +70,6 @@ const GigCard: React.FC<GigCardProps> = ({
   const [isFocusWithin, setIsFocusWithin] = useState(false);
   const [localFavorited, setLocalFavorited] = useState(isFavorited);
 
-
   const themed = resolvedTheme === 'dark' ? dark : light;
   const gigUrl = slug ? `/gigs/${slug}` : `/gigs/${id}`;
   const sellerUrl = `/freelancers/${seller.id}`;

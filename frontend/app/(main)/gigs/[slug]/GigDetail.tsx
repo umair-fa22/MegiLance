@@ -100,7 +100,6 @@ const GigDetail: React.FC = () => {
   const [expandedFaqs, setExpandedFaqs] = useState<Set<number>>(new Set());
   const [showAllReviews, setShowAllReviews] = useState(false);
 
-
   const themed = resolvedTheme === 'dark' ? dark : light;
 
   // Fetch gig data

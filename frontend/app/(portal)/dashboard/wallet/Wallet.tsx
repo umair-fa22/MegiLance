@@ -116,7 +116,6 @@ const Wallet: React.FC = () => {
     }
   };
 
-
   if (loading) {
     return (
       <main className={cn(common.page, themed.themeWrapper)}>

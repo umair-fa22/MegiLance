@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
-import { Eye, Search, AlertTriangle, Clock, CheckCircle, XCircle, Shield, FileText } from 'lucide-react';
+import { Search, AlertTriangle, Clock, CheckCircle, XCircle, Shield, FileText } from 'lucide-react'
 
 import Button from '@/app/components/Button/Button';
 import { Badge } from '@/app/components/Badge';

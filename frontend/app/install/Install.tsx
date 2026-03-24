@@ -17,7 +17,6 @@ const Install: React.FC = () => {
   const { resolvedTheme } = useTheme();
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
-
   const [toast, setToast] = useState<{message: string; type: 'success' | 'error'} | null>(null);
   const showToast = (message: string, type: 'success' | 'error' = 'error') => {
     setToast({ message, type });

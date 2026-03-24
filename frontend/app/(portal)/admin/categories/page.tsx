@@ -11,7 +11,6 @@ import Modal from '@/app/components/Modal/Modal';
 import EmptyState from '@/app/components/EmptyState/EmptyState';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
-import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
 import { categoriesApi } from '@/lib/api';
 import { 
   Layers, Plus, Edit, Trash2, ChevronRight, ChevronDown,

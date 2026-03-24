@@ -15,7 +15,6 @@ import AuthBrandingPanel from '@/app/components/Auth/BrandingPanel/BrandingPanel
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
 import { LottieAnimation, mailSentAnimation, securityShieldAnimation } from '@/app/components/Animations/LottieAnimation';
-import { AnimatedOrb, ParticlesSystem } from '@/app/components/3D';
 import commonStyles from './ForgotPassword.common.module.css';
 import lightStyles from './ForgotPassword.light.module.css';
 import darkStyles from './ForgotPassword.dark.module.css';

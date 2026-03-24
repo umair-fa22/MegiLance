@@ -1,7 +1,6 @@
 // @AI-HINT: Premium full-page loading animation with brand-aligned styling and per-component CSS modules
 'use client';
 
-import React from 'react';
 import { useTheme } from 'next-themes';
 import styles from './MegaLoader.common.module.css';
 import light from './MegaLoader.light.module.css';

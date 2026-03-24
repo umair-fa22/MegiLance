@@ -295,7 +295,6 @@ const ContractWizard: React.FC<ContractWizardProps> = ({
     }
   };
 
-
   // Step 1: Contract Terms
   const Step1Terms = (
     <div className={styles.stepContent}>

@@ -75,7 +75,6 @@ const LinkedAccounts: React.FC = () => {
     }
   };
 
-
   return (
     <div className={cn(common.section, themed.section)}>
       <h2 className={cn(common.sectionTitle, themed.sectionTitle)}>

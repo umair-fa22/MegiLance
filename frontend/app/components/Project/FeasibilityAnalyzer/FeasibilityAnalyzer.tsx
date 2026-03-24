@@ -1,7 +1,7 @@
 // @AI-HINT: Component to analyze project feasibility using AI
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react'
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { TrendingUp, AlertTriangle, CheckCircle, Lightbulb } from 'lucide-react';

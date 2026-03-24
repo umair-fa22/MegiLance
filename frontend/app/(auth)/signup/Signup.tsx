@@ -21,7 +21,6 @@ import PasswordStrengthMeter from '@/app/components/AdvancedFeatures/PasswordStr
 
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
-import { AnimatedOrb, ParticlesSystem } from '@/app/components/3D';
 import commonStyles from './Signup.common.module.css';
 import lightStyles from './Signup.light.module.css';
 import darkStyles from './Signup.dark.module.css';
@@ -44,8 +43,6 @@ const roleConfig = {
     brandText: 'Showcase your skills, bid on exciting projects, and get paid securely for your expert work.',
   },
 };
-
-
 
 const Signup: React.FC = () => {
   const { resolvedTheme } = useTheme();

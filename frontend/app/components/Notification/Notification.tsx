@@ -118,7 +118,6 @@ const Notification: React.FC<NotificationProps> = ({
     }
   };
 
-
   return (
     <div 
       className={cn(

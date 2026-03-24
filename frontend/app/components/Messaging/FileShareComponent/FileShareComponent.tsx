@@ -17,7 +17,6 @@ const FileShareComponent: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {

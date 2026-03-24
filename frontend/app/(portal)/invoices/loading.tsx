@@ -1,8 +1,6 @@
 // @AI-HINT: Loading skeleton for invoices route - shows invoice list
 'use client';
 
-import React from 'react';
-
 export default function InvoicesLoading() {
   return (
     <div

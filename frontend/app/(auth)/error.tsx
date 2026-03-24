@@ -28,7 +28,6 @@ export default function AuthError({
     console.error('Auth error:', error);
   }, [error]);
 
-
   return (
     <div
       className={cn(commonStyles.container, themeStyles.container)}

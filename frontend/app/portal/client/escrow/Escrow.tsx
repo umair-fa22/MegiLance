@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { escrowApi, contractsApi } from '@/lib/api';
 import type { Escrow, EscrowBalance, Contract, EscrowFundData } from '@/types/api';
-import { Shield, DollarSign, Clock, CheckCircle, XCircle, ArrowUpCircle, ArrowDownCircle } from 'lucide-react';
+import { Shield, Clock, CheckCircle, XCircle, ArrowUpCircle, ArrowDownCircle } from 'lucide-react'
 import Modal from '@/app/components/Modal/Modal';
 import Button from '@/app/components/Button/Button';
 import commonStyles from './Escrow.common.module.css';

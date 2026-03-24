@@ -1,7 +1,6 @@
 // @AI-HINT: Test file for the Card component.
 // This file demonstrates testing of the Card component with various props and configurations.
 
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Card from '@/app/components/Card/Card';

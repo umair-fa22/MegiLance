@@ -1,7 +1,6 @@
 // @AI-HINT: Freelancer portal messages page - reuses shared Messages component within freelancer layout
 'use client';
 
-import React from 'react';
 import Messages from '../../../Messages/Messages';
 
 const FreelancerMessagesPage = () => {

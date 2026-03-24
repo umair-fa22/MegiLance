@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { ShieldAlert, ShieldCheck, AlertTriangle, Info, ChevronDown, ChevronUp, X, Lock, Eye } from 'lucide-react';
+import { ShieldAlert, AlertTriangle, Info, ChevronDown, ChevronUp, X, Lock } from 'lucide-react'
 import commonStyles from './FraudAlertBanner.common.module.css';
 import lightStyles from './FraudAlertBanner.light.module.css';
 import darkStyles from './FraudAlertBanner.dark.module.css';

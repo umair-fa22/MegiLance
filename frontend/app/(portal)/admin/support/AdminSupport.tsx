@@ -4,7 +4,7 @@
 import React, { useMemo, useState, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { PageTransition, ScrollReveal, StaggerContainer } from '@/components/Animations';
+import { PageTransition, ScrollReveal } from '@/components/Animations'
 import { useAdminData } from '@/hooks/useAdmin';
 import Modal from '@/app/components/Modal/Modal';
 import Button from '@/app/components/Button/Button';

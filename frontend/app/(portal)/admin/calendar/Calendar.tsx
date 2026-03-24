@@ -176,7 +176,6 @@ const Calendar: React.FC = () => {
       .slice(0, 4);
   }, [events]);
 
-
   return (
     <PageTransition>
       <main className={cn(common.main, themed.main)}>

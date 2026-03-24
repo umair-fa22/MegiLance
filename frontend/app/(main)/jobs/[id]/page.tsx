@@ -1,5 +1,4 @@
 // @AI-HINT: Public Job Details page with dynamic SEO metadata & JobPosting JSON-LD
-import React from 'react';
 import type { Metadata } from 'next';
 import JobDetails from './JobDetails';
 import { buildMeta, buildBreadcrumbJsonLd, jsonLdScriptProps, BASE_URL, SITE_NAME } from '@/lib/seo';

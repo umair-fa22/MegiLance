@@ -169,7 +169,6 @@ export default function FlaggedReviews() {
     }
   };
 
-
   return (
     <div className={cn(commonStyles.container, themeStyles.container)}>
       <header className={commonStyles.header}>

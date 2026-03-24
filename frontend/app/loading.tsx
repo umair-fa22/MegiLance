@@ -1,5 +1,4 @@
 /* AI-HINT: Global loading UI for Next.js App Router. Pure-frontend, brand-aligned. */
-import React from 'react';
 import MegaLoader from './components/Loading/MegaLoader';
 
 export default function Loading() {

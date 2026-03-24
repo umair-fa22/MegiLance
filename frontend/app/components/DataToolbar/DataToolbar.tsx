@@ -3,7 +3,6 @@
 
 import React, { useMemo, useState, useId } from 'react';
 import { useTheme } from 'next-themes';
-import { cn } from '@/lib/utils';
 import commonStyles from './DataToolbar.common.module.css';
 import lightStyles from './DataToolbar.light.module.css';
 import darkStyles from './DataToolbar.dark.module.css';

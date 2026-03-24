@@ -1,7 +1,6 @@
 // @AI-HINT: Compare index client — grid of competitor comparison cards
 'use client';
 
-import React from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';

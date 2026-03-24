@@ -37,7 +37,6 @@ const StarRating: React.FC<StarRatingProps> = ({
 }) => {
   const { resolvedTheme } = useTheme();
 
-
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
   const pixelSize = sizeMap[size];
   const clampedRating = Math.min(Math.max(0, rating), totalStars);

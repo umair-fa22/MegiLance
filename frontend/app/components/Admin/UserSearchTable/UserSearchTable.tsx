@@ -12,7 +12,7 @@ import Input from '@/app/components/Input/Input';
 import Select from '@/app/components/Select/Select';
 import UserAvatar from '@/app/components/UserAvatar/UserAvatar';
 import ActionMenu, { ActionMenuItem } from '@/app/components/ActionMenu/ActionMenu';
-import { MoreHorizontal, Users, Briefcase, Calendar, Search, User, Mail, Phone, Edit, Eye, UserX, Shield, UserCog, Loader2, AlertTriangle, RefreshCw } from 'lucide-react';
+import { Users, Briefcase, Calendar, Search, User, Edit, Eye, UserX, Shield, UserCog, Loader2, AlertTriangle, RefreshCw } from 'lucide-react'
 
 import commonStyles from './UserSearchTable.common.module.css';
 import lightStyles from './UserSearchTable.light.module.css';
@@ -178,7 +178,6 @@ export default function UserSearchTable() {
         default: return 0;
       }
     });
-
 
   return (
     <div className={cn(commonStyles.container, themeStyles.container)}>

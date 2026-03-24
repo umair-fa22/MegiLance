@@ -8,8 +8,6 @@ import commonStyles from './StepCard.common.module.css';
 import lightStyles from './StepCard.light.module.css';
 import darkStyles from './StepCard.dark.module.css';
 
-
-
 export interface StepCardProps {
   stepNumber: number;
   title: string;

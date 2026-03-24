@@ -1,8 +1,6 @@
 // @AI-HINT: Loading skeleton for disputes route
 'use client';
 
-import React from 'react';
-
 export default function DisputesLoading() {
   return (
     <div

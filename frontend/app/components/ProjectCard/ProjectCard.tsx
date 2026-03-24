@@ -46,7 +46,6 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const { id, title, status, progress, budget, paid, freelancers, updatedAt } = props;
   const { resolvedTheme } = useTheme();
 
-
   const themed = resolvedTheme === 'dark' ? dark : light;
 
   const menuItems = [

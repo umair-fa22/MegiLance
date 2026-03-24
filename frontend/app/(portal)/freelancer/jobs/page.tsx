@@ -12,8 +12,7 @@ import Select from '@/app/components/Select/Select';
 import JobCard from '@/app/components/JobCard/JobCard';
 import { PageTransition, StaggerContainer, StaggerItem } from '@/app/components/Animations';
 import Skeleton from '@/app/components/Animations/Skeleton/Skeleton';
-import { Search, Filter, X, Briefcase, RefreshCw, ChevronLeft, ChevronRight, Sparkles, TrendingUp, Zap } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Search, Filter, X, Briefcase, ChevronLeft, ChevronRight, Zap } from 'lucide-react'
 import commonStyles from './Jobs.common.module.css';
 import lightStyles from './Jobs.light.module.css';
 import darkStyles from './Jobs.dark.module.css';
@@ -157,7 +156,6 @@ export default function JobsPage() {
     setProjectLength('all');
     setPage(1);
   };
-
 
   return (
     <PageTransition>

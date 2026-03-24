@@ -1,5 +1,4 @@
 // @AI-HINT: Next.js route for Careers with BreadcrumbList for Google Rich Results.
-import React from 'react';
 import { buildMeta, buildBreadcrumbJsonLd, jsonLdScriptProps } from '@/lib/seo';
 import Careers from './Careers';
 

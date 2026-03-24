@@ -40,7 +40,6 @@ const PaginationBar: React.FC<PaginationBarProps> = ({
 }) => {
   const { resolvedTheme } = useTheme();
 
-
   const themed = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   // Calculate visible page range

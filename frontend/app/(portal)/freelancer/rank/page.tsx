@@ -1,7 +1,7 @@
 // @AI-HINT: Freelancer rank/level page - gamification system with leaderboard, XP breakdown, progression history
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import Loading from '@/app/components/Loading/Loading';

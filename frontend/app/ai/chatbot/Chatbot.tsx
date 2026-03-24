@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { getAuthToken } from '@/lib/api';
-import { Send, Sparkles, MoreVertical, Trash2, Settings, Paperclip } from 'lucide-react';
+import { Send, Sparkles, MoreVertical, Trash2, Settings } from 'lucide-react'
 import Button from '@/app/components/Button/Button';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
@@ -93,7 +93,6 @@ const Chatbot: React.FC = () => {
     };
     startConversation();
   }, [API_URL]);
-
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });

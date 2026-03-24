@@ -49,4 +49,3 @@ const StepFreelancer: React.FC<StepFreelancerProps> = ({ freelancerId, setFreela
 };
 
 export default StepFreelancer;
-

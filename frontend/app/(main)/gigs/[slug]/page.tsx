@@ -1,5 +1,4 @@
 // @AI-HINT: Public Gig Detail page with dynamic SEO metadata & Product JSON-LD
-import React from 'react';
 import type { Metadata } from 'next';
 import GigDetail from './GigDetail';
 import { buildMeta, buildBreadcrumbJsonLd, jsonLdScriptProps, BASE_URL, SITE_NAME } from '@/lib/seo';

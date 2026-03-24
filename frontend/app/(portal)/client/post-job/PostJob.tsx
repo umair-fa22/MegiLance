@@ -11,7 +11,7 @@ import { CheckCircle, AlertTriangle, ArrowLeft, ArrowRight, Send, Loader2, Save,
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 
-import { PostJobData, PostJobErrors, type Category } from './PostJob.types';
+import { PostJobData, PostJobErrors } from './PostJob.types'
 import { loadDraft, saveDraft, clearDraft } from '@/app/mocks/jobs';
 import api, { APIError } from '@/lib/api';
 

@@ -55,4 +55,3 @@ const AIShowcaseCard: React.FC<AIShowcaseCardProps> = ({ icon, title, descriptio
 };
 
 export default AIShowcaseCard;
-

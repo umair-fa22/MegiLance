@@ -14,7 +14,6 @@ import { Modal } from '@/app/components/Modal';
 import { useToaster } from '@/app/components/Toast';
 import api from '@/lib/api';
 import { apiFetch } from '@/lib/api/core';
-import { cn } from '@/lib/utils';
 import { usePersistedState } from '@/app/lib/hooks/usePersistedState';
 import { useSelection } from '@/app/lib/hooks/useSelection';
 import { useColumnVisibility } from '@/app/lib/hooks/useColumnVisibility';

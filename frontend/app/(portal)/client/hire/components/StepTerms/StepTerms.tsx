@@ -69,4 +69,3 @@ const StepTerms: React.FC<StepTermsProps> = ({ rateType, setRateType, rate, setR
 };
 
 export default StepTerms;
-

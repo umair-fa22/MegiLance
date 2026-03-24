@@ -1,8 +1,6 @@
 // @AI-HINT: Loading skeleton for favorites route
 'use client';
 
-import React from 'react';
-
 export default function FavoritesLoading() {
   return (
     <div

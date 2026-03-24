@@ -1,8 +1,6 @@
 // @AI-HINT: Loading skeleton for projects route - shows project grid
 'use client';
 
-import React from 'react';
-
 export default function ProjectsLoading() {
   return (
     <div

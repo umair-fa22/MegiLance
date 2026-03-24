@@ -26,7 +26,7 @@ import StepCard from '@/app/components/Public/StepCard/StepCard';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
-import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere, FloatingTorus } from '@/app/components/3D';
+import { AnimatedOrb, ParticlesSystem, FloatingSphere, FloatingTorus } from '@/app/components/3D'
 import commonStyles from './HowItWorksPage.common.module.css';
 import lightStyles from './HowItWorksPage.light.module.css';
 import darkStyles from './HowItWorksPage.dark.module.css';
@@ -138,7 +138,6 @@ const whyDifferent = [
 const HowItWorksPage: React.FC = () => {
   const { resolvedTheme } = useTheme();
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
-
 
   return (
     <PageTransition>

@@ -15,7 +15,6 @@ import Button from '@/app/components/Button/Button';
 import ToggleSwitch from '@/app/components/ToggleSwitch/ToggleSwitch';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
-import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
 
 import common from './Settings.common.module.css';
 import light from './Settings.light.module.css';

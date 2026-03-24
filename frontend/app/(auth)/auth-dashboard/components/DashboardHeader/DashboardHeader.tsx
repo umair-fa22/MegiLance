@@ -5,7 +5,6 @@
 import React from 'react';
 import { Bell } from 'lucide-react';
 import { User } from '../../types';
-import { cn } from '@/lib/utils';
 
 interface DashboardHeaderProps {
   userRole: 'admin' | 'client' | 'freelancer';

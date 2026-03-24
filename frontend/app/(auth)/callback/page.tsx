@@ -135,7 +135,6 @@ function AuthCallbackPage() {
     handleCallback();
   }, [router, searchParams]);
 
-
   return (
     <div className={cn(commonStyles.container, themeStyles.container)}>
       <div className={cn(commonStyles.card, themeStyles.card)}>

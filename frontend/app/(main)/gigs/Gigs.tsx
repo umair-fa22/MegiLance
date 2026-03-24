@@ -123,7 +123,6 @@ const Gigs: React.FC = () => {
     search: searchParams.get('q') || '',
   });
 
-
   const themed = resolvedTheme === 'dark' ? dark : light;
 
   // Fetch gigs from API

@@ -151,7 +151,6 @@ const ContractDetailsPage: React.FC = () => {
     return contract.terms;
   }, [contract]);
 
-
   if (loading) {
     return (
       <div className={cn(styles.container, styles.loadingState)}>

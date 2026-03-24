@@ -1,7 +1,6 @@
 // @AI-HINT: Portal route for Admin Calendar page.
 'use client';
 
-import React from 'react';
 import Calendar from './Calendar';
 
 const AdminCalendarPage = () => {

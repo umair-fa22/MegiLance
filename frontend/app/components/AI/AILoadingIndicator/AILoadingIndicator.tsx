@@ -1,7 +1,6 @@
 // @AI-HINT: Reusable AI loading/status indicator component with multiple variants - spinner, dots, brain animation, progress, confidence meter
 'use client';
 
-import React from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { Sparkles, Check, AlertCircle, AlertTriangle } from 'lucide-react';

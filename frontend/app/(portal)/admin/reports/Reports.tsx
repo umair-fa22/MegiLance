@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { adminApi, analyticsApi } from '@/lib/api';
+import { adminApi } from '@/lib/api'
 import Button from '@/app/components/Button/Button';
 import Badge from '@/app/components/Badge/Badge';
 import Loading from '@/app/components/Loading/Loading';

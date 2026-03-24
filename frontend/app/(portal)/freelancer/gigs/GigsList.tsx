@@ -75,7 +75,6 @@ const GigsList: React.FC = () => {
     fetchGigs();
   }, []);
 
-
   const themed = resolvedTheme === 'dark' ? dark : light;
 
   // Filter and sort gigs

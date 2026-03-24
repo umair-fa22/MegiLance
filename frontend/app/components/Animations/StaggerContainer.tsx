@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { motion, useInView, type Variants } from 'framer-motion';
+import { motion, useInView } from 'framer-motion'
 
 const containerVariants: Variants = {
   hidden: {},

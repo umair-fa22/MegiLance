@@ -5,7 +5,7 @@ import React from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import DashboardWidget from '@/app/components/DashboardWidget/DashboardWidget';
-import { Award, Gem, Medal, Shield, Trophy, TrendingUp, Star, Zap } from 'lucide-react';
+import { Award, Gem, Medal, Shield, Trophy, TrendingUp, Zap } from 'lucide-react'
 
 import commonStyles from './FreelancerRankVisualizer.common.module.css';
 import lightStyles from './FreelancerRankVisualizer.light.module.css';
@@ -144,4 +144,3 @@ const FreelancerRankVisualizer: React.FC<FreelancerRankVisualizerProps> = ({
 };
 
 export default FreelancerRankVisualizer;
-

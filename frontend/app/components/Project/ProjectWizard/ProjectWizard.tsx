@@ -1,7 +1,7 @@
 // @AI-HINT: Project creation wizard - guides clients through posting a project. Enhanced with Zod validation, animated transitions, and premium animations.
 'use client';
 
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
@@ -20,7 +20,7 @@ import Select from '@/app/components/Select/Select';
 import TagsInput from '@/app/components/TagsInput/TagsInput';
 import FileUpload from '@/app/components/FileUpload/FileUpload';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
-import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
+import { StaggerItem } from '@/app/components/Animations/StaggerContainer'
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';
 import ProjectAICopilot from './ProjectAICopilot';

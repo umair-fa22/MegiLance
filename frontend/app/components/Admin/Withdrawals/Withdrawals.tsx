@@ -4,7 +4,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { CheckCircle, XCircle, MoreVertical, Copy, ArrowDownUp, Calendar, Inbox, Search, ChevronDown, Loader2 } from 'lucide-react';
+import { CheckCircle, XCircle, MoreVertical, Copy, ArrowDownUp, Calendar, Inbox, Loader2 } from 'lucide-react'
 
 import api from '@/lib/api';
 import Button from '@/app/components/Button/Button';

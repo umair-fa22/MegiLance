@@ -17,7 +17,6 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   const { resolvedTheme } = useTheme();
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
-
   return (
     <div className={cn(commonStyles.layout, themeStyles.layout)}>
       <SidebarNav theme={resolvedTheme} userType="admin" />

@@ -1,8 +1,6 @@
 // @AI-HINT: Loading skeleton for proposals route
 'use client';
 
-import React from 'react';
-
 export default function ProposalsLoading() {
   return (
     <div

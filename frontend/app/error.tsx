@@ -1,7 +1,6 @@
 // @AI-HINT: Global error boundary page for Next.js App Router — catches runtime errors
 'use client';
 
-import React from 'react';
 import Link from 'next/link';
 
 export default function Error({

@@ -83,7 +83,6 @@ const BlogPostClient: React.FC = () => {
     } catch { /* noop */ }
   };
 
-
   if (loading) {
     return (
       <main id="main-content" role="main" className={commonStyles.pageWrap}>

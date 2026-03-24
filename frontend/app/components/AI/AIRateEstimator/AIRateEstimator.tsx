@@ -4,7 +4,7 @@
 import React from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { Sparkles, TrendingUp } from 'lucide-react';
+import { Sparkles } from 'lucide-react'
 import commonStyles from './AIRateEstimator.common.module.css';
 import lightStyles from './AIRateEstimator.light.module.css';
 import darkStyles from './AIRateEstimator.dark.module.css';

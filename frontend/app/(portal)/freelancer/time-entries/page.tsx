@@ -10,7 +10,7 @@ import Input from '@/app/components/Input/Input';
 import Select from '@/app/components/Select/Select';
 import Textarea from '@/app/components/Textarea/Textarea';
 import { PageTransition, ScrollReveal, StaggerContainer, StaggerItem } from '@/app/components/Animations';
-import { Clock, Play, Pause, Square, Trash2, Plus, X } from 'lucide-react';
+import { Clock, Pause, Trash2, Plus } from 'lucide-react'
 import commonStyles from './TimeEntries.common.module.css';
 import lightStyles from './TimeEntries.light.module.css';
 import darkStyles from './TimeEntries.dark.module.css';
