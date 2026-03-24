@@ -108,7 +108,7 @@ const Hire: React.FC = () => {
     const template = contractTemplates[templateName];
     setTitle(prev => prev + ` ${template.titleSuffix}`.trim());
     setDescription(template.descriptionTemplate);
-    setRateType(template.rateType);
+    setRateType(template.rateType as 'Fixed' | 'Hourly');
     setLiveMessage(`Applied "${templateName}" template.`);
   };
 

@@ -148,7 +148,6 @@ export default function UserProfile({ userId }: UserProfileProps) {
     } catch {
       // Failed to load reviews
     }
-    }
   };
 
   const calculateAverageRating = () => {

@@ -226,7 +226,7 @@ const Payments: React.FC = () => {
             <DashboardWidget icon={DollarSign} title="Total Paid" value={`$${kpis.totalPaid.toLocaleString()}`} trend={<Trend direction="up" value={`${kpis.completedCount} txns`} />} />
             <DashboardWidget icon={TrendingUp} title="Avg. Payment" value={`$${kpis.avgPayment.toFixed(2)}`} />
             <DashboardWidget icon={TrendingDown} title="Pending" value={`$${kpis.totalPending.toLocaleString()}`} trend={kpis.totalPending > 0 ? <Trend direction="down" value="pending" /> : undefined} />
-            <DashboardWidget icon={FileText} title="Est. Tax (15%)" value={`$${kpis.estimatedTax.toLocaleString('en-US', { minimumFractionDigits: 2 })}`} trend={<Trend direction="neutral" value="taxable" />} />
+            <DashboardWidget icon={FileText} title="Est. Tax (15%)" value={`$${kpis.estimatedTax.toLocaleString('en-US', { minimumFractionDigits: 2 })}`} />
           </section>
         </ScrollReveal>
 

@@ -554,7 +554,7 @@ class AdvancedSecurityService:
         
         return codes
 
-    def _generate_device_fingerlogger.info(self, ip_address: str, user_agent: str) -> str:
+    def _generate_device_fingerprint(self, ip_address: str, user_agent: str) -> str:
         """Generate unique device fingerprint"""
         fingerprint_data = f"{ip_address}:{user_agent}"
         return hashlib.sha256(fingerprint_data.encode()).hexdigest()
