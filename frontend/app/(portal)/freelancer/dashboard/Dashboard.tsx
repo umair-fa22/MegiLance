@@ -183,6 +183,53 @@ const Dashboard: React.FC = () => {
 
     return events.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()).slice(0, 5);
   }, [proposals, recommendedJobs]);
+  // Generate performance alerts
+  const performanceAlerts = useMemo(() => {
+    const alerts = [];
+
+    if (metrics.jssScore < 70) {
+      alerts.push({
+        id: 'jss-score',
+        type: 'warning' as const,
+        title: 'Low Job Success Score',
+        message: `Your JSS is ${metrics.jssScore}%. Focus on on-time delivery and client satisfaction.`,
+        action: { label: 'View My Contracts', href: '/freelancer/contracts' }
+      });
+    }
+
+    if (metrics.completionRate < 85) {
+      alerts.push({
+        id: 'completion-rate',
+        type: 'warning' as const,
+        title: 'Low Completion Rate',
+        message: `Your completion rate is ${metrics.completionRate}%. Avoid cancellations to maintain your reputation.`,
+        action: { label: 'View My Active Jobs', href: '/freelancer/my-jobs' }
+      });
+    }
+
+    if (metrics.responseRate < 90) {
+      alerts.push({
+        id: 'response-rate',
+        type: 'info' as const,
+        title: 'Response Rate Below Target',
+        message: `Clients expect responses within 24 hours. Current rate: ${metrics.responseRate}%.`,
+        action: { label: 'Check Messages', href: '/freelancer/messages' }
+      });
+    }
+
+    if (metrics.profileCompleteness < 70) {
+      alerts.push({
+        id: 'profile-completeness',
+        type: 'info' as const,
+        title: 'Complete Your Profile',
+        message: `Your profile is ${metrics.profileCompleteness}% complete. Add more details to attract clients.`,
+        action: { label: 'Complete Profile', href: '/freelancer/profile' }
+      });
+    }
+
+    return alerts;
+  }, [metrics]);
+
   // Quick actions for the grid
   const quickActions = [
     { label: 'Find Work', href: '/jobs', icon: Search, color: 'primary' as const, desc: 'Browse jobs' },
