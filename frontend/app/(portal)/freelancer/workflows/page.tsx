@@ -90,7 +90,9 @@ export default function WorkflowsPage() {
       setWorkflows(transformedWorkflows);
       setTemplates(defaultTemplates);
     } catch (error) {
-      console.error('Failed to fetch workflows:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to fetch workflows:', error);
+      }
       setWorkflows([]);
       setTemplates([]);
     } finally {
@@ -114,7 +116,9 @@ export default function WorkflowsPage() {
         wf.id === workflowId ? { ...wf, isActive: !wf.isActive } : wf
       ));
     } catch (error) {
-      console.error('Failed to toggle workflow:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to toggle workflow:', error);
+      }
       alert('Failed to update workflow status. Please try again.');
     }
   };
@@ -125,7 +129,9 @@ export default function WorkflowsPage() {
       await workflowApi.delete(workflowId);
       setWorkflows(prev => prev.filter(wf => wf.id !== workflowId));
     } catch (error) {
-      console.error('Failed to delete workflow:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to delete workflow:', error);
+      }
       alert('Failed to delete workflow. Please try again.');
     }
   };

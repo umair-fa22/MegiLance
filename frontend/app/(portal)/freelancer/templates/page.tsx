@@ -66,7 +66,9 @@ export default function ProposalTemplatesPage() {
       const data = await proposalTemplatesApi.getAll();
       setTemplates(data || []);
     } catch (err) {
-      console.error('Failed to load templates:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load templates:', err);
+      }
     } finally {
       setLoading(false);
     }
@@ -108,7 +110,9 @@ export default function ProposalTemplatesPage() {
       await proposalTemplatesApi.update(template.id, { is_default: true });
       loadTemplates();
     } catch (err) {
-      console.error('Failed to set default:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to set default:', err);
+      }
     }
   };
 
@@ -123,7 +127,9 @@ export default function ProposalTemplatesPage() {
       });
       loadTemplates();
     } catch (err) {
-      console.error('Failed to duplicate template:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to duplicate template:', err);
+      }
     }
   };
 

@@ -68,7 +68,9 @@ const ProjectDetail: React.FC = () => {
       const data = await (api.projects as any).get?.(projectId);
       setProject(data);
     } catch (e) {
-      console.error(e);
+      if (process.env.NODE_ENV === 'development') {
+        console.error(e);
+      }
       setError('Failed to load project');
     } finally {
       setLoading(false);
@@ -82,7 +84,9 @@ const ProjectDetail: React.FC = () => {
       const data = Array.isArray(response) ? response : (response.proposals || []);
       setProposals(data);
     } catch (e) {
-      console.error('Failed to load proposals:', e);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load proposals:', e);
+      }
     } finally {
       setProposalsLoading(false);
     }
@@ -111,7 +115,9 @@ const ProjectDetail: React.FC = () => {
             terms: `Contract for project. Estimated ${acceptedProposal.estimated_hours} hours at $${acceptedProposal.hourly_rate}/hr.`,
           });
         } catch (contractErr) {
-          console.warn('Contract creation failed, but proposal was accepted:', contractErr);
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('Contract creation failed, but proposal was accepted:', contractErr);
+          }
         }
       }
       
@@ -121,7 +127,9 @@ const ProjectDetail: React.FC = () => {
       
       showToast('Proposal accepted! A contract has been created.');
     } catch (err) {
-      console.error('Failed to accept proposal:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to accept proposal:', err);
+      }
       showToast('Failed to accept proposal. Please try again.', 'error');
     } finally {
       setActionLoading(null);
@@ -137,7 +145,9 @@ const ProjectDetail: React.FC = () => {
       await loadProposals();
       showToast('Proposal rejected.');
     } catch (err) {
-      console.error('Failed to reject proposal:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to reject proposal:', err);
+      }
       showToast('Failed to reject proposal. Please try again.', 'error');
     } finally {
       setActionLoading(null);
@@ -161,7 +171,9 @@ const ProjectDetail: React.FC = () => {
       // The API returns { analysis: ... } wrapper
       setFraudCheckResults(prev => ({ ...prev, [proposalId]: result.analysis || result }));
     } catch (err) {
-      console.error('Failed to check fraud:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to check fraud:', err);
+      }
       showToast('Failed to check fraud risk.', 'error');
     } finally {
       setCheckingFraud(null);

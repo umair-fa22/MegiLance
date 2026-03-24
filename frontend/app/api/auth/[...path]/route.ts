@@ -47,7 +47,9 @@ async function handler(request: NextRequest) {
       headers: responseHeaders,
     });
   } catch (error) {
-    console.error('Auth proxy error:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Auth proxy error:', error);
+    }
     return NextResponse.json(
       { detail: 'Backend service unavailable', error: String(error) },
       { status: 503 }

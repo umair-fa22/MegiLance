@@ -12,7 +12,9 @@ export default function MessagesError({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error('Messages error:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Messages error:', error);
+    }
   }, [error]);
 
   return (

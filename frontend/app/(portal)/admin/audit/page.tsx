@@ -96,7 +96,9 @@ export default function AuditTrailPage() {
       setTotalPages((logsRes as any)?.total_pages || 1);
       setStats(statsRes as any);
     } catch (err) {
-      console.error('Failed to load audit logs:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load audit logs:', err);
+      }
     } finally {
       setLoading(false);
     }
@@ -112,7 +114,9 @@ export default function AuditTrailPage() {
       a.click();
       URL.revokeObjectURL(url);
     } catch (err) {
-      console.error('Failed to export logs:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to export logs:', err);
+      }
       showToast('Failed to export audit logs', 'error');
     }
   };

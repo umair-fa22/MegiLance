@@ -84,7 +84,9 @@ const Search: React.FC = () => {
             date: p.created_at || new Date().toISOString(),
           })));
         } catch (err) {
-          console.error('Project search failed', err);
+          if (process.env.NODE_ENV === 'development') {
+            console.error('Project search failed', err);
+          }
         }
       }
 
@@ -101,7 +103,9 @@ const Search: React.FC = () => {
             date: u.created_at || new Date().toISOString(),
           })));
         } catch (err) {
-          console.error('Freelancer search failed', err);
+          if (process.env.NODE_ENV === 'development') {
+            console.error('Freelancer search failed', err);
+          }
         }
       }
 
@@ -112,7 +116,9 @@ const Search: React.FC = () => {
         // Request was cancelled, ignore
         return;
       }
-      console.error('Search error:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Search error:', error);
+      }
       notify({ title: 'Search Error', description: 'Failed to fetch results. Please try again.', variant: 'danger' });
     } finally {
       setLoading(false);

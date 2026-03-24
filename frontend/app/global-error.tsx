@@ -99,7 +99,9 @@ const ErrorContent = ({ error, reset }: GlobalErrorProps) => {
 export default function GlobalError({ error, reset }: GlobalErrorProps) {
   useEffect(() => {
     // Log error to monitoring service
-    console.error('Global error:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Global error:', error);
+    }
     
     // In production, send to error tracking service (Sentry, etc.)
     if (process.env.NODE_ENV === 'production') {

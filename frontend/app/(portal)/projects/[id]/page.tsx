@@ -41,7 +41,9 @@ export default function ProjectDetailsPage() {
       setProject(projectData);
       setUser(userData);
     } catch (error) {
-      console.error('Failed to load data:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load data:', error);
+      }
     } finally {
       setLoading(false);
     }

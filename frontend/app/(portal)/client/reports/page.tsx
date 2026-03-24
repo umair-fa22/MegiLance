@@ -59,7 +59,9 @@ export default function ClientReportsPage() {
         
         setSpendingData(monthlySpending.spending || []);
       } catch (err) {
-        console.error('Failed to fetch reports:', err);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Failed to fetch reports:', err);
+        }
       } finally {
         setLoading(false);
       }

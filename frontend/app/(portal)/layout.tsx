@@ -51,7 +51,9 @@ export default function PortalLayout({ children }: Readonly<{ children: React.Re
         lastVerified.current = now;
         setIsAuthenticated(true);
       } catch (error) {
-        console.error('Auth check failed:', error);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Auth check failed:', error);
+        }
         clearAuthData();
         router.replace('/login');
       }

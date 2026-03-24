@@ -139,7 +139,9 @@ export default function TeamsPage() {
       setMembers(membersData);
       setInvites(invitesData);
     } catch (error) {
-      console.error('Failed to load team data:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load team data:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -194,7 +196,9 @@ export default function TeamsPage() {
         showToast(`${succeeded} sent, ${failed} failed`, failed > succeeded ? 'error' : 'success');
       }
     } catch (error) {
-      console.error('Failed to send invites:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to send invites:', error);
+      }
       showToast('Failed to send invites', 'error');
     } finally {
       setInviteSending(false);
@@ -227,7 +231,9 @@ export default function TeamsPage() {
       loadTeamData();
       showToast('Role updated successfully!', 'success');
     } catch (error) {
-      console.error('Failed to update role:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to update role:', error);
+      }
       showToast('Failed to update role', 'error');
     }
   };
@@ -241,7 +247,9 @@ export default function TeamsPage() {
       await teamsApi.resendInvite(inviteId);
       showToast('Invite resent successfully!', 'success');
     } catch (error) {
-      console.error('Failed to resend invite:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to resend invite:', error);
+      }
       showToast('Failed to resend invite', 'error');
     }
   };
@@ -271,7 +279,9 @@ export default function TeamsPage() {
       }
       loadTeamData();
     } catch (error) {
-      console.error('Action failed:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Action failed:', error);
+      }
       showToast('Action failed. Please try again.', 'error');
     } finally {
       setConfirmAction(null);

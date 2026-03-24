@@ -59,7 +59,9 @@ const EscrowManagement: React.FC = () => {
       const response = await escrowApi.getBalance() as EscrowBalance;
       setBalance(response);
     } catch (err: any) {
-      console.error('Failed to load balance:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load balance:', err);
+      }
     }
   };
 
@@ -68,7 +70,9 @@ const EscrowManagement: React.FC = () => {
       const response = await contractsApi.list({ status: 'active' }) as { contracts: Contract[] };
       setContracts(response.contracts);
     } catch (err: any) {
-      console.error('Failed to load contracts:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load contracts:', err);
+      }
     }
   };
 

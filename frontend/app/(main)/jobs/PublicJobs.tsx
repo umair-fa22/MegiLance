@@ -182,7 +182,9 @@ const PublicJobs: React.FC = () => {
       setProjects(items);
       setTotalCount(data?.total || items.length);
     } catch (err) {
-      console.error(err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error(err);
+      }
       setError('Failed to load jobs. Please try again later.');
     } finally {
       setLoading(false);

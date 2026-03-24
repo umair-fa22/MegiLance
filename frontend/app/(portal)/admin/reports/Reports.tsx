@@ -74,7 +74,9 @@ export default function AdminReportsPage() {
       }
       setMonthlyData(months);
     } catch (err) {
-      console.error('Failed to load reports:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load reports:', err);
+      }
       setError('Unable to load report data.');
     } finally {
       setLoading(false);

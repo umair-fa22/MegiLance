@@ -190,7 +190,9 @@ const AnalyticsDashboard: React.FC = () => {
         });
       }
     } catch (error) {
-      console.error('Error fetching analytics:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Error fetching analytics:', error);
+      }
     } finally {
       setLoading(false);
     }

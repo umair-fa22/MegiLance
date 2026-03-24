@@ -88,7 +88,9 @@ const Profile: React.FC = () => {
       // Fetch user's projects
       await fetchUserProjects();
     } catch (err: any) {
-      console.error('Failed to load profile:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load profile:', err);
+      }
       if (err.message.includes('401')) {
         setError('Session expired. Please log in again.');
       } else {
@@ -120,7 +122,9 @@ const Profile: React.FC = () => {
       }));
       setProjects(mappedProjects);
     } catch (err) {
-      console.error('Failed to load projects:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load projects:', err);
+      }
     }
   };
 

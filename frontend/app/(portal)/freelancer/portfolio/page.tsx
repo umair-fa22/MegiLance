@@ -120,7 +120,9 @@ export default function PortfolioShowcasePage() {
       setItems(itemsRes.items || []);
       setSettings(settingsRes);
     } catch (error) {
-      console.error('Failed to load portfolio:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load portfolio:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -187,7 +189,9 @@ export default function PortfolioShowcasePage() {
         )
       );
     } catch (error) {
-      console.error('Failed to like item:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to like item:', error);
+      }
     }
   };
 

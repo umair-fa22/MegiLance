@@ -13,7 +13,9 @@ export async function GET() {
     const data = JSON.parse(fileContents);
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Error reading messages data:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error reading messages data:', error);
+    }
     return new NextResponse('Error fetching messages data.', { status: 500 });
   }
 }

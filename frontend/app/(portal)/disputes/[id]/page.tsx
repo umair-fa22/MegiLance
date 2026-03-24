@@ -63,7 +63,9 @@ const UserDisputeDetailsPage: React.FC = () => {
       const data = await (api.disputes as any).get?.(Number(params.id));
       setDispute(data);
     } catch (err) {
-      console.error('Failed to fetch dispute:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to fetch dispute:', err);
+      }
       setError('Failed to load dispute details');
     } finally {
       setLoading(false);
@@ -84,7 +86,9 @@ const UserDisputeDetailsPage: React.FC = () => {
       toaster.notify({ title: 'Success', description: 'Evidence uploaded successfully', variant: 'success' });
       fetchDispute(); // Refresh data
     } catch (err: any) {
-      console.error('Failed to upload evidence:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to upload evidence:', err);
+      }
       toaster.notify({ title: 'Error', description: err.message || 'Failed to upload evidence', variant: 'error' });
     } finally {
       setUploading(false);

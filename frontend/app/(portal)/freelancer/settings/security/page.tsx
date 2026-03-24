@@ -77,7 +77,9 @@ export default function SecuritySettingsPage() {
       const statusRes = await twoFactorApi.getStatus().catch(() => ({ enabled: false }));
       setTwoFAStatus(statusRes as TwoFactorStatus);
     } catch (error) {
-      console.error('Failed to load security data:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load security data:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -93,7 +95,9 @@ export default function SecuritySettingsPage() {
       }
       setShowSetup(true);
     } catch (error) {
-      console.error('Failed to setup 2FA:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to setup 2FA:', error);
+      }
       showToast('Failed to setup 2FA', 'error');
     }
   };
@@ -110,7 +114,9 @@ export default function SecuritySettingsPage() {
       }
       showToast('Two-factor authentication enabled!');
     } catch (error) {
-      console.error('Failed to verify 2FA:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to verify 2FA:', error);
+      }
       showToast('Invalid verification code', 'error');
     }
   };
@@ -122,7 +128,9 @@ export default function SecuritySettingsPage() {
       setTwoFAStatus({ enabled: false });
       showToast('Two-factor authentication disabled.');
     } catch (error) {
-      console.error('Failed to disable 2FA:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to disable 2FA:', error);
+      }
       showToast('Failed to disable 2FA.', 'error');
     }
   };
@@ -135,7 +143,9 @@ export default function SecuritySettingsPage() {
       setShowBackupCodes(true);
       showToast('Backup codes regenerated!');
     } catch (error) {
-      console.error('Failed to regenerate backup codes:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to regenerate backup codes:', error);
+      }
       showToast('Failed to regenerate backup codes.', 'error');
     }
   };

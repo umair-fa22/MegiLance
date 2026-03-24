@@ -59,7 +59,9 @@ const TagsManagement: React.FC = () => {
       const response = await tagsApi.getPopular() as { tags: Tag[] };
       setPopularTags(response.tags);
     } catch (err: any) {
-      console.error('Failed to load popular tags:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load popular tags:', err);
+      }
     }
   };
 

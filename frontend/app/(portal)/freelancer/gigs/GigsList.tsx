@@ -65,7 +65,9 @@ const GigsList: React.FC = () => {
         const items = data as any;
         setGigs(Array.isArray(items) ? items : items?.items || items?.gigs || []);
       } catch (error) {
-        console.error('Failed to fetch gigs:', error);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Failed to fetch gigs:', error);
+        }
         setGigs([]);
       } finally {
         setIsLoading(false);

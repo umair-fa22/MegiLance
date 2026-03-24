@@ -124,7 +124,9 @@ function AuthCallbackPage() {
           throw new Error(response.error || 'Authentication failed');
         }
       } catch (err: any) {
-        console.error('Social auth error:', err);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Social auth error:', err);
+        }
         setStatus('error');
         setMessage(err.message || 'Authentication failed. Please try again.');
         showToast(err.message || 'Authentication failed', 'error');

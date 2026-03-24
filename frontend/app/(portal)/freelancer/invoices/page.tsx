@@ -99,7 +99,9 @@ export default function InvoicesPage() {
       const overdue = invoiceData.filter(inv => inv.status === 'overdue').reduce((sum, inv) => sum + inv.amount, 0);
       setStats({ total, paid, pending, overdue });
     } catch (error) {
-      console.error('Failed to load invoices:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load invoices:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -127,7 +129,9 @@ export default function InvoicesPage() {
       showToast('Invoice created successfully!', 'success');
       loadInvoices();
     } catch (error) {
-      console.error('Failed to create invoice:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to create invoice:', error);
+      }
       showToast('Failed to create invoice', 'error');
     }
   };
@@ -138,7 +142,9 @@ export default function InvoicesPage() {
       showToast('Invoice sent successfully!', 'success');
       loadInvoices();
     } catch (error) {
-      console.error('Failed to send invoice:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to send invoice:', error);
+      }
       showToast('Failed to send invoice', 'error');
     }
   };
@@ -150,7 +156,9 @@ export default function InvoicesPage() {
       showToast('Invoice deleted', 'success');
       loadInvoices();
     } catch (error) {
-      console.error('Failed to delete invoice:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to delete invoice:', error);
+      }
       showToast('Failed to delete invoice', 'error');
     } finally {
       setDeleteTargetId(null);

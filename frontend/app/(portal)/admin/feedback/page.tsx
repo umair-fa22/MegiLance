@@ -113,7 +113,9 @@ export default function AdminFeedbackPage() {
       setFeedbackItems(transformedFeedback);
       setStats(calculatedStats);
     } catch (error) {
-      console.error('Failed to load feedback', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load feedback', error);
+      }
     } finally {
       setLoading(false);
     }

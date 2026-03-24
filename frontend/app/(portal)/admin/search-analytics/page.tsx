@@ -75,7 +75,9 @@ export default function SearchAnalyticsPage() {
       setTrendingSearches(trendingRes.status === 'fulfilled' ? ((trendingRes.value as any) || []) : []);
       setZeroResults(zeroRes.status === 'fulfilled' ? ((zeroRes.value as any) || []) : []);
     } catch (err) {
-      console.error('Failed to load search analytics:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load search analytics:', err);
+      }
     } finally {
       setLoading(false);
     }

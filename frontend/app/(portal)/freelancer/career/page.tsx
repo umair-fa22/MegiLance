@@ -100,7 +100,9 @@ export default function CareerPage() {
       setMentors(Array.isArray(mentorsData) ? mentorsData : []);
       setRecommendations(recsData);
     } catch (error) {
-      console.error('Failed to load career data:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load career data:', error);
+      }
     } finally {
       setLoading(false);
     }

@@ -57,7 +57,9 @@ const AccountSettingsPage = () => {
         setBio(user.bio || '');
         setEmail(user.email || '');
       } catch (error) {
-        console.error('Failed to fetch profile', error);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Failed to fetch profile', error);
+        }
         toaster.notify({ title: 'Error', description: 'Failed to load profile', variant: 'danger' });
       } finally {
         setIsLoading(false);
@@ -82,7 +84,9 @@ const AccountSettingsPage = () => {
         
         toaster.notify({ title: 'Saved', description: `${section} settings updated successfully!`, variant: 'success' });
     } catch (error) {
-        console.error('Failed to update profile', error);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Failed to update profile', error);
+        }
         toaster.notify({ title: 'Error', description: 'Failed to update settings', variant: 'danger' });
     } finally {
         setIsSaving(false);

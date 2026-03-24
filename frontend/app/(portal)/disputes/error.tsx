@@ -12,7 +12,9 @@ export default function DisputesError({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error('Disputes error:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Disputes error:', error);
+    }
   }, [error]);
 
   return (

@@ -169,7 +169,9 @@ export default function CommunicationPage() {
         setAnnouncements([]);
       }
     } catch (error) {
-      console.error('Failed to load communication data:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load communication data:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -200,7 +202,9 @@ export default function CommunicationPage() {
       setComposeData({ to: '', subject: '', content: '' });
       showToast('Message sent successfully!', 'success');
     } catch (error) {
-      console.error('Failed to send message:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to send message:', error);
+      }
       showToast('Failed to send message', 'error');
     }
   };

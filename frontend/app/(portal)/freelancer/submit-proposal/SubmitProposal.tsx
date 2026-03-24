@@ -189,7 +189,9 @@ const SubmitProposal: React.FC = () => {
       
       setSubmissionState('success');
     } catch (err) {
-      console.error('Proposal submission error:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Proposal submission error:', err);
+      }
       setErrorMessage(getErrorMessage(err));
       setSubmissionState('error');
     } finally {

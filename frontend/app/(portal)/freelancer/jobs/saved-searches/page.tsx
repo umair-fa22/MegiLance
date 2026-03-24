@@ -101,7 +101,9 @@ export default function SavedSearchesPage() {
       })));
     } catch (err: any) {
       if (err?.name !== 'AbortError') {
-        console.error('Failed to load saved searches:', err);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Failed to load saved searches:', err);
+        }
         showToast('Failed to load saved searches', 'error');
         setSearches([]);
       }

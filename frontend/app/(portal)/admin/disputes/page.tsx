@@ -63,7 +63,9 @@ export default function AdminDisputesPage() {
       const data = await api.disputes.list(filters) as any;
       setDisputes(Array.isArray(data) ? data : data.items || []);
     } catch (err) {
-      console.error('Failed to fetch disputes:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to fetch disputes:', err);
+      }
     } finally {
       setLoading(false);
     }

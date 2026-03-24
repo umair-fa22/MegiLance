@@ -28,14 +28,18 @@ export async function GET(request: NextRequest) {
 
     if (!backendResponse.ok) {
       const errorData = await backendResponse.text();
-      console.error('Backend error:', errorData);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Backend error:', errorData);
+      }
       return new NextResponse(errorData, { status: backendResponse.status });
     }
 
     const projects = await backendResponse.json();
     return NextResponse.json(projects);
   } catch (error) {
-    console.error('Error fetching projects:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error fetching projects:', error);
+    }
     return new NextResponse('Error fetching projects data.', { status: 500 });
   }
 }
@@ -65,7 +69,9 @@ export async function POST(request: NextRequest) {
 
     if (!backendResponse.ok) {
       const errorText = await backendResponse.text();
-      console.error('Backend error creating project:', errorText);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Backend error creating project:', errorText);
+      }
       try {
         const errorData = JSON.parse(errorText);
         return NextResponse.json(errorData, { status: backendResponse.status });
@@ -77,7 +83,9 @@ export async function POST(request: NextRequest) {
     const project = await backendResponse.json();
     return NextResponse.json(project, { status: 201 });
   } catch (error) {
-    console.error('Error creating project:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error creating project:', error);
+    }
     return NextResponse.json(
       { detail: 'Failed to create project' },
       { status: 500 }

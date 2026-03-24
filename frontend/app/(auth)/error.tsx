@@ -25,7 +25,9 @@ export default function AuthError({
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   useEffect(() => {
-    console.error('Auth error:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Auth error:', error);
+    }
   }, [error]);
 
   return (

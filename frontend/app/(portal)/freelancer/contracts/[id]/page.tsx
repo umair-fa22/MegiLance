@@ -99,7 +99,9 @@ const ContractDetailsPage: React.FC = () => {
       
       setContract(contractData);
     } catch (err) {
-      console.error('Failed to fetch contract:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to fetch contract:', err);
+      }
       setError(err instanceof Error ? err.message : 'Failed to load contract');
     } finally {
       setLoading(false);

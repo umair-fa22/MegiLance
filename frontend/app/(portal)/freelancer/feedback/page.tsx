@@ -89,7 +89,9 @@ export default function FeedbackPage() {
       const response = await userFeedbackApi.list(params) as any;
       setFeedbackItems(response.items || []);
     } catch (error) {
-      console.error('Failed to load feedback:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load feedback:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -110,7 +112,9 @@ export default function FeedbackPage() {
       });
       loadFeedback();
     } catch (error) {
-      console.error('Failed to submit feedback:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to submit feedback:', error);
+      }
     } finally {
       setSubmitting(false);
     }
@@ -135,7 +139,9 @@ export default function FeedbackPage() {
         )
       );
     } catch (error) {
-      console.error('Failed to vote:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to vote:', error);
+      }
     }
   };
 

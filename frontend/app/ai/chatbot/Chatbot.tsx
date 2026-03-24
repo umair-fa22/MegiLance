@@ -88,7 +88,9 @@ const Chatbot: React.FC = () => {
             }
         }
       } catch (err) {
-        console.error("Failed to start conversation", err);
+        if (process.env.NODE_ENV === 'development') {
+          console.error("Failed to start conversation", err);
+        }
       }
     };
     startConversation();
@@ -164,7 +166,9 @@ const Chatbot: React.FC = () => {
             setMessages(prev => [...prev, botResponse]);
         }
     } catch (err) {
-        console.error("Failed to send message", err);
+        if (process.env.NODE_ENV === 'development') {
+          console.error("Failed to send message", err);
+        }
          const botResponse: Message = { 
             id: Date.now() + 1, 
             text: "Sorry, I'm having trouble connecting to the server.", 

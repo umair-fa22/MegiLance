@@ -189,7 +189,9 @@ export default function IntegrationsPage() {
       
       setIntegrations(merged);
     } catch (error) {
-      console.error('Failed to load integrations:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load integrations:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -207,7 +209,9 @@ export default function IntegrationsPage() {
         showToast(`${provider} connected successfully!`);
       }
     } catch (error) {
-      console.error('Failed to connect:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to connect:', error);
+      }
       showToast('Failed to connect integration.', 'error');
     } finally {
       setConnecting(null);
@@ -221,7 +225,9 @@ export default function IntegrationsPage() {
       loadIntegrations();
       showToast(`${integration.name} disconnected.`);
     } catch (error) {
-      console.error('Failed to disconnect:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to disconnect:', error);
+      }
       showToast('Failed to disconnect integration.', 'error');
     }
   };
@@ -238,7 +244,9 @@ export default function IntegrationsPage() {
       );
       showToast(`Auto-sync ${!integration.sync_enabled ? 'enabled' : 'disabled'}.`);
     } catch (error) {
-      console.error('Failed to toggle sync:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to toggle sync:', error);
+      }
       showToast('Failed to toggle sync.', 'error');
     }
   };
@@ -249,7 +257,9 @@ export default function IntegrationsPage() {
       loadIntegrations();
       showToast('Sync completed!');
     } catch (error) {
-      console.error('Failed to sync:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to sync:', error);
+      }
       showToast('Sync failed. Please try again.', 'error');
     }
   };

@@ -72,7 +72,9 @@ const JobDetails: React.FC<JobDetailsProps> = ({ jobId }) => {
       const data = await api.projects.get(parseInt(jobId));
       setJob(data as Project);
     } catch (err) {
-      console.error(err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error(err);
+      }
       setError('Failed to load job details.');
     } finally {
       setLoading(false);

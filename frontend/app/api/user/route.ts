@@ -12,7 +12,9 @@ export async function GET() {
     const user = JSON.parse(fileContents);
     return NextResponse.json(user);
   } catch (error) {
-    console.error('Error reading user data:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error reading user data:', error);
+    }
     return new NextResponse('Error fetching user data.', { status: 500 });
   }
 }

@@ -86,7 +86,9 @@ export default function BlogPostForm({ initialData, onSubmit, isEditing = false 
       await onSubmit(formData);
       router.push('/admin/blog');
     } catch (error) {
-      console.error('Error submitting form:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Error submitting form:', error);
+      }
       showToast('Failed to save post. Please try again.', 'error');
     } finally {
       setLoading(false);

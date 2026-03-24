@@ -13,7 +13,9 @@ export async function GET() {
     const data = JSON.parse(fileContents);
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Error reading dashboard data:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error reading dashboard data:', error);
+    }
     return new NextResponse('Error fetching dashboard data.', { status: 500 });
   }
 }

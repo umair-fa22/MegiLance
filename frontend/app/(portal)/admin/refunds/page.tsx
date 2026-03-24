@@ -58,7 +58,9 @@ export default function AdminRefundsPage() {
         contract_id: r.contract_id
       })));
     } catch (err) {
-      console.error('Failed to fetch refunds:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to fetch refunds:', err);
+      }
     } finally {
       setLoading(false);
     }

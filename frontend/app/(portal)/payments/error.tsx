@@ -12,7 +12,9 @@ export default function PaymentsError({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error('Payments error:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Payments error:', error);
+    }
   }, [error]);
 
   return (

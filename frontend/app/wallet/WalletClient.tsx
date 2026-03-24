@@ -123,7 +123,9 @@ export default function WalletClient() {
         setSelectedMethod('default');
       }
     } catch (err) {
-      console.error('[WalletClient] Failed to load wallet data:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('[WalletClient] Failed to load wallet data:', err);
+      }
       // Keep empty state - user sees "no transactions" etc.
     } finally {
       setLoading(false);

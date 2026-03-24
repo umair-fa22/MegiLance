@@ -106,7 +106,9 @@ export default function CompliancePage() {
         setReports(reportsRes.value as any);
       }
     } catch (error) {
-      console.error('Failed to load compliance data', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load compliance data', error);
+      }
     } finally {
       setLoading(false);
     }

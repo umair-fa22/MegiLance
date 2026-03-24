@@ -162,7 +162,9 @@ const SupportPage: React.FC = () => {
       loadTickets();
       setTimeout(() => setSubmitSuccess(false), 5000);
     } catch (error) {
-      console.error('Failed to submit ticket:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to submit ticket:', error);
+      }
       setSubmitError(true);
       setTimeout(() => setSubmitError(false), 5000);
     } finally {

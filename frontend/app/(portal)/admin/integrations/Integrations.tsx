@@ -96,7 +96,9 @@ export default function IntegrationsPage() {
         })));
       }
     } catch (err) {
-      console.error('Failed to load integrations:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load integrations:', err);
+      }
       setIntegrations(DEFAULT_INTEGRATIONS);
     } finally {
       setLoading(false);
@@ -108,7 +110,9 @@ export default function IntegrationsPage() {
       await integrationsApi.connect(integration.type);
       setIntegrations(prev => prev.map(i => i.type === integration.type ? { ...i, connected: true } : i));
     } catch (err) {
-      console.error('Connect failed:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Connect failed:', err);
+      }
     }
   };
 
@@ -118,7 +122,9 @@ export default function IntegrationsPage() {
       await integrationsApi.disconnect(integration.id ?? integration.type);
       setIntegrations(prev => prev.map(i => i.type === integration.type ? { ...i, connected: false } : i));
     } catch (err) {
-      console.error('Disconnect failed:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Disconnect failed:', err);
+      }
     }
   };
 

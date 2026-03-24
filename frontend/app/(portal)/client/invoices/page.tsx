@@ -73,7 +73,9 @@ export default function ClientInvoicesPage() {
         
         setInvoices(mappedInvoices);
       } catch (err: any) {
-        console.error('Failed to fetch invoices:', err);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Failed to fetch invoices:', err);
+        }
         setError(err.message || 'Failed to load invoices');
       } finally {
         setLoading(false);

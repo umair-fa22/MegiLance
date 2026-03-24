@@ -167,7 +167,9 @@ async function getFreelancers(skillSlug: string, industrySlug: string) {
     if (!res.ok) return [];
     return await res.json();
   } catch (error) {
-    console.error('Failed to fetch freelancers:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Failed to fetch freelancers:', error);
+    }
     return [];
   }
 }

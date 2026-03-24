@@ -99,7 +99,9 @@ export default function ClientContractsPage() {
         setContracts(data);
         setError(null);
       } catch (error) {
-        console.error('Failed to load contracts', error);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Failed to load contracts', error);
+        }
         setError('Failed to load contracts. Please try again.');
       } finally {
         setLoading(false);

@@ -79,7 +79,9 @@ const BlogPage: React.FC = () => {
         const data = await blogApi.getAll(true);
         setPosts(data);
       } catch (error) {
-        console.error('[Blog] Failed to fetch posts:', error);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('[Blog] Failed to fetch posts:', error);
+        }
         setPosts([]);
       } finally {
         setLoading(false);

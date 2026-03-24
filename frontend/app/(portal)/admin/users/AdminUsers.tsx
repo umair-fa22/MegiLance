@@ -118,7 +118,9 @@ const AdminUsers: React.FC = () => {
         setTotalUsers(0);
       }
     } catch (err) {
-      console.error(err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error(err);
+      }
       setError('Failed to load users');
     } finally {
       setLoading(false);
@@ -184,7 +186,9 @@ const AdminUsers: React.FC = () => {
       setModal(null);
       showToast(`${selectedIds.length} user(s) ${kind === 'suspend' ? 'suspended' : 'restored'} successfully!`);
     } catch (err) {
-      console.error('Failed to update users', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to update users', err);
+      }
       showToast('Failed to update some users. Please try again.', 'error');
     }
   };

@@ -61,7 +61,9 @@ const JobAlertsPage: React.FC = () => {
       const data = await api.jobAlerts.getAll();
       setAlerts(data as JobAlert[]);
     } catch (error) {
-      console.error('Failed to fetch alerts:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to fetch alerts:', error);
+      }
       toaster.error('Failed to load job alerts. Please try again.');
     } finally {
       setIsLoading(false);
@@ -94,7 +96,9 @@ const JobAlertsPage: React.FC = () => {
       setFrequency('daily');
       setIsAiPowered(false);
     } catch (error) {
-      console.error('Failed to create alert:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to create alert:', error);
+      }
       toaster.error('Failed to create job alert.');
     } finally {
       setIsCreating(false);
@@ -108,7 +112,9 @@ const JobAlertsPage: React.FC = () => {
       setAlerts(alerts.filter(a => a.id !== alert.id));
       toaster.success('Job alert deleted.');
     } catch (error) {
-      console.error('Failed to delete alert:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to delete alert:', error);
+      }
       toaster.error('Failed to delete job alert.');
     }
   };

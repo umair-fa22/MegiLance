@@ -92,7 +92,9 @@ export default function SkillsAdminPage() {
         .sort((a, b) => a.name.localeCompare(b.name));
       setCategories(cats);
     } catch (error) {
-      console.error('Failed to load skills:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load skills:', error);
+      }
       showToast('Failed to load skills data', 'error');
     } finally {
       setLoading(false);

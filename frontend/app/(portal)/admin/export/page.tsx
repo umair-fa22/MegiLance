@@ -110,7 +110,9 @@ export default function DataExportPage() {
         is_default: t.is_default ?? false,
       })));
     } catch (error) {
-      console.error('Failed to load export data', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load export data', error);
+      }
       showToast('Failed to load export data', 'error');
     } finally {
       setLoading(false);
@@ -179,7 +181,9 @@ export default function DataExportPage() {
         pollRef.current = pollId;
       }
     } catch (err) {
-      console.error('Export failed', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Export failed', err);
+      }
       showToast('Export failed. Please try again.', 'error');
     } finally {
       setIsExporting(false);

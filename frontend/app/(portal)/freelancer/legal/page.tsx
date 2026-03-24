@@ -57,7 +57,9 @@ export default function LegalDocumentsPage() {
 
       setDocuments(documentsData);
     } catch (error) {
-      console.error('Failed to load documents:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load documents:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -79,7 +81,9 @@ export default function LegalDocumentsPage() {
       setSelectedDoc(null);
       loadDocuments();
     } catch (error) {
-      console.error('Failed to sign document:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to sign document:', error);
+      }
     } finally {
       setSigning(false);
     }
@@ -92,7 +96,9 @@ export default function LegalDocumentsPage() {
         window.open(url, '_blank');
       }
     } catch (error) {
-      console.error('Failed to download document:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to download document:', error);
+      }
     }
   };
 

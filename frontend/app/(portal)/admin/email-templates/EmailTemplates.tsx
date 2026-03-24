@@ -53,7 +53,9 @@ export default function EmailTemplatesPage() {
       const data = Array.isArray(res) ? res : (res as Record<string, unknown>).templates as EmailTemplate[] ?? [];
       setTemplates(data);
     } catch (err) {
-      console.error('Failed to load email templates:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load email templates:', err);
+      }
       setError('Unable to load email templates.');
     } finally {
       setLoading(false);
@@ -75,7 +77,9 @@ export default function EmailTemplatesPage() {
       await emailTemplatesApi.duplicate(t.id);
       await loadTemplates();
     } catch (err) {
-      console.error('Duplicate failed:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Duplicate failed:', err);
+      }
     }
   };
 
@@ -85,7 +89,9 @@ export default function EmailTemplatesPage() {
       await emailTemplatesApi.delete(t.id);
       setTemplates(prev => prev.filter(x => x.id !== t.id));
     } catch (err) {
-      console.error('Delete failed:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Delete failed:', err);
+      }
     }
   };
 

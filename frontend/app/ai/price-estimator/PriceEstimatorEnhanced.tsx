@@ -293,7 +293,9 @@ const PriceEstimatorEnhanced: React.FC = () => {
         if (aiRec) recommendation = aiRec.trim();
       }
     } catch (e) {
-      console.warn('AI recommendation failed, using fallback');
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('AI recommendation failed, using fallback');
+      }
     }
     
     return {

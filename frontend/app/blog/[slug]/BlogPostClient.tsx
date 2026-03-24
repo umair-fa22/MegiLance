@@ -48,7 +48,9 @@ const BlogPostClient: React.FC = () => {
           setRelatedPosts(related);
         }
       } catch (error) {
-        console.error('Failed to fetch post:', error);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Failed to fetch post:', error);
+        }
       } finally {
         setLoading(false);
       }

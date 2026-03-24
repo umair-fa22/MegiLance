@@ -48,7 +48,9 @@ const AdvancedSearch: React.FC = () => {
       const response = await searchApi.getTrending('projects') as { trending_searches: any[] };
       setTrending(response.trending_searches || []);
     } catch (err: any) {
-      console.error('Failed to load trending searches:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load trending searches:', err);
+      }
     }
   };
 
@@ -57,7 +59,9 @@ const AdvancedSearch: React.FC = () => {
       const response = await searchApi.autocomplete(query) as AutocompleteResult;
       setSuggestions(response.suggestions);
     } catch (err: any) {
-      console.error('Failed to load suggestions:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load suggestions:', err);
+      }
     }
   };
 

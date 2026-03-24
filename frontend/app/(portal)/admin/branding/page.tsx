@@ -93,7 +93,9 @@ export default function BrandingPage() {
         setSettings({ ...DEFAULT_SETTINGS, ...data });
       }
     } catch (err) {
-      console.error('Failed to load branding settings:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load branding settings:', err);
+      }
     } finally {
       setLoading(false);
     }
@@ -106,7 +108,9 @@ export default function BrandingPage() {
       setHasChanges(false);
       showToast('Branding settings saved!');
     } catch (err) {
-      console.error('Failed to save settings:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to save settings:', err);
+      }
       showToast('Failed to save settings', 'error');
     } finally {
       setSaving(false);

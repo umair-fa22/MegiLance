@@ -207,7 +207,9 @@ const PostJob: React.FC = () => {
       setSubmissionState('success');
       clearDraft();
     } catch (err) {
-      console.error('Job submission error:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Job submission error:', err);
+      }
       
       // Extract meaningful error message
       if (err instanceof APIError) {

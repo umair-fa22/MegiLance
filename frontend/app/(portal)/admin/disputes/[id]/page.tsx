@@ -71,7 +71,9 @@ const DisputeDetailsPage: React.FC = () => {
       const data = await api.disputes.get(Number(params.id)) as any;
       setDispute(data);
     } catch (err) {
-      console.error('Failed to fetch dispute:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to fetch dispute:', err);
+      }
       setError('Failed to load dispute details');
     } finally {
       setLoading(false);
@@ -94,7 +96,9 @@ const DisputeDetailsPage: React.FC = () => {
       toaster.notify({ title: 'Success', description: 'Dispute resolved successfully', variant: 'success' });
       fetchDispute(); // Refresh data
     } catch (err: any) {
-      console.error('Failed to resolve dispute:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to resolve dispute:', err);
+      }
       toaster.notify({ title: 'Error', description: err.message || 'Failed to resolve dispute', variant: 'error' });
     } finally {
       setSubmitting(false);

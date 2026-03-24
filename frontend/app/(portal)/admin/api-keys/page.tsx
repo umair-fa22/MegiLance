@@ -74,7 +74,9 @@ export default function ApiKeysPage() {
       const keysData: ApiKey[] = response?.keys || (Array.isArray(response) ? response : []);
       setApiKeys(keysData);
     } catch (error) {
-      console.error('Failed to load API keys:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load API keys:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -101,7 +103,9 @@ export default function ApiKeysPage() {
       
       loadApiKeys();
     } catch (error) {
-      console.error('Failed to create API key:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to create API key:', error);
+      }
       showToast('Failed to create API key', 'error');
     }
   };
@@ -113,7 +117,9 @@ export default function ApiKeysPage() {
       showToast('API key revoked');
       loadApiKeys();
     } catch (error) {
-      console.error('Failed to revoke API key:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to revoke API key:', error);
+      }
       showToast('Failed to revoke API key', 'error');
     }
   };

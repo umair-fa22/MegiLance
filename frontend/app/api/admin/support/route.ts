@@ -16,7 +16,9 @@ export async function GET() {
     
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Error reading admin support tickets data:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error reading admin support tickets data:', error);
+    }
     return new NextResponse('Error fetching admin support tickets data.', { status: 500 });
   }
 }

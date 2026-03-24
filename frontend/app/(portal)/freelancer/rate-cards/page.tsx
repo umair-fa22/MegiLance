@@ -76,7 +76,9 @@ export default function RateCardsPage() {
       const data = await rateCardsApi.getAll();
       setCards(data || []);
     } catch (err) {
-      console.error('Failed to load rate cards:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load rate cards:', err);
+      }
     } finally {
       setLoading(false);
     }
@@ -99,7 +101,9 @@ export default function RateCardsPage() {
       setEditingCard(null);
       loadCards();
     } catch (err) {
-      console.error('Failed to save rate card:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to save rate card:', err);
+      }
       showToast('Failed to save rate card.', 'error');
     }
   };
@@ -111,7 +115,9 @@ export default function RateCardsPage() {
       loadCards();
       showToast('Rate card deleted.');
     } catch (err) {
-      console.error('Failed to delete rate card:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to delete rate card:', err);
+      }
       showToast('Failed to delete rate card.', 'error');
     }
   };
@@ -121,7 +127,9 @@ export default function RateCardsPage() {
       await rateCardsApi.update(card.id, { is_active: !card.is_active });
       loadCards();
     } catch (err) {
-      console.error('Failed to toggle card:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to toggle card:', err);
+      }
     }
   };
 
@@ -130,7 +138,9 @@ export default function RateCardsPage() {
       await rateCardsApi.update(card.id, { is_featured: !card.is_featured });
       loadCards();
     } catch (err) {
-      console.error('Failed to toggle featured:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to toggle featured:', err);
+      }
     }
   };
 

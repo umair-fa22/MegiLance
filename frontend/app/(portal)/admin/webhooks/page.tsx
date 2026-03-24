@@ -94,7 +94,9 @@ export default function WebhooksPage() {
       const webhookData: Webhook[] = response?.webhooks || (Array.isArray(response) ? response : []);
       setWebhooks(webhookData);
     } catch (error) {
-      console.error('Failed to load webhooks:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load webhooks:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -113,7 +115,9 @@ export default function WebhooksPage() {
       setNewWebhook({ name: '', url: '', events: [], secret: '' });
       loadWebhooks();
     } catch (error) {
-      console.error('Failed to create webhook:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to create webhook:', error);
+      }
     }
   };
 
@@ -123,7 +127,9 @@ export default function WebhooksPage() {
       await webhooksApi.update(webhookId, { status: newStatus });
       loadWebhooks();
     } catch (error) {
-      console.error('Failed to toggle webhook:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to toggle webhook:', error);
+      }
     }
   };
 
@@ -134,7 +140,9 @@ export default function WebhooksPage() {
       showToast('Webhook deleted');
       loadWebhooks();
     } catch (error) {
-      console.error('Failed to delete webhook:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to delete webhook:', error);
+      }
       showToast('Failed to delete webhook', 'error');
     }
   };
@@ -144,7 +152,9 @@ export default function WebhooksPage() {
       await webhooksApi.test(webhookId);
       showToast('Test webhook sent!');
     } catch (error) {
-      console.error('Failed to test webhook:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to test webhook:', error);
+      }
       showToast('Failed to send test webhook', 'error');
     }
   };
@@ -158,7 +168,9 @@ export default function WebhooksPage() {
       setDeliveryLogs(logsData);
       setShowLogsModal(true);
     } catch (error) {
-      console.error('Failed to load logs:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load logs:', error);
+      }
     }
   };
 

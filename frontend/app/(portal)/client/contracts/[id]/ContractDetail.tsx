@@ -87,7 +87,9 @@ export default function ContractDetail({ contractId }: ContractDetailProps) {
         const data = await contractsApi.get(contractId);
         setContract(data);
       } catch (err) {
-        console.error('Failed to fetch contract:', err);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Failed to fetch contract:', err);
+        }
         setError('Failed to load contract details.');
       } finally {
         setLoading(false);
@@ -108,7 +110,9 @@ export default function ContractDetail({ contractId }: ContractDetailProps) {
       const data = await contractsApi.get(contractId);
       setContract(data);
     } catch (err) {
-      console.error(`Failed to ${action} milestone:`, err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error(`Failed to ${action} milestone:`, err);
+      }
     } finally {
       setActionLoading(null);
     }

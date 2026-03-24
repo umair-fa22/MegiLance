@@ -170,7 +170,9 @@ export default function MetricsDashboardPage() {
 
       if (silent) showToast('Metrics refreshed');
     } catch (error) {
-      console.error('Failed to load metrics:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load metrics:', error);
+      }
       if (silent) showToast('Failed to refresh metrics', 'error');
     } finally {
       setLoading(false);

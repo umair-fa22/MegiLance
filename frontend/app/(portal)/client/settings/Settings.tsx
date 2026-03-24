@@ -53,7 +53,9 @@ const Settings: React.FC = () => {
         setBio(user.bio || '');
         // Set other preferences if available in user object
       } catch (err) {
-        console.error(err);
+        if (process.env.NODE_ENV === 'development') {
+          console.error(err);
+        }
         setError('Unable to load your profile. Please check your connection and refresh the page.');
       } finally {
         setLoading(false);
@@ -77,7 +79,9 @@ const Settings: React.FC = () => {
       setSuccessMessage('Profile updated successfully');
       setTimeout(() => setSuccessMessage(null), 3000);
     } catch (err) {
-      console.error(err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error(err);
+      }
       setError('Could not save your changes. Please try again.');
     } finally {
       setSaving(false);

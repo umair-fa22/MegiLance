@@ -31,7 +31,9 @@ async function readDb(): Promise<Conversation[]> {
     if (error instanceof Error && 'code' in error && error.code === 'ENOENT') {
       return [];
     }
-    console.error('Failed to read or parse messages database:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Failed to read or parse messages database:', error);
+    }
     throw new Error('Failed to read messages database.');
   }
 }
@@ -57,7 +59,9 @@ export async function GET(
 
     return NextResponse.json(conversation);
   } catch (error) {
-    console.error('API Error:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('API Error:', error);
+    }
     return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -67,7 +71,9 @@ async function writeDb(data: Conversation[]): Promise<void> {
   try {
     await fs.writeFile(dbPath, JSON.stringify(data, null, 2), 'utf-8');
   } catch (error) {
-    console.error('Failed to write to messages database:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Failed to write to messages database:', error);
+    }
     throw new Error('Failed to write to messages database.');
   }
 }
@@ -115,7 +121,9 @@ export async function POST(
 
     return NextResponse.json(updatedConversation);
   } catch (error) {
-    console.error('API POST Error:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('API POST Error:', error);
+    }
     return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
   }
 }

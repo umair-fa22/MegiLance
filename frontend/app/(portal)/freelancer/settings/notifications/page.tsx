@@ -50,7 +50,9 @@ const NotificationSettingsPage = () => {
         });
       }
     } catch (error) {
-      console.error('Failed to load notification settings:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load notification settings:', error);
+      }
     } finally {
       setIsLoading(false);
     }

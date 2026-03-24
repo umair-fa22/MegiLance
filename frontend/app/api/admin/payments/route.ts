@@ -16,7 +16,9 @@ export async function GET() {
     
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Error reading admin payments data:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error reading admin payments data:', error);
+    }
     return new NextResponse('Error fetching admin payments data.', { status: 500 });
   }
 }

@@ -54,7 +54,9 @@ export function exportData(format: ExportFormat, headers: string[], rows: Row[],
   // For now, XLSX/PDF fall back to CSV to keep the app fully runnable without extra deps.
   if (format === 'csv') return exportCSV(headers, rows, filename, options);
   const ext = options.extensionOverride || (format === 'xlsx' ? '.xlsx' : '.pdf');
-  console.warn(`[exportData] ${format.toUpperCase()} fallback: exporting CSV until libraries are added.`);
+  if (process.env.NODE_ENV === 'development') {
+    console.warn(`[exportData] ${format.toUpperCase()} fallback: exporting CSV until libraries are added.`);
+  }
   const name = filename.endsWith(ext) ? filename.replace(ext, '') : filename;
   return exportCSV(headers, rows, name, options);
 }

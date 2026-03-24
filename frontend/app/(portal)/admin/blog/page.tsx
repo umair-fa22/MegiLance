@@ -44,7 +44,9 @@ export default function AdminBlogPage() {
       const data = await blogApi.getAll();
       setPosts(data);
     } catch (error) {
-      console.error('Failed to fetch posts:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to fetch posts:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -56,7 +58,9 @@ export default function AdminBlogPage() {
       setDeleteTargetId(null);
       fetchPosts();
     } catch (error) {
-      console.error('Failed to delete post:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to delete post:', error);
+      }
     }
   };
 

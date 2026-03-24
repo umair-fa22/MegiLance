@@ -147,7 +147,9 @@ export default function VerificationPage() {
       setVerifications(defaultVerifications);
       setTiers(defaultTiers);
     } catch (error) {
-      console.error('Failed to fetch verification data:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to fetch verification data:', error);
+      }
       setVerifications([]);
       setTiers([]);
     } finally {

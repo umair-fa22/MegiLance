@@ -37,7 +37,9 @@ export async function GET(request: NextRequest) {
       transactions: formattedTransactions,
     });
   } catch (error) {
-    console.error('Error fetching payments data:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error fetching payments data:', error);
+    }
     // Return empty data instead of error to prevent UI crashes
     return NextResponse.json({
       balance: '$0.00',

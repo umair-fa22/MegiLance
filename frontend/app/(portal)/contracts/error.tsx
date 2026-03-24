@@ -12,7 +12,9 @@ export default function ContractsError({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error('Contracts error:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Contracts error:', error);
+    }
   }, [error]);
 
   return (

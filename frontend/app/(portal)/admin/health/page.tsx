@@ -43,7 +43,9 @@ export default function AdminHealthPage() {
         { name: 'Email Service', status: 'healthy', latency: 200, lastCheck: new Date().toISOString(), uptime: 99.8 },
       ]);
     } catch (err) {
-      console.error('Health check failed:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Health check failed:', err);
+      }
     } finally {
       setLoading(false);
       setRefreshing(false);

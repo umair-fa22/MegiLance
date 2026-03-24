@@ -121,7 +121,9 @@ export default function TimeEntriesPage() {
       const running = (entriesRes.items || []).find((e: TimeEntry) => e.status === 'running');
       if (running) setActiveTimer(running);
     } catch (error) {
-      console.error('Failed to load time entries:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load time entries:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -143,7 +145,9 @@ export default function TimeEntriesPage() {
       setNewEntry({ project_id: '', task_description: '', billable: true, notes: '', tags: [] });
       loadData();
     } catch (error) {
-      console.error('Failed to start timer:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to start timer:', error);
+      }
     }
   };
 
@@ -155,7 +159,9 @@ export default function TimeEntriesPage() {
       setActiveTimer(null);
       loadData();
     } catch (error) {
-      console.error('Failed to stop timer:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to stop timer:', error);
+      }
     }
   };
 
@@ -167,7 +173,9 @@ export default function TimeEntriesPage() {
       setActiveTimer(prev => prev ? { ...prev, status: 'paused' } : null);
       loadData();
     } catch (error) {
-      console.error('Failed to pause timer:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to pause timer:', error);
+      }
     }
   };
 
@@ -177,7 +185,9 @@ export default function TimeEntriesPage() {
       setActiveTimer(response);
       loadData();
     } catch (error) {
-      console.error('Failed to resume timer:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to resume timer:', error);
+      }
     }
   };
 
@@ -187,7 +197,9 @@ export default function TimeEntriesPage() {
       setDeleteTargetId(null);
       loadData();
     } catch (error) {
-      console.error('Failed to delete entry:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to delete entry:', error);
+      }
     }
   };
 

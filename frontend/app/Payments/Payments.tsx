@@ -74,7 +74,9 @@ const Payments: React.FC = () => {
         setTransactions(mapped);
       }
     } catch (err) {
-      console.error('[Payments] Failed to load data:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('[Payments] Failed to load data:', err);
+      }
     } finally {
       setLoading(false);
     }

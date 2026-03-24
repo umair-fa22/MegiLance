@@ -63,7 +63,9 @@ export default function AdminCategoriesPage() {
       // Auto-expand top-level
       setExpandedIds(new Set(catList.map((c: Category) => c.id)));
     } catch (err) {
-      console.error('Failed to fetch categories:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to fetch categories:', err);
+      }
     } finally {
       setLoading(false);
     }
@@ -125,7 +127,9 @@ export default function AdminCategoriesPage() {
       setShowModal(false);
       fetchCategories();
     } catch (err) {
-      console.error('Failed to save category:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to save category:', err);
+      }
     } finally {
       setSaving(false);
     }
@@ -138,7 +142,9 @@ export default function AdminCategoriesPage() {
       setDeleteTarget(null);
       fetchCategories();
     } catch (err) {
-      console.error('Failed to delete category:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to delete category:', err);
+      }
     }
   };
 

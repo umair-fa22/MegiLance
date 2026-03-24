@@ -231,7 +231,9 @@ const Contracts = () => {
         toaster.notify({ title: 'Dispute opened', description: 'A dispute ticket has been created for this contract.', variant: 'warning' });
       }
     } catch (error) {
-      console.error('[Contracts] Action failed:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('[Contracts] Action failed:', error);
+      }
       toaster.notify({ title: 'Error', description: 'An unexpected error occurred', variant: 'error' });
     }
     

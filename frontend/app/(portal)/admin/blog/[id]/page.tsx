@@ -28,7 +28,9 @@ export default function EditBlogPage() {
         const data = await blogApi.getBySlug(slug);
         setPost(data);
       } catch (error) {
-        console.error('Failed to fetch post:', error);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Failed to fetch post:', error);
+        }
       } finally {
         setLoading(false);
       }

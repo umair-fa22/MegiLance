@@ -68,7 +68,9 @@ export default function EscrowPage() {
         setTransactions([]);
       }
     } catch (err) {
-      console.error('Failed to load escrow data:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load escrow data:', err);
+      }
       setError('Unable to load escrow data. Please try again later.');
       setTransactions([]);
     } finally {
@@ -89,7 +91,9 @@ export default function EscrowPage() {
         )
       );
     } catch (err) {
-      console.error('Failed to release escrow:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to release escrow:', err);
+      }
     } finally {
       setProcessingId(null);
     }

@@ -88,7 +88,9 @@ export default function SkillsPage() {
       } catch { /* API not available */ }
       setSkills([]);
     } catch (error) {
-      console.error('Failed to load skills:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load skills:', error);
+      }
     } finally { setLoading(false); }
   };
 

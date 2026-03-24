@@ -60,7 +60,9 @@ export default function KnowledgeBasePage() {
       setCategories(Array.isArray(categoriesRes) ? categoriesRes : []);
       setPopularArticles(Array.isArray(popularRes) ? popularRes : []);
     } catch (error) {
-      console.error('Failed to load knowledge base:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load knowledge base:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -74,7 +76,9 @@ export default function KnowledgeBasePage() {
       const articlesRes = await knowledgeBaseApi.getArticles(categoryId);
       setArticles(articlesRes.articles || []);
     } catch (error) {
-      console.error('Failed to load articles:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load articles:', error);
+      }
     }
   };
 
@@ -89,7 +93,9 @@ export default function KnowledgeBasePage() {
       setSelectedCategory(null);
       setSelectedArticle(null);
     } catch (error) {
-      console.error('Search failed:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Search failed:', error);
+      }
       setSearchResults([]);
     }
   };
@@ -99,7 +105,9 @@ export default function KnowledgeBasePage() {
       const fullArticle = await knowledgeBaseApi.getArticle(article.id);
       setSelectedArticle(fullArticle || article);
     } catch (error) {
-      console.error('Failed to load article:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load article:', error);
+      }
     }
   };
 
@@ -113,7 +121,9 @@ export default function KnowledgeBasePage() {
         helpful_count: selectedArticle.helpful_count + (helpful ? 1 : 0)
       });
     } catch (error) {
-      console.error('Failed to rate article:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to rate article:', error);
+      }
     }
   };
 

@@ -88,7 +88,9 @@ const AssessmentsPage: React.FC = () => {
         setAssessments(skillAssessments.length > 0 ? skillAssessments : getDefaultAssessments());
       }
     } catch (err: any) {
-      console.error('Failed to load assessments:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load assessments:', err);
+      }
       // Use default assessments on error
       setAssessments(getDefaultAssessments());
     } finally {

@@ -124,7 +124,9 @@ export default function JobsPage() {
       setJobs(enrichedData);
       setTotalJobs(total);
     } catch (error) {
-      console.error('Failed to fetch jobs:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to fetch jobs:', error);
+      }
       setJobs([]);
       setTotalJobs(0);
     } finally {

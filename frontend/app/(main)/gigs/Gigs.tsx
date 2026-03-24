@@ -147,7 +147,9 @@ const Gigs: React.FC = () => {
           setGigs([]);
         }
       } catch (error) {
-        console.error('Failed to fetch gigs:', error);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Failed to fetch gigs:', error);
+        }
         setGigs([]);
       } finally {
         setIsLoading(false);

@@ -16,7 +16,9 @@ export async function GET() {
     
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Error reading users data:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error reading users data:', error);
+    }
     return new NextResponse('Error fetching users data.', { status: 500 });
   }
 }

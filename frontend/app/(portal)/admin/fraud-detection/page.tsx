@@ -137,7 +137,9 @@ export default function FraudDetectionPage() {
         avgRiskScore: txData.length > 0 ? Math.round(txData.reduce((s: number, t: any) => s + (t.riskScore || 0), 0) / txData.length) : 0,
       });
     } catch (error) {
-      console.error('Failed to load fraud data', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load fraud data', error);
+      }
     } finally {
       setLoading(false);
     }

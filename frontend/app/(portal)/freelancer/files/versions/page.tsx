@@ -111,7 +111,9 @@ function FileVersionsPage() {
 
       setVersions(transformedVersions);
     } catch (error) {
-      console.error('Failed to fetch file versions:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to fetch file versions:', error);
+      }
       setVersions([]);
     } finally {
       setLoading(false);

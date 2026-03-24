@@ -30,7 +30,9 @@ export async function POST(request: NextRequest) {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('Backend error:', errorText);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Backend error:', errorText);
+      }
       return NextResponse.json(
         { error: 'Failed to create job', details: errorText },
         { status: response.status }
@@ -40,7 +42,9 @@ export async function POST(request: NextRequest) {
     const data = await response.json();
     return NextResponse.json(data, { status: 201 });
   } catch (error) {
-    console.error('Job creation error:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Job creation error:', error);
+    }
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -71,7 +75,9 @@ export async function GET(request: NextRequest) {
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Jobs fetch error:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Jobs fetch error:', error);
+    }
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

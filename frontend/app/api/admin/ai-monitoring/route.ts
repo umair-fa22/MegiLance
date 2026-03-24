@@ -16,7 +16,9 @@ export async function GET() {
     
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Error reading admin AI monitoring data:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error reading admin AI monitoring data:', error);
+    }
     return new NextResponse('Error fetching admin AI monitoring data.', { status: 500 });
   }
 }

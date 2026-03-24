@@ -31,7 +31,9 @@ export function useAI(options: UseAIOptions = {}) {
       const data = await response.json();
       return data.text;
     } catch (err) {
-      console.error(err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error(err);
+      }
       setError('Failed to generate text');
       return null;
     } finally {

@@ -80,7 +80,9 @@ export default function FreelancerProjectsPage() {
         
         setProjects(mappedProjects);
       } catch (err: any) {
-        console.error('Failed to fetch projects:', err);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Failed to fetch projects:', err);
+        }
         setError(err.message || 'Failed to load projects');
       } finally {
         setLoading(false);

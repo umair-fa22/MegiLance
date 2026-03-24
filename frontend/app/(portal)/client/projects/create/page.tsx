@@ -74,7 +74,9 @@ export default function CreateProjectPage() {
       });
       setEstimate(result);
     } catch (error) {
-      console.error('Failed to get estimate:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to get estimate:', error);
+      }
     } finally {
       setIsEstimating(false);
     }
@@ -97,7 +99,9 @@ export default function CreateProjectPage() {
       });
       router.push('/portal/client/projects');
     } catch (error) {
-      console.error('Failed to create project:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to create project:', error);
+      }
       // Handle error (show toast, etc.)
     } finally {
       setIsSubmitting(false);

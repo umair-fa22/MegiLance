@@ -126,7 +126,9 @@ export default function ExternalProjectsPage() {
       setSources(data.sources || []);
       setLastScraped(data.last_scraped);
     } catch (err) {
-      console.error('Failed to load external projects:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load external projects:', err);
+      }
       setProjects([]);
     } finally {
       setLoading(false);
@@ -138,7 +140,9 @@ export default function ExternalProjectsPage() {
       const data = await externalProjectsApi.getCategories();
       setCategories(data.categories || []);
     } catch (err) {
-      console.error('Failed to load categories:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load categories:', err);
+      }
     }
   }, []);
 
@@ -171,7 +175,9 @@ export default function ExternalProjectsPage() {
       // Auto-dismiss after 8 seconds
       setTimeout(() => setScrapeResult(null), 8000);
     } catch (err) {
-      console.error('Scrape failed:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Scrape failed:', err);
+      }
       setScrapeResult({ status: 'error', error: 'Failed to scrape projects' });
       setTimeout(() => setScrapeResult(null), 5000);
     } finally {

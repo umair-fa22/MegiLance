@@ -58,7 +58,9 @@ const RecommendedTalent: React.FC = () => {
           setContext(response.context || '');
         }
       } catch (error) {
-        console.error('Failed to fetch recommendations:', error);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Failed to fetch recommendations:', error);
+        }
       } finally {
         setLoading(false);
       }

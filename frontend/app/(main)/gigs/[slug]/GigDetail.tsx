@@ -118,7 +118,9 @@ const GigDetail: React.FC = () => {
           setError('Failed to load gig details. Please try again later.');
         }
       } catch (err) {
-        console.error('Failed to fetch gig:', err);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Failed to fetch gig:', err);
+        }
         setError('Failed to load gig details. Please check your connection.');
       } finally {
         setIsLoading(false);

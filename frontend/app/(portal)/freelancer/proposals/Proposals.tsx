@@ -138,7 +138,9 @@ const Proposals: React.FC = () => {
       
       setProposals(transformedProposals);
     } catch (err) {
-      console.error('Failed to fetch proposals:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to fetch proposals:', err);
+      }
       setError(err instanceof Error ? err.message : 'Unable to load your proposals. Please check your connection and try again.');
       setProposals([]);
     } finally {

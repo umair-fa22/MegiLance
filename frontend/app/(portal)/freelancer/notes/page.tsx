@@ -96,7 +96,9 @@ export default function NotesPage() {
         // Tags fetch failure is non-critical
       }
     } catch (error) {
-      console.error('[Notes] Failed to fetch notes:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('[Notes] Failed to fetch notes:', error);
+      }
       setNotes([]);
     } finally {
       setLoading(false);
@@ -135,7 +137,9 @@ export default function NotesPage() {
         await fetchNotes();
       }
     } catch (error) {
-      console.error('[Notes] Failed to save note:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('[Notes] Failed to save note:', error);
+      }
     }
 
     setIsCreating(false);
@@ -158,7 +162,9 @@ export default function NotesPage() {
       await apiFetch(`/notes-tags/notes/${noteId}`, { method: 'DELETE' });
       setNotes(prev => prev.filter(n => n.id !== noteId));
     } catch (error) {
-      console.error('[Notes] Failed to delete note:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('[Notes] Failed to delete note:', error);
+      }
     }
   };
 
@@ -175,7 +181,9 @@ export default function NotesPage() {
         prev.map(n => (n.id === noteId ? { ...n, is_pinned: !n.is_pinned } : n))
       );
     } catch (error) {
-      console.error('[Notes] Failed to toggle pin:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('[Notes] Failed to toggle pin:', error);
+      }
     }
   };
 
@@ -208,7 +216,9 @@ export default function NotesPage() {
         usage_count: newTag.entity_count || 0,
       }]);
     } catch (error) {
-      console.error('[Notes] Failed to create tag:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('[Notes] Failed to create tag:', error);
+      }
     }
     setNewTagName('');
   };
@@ -228,7 +238,9 @@ export default function NotesPage() {
         );
       }
     } catch (error) {
-      console.error('[Notes] Failed to delete tag:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('[Notes] Failed to delete tag:', error);
+      }
     }
   };
 

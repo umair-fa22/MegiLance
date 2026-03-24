@@ -187,7 +187,9 @@ const MyJobs: React.FC = () => {
       setActiveJobs(active);
       setCompletedJobs(completed);
     } catch (err: any) {
-      console.error('Failed to fetch jobs:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to fetch jobs:', err);
+      }
       setError(err.message || 'Failed to load jobs');
     } finally {
       setLoading(false);

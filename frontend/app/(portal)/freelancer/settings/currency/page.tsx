@@ -69,7 +69,9 @@ export default function CurrencySettingsPage() {
         setSettings(settingsRes.settings);
       }
     } catch (error) {
-      console.error('Failed to load currency data:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load currency data:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -81,7 +83,9 @@ export default function CurrencySettingsPage() {
       await multiCurrencyApi.updateSettings(settings);
       // Show success message
     } catch (error) {
-      console.error('Failed to save settings:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to save settings:', error);
+      }
     } finally {
       setSaving(false);
     }

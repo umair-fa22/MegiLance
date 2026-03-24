@@ -183,7 +183,9 @@ export default function SubscriptionPage() {
         storage: { used: 12, limit: 100, unit: 'MB' },
       });
     } catch (error) {
-      console.error('Failed to fetch subscription data:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to fetch subscription data:', error);
+      }
       setPlans([]);
     } finally {
       setLoading(false);
@@ -214,7 +216,9 @@ export default function SubscriptionPage() {
       await fetchSubscriptionData();
       showToast('Plan upgraded successfully!');
     } catch (error: any) {
-      console.error('[Subscription] Upgrade error:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('[Subscription] Upgrade error:', error);
+      }
       showToast(error?.detail || 'Upgrade failed. Please try again.', 'error');
     }
   };
@@ -232,7 +236,9 @@ export default function SubscriptionPage() {
       setSubscription(prev => prev ? { ...prev, cancelAtPeriodEnd: true } : null);
       showToast('Subscription will be canceled at end of billing period.');
     } catch (error) {
-      console.error('[Subscription] Cancel error:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('[Subscription] Cancel error:', error);
+      }
       showToast('Failed to cancel subscription.', 'error');
     }
   };

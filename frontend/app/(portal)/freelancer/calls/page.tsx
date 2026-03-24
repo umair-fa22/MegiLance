@@ -80,7 +80,9 @@ export default function VideoCallsPage() {
 
       setCalls(callsData);
     } catch (error) {
-      console.error('Failed to load calls:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load calls:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -96,7 +98,9 @@ export default function VideoCallsPage() {
       setNewCall({ title: '', scheduled_at: '', participant_ids: [] });
       loadCalls();
     } catch (error) {
-      console.error('Failed to schedule call:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to schedule call:', error);
+      }
     }
   };
 
@@ -106,7 +110,9 @@ export default function VideoCallsPage() {
       // In production, this would open a video call interface
       window.open(`/call/${roomId}`, '_blank');
     } catch (error) {
-      console.error('Failed to join call:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to join call:', error);
+      }
     }
   };
 
@@ -124,7 +130,9 @@ export default function VideoCallsPage() {
       loadCalls();
       showToast('Call ended successfully.');
     } catch (error) {
-      console.error('Failed to end call:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to end call:', error);
+      }
       showToast('Failed to end call.', 'error');
     }
   };
@@ -136,7 +144,9 @@ export default function VideoCallsPage() {
         window.open(recording.url, '_blank');
       }
     } catch (error) {
-      console.error('Failed to get recording:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to get recording:', error);
+      }
       showToast('Recording not available.', 'error');
     }
   };

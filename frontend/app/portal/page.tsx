@@ -54,7 +54,9 @@ export default function PortalPage() {
           router.replace('/client/dashboard');
         }
       } catch (error) {
-        console.error('Portal redirect error:', error);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Portal redirect error:', error);
+        }
         router.replace('/login');
       }
       setChecking(false);

@@ -66,7 +66,9 @@ const TwoFactorAuth: React.FC = () => {
       const data = await api.auth.get2FAStatus();
       setIs2FAEnabled(data.enabled);
     } catch (error) {
-      console.error('Error checking 2FA status:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Error checking 2FA status:', error);
+      }
     } finally {
       setCheckingStatus(false);
     }
@@ -83,7 +85,9 @@ const TwoFactorAuth: React.FC = () => {
         backup_codes: data.backup_codes || [],
       });
     } catch (error: any) {
-      console.error('Error setting up 2FA:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Error setting up 2FA:', error);
+      }
       setError(error.message || 'Failed to setup 2FA');
     } finally {
       setLoading(false);
@@ -105,7 +109,9 @@ const TwoFactorAuth: React.FC = () => {
       setSetupData(null);
       setVerificationCode('');
     } catch (error: any) {
-      console.error('Error enabling 2FA:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Error enabling 2FA:', error);
+      }
       setError(error.message || 'Invalid verification code');
     } finally {
       setLoading(false);
@@ -122,7 +128,9 @@ const TwoFactorAuth: React.FC = () => {
       setSuccess('Two-Factor Authentication has been disabled');
       setIs2FAEnabled(false);
     } catch (error: any) {
-      console.error('Error disabling 2FA:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Error disabling 2FA:', error);
+      }
       setError(error.message || 'Failed to disable 2FA');
     } finally {
       setLoading(false);

@@ -59,7 +59,9 @@ export default function PortalProjectsPage() {
       const data = await projectsApi.list({ page: 1, page_size: 100 });
       setProjects(Array.isArray(data) ? data : (data as any)?.items || []);
     } catch (error) {
-      console.error('Failed to load projects:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load projects:', error);
+      }
       setProjects([]);
     } finally {
       setLoading(false);

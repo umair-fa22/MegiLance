@@ -80,7 +80,9 @@ export default function AvailabilityPage() {
       setBookings(bookingsRes || []);
       setSettings(settingsRes);
     } catch (err) {
-      console.error('Failed to load availability data:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load availability data:', err);
+      }
     } finally {
       setLoading(false);
     }
@@ -98,7 +100,9 @@ export default function AvailabilityPage() {
       setEditingSlot(null);
       loadData();
     } catch (err) {
-      console.error('Failed to save slot:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to save slot:', err);
+      }
     }
   };
 
@@ -113,7 +117,9 @@ export default function AvailabilityPage() {
       loadData();
       showToast('Time slot deleted');
     } catch (err) {
-      console.error('Failed to delete slot:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to delete slot:', err);
+      }
     } finally {
       setDeleteSlotId(null);
     }
@@ -128,7 +134,9 @@ export default function AvailabilityPage() {
       }
       loadData();
     } catch (err) {
-      console.error('Failed to update booking:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to update booking:', err);
+      }
     }
   };
 
@@ -138,7 +146,9 @@ export default function AvailabilityPage() {
       await (availabilityApi as any).updateSettings(settings);
       showToast('Settings saved successfully!');
     } catch (err) {
-      console.error('Failed to save settings:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to save settings:', err);
+      }
     }
   };
 

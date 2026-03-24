@@ -12,7 +12,9 @@ export default function InvoicesError({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error('Invoices error:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Invoices error:', error);
+    }
   }, [error]);
 
   return (

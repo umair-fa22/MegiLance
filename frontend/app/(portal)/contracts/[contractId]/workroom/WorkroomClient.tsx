@@ -144,7 +144,9 @@ export default function WorkroomClient({ contractId }: WorkroomClientProps) {
     } catch (err: any) {
       if (err?.name !== 'AbortError') {
         setError('Failed to load workroom data. Please try again.');
-        console.error('Workroom fetch error:', err);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Workroom fetch error:', err);
+        }
       }
     } finally {
       setLoading(false);

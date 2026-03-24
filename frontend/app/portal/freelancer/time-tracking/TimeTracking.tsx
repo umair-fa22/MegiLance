@@ -87,7 +87,9 @@ const TimeTracking: React.FC = () => {
       const data = await timeEntriesApi.getSummary(selectedContract) as TimeEntrySummary;
       setSummary(data);
     } catch (err: any) {
-      console.error('Failed to load summary:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load summary:', err);
+      }
     }
   };
 

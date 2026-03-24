@@ -133,7 +133,9 @@ export default function AdminBillingPage() {
         isPopular: p.is_popular ?? false,
       })));
     } catch (error) {
-      console.error('Failed to fetch billing data:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to fetch billing data:', error);
+      }
     } finally {
       setLoading(false);
     }

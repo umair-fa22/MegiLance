@@ -48,7 +48,9 @@ export default function FeatureFlagsPage() {
       const data = Array.isArray(res) ? res : (res as Record<string, unknown>).flags as FeatureFlag[] ?? [];
       setFlags(data);
     } catch (err) {
-      console.error('Failed to load feature flags:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load feature flags:', err);
+      }
       setError('Unable to load feature flags.');
     } finally {
       setLoading(false);
@@ -60,7 +62,9 @@ export default function FeatureFlagsPage() {
       await featureFlagsApi.adminUpdate(flag.name, { is_active: !flag.is_active });
       setFlags(prev => prev.map(f => f.name === flag.name ? { ...f, is_active: !f.is_active } : f));
     } catch (err) {
-      console.error('Toggle failed:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Toggle failed:', err);
+      }
     }
   };
 
@@ -69,7 +73,9 @@ export default function FeatureFlagsPage() {
       await featureFlagsApi.adminRollout(flag.name, percentage);
       setFlags(prev => prev.map(f => f.name === flag.name ? { ...f, rollout_percentage: percentage } : f));
     } catch (err) {
-      console.error('Rollout update failed:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Rollout update failed:', err);
+      }
     }
   };
 
@@ -79,7 +85,9 @@ export default function FeatureFlagsPage() {
       await featureFlagsApi.adminDelete(flag.name);
       setFlags(prev => prev.filter(f => f.name !== flag.name));
     } catch (err) {
-      console.error('Delete failed:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Delete failed:', err);
+      }
     }
   };
 

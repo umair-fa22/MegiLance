@@ -14,7 +14,9 @@ export default function PortalError({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error('Portal error:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Portal error:', error);
+    }
   }, [error]);
 
   return (

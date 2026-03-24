@@ -195,7 +195,9 @@ export default function RankPage() {
         rank_benefits: currentRankInfo.benefits,
       });
     } catch (error) {
-      console.error('Failed to load rank data:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load rank data:', error);
+      }
     } finally {
       setLoading(false);
     }

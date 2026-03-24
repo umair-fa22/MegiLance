@@ -52,7 +52,9 @@ async function fetchFreelancers(): Promise<TalentProfile[]> {
       avatar: f.profile_image_url || f.avatar_url || '',
     }));
   } catch (err) {
-    console.error('[TalentClient] Failed to fetch freelancers:', err);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('[TalentClient] Failed to fetch freelancers:', err);
+    }
     return [];
   }
 }

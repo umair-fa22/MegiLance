@@ -64,7 +64,9 @@ const Invoices: React.FC = () => {
       const response = await contractsApi.list({ status: 'active' }) as { contracts: Contract[] };
       setContracts(response.contracts);
     } catch (err: any) {
-      console.error('Failed to load contracts:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to load contracts:', err);
+      }
     }
   };
 

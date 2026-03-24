@@ -302,7 +302,9 @@ export function useAIChat(options: UseAIChatOptions = {}): UseAIChatReturn {
         return true;
       }
     } catch (error) {
-      console.warn('Backend ping failed:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('Backend ping failed:', error);
+      }
     }
     
     updateStatus({ backendAvailable: false });
@@ -326,7 +328,9 @@ export function useAIChat(options: UseAIChatOptions = {}): UseAIChatReturn {
         return true;
       }
     } catch (error) {
-      console.warn('AI service ping failed:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('AI service ping failed:', error);
+      }
     }
     
     updateStatus({ aiServiceAvailable: false });
@@ -391,7 +395,9 @@ export function useAIChat(options: UseAIChatOptions = {}): UseAIChatReturn {
         }
       }
     } catch (error) {
-      console.error('Failed to start conversation:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to start conversation:', error);
+      }
       setConversationId(`offline-${Date.now()}`);
     }
   }, [apiBaseUrl, status.backendAvailable]);
@@ -495,7 +501,9 @@ export function useAIChat(options: UseAIChatOptions = {}): UseAIChatReturn {
         throw new Error('AI service unavailable');
       }
     } catch (error) {
-      console.error('Failed to send message:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to send message:', error);
+      }
       onError?.(error instanceof Error ? error : new Error('Message failed'));
       
       const errorMessage: ChatMessage = {

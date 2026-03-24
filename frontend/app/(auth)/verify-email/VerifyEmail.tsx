@@ -66,7 +66,9 @@ const VerifyEmail: React.FC = () => {
     } catch (error: any) {
       setStatus('error');
       setMessage(error.message || 'Invalid or expired verification link.');
-      console.error('Email verification error:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Email verification error:', error);
+      }
     }
   };
 
