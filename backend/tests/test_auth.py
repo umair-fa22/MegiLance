@@ -210,8 +210,8 @@ def test_register_login_and_profile_flow():
     resp = client.post("/api/auth/register", json=register_payload)
     assert resp.status_code == 201, f"Register failed: {resp.text}"
     data = resp.json()
-    assert data["email"] == "alice@example.com"
-    assert data["name"] == "Alice"
+    assert data["user"]["email"] == "alice@example.com"
+    assert data["user"]["name"] == "Alice"
 
     # 2. Login
     resp = client.post("/api/auth/login", json={
