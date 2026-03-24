@@ -60,10 +60,11 @@ const Projects: React.FC = () => {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
-  // Strongly type the sort key to the allowed fields
   const [sortKey, setSortKey] = useState<'updatedAt' | 'title' | 'budget' | 'progress'>('updatedAt');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(9);
+  const [selectedProjects, setSelectedProjects] = useState<Set<string>>(new Set());
+  const [groupBy, setGroupBy] = useState<'status' | 'date' | 'none'>('none');
 
   const filteredProjects = useMemo(() => {
     return projects
@@ -96,6 +97,36 @@ const Projects: React.FC = () => {
     const start = (currentPage - 1) * itemsPerPage;
     return sortedProjects.slice(start, start + itemsPerPage);
   }, [sortedProjects, currentPage, itemsPerPage]);
+
+  // Bulk selection handlers
+  const toggleProjectSelection = (id: string) => {
+    const newSelected = new Set(selectedProjects);
+    if (newSelected.has(id)) {
+      newSelected.delete(id);
+    } else {
+      newSelected.add(id);
+    }
+    setSelectedProjects(newSelected);
+  };
+
+  const selectAllVisible = () => {
+    const allIds = new Set(sortedProjects.map(p => p.id));
+    setSelectedProjects(selectedProjects.size === sortedProjects.length ? new Set() : allIds);
+  };
+
+  const handleBulkStatusChange = (newStatus: string) => {
+    if (selectedProjects.size === 0) return;
+    // API call would happen here to update status for selected projects
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`Updating ${selectedProjects.size} projects to status: ${newStatus}`);
+    }
+    setSelectedProjects(new Set());
+  };
+
+  const handleBulkArchive = () => {
+    if (selectedProjects.size === 0) return;
+    handleBulkStatusChange('Archived');
+  };
 
   // KPI calculations
   const kpis = useMemo(() => {
@@ -205,6 +236,38 @@ const Projects: React.FC = () => {
             </div>
           </div>
         </ScrollReveal>
+
+        {/* Bulk Actions Toolbar */}
+        {selectedProjects.size > 0 && (
+          <ScrollReveal>
+            <div className={cn(common.bulkActionsBar, themed.bulkActionsBar)} role="toolbar" aria-label="Bulk actions">
+              <div className={common.bulkActionsLeft}>
+                <input
+                  type="checkbox"
+                  checked={selectedProjects.size === sortedProjects.length && sortedProjects.length > 0}
+                  onChange={selectAllVisible}
+                  aria-label="Select all projects on current page"
+                  className={common.bulkSelectCheckbox}
+                />
+                <span className={cn(common.bulkActionsLabel, themed.bulkActionsLabel)}>
+                  {selectedProjects.size} selected
+                </span>
+              </div>
+              <div className={common.bulkActionsRight}>
+                <Select
+                  id="bulk-status"
+                  aria-label="Change status of selected projects"
+                  options={STATUS_OPTIONS.filter(s => s.value !== 'All')}
+                  value=""
+                  onChange={(e) => e.target.value && handleBulkStatusChange(e.target.value)}
+                  className={common.bulkSelect}
+                />
+                <Button variant="secondary" size="sm" onClick={handleBulkArchive}>Archive</Button>
+                <Button variant="ghost" size="sm" onClick={() => setSelectedProjects(new Set())}>Clear</Button>
+              </div>
+            </div>
+          </ScrollReveal>
+        )}
 
         {loading ? (
           <div className={common.grid}>

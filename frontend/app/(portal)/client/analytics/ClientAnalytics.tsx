@@ -50,23 +50,31 @@ const ClientAnalytics: React.FC = () => {
   const { resolvedTheme } = useTheme();
   const themed = resolvedTheme === 'dark' ? dark : light;
   const [dateRange, setDateRange] = useState('6m');
+  const [categoryFilter, setCategoryFilter] = useState('all');
+  const [freelancerFilter, setFreelancerFilter] = useState('all');
   const { projects, payments, freelancers, loading, error } = useClientData();
 
   // Calculate metrics from real data
   const metrics = useMemo<MetricCard[]>(() => {
-    const totalSpent = Array.isArray(payments) 
+    const totalSpent = Array.isArray(payments)
       ? payments.reduce((sum, p) => sum + parseFloat(p.amount?.replace(/[$,]/g, '') || '0'), 0)
       : 0;
-    const activeProjects = Array.isArray(projects) 
+    const activeProjects = Array.isArray(projects)
       ? projects.filter(p => p.status === 'In Progress' || p.status === 'Open').length
       : 0;
+    const completedProjects = Array.isArray(projects)
+      ? projects.filter(p => p.status === 'Completed').length
+      : 0;
     const freelancersHired = Array.isArray(freelancers) ? freelancers.length : 0;
+    const successRate = completedProjects + activeProjects > 0
+      ? Math.round((completedProjects / (completedProjects + activeProjects)) * 100)
+      : 0;
 
     return [
       { title: 'Total Spent', value: `$${totalSpent.toLocaleString()}`, change: 12.5, icon: <DollarSign size={20} />, trend: 'up' },
       { title: 'Active Projects', value: String(activeProjects), change: 3, icon: <Briefcase size={20} />, trend: 'up' },
       { title: 'Freelancers Hired', value: String(freelancersHired), change: 8, icon: <Users size={20} />, trend: 'up' },
-      { title: 'Avg. Project Time', value: '2.3 weeks', change: -15, icon: <Clock size={20} />, trend: 'down' },
+      { title: 'Success Rate', value: `${successRate}%`, change: 5, icon: <TrendingUp size={20} />, trend: 'up' },
     ];
   }, [projects, payments, freelancers]);
 
@@ -172,7 +180,7 @@ const ClientAnalytics: React.FC = () => {
               </p>
             </div>
             <div className={common.header_actions}>
-              <select 
+              <select
                 className={cn(common.date_select, themed.date_select)}
                 value={dateRange}
                 onChange={(e) => setDateRange(e.target.value)}
@@ -183,6 +191,19 @@ const ClientAnalytics: React.FC = () => {
                 <option value="3m">Last 3 Months</option>
                 <option value="6m">Last 6 Months</option>
                 <option value="1y">Last Year</option>
+              </select>
+              <select
+                className={cn(common.date_select, themed.date_select)}
+                value={categoryFilter}
+                onChange={(e) => setCategoryFilter(e.target.value)}
+                aria-label="Filter by category"
+                title="Project category filter"
+              >
+                <option value="all">All Categories</option>
+                <option value="development">Development</option>
+                <option value="design">Design</option>
+                <option value="marketing">Marketing</option>
+                <option value="writing">Writing</option>
               </select>
               <Button variant="secondary">
                 <Download size={16} /> Export Report

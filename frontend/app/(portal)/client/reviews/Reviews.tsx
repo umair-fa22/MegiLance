@@ -18,11 +18,11 @@ import api from '@/lib/api';
 import common from './Reviews.common.module.css';
 import light from './Reviews.light.module.css';
 import dark from './Reviews.dark.module.css';
-import {
-  Search, Star, MessageSquare, TrendingUp, ThumbsUp, ThumbsDown,
+import { Search, Star, MessageSquare, TrendingUp, ThumbsUp, ThumbsDown,
   BarChart3, Filter, Download, ChevronDown, ChevronUp, Send,
-  Clock, Award, AlertCircle, CheckCircle, Flag, Bookmark,
-  Copy, MoreHorizontal, ArrowUpRight, Eye, Reply, Smile, Meh, Frown
+  Clock, Award, AlertCircle, CheckCircle, Flag, Bookmark, Edit,
+  Copy, MoreHorizontal, ArrowUpRight, Eye, Reply, Smile, Meh, Frown,
+  XCircle, AlertTriangle, FileText
 } from 'lucide-react';
 
 type TabKey = 'all' | 'analytics' | 'write';
@@ -39,6 +39,12 @@ interface Review {
   sentiment?: 'positive' | 'neutral' | 'negative';
   helpful?: number;
   flagged?: boolean;
+  verified?: boolean;
+  canEdit?: boolean;
+  canAppeal?: boolean;
+  detailedRatings?: { communication: number; quality: number; delivery: number; professionalism: number };
+  appealed?: boolean;
+  anonymous?: boolean;
 }
 
 const TEMPLATES = [
@@ -48,6 +54,13 @@ const TEMPLATES = [
   { label: 'Technical Expert', text: 'Demonstrated deep technical expertise. Solved complex challenges efficiently and provided valuable suggestions that improved the final outcome.' },
 ];
 
+const REPLY_TEMPLATES = [
+  { label: 'Thank You', text: 'Thank you so much for the kind feedback! We truly appreciated working with you and look forward to our next collaboration.' },
+  { label: 'Address Concerns', text: 'We appreciate your feedback. We\'d like to understand more about the concerns you mentioned. Please let us know how we can improve for future projects.' },
+  { label: 'Request Modification', text: 'Thank you for the review. We believe this rating doesn\'t fully reflect the quality of our work. We\'d be happy to discuss this further.' },
+  { label: 'Professional Response', text: 'We appreciate your detailed feedback. Your points are valuable and we\'ll use them to enhance the quality of our future deliverables.' },
+];
+
 const Reviews: React.FC = () => {
   const { resolvedTheme } = useTheme();
   const themed = resolvedTheme === 'dark' ? dark : light;
@@ -55,19 +68,37 @@ const Reviews: React.FC = () => {
 
   const rows: Review[] = useMemo(() => {
     if (!Array.isArray(reviews)) return [];
-    return (reviews as any[]).map((r, idx) => ({
-      id: String(r.id ?? idx),
-      project: r.project_title ?? r.projectTitle ?? r.project ?? 'Unknown Project',
-      freelancer: r.reviewed_user_name ?? r.freelancerName ?? r.freelancer ?? 'Unknown',
-      avatarUrl: r.avatarUrl ?? '',
-      created: r.created_at ?? r.date ?? r.createdAt ?? r.created ?? '',
-      rating: Number(r.rating) || 0,
-      text: r.review_text ?? r.comment ?? r.text ?? '',
-      response: r.response ?? r.reply ?? '',
-      sentiment: Number(r.rating) >= 4 ? 'positive' : Number(r.rating) >= 3 ? 'neutral' : 'negative',
-      helpful: r.helpful_count ?? r.helpful ?? 0,
-      flagged: r.flagged ?? false,
-    }));
+    return (reviews as any[]).map((r, idx) => {
+      const createdDate = new Date(r.created_at ?? r.date ?? r.createdAt ?? r.created ?? '');
+      const daysAgo = Math.floor((new Date().getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24));
+      const canEdit = daysAgo <= 7; // Can edit within 7 days
+      const canAppeal = Number(r.rating) <= 2 && !r.appealed; // Can appeal 1-2 star reviews
+
+      return {
+        id: String(r.id ?? idx),
+        project: r.project_title ?? r.projectTitle ?? r.project ?? 'Unknown Project',
+        freelancer: r.reviewed_user_name ?? r.freelancerName ?? r.freelancer ?? 'Unknown',
+        avatarUrl: r.avatarUrl ?? '',
+        created: r.created_at ?? r.date ?? r.createdAt ?? r.created ?? '',
+        rating: Number(r.rating) || 0,
+        text: r.review_text ?? r.comment ?? r.text ?? '',
+        response: r.response ?? r.reply ?? '',
+        sentiment: Number(r.rating) >= 4 ? 'positive' : Number(r.rating) >= 3 ? 'neutral' : 'negative',
+        helpful: r.helpful_count ?? r.helpful ?? 0,
+        flagged: r.flagged ?? false,
+        verified: r.verified ?? r.status === 'completed',
+        canEdit,
+        canAppeal,
+        detailedRatings: r.detailedRatings || {
+          communication: Number(r.rating),
+          quality: Number(r.rating),
+          delivery: Number(r.rating),
+          professionalism: Number(r.rating),
+        },
+        appealed: r.appealed ?? false,
+        anonymous: r.anonymous ?? false,
+      };
+    });
   }, [reviews]);
 
   // Tabs
@@ -94,6 +125,18 @@ const Reviews: React.FC = () => {
   // Reply state
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [replyText, setReplyText] = useState('');
+
+  // Edit modal
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editText, setEditText] = useState('');
+  const [editRating, setEditRating] = useState(0);
+
+  // Appeal modal
+  const [appealingId, setAppealingId] = useState<string | null>(null);
+  const [appealReason, setAppealReason] = useState('');
+
+  // Anonymous option
+  const [formAnonymous, setFormAnonymous] = useState(false);
 
   // Selected (bulk)
   const [selected, setSelected] = useState<Set<string>>(new Set());
@@ -202,13 +245,51 @@ const Reviews: React.FC = () => {
         contract_id: Number(formContract),
         rating: formRating,
         review_text: formText.trim(),
+        anonymous: formAnonymous,
       });
       setSubmitMessage('Review submitted successfully!');
       setFormRating(0);
       setFormText('');
       setFormContract('');
+      setFormAnonymous(false);
     } catch {
       setSubmitMessage('Failed to submit review. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleEditReview = async (reviewId: string) => {
+    if (!editText.trim() || editRating === 0) return;
+    setSubmitting(true);
+    try {
+      await api.reviews.update(reviewId, {
+        rating: editRating,
+        review_text: editText.trim(),
+      });
+      setEditingId(null);
+      setEditText('');
+      setEditRating(0);
+    } catch {
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to update review');
+      }
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleAppealReview = async (reviewId: string) => {
+    if (!appealReason.trim()) return;
+    setSubmitting(true);
+    try {
+      await api.reviews.appeal(reviewId, { reason: appealReason });
+      setAppealingId(null);
+      setAppealReason('');
+    } catch {
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to submit appeal');
+      }
     } finally {
       setSubmitting(false);
     }
@@ -449,6 +530,83 @@ const Reviews: React.FC = () => {
                   <Button variant="outline" size="sm"><Download size={14} /> Export Selected</Button>
                 </div>
               )}
+
+              {/* Edit Modal */}
+              {editingId && (
+                <div className={common.modalOverlay}>
+                  <div className={cn(common.modal, themed.modal)}>
+                    <div className={common.modalHeader}>
+                      <h2>Edit Review</h2>
+                      <button onClick={() => { setEditingId(null); setEditText(''); setEditRating(0); }} className={common.closeBtn}>
+                        <XCircle size={20} />
+                      </button>
+                    </div>
+                    <div className={common.modalBody}>
+                      <div className={common.formGroup}>
+                        <label className={cn(common.filterLabel, themed.filterLabel)}>Rating</label>
+                        <div className={common.ratingSelector}>
+                          {[1, 2, 3, 4, 5].map(n => (
+                            <button
+                              key={n}
+                              className={cn(common.ratingStar, themed.ratingStar,
+                                n <= editRating && cn(common.ratingStarActive, themed.ratingStarActive))}
+                              onClick={() => setEditRating(n)}
+                            >
+                              <Star size={24} />
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                      <div className={common.formGroup}>
+                        <Textarea
+                          value={editText}
+                          onChange={(e) => setEditText(e.target.value)}
+                          placeholder="Edit your review..."
+                          rows={4}
+                        />
+                        <span className={cn(common.charCount, themed.charCount)}>
+                          {editText.length}/500
+                        </span>
+                      </div>
+                    </div>
+                    <div className={common.modalFooter}>
+                      <Button variant="ghost" onClick={() => { setEditingId(null); setEditText(''); setEditRating(0); }}>Cancel</Button>
+                      <Button variant="primary" isLoading={submitting} onClick={() => handleEditReview(editingId)}>Save Changes</Button>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Appeal Modal */}
+              {appealingId && (
+                <div className={common.modalOverlay}>
+                  <div className={cn(common.modal, themed.modal)}>
+                    <div className={common.modalHeader}>
+                      <h2>Appeal Review</h2>
+                      <button onClick={() => { setAppealingId(null); setAppealReason(''); }} className={common.closeBtn}>
+                        <XCircle size={20} />
+                      </button>
+                    </div>
+                    <div className={common.modalBody}>
+                      <p className={common.modalDescription}>
+                        Please explain why you believe this review should be reconsidered.
+                      </p>
+                      <div className={common.formGroup}>
+                        <Textarea
+                          value={appealReason}
+                          onChange={(e) => setAppealReason(e.target.value)}
+                          placeholder="Explain your appeal..."
+                          rows={5}
+                        />
+                      </div>
+                    </div>
+                    <div className={common.modalFooter}>
+                      <Button variant="ghost" onClick={() => { setAppealingId(null); setAppealReason(''); }}>Cancel</Button>
+                      <Button variant="primary" isLoading={submitting} onClick={() => handleAppealReview(appealingId)}>Submit Appeal</Button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Result count */}
@@ -483,19 +641,43 @@ const Reviews: React.FC = () => {
                       <UserAvatar name={review.freelancer} src={review.avatarUrl} size={40} />
                       <div className={common.reviewMeta}>
                         <span className={cn(common.reviewFreelancer, themed.reviewFreelancer)}>
-                          {review.freelancer}
+                          {review.anonymous ? 'Anonymous User' : review.freelancer}
                         </span>
                         <span className={cn(common.reviewProject, themed.reviewProject)}>
                           {review.project}
                         </span>
                       </div>
                       <div className={common.reviewRight}>
+                        {review.verified && <span className={common.verifiedBadge}><CheckCircle size={14} /> Verified</span>}
                         <StarRating rating={review.rating} size="sm" />
                         <Badge variant={getSentimentVariant(review.sentiment)}>
                           {getSentimentIcon(review.sentiment)} {review.sentiment}
                         </Badge>
                       </div>
                     </div>
+
+                    {/* Detailed Ratings */}
+                    {review.detailedRatings && (
+                      <div className={common.detailedRatings}>
+                        <div className={common.ratingCategory}>
+                          <span>Communication:</span>
+                          <span className={common.ratingValue}>{review.detailedRatings.communication}/5</span>
+                        </div>
+                        <div className={common.ratingCategory}>
+                          <span>Quality:</span>
+                          <span className={common.ratingValue}>{review.detailedRatings.quality}/5</span>
+                        </div>
+                        <div className={common.ratingCategory}>
+                          <span>Delivery:</span>
+                          <span className={common.ratingValue}>{review.detailedRatings.delivery}/5</span>
+                        </div>
+                        <div className={common.ratingCategory}>
+                          <span>Professionalism:</span>
+                          <span className={common.ratingValue}>{review.detailedRatings.professionalism}/5</span>
+                        </div>
+                      </div>
+                    )}
+
                     <p className={cn(common.reviewText, themed.reviewText)}>{review.text}</p>
 
                     {/* Response */}
@@ -511,15 +693,32 @@ const Reviews: React.FC = () => {
                     {/* Reply Input */}
                     {replyingTo === review.id && (
                       <div className={common.replyForm}>
+                        <div className={common.templateSection}>
+                          <label className={cn(common.filterLabel, themed.filterLabel)}>Quick Reply Templates</label>
+                          <div className={common.templateGrid}>
+                            {REPLY_TEMPLATES.map((tmpl, i) => (
+                              <button
+                                key={i}
+                                className={cn(common.templateBtn, themed.templateBtn)}
+                                onClick={() => setReplyText(tmpl.text)}
+                              >
+                                <Copy size={12} /> {tmpl.label}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
                         <Textarea
                           value={replyText}
                           onChange={(e) => setReplyText(e.target.value)}
                           placeholder="Write your response..."
                           rows={2}
                         />
+                        <span className={cn(common.charCount, themed.charCount)}>
+                          {replyText.length}/500
+                        </span>
                         <div className={common.replyActions}>
                           <Button variant="ghost" size="sm" onClick={() => { setReplyingTo(null); setReplyText(''); }}>Cancel</Button>
-                          <Button variant="primary" size="sm" disabled={!replyText.trim()}>
+                          <Button variant="primary" size="sm" disabled={!replyText.trim() || replyText.length > 500}>
                             <Send size={14} /> Send Reply
                           </Button>
                         </div>
@@ -535,6 +734,24 @@ const Reviews: React.FC = () => {
                         })}
                       </span>
                       <div className={common.reviewActions}>
+                        {review.canEdit && !editingId && (
+                          <button
+                            className={cn(common.actionBtn, themed.actionBtn)}
+                            onClick={() => { setEditingId(review.id); setEditText(review.text); setEditRating(review.rating); }}
+                            title="Edit review"
+                          >
+                            <Edit size={14} />
+                          </button>
+                        )}
+                        {review.canAppeal && (
+                          <button
+                            className={cn(common.actionBtn, themed.actionBtn)}
+                            onClick={() => setAppealingId(review.id)}
+                            title="Appeal review"
+                          >
+                            <AlertTriangle size={14} />
+                          </button>
+                        )}
                         <button
                           className={cn(common.actionBtn, themed.actionBtn)}
                           onClick={() => { setReplyingTo(review.id); setReplyText(''); }}
@@ -770,6 +987,18 @@ const Reviews: React.FC = () => {
                 <span className={cn(common.charCount, themed.charCount)}>
                   {formText.length}/500
                 </span>
+              </div>
+
+              {/* Anonymous Option */}
+              <div className={common.formGroup}>
+                <label className={cn(common.checkboxLabel, themed.checkboxLabel)}>
+                  <input
+                    type="checkbox"
+                    checked={formAnonymous}
+                    onChange={(e) => setFormAnonymous(e.target.checked)}
+                  />
+                  <span>Post as anonymous</span>
+                </label>
               </div>
 
               {/* Submit */}

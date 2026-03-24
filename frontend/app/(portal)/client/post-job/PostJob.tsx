@@ -56,6 +56,46 @@ const PostJob: React.FC = () => {
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
+  // Project templates for quick-start
+  const projectTemplates = useMemo(() => ({
+    'Web Development': {
+      description: 'I need a skilled web developer to build/enhance my website with focus on [specific requirements].',
+      skills: ['React', 'Node.js', 'MongoDB'],
+      timeline: '2-4 weeks',
+      budgetType: 'Fixed',
+    },
+    'Mobile Apps': {
+      description: 'Looking for an experienced mobile app developer to create a [iOS/Android] application that [brief description].',
+      skills: ['React Native', 'Swift', 'Kotlin'],
+      timeline: '4-8 weeks',
+      budgetType: 'Fixed',
+    },
+    'UI/UX Design': {
+      description: 'Need a talented UX/UI designer for [project type]. Deliverables include wireframes, mockups, and design system.',
+      skills: ['Figma', 'UI Design', 'UX Research'],
+      timeline: '1-2 weeks',
+      budgetType: 'Fixed',
+    },
+    'Data Science': {
+      description: 'Seeking a data scientist to [analyze/build model/predict] for [domain]. Proficiency in [tools] required.',
+      skills: ['Python', 'Machine Learning', 'Data Analysis'],
+      timeline: '2-4 weeks',
+      budgetType: 'Fixed',
+    },
+    'AI/ML': {
+      description: 'Need an AI/ML engineer to develop/train/deploy [specific AI solution]. Should have experience with [frameworks].',
+      skills: ['Python', 'TensorFlow', 'PyTorch'],
+      timeline: '3-6 weeks',
+      budgetType: 'Fixed',
+    },
+    'DevOps': {
+      description: 'Looking for a DevOps engineer to [setup/optimize/maintain] our infrastructure on [cloud platform].',
+      skills: ['Docker', 'Kubernetes', 'AWS'],
+      timeline: '1-2 weeks',
+      budgetType: 'Hourly',
+    },
+  }), []);
+
   // Calculate completion progress
   const completionProgress = useMemo(() => {
     let completed = 0;
@@ -119,6 +159,32 @@ const PostJob: React.FC = () => {
       return newErrors;
     });
   }, []);
+
+  // Apply project template
+  const applyTemplate = (categoryName: string) => {
+    const template = projectTemplates[categoryName as keyof typeof projectTemplates];
+    if (template) {
+      updateData({
+        description: template.description,
+        skills: template.skills,
+        timeline: template.timeline,
+        budgetType: template.budgetType,
+      });
+    }
+  };
+
+  // Smart budget recommendations based on category
+  const budgetRecommendations = useMemo(() => {
+    const recs: Record<string, { min: number; suggested: number; max: number }> = {
+      'Web Development': { min: 500, suggested: 2500, max: 10000 },
+      'Mobile Apps': { min: 1000, suggested: 5000, max: 15000 },
+      'UI/UX Design': { min: 500, suggested: 1500, max: 5000 },
+      'Data Science': { min: 800, suggested: 3000, max: 10000 },
+      'AI/ML': { min: 1500, suggested: 5000, max: 20000 },
+      'DevOps': { min: 500, suggested: 1500, max: 5000 },
+    };
+    return recs[data.category] || { min: 300, suggested: 1500, max: 10000 };
+  }, [data.category]);
 
   const validateStep = (step: Step): boolean => {
     const newErrors: PostJobErrors = {};

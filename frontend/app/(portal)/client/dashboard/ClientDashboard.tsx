@@ -65,29 +65,38 @@ const ClientDashboard: React.FC = () => {
 
   const metrics = useMemo(() => {
     const totalProjects = displayProjects.length;
-    const activeProjects = displayProjects.filter(p => 
+    const activeProjects = displayProjects.filter(p =>
       (p.status as string) === 'In Progress' || (p.status as string) === 'in_progress' || (p.status as string) === 'active'
     ).length;
     const completedProjects = displayProjects.filter(p =>
       (p.status as string) === 'Completed' || (p.status as string) === 'completed'
     ).length;
+    const onHoldProjects = displayProjects.filter(p =>
+      (p.status as string) === 'On Hold' || (p.status as string) === 'on_hold' || (p.status as string) === 'paused'
+    ).length;
     const totalSpent = Array.isArray(payments) ? payments.reduce((sum, p) => {
       const amount = typeof p.amount === 'number' ? p.amount : parseFloat(p.amount?.replace(/[$,]/g, '') || '0');
       return sum + amount;
     }, 0) : 0;
-    
+
     const pendingProposals = displayProjects.reduce((sum, p) => sum + (p.proposals_count || 0), 0);
     const completionRate = totalProjects > 0 ? Math.round((completedProjects / totalProjects) * 100) : 0;
-    
+    const averageProjectValue = totalProjects > 0 ? Math.round(displayProjects.reduce((sum, p) => {
+      const budget = typeof p.budget === 'number' ? p.budget : parseFloat(String(p.budget || '0').replace(/[$,]/g, ''));
+      return sum + budget;
+    }, 0) / totalProjects) : 0;
+
     return {
       totalSpent: `$${totalSpent.toLocaleString()}`,
       totalSpentNum: totalSpent,
       activeProjects,
       completedProjects,
+      onHoldProjects,
       totalProjects,
       pendingProposals,
       unreadMessages: counts.messages,
       completionRate,
+      averageProjectValue,
     };
   }, [displayProjects, payments, counts.messages]);
 
@@ -136,6 +145,39 @@ const ClientDashboard: React.FC = () => {
     return events.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()).slice(0, 5);
   }, [displayProjects, payments]);
 
+  // Risk alerts and pending actions
+  const alerts = useMemo(() => {
+    const issues: Array<{ type: 'warning' | 'alert' | 'info'; icon: typeof AlertCircle; title: string; desc: string; href: string }> = [];
+    if (metrics.pendingProposals > 0) {
+      issues.push({
+        type: 'warning',
+        icon: Clock,
+        title: `${metrics.pendingProposals} pending proposal${metrics.pendingProposals !== 1 ? 's' : ''}`,
+        desc: 'Review and respond to new proposals',
+        href: '/client/projects',
+      });
+    }
+    if (metrics.onHoldProjects > 0) {
+      issues.push({
+        type: 'alert',
+        icon: AlertCircle,
+        title: `${metrics.onHoldProjects} project${metrics.onHoldProjects !== 1 ? 's' : ''} on hold`,
+        desc: 'Paused projects may need your attention',
+        href: '/client/projects',
+      });
+    }
+    if (metrics.totalProjects === 0) {
+      issues.push({
+        type: 'info',
+        icon: TrendingUp,
+        title: 'No active projects',
+        desc: 'Post your first project to start hiring',
+        href: '/client/post-job',
+      });
+    }
+    return issues.slice(0, 3);
+  }, [metrics]);
+
   // Quick actions for the grid
   const quickActions = [
     { label: 'Post a Project', href: '/client/post-job', icon: Plus, color: 'primary' as const, desc: 'Create a new project listing' },
@@ -179,32 +221,44 @@ const ClientDashboard: React.FC = () => {
       {/* Stats Grid — with sparklines */}
       <section aria-label="Key statistics">
       <div className={commonStyles.statsGrid}>
-        <StatCard 
-          title="Total Spent" 
-          value={metrics.totalSpent} 
+        <StatCard
+          title="Total Spent"
+          value={metrics.totalSpent}
           icon={DollarSign}
           sparklineData={spendingSparkline}
           sparklineColor="primary"
           href="/client/payments"
         />
-        <StatCard 
-          title="Active Projects" 
-          value={metrics.activeProjects.toString()} 
+        <StatCard
+          title="Active Projects"
+          value={metrics.activeProjects.toString()}
           icon={Briefcase}
           sparklineColor="success"
           href="/client/projects"
         />
-        <StatCard 
-          title="Pending Proposals" 
-          value={metrics.pendingProposals.toString()} 
+        <StatCard
+          title="Pending Proposals"
+          value={metrics.pendingProposals.toString()}
           icon={Clock}
           href="/client/projects"
         />
-        <StatCard 
-          title="Unread Messages" 
-          value={metrics.unreadMessages.toString()} 
+        <StatCard
+          title="Unread Messages"
+          value={metrics.unreadMessages.toString()}
           icon={MessageSquare}
           href="/client/messages"
+        />
+        <StatCard
+          title="Avg Project Value"
+          value={`$${metrics.averageProjectValue.toLocaleString()}`}
+          icon={TrendingUp}
+          href="/client/analytics"
+        />
+        <StatCard
+          title="On-Hold Projects"
+          value={metrics.onHoldProjects.toString()}
+          icon={Clock}
+          href="/client/projects"
         />
       </div>
       </section>
@@ -219,6 +273,32 @@ const ClientDashboard: React.FC = () => {
             </button>
           </div>
         </div>
+      )}
+
+      {/* Alerts & Pending Actions */}
+      {alerts.length > 0 && (
+        <section aria-label="Alerts and pending actions">
+          <div className={cn(commonStyles.alertsSection, themeStyles.alertsSection)}>
+            <h2 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Your Attention Needed</h2>
+            <div className={commonStyles.alertsGrid}>
+              {alerts.map((alert, idx) => {
+                const AlertIcon = alert.icon;
+                return (
+                  <Link key={idx} href={alert.href} className={cn(commonStyles.alertCard, commonStyles[`alertCard-${alert.type}`], themeStyles.alertCard)}>
+                    <div className={cn(commonStyles.alertIcon, commonStyles[`alertIcon-${alert.type}`])}>
+                      <AlertIcon size={20} />
+                    </div>
+                    <div className={commonStyles.alertContent}>
+                      <div className={cn(commonStyles.alertTitle, themeStyles.alertTitle)}>{alert.title}</div>
+                      <div className={cn(commonStyles.alertDesc, themeStyles.alertDesc)}>{alert.desc}</div>
+                    </div>
+                    <ArrowRight size={16} className={commonStyles.alertArrow} />
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
       )}
 
       {/* Quick Actions */}

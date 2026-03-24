@@ -38,9 +38,37 @@ const Hire: React.FC = () => {
   const [rateType, setRateType] = useState<'Hourly' | 'Fixed'>('Hourly');
   const [rate, setRate] = useState('');
   const [startDate, setStartDate] = useState('');
-  
+
   const [liveMessage, setLiveMessage] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+
+  // Contract templates
+  const contractTemplates = useMemo(() => ({
+    'Short-term Project': {
+      titleSuffix: '(Short-term)',
+      descriptionTemplate: 'Work on a specific project with defined scope and deliverables.',
+      rateType: 'Fixed',
+      duration: '2-4 weeks',
+    },
+    'Ongoing Support': {
+      titleSuffix: '(Ongoing Support)',
+      descriptionTemplate: 'Ongoing technical support and maintenance work as needed.',
+      rateType: 'Hourly',
+      duration: 'Ongoing',
+    },
+    'Retainer': {
+      titleSuffix: '(Retainer)',
+      descriptionTemplate: 'Retainer-based engagement with monthly reserved hours or budget allocation.',
+      rateType: 'Hourly',
+      duration: 'Monthly',
+    },
+    'Full-time': {
+      titleSuffix: '(Full-time)',
+      descriptionTemplate: 'Full-time remote position with defined working hours and responsibilities.',
+      rateType: 'Hourly',
+      duration: 'Full-time',
+    },
+  }), []);
 
   useEffect(() => {
     const f = params.get('freelancer');
@@ -74,6 +102,14 @@ const Hire: React.FC = () => {
   const saveDraft = () => {
     saveHireDraft({ freelancerId, title, description, rateType, rate: rate ? Number(rate) : null, startDate, status: 'draft' });
     setLiveMessage('Draft saved.');
+  };
+
+  const applyContractTemplate = (templateName: keyof typeof contractTemplates) => {
+    const template = contractTemplates[templateName];
+    setTitle(prev => prev + ` ${template.titleSuffix}`.trim());
+    setDescription(template.descriptionTemplate);
+    setRateType(template.rateType);
+    setLiveMessage(`Applied "${templateName}" template.`);
   };
 
   const resetForm = () => {
@@ -169,6 +205,26 @@ const Hire: React.FC = () => {
                     )}
                 </div>
             </div>
+
+            {/* Contract Template Suggestions (during Scope/Terms) */}
+            {(step === 'Scope' || step === 'Terms') && (
+              <div className={cn(common.templateSuggestions, themed.templateSuggestions)}>
+                <p className={cn(common.templateHint, themed.templateHint)}>Quick templates:</p>
+                <div className={common.templateButtonGroup}>
+                  {Object.keys(contractTemplates).map((templateName) => (
+                    <Button
+                      key={templateName}
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => applyContractTemplate(templateName as keyof typeof contractTemplates)}
+                      className={common.templateButton}
+                    >
+                      {templateName}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            )}
         </form>
       </div>
       </main>
