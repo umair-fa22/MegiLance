@@ -11,7 +11,7 @@ import { CheckCircle, AlertTriangle, ArrowLeft, ArrowRight, Send, Loader2, Save,
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 
-import { PostJobData, PostJobErrors } from './PostJob.types'
+import { PostJobData, PostJobErrors, Category, BudgetType } from './PostJob.types'
 import { loadDraft, saveDraft, clearDraft } from '@/app/mocks/jobs';
 import api, { APIError } from '@/lib/api';
 
@@ -168,7 +168,7 @@ const PostJob: React.FC = () => {
         description: template.description,
         skills: template.skills,
         timeline: template.timeline,
-        budgetType: template.budgetType,
+        budgetType: template.budgetType as BudgetType,
       });
     }
   };
