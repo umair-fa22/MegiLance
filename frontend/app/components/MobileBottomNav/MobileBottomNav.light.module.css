@@ -1,8 +1,9 @@
 /* @AI-HINT: MobileBottomNav light theme colors */
 
 .bottomNav {
-  background-color: rgba(255, 255, 255, 0.92);
-  border-top-color: #edf0f4;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(249, 250, 251, 0.92) 100%);
+  border-top-color: #e2e8f0;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .tabItem {

@@ -1,110 +1,161 @@
 /* ============================================
-   BUTTON VARIANTS - Modern 2026 Design
+   BUTTON VARIANTS - Modern 2026 Design System
    ============================================ */
 
+/* Primary Variant - Dynamic Gradient with Enhanced Glow */
 .variant-primary {
-  background: linear-gradient(135deg, #4573df 0%, #5a7fff 50%, #6b93f5 100%);
-  background-size: 200% 200%;
+  background: linear-gradient(135deg, #4573df 0%, #5a7fff 40%, #6b93f5 70%, #5d7ce5 100%);
+  background-size: 300% 300%;
   color: #ffffff;
-  box-shadow: 0 8px 24px rgba(69, 115, 223, 0.35), 0 0 40px rgba(69, 115, 223, 0.12);
+  box-shadow: 0 8px 24px rgba(69, 115, 223, 0.35),
+              0 0 40px rgba(69, 115, 223, 0.12),
+              inset 0 1px 2px rgba(255, 255, 255, 0.3),
+              inset 0 -1px 2px rgba(0, 0, 0, 0.1);
   font-weight: 700;
   position: relative;
   overflow: hidden;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .variant-primary::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
 }
 
 .variant-primary:hover {
-  box-shadow: 0 12px 40px rgba(69, 115, 223, 0.45), 0 0 60px rgba(69, 115, 223, 0.18);
-  background-position: 200% 0;
+  box-shadow: 0 12px 40px rgba(69, 115, 223, 0.45),
+              0 0 60px rgba(69, 115, 223, 0.18),
+              inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  background-position: 100% 50%;
   transform: translateY(-3px) scale(1.02);
+  filter: brightness(1.08);
 }
 
 .variant-primary:hover::after {
   opacity: 1;
 }
 
+.variant-primary:active:not(:disabled) {
+  background-position: 50% 50%;
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Secondary Variant - Glassmorphic Design */
 .variant-secondary {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.75) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.8) 100%);
   color: #4573df;
-  border: 2px solid rgba(69, 115, 223, 0.2);
-  box-shadow: 0 8px 20px rgba(69, 115, 223, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(69, 115, 223, 0.25);
+  box-shadow: 0 8px 20px rgba(69, 115, 223, 0.08),
+              inset 0 1px 0 rgba(255, 255, 255, 0.9),
+              inset 0 -1px 1px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+}
+
+.variant-secondary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(69, 115, 223, 0.05) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .variant-secondary:hover {
-  background: linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(241, 245, 249, 0.8) 100%);
-  border-color: rgba(69, 115, 223, 0.4);
-  box-shadow: 0 12px 32px rgba(69, 115, 223, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(241, 245, 249, 0.85) 100%);
+  border-color: rgba(69, 115, 223, 0.5);
+  box-shadow: 0 12px 32px rgba(69, 115, 223, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.9);
   transform: translateY(-3px);
+  backdrop-filter: blur(14px);
 }
 
+.variant-secondary:hover::after {
+  opacity: 1;
+}
+
+/* Ghost Variant - Minimal & Clean */
 .variant-ghost {
   background: transparent;
   color: #4a5568;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  border: 2px solid transparent;
 }
 
 .variant-ghost:hover {
-  background: rgba(69, 115, 223, 0.08);
+  background: linear-gradient(135deg, rgba(69, 115, 223, 0.08) 0%, rgba(107, 147, 245, 0.04) 100%);
   color: #2d3748;
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.1);
+  border-color: rgba(69, 115, 223, 0.15);
 }
 
+/* Outline Variant - Border Focused */
 .variant-outline {
-  background: transparent;
-  border: 2px solid #e2e8f0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(248, 250, 252, 0.3) 100%);
+  border: 2px solid #cbd5e1;
   color: #4a5568;
   transition: all 0.3s ease;
   position: relative;
+  backdrop-filter: blur(8px);
 }
 
 .variant-outline::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(69, 115, 223, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(69, 115, 223, 0.15), transparent);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .variant-outline:hover {
   border-color: #4573df;
-  background: rgba(69, 115, 223, 0.05);
+  background: linear-gradient(135deg, rgba(69, 115, 223, 0.08) 0%, rgba(107, 147, 245, 0.05) 100%);
   color: #2d3748;
-  box-shadow: 0 8px 20px rgba(69, 115, 223, 0.1), inset 0 0 20px rgba(69, 115, 223, 0.05);
+  box-shadow: 0 8px 20px rgba(69, 115, 223, 0.12),
+              inset 0 0 20px rgba(69, 115, 223, 0.06);
   transform: translateY(-2px);
+  border-color: rgba(69, 115, 223, 0.6);
 }
 
+/* Danger Variant - Action Red */
 .variant-danger {
   background: linear-gradient(135deg, #e81123 0%, #f24f3d 50%, #f07060 100%);
-  background-size: 200% 200%;
+  background-size: 300% 300%;
   color: #ffffff;
-  box-shadow: 0 8px 24px rgba(232, 17, 35, 0.35), 0 0 40px rgba(232, 17, 35, 0.12);
+  box-shadow: 0 8px 24px rgba(232, 17, 35, 0.35),
+              0 0 40px rgba(232, 17, 35, 0.12),
+              inset 0 1px 2px rgba(255, 255, 255, 0.2);
   font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .variant-danger:hover {
-  box-shadow: 0 12px 40px rgba(232, 17, 35, 0.45), 0 0 60px rgba(232, 17, 35, 0.18);
-  background-position: 200% 0;
+  box-shadow: 0 12px 40px rgba(232, 17, 35, 0.45),
+              0 0 60px rgba(232, 17, 35, 0.18);
+  background-position: 100% 50%;
   transform: translateY(-3px) scale(1.02);
+  filter: brightness(1.08);
 }
 
+/* Social Variant - Neutral & Friendly */
 .variant-social {
   background: #ffffff;
   color: #1a202c;
   border: 2px solid #e2e8f0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
+  font-weight: 600;
 }
 
 .variant-social:hover {
@@ -112,36 +163,50 @@
   border-color: #cbd5e1;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
+  color: #0f172a;
 }
 
+/* Success Variant - Green Gradient */
 .variant-success {
   background: linear-gradient(135deg, #27AE60 0%, #2ecc71 50%, #39d77a 100%);
-  background-size: 200% 200%;
+  background-size: 300% 300%;
   color: #ffffff;
-  box-shadow: 0 8px 24px rgba(39, 174, 96, 0.35), 0 0 40px rgba(39, 174, 96, 0.12);
+  box-shadow: 0 8px 24px rgba(39, 174, 96, 0.35),
+              0 0 40px rgba(39, 174, 96, 0.12),
+              inset 0 1px 2px rgba(255, 255, 255, 0.2);
   font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .variant-success:hover {
-  box-shadow: 0 12px 40px rgba(39, 174, 96, 0.45), 0 0 60px rgba(39, 174, 96, 0.18);
-  background-position: 200% 0;
+  box-shadow: 0 12px 40px rgba(39, 174, 96, 0.45),
+              0 0 60px rgba(39, 174, 96, 0.18);
+  background-position: 100% 50%;
   transform: translateY(-3px) scale(1.02);
+  filter: brightness(1.08);
 }
 
+/* Warning Variant - Amber Gradient */
 .variant-warning {
   background: linear-gradient(135deg, #F2C94C 0%, #f5d76e 50%, #f9e79f 100%);
-  background-size: 200% 200%;
+  background-size: 300% 300%;
   color: #1a202c;
-  box-shadow: 0 8px 24px rgba(242, 201, 76, 0.35), 0 0 40px rgba(242, 201, 76, 0.12);
+  box-shadow: 0 8px 24px rgba(242, 201, 76, 0.35),
+              0 0 40px rgba(242, 201, 76, 0.12),
+              inset 0 1px 2px rgba(255, 255, 255, 0.3);
   font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
 .variant-warning:hover {
-  box-shadow: 0 12px 40px rgba(242, 201, 76, 0.45), 0 0 60px rgba(242, 201, 76, 0.18);
-  background-position: 200% 0;
+  box-shadow: 0 12px 40px rgba(242, 201, 76, 0.45),
+              0 0 60px rgba(242, 201, 76, 0.18);
+  background-position: 100% 50%;
   transform: translateY(-3px) scale(1.02);
+  filter: brightness(1.06);
 }
 
+/* Link Variant - Minimal & Elegant */
 .variant-link {
   background: transparent;
   color: #4573df;
@@ -149,17 +214,20 @@
   height: auto;
   position: relative;
   font-weight: 600;
+  border: none;
+  letter-spacing: 0.3px;
+  text-decoration: none;
 }
 
 .variant-link::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
   width: 0;
   height: 2px;
   background: linear-gradient(90deg, #4573df, #6b93f5);
-  transition: width 0.3s ease;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .variant-link:hover {
@@ -169,3 +237,4 @@
 .variant-link:hover::after {
   width: 100%;
 }
+

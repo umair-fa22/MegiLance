@@ -31,6 +31,9 @@
 
 .actions {
   flex-shrink: 0;
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
 }
 
 .kpiGrid {
@@ -71,15 +74,153 @@
   white-space: nowrap;
 }
 
+/* Date Range Filter */
+.dateRangeFilter {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-end;
+  flex-wrap: wrap;
+  padding: var(--space-4);
+  border-radius: var(--rounded-lg);
+  border: 1px solid transparent;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.dateRangeFilter > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 150px;
+}
+
+.dateLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.dateInput {
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--rounded-md);
+  border: 1px solid var(--border-color);
+  font-size: 0.9375rem;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  font-family: inherit;
+}
+
+.dateInput:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-alpha);
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: var(--space-4);
 }
 
 .skeletonCard {
   height: 160px;
   border-radius: var(--radius-lg);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.paymentCardWrapper {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--rounded-lg);
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.paymentCardWrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.paymentMeta {
+  padding: var(--space-3);
+  border-top: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.metaRow {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.badge__verified, .badge__escrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+}
+
+.badge__verified {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: rgb(34, 197, 94);
+}
+
+.badge__escrow {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: rgb(59, 130, 246);
+}
+
+.refundBtn {
+  width: auto;
+  padding: 0.4rem 0.75rem;
+}
+
+.refundModal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+}
+
+.refundModalText {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.refundTextarea {
+  padding: var(--space-3);
+  border-radius: var(--rounded-md);
+  border: 1px solid var(--border-color);
+  font-size: 0.9375rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: all 0.2s ease;
+}
+
+.refundTextarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-alpha);
+}
+
+.refundModalActions {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: flex-end;
 }
 
 .paginationContainer {
@@ -99,6 +240,15 @@
     align-items: stretch;
   }
 
+  .actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .actions button {
+    flex: 1;
+  }
+
   .controls {
     flex-direction: column;
     align-items: stretch;
@@ -108,13 +258,116 @@
     max-width: none;
   }
 
+  .filtersRow {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .filters {
+    width: 100%;
+  }
+
+  .dateRangeFilter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dateRangeFilter > div {
+    min-width: 100%;
+  }
+
   .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kpiGrid {
     grid-template-columns: 1fr;
   }
 }
 
 /* Empty state helper */
 .emptyState { padding: var(--space-3); }
+
+/* Bulk Selection */
+.selectionBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--rounded-lg);
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));
+  transition: all 0.3s ease;
+  margin-bottom: var(--space-4);
+}
+
+.selectionBar.selectionBarVisible {
+  border-color: var(--border-color);
+}
+
+.selectAllCheckbox {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+}
+
+.selectAllCheckbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
+.bulkActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-left: auto;
+}
+
+.selectionCount {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--primary);
+}
+
+.paymentCheckbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.paymentCheckbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
+.paymentCardWrapper {
+  position: relative;
+  padding-top: var(--space-2);
+}
+
+.paymentCardSelected {
+  border-color: var(--primary);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.02), rgba(139, 92, 246, 0.02));
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
 
 /* Pagination */
 .paginationBar {

@@ -1,4 +1,4 @@
-/* @AI-HINT: Activity Timeline — layout, connector lines, animations */
+/* @AI-HINT: Activity Timeline — layout, connector lines, animations with 2026 modern effects */
 
 .timeline {
   display: flex;
@@ -10,7 +10,8 @@
 .timelineItem {
   position: relative;
   padding-bottom: 1.25rem;
-  animation: slideIn 0.3s ease-out backwards;
+  animation: slideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
 }
 
 .timelineItem:nth-child(1) { animation-delay: 0s; }
@@ -21,8 +22,14 @@
 .timelineItem:nth-child(6) { animation-delay: 0.25s; }
 
 @keyframes slideIn {
-  from { opacity: 0; transform: translateX(-8px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .timelineItem:last-child {
@@ -91,10 +98,12 @@
   font-size: 0.8125rem;
   font-weight: 500;
   text-decoration: none;
+  transition: color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), text-decoration 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .timelineTarget:hover {
   text-decoration: underline;
+  color: var(--color-primary, #4573df);
 }
 
 .timelineTime {
@@ -133,10 +142,22 @@
   gap: 0.5rem;
   opacity: 0.5;
   text-align: center;
+  animation: fadeIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .emptyTimeline p {
   font-size: 0.875rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 480px) {
@@ -147,5 +168,13 @@
     left: -1.125rem;
     width: 12px;
     height: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timelineItem,
+  .emptyTimeline {
+    animation: none !important;
+    transition: none !important;
   }
 }

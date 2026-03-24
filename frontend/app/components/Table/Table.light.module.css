@@ -1,17 +1,18 @@
-﻿/* @AI-HINT: Light theme styles for the Table component using brand tokens. */
+﻿/* @AI-HINT: Light theme styles for the Table component using brand tokens with 2026 glassmorphic design. */
 
 .tableContainer {
   border: 1px solid #e2e8f0;
-  background: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .caption {
-  background-color: #f8fafc;
+  background: linear-gradient(135deg, #f8fafc 0%, #f5f7fa 100%);
   color: #0f172a;
 }
 
 .tableThead {
-  background-color: #f8fafc;
+  background: linear-gradient(135deg, #f8fafc 0%, #f5f7fa 100%);
   border-bottom: 1px solid #e2e8f0;
 }
 
@@ -21,7 +22,7 @@
 
 .tableTbodyTr {
   background-color: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #f0f2f5;
 }
 
 .tableTbodyTr:hover {
@@ -33,7 +34,7 @@
   background-color: #ffffff;
 }
 .tableTbodyTr:nth-child(even) {
-  background-color: #f8fafc;
+  background: linear-gradient(135deg, #f9fafc 0%, #f5f7fa 100%);
 }
 
 .tableTd {
@@ -45,4 +46,5 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  background: linear-gradient(135deg, #f8fafc 0%, #f5f7fa 100%);
 }

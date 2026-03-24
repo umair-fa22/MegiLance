@@ -1,8 +1,9 @@
 ﻿/* @AI-HINT: Light theme styles for enterprise PortalFooter */
 
 .footer {
-  border-top: 1px solid #edf0f4;
-  background-color: transparent;
+  border-top: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(249, 250, 251, 0.3) 100%);
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.02);
 }
 
 .statusText {
@@ -14,13 +15,17 @@
 }
 
 .versionBadge {
-  background-color: #f1f5f9;
-  color: #94a3b8;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e8eef8 100%);
+  color: #64748b;
+  box-shadow: 0 1px 3px rgba(69, 115, 223, 0.1);
+  border: 1px solid rgba(69, 115, 223, 0.1);
 }
 
 .shortcutHint {
-  background-color: #f1f5f9;
-  color: #94a3b8;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e8eef8 100%);
+  color: #64748b;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .link {

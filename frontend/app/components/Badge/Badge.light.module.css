@@ -1,53 +1,120 @@
-/* Default Variant */
+/* LIGHT THEME - Modern 2026 Badge Variants */
+
+/* Default Variant - Neutral Gray */
 .badgeDefault,
 .default {
-  --badge-bg: #f8fafc;
-  --badge-text: #64748b;
+  --badge-bg: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  --badge-text: #475569;
+  --badge-border: rgba(203, 213, 225, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06),
+              inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
-/* Primary Variant */
+/* Primary Variant - Blue Accent */
 .badgePrimary,
 .primary {
-  --badge-bg: rgba(69,115,223,0.10);
+  --badge-bg: linear-gradient(135deg, rgba(69, 115, 223, 0.12) 0%, rgba(107, 147, 245, 0.08) 100%);
   --badge-text: #3b63c4;
+  --badge-border: rgba(69, 115, 223, 0.25);
+  box-shadow: 0 2px 8px rgba(69, 115, 223, 0.12),
+              inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
-/* Secondary Variant */
+.badgePrimary:hover,
+.primary:hover {
+  --badge-bg: linear-gradient(135deg, rgba(69, 115, 223, 0.18) 0%, rgba(107, 147, 245, 0.12) 100%);
+  --badge-border: rgba(69, 115, 223, 0.4);
+}
+
+/* Secondary Variant - Subtle */
 .badgeSecondary,
 .secondary {
-  --badge-bg: #f8fafc;
+  --badge-bg: linear-gradient(135deg, #f0f4f8 0%, #e9eef5 100%);
   --badge-text: #64748b;
+  --badge-border: rgba(203, 213, 225, 0.4);
 }
 
-/* Success Variant */
+/* Success Variant - Green */
 .badgeSuccess,
 .success {
-  --badge-bg: rgba(39,174,96,0.10);
+  --badge-bg: linear-gradient(135deg, rgba(39, 174, 96, 0.12) 0%, rgba(74, 222, 128, 0.08) 100%);
   --badge-text: #1a7a42;
+  --badge-border: rgba(39, 174, 96, 0.25);
+  box-shadow: 0 2px 8px rgba(39, 174, 96, 0.12),
+              inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
-/* Warning Variant */
+.badgeSuccess:hover,
+.success:hover {
+  --badge-bg: linear-gradient(135deg, rgba(39, 174, 96, 0.18) 0%, rgba(74, 222, 128, 0.12) 100%);
+  --badge-border: rgba(39, 174, 96, 0.4);
+}
+
+/* Warning Variant - Amber */
 .badgeWarning,
 .warning {
-  --badge-bg: rgba(242,201,76,0.15);
-  --badge-text: #c79a2a;
+  --badge-bg: linear-gradient(135deg, rgba(242, 201, 76, 0.18) 0%, rgba(245, 215, 110, 0.12) 100%);
+  --badge-text: #ca8500;
+  --badge-border: rgba(242, 201, 76, 0.35);
+  box-shadow: 0 2px 8px rgba(242, 201, 76, 0.12),
+              inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
-/* Danger Variant */
+.badgeWarning:hover,
+.warning:hover {
+  --badge-bg: linear-gradient(135deg, rgba(242, 201, 76, 0.25) 0%, rgba(245, 215, 110, 0.18) 100%);
+  --badge-border: rgba(242, 201, 76, 0.5);
+}
+
+/* Danger Variant - Red */
 .badgeDanger,
 .danger {
-  --badge-bg: rgba(232,17,35,0.10);
+  --badge-bg: linear-gradient(135deg, rgba(232, 17, 35, 0.12) 0%, rgba(242, 79, 61, 0.08) 100%);
   --badge-text: #c00f1e;
+  --badge-border: rgba(232, 17, 35, 0.25);
+  box-shadow: 0 2px 8px rgba(232, 17, 35, 0.12),
+              inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
-/* Info Variant */
+.badgeDanger:hover,
+.danger:hover {
+  --badge-bg: linear-gradient(135deg, rgba(232, 17, 35, 0.18) 0%, rgba(242, 79, 61, 0.12) 100%);
+  --badge-border: rgba(232, 17, 35, 0.4);
+}
+
+/* Info Variant - Sky Blue */
 .badgeInfo,
 .info {
-  --badge-bg: rgba(59,130,246,0.10);
+  --badge-bg: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(147, 197, 253, 0.08) 100%);
   --badge-text: #2563eb;
+  --badge-border: rgba(59, 130, 246, 0.25);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.12),
+              inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
-/* Subtle hover polish when inside interactive contexts */
-.badge:hover {
-  filter: brightness(1.03);
+.badgeInfo:hover,
+.info:hover {
+  --badge-bg: linear-gradient(135deg, rgba(59, 130, 246, 0.18) 0%, rgba(147, 197, 253, 0.12) 100%);
+  --badge-border: rgba(59, 130, 246, 0.4);
 }
+
+/* Error Variant - Dark Red */
+.badgeError,
+.error {
+  --badge-bg: linear-gradient(135deg, rgba(220, 38, 38, 0.12) 0%, rgba(239, 68, 68, 0.08) 100%);
+  --badge-text: #b91c1c;
+  --badge-border: rgba(220, 38, 38, 0.25);
+}
+
+/* Neutral Variant - Grayscale */
+.badgeNeutral,
+.neutral {
+  --badge-bg: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+  --badge-text: #374151;
+  --badge-border: rgba(107, 114, 128, 0.2);
+}
+
+.badge:hover {
+  filter: brightness(1.05);
+}
+

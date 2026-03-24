@@ -17,7 +17,10 @@
   border-radius: 8px;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: opacity 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  transition: opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   flex-shrink: 0;
 }
 
@@ -49,12 +52,12 @@
   font-weight: 500;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: transform 0.15s ease,
-    box-shadow 0.15s ease,
-    border-color 0.15s ease,
-    background-color 0.15s ease,
-    color 0.15s ease,
-    opacity 0.15s ease;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .pageButton:focus-visible {
@@ -65,6 +68,19 @@
 .pageButtonActive {
   cursor: default;
   font-weight: 600;
+}
+
+.navButton:hover:not(:disabled),
+.pageButton:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  .navButton,
+  .pageButton {
+    transition: none !important;
+  }
 }
 
 .ellipsis {

@@ -47,6 +47,23 @@
 .pageNumActive { color: #4573df; background: #e8ecff; border-color: #4573df; }
 
 .analyticsCard { background: #fff; border: 1px solid #e5e7eb; }
+
+/* Modal light theme */
+.modal { background: #fff; border-color: #e5e7eb; }
+.modalHeader { border-color: #e5e7eb; color: #1a1a2e; }
+.modalBody { color: #374151; }
+.modalFooter { border-color: #e5e7eb; }
+.closeBtn { color: #6b7280; }
+.closeBtn:hover { color: #1a1a2e; }
+
+/* Detailed Ratings light */
+.detailedRatings { background-color: rgba(69, 115, 223, 0.05); }
+.ratingCategory { color: #374151; }
+.ratingValue { color: #4573df; }
+
+/* Form elements light */
+.filterLabel { color: #6b7280; }
+.checkboxLabel { color: #374151; }
 .sectionTitle { color: #1a1a2e; }
 .distLabel { color: #374151; }
 .distBarWrap { background: #f3f4f6; }

@@ -1,4 +1,5 @@
-/* AI-HINT: Common styles for the Alert component. Defines layout, typography, and structure. Theme-specific files handle the colors. */
+/* AI-HINT: Common styles for the Alert component. 2026 premium design with glassmorphism and enhanced micro-interactions. */
+
 .alert {
   display: flex;
   padding: 1rem 1.25rem;
@@ -10,13 +11,17 @@
   background-color: var(--surface);
   color: var(--text-secondary);
   border-color: var(--border);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-  transition: transform 250ms,
-    box-shadow 250ms,
-    border-color 250ms,
-    background-color 250ms,
-    color 250ms,
-    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08),
+              0 1px 2px rgba(0, 0, 0, 0.04),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+  will-change: transform, box-shadow;
 }
 
 .alertIcon {
@@ -24,12 +29,15 @@
   margin-right: 0.875rem;
   font-size: 1.25rem;
   margin-top: 0.125rem;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.35s ease;
+  will-change: transform;
 }
 
 .alertContent {
   flex-grow: 1;
   padding-right: 1rem;
+  animation: slideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .alertTitle {
@@ -56,13 +64,15 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0.25rem;
+  padding: 0.5rem;
   border-radius: 9999px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-secondary);
-  transition: var(--transition-all-fast, all 160ms ease);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform, background-color;
 }
 
 .alertCloseButton svg {
@@ -70,43 +80,59 @@
   height: 1.25rem;
 }
 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 /* Micro-interactions */
 .alert:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.05);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12),
+              0 2px 6px rgba(0, 0, 0, 0.08),
+              inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .alert:hover .alertIcon {
-  transform: scale(1.05);
+  transform: scale(1.08);
+  filter: brightness(1.1);
 }
 
 .alertCloseButton:hover {
   background-color: var(--surface-alt);
   color: var(--text-primary);
-  transform: scale(1.1);
+  transform: scale(1.12);
 }
 
 /* Accessible focus rings */
 .alert:focus-within {
-  /* Fallback */
-  box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.18), var(--shadow-sm, 0 1px 2px rgba(0,0,0,0.06));
-}
-@supports (color: color-mix(in oklab, white, black)) {
-  .alert:focus-within {
-    box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 18%, transparent), var(--shadow-sm, 0 1px 2px rgba(0,0,0,0.06));
-  }
+  box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2),
+              0 2px 8px rgba(0, 0, 0, 0.08),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .alertCloseButton:focus-visible {
   outline: 2px solid var(--color-primary, #4573df);
-  outline-offset: 2px;
-  /* Fallback ring */
-  box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.28);
-}
-@supports (color: color-mix(in oklab, white, black)) {
-  .alertCloseButton:focus-visible {
-    box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 28%, transparent);
-  }
+  outline-offset: -2px;
+  box-shadow: inset 0 0 0 2px rgba(69, 115, 223, 0.2),
+              0 0 0 4px rgba(69, 115, 223, 0.15);
 }
 
 /* Variant colors are defined in theme-specific files */

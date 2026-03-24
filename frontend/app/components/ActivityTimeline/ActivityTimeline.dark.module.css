@@ -1,8 +1,32 @@
-/* @AI-HINT: Activity Timeline — dark theme */
-.timelineItem::before { background: rgba(255, 255, 255, 0.08); }
-.timelineActor { color: #e2e8f0; }
-.timelineAction { color: #94a3b8; }
-.timelineTarget { color: #7ba3f7; }
-.timelineTime { color: #64748b; }
-.timelineBadge { background: rgba(255, 255, 255, 0.06); color: #94a3b8; }
-.emptyTimeline { color: #94a3b8; }
+/* @AI-HINT: Activity Timeline — dark theme with 2026 luminous styling */
+.timelineItem::before {
+  background: linear-gradient(180deg, rgba(107, 147, 245, 0.15) 0%, rgba(255, 255, 255, 0.04) 100%);
+}
+
+.timelineActor {
+  color: #e2e8f0;
+  font-weight: 600;
+}
+
+.timelineAction {
+  color: #94a3b8;
+}
+
+.timelineTarget {
+  color: #7ba3f7;
+}
+
+.timelineTime {
+  color: #64748b;
+}
+
+.timelineBadge {
+  background: linear-gradient(135deg, rgba(107, 147, 245, 0.12) 0%, rgba(107, 147, 245, 0.04) 100%);
+  color: #a5d6ff;
+  border: 1px solid rgba(107, 147, 245, 0.25);
+  box-shadow: 0 1px 3px rgba(107, 147, 245, 0.12);
+}
+
+.emptyTimeline {
+  color: #94a3b8;
+}

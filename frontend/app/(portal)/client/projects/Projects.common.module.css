@@ -171,12 +171,52 @@
   }
 }
 
+/* Bulk Actions */
+.bulkActionsBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  gap: 1rem;
+  margin: 0.75rem 0;
+}
+
+.bulkActionsLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bulkSelectCheckbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.bulkActionsLabel {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.bulkActionsRight {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.bulkSelect {
+  min-width: 140px;
+}
+
 /* Pagination */
-.paginationBar { 
-  display: flex; 
-  align-items: center; 
-  justify-content: flex-end; 
-  gap: var(--spacing-2); 
-  margin-top: 12px; 
+.paginationBar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-2);
+  margin-top: 12px;
 }
 .paginationInfo { opacity: .8; }

@@ -1,13 +1,13 @@
 /* @AI-HINT: Overhauled light theme for Sidebar - modern, clean, polished design */
 
 .sidebar {
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
   border-right-color: #edf0f4;
-  box-shadow: 1px 0 8px rgba(0, 0, 0, 0.02);
+  box-shadow: 1px 0 8px rgba(0, 0, 0, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .sidebarHeader {
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
   border-bottom-color: #f0f2f5;
 }
 
@@ -17,13 +17,14 @@
 
 .toggleButton {
   color: #64748b;
-  background-color: #f5f7fa;
-  border-color: transparent;
+  background: linear-gradient(135deg, #f5f7fa 0%, #f1f5f9 100%);
+  border-color: rgba(69, 115, 223, 0.12);
 }
 
 .toggleButton:hover {
-  background-color: #edf2ff;
+  background: linear-gradient(135deg, #edf2ff 0%, #e0e7ff 100%);
   color: #4573df;
+  box-shadow: 0 2px 12px rgba(69, 115, 223, 0.12);
 }
 
 .sidebarNavContainer {
@@ -39,23 +40,23 @@
 }
 
 .divider {
-  background-color: #f0f2f5;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.06) 50%, transparent 100%);
 }
 
 .sidebarFooter {
-  background-color: #fafbfc;
+  background: linear-gradient(135deg, #fafbfc 0%, #f8f9fb 100%);
   border-top-color: #f0f2f5;
 }
 
 .userInfo {
-  background-color: #f8f9fb;
-  border: 1px solid #edf0f4;
+  background: linear-gradient(135deg, #f8f9fb 0%, #f5f7fa 100%);
+  border: 1px solid rgba(69, 115, 223, 0.12);
 }
 
 .userInfo:hover {
-  background-color: #edf2ff;
+  background: linear-gradient(135deg, #edf2ff 0%, #e0e7ff 100%);
   border-color: #b8ccf0;
-  box-shadow: 0 2px 12px rgba(69, 115, 223, 0.06);
+  box-shadow: 0 2px 12px rgba(69, 115, 223, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .avatar {

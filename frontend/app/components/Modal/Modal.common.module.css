@@ -2,18 +2,18 @@
 
 /* ===== PREMIUM ANIMATIONS ===== */
 @keyframes overlayFadeIn {
-  from { 
+  from {
     opacity: 0;
     backdrop-filter: blur(0);
   }
-  to { 
+  to {
     opacity: 1;
     backdrop-filter: blur(20px);
   }
 }
 
 @keyframes modalSlideIn {
-  0% { 
+  0% {
     transform: translateY(-30px) scale(0.95) perspective(1000px) rotateX(5deg);
     opacity: 0;
     filter: blur(4px);
@@ -23,7 +23,7 @@
     opacity: 1;
     filter: blur(0);
   }
-  100% { 
+  100% {
     transform: translateY(0) scale(1) perspective(1000px) rotateX(0deg);
     opacity: 1;
     filter: blur(0);
@@ -48,7 +48,7 @@
   align-items: center;
   justify-content: center;
   z-index: var(--z-modal, 1000);
-  animation: overlayFadeIn 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: overlayFadeIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   font-family: var(--font-body, 'Inter', sans-serif);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
@@ -64,7 +64,7 @@
   display: flex;
   flex-direction: column;
   outline: none;
-  animation: modalSlideIn 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: modalSlideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   -webkit-backdrop-filter: blur(40px) saturate(180%);
   backdrop-filter: blur(40px) saturate(180%);
   overflow: hidden;
@@ -187,14 +187,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-    border-color 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-    background-color 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-    color 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-    opacity 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   position: relative;
   overflow: hidden;
+  will-change: transform, background-color, box-shadow;
 }
 
 .closeButton::before {
@@ -205,12 +206,12 @@
   background: var(--color-primary-500, #4573df);
   opacity: 0;
   transform: scale(0.5);
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-    border-color 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-    background-color 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-    color 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-    opacity 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .closeButton:hover::before {

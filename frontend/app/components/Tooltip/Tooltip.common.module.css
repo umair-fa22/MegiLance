@@ -1,6 +1,25 @@
 @keyframes fadeInScale {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 .tooltipWrapper {
@@ -10,18 +29,23 @@
 
 .tooltip {
   position: absolute;
-  padding: 0.5rem 0.875rem; /* 8px 14px */
-  border-radius: 0.5rem; /* 8px */
-  font-size: 0.8125rem; /* 13px - Slightly smaller for refinement */
+  padding: 0.65rem 1rem;
+  border-radius: 0.625rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   line-height: 1.4;
   white-space: nowrap;
   z-index: 110;
-  animation: fadeInScale 0.18s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing */
+  animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   pointer-events: none;
   will-change: transform, opacity;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1); /* Layered shadow */
-  letter-spacing: 0.01em;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18),
+              0 2px 8px rgba(0, 0, 0, 0.1),
+              inset 0 1px 2px rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .tooltipArrow,
@@ -40,11 +64,12 @@
   content: '';
   visibility: visible;
   transform: rotate(45deg);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Positioning */
 .tooltipTop {
-  bottom: calc(100% + 8px); /* More space */
+  bottom: calc(100% + 10px);
   left: 50%;
   transform: translateX(-50%);
 }
@@ -53,7 +78,7 @@
 }
 
 .tooltipBottom {
-  top: calc(100% + 8px); /* More space */
+  top: calc(100% + 10px);
   left: 50%;
   transform: translateX(-50%);
 }
@@ -62,7 +87,7 @@
 }
 
 .tooltipLeft {
-  right: calc(100% + 8px); /* More space */
+  right: calc(100% + 10px);
   top: 50%;
   transform: translateY(-50%);
 }
@@ -71,7 +96,7 @@
 }
 
 .tooltipRight {
-  left: calc(100% + 8px); /* More space */
+  left: calc(100% + 10px);
   top: 50%;
   transform: translateY(-50%);
 }
@@ -81,5 +106,9 @@
 
 /* Reduced motion safety */
 @media (prefers-reduced-motion: reduce) {
-  .tooltip { animation: none !important; }
+  .tooltip {
+    animation: none !important;
+    transition: opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
 }
+

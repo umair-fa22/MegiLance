@@ -1,32 +1,38 @@
-/* AI-HINT: Dark theme styles for the RadioGroup component. */
+/* AI-HINT: Dark theme styles for the RadioGroup component with 2026 luminous design. */
 
 .legend {
   color: #94a3b8;
 }
 
 .options_container {
-  background-color: #1e293b;
+  background: linear-gradient(135deg, #1a253a 0%, #1e293b 100%);
 }
 
 .label {
-  background-color: #0f172a;
+  background: linear-gradient(135deg, #0f172a 0%, #1a1f2e 100%);
   border-color: #334155;
+  transition:
+    background 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .label:hover {
   border-color: #475569;
+  background: linear-gradient(135deg, #1a253a 0%, #1e293b 100%);
 }
 
 .label_selected {
-  background-color: rgba(107,141,230,0.12);
+  background: linear-gradient(135deg, rgba(107, 147, 245, 0.15) 0%, rgba(107, 147, 245, 0.06) 100%);
   border-color: #6b8de6;
-  box-shadow: 0 0 0 1px #6b8de6;
+  box-shadow: 0 0 0 2px rgba(107, 147, 245, 0.25), inset 0 1px 0 rgba(107, 147, 245, 0.1);
 }
 
 .text {
   color: #94a3b8;
+  transition: color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .label_selected .text {
-  color: #93b0f0;
+  color: #a5d6ff;
 }

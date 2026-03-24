@@ -422,10 +422,108 @@
   transition: background-color 0.15s ease;
 }
 
+/* ── Alerts & Pending Actions ──────────────────────– */
+.alertsSection {
+  margin-bottom: 0.5rem;
+}
+
+.alertsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.alertCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.alertCard:hover {
+  transform: translateY(-2px);
+}
+
+.alertCardWarning {
+  border-color: rgba(212, 160, 23, 0.2);
+	background-color: rgba(212, 160, 23, 0.08);
+}
+
+.alertCardAlert {
+  border-color: rgba(232, 17, 35, 0.2);
+  background-color: rgba(232, 17, 35, 0.08);
+}
+
+.alertCardInfo {
+  border-color: rgba(69, 115, 223, 0.2);
+  background-color: rgba(69, 115, 223, 0.08);
+}
+
+.alertIcon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.125rem;
+}
+
+.alertIconWarning {
+  background-color: rgba(212, 160, 23, 0.15);
+  color: #d4a017;
+}
+
+.alertIconAlert {
+  background-color: rgba(232, 17, 35, 0.15);
+  color: var(--color-error, #e81123);
+}
+
+.alertIconInfo {
+  background-color: rgba(69, 115, 223, 0.15);
+  color: var(--color-primary, #4573df);
+}
+
+.alertContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.alertTitle {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.alertDesc {
+  font-size: 0.8125rem;
+  opacity: 0.75;
+}
+
+.alertArrow {
+  flex-shrink: 0;
+  margin-left: auto;
+  opacity: 0.5;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.alertCard:hover .alertArrow {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
 /* ── Responsive ─────────────────────────────────── */
 @media (max-width: 1279px) {
   .statsGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .alertsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
   .quickActionsGrid {
     grid-template-columns: repeat(3, 1fr);
@@ -462,6 +560,9 @@
   .statsGrid {
     grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
+  }
+  .alertsGrid {
+    grid-template-columns: 1fr;
   }
   .quickActionsGrid {
     grid-template-columns: repeat(3, 1fr);

@@ -1,33 +1,37 @@
-/* AI-HINT: Light theme styles for the Accordion. Defines colors for text, borders, and interactions for a clean and modern look. */
+/* AI-HINT: Light theme styles for the Accordion. 2026 premium glassmorphic design with gradient backgrounds and enhanced shadows. */
 
 .accordionRoot {
-  background-color: #ffffff; /* White */
-  border: 1px solid #e2e8f0; /* Gray 200 */
+  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06),
+              inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .accordionItem {
-  border-color: #e2e8f0; /* Gray 200 */
+  border-color: #e2e8f0;
 }
 
 .accordionTrigger {
-  color: #1f2937; /* Gray 800 */
+  --trigger-bg: #ffffff;
+  color: #1f2937;
 }
 
-.accordionTrigger:hover {
-  background-color: #f9fafb; /* Gray 50 */
+.accordionTrigger:hover:not(:disabled) {
+  background: linear-gradient(135deg, #f9fafb 0%, #f1f5f9 100%);
 }
 
 .accordionTrigger:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #4573df; /* White inner, MegiLance Blue outer */
-  z-index: 1;
-  position: relative;
+  outline: 2px solid #4573df;
+  outline-offset: -2px;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5),
+              inset 0 0 0 2px rgba(69, 115, 223, 0.15),
+              0 0 0 4px rgba(69, 115, 223, 0.1);
 }
 
 .accordionIcon::before {
-  border-color: #64748b; /* Gray 500 */
+  border-color: #64748b;
 }
 
 .accordionContentText {
-  color: #4b5563; /* Gray 600 */
+  color: #4b5563;
 }

@@ -1,53 +1,120 @@
-/* Default Variant */
+/* DARK THEME - Modern 2026 Badge Variants */
+
+/* Default Variant - Neutral Night */
 .badgeDefault,
 .default {
-  --badge-bg: #0f172a;
-  --badge-text: #94a3b8;
+  --badge-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --badge-text: #cbd5e1;
+  --badge-border: rgba(148, 163, 184, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-/* Primary Variant */
+/* Primary Variant - Sky Blue */
 .badgePrimary,
 .primary {
-  --badge-bg: rgba(107,141,230,0.15);
-  --badge-text: #93b0f0;
+  --badge-bg: linear-gradient(135deg, rgba(107, 147, 245, 0.18) 0%, rgba(165, 214, 255, 0.08) 100%);
+  --badge-text: #a5d6ff;
+  --badge-border: rgba(107, 147, 245, 0.35);
+  box-shadow: 0 2px 8px rgba(107, 147, 245, 0.18),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Secondary Variant */
+.badgePrimary:hover,
+.primary:hover {
+  --badge-bg: linear-gradient(135deg, rgba(107, 147, 245, 0.25) 0%, rgba(165, 214, 255, 0.12) 100%);
+  --badge-border: rgba(107, 147, 245, 0.5);
+}
+
+/* Secondary Variant - Subtle Dark */
 .badgeSecondary,
 .secondary {
-  --badge-bg: #0f172a;
-  --badge-text: #94a3b8;
+  --badge-bg: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+  --badge-text: #e2e8f0;
+  --badge-border: rgba(148, 163, 184, 0.2);
 }
 
-/* Success Variant */
+/* Success Variant - Emerald */
 .badgeSuccess,
 .success {
-  --badge-bg: rgba(34,197,94,0.15);
-  --badge-text: #22c55e;
+  --badge-bg: linear-gradient(135deg, rgba(34, 197, 94, 0.18) 0%, rgba(110, 231, 183, 0.08) 100%);
+  --badge-text: #6ee7b7;
+  --badge-border: rgba(34, 197, 94, 0.35);
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-/* Warning Variant */
+.badgeSuccess:hover,
+.success:hover {
+  --badge-bg: linear-gradient(135deg, rgba(34, 197, 94, 0.25) 0%, rgba(110, 231, 183, 0.12) 100%);
+  --badge-border: rgba(34, 197, 94, 0.5);
+}
+
+/* Warning Variant - Amber */
 .badgeWarning,
 .warning {
-  --badge-bg: rgba(242,201,76,0.15);
-  --badge-text: #F2C94C;
+  --badge-bg: linear-gradient(135deg, rgba(251, 191, 36, 0.18) 0%, rgba(252, 211, 77, 0.08) 100%);
+  --badge-text: #fcd34d;
+  --badge-border: rgba(251, 191, 36, 0.35);
+  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.12),
+              inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-/* Danger Variant */
+.badgeWarning:hover,
+.warning:hover {
+  --badge-bg: linear-gradient(135deg, rgba(251, 191, 36, 0.25) 0%, rgba(252, 211, 77, 0.12) 100%);
+  --badge-border: rgba(251, 191, 36, 0.5);
+}
+
+/* Danger Variant - Rose Red */
 .badgeDanger,
 .danger {
-  --badge-bg: rgba(232,17,35,0.15);
-  --badge-text: #f87171;
+  --badge-bg: linear-gradient(135deg, rgba(255, 71, 87, 0.18) 0%, rgba(255, 138, 154, 0.08) 100%);
+  --badge-text: #ff8a9a;
+  --badge-border: rgba(255, 71, 87, 0.35);
+  box-shadow: 0 2px 8px rgba(255, 71, 87, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-/* Info Variant */
+.badgeDanger:hover,
+.danger:hover {
+  --badge-bg: linear-gradient(135deg, rgba(255, 71, 87, 0.25) 0%, rgba(255, 138, 154, 0.12) 100%);
+  --badge-border: rgba(255, 71, 87, 0.5);
+}
+
+/* Info Variant - Cyan */
 .badgeInfo,
 .info {
-  --badge-bg: rgba(59,130,246,0.15);
-  --badge-text: #60a5fa;
+  --badge-bg: linear-gradient(135deg, rgba(96, 165, 250, 0.18) 0%, rgba(191, 219, 254, 0.08) 100%);
+  --badge-text: #93c5fd;
+  --badge-border: rgba(96, 165, 250, 0.35);
+  box-shadow: 0 2px 8px rgba(96, 165, 250, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-/* Subtle hover polish when inside interactive contexts */
-.badge:hover {
-  filter: brightness(1.02);
+.badgeInfo:hover,
+.info:hover {
+  --badge-bg: linear-gradient(135deg, rgba(96, 165, 250, 0.25) 0%, rgba(191, 219, 254, 0.12) 100%);
+  --badge-border: rgba(96, 165, 250, 0.5);
 }
+
+/* Error Variant - Deep Red */
+.badgeError,
+.error {
+  --badge-bg: linear-gradient(135deg, rgba(244, 63, 94, 0.18) 0%, rgba(251, 113, 133, 0.08) 100%);
+  --badge-text: #fb7185;
+  --badge-border: rgba(244, 63, 94, 0.35);
+}
+
+/* Neutral Variant - Gray */
+.badgeNeutral,
+.neutral {
+  --badge-bg: linear-gradient(135deg, #475569 0%, #334155 100%);
+  --badge-text: #e2e8f0;
+  --badge-border: rgba(148, 163, 184, 0.2);
+}
+
+.badge:hover {
+  filter: brightness(1.1);
+}
+

@@ -13,7 +13,7 @@
   border-top: 1px solid transparent;
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @media (max-width: 768px) {
@@ -40,7 +40,7 @@
   position: relative;
   min-width: 0;
   -webkit-tap-highlight-color: transparent;
-  transition: color 0.15s ease, transform 0.1s ease;
+  transition: color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   touch-action: manipulation;
 }
 
@@ -63,7 +63,7 @@
   width: 28px;
   height: 28px;
   border-radius: 14px;
-  transition: background-color 0.2s ease, transform 0.15s ease;
+  transition: background-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .tabIconWrapActive {
@@ -87,7 +87,7 @@
   background: var(--color-error, #e81123);
   color: #fff;
   line-height: 1;
-  animation: badgePop 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: badgePop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @keyframes badgePop {
@@ -118,7 +118,7 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  animation: indicatorAppear 0.25s ease-out;
+  animation: indicatorAppear 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @keyframes indicatorAppear {

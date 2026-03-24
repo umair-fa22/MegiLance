@@ -1,13 +1,15 @@
 /* @AI-HINT: Light theme styles for PaginationBar */
 .navButton {
-  background: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
   border-color: #e2e8f0;
   color: #374151;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .navButton:hover:not(:disabled) {
-  background: #f1f5f9;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e8eef8 100%);
   border-color: #cbd5e1;
+  box-shadow: 0 2px 8px rgba(69, 115, 223, 0.1);
 }
 
 .pageButton {
@@ -16,13 +18,14 @@
 }
 
 .pageButton:hover:not(:disabled) {
-  background: #f1f5f9;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e8eef8 100%);
 }
 
 .pageButtonActive {
-  background: #4573df;
+  background: linear-gradient(135deg, #4573df 0%, #3d63d4 100%);
   color: #ffffff;
   border-color: #4573df;
+  box-shadow: 0 2px 8px rgba(69, 115, 223, 0.3);
 }
 
 .pageButtonActive:hover {

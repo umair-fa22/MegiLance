@@ -1,8 +1,9 @@
 /* AI-HINT: Dark theme styles for the ActionMenu component. */
 
 .menu {
-  background-color: #1e293b;
+  background: linear-gradient(135deg, #1e293b 0%, rgba(30, 41, 59, 0.95) 100%);
   border-color: #334155;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .menuItem {
@@ -10,7 +11,7 @@
 }
 
 .menuItem:hover:not(:disabled) {
-  background-color: rgba(255,255,255,0.04);
+  background: linear-gradient(135deg, rgba(51, 65, 85, 0.4) 0%, rgba(51, 65, 85, 0.6) 100%);
 }
 
 .itemIcon {

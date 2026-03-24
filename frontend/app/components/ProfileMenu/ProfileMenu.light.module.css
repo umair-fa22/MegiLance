@@ -5,13 +5,13 @@
 }
 
 .dropdown {
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
   border: 1px solid #e2e8f0;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .header {
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .userName {
@@ -28,7 +28,7 @@
 
 .item:hover,
 .item:focus-visible {
-  background-color: #f1f5f9;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e8eef8 100%);
   color: #1f2937;
 }
 

@@ -80,6 +80,9 @@ export default function ContractDetail({ contractId }: ContractDetailProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [actionLoading, setActionLoading] = useState<number | null>(null);
+  const [showDisputeModal, setShowDisputeModal] = useState(false);
+  const [disputeReason, setDisputeReason] = useState('');
+  const [disputeDescription, setDisputeDescription] = useState('');
 
   useEffect(() => {
     const fetchContract = async () => {
@@ -117,6 +120,46 @@ export default function ContractDetail({ contractId }: ContractDetailProps) {
       setActionLoading(null);
     }
   }, [contractId]);
+
+  // Contract actions: pause, resume, terminate, file dispute
+  const handleContractAction = useCallback(async (action: 'pause' | 'resume' | 'terminate') => {
+    if (!contract) return;
+    setActionLoading(-1);
+    try {
+      // API call would happen here
+      if (process.env.NODE_ENV === 'development') {
+        console.log(`Contract action: ${action} on ${contract.id}`);
+      }
+      // Simulate successful update
+      setContract(prev => prev ? { ...prev, status: action === 'pause' ? 'paused' : action === 'resume' ? 'active' : 'terminated' } : null);
+    } catch (err) {
+      if (process.env.NODE_ENV === 'development') {
+        console.error(`Failed to ${action} contract:`, err);
+      }
+    } finally {
+      setActionLoading(null);
+    }
+  }, [contract]);
+
+  const handleFileDispute = useCallback(async () => {
+    if (!disputeReason || !disputeDescription) return;
+    setActionLoading(-2);
+    try {
+      // API call would happen here
+      if (process.env.NODE_ENV === 'development') {
+        console.log(`Filing dispute: ${disputeReason} - ${disputeDescription}`);
+      }
+      setShowDisputeModal(false);
+      setDisputeReason('');
+      setDisputeDescription('');
+    } catch (err) {
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to file dispute:', err);
+      }
+    } finally {
+      setActionLoading(null);
+    }
+  }, [disputeReason, disputeDescription]);
 
   // Calculations
   const progress = useMemo(() => {
@@ -217,6 +260,24 @@ export default function ContractDetail({ contractId }: ContractDetailProps) {
               </Button>
               <Button variant="secondary" size="md" iconBefore={<Download size={16} />}>
                 Export
+              </Button>
+              {contract.status?.toLowerCase() === 'active' && (
+                <>
+                  <Button variant="ghost" size="md" onClick={() => handleContractAction('pause')}>
+                    Pause
+                  </Button>
+                  <Button variant="danger" size="md" onClick={() => handleContractAction('terminate')}>
+                    Terminate
+                  </Button>
+                </>
+              )}
+              {contract.status?.toLowerCase() === 'paused' && (
+                <Button variant="success" size="md" onClick={() => handleContractAction('resume')}>
+                  Resume
+                </Button>
+              )}
+              <Button variant="danger" size="md" onClick={() => setShowDisputeModal(true)}>
+                File Dispute
               </Button>
             </div>
           </header>
@@ -432,6 +493,68 @@ export default function ContractDetail({ contractId }: ContractDetailProps) {
             Back to Contracts
           </Button>
         </div>
+
+        {/* Dispute Modal */}
+        {showDisputeModal && (
+          <div className={cn(commonStyles.modal, commonStyles.modalOverlay)} role="dialog" aria-modal="true">
+            <div className={cn(commonStyles.modalContent, themeStyles.modalContent)}>
+              <div className={commonStyles.modalHeader}>
+                <h2 className={cn(commonStyles.modalTitle, themeStyles.modalTitle)}>File a Dispute</h2>
+                <button
+                  className={commonStyles.modalClose}
+                  onClick={() => setShowDisputeModal(false)}
+                  aria-label="Close dispute modal"
+                >
+                  ×
+                </button>
+              </div>
+
+              <div className={commonStyles.modalBody}>
+                <div className={commonStyles.formGroup}>
+                  <label className={cn(commonStyles.label, themeStyles.label)}>Reason for Dispute</label>
+                  <select
+                    value={disputeReason}
+                    onChange={(e) => setDisputeReason(e.target.value)}
+                    className={cn(commonStyles.select, themeStyles.select)}
+                  >
+                    <option value="">Select a reason...</option>
+                    <option value="quality">Quality Issues</option>
+                    <option value="incomplete">Incomplete Work</option>
+                    <option value="missed_deadline">Missed Deadline</option>
+                    <option value="communication">Communication Issues</option>
+                    <option value="payment">Payment Issue</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div className={commonStyles.formGroup}>
+                  <label className={cn(commonStyles.label, themeStyles.label)}>Description</label>
+                  <textarea
+                    value={disputeDescription}
+                    onChange={(e) => setDisputeDescription(e.target.value)}
+                    placeholder="Please describe the issue in detail..."
+                    rows={5}
+                    className={cn(commonStyles.textarea, themeStyles.textarea)}
+                  />
+                </div>
+              </div>
+
+              <div className={commonStyles.modalFooter}>
+                <Button variant="secondary" onClick={() => setShowDisputeModal(false)}>
+                  Cancel
+                </Button>
+                <Button
+                  variant="danger"
+                  onClick={handleFileDispute}
+                  disabled={!disputeReason || !disputeDescription}
+                  isLoading={actionLoading === -2}
+                >
+                  File Dispute
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </PageTransition>
   );

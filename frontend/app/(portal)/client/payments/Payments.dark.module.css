@@ -19,3 +19,54 @@
 .resultsCount {
   color: #94a3b8;
 }
+
+.dateRangeFilter {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+.dateInput {
+  background-color: #0f172a;
+  border-color: #475569;
+  color: #f8fafc;
+}
+
+.refundTextarea {
+  background-color: #0f172a;
+  border-color: #475569;
+  color: #f8fafc;
+}
+
+.refundTextarea::placeholder {
+  color: #475569;
+}
+
+.paymentCardWrapper {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+.paymentMeta {
+  background-color: #0f172a;
+  border-top-color: #334155;
+}
+
+.selectionBar {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.05));
+  border-color: #334155;
+  color: #f8fafc;
+}
+
+.selectAllCheckbox {
+  color: #f8fafc;
+}
+
+.selectionCount {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
+}
+
+.paymentCardSelected {
+  border-color: #60a5fa;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.03));
+}
