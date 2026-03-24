@@ -159,7 +159,7 @@ function generateIframeCode(data: HireMeCardData, variant: CardVariant, theme: C
   return `<!-- MegiLance Hire Me Card (iframe) -->\n<iframe srcdoc="${escapedHtml}" width="${widths[variant]}" height="${heights[variant]}" style="border:none;overflow:hidden" title="Hire Me Card" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe>`;
 }
 
-const HireMeCard: React.FC<HireMeCardProps> = ({ data, showGenerator = true }) => {
+export default function HireMeCard({ data, showGenerator = true }: HireMeCardProps) {
   const { resolvedTheme } = useTheme();
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
@@ -344,5 +344,3 @@ const HireMeCard: React.FC<HireMeCardProps> = ({ data, showGenerator = true }) =
     </div>
   );
 };
-
-export default HireMeCard;

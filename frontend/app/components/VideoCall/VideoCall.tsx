@@ -94,7 +94,9 @@ export default function VideoCall({ callId, participants = [], onEnd }: VideoCal
       setCallStatus('connected');
     } catch (err: any) {
       setError(err.message || 'Failed to initialize video call');
-      console.error('Video call error:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Video call error:', err);
+      }
     }
   };
 

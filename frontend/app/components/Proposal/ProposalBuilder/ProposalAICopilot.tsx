@@ -19,11 +19,11 @@ interface ProposalAICopilotProps {
   onApply: (coverLetter: string) => void;
 }
 
-const ProposalAICopilot: React.FC<ProposalAICopilotProps> = ({ 
-  projectTitle, 
-  projectDescription, 
-  onApply 
-}) => {
+export default function ProposalAICopilot({
+  projectTitle,
+  projectDescription,
+  onApply
+}: ProposalAICopilotProps) {
   const { resolvedTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -153,5 +153,3 @@ const ProposalAICopilot: React.FC<ProposalAICopilotProps> = ({
     </div>
   );
 };
-
-export default ProposalAICopilot;

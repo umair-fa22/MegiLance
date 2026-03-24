@@ -27,12 +27,12 @@ interface AnalysisResult {
   recommendations: string[];
 }
 
-const FeasibilityAnalyzer: React.FC<FeasibilityAnalyzerProps> = ({
+export default function FeasibilityAnalyzer({
   projectDescription,
   budgetMin,
   budgetMax,
   timelineDays,
-}) => {
+}: FeasibilityAnalyzerProps) {
   const { resolvedTheme } = useTheme();
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<AnalysisResult | null>(null);
@@ -181,5 +181,3 @@ const FeasibilityAnalyzer: React.FC<FeasibilityAnalyzerProps> = ({
     </div>
   );
 };
-
-export default FeasibilityAnalyzer;

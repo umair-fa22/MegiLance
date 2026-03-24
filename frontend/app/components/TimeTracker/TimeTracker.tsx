@@ -27,7 +27,7 @@ interface TimeEntry {
   end_time?: string;
 }
 
-const TimeTracker: React.FC = () => {
+export default function TimeTracker() {
   const { resolvedTheme } = useTheme();
   const [contracts, setContracts] = useState<Contract[]>([]);
   const [activeEntry, setActiveEntry] = useState<TimeEntry | null>(null);
@@ -218,5 +218,3 @@ const TimeTracker: React.FC = () => {
     </div>
   );
 };
-
-export default TimeTracker;

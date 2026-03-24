@@ -41,13 +41,13 @@ const notificationIcons: Record<string, LucideIcon> = {
   warning: AlertTriangle,
 };
 
-const RealTimeNotifications: React.FC<RealTimeNotificationsProps> = ({
+export default function RealTimeNotifications({
   userId,
   apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000',
   onNotificationClick,
   maxDisplayed = 5,
   autoMarkAsRead = true,
-}) => {
+}: RealTimeNotificationsProps) {
   const { resolvedTheme } = useTheme();
   const router = useRouter();
   const [notifications, setNotifications] = useState<Notification[]>([]);
@@ -296,5 +296,3 @@ const RealTimeNotifications: React.FC<RealTimeNotificationsProps> = ({
     </div>
   );
 };
-
-export default RealTimeNotifications;

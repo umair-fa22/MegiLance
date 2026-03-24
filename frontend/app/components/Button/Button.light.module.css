@@ -6,7 +6,7 @@
   background: linear-gradient(135deg, #4573df 0%, #5a7fff 50%, #6b93f5 100%);
   background-size: 200% 200%;
   color: #ffffff;
-  box-shadow: 0 8px 16px rgba(69, 115, 223, 0.3), 0 0 30px rgba(69, 115, 223, 0.1);
+  box-shadow: 0 8px 24px rgba(69, 115, 223, 0.35), 0 0 40px rgba(69, 115, 223, 0.12);
   font-weight: 700;
   position: relative;
   overflow: hidden;
@@ -23,9 +23,9 @@
 }
 
 .variant-primary:hover {
-  box-shadow: 0 12px 28px rgba(69, 115, 223, 0.4), 0 0 50px rgba(69, 115, 223, 0.15);
+  box-shadow: 0 12px 40px rgba(69, 115, 223, 0.45), 0 0 60px rgba(69, 115, 223, 0.18);
   background-position: 200% 0;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .variant-primary:hover::after {
@@ -33,19 +33,19 @@
 }
 
 .variant-secondary {
-  background: linear-gradient(135deg, #f8f9fc 0%, #f0f4f8 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.75) 100%);
   color: #4573df;
   border: 2px solid rgba(69, 115, 223, 0.2);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 20px rgba(69, 115, 223, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
 
 .variant-secondary:hover {
-  background: linear-gradient(135deg, #f0f4f8 0%, #e8ecf2 100%);
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(241, 245, 249, 0.8) 100%);
   border-color: rgba(69, 115, 223, 0.4);
-  box-shadow: 0 8px 20px rgba(69, 115, 223, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(69, 115, 223, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transform: translateY(-3px);
 }
 
 .variant-ghost {
@@ -89,14 +89,14 @@
   background: linear-gradient(135deg, #e81123 0%, #f24f3d 50%, #f07060 100%);
   background-size: 200% 200%;
   color: #ffffff;
-  box-shadow: 0 8px 16px rgba(232, 17, 35, 0.3), 0 0 30px rgba(232, 17, 35, 0.1);
+  box-shadow: 0 8px 24px rgba(232, 17, 35, 0.35), 0 0 40px rgba(232, 17, 35, 0.12);
   font-weight: 700;
 }
 
 .variant-danger:hover {
-  box-shadow: 0 12px 28px rgba(232, 17, 35, 0.4), 0 0 50px rgba(232, 17, 35, 0.15);
+  box-shadow: 0 12px 40px rgba(232, 17, 35, 0.45), 0 0 60px rgba(232, 17, 35, 0.18);
   background-position: 200% 0;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .variant-social {
@@ -118,28 +118,28 @@
   background: linear-gradient(135deg, #27AE60 0%, #2ecc71 50%, #39d77a 100%);
   background-size: 200% 200%;
   color: #ffffff;
-  box-shadow: 0 8px 16px rgba(39, 174, 96, 0.3), 0 0 30px rgba(39, 174, 96, 0.1);
+  box-shadow: 0 8px 24px rgba(39, 174, 96, 0.35), 0 0 40px rgba(39, 174, 96, 0.12);
   font-weight: 700;
 }
 
 .variant-success:hover {
-  box-shadow: 0 12px 28px rgba(39, 174, 96, 0.4), 0 0 50px rgba(39, 174, 96, 0.15);
+  box-shadow: 0 12px 40px rgba(39, 174, 96, 0.45), 0 0 60px rgba(39, 174, 96, 0.18);
   background-position: 200% 0;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .variant-warning {
   background: linear-gradient(135deg, #F2C94C 0%, #f5d76e 50%, #f9e79f 100%);
   background-size: 200% 200%;
   color: #1a202c;
-  box-shadow: 0 8px 16px rgba(242, 201, 76, 0.3), 0 0 30px rgba(242, 201, 76, 0.1);
+  box-shadow: 0 8px 24px rgba(242, 201, 76, 0.35), 0 0 40px rgba(242, 201, 76, 0.12);
   font-weight: 700;
 }
 
 .variant-warning:hover {
-  box-shadow: 0 12px 28px rgba(242, 201, 76, 0.4), 0 0 50px rgba(242, 201, 76, 0.15);
+  box-shadow: 0 12px 40px rgba(242, 201, 76, 0.45), 0 0 60px rgba(242, 201, 76, 0.18);
   background-position: 200% 0;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .variant-link {

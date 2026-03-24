@@ -62,7 +62,7 @@ const SUGGESTION_ICONS: Record<string, React.ReactNode> = {
   category: <SlidersHorizontal size={14} />,
 };
 
-const AdvancedSearch: React.FC = () => {
+export default function AdvancedSearch() {
   const { resolvedTheme } = useTheme();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -630,5 +630,3 @@ const AdvancedSearch: React.FC = () => {
     </div>
   );
 };
-
-export default AdvancedSearch;

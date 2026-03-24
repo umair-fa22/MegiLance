@@ -1,4 +1,4 @@
-/* @AI-HINT: Dark theme styles for the Textarea component with enhanced visual effects. */
+/* @AI-HINT: Modern 2026 Dark theme Textarea — luminous effects, glow, enhanced depth */
 
 .textareaWrapper {
   --input-bg: #1e293b;
@@ -20,51 +20,66 @@
 }
 
 .textareaField {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  border: 1px solid #334155;
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border: 2px solid #334155;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.85) 0%,
+    rgba(15, 23, 42, 0.7) 100%
+  );
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
 }
 
 .textareaField:hover:not(:disabled) {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  border: 1px solid #475569;
+  box-shadow: 0 8px 24px rgba(69, 115, 223, 0.15);
+  border: 2px solid #475569;
   background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
 }
 
 .textareaField:focus {
-  box-shadow: 0 0 0 4px rgba(69, 115, 223, 0.3);
-  border: 1px solid #6b8de6;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3), 0 8px 24px rgba(69, 115, 223, 0.2);
+  border: 2px solid #6b8de6;
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  backdrop-filter: blur(16px) saturate(170%);
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
 }
 
 .textareaWrapperError .textareaField {
   box-shadow: 0 0 0 4px rgba(232, 17, 35, 0.2);
-  border: 1px solid #f87171;
+  border: 2px solid #f87171;
 }
 
 .textareaWrapperError .textareaField:focus {
   box-shadow: 0 0 0 4px rgba(232, 17, 35, 0.3);
-  border: 1px solid #ef4444;
+  border: 2px solid #ef4444;
 }
 
 .textareaIcon {
   position: absolute;
   right: 1rem;
   top: 1rem;
-  color: #94a3b8;
+  color: #93c5fd;
+  filter: drop-shadow(0 2px 8px rgba(69, 115, 223, 0.25));
 }
 
 .suggestionsList {
-  background: #1e293b;
-  border: 1px solid #334155;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  background: linear-gradient(135deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.85) 100%);
+  border: 2px solid #334155;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .suggestionItem {
   color: #f1f5f9;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .suggestionItem:hover,
 .suggestionItem.selected {
-  background: #334155;
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5d6ff;
 }

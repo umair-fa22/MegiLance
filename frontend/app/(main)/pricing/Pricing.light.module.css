@@ -5,21 +5,21 @@
 .note { color: #555; }
 
 /* How It Works cards */
-.howCard { background: #fff; border-color: #e5e7eb; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
-.howCard:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+.howCard { background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(248, 250, 252, 0.75) 100%); border-color: rgba(69, 115, 223, 0.12); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 0 40px rgba(69, 115, 223, 0.08); }
+.howCard:hover { box-shadow: 0 12px 48px rgba(0, 0, 0, 0.1), 0 0 60px rgba(69, 115, 223, 0.12); border-color: rgba(69, 115, 223, 0.25); }
 .howIcon { background: #ecf1fc; color: #4573df; }
 .howTitle { color: #23272f; }
 .howDesc { color: #555; }
 
 /* Comparison table */
-.tableWrapper { border-color: #e5e7eb; background: #fff; }
-.tableHead { background: #f8f9fb; border-color: #e5e7eb; color: #23272f; }
+.tableWrapper { border-color: rgba(69, 115, 223, 0.12); background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.7) 100%); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 0 40px rgba(69, 115, 223, 0.08); }
+.tableHead { background: linear-gradient(135deg, rgba(248, 250, 252, 0.8) 0%, rgba(241, 245, 249, 0.6) 100%); border-color: rgba(69, 115, 223, 0.1); color: #23272f; }
 .tableRow { border-color: #f0f0f0; }
 .tableRow:nth-child(even) { background: #fafbfc; }
 .tableCell { color: #333; }
 
 /* FAQ */
-.faqItem { border-color: #e5e7eb; background: #fff; }
+.faqItem { border-color: rgba(69, 115, 223, 0.12); background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(248, 250, 252, 0.75) 100%); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); }
 .faqQuestion { color: #23272f; }
 .faqAnswer { color: #555; }
 .sectionHeading { color: #23272f; }

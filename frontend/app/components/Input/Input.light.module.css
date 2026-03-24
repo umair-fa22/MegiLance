@@ -1,4 +1,4 @@
-/* @AI-HINT: Light theme styles for the Input component with enhanced visual effects. */
+/* @AI-HINT: Modern 2026 Light theme Input component — glassmorphism, glow effects, refined gradients */
 
 .inputWrapper {
   --input-bg: #ffffff;
@@ -21,46 +21,66 @@
 }
 
 .inputField {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  border: 2px solid #e2e8f0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(248, 250, 252, 0.7) 100%
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .inputField:hover:not(:disabled) {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  border: 1px solid #cbd5e1;
+  box-shadow: 0 8px 24px rgba(69, 115, 223, 0.12);
+  border: 2px solid #cbd5e1;
   background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .inputField:focus {
-  box-shadow: 0 0 0 4px rgba(69, 115, 223, 0.2);
-  border: 1px solid #4573df;
+  box-shadow: 0 0 0 4px rgba(69, 115, 223, 0.2), 0 8px 24px rgba(69, 115, 223, 0.1);
+  border: 2px solid #4573df;
   background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .inputWrapperError .inputField {
   box-shadow: 0 0 0 4px rgba(232, 17, 35, 0.15);
-  border: 1px solid #e81123;
+  border: 2px solid #e81123;
 }
 
 .inputWrapperError .inputField:focus {
   box-shadow: 0 0 0 4px rgba(232, 17, 35, 0.25);
-  border: 1px solid #c00f1e;
+  border: 2px solid #c00f1e;
 }
 
 .inputIcon {
-  color: #64748b;
+  color: #4573df;
+  filter: drop-shadow(0 2px 6px rgba(69, 115, 223, 0.15));
 }
 
 .inputWrapperDisabled .inputField {
-  background-color: #f1f5f9;
+  background: linear-gradient(
+    135deg,
+    rgba(241, 245, 249, 0.9) 0%,
+    rgba(226, 232, 240, 0.7) 100%
+  );
   color: #94a3b8;
   border-color: #e2e8f0;
+  backdrop-filter: blur(4px);
 }
 
 .inputGroupAddon {
   background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-  border: 1px solid #e2e8f0;
+  border: 2px solid #e2e8f0;
   color: #64748b;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
 }
 
 .inputGroupAddon:first-child {

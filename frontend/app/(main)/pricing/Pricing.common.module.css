@@ -76,10 +76,12 @@
 .howCard {
   border-radius: 16px;
   padding: 32px;
-  border: 1px solid;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 2px solid;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.howCard:hover { transform: translateY(-4px); }
+.howCard:hover { transform: translateY(-8px) scale(1.02); }
 
 .howIcon {
   width: 48px; height: 48px;
@@ -110,7 +112,9 @@
 .tableWrapper {
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid;
+  border: 2px solid;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .comparisonTable {
@@ -171,11 +175,13 @@
 
 .faqItem {
   border-radius: 12px;
-  border: 1px solid;
+  border: 2px solid;
   overflow: hidden;
-  transition: box-shadow 0.2s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: box-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.faqItem:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.faqItem:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
 
 .faqQuestion {
   width: 100%;

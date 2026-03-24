@@ -51,7 +51,7 @@ interface UserProfileProps {
   userId: string | number;
 }
 
-const UserProfile: React.FC<UserProfileProps> = ({ userId }) => {
+export default function UserProfile({ userId }: UserProfileProps) {
   const { resolvedTheme } = useTheme();
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState<any>(null);
@@ -672,5 +672,3 @@ const UserProfile: React.FC<UserProfileProps> = ({ userId }) => {
     </div>
   );
 };
-
-export default UserProfile;

@@ -1,11 +1,43 @@
-/* AI-HINT: Common, theme-agnostic styles for the Contact page. Defines layout, typography, and animations. */
+/* AI-HINT: Modern 2026 Contact page — advanced glassmorphism, gradient animations, spring easing */
+
+/* ============================================= */
+/*   ANIMATIONS - 2026 TRENDS                    */
+/* ============================================= */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 0px rgba(69, 115, 223, 0); }
+  50% { box-shadow: 0 0 20px rgba(69, 115, 223, 0.3); }
+}
 
 .page {
   width: 100%;
   padding: 4rem 1rem;
   display: flex;
   justify-content: center;
-  min-height: calc(100vh - 80px); /* Adjust based on header height */
+  min-height: calc(100vh - 80px);
+  animation: slideInUp 0.8s ease-out;
+  will-change: transform;
 }
 
 .container {
@@ -16,6 +48,8 @@
 .header {
   text-align: center;
   margin-bottom: 4rem;
+  animation: fadeInUp 0.9s ease-out 0.1s forwards;
+  opacity: 0;
 }
 
 .heroRow {
@@ -42,21 +76,28 @@
 
 .title {
   font-family: var(--font-family-heading);
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  font-variation-settings: 'wght' 900;
   margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
 }
 
 .subtitle {
   font-size: 1.125rem;
   max-width: 600px;
   margin: 0 auto;
+  line-height: 1.7;
+  font-weight: 500;
 }
 
 .contentGrid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
+  animation: fadeInUp 0.9s ease-out 0.3s forwards;
+  opacity: 0;
 }
 
 @media (min-width: 768px) {
@@ -66,12 +107,38 @@
   }
 }
 
+/* ============================================= */
+/*   INFO PANEL - GLASSMORPHIC 2026             */
+/* ============================================= */
 .infoPanel {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding: 2rem;
-  border-radius: 12px;
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 2px solid rgba(69, 115, 223, 0.1);
+  backdrop-filter: blur(15px) saturate(170%);
+  -webkit-backdrop-filter: blur(15px) saturate(170%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(248, 250, 252, 0.2) 100%
+  );
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 0 40px rgba(69, 115, 223, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform, box-shadow;
+}
+
+.infoPanel:hover {
+  border-color: rgba(69, 115, 223, 0.25);
+  box-shadow:
+    0 12px 48px rgba(0, 0, 0, 0.12),
+    0 0 60px rgba(69, 115, 223, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transform: translateY(-4px);
 }
 
 .infoItem {
@@ -79,27 +146,74 @@
   align-items: center;
   gap: 1rem;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 0.75rem;
+  border-radius: 12px;
+}
+
+.infoItem:hover {
+  transform: translateX(8px);
 }
 
 .infoIcon {
   flex-shrink: 0;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 2px 6px rgba(69, 115, 223, 0.2));
+}
+
+.infoItem:hover .infoIcon {
+  transform: scale(1.2) rotate(-10deg);
+  filter: drop-shadow(0 4px 12px rgba(69, 115, 223, 0.4));
 }
 
 .infoText {
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
+/* ============================================= */
+/*   FORM PANEL - MODERN GLASSMORPHISM         */
+/* ============================================= */
 .formPanel {
-  padding: 2.5rem;
-  border-radius: 12px;
+  padding: 3rem;
+  border-radius: 20px;
+  border: 2px solid rgba(69, 115, 223, 0.1);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(248, 250, 252, 0.3) 100%
+  );
+  box-shadow:
+    0 12px 48px rgba(0, 0, 0, 0.09),
+    0 0 60px rgba(69, 115, 223, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform, box-shadow, border-color;
+}
+
+.formPanel:hover {
+  border-color: rgba(69, 115, 223, 0.3);
+  box-shadow:
+    0 16px 60px rgba(0, 0, 0, 0.12),
+    0 0 80px rgba(69, 115, 223, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  transform: translateY(-6px);
 }
 
 .form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .infoPanel,
+  .formPanel {
+    padding: 2rem;
+  }
 }

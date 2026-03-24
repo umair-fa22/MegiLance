@@ -33,13 +33,13 @@ interface ReviewData {
   isPublic: boolean;
 }
 
-const ReviewForm: React.FC<ReviewFormProps> = ({
+export default function ReviewForm({
   contractId,
   revieweeId,
   revieweeName,
   projectTitle,
   onSubmit,
-}) => {
+}: ReviewFormProps) {
   const { resolvedTheme } = useTheme();
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -286,5 +286,3 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
     </div>
   );
 };
-
-export default ReviewForm;

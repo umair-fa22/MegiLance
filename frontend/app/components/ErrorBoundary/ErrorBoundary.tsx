@@ -101,7 +101,7 @@ interface ThemedFallbackProps {
   onReset: () => void;
 }
 
-const ThemedFallback: React.FC<ThemedFallbackProps> = ({ error, errorInfo, onReset }) => {
+function ThemedFallback({ error, errorInfo, onReset }: ThemedFallbackProps) {
   const { resolvedTheme } = useTheme();
   const styles = useMemo(() => {
     const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
@@ -194,4 +194,4 @@ const ThemedFallback: React.FC<ThemedFallbackProps> = ({ error, errorInfo, onRes
       </div>
     </div>
   );
-};
+}

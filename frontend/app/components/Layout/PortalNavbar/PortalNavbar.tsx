@@ -49,7 +49,7 @@ function formatTimeAgo(dateStr: string): string {
   return date.toLocaleDateString();
 }
 
-const PortalNavbar: React.FC<PortalNavbarProps> = ({ userType = 'client', onMenuToggle, isSidebarOpen = false }) => {
+export default function PortalNavbar({ userType = 'client', onMenuToggle, isSidebarOpen = false }: PortalNavbarProps) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
@@ -522,5 +522,3 @@ const PortalNavbar: React.FC<PortalNavbarProps> = ({ userType = 'client', onMenu
     </header>
   );
 };
-
-export default PortalNavbar;

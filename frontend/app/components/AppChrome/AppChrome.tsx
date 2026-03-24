@@ -92,8 +92,6 @@ const AppChromeClient: React.FC<{ children: React.ReactNode }> = ({ children }) 
 };
 
 // Server component
-const AppChrome: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export default function AppChrome({ children }: { children: React.ReactNode }) {
   return <AppChromeClient>{children}</AppChromeClient>;
 };
-
-export default AppChrome;

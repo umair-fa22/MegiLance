@@ -21,7 +21,7 @@ const timeRangeOptions = [
   { value: '90d', label: 'Last 90 Days' },
 ];
 
-const ReviewSentimentDashboard: React.FC = () => {
+export default function ReviewSentimentDashboard() {
   const { resolvedTheme } = useTheme();
   const [timeRange, setTimeRange] = useState('30d');
   const [loading, setLoading] = useState(true);
@@ -158,5 +158,3 @@ const ReviewSentimentDashboard: React.FC = () => {
     </div>
   );
 };
-
-export default ReviewSentimentDashboard;

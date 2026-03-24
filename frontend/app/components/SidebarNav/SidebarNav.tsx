@@ -114,13 +114,13 @@ export interface SidebarNavProps {
   className?: string;
 }
 
-const SidebarNav: React.FC<SidebarNavProps> = ({
+export default function SidebarNav({
   navItems,
   userType,
   theme: _externalTheme,
   isCollapsed = false,
   className = '',
-}) => {
+}: SidebarNavProps) {
   const pathname = usePathname();
   const { resolvedTheme } = useTheme(); // Use hook for theme
   const [openSubmenus, setOpenSubmenus] = React.useState<Record<string, boolean>>({});
@@ -303,5 +303,3 @@ const SidebarNav: React.FC<SidebarNavProps> = ({
     </aside>
   );
 };
-
-export default SidebarNav;

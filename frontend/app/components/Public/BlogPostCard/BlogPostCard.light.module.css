@@ -1,13 +1,13 @@
 ﻿/* @AI-HINT: Light theme â€” soft whites, subtle borders, warm hover */
 .container {
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.06);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(248, 250, 252, 0.75) 100%);
+  border: 2px solid rgba(69, 115, 223, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 0 40px rgba(69, 115, 223, 0.06);
 }
 
 .blogPostCardLink:hover .container {
-  border-color: rgba(69,115,223,0.3);
-  box-shadow: 0 8px 30px rgba(69,115,223,0.1), 0 2px 8px rgba(0,0,0,0.06);
+  border-color: rgba(69, 115, 223, 0.25);
+  box-shadow: 0 12px 48px rgba(69, 115, 223, 0.12), 0 0 60px rgba(69, 115, 223, 0.1);
 }
 
 .imageOverlay {
@@ -32,7 +32,7 @@
 }
 
 .footer {
-  border-top-color: rgba(0,0,0,0.05);
+  border-top-color: rgba(69, 115, 223, 0.08);
 }
 
 .authorRow {

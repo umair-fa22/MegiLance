@@ -26,7 +26,7 @@ const SUGGESTED_ACTIONS = [
   { icon: Zap, text: 'Quick tips' },
 ];
 
-const ChatbotAgent: React.FC = () => {
+export default function ChatbotAgent() {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -501,5 +501,3 @@ const ChatbotAgent: React.FC = () => {
     </div>
   );
 };
-
-export default ChatbotAgent;

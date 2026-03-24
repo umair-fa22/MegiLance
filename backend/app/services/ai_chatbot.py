@@ -191,8 +191,7 @@ class AIChatbotService:
             "category": "payments"
         }
     }
-    
-    # TODO: migrate in-memory stores to database for persistence and scalability
+
     _MAX_CONVERSATIONS = 5000
     _MAX_MESSAGES_PER_CONVERSATION = 200
     _MAX_TICKETS = 2000

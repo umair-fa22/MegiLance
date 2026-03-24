@@ -1,1 +1,58 @@
-.stepCardContainer {}
+/* @AI-HINT: Modern 2026 Dark theme StepCard — luminous effects, glow shadows, enhanced depth */
+
+.stepCardContainer {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.8) 0%,
+    rgba(15, 23, 42, 0.6) 100%
+  );
+  border: 2px solid rgba(99, 102, 241, 0.15);
+}
+
+.stepCardContainer:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.9) 0%,
+    rgba(15, 23, 42, 0.75) 100%
+  );
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow:
+    0 12px 48px rgba(0, 0, 0, 0.3),
+    0 0 60px rgba(99, 102, 241, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.iconWrapper {
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.15) 0%,
+    rgba(69, 115, 223, 0.1) 100%
+  );
+  color: #93c5fd;
+}
+
+.stepCardContainer:hover .iconWrapper {
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.2) 0%,
+    rgba(69, 115, 223, 0.15) 100%
+  );
+}
+
+.number {
+  color: #93c5fd;
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.12) 0%,
+    rgba(69, 115, 223, 0.08) 100%
+  );
+  border-color: rgba(99, 102, 241, 0.25);
+}
+
+.title {
+  color: #f1f5f9;
+}
+
+.description {
+  color: #cbd5e1;
+}

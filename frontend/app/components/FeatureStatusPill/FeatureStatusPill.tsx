@@ -83,14 +83,14 @@ const statusConfig: Record<string, {
   },
 };
 
-export const FeatureStatusPill: React.FC<FeatureStatusPillProps> = ({
+export default function FeatureStatusPill({
   status,
   showIcon = true,
   showLabel = true,
   compact = false,
   size = 'xs',
   className
-}) => {
+}: FeatureStatusPillProps) {
   const { resolvedTheme } = useTheme();
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
   
@@ -127,5 +127,3 @@ export const FeatureStatusPill: React.FC<FeatureStatusPillProps> = ({
     </span>
   );
 };
-
-export default FeatureStatusPill;

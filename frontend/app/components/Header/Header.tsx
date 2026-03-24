@@ -94,7 +94,7 @@ const megaMenuData = {
 
 type MenuKey = keyof typeof megaMenuData | null;
 
-const Header: React.FC = () => {
+export default function Header() {
   const { resolvedTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<MenuKey>(null);
@@ -339,5 +339,3 @@ const Header: React.FC = () => {
     </>
   );
 };
-
-export default Header;

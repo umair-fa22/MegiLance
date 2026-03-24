@@ -55,7 +55,7 @@ const getFileIcon = (mimeType: string): React.ElementType => {
   return File;
 };
 
-const AdvancedFileUpload: React.FC<AdvancedFileUploadProps> = ({
+export default function AdvancedFileUpload({
   maxFiles = 10,
   maxSizeMB = 10,
   acceptedTypes = ['image/*', 'application/pdf', '.doc', '.docx', '.xls', '.xlsx'],
@@ -64,7 +64,7 @@ const AdvancedFileUpload: React.FC<AdvancedFileUploadProps> = ({
   className,
   showPreviews = true,
   multiple = true,
-}) => {
+}: AdvancedFileUploadProps) {
   const { resolvedTheme } = useTheme();
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
   const [isDragging, setIsDragging] = useState(false);
@@ -342,5 +342,3 @@ const AdvancedFileUpload: React.FC<AdvancedFileUploadProps> = ({
     </div>
   );
 };
-
-export default AdvancedFileUpload;

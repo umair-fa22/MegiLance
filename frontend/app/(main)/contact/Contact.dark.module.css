@@ -1,20 +1,55 @@
-/* AI-HINT: Dark theme styles for the Contact page. */
+/* AI-HINT: Modern 2026 Dark theme styles for Contact page — luminous effects, glow shadows, enhanced depth */
 
 .page {
-  background-color: #0f172a;
+  background: linear-gradient(
+    180deg,
+    #0f172a 0%,
+    #1e293b 40%,
+    #0f172a 100%
+  );
 }
 
 .title {
-  color: #f8fafc;
+  background: linear-gradient(
+    90deg,
+    #60a5fa 0%,
+    #818cf8 30%,
+    #a78bfa 60%,
+    #60a5fa 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: gradientFlow 6s ease infinite;
+  filter: drop-shadow(0 0 20px rgba(69, 115, 223, 0.3));
+  text-shadow: 0 0 30px rgba(69, 115, 223, 0.2);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: #cbd5e1;
 }
 
 .infoPanel {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.8) 0%,
+    rgba(15, 23, 42, 0.6) 100%
+  );
+  border: 2px solid rgba(69, 115, 223, 0.2);
+  color: #cbd5e1;
+}
+
+.infoPanel:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.9) 0%,
+    rgba(15, 23, 42, 0.75) 100%
+  );
+  box-shadow:
+    0 12px 48px rgba(0, 0, 0, 0.3),
+    0 0 60px rgba(99, 102, 241, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .infoItem {
@@ -22,15 +57,42 @@
 }
 
 .infoItem:hover {
-  color: #6b93f5;
+  color: #a5d6ff;
+  background: rgba(99, 102, 241, 0.12);
 }
 
 .infoIcon {
-  color: #6b93f5;
+  color: #93c5fd;
 }
 
 .formPanel {
-  background-color: #1e293b;
-  border: 1px solid #334155;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.85) 0%,
+    rgba(15, 23, 42, 0.7) 100%
+  );
+  border: 2px solid rgba(99, 102, 241, 0.15);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 0 40px rgba(69, 115, 223, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.formPanel:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.92) 0%,
+    rgba(15, 23, 42, 0.8) 100%
+  );
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow:
+    0 16px 60px rgba(0, 0, 0, 0.4),
+    0 0 80px rgba(99, 102, 241, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

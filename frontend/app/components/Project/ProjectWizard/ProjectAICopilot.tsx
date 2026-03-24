@@ -25,7 +25,7 @@ interface ProjectAICopilotProps {
   onApply: (data: GeneratedData) => void;
 }
 
-const ProjectAICopilot: React.FC<ProjectAICopilotProps> = ({ onApply }) => {
+export default function ProjectAICopilot({ onApply }: ProjectAICopilotProps) {
   const { resolvedTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [prompt, setPrompt] = useState('');
@@ -216,5 +216,3 @@ const ProjectAICopilot: React.FC<ProjectAICopilotProps> = ({ onApply }) => {
     </div>
   );
 };
-
-export default ProjectAICopilot;

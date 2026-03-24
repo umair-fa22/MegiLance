@@ -6,20 +6,20 @@
   background: linear-gradient(135deg, #6b93f5 0%, #7fa3f7 50%, #8db4f9 100%);
   background-size: 200% 200%;
   color: #ffffff;
-  box-shadow: 0 8px 20px rgba(69, 115, 223, 0.5), 0 0 40px rgba(107, 147, 245, 0.2);
+  box-shadow: 0 8px 24px rgba(69, 115, 223, 0.55), 0 0 50px rgba(107, 147, 245, 0.25);
   text-shadow: none;
   font-weight: 700;
   position: relative;
 }
 
 .variant-primary:hover {
-  box-shadow: 0 12px 32px rgba(69, 115, 223, 0.6), 0 0 60px rgba(107, 147, 245, 0.3);
+  box-shadow: 0 12px 40px rgba(69, 115, 223, 0.65), 0 0 70px rgba(107, 147, 245, 0.35);
   background-position: 200% 0;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .variant-secondary {
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(30, 41, 59, 0.4) 100%);
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(30, 41, 59, 0.65) 100%);
   color: #a5d6ff;
   border: 2px solid rgba(69, 115, 223, 0.4);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -28,10 +28,10 @@
 }
 
 .variant-secondary:hover {
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(30, 41, 59, 0.6) 100%);
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.8) 100%);
   border-color: #6b93f5;
-  box-shadow: 0 8px 20px rgba(69, 115, 223, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(69, 115, 223, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: translateY(-3px);
 }
 
 .variant-ghost {
@@ -75,14 +75,14 @@
   background: linear-gradient(135deg, #ff4757 0%, #ff6b7a 50%, #ff8a9a 100%);
   background-size: 200% 200%;
   color: #ffffff;
-  box-shadow: 0 8px 20px rgba(255, 71, 87, 0.4), 0 0 40px rgba(255, 107, 122, 0.2);
+  box-shadow: 0 8px 24px rgba(255, 71, 87, 0.45), 0 0 50px rgba(255, 107, 122, 0.25);
   font-weight: 700;
 }
 
 .variant-danger:hover {
-  box-shadow: 0 12px 32px rgba(255, 71, 87, 0.5), 0 0 60px rgba(255, 107, 122, 0.3);
+  box-shadow: 0 12px 40px rgba(255, 71, 87, 0.55), 0 0 70px rgba(255, 107, 122, 0.35);
   background-position: 200% 0;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .variant-social {
@@ -104,28 +104,28 @@
   background: linear-gradient(135deg, #22c55e 0%, #4ade80 50%, #6ee7b7 100%);
   background-size: 200% 200%;
   color: #0f172a;
-  box-shadow: 0 8px 20px rgba(74, 222, 128, 0.4), 0 0 40px rgba(110, 231, 183, 0.2);
+  box-shadow: 0 8px 24px rgba(74, 222, 128, 0.45), 0 0 50px rgba(110, 231, 183, 0.25);
   font-weight: 700;
 }
 
 .variant-success:hover {
-  box-shadow: 0 12px 32px rgba(74, 222, 128, 0.5), 0 0 60px rgba(110, 231, 183, 0.3);
+  box-shadow: 0 12px 40px rgba(74, 222, 128, 0.55), 0 0 70px rgba(110, 231, 183, 0.35);
   background-position: 200% 0;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .variant-warning {
   background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #f97316 100%);
   background-size: 200% 200%;
   color: #0f172a;
-  box-shadow: 0 8px 20px rgba(251, 191, 36, 0.4), 0 0 40px rgba(249, 115, 22, 0.2);
+  box-shadow: 0 8px 24px rgba(251, 191, 36, 0.45), 0 0 50px rgba(249, 115, 22, 0.25);
   font-weight: 700;
 }
 
 .variant-warning:hover {
-  box-shadow: 0 12px 32px rgba(251, 191, 36, 0.5), 0 0 60px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 12px 40px rgba(251, 191, 36, 0.55), 0 0 70px rgba(249, 115, 22, 0.35);
   background-position: 200% 0;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .variant-link {

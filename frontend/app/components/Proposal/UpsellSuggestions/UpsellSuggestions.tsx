@@ -24,11 +24,11 @@ interface Suggestion {
   type: string;
 }
 
-const UpsellSuggestions: React.FC<UpsellSuggestionsProps> = ({
+export default function UpsellSuggestions({
   projectDescription,
   proposalContent,
   onAdd,
-}) => {
+}: UpsellSuggestionsProps) {
   const { resolvedTheme } = useTheme();
   const [loading, setLoading] = useState(false);
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
@@ -119,5 +119,3 @@ const UpsellSuggestions: React.FC<UpsellSuggestionsProps> = ({
     </div>
   );
 };
-
-export default UpsellSuggestions;

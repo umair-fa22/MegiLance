@@ -38,7 +38,7 @@ interface DigestSettings {
   quietHoursEnd: string;
 }
 
-const NotificationPreferences: React.FC = () => {
+export default function NotificationPreferences() {
   const { resolvedTheme } = useTheme();
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -281,5 +281,3 @@ const NotificationPreferences: React.FC = () => {
     </div>
   );
 };
-
-export default NotificationPreferences;

@@ -25,7 +25,7 @@ interface SidebarProps {
 
 // AI-HINT: Role-aware navigation is provided by the shared SidebarNav component.
 
-const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, toggleSidebar, userType, isMobileOpen = false, onMobileClose }) => {
+export default function Sidebar({ isCollapsed, toggleSidebar, userType, isMobileOpen = false, onMobileClose }: SidebarProps) {
   const { resolvedTheme } = useTheme();
   const [isHovered, setIsHovered] = useState(false);
   const uniqueId = useId();
@@ -198,5 +198,3 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, toggleSidebar, userType,
     </aside>
   );
 };
-
-export default Sidebar;

@@ -67,7 +67,7 @@ const StatusBadge = ({ status }: { status: Status }) => {
   return <Badge variant={variant}>{normalizedStatus}</Badge>;
 };
 
-const Withdrawals: React.FC = () => {
+export default function Withdrawals() {
   const { resolvedTheme } = useTheme();
   const [requests, setRequests] = useState<WithdrawalRequest[]>([]);
   const [loading, setLoading] = useState(true);
@@ -235,5 +235,3 @@ const Withdrawals: React.FC = () => {
     </div>
   );
 };
-
-export default Withdrawals;

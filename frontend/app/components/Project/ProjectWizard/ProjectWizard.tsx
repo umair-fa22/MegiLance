@@ -107,7 +107,7 @@ const categories = [
   { value: 'OTHER', label: 'Other', icon: MoreHorizontal },
 ];
 
-const ProjectWizard: React.FC = () => {
+export default function ProjectWizard() {
   const { resolvedTheme } = useTheme();
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
@@ -692,5 +692,3 @@ const ProjectWizard: React.FC = () => {
     </PageTransition>
   );
 };
-
-export default ProjectWizard;

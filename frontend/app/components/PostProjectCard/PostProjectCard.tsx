@@ -130,7 +130,7 @@ function generateEmbedHtml(data: PostProjectCardData, variant: CardVariant, them
 </div>`;
 }
 
-const PostProjectCard: React.FC<PostProjectCardProps> = ({ data, showGenerator = true }) => {
+export default function PostProjectCard({ data, showGenerator = true }: PostProjectCardProps) {
   const { resolvedTheme } = useTheme();
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
@@ -264,5 +264,3 @@ const PostProjectCard: React.FC<PostProjectCardProps> = ({ data, showGenerator =
     </div>
   );
 };
-
-export default PostProjectCard;

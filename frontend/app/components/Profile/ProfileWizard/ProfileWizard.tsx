@@ -76,7 +76,7 @@ const timezoneOptions = [
   { value: 'Australia/Sydney', label: 'Australia (GMT+11)' },
 ];
 
-const ProfileWizard: React.FC = () => {
+export default function ProfileWizard() {
   const { resolvedTheme } = useTheme();
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
@@ -729,5 +729,3 @@ const ProfileWizard: React.FC = () => {
     </div>
   );
 };
-
-export default ProfileWizard;

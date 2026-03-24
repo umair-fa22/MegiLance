@@ -61,7 +61,7 @@ function getStoredUser(): UserData {
 
 const COLLAPSED_KEY = 'sidebar_collapsed';
 
-const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [isCollapsed, setIsCollapsed] = useState(() => {
     if (typeof window === 'undefined') return false;
     return window.localStorage.getItem(COLLAPSED_KEY) === 'true';
@@ -226,5 +226,3 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     </>
   );
 };
-
-export default AppLayout;

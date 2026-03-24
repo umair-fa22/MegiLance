@@ -283,5 +283,3 @@ export default function UserSearchTable() {
     </div>
   );
 };
-
-export default UserSearchTable;

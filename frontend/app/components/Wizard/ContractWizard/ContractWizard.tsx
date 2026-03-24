@@ -286,7 +286,9 @@ const ContractWizard: React.FC<ContractWizardProps> = ({
         showToast('Failed to create contract. Please try again.', 'error');
       }
     } catch (error) {
-      console.error('Contract creation failed:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Contract creation failed:', error);
+      }
       showToast('An error occurred. Please try again.', 'error');
     } finally {
       setSubmitting(false);

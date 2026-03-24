@@ -118,13 +118,13 @@ Best`
   }
 ];
 
-const ProposalBuilder: React.FC<ProposalBuilderProps> = ({
+export default function ProposalBuilder({
   projectId,
   projectDescription,
   projectTitle,
   projectBudget,
   onSubmit
-}) => {
+}: ProposalBuilderProps) {
   const { resolvedTheme } = useTheme();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -448,5 +448,3 @@ const ProposalBuilder: React.FC<ProposalBuilderProps> = ({
     </div>
   );
 };
-
-export default ProposalBuilder;

@@ -67,8 +67,7 @@ class ReportGenerationService:
     
     Generates PDF and Excel reports for various data.
     """
-    
-    # TODO: migrate in-memory stores to database for persistence and scalability
+
     _MAX_REPORTS = 2000
     _MAX_SCHEDULED = 500
 

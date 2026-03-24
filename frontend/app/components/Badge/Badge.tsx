@@ -1,7 +1,7 @@
 // @AI-HINT: This is a Badge component, an atomic element for displaying statuses, tags, or other small pieces of information.
 'use client';
 
-import React from 'react';
+import { ReactNode } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 
@@ -14,15 +14,15 @@ export type BadgeSize = 'small' | 'medium' | 'sm' | 'md' | 'lg';
 
 export interface BadgeProps {
   /** Badge content */
-  children: React.ReactNode;
+  children: ReactNode;
   /** Visual variant */
   variant?: BadgeVariant;
   /** Size variant */
   size?: BadgeSize;
   /** Icon before content */
-  iconBefore?: React.ReactNode;
+  iconBefore?: ReactNode;
   /** Icon after content */
-  iconAfter?: React.ReactNode;
+  iconAfter?: ReactNode;
   /** Additional CSS classes */
   className?: string;
   /** Render as pill shape */
@@ -33,7 +33,7 @@ export interface BadgeProps {
   ariaLabel?: string;
 }
 
-const Badge: React.FC<BadgeProps> = ({
+export default function Badge({
   children,
   variant = 'default',
   size = 'medium',
@@ -43,7 +43,7 @@ const Badge: React.FC<BadgeProps> = ({
   pill = false,
   onClick,
   ariaLabel,
-}) => {
+}: BadgeProps) {
   const { resolvedTheme } = useTheme();
   
   // Don't render until theme is resolved
@@ -108,5 +108,3 @@ const Badge: React.FC<BadgeProps> = ({
     </span>
   );
 };
-
-export default Badge;
