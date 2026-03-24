@@ -13,7 +13,7 @@ import {
 import { cn } from '@/lib/utils';
 import { MegiLanceLogo } from '@/app/components/MegiLanceLogo/MegiLanceLogo';
 import Button from '@/app/components/Button/Button';
-import FeatureStatusPill, { type FeatureStatus } from '@/app/components/FeatureStatusPill';
+import { FeatureStatusPill, type FeatureStatus } from '@/app/components/FeatureStatusPill';
 
 import commonStyles from './Header.common.module.css';
 import lightStyles from './Header.light.module.css';
