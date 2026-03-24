@@ -2,8 +2,10 @@
 # Configures different rate limits for authentication, API calls, and public endpoints
 # Supports: role-based limits, trusted IP bypass, dynamic limit configuration
 
+import logging
 import functools
 import inspect
+logger = logging.getLogger(__name__)
 
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address

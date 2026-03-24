@@ -1,6 +1,8 @@
 # @AI-HINT: Shared utilities for API route handlers — deduplication of common patterns
+import logging
 import re
 from typing import Optional
+logger = logging.getLogger(__name__)
 
 
 # === Text Sanitization ===

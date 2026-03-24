@@ -1,11 +1,13 @@
 # @AI-HINT: Comments service - threaded commenting system for projects, proposals, and deliverables
 """Comments Service - Threaded Discussion System."""
 
+import logging
 import uuid
 import re
 from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Any, Optional
 from collections import defaultdict
+logger = logging.getLogger(__name__)
 
 
 class CommentsService:

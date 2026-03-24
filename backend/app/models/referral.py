@@ -3,7 +3,9 @@ from sqlalchemy import String, Integer, Float, DateTime, ForeignKey, Boolean, En
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 from datetime import datetime, timezone
+import logging
 import enum
+logger = logging.getLogger(__name__)
 
 class ReferralStatus(enum.Enum):
     PENDING = "pending"

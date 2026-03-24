@@ -1,6 +1,7 @@
 # @AI-HINT: Two-Factor Authentication service for generating TOTP secrets, QR codes, and backup codes
 # Handles all 2FA operations including setup, verification, and recovery - Turso HTTP compatible
 
+import logging
 import pyotp
 import qrcode
 import io
@@ -10,6 +11,7 @@ import hashlib
 from typing import List, Tuple, Optional, Dict, Any, Union
 from datetime import datetime, timezone
 import json
+logger = logging.getLogger(__name__)
 
 
 class TwoFactorService:

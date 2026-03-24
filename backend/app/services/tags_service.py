@@ -4,9 +4,11 @@ Tags Service - Business logic and data access for tag management.
 Handles tag CRUD, project-tag associations, and usage tracking.
 """
 
+import logging
 import re
 from datetime import datetime, timezone
 from typing import List, Optional, Dict, Any
+logger = logging.getLogger(__name__)
 
 from app.db.turso_http import execute_query, parse_rows
 

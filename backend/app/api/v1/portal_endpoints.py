@@ -5,7 +5,9 @@ Uses service layer for all DB operations
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from typing import Optional
 from datetime import datetime, timezone
+import logging
 import json
+logger = logging.getLogger(__name__)
 
 from app.core.security import get_current_active_user
 from app.models.user import User

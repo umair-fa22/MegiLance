@@ -2,7 +2,9 @@
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from datetime import datetime
 from typing import Optional, Literal
+import logging
 import re
+logger = logging.getLogger(__name__)
 
 class TagBase(BaseModel):
     """Base tag schema with common fields"""

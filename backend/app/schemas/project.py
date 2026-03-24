@@ -2,7 +2,9 @@
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import List, Optional
 from datetime import datetime
+import logging
 import json
+logger = logging.getLogger(__name__)
 
 class ProjectBase(BaseModel):
     title: str

@@ -5,7 +5,9 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 from datetime import datetime, timezone
 from typing import Optional, TYPE_CHECKING
+import logging
 import enum
+logger = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
     from .user import User

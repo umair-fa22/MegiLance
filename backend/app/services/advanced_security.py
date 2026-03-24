@@ -4,9 +4,11 @@
 from typing import Optional, Dict, List, Any
 from datetime import datetime, timedelta, timezone
 from pydantic import BaseModel, EmailStr
+import logging
 import secrets
 import hashlib
 import json
+logger = logging.getLogger(__name__)
 
 
 from app.core.config import get_settings
@@ -408,7 +410,7 @@ class AdvancedSecurityService:
         from app.db.session import execute_query
         
         session_token = secrets.token_urlsafe(32)
-        device_fingerprint = self._generate_device_fingerprint(ip_address, user_agent)
+        device_fingerprint = self._generate_device_fingerlogger.info(ip_address, user_agent)
         
         execute_query("""
             INSERT INTO user_sessions (
@@ -552,7 +554,7 @@ class AdvancedSecurityService:
         
         return codes
 
-    def _generate_device_fingerprint(self, ip_address: str, user_agent: str) -> str:
+    def _generate_device_fingerlogger.info(self, ip_address: str, user_agent: str) -> str:
         """Generate unique device fingerprint"""
         fingerprint_data = f"{ip_address}:{user_agent}"
         return hashlib.sha256(fingerprint_data.encode()).hexdigest()

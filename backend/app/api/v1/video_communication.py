@@ -16,8 +16,10 @@ from fastapi import APIRouter, Depends, HTTPException, WebSocket, WebSocketDisco
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel, Field
 from datetime import datetime, timedelta, timezone
+import logging
 import json
 import secrets
+logger = logging.getLogger(__name__)
 
 from app.core.security import get_current_active_user, decode_token
 from app.core.config import get_settings

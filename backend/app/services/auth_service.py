@@ -1,7 +1,9 @@
 # @AI-HINT: Auth service layer for user registration, profile updates, and auth-related DB operations via Turso
 
 from typing import Optional, Dict, Any, List
+import logging
 import json
+logger = logging.getLogger(__name__)
 
 from app.db.turso_http import execute_query, parse_rows, parse_date
 

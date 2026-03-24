@@ -1,11 +1,13 @@
 # @AI-HINT: Saved search queries - persistent user search preferences stored in Turso DB
 """Saved Searches Service - Persistent Search Queries & Alerts (Database-backed)."""
 
+import logging
 import uuid
 import json
 import hashlib
 from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Any, Optional
+logger = logging.getLogger(__name__)
 
 
 from app.db.turso_http import get_turso_http

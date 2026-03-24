@@ -1,9 +1,11 @@
 # @AI-HINT: Service layer for notification CRUD operations - all DB access via Turso HTTP
 """Notifications Service - Data access layer for notification management."""
 
+import logging
 import json
 from datetime import datetime, timezone
 from typing import Optional, List, Dict, Any
+logger = logging.getLogger(__name__)
 
 from app.db.turso_http import execute_query, parse_rows
 

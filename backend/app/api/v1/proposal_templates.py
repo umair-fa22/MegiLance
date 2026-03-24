@@ -1,10 +1,12 @@
 # @AI-HINT: Proposal templates API - Reusable proposal templates (Turso-backed)
+import logging
 import json
 import re
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from typing import List, Optional
 from pydantic import BaseModel
 from datetime import datetime, timezone
+logger = logging.getLogger(__name__)
 
 from app.db.turso_http import execute_query, parse_rows, to_int
 from app.core.security import get_current_active_user

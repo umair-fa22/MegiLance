@@ -5,7 +5,9 @@ from app.db.base import Base
 from datetime import datetime, timezone
 from decimal import Decimal
 from typing import List, Optional
+import logging
 import enum
+logger = logging.getLogger(__name__)
 
 class UserType(enum.Enum):
     """User type enumeration"""

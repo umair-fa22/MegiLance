@@ -4,8 +4,10 @@
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any
 from enum import Enum
+import logging
 import uuid
 import json
+logger = logging.getLogger(__name__)
 
 
 class ClauseCategory(str, Enum):

@@ -11,8 +11,10 @@ Handles:
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, status, BackgroundTasks
 from datetime import datetime, timezone
+import logging
 import uuid
 import secrets
+logger = logging.getLogger(__name__)
 
 from app.core.security import get_current_user_from_token
 from app.services import referrals_service

@@ -2,7 +2,9 @@
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from datetime import datetime
 from typing import Optional, List
+import logging
 import re
+logger = logging.getLogger(__name__)
 
 class CategoryBase(BaseModel):
     """Base category schema with common fields"""

@@ -3,9 +3,11 @@
 Handles dispute creation, listing, admin assignment, and resolution.
 """
 from typing import List, Optional
+import logging
 import json
 from fastapi import APIRouter, Depends, HTTPException, Query, status, UploadFile, File
 from pydantic import BaseModel, Field
+logger = logging.getLogger(__name__)
 
 from app.core.security import get_current_active_user
 from app.api.v1.uploads import validate_file, save_uploaded_file, DOCUMENT_DIR, ALLOWED_DOCUMENT_TYPES, ALLOWED_IMAGE_TYPES, MAX_DOCUMENT_SIZE

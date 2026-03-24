@@ -1,8 +1,10 @@
 # @AI-HINT: Advanced Search API for projects, freelancers, and global search - Turso HTTP only
 # Enhanced with input sanitization and security measures
+import logging
 import re
 from fastapi import APIRouter, Depends, Query, HTTPException, status
 from typing import List, Optional, Literal
+logger = logging.getLogger(__name__)
 
 from app.services import search_service
 

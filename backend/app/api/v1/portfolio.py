@@ -1,11 +1,13 @@
 # @AI-HINT: Portfolio items API - delegates to portfolio_service
 from fastapi import APIRouter, Depends, HTTPException, Query, status, Request, UploadFile
 from typing import List, Optional
+import logging
 import json
 import uuid
 import os
 import re
 from pathlib import Path
+logger = logging.getLogger(__name__)
 
 from app.core.security import get_current_user_from_token
 from app.services import portfolio_service

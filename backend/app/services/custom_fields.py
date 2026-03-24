@@ -1,11 +1,13 @@
 # @AI-HINT: Custom fields service - dynamic field definitions for entities
 """Custom Fields Service - Dynamic Metadata System."""
 
+import logging
 import uuid
 import re
 from datetime import datetime, date, timezone
 from typing import Dict, List, Any, Optional, Union
 from collections import defaultdict
+logger = logging.getLogger(__name__)
 
 
 class CustomFieldsService:

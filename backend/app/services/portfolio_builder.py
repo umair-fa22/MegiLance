@@ -4,7 +4,9 @@
 from typing import Optional, List, Dict, Any
 from datetime import datetime, timezone
 from enum import Enum
+import logging
 import uuid
+logger = logging.getLogger(__name__)
 
 
 class PortfolioTemplate(str, Enum):

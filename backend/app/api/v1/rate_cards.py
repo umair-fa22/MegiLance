@@ -1,8 +1,10 @@
 # @AI-HINT: Rate cards API - Freelancer pricing structures (Turso-backed)
+import logging
 import json
 from fastapi import APIRouter, Depends, HTTPException, Query
 from typing import List, Optional
 from datetime import datetime, timezone
+logger = logging.getLogger(__name__)
 
 from app.db.turso_http import execute_query
 from app.core.security import get_current_active_user

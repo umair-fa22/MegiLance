@@ -2,10 +2,12 @@
 @AI-HINT: Direct HTTP client for Turso database
 Bypasses libsql_client due to bugs in 0.3.1 response parsing
 """
+import logging
 import aiohttp
 import json
 from typing import Any, Dict, List, Optional
 from dataclasses import dataclass
+logger = logging.getLogger(__name__)
 
 
 @dataclass

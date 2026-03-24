@@ -3,9 +3,11 @@
 Milestones Service - Data access and business logic for milestone endpoints.
 Handles milestone CRUD, submission, approval, rejection, payment creation, and notifications.
 """
+import logging
 import json
 from datetime import datetime, timezone
 from typing import List, Optional
+logger = logging.getLogger(__name__)
 
 from app.db.turso_http import execute_query, to_str, parse_date
 

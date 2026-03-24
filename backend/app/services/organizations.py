@@ -5,8 +5,10 @@ from typing import Optional, List, Dict, Any
 from datetime import datetime, timezone
 from enum import Enum
 from pydantic import BaseModel
+import logging
 import uuid
 import secrets
+logger = logging.getLogger(__name__)
 
 
 class OrganizationRole(str, Enum):

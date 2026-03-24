@@ -1,7 +1,9 @@
 # @AI-HINT: Pydantic schemas for User API - registration, profile update, and response models
 from datetime import datetime
 from typing import Optional, List
+import logging
 import json
+logger = logging.getLogger(__name__)
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator, model_validator
 from typing import Literal

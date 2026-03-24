@@ -7,7 +7,9 @@ Includes: balances, transaction history, payouts, deposits, and analytics
 from typing import List, Optional
 from datetime import datetime, timedelta, timezone
 from enum import Enum
+import logging
 import json
+logger = logging.getLogger(__name__)
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from pydantic import BaseModel, Field

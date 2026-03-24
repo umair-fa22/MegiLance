@@ -5,10 +5,12 @@ Provides liveness, readiness, and detailed health status for Kubernetes/Docker
 
 from fastapi import APIRouter, Response
 from datetime import datetime, timezone
+import logging
 import time
 import os
 import platform
 from typing import Dict, Any, Optional
+logger = logging.getLogger(__name__)
 
 from app.core.config import get_settings
 from app.db.turso_http import get_turso_http

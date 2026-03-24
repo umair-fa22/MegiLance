@@ -1,9 +1,11 @@
 # @AI-HINT: Shared database utility functions for Turso HTTP row parsing
 """Shared utility functions for Turso HTTP database operations."""
 
+import logging
 import re
 from typing import Any, Optional
 from decimal import Decimal, ROUND_HALF_UP
+logger = logging.getLogger(__name__)
 
 # XSS/injection pattern for text sanitization
 SCRIPT_PATTERN = re.compile(r'(javascript:|on\w+=|<script)', re.IGNORECASE)

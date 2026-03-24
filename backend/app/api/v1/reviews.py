@@ -10,10 +10,12 @@ Handles:
 - Review responses
 - Rating aggregation
 """
+import logging
 import json
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from datetime import datetime, timezone
+logger = logging.getLogger(__name__)
 
 from app.core.security import get_current_user_from_token
 from app.schemas.review import ReviewCreateRequest, ReviewUpdateRequest

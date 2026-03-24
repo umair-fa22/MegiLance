@@ -1,4 +1,5 @@
 # @AI-HINT: Data analytics export API - BI reports and data exports (Turso-backed)
+import logging
 import json
 import os
 from fastapi import APIRouter, Depends, HTTPException, status, Query
@@ -6,6 +7,7 @@ from typing import List, Optional
 from pydantic import BaseModel
 from datetime import datetime, timezone
 from enum import Enum
+logger = logging.getLogger(__name__)
 
 from app.db.turso_http import execute_query
 from app.core.security import get_current_active_user

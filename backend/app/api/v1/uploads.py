@@ -7,6 +7,7 @@ from fastapi import APIRouter, Depends, File, UploadFile, HTTPException, status
 from app.core.security import get_current_user
 from app.core.rate_limiter import api_rate_limit
 from app.services.uploads_service import get_user_avatar_url, update_user_avatar, clear_user_avatar
+import logging
 import os
 import re
 import uuid
@@ -14,6 +15,7 @@ import hashlib
 from pathlib import Path
 from datetime import datetime, timezone
 import magic  # python-magic for MIME type detection
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 

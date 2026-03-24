@@ -1,10 +1,12 @@
 # @AI-HINT: Activity feed service - timeline of user activities and platform events
 """Activity Feed Service - User Activity Timeline & Social Features."""
 
+import logging
 import uuid
 from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Any, Optional
 from collections import defaultdict
+logger = logging.getLogger(__name__)
 
 
 class ActivityFeedService:

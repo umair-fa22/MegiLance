@@ -1,7 +1,9 @@
 # @AI-HINT: Blog CMS service - CRUD operations for blog posts via Turso HTTP API
+import logging
 import json
 from typing import List, Optional
 from datetime import datetime, timezone
+logger = logging.getLogger(__name__)
 
 from app.db.turso_http import execute_query, parse_rows
 from app.schemas.blog import BlogPostCreate, BlogPostUpdate, BlogPostInDB

@@ -3,12 +3,14 @@
 Tracks all API requests, user actions, and security events
 """
 
+import logging
 import json
 import time
 import uuid
 from datetime import datetime, timezone
 from typing import Any, Dict, Optional
 from functools import wraps
+logger = logging.getLogger(__name__)
 
 from fastapi import Request, Response
 from starlette.middleware.base import BaseHTTPMiddleware
@@ -80,7 +82,7 @@ class AuditLogger:
             log_entry["details"] = details
 
         # Output as JSON for log aggregation
-        print(json.dumps(log_entry))
+        logger.info(json.dumps(log_entry))
 
     def auth_event(
         self,

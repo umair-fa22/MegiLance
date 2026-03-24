@@ -277,7 +277,7 @@ def execute_query(sql: str, params: List[Any] = None) -> Optional[Dict[str, Any]
         }
 
     except Exception as e:
-        print(f"[DB] execute_query error: {e}")
+        logger.info(f"[DB] execute_query error: {e}")
         return None
 
 

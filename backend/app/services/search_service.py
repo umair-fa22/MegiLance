@@ -5,8 +5,10 @@ skill-aware matching, weighted ranking, and enhanced discovery.
 """
 
 from typing import Optional, List, Dict, Any
+import logging
 import re
 import json
+logger = logging.getLogger(__name__)
 
 from app.db.turso_http import execute_query, parse_rows, to_str, parse_date
 

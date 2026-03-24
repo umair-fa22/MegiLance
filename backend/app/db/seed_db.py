@@ -1,4 +1,5 @@
 # @AI-HINT: Database seeding script - populates demo/development data for users, projects, skills
+import logging
 import json
 from sqlalchemy.orm import Session
 from app.db.session import engine
@@ -11,6 +12,7 @@ from app.models.portfolio import PortfolioItem
 from app.models.payment import Payment
 from app.core.security import get_password_hash
 from datetime import datetime, timedelta, timezone
+logger = logging.getLogger(__name__)
 
 def seed_database():
     # Create tables
@@ -23,7 +25,7 @@ def seed_database():
     try:
         # Check if data already exists
         if db.query(User).first():
-            print("Database already seeded. Skipping...")
+            logger.info("Database already seeded. Skipping...")
             return
         
         # Create sample users
@@ -156,10 +158,10 @@ def seed_database():
         db.add_all([portfolio1, portfolio2])
         db.commit()
         
-        print("Database seeded successfully!")
+        logger.info("Database seeded successfully!")
         
     except Exception as e:
-        print(f"Error seeding database: {e}")
+        logger.info(f"Error seeding database: {e}")
         db.rollback()
     finally:
         db.close()

@@ -5,7 +5,9 @@ from app.db.base import Base
 from datetime import datetime, timezone
 from typing import Optional, TYPE_CHECKING, List
 from decimal import Decimal
+import logging
 import enum
+logger = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
     from .user import User

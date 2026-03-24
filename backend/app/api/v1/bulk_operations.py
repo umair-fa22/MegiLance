@@ -10,11 +10,13 @@ Provides:
 - Progress tracking for long operations
 """
 
+import logging
 import uuid
 from datetime import datetime, timezone
 from typing import Dict, List, Any, Optional
 from fastapi import APIRouter, Depends, HTTPException, BackgroundTasks, UploadFile, File
 from pydantic import BaseModel, Field
+logger = logging.getLogger(__name__)
 
 from ...core.security import get_current_active_user, require_admin
 

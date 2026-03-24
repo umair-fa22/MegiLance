@@ -2,6 +2,7 @@
 # Since MegiLance uses Turso HTTP API exclusively, engine is always None
 # and this function returns immediately. Tables are managed via turso_schema.sql.
 # Kept for SQLAlchemy model registration side-effects (imports).
+import logging
 import subprocess
 import sys
 from pathlib import Path
@@ -15,6 +16,7 @@ from app.models import (
     favorite, tag, project_tag, support_ticket, refund, scope_change,
     analytics, embedding, verification
 )  # noqa: F401
+logger = logging.getLogger(__name__)
 
 
 def init_db(engine: Engine) -> None:
@@ -24,7 +26,7 @@ def init_db(engine: Engine) -> None:
     """
     
     if engine is None:
-        print("[INFO] SQLAlchemy engine not available - using Turso HTTP API (tables managed externally)")
+        logger.info("[INFO] SQLAlchemy engine not available - using Turso HTTP API (tables managed externally)")
         return
     
     try:
@@ -37,18 +39,18 @@ def init_db(engine: Engine) -> None:
         missing_critical = [t for t in critical_tables if t not in existing_tables]
         
         if missing_critical:
-            print(f"[INFO] Missing critical tables: {missing_critical}")
-            print("[INFO] Creating database tables...")
+            logger.info(f"[INFO] Missing critical tables: {missing_critical}")
+            logger.info("[INFO] Creating database tables...")
             Base.metadata.create_all(bind=engine)
-            print("[OK] Database tables created successfully")
+            logger.info("[OK] Database tables created successfully")
         else:
-            print(f"[OK] Database already initialized ({len(existing_tables)} tables found)")
+            logger.info(f"[OK] Database already initialized ({len(existing_tables)} tables found)")
             
     except Exception as e:
-        print(f"[WARNING] Database initialization error: {e}")
-        print("[WARNING] Attempting to create tables anyway...")
+        logger.info(f"[WARNING] Database initialization error: {e}")
+        logger.info("[WARNING] Attempting to create tables anyway...")
         try:
             Base.metadata.create_all(bind=engine)
-            print("[OK] Database tables created")
+            logger.info("[OK] Database tables created")
         except Exception as create_error:
-            print(f"[ERROR] Failed to create tables: {create_error}")
+            logger.info(f"[ERROR] Failed to create tables: {create_error}")

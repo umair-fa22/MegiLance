@@ -3,9 +3,11 @@
 Skills Service - Data access and business logic for skills endpoints.
 Handles skills CRUD, user skills, freelancer matching, and categories.
 """
+import logging
 import json
 from datetime import datetime, timezone
 from typing import List, Optional, Dict, Any
+logger = logging.getLogger(__name__)
 
 from app.db.turso_http import execute_query, parse_rows
 

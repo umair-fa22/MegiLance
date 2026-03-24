@@ -6,10 +6,12 @@ from datetime import datetime, timezone
 from decimal import Decimal
 from pydantic import BaseModel, Field
 from enum import Enum
+import logging
 import os
 import httpx
 import json
 import secrets
+logger = logging.getLogger(__name__)
 
 from app.db.turso_http import execute_query, parse_rows
 

@@ -2,7 +2,9 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from typing import List, Optional
 from datetime import datetime, timezone
+import logging
 import json
+logger = logging.getLogger(__name__)
 
 from app.services import notifications_service
 from app.services.db_utils import paginate_params

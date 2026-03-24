@@ -1,9 +1,11 @@
 # @AI-HINT: Pydantic schemas for Review API - rating submission and response models
 """Review schemas for MegiLance platform"""
+import logging
 import re
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Optional, Dict, Any
 from datetime import datetime
+logger = logging.getLogger(__name__)
 
 # XSS sanitization pattern — matches script tags, javascript: URIs, and event handlers
 SCRIPT_PATTERN = re.compile(r'(<script[^>]*>.*?</script>|javascript:\s*|on\w+\s*=)', re.IGNORECASE | re.DOTALL)

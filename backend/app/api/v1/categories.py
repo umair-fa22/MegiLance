@@ -2,7 +2,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from typing import List, Optional
 from datetime import datetime, timezone
+import logging
 import re
+logger = logging.getLogger(__name__)
 
 from app.services import categories_service
 from app.core.security import get_current_user_from_token

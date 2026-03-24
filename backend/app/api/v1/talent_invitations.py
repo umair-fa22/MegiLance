@@ -5,7 +5,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from typing import Optional, List
 from datetime import datetime, timedelta, timezone
+import logging
 import uuid
+logger = logging.getLogger(__name__)
 
 from app.db.turso_http import get_turso_http
 from app.core.security import get_current_active_user

@@ -46,7 +46,7 @@ def get_engine():
             "Please set these in your .env file or environment."
         )
         logger.error(error_msg)
-        print(f"\n{'='*70}\n{error_msg}\n{'='*70}\n")
+        logger.info(f"\n{'='*70}\n{error_msg}\n{'='*70}\n")
         _engine_available = False
         return None
     
@@ -56,7 +56,7 @@ def get_engine():
             import sqlalchemy_libsql
         except ImportError:
             logger.warning("sqlalchemy-libsql not installed - using Turso HTTP API only")
-            print("[INFO] sqlalchemy-libsql not installed - using Turso HTTP API for all database operations")
+            logger.info("[INFO] sqlalchemy-libsql not installed - using Turso HTTP API for all database operations")
             _engine_available = False
             return None
         
@@ -73,7 +73,7 @@ def get_engine():
             db_url = base_url
         
         logger.info(f"[TURSO] Connecting to: {base_url.split('?')[0]}")
-        print(f"[TURSO] Connecting to: {base_url.split('?')[0]}")
+        logger.info(f"[TURSO] Connecting to: {base_url.split('?')[0]}")
         
         _engine = create_engine(
             db_url,
@@ -86,11 +86,11 @@ def get_engine():
         
         _engine_available = True
         logger.info("[TURSO] Database engine created successfully")
-        print("[TURSO] Database engine created successfully")
+        logger.info("[TURSO] Database engine created successfully")
         
     except Exception as e:
         logger.warning(f"Failed to create Turso database engine: {e} - using HTTP API")
-        print(f"[INFO] Using Turso HTTP API (SQLAlchemy engine not available: {e})")
+        logger.info(f"[INFO] Using Turso HTTP API (SQLAlchemy engine not available: {e})")
         _engine_available = False
         return None
 

@@ -1,10 +1,12 @@
 # @AI-HINT: File versioning service - track file versions, diffs, and rollbacks
 """File Versioning Service - Document Version Control."""
 
+import logging
 import uuid
 import hashlib
 from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Any, Optional
+logger = logging.getLogger(__name__)
 
 
 class FileVersioningService:

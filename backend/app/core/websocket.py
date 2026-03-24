@@ -1,11 +1,13 @@
 # @AI-HINT: WebSocket manager for real-time features using Socket.IO
 # Handles real-time messaging, notifications, typing indicators, online status, and project updates
 
+import logging
 import socketio
 from typing import Dict, Set, Optional, List
 from datetime import datetime, timezone
 import json
 import os
+logger = logging.getLogger(__name__)
 
 
 class WebSocketManager:
@@ -40,7 +42,7 @@ class WebSocketManager:
         @self.sio.event
         async def connect(sid, environ, auth):
             """Handle client connection"""
-            print(f"Client connected: {sid}")
+            logger.info(f"Client connected: {sid}")
             
             # Extract user_id from auth
             user_id = auth.get('user_id') if auth else None
@@ -52,7 +54,7 @@ class WebSocketManager:
         @self.sio.event
         async def disconnect(sid):
             """Handle client disconnection"""
-            print(f"Client disconnected: {sid}")
+            logger.info(f"Client disconnected: {sid}")
             await self.remove_user_connection(sid)
         
         @self.sio.event

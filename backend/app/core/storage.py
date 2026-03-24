@@ -4,6 +4,7 @@ Handles file uploads, downloads, and management.
 Can be easily upgraded to cloud storage (S3, Cloudflare R2, etc.) in the future.
 """
 
+import logging
 import os
 import shutil
 from pathlib import Path
@@ -12,6 +13,7 @@ from datetime import datetime
 import boto3
 from botocore.exceptions import ClientError
 from app.core.config import get_settings
+logger = logging.getLogger(__name__)
 
 settings = get_settings()
 
@@ -54,7 +56,7 @@ class S3Storage(StorageBackend):
             )
             return key
         except ClientError as e:
-            print(f"S3 Upload Error: {e}")
+            logger.info(f"S3 Upload Error: {e}")
             raise
 
     def delete_file(self, file_path: str) -> bool:

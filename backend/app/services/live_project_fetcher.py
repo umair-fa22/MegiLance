@@ -623,43 +623,43 @@ def main():
                         help="Which sources to fetch from (default: all)")
     args = parser.parse_args()
 
-    print("=" * 70)
-    print("  MegiLance LIVE Project Fetcher")
-    print("  Fetching REAL projects from public APIs...")
-    print("=" * 70)
+    logger.info("=" * 70)
+    logger.info("  MegiLance LIVE Project Fetcher")
+    logger.info("  Fetching REAL projects from public APIs...")
+    logger.info("=" * 70)
 
     result = fetch_and_seed_live_projects(
         limit_per_source=args.limit,
         sources=args.sources,
     )
 
-    print(f"\n{'=' * 70}")
-    print(f"  Results:")
-    print(f"    Fetched:  {result['fetched']}")
-    print(f"    Inserted: {result['inserted']}")
-    print(f"    Skipped:  {result['skipped']} (already existed)")
-    print(f"    Errors:   {result['errors']}")
+    logger.info(f"\n{'=' * 70}")
+    logger.info(f"  Results:")
+    logger.info(f"    Fetched:  {result['fetched']}")
+    logger.info(f"    Inserted: {result['inserted']}")
+    logger.info(f"    Skipped:  {result['skipped']} (already existed)")
+    logger.info(f"    Errors:   {result['errors']}")
     print()
 
     for source, s in result["by_source"].items():
-        print(f"    {source}: {s['fetched']} fetched → {s['inserted']} new, {s['skipped']} skipped")
+        logger.info(f"    {source}: {s['fetched']} fetched → {s['inserted']} new, {s['skipped']} skipped")
 
     # Verify
     total = execute_query("SELECT COUNT(*) FROM projects WHERE status = 'open'")
     if total and total.get("rows"):
         v = total["rows"][0][0]
         count = int(v.get("value") if isinstance(v, dict) else v)
-        print(f"\n  Total open projects on platform: {count}")
+        logger.info(f"\n  Total open projects on platform: {count}")
 
     real = execute_query("SELECT COUNT(*) FROM projects WHERE description LIKE '%APPLY HERE (REAL LINK)%'")
     if real and real.get("rows"):
         v = real["rows"][0][0]
         count = int(v.get("value") if isinstance(v, dict) else v)
-        print(f"  Projects with real apply links: {count}")
+        logger.info(f"  Projects with real apply links: {count}")
 
-    print(f"{'=' * 70}")
-    print("  Done! Run again anytime to fetch fresh projects.")
-    print(f"{'=' * 70}")
+    logger.info(f"{'=' * 70}")
+    logger.info("  Done! Run again anytime to fetch fresh projects.")
+    logger.info(f"{'=' * 70}")
 
 
 if __name__ == "__main__":

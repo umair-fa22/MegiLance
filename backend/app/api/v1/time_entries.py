@@ -2,7 +2,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from typing import List, Optional
 from datetime import datetime, timezone
+import logging
 import json
+logger = logging.getLogger(__name__)
 
 from app.schemas.time_entry import (
     TimeEntryCreate, TimeEntryUpdate, TimeEntryRead, 

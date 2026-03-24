@@ -5,9 +5,11 @@ from typing import Optional, List, Dict, Any
 from datetime import datetime, timezone
 from enum import Enum
 from pydantic import BaseModel
+import logging
 import uuid
 import secrets
 import json
+logger = logging.getLogger(__name__)
 
 from app.db.turso_http import execute_query, parse_rows
 

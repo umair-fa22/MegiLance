@@ -1,7 +1,9 @@
 # @AI-HINT: Portfolio items service layer - CRUD database operations for portfolio items
 from datetime import datetime, timezone
 from typing import List, Optional
+import logging
 import json
+logger = logging.getLogger(__name__)
 
 from app.db.turso_http import execute_query, parse_rows
 

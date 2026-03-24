@@ -1,8 +1,10 @@
 # @AI-HINT: Video communication service layer - all database operations for video call endpoints
+import logging
 import json
 import secrets
 from datetime import datetime, timedelta, timezone
 from typing import Optional, List
+logger = logging.getLogger(__name__)
 
 from app.db.turso_http import execute_query
 

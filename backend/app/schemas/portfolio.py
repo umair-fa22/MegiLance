@@ -2,7 +2,9 @@
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import List, Optional
 from datetime import datetime
+import logging
 import re
+logger = logging.getLogger(__name__)
 
 class PortfolioItemBase(BaseModel):
     title: str = Field(..., min_length=1, max_length=200)
