@@ -307,6 +307,40 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
 
+      {/* Performance Alerts Section */}
+      {performanceAlerts.length > 0 && (
+        <section aria-label="Performance alerts" className={commonStyles.alertsSection}>
+          <div className={commonStyles.alertsGrid}>
+            {performanceAlerts.map((alert) => (
+              <div
+                key={alert.id}
+                className={cn(
+                  commonStyles.alertCard,
+                  themeStyles.alertCard,
+                  commonStyles[`alertCard-${alert.type}`],
+                  themeStyles[`alertCard-${alert.type}`]
+                )}
+                role="status"
+                aria-live="polite"
+              >
+                <div className={commonStyles.alertContent}>
+                  <AlertCircle size={18} className={commonStyles.alertIcon} aria-hidden="true" />
+                  <div className={commonStyles.alertText}>
+                    <h3 className={commonStyles.alertTitle}>{alert.title}</h3>
+                    <p className={commonStyles.alertMessage}>{alert.message}</p>
+                  </div>
+                </div>
+                {alert.action && (
+                  <Link href={alert.action.href} className={cn(commonStyles.alertAction, themeStyles.alertAction)}>
+                    {alert.action.label} <ArrowRight size={14} aria-hidden="true" />
+                  </Link>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Seller Stats Section */}
       {sellerStats && <SellerStats stats={sellerStats} />}
 
