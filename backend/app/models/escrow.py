@@ -2,7 +2,7 @@
 """
 Escrow model for secure payment holding
 """
-from sqlalchemy import String, Integer, Float, DateTime, ForeignKey, Numeric
+from sqlalchemy import String, DateTime, ForeignKey, Numeric
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 from datetime import datetime, timezone

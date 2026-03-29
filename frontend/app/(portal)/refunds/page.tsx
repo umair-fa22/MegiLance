@@ -4,7 +4,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getAuthToken } from '@/lib/api';
-import Loading from '@/app/components/Loading/Loading';
+import Loading from '@/app/components/atoms/Loading/Loading';
 
 export default function RefundsRedirect() {
   const router = useRouter();

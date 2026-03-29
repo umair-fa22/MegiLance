@@ -364,3 +364,56 @@
     width: 100%;
   }
 }
+
+@media (max-width: 380px) {
+  .container {
+    padding: 1rem;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+  .settingsPanel, .converterPanel, .ratesPanel {
+    padding: 1rem;
+  }
+  .inputWithSelect {
+    flex-direction: column;
+  }
+  .selectSmall {
+    width: 100%;
+  }
+  .tableHeader, .tableRow {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .tableHeader {
+    display: none;
+  }
+  .tableRow {
+    padding: 1rem 0;
+  }
+  .currencyInfo {
+    margin-bottom: 0.25rem;
+  }
+  .converted::before {
+    content: 'Value: ';
+    font-size: 0.75rem;
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 320px) {
+  .title {
+    font-size: 1.25rem;
+  }
+  .subtitle {
+    font-size: 0.8125rem;
+  }
+  .settingsPanel, .converterPanel, .ratesPanel {
+    padding: 0.75rem;
+  }
+  .currencySymbol {
+    width: 28px;
+    height: 28px;
+    font-size: 0.875rem;
+  }
+}

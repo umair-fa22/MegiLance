@@ -3,8 +3,8 @@
 import React from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Badge from '@/app/components/Badge/Badge';
-import Button from '@/app/components/Button/Button';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import Button from '@/app/components/atoms/Button/Button';
 import { Eye, Edit3, Trash2, DollarSign, Calendar, Briefcase, Sparkles, ShieldCheck } from 'lucide-react';
 
 import commonStyles from './ProposalCard.common.module.css';

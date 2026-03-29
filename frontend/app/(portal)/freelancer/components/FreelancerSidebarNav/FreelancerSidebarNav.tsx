@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { Gauge, Briefcase, FileText, Wallet, TrendingUp, User, Settings, SendHorizontal } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import MegiLanceLogo from '@/app/components/MegiLanceLogo/MegiLanceLogo';
+import MegiLanceLogo from '@/app/components/atoms/MegiLanceLogo/MegiLanceLogo';
 import commonStyles from './FreelancerSidebarNav.common.module.css';
 import lightStyles from './FreelancerSidebarNav.light.module.css';
 import darkStyles from './FreelancerSidebarNav.dark.module.css';

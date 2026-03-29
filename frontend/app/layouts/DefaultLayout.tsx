@@ -4,8 +4,8 @@
 import React from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Header from '@/app/components/Header/Header';
-import Footer from '@/app/components/Footer/Footer';
+import Header from '@/app/components/organisms/Header/Header';
+import Footer from '@/app/components/organisms/Footer/Footer';
 import commonStyles from './DefaultLayout.common.module.css';
 import lightStyles from './DefaultLayout.light.module.css';
 import darkStyles from './DefaultLayout.dark.module.css';

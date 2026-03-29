@@ -207,4 +207,339 @@
   .socialGrid {
     grid-template-columns: 1fr;
   }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 1.5rem 0;
+  }
+  
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  .header {
+    margin-bottom: 2.5rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .section {
+    margin-bottom: 3rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .communityGrid {
+    gap: 1.5rem;
+  }
+  
+  .communityCard {
+    padding: 1.5rem;
+    border-radius: 14px;
+  }
+  
+  .cardIcon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    margin-bottom: 1rem;
+  }
+  
+  .communityTitle {
+    font-size: 1.15rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .communityDescription {
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .communityButton {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.875rem;
+    border-radius: 8px;
+  }
+  
+  .ctaCard {
+    padding: 2.5rem 1.5rem;
+    border-radius: 16px;
+  }
+  
+  .ctaTitle {
+    font-size: 1.5rem;
+  }
+  
+  .ctaDesc {
+    font-size: 0.9rem;
+  }
+  
+  .socialGrid {
+    gap: 1.25rem;
+  }
+  
+  .socialCard {
+    padding: 1.5rem;
+    border-radius: 14px;
+  }
+  
+  .socialIcon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 1rem;
+  }
+  
+  .socialTitle {
+    font-size: 1.15rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .socialDescription {
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .socialButton {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.875rem;
+    border-radius: 8px;
+  }
+}
+
+/* Small phones (380px and below) */
+@media (max-width: 380px) {
+  .page {
+    padding: 1.25rem 0;
+  }
+  
+  .container {
+    padding: 0 0.625rem;
+  }
+  
+  .header {
+    margin-bottom: 2rem;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+    line-height: 1.15;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .section {
+    margin-bottom: 2.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .communityGrid {
+    gap: 1.25rem;
+  }
+  
+  .communityCard {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+  
+  .cardIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    margin-bottom: 0.875rem;
+  }
+  
+  .communityTitle {
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .communityDescription {
+    font-size: 0.825rem;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+  }
+  
+  .communityButton {
+    padding: 0.575rem 1.1rem;
+    font-size: 0.825rem;
+    border-radius: 7px;
+    gap: 0.4rem;
+  }
+  
+  .ctaCard {
+    padding: 2rem 1.25rem;
+    border-radius: 14px;
+    gap: 0.875rem;
+  }
+  
+  .ctaTitle {
+    font-size: 1.35rem;
+  }
+  
+  .ctaDesc {
+    font-size: 0.85rem;
+  }
+  
+  .socialGrid {
+    gap: 1rem;
+  }
+  
+  .socialCard {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+  
+  .socialIcon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0.875rem;
+  }
+  
+  .socialTitle {
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .socialDescription {
+    font-size: 0.825rem;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+  }
+  
+  .socialButton {
+    padding: 0.575rem 1.1rem;
+    font-size: 0.825rem;
+    border-radius: 7px;
+    gap: 0.4rem;
+  }
+}
+
+/* Extra small phones (320px) */
+@media (max-width: 320px) {
+  .page {
+    padding: 1rem 0;
+  }
+  
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .header {
+    margin-bottom: 1.75rem;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    line-height: 1.1;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .section {
+    margin-bottom: 2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .communityGrid {
+    gap: 1rem;
+  }
+  
+  .communityCard {
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  
+  .cardIcon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+  }
+  
+  .communityTitle {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .communityDescription {
+    font-size: 0.775rem;
+    line-height: 1.5;
+    margin-bottom: 0.875rem;
+  }
+  
+  .communityButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.775rem;
+    border-radius: 6px;
+    gap: 0.35rem;
+  }
+  
+  .ctaCard {
+    padding: 1.75rem 1rem;
+    border-radius: 12px;
+    gap: 0.75rem;
+  }
+  
+  .ctaTitle {
+    font-size: 1.2rem;
+  }
+  
+  .ctaDesc {
+    font-size: 0.8rem;
+  }
+  
+  .socialGrid {
+    gap: 0.875rem;
+  }
+  
+  .socialCard {
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  
+  .socialIcon {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 0.75rem;
+  }
+  
+  .socialTitle {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .socialDescription {
+    font-size: 0.775rem;
+    line-height: 1.5;
+    margin-bottom: 0.875rem;
+  }
+  
+  .socialButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.775rem;
+    border-radius: 6px;
+    gap: 0.35rem;
+  }
 } 

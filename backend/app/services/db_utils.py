@@ -35,52 +35,6 @@ def safe_str(val: Any) -> Optional[str]:
     return str(val) if val else None
 
 
-def safe_int(val: Any, default: int = 0) -> int:
-    """Convert a value to int safely."""
-    if val is None:
-        return default
-    try:
-        return int(val)
-    except (ValueError, TypeError):
-        return default
-
-
-def safe_float(val: Any, default: float = 0.0) -> float:
-    """Convert a value to float safely."""
-    if val is None:
-        return default
-    try:
-        return float(val)
-    except (ValueError, TypeError):
-        return default
-
-
-def safe_decimal(val: Any, default: str = "0.00") -> Decimal:
-    """Convert a value to Decimal for financial precision.
-    
-    Always returns Decimal with 2 decimal places for monetary values.
-    """
-    if val is None:
-        return Decimal(default)
-    try:
-        return Decimal(str(val)).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
-    except Exception:
-        return Decimal(default)
-
-
-def safe_bool(val: Any, default: bool = False) -> bool:
-    """Convert a value to bool safely."""
-    if val is None:
-        return default
-    if isinstance(val, bool):
-        return val
-    if isinstance(val, (int, float)):
-        return bool(val)
-    if isinstance(val, str):
-        return val.lower() in ('true', '1', 'yes')
-    return default
-
-
 def sanitize_text(content: str) -> str:
     """Sanitize text content by removing potential XSS vectors.
     
@@ -89,15 +43,6 @@ def sanitize_text(content: str) -> str:
     if not content:
         return content
     return SCRIPT_PATTERN.sub('', content).strip()
-
-
-def sanitize_html(content: str) -> str:
-    """More aggressive HTML sanitization - strips all HTML tags."""
-    if not content:
-        return content
-    content = SCRIPT_PATTERN.sub('', content)
-    content = re.sub(r'<[^>]+>', '', content)
-    return content.strip()
 
 
 def paginate_params(page: int = 1, page_size: int = 20, max_page_size: int = 100) -> tuple[int, int]:
@@ -121,3 +66,4 @@ def get_user_role(user: Any) -> str:
     if hasattr(role, 'value'):
         role = role.value
     return str(role).lower()
+

@@ -7,7 +7,7 @@
 """
 
 from datetime import datetime, timedelta, timezone
-from typing import Optional, Set, Any, Union
+from typing import Optional, Any, Union
 import logging
 import time
 import threading

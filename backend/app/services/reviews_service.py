@@ -3,7 +3,6 @@
 
 import json
 import logging
-from datetime import datetime, timezone
 from typing import Optional, List, Dict, Any
 
 from app.db.turso_http import execute_query, parse_rows

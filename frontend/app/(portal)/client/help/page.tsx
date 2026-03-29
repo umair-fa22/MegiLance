@@ -1,7 +1,7 @@
 // @AI-HINT: Client portal help page - reuses shared Help component within client layout
 'use client';
 
-import Help from '../../help/Help';
+import Help from '@/app/(portal)/help/Help';
 
 const ClientHelpPage = () => {
   return <Help />;

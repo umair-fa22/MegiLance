@@ -6,9 +6,13 @@ import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { useAdminData } from '@/hooks/useAdmin';
-import Button from '@/app/components/Button/Button';
-import ActivityTimeline, { type TimelineEvent } from '@/app/components/ActivityTimeline/ActivityTimeline';
-import ProgressRing from '@/app/components/ProgressRing/ProgressRing';
+import { useAuth } from '@/hooks/useAuth';
+import Button from '@/app/components/atoms/Button/Button';
+import ActivityTimeline, { type TimelineEvent } from '@/app/components/molecules/ActivityTimeline/ActivityTimeline';
+import ProgressRing from '@/app/components/atoms/ProgressRing/ProgressRing';
+import { PageTransition } from '@/app/components/Animations/PageTransition';
+import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
+import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
 import {
   Users,
   DollarSign,
@@ -237,6 +241,7 @@ const AdminDashboard: React.FC = () => {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const { kpis, recentActivity, systemStats, loading, refetch } = useAdminData();
+  const { user } = useAuth();
   const [lastRefresh, setLastRefresh] = useState<Date>(new Date());
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState<'overview' | 'health' | 'security'>('overview');
@@ -409,58 +414,67 @@ const AdminDashboard: React.FC = () => {
   if (!mounted) return null;
 
   return (
-    <div className={cn(commonStyles.dashboardContainer, themeStyles.dashboardContainer)}>
-      {/* Enterprise Header */}
-      <div className={commonStyles.headerSection}>
-        <div className={commonStyles.welcomeText}>
-          <div className={commonStyles.headerTitleRow}>
-            <h1 className={cn(commonStyles.headerTitle, themeStyles.headerTitle)}>Command Center</h1>
-            <span className={cn(commonStyles.envBadge, themeStyles.envBadge)}>Production</span>
+    <PageTransition>
+      <div className={cn(commonStyles.dashboardContainer, themeStyles.dashboardContainer)}>
+        {/* Enterprise Header */}
+        <ScrollReveal>
+          <div className={commonStyles.headerSection}>
+            <div className={commonStyles.welcomeText}>
+              <div className={commonStyles.headerTitleRow}>
+                <h1 className={cn(commonStyles.headerTitle, themeStyles.headerTitle)}>
+                  {user?.name ? `${user.name.split(' ')[0]}'s Command Center` : 'Command Center'}
+                </h1>
+                <span className={cn(commonStyles.envBadge, themeStyles.envBadge)}>Production</span>
+              </div>
+              <p className={cn(commonStyles.headerSubtitle, themeStyles.headerSubtitle)}>
+                Real-time platform monitoring, analytics, and operational intelligence.
+              </p>
+            </div>
+            <div className={commonStyles.headerActions}>
+              <div className={cn(commonStyles.lastRefresh, themeStyles.lastRefresh)}>
+                <Clock size={13} />
+                <span>Updated {lastRefresh.toLocaleTimeString()}</span>
+              </div>
+              <Button variant="ghost" size="sm" onClick={handleRefresh} isLoading={isRefreshing}>
+                <RefreshCw size={14} className={isRefreshing ? commonStyles.spinIcon : ''} /> Refresh
+              </Button>
+              <Link href="/admin/reports"><Button variant="outline" size="sm"><Download size={14} /> Export</Button></Link>
+              <Link href="/admin/settings"><Button variant="primary" size="sm"><Settings size={14} /> Settings</Button></Link>
+            </div>
           </div>
-          <p className={cn(commonStyles.headerSubtitle, themeStyles.headerSubtitle)}>
-            Real-time platform monitoring, analytics, and operational intelligence.
-          </p>
-        </div>
-        <div className={commonStyles.headerActions}>
-          <div className={cn(commonStyles.lastRefresh, themeStyles.lastRefresh)}>
-            <Clock size={13} />
-            <span>Updated {lastRefresh.toLocaleTimeString()}</span>
-          </div>
-          <Button variant="ghost" size="sm" onClick={handleRefresh} isLoading={isRefreshing}>
-            <RefreshCw size={14} className={isRefreshing ? commonStyles.spinIcon : ''} /> Refresh
-          </Button>
-          <Link href="/admin/reports"><Button variant="outline" size="sm"><Download size={14} /> Export</Button></Link>
-          <Link href="/admin/settings"><Button variant="primary" size="sm"><Settings size={14} /> Settings</Button></Link>
-        </div>
-      </div>
+        </ScrollReveal>
 
-      {/* Tab Navigation */}
-      <nav className={cn(commonStyles.tabNav, themeStyles.tabNav)} role="tablist" aria-label="Dashboard sections">
-        {(['overview', 'health', 'security'] as const).map(tab => (
-          <button
-            key={tab}
-            role="tab"
-            aria-selected={activeTab === tab}
-            className={cn(commonStyles.tab, themeStyles.tab, activeTab === tab && commonStyles.tabActive, activeTab === tab && themeStyles.tabActive)}
-            onClick={() => setActiveTab(tab)}
-          >
-            {tab === 'overview' && <><BarChart3 size={15} /> Overview</>}
-            {tab === 'health' && <><Server size={15} /> System Health</>}
-            {tab === 'security' && <><Shield size={15} /> Security {unresolvedAlerts > 0 && <span className={commonStyles.tabBadge}>{unresolvedAlerts}</span>}</>}
-          </button>
-        ))}
-      </nav>
+        {/* Tab Navigation */}
+        <ScrollReveal delay={0.1}>
+          <nav className={cn(commonStyles.tabNav, themeStyles.tabNav)} role="tablist" aria-label="Dashboard sections">
+            {(['overview', 'health', 'security'] as const).map(tab => (
+              <button
+                key={tab}
+                role="tab"
+                aria-selected={activeTab === tab}
+                className={cn(commonStyles.tab, themeStyles.tab, activeTab === tab && commonStyles.tabActive, activeTab === tab && themeStyles.tabActive)}
+                onClick={() => setActiveTab(tab)}
+              >
+                {tab === 'overview' && <><BarChart3 size={15} /> Overview</>}
+                {tab === 'health' && <><Server size={15} /> System Health</>}
+                {tab === 'security' && <><Shield size={15} /> Security {unresolvedAlerts > 0 && <span className={commonStyles.tabBadge}>{unresolvedAlerts}</span>}</>}
+              </button>
+            ))}
+          </nav>
+        </ScrollReveal>
 
       {/* ═══ OVERVIEW TAB ═══ */}
       {activeTab === 'overview' && (
-        <>
+        <ScrollReveal delay={0.2}>
           {/* KPI Stats Grid */}
           <section aria-label="Key performance indicators">
-            <div className={commonStyles.statsGrid}>
+            <StaggerContainer className={commonStyles.statsGrid}>
               {stats.map((stat, idx) => (
-                <StatCard key={idx} {...stat} themeStyles={themeStyles} />
+                <StaggerItem key={idx}>
+                  <StatCard {...stat} themeStyles={themeStyles} />
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </section>
 
           {/* Revenue + Geographic Distribution Row */}
@@ -512,11 +526,13 @@ const AdminDashboard: React.FC = () => {
           {/* Quick Actions */}
           <section aria-label="Quick actions">
             <h2 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Quick Actions</h2>
-            <div className={commonStyles.quickActionsGrid}>
-              {quickActions.map((action) => (
-                <QuickAction key={action.href} {...action} themeStyles={themeStyles} />
+            <StaggerContainer className={commonStyles.quickActionsGrid}>
+              {quickActions.map((action, idx) => (
+                <StaggerItem key={action.href}>
+                  <QuickAction {...action} themeStyles={themeStyles} />
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </section>
 
           {/* Main Content — User Management + Activity */}
@@ -564,12 +580,12 @@ const AdminDashboard: React.FC = () => {
               </div>
             </div>
           </div>
-        </>
+        </ScrollReveal>
       )}
 
       {/* ═══ SYSTEM HEALTH TAB ═══ */}
       {activeTab === 'health' && (
-        <>
+        <ScrollReveal delay={0.2}>
           {/* Service Status Grid */}
           <div className={cn(commonStyles.healthPanel, themeStyles.healthPanel)}>
             <div className={commonStyles.healthPanelHeader}>
@@ -647,12 +663,12 @@ const AdminDashboard: React.FC = () => {
               </div>
             </div>
           </div>
-        </>
+        </ScrollReveal>
       )}
 
       {/* ═══ SECURITY TAB ═══ */}
       {activeTab === 'security' && (
-        <>
+        <ScrollReveal delay={0.2}>
           {/* Security Overview */}
           <div className={commonStyles.securityRow}>
             <div className={cn(commonStyles.securityCard, themeStyles.securityCard)}>
@@ -727,9 +743,10 @@ const AdminDashboard: React.FC = () => {
             </div>
             <FlaggedFraudList />
           </div>
-        </>
+        </ScrollReveal>
       )}
     </div>
+    </PageTransition>
   );
 };
 

@@ -7,10 +7,10 @@ Handles proposal CRUD, acceptance/rejection, and contract auto-creation.
 
 import logging
 from datetime import datetime, timedelta, timezone
-from typing import List, Optional, Dict, Any
+from typing import List, Optional
 import json
 
-from app.db.turso_http import execute_query, to_str, parse_date
+from app.db.turso_http import execute_query, parse_date
 from app.services.db_utils import get_val as _get_val, safe_str as _safe_str
 
 logger = logging.getLogger(__name__)

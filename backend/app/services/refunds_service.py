@@ -165,7 +165,7 @@ def reject_refund(refund_id: int, current_reason: str, rejection_reason: str):
 
 def get_refund_for_processing(refund_id: int) -> Optional[dict]:
     """Get refund details needed for processing."""
-    result = execute_query(f"""
+    result = execute_query("""
         SELECT id, payment_id, amount, requested_by, status FROM refunds WHERE id = ?
     """, [refund_id])
     if not result or not result.get("rows"):

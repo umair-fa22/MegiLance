@@ -685,3 +685,88 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+@media (max-width: 380px) {
+  .certsList {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .modalHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .skillHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .pathMetaItem {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .goalActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .goalHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .milestoneItem {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .goalsHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding: 0.5rem;
+  }
+  .modalHeader {
+    padding: 0.75rem;
+  }
+  .emptyCard {
+    padding: 0.75rem;
+  }
+  .statCard {
+    padding: 0.75rem;
+  }
+  .skillCard {
+    padding: 0.75rem;
+  }
+  .pathCard {
+    padding: 0.75rem;
+  }
+  .modalBody {
+    padding: 0.75rem;
+  }
+  .mentorCard {
+    padding: 0.75rem;
+  }
+  .modalOverlay {
+    padding: 0.75rem;
+  }
+  .recsCard {
+    padding: 0.75rem;
+  }
+  .goalCard {
+    padding: 0.75rem;
+  }
+  .modalFooter {
+    padding: 0.75rem;
+  }
+  .title {
+    font-size: 1.125rem;
+  }
+}

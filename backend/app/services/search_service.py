@@ -4,10 +4,8 @@ Search Service v2.0 - Intelligent search with relevance scoring,
 skill-aware matching, weighted ranking, and enhanced discovery.
 """
 
-from typing import Optional, List, Dict, Any
+from typing import List, Dict
 import logging
-import re
-import json
 logger = logging.getLogger(__name__)
 
 from app.db.turso_http import execute_query, parse_rows, to_str, parse_date
@@ -279,36 +277,6 @@ def search_freelancers_advanced(where_clause: str, params: List,
         "total_count": total,
         "facets": {"locations": location_counts},
     }
-
-
-def search_projects_db(where_clause: str, params: List) -> List[dict]:
-    """Execute project search query and return parsed project dicts (legacy)."""
-    result = execute_query(
-        f"""SELECT id, title, description, category, budget_type, budget_min, budget_max, experience_level, estimated_duration, status, skills, client_id, created_at, updated_at
-            FROM projects
-            WHERE {where_clause}
-            ORDER BY created_at DESC
-            LIMIT ? OFFSET ?""",
-        params
-    )
-    if not result or not result.get("rows"):
-        return []
-    return [row_to_project(row) for row in result["rows"]]
-
-
-def search_freelancers_db(where_clause: str, params: List) -> List[dict]:
-    """Execute freelancer search query and return parsed user dicts (legacy)."""
-    result = execute_query(
-        f"""SELECT id, email, name, first_name, last_name, bio, hourly_rate, location, skills, user_type, is_active, created_at
-            FROM users
-            WHERE {where_clause}
-            ORDER BY created_at DESC
-            LIMIT ? OFFSET ?""",
-        params
-    )
-    if not result or not result.get("rows"):
-        return []
-    return [row_to_user(row) for row in result["rows"]]
 
 
 def global_search_projects(search_term: str, limit: int) -> List[dict]:
@@ -616,3 +584,5 @@ def get_trending_tags(limit: int) -> List[dict]:
                 "usage_count": row[3].get("value") if row[3].get("type") != "null" else 0
             })
     return items
+
+

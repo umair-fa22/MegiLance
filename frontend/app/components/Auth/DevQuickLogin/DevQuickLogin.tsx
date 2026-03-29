@@ -5,7 +5,7 @@ import React from 'react';
 import { ShieldCheck, UserCheck, Briefcase, Rocket, type LucideIcon } from 'lucide-react'
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import commonStyles from './DevQuickLogin.common.module.css';
 import lightStyles from './DevQuickLogin.light.module.css';
 import darkStyles from './DevQuickLogin.dark.module.css';

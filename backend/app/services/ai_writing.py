@@ -9,6 +9,7 @@ import json
 import logging
 import re
 from collections import Counter
+from app.services.llm_gateway import llm_gateway
 
 from app.db.turso_http import execute_query, parse_rows
 
@@ -93,67 +94,43 @@ class AIWritingService:
         tone: ToneStyle = ToneStyle.PROFESSIONAL,
         highlight_points: Optional[List[str]] = None
     ) -> Dict[str, Any]:
-        """Generate a proposal for a project."""
+        """Generate a proposal for a project using LLM."""
         await self._ensure_tables()
         
-        skills_text = ', '.join(user_skills[:3]) if user_skills else 'relevant technologies'
-        experience_text = user_experience or 'With years of experience in this field, I have successfully completed numerous similar projects.'
-        
-        highlight_section = ""
+        prompt = f"""Write a professional freelancer proposal for a project titled '{project_title}'.
+
+Project Description:
+{project_description}
+
+My Skills: {', '.join(user_skills)}
+My Experience: {user_experience or 'Experienced professional.'}
+
+Please make the tone {tone.value}."""
         if highlight_points:
-            highlight_section = "\n**Key Highlights:**\n" + "\n".join(f"- {p}" for p in highlight_points) + "\n"
+            prompt += f"""\nMake sure to highlight these points: {', '.join(highlight_points)}"""
+            
+        generated_content = await llm_gateway.generate_text(prompt, system_message="You are an expert freelancer writing a high-converting proposal.")
         
-        proposal = f"""Dear Client,
-
-I am excited to submit my proposal for "{project_title}". After reviewing your project requirements, I am confident that my expertise in {skills_text} makes me an ideal candidate for this work.
-
-**Why I'm the Right Fit:**
-
-{experience_text}
-{highlight_section}
-**My Approach:**
-
-1. I will begin with a thorough analysis of your requirements
-2. Develop a comprehensive strategy tailored to your needs
-3. Implement the solution with regular progress updates
-4. Ensure quality through rigorous testing
-
-**What You Can Expect:**
-- Clear communication throughout the project
-- Milestone-based delivery for transparency
-- Revisions until you're completely satisfied
-- Post-delivery support
-
-I would love to discuss this project further and answer any questions you may have.
-
-Best regards"""
+        if not generated_content or len(generated_content) < 20:
+             # Fallback
+             generated_content = f"""Dear Client,\n\nI am excited to submit my proposal for '{project_title}'..."""
+             
+        word_count = len(generated_content.split())
         
-        gen_id = str(uuid.uuid4())
-        word_count = len(proposal.split())
-        
-        # Generate contextual suggestions based on input
-        suggestions = []
-        if not highlight_points:
-            suggestions.append("Consider adding specific portfolio examples")
-        if not user_experience:
-            suggestions.append("Include details about your relevant experience")
-        if len(user_skills) < 3:
-            suggestions.append("List more relevant skills to strengthen your proposal")
-        suggestions.append("Include a timeline estimate")
-        suggestions.append("Mention your availability")
-        
-        await self._log_generation(gen_id, user_id, WritingContentType.PROPOSAL.value,
-                                    tone.value, word_count, proposal,
-                                    {"project_title": project_title, "skills": user_skills[:5]})
+        # Log the generation
+        await self._log_generation(
+            user_id,
+            WritingContentType.PROPOSAL,
+            prompt,
+            generated_content,
+            {"tone": tone.value}
+        )
         
         return {
-            "id": gen_id,
-            "content_type": WritingContentType.PROPOSAL.value,
-            "content": proposal,
-            "tone": tone.value,
+            "content": generated_content,
             "word_count": word_count,
-            "generated_at": datetime.now(timezone.utc).isoformat(),
-            "suggestions": suggestions
+            "tone": tone.value,
+            "suggestions": ["Consider adding a question to engage the client at the end."]
         }
     
     async def generate_project_description(
@@ -165,58 +142,26 @@ Best regards"""
         budget_range: Optional[str] = None,
         tone: ToneStyle = ToneStyle.PROFESSIONAL
     ) -> Dict[str, Any]:
-        """Generate a project description."""
+        """Generate a project description using LLM."""
         await self._ensure_tables()
         
-        description = f"""# {project_type}
+        prompt = f"""Write a detailed project description based on these requirements: {requirements}
 
-## Overview
-We are looking for an experienced professional to help us build a {project_type.lower()}. This project is designed for {target_audience or 'our growing user base'}.
-
-## Key Features Required
-
-{chr(10).join(f'- {feature}' for feature in key_features)}
-
-## Ideal Candidate
-
-- Strong experience with similar projects
-- Excellent communication skills
-- Ability to meet deadlines
-- Portfolio demonstrating relevant work
-
-## Project Details
-
-- Budget: {budget_range or 'Negotiable based on experience'}
-- Timeline: To be discussed
-- Communication: Regular updates expected
-
-We're looking forward to reviewing your proposals and finding the right partner for this exciting project!"""
+Project Category: {category}
+Desired Tone: {tone.value}"""
+        generated_content = await llm_gateway.generate_text(prompt, system_message="You are an expert project manager writing clear, comprehensive project descriptions.")
         
-        gen_id = str(uuid.uuid4())
-        word_count = len(description.split())
+        if not generated_content:
+            generated_content = f"Project Requirements: {requirements}"
+            
+        word_count = len(generated_content.split())
         
-        suggestions = []
-        if len(key_features) < 3:
-            suggestions.append("Add more specific feature requirements")
-        if not target_audience:
-            suggestions.append("Specify your target audience for better proposals")
-        if not budget_range:
-            suggestions.append("Including a budget range attracts more relevant freelancers")
-        suggestions.append("Include examples of similar projects you admire")
-        suggestions.append("Specify expected deliverables and milestones")
-        
-        await self._log_generation(gen_id, user_id, WritingContentType.PROJECT_DESCRIPTION.value,
-                                    tone.value, word_count, description,
-                                    {"project_type": project_type, "features_count": len(key_features)})
+        await self._log_generation(user_id, WritingContentType.PROJECT_DESCRIPTION, prompt, generated_content, {"category": category})
         
         return {
-            "id": gen_id,
-            "content_type": WritingContentType.PROJECT_DESCRIPTION.value,
-            "content": description,
-            "tone": tone.value,
+            "content": generated_content,
             "word_count": word_count,
-            "generated_at": datetime.now(timezone.utc).isoformat(),
-            "suggestions": suggestions
+            "formatting_suggestions": ["Use bullet points for deliverables"]
         }
     
     async def generate_profile_bio(

@@ -2,7 +2,7 @@
 """Notification Preferences Service - User notification settings management."""
 
 from typing import Optional, List, Dict, Any
-from datetime import datetime, time, timezone
+from datetime import datetime, timezone
 from enum import Enum
 from pydantic import BaseModel
 

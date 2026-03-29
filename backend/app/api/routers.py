@@ -1,53 +1,125 @@
 # @AI-HINT: Central router registry - aggregates all v1 API routers into master router
 from fastapi import APIRouter
-from .v1 import (
-    health, users, projects, proposals, contracts, portfolio, payments, 
-    auth, client, assessments, interviews, verification,
-    analytics_pro, escrow_pro, notifications_pro, teams, audit,
-    export_import, i18n, rate_limiting, webhooks, scheduler, reports, referrals, moderation,
-    bulk_operations, saved_searches, activity_feed, api_keys, comments, file_versions, custom_fields,
-    templates, organizations, notification_preferences, two_factor, email_templates, integrations,
-    push_notifications, invoice_tax, contract_builder, skill_graph,
-    social_login, timezone, backup_restore,
-    portfolio_builder, compliance, learning_center,
-    analytics_dashboard, marketplace,
-    subscription_billing, legal_documents, knowledge_base, workflow_automation,
-    messages, notifications, reviews, disputes, milestones, skills, admin,
-    time_entries, invoices, escrow, categories, favorites, tags, support_tickets, refunds, search,
-    websocket, uploads, portal_endpoints, analytics, job_alerts, ai_services, fraud_detection, stripe, chatbot,
-    # New enterprise features
-    user_feedback, data_analytics_export,
-    availability_calendar, review_responses,
-    rate_cards, proposal_templates,
-    notes_tags, custom_statuses, search_advanced, realtime_notifications,
-    ai_matching,
-    gamification,
-    # Version 2.0 Advanced Features
-    security, video_communication,
-    # Now enabled - all modules working
-    multicurrency, ai_advanced, admin_fraud_alerts,
-    # AI Writing Assistant
-    ai_writing,
-    # Billion Dollar Upgrade Features
-    scope_change, wallet, community, workroom, feature_flags,
-    # Pakistan Payments - USDC, JazzCash, EasyPaisa, Wise, Payoneer
-    pakistan_payments,
-    # Blog & News
-    blog,
-    # Public clients showcase
-    public_clients,
-    # Public freelancer profiles
-    public_profiles,
-    # Fiverr/Upwork Feature Parity - Gig Marketplace & Seller Tiers
-    gigs, seller_stats, talent_invitations,
-    external_projects,
-    price_estimator,
-    # Standalone Public Tools
-    invoice_generator, contract_builder_standalone, income_calculator,
-    scope_planner, expense_tax_calculator,
-    # AI Parallel Tools - Skill Analyzer, Rate Advisor, Proposal Writer
-    skill_analyzer, rate_advisor, proposal_writer,
-)
+from .v1.ai import ai_advanced
+from .v1.ai import ai_matching
+from .v1.ai import ai_services
+from .v1.ai import ai_writing
+from .v1.ai import chatbot
+from .v1.ai import fraud_detection
+from .v1.ai import skill_analyzer
+from .v1.chat import comments
+from .v1.chat import messages
+from .v1.chat import video_communication
+from .v1.chat import websocket
+from .v1.core_domain import activity_feed
+from .v1.core_domain import admin_fraud_alerts
+from .v1.core_domain import analytics
+from .v1.core_domain import analytics_dashboard
+from .v1.core_domain import analytics_pro
+from .v1.core_domain import assessments
+from .v1.core_domain import audit
+from .v1.core_domain import availability_calendar
+from .v1.core_domain import backup_restore
+from .v1.core_domain import blog
+from .v1.core_domain import bulk_operations
+from .v1.core_domain import client
+from .v1.core_domain import community
+from .v1.core_domain import compliance
+from .v1.core_domain import contract_builder
+from .v1.core_domain import contract_builder_standalone
+from .v1.core_domain import custom_fields
+from .v1.core_domain import custom_statuses
+from .v1.core_domain import data_analytics_export
+from .v1.core_domain import email_templates
+from .v1.core_domain import escrow_pro
+from .v1.core_domain import expense_tax_calculator
+from .v1.core_domain import export_import
+from .v1.core_domain import external_projects
+from .v1.core_domain import feature_flags
+from .v1.core_domain import file_versions
+from .v1.core_domain import gamification
+from .v1.core_domain import health
+from .v1.core_domain import i18n
+from .v1.core_domain import income_calculator
+from .v1.core_domain import integrations
+from .v1.core_domain import interviews
+from .v1.core_domain import invoice_generator
+from .v1.core_domain import invoice_tax
+from .v1.core_domain import job_alerts
+from .v1.core_domain import knowledge_base
+from .v1.core_domain import learning_center
+from .v1.core_domain import legal_documents
+from .v1.core_domain import marketplace
+from .v1.core_domain import moderation
+from .v1.core_domain import notes_tags
+from .v1.core_domain import notifications
+from .v1.core_domain import notifications_pro
+from .v1.core_domain import notification_preferences
+from .v1.core_domain import organizations
+from .v1.core_domain import portal_endpoints
+from .v1.core_domain import portfolio_builder
+from .v1.core_domain import price_estimator
+from .v1.core_domain import proposal_templates
+from .v1.core_domain import proposal_writer
+from .v1.core_domain import public_clients
+from .v1.core_domain import public_profiles
+from .v1.core_domain import push_notifications
+from .v1.core_domain import rate_advisor
+from .v1.core_domain import rate_cards
+from .v1.core_domain import rate_limiting
+from .v1.core_domain import realtime_notifications
+from .v1.core_domain import referrals
+from .v1.core_domain import reports
+from .v1.core_domain import review_responses
+from .v1.core_domain import saved_searches
+from .v1.core_domain import scheduler
+from .v1.core_domain import scope_change
+from .v1.core_domain import scope_planner
+from .v1.core_domain import search
+from .v1.core_domain import search_advanced
+from .v1.core_domain import security
+from .v1.core_domain import seller_stats
+from .v1.core_domain import skill_graph
+from .v1.core_domain import support_tickets
+from .v1.core_domain import tags
+from .v1.core_domain import talent_invitations
+from .v1.core_domain import teams
+from .v1.core_domain import templates
+from .v1.core_domain import timezone
+from .v1.core_domain import time_entries
+from .v1.core_domain import uploads
+from .v1.core_domain import utils
+from .v1.core_domain import webhooks
+from .v1.core_domain import workflow_automation
+from .v1.core_domain import workroom
+from .v1.identity import admin
+from .v1.identity import api_keys
+from .v1.identity import auth
+from .v1.identity import social_login
+from .v1.identity import two_factor
+from .v1.identity import users
+from .v1.identity import verification
+from .v1.payments_domain import escrow
+from .v1.payments_domain import invoices
+from .v1.payments_domain import multicurrency
+from .v1.payments_domain import pakistan_payments
+from .v1.payments_domain import payments
+from .v1.payments_domain import refunds
+from .v1.payments_domain import stripe
+from .v1.payments_domain import subscription_billing
+from .v1.payments_domain import wallet
+from .v1.projects_domain import categories
+from .v1.projects_domain import contracts
+from .v1.projects_domain import favorites
+from .v1.projects_domain import gigs
+from .v1.projects_domain import milestones
+from .v1.projects_domain import portfolio
+from .v1.projects_domain import projects
+from .v1.projects_domain import proposals
+from .v1.projects_domain import skills
+from .v1.reviews_domain import disputes
+from .v1.reviews_domain import reviews
+from .v1.reviews_domain import user_feedback
 
 
 api_router = APIRouter()
@@ -318,7 +390,7 @@ api_router.include_router(custom_statuses.router, tags=["custom-statuses"])
 api_router.include_router(security.router, prefix="/security", tags=["security-advanced"])
 
 # Video Communication - WebRTC calls, screen sharing, whiteboard
-api_router.include_router(video_communication.router, prefix="/video", tags=["video"])
+api_router.include_router(video_communication.router)
 
 # Multi-Currency Payments
 api_router.include_router(multicurrency.router, prefix="/multicurrency", tags=["multicurrency"])

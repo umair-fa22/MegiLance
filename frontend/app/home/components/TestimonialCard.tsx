@@ -6,8 +6,8 @@ import React from 'react';
 import { useTheme } from 'next-themes';
 import { Quote } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import UserAvatar from '@/app/components/UserAvatar/UserAvatar';
-import StarRating from '@/app/components/StarRating/StarRating';
+import UserAvatar from '@/app/components/atoms/UserAvatar/UserAvatar';
+import StarRating from '@/app/components/molecules/StarRating/StarRating';
 
 import commonStyles from './TestimonialCard.common.module.css';
 import lightStyles from './TestimonialCard.light.module.css';

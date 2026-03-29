@@ -3,7 +3,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Loading from '@/app/components/Loading/Loading';
+import Loading from '@/app/components/atoms/Loading/Loading';
 
 export default function FreelancerRedirect() {
   const router = useRouter();

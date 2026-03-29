@@ -209,3 +209,161 @@
   .card { grid-column: span 4; }
   .valueItem { grid-column: span 4; }
 }
+
+@media (max-width: 480px) {
+  .root {
+    gap: 48px;
+    padding: 1.5rem;
+  }
+  
+  .hero {
+    padding-bottom: 1.5rem;
+  }
+  
+  .heroRow {
+    gap: 1.5rem;
+  }
+  
+  .card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+  
+  .cardTitle {
+    font-size: 18px;
+  }
+  
+  .cardBody {
+    font-size: 14px;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 1.5rem;
+  }
+  
+  .valueItem {
+    padding: 14px;
+    border-radius: 12px;
+  }
+  
+  .cta {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .ctaBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Small phones (380px and below) */
+@media (max-width: 380px) {
+  .root {
+    gap: 40px;
+    padding: 1rem;
+  }
+  
+  .heroRow {
+    gap: 1rem;
+  }
+  
+  .card {
+    padding: 14px;
+  }
+  
+  .cardTitle {
+    font-size: 16px;
+    margin-bottom: 0.75rem;
+  }
+  
+  .cardBody {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  
+  .sectionTitle {
+    font-size: 20px;
+  }
+  
+  .valueItem {
+    padding: 12px;
+  }
+  
+  .valueTitle {
+    font-size: 14px;
+  }
+  
+  .valueDesc {
+    font-size: 13px;
+  }
+  
+  .milestone {
+    padding: 12px 14px;
+  }
+  
+  .milestoneTitle {
+    font-size: 14px;
+  }
+  
+  .ctaBtn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  
+  .acknowledgementText {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+}
+
+/* Extra small phones (320px) */
+@media (max-width: 320px) {
+  .root {
+    gap: 32px;
+    padding: 0.75rem;
+  }
+  
+  .card {
+    padding: 12px;
+    border-radius: 10px;
+  }
+  
+  .cardTitle {
+    font-size: 15px;
+  }
+  
+  .cardBody {
+    font-size: 12px;
+  }
+  
+  .sectionTitle {
+    font-size: 18px;
+  }
+  
+  .valueItem {
+    padding: 10px;
+  }
+  
+  .valueTitle {
+    font-size: 13px;
+  }
+  
+  .valueDesc {
+    font-size: 12px;
+  }
+  
+  .milestone {
+    padding: 10px 12px;
+  }
+  
+  .ctaBtn {
+    padding: 8px 10px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+  
+  .acknowledgementText {
+    font-size: 13px;
+  }
+}

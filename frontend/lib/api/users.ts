@@ -196,17 +196,7 @@ export const skillsApi = {
   submitAssessment: (data: SkillAssessmentSubmission) => apiFetch('/skills/assessments', { method: 'POST', body: JSON.stringify(data) }),
 };
 
-export const skillTaxonomyApi = {
-  getCategories: () => apiFetch('/skill-taxonomy/categories'),
-  getSkills: (categoryId?: ResourceId) => {
-    const params = categoryId ? `?category_id=${categoryId}` : '';
-    return apiFetch(`/skill-taxonomy/skills${params}`);
-  },
-  getSkill: (skillId: ResourceId) => apiFetch(`/skill-taxonomy/skills/${skillId}`),
-  getRelated: (skillId: ResourceId) => apiFetch(`/skill-taxonomy/skills/${skillId}/related`),
-  search: (query: string) => apiFetch(`/skill-taxonomy/search?q=${encodeURIComponent(query)}`),
-  getTrending: () => apiFetch('/skill-taxonomy/trending'),
-};
+// NOTE: skillTaxonomyApi was removed as dead code - never used in the app
 
 export const publicProfileApi = {
   getById: (userId: ResourceId) =>

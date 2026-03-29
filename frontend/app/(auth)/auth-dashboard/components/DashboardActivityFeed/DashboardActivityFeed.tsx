@@ -5,6 +5,7 @@
 import React from 'react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
+import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
 import { DollarSign, Briefcase, ListTodo, Users } from 'lucide-react';
 import { useDashboardData } from '@/hooks/useDashboardData';
 
@@ -61,7 +62,7 @@ const DashboardActivityFeed: React.FC = () => {
             View All
           </Link>
         </div>
-        <div className={styles.emptyState}>No recent activity.</div>
+        <EmptyState title="No recent activity" description="You have no recent activity notifications." />
       </div>
     );
   }

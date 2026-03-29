@@ -1,11 +1,11 @@
-export { default as DataToolbar } from '../DataToolbar/DataToolbar';
-export { default as DensityToggle } from '../DataTableExtras/DensityToggle';
-export { default as ColumnVisibilityMenu } from '../DataTableExtras/ColumnVisibilityMenu';
-export { default as SavedViewsMenu } from '../DataTableExtras/SavedViewsMenu';
-export { default as SelectionBar } from '../DataTableExtras/SelectionBar';
-export { default as TableSkeleton } from '../DataTableExtras/TableSkeleton';
-export { default as VirtualTableBody } from '../DataTableExtras/VirtualTableBody';
-export { default as PaginationBar } from '../PaginationBar/PaginationBar';
+export { default as DataToolbar } from '@/app/components/organisms/DataToolbar/DataToolbar';
+export { default as DensityToggle } from '@/app/components/organisms/DataTableExtras/DensityToggle';
+export { default as ColumnVisibilityMenu } from '@/app/components/organisms/DataTableExtras/ColumnVisibilityMenu';
+export { default as SavedViewsMenu } from '@/app/components/organisms/DataTableExtras/SavedViewsMenu';
+export { default as SelectionBar } from '@/app/components/organisms/DataTableExtras/SelectionBar';
+export { default as TableSkeleton } from '@/app/components/organisms/DataTableExtras/TableSkeleton';
+export { default as VirtualTableBody } from '@/app/components/organisms/DataTableExtras/VirtualTableBody';
+export { default as PaginationBar } from '@/app/components/molecules/PaginationBar/PaginationBar';
 
 // Types
 export type SortOption = { label: string; value: string };

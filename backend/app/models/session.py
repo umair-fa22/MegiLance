@@ -1,6 +1,6 @@
 # @AI-HINT: User session model for tracking active login sessions and device info
 """User session models for MegiLance platform"""
-from sqlalchemy import String, Integer, DateTime, ForeignKey, Boolean
+from sqlalchemy import String, DateTime, ForeignKey, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 from datetime import datetime, timezone

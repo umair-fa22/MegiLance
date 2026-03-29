@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { Button } from '@/app/components/Button';
+import { Button } from '@/app/components/atoms/Button';
 import commonStyles from './Files.common.module.css';
 import lightStyles from './Files.light.module.css';
 import darkStyles from './Files.dark.module.css';

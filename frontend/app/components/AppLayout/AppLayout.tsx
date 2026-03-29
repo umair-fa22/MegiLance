@@ -2,15 +2,16 @@
 'use client';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import Sidebar from '../Sidebar/Sidebar';
-import PortalNavbar from '../Layout/PortalNavbar/PortalNavbar';
-import PortalFooter from '../Layout/PortalFooter/PortalFooter';
-import MobileBottomNav from '../MobileBottomNav/MobileBottomNav';
+import Sidebar from '../organisms/Sidebar/Sidebar';
+import PortalNavbar from '../templates/Layout/PortalNavbar/PortalNavbar';
+import PortalFooter from '../templates/Layout/PortalFooter/PortalFooter';
+import MobileBottomNav from '../organisms/MobileBottomNav/MobileBottomNav';
 
-import CommandPalette from '@/app/components/CommandPalette/CommandPalette';
-import ChatbotAgent from '@/app/components/AI/ChatbotAgent/ChatbotAgent';
+import CommandPalette from '@/app/components/organisms/CommandPalette/CommandPalette';
 
-import ErrorBoundary from '@/app/components/ErrorBoundary/ErrorBoundary';
+import ErrorBoundary from '@/app/components/organisms/ErrorBoundary/ErrorBoundary';
+import { useAuth } from '@/hooks/useAuth';
+import Loading from '../atoms/Loading/Loading';
 
 import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
@@ -44,14 +45,14 @@ const DEFAULT_USER: UserData = {
 function getStoredUser(): UserData {
   if (typeof window === 'undefined') return DEFAULT_USER;
   try {
-    const raw = window.localStorage.getItem('user');
+    const raw = window.localStorage.getItem('user') || window.sessionStorage.getItem('user');
     if (!raw) return DEFAULT_USER;
     const parsed = JSON.parse(raw);
     return {
       fullName: parsed.full_name || parsed.fullName || parsed.name || 'User',
       email: parsed.email || '',
       bio: parsed.bio || parsed.title || '',
-      avatar: parsed.avatar_url || parsed.avatar || '/mock-avatar.svg',
+      avatar: parsed.avatar_url || parsed.avatar || parsed.profile_image_url || '/mock-avatar.svg',
       notificationCount: parsed.notificationCount || 0,
     };
   } catch {
@@ -71,17 +72,22 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
   const { resolvedTheme } = useTheme();
   const pathname = usePathname();
+  const { user: authUser } = useAuth();
 
-  // Load real user data from localStorage (set by portal layout auth check)
+  // Sync real user data
   useEffect(() => {
-    setUser(getStoredUser());
-    // Listen for storage changes (e.g. user updates profile in another tab)
-    const onStorage = (e: StorageEvent) => {
-      if (e.key === 'user') setUser(getStoredUser());
-    };
-    window.addEventListener('storage', onStorage);
-    return () => window.removeEventListener('storage', onStorage);
-  }, []);
+    if (authUser) {
+      setUser({
+        fullName: authUser.name || 'User',
+        email: authUser.email || '',
+        bio: authUser.bio || authUser.title || '',
+        avatar: authUser.profile_image_url || authUser.avatar_url || '/mock-avatar.svg',
+        notificationCount: 0, // Usually fetched from unread counts context
+      });
+    } else {
+      setUser(getStoredUser());
+    }
+  }, [authUser]);
 
   const area: 'client' | 'freelancer' | 'admin' = useMemo(() => {
     if (!pathname) return 'client';
@@ -198,7 +204,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               role="main"
               aria-label={`${area.charAt(0).toUpperCase() + area.slice(1)} Dashboard content`}
             >
-              {children}
+              <React.Suspense fallback={<Loading fullscreen={false} text="Loading module..." />}>
+                {children}
+              </React.Suspense>
             </main>
           </ErrorBoundary>
 
@@ -219,10 +227,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         userRole={area}
       />
 
-      {/* Floating AI Chatbot */}
-      <div className={commonStyles.chatbotFloat}>
-        <ChatbotAgent />
-      </div>
+      {/* NOTE: Chatbot is rendered by AppChrome, not here, to avoid duplicate instances */}
     </>
   );
 };

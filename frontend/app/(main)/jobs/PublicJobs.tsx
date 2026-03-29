@@ -14,7 +14,8 @@ import {
   Code, Palette, PenTool, Megaphone, BarChart3, Cpu,
   Globe, BookOpen, Gamepad2
 } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
+import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
 import { PageTransition, ScrollReveal } from '@/app/components/Animations';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
 import SectionGlobe from '@/app/components/Animations/SectionGlobe/SectionGlobe';
@@ -431,17 +432,22 @@ const PublicJobs: React.FC = () => {
                 ))}
               </div>
             ) : error ? (
-              <div className={cn(commonStyles.emptyState, themeStyles.emptyState)}>
-                <Shield size={48} className={commonStyles.emptyIcon} />
-                <h3>{error}</h3>
-                <Button variant="primary" size="md" onClick={fetchProjects}>Retry</Button>
-              </div>
-            ) : filteredProjects.length === 0 ? (
-              <div className={cn(commonStyles.emptyState, themeStyles.emptyState)}>
-                <Briefcase size={48} className={commonStyles.emptyIcon} />
-                <h3>No jobs found</h3>
-                <p>Try adjusting your search or filter criteria.</p>
-                <Button variant="outline" size="md" onClick={handleClearFilters}><RefreshCw size={16} /> Clear all filters</Button>
+                <div className="w-full flex justify-center py-12">
+                  <EmptyState 
+                    title="Something went wrong" 
+                    description={error}
+                    icon={<Shield size={48} />}
+                    action={<Button variant="primary" size="md" onClick={fetchProjects}>Retry</Button>}
+                  />
+                </div>
+              ) : filteredProjects.length === 0 ? (
+                <div className="w-full flex justify-center py-12">
+                  <EmptyState 
+                    title="No jobs found" 
+                    description="Try adjusting your search or filter criteria."
+                    icon={<Briefcase size={48} />}
+                    action={<Button variant="outline" size="md" onClick={handleClearFilters}><RefreshCw size={16} /> Clear all filters</Button>}
+                  />
               </div>
             ) : (
               <StaggerContainer className={cn(viewMode === 'list' ? commonStyles.jobsList : commonStyles.jobsGrid)}>

@@ -1029,3 +1029,106 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+@media (max-width: 380px) {
+  .filterGroup {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .rolePermList {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .modalHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .roleCardHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .memberNameRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .matrixHeaderCell {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .rolePermItem {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .inviteMeta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .memberMetaRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .inviteMetaItem {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .inviteActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .emailRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .memberActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .roleOptionHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding: 0.5rem;
+  }
+  .modalHeader {
+    padding: 0.75rem;
+  }
+  .roleCard {
+    padding: 0.75rem;
+  }
+  .statCard {
+    padding: 0.75rem;
+  }
+  .modalBody {
+    padding: 0.75rem;
+  }
+  .inviteCard {
+    padding: 0.75rem;
+  }
+  .modalOverlay {
+    padding: 0.75rem;
+  }
+  .modalFooter {
+    padding: 0.75rem;
+  }
+  .matrixTitle {
+    font-size: 1.125rem;
+  }
+  .title {
+    font-size: 1.125rem;
+  }
+  .modalTitle {
+    font-size: 1.125rem;
+  }
+}

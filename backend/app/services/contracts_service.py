@@ -2,7 +2,7 @@
 """Contracts Service - Data access layer for contract management."""
 
 import logging
-from typing import Optional, List, Dict, Any
+from typing import Optional, List
 
 from app.db.turso_http import execute_query, parse_date, parse_rows
 from app.services.db_utils import get_val as _get_val, safe_str as _safe_str
@@ -83,14 +83,6 @@ def fetch_contract_with_joins(contract_id: str) -> Optional[dict]:
     if not result or not result.get("rows"):
         return None
     return result["rows"][0]
-
-
-def fetch_contract_parsed(contract_id: str) -> Optional[dict]:
-    """Fetch and parse a single contract."""
-    raw_row = fetch_contract_with_joins(contract_id)
-    if not raw_row:
-        return None
-    return contract_from_row(raw_row)
 
 
 def get_contract_parties(raw_row: list) -> tuple:

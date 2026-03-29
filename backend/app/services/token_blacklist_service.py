@@ -4,7 +4,6 @@
 
 import logging
 from datetime import datetime, timezone
-from typing import Optional
 
 from app.db.turso_http import execute_query, parse_rows
 
@@ -187,7 +186,7 @@ def _trim_cache() -> None:
             del _blacklist_cache[k]
 
 
-def init_token_blacklist() -> None:
+
     """Initialize the token blacklist table on startup."""
     try:
         _ensure_table_exists()
@@ -195,3 +194,4 @@ def init_token_blacklist() -> None:
         logger.info(f"Token blacklist initialized, cleaned {cleaned} expired entries")
     except Exception as e:
         logger.warning(f"Token blacklist init warning: {e}")
+

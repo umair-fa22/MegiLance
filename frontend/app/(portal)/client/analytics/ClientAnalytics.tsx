@@ -9,7 +9,7 @@ import {
   TrendingUp, TrendingDown, DollarSign, Briefcase, Users, Clock, 
   Download, Calendar, ArrowUpRight, ArrowDownRight, Star, Loader2
 } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';

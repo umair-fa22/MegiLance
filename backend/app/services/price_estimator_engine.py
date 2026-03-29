@@ -17,26 +17,16 @@ import logging
 from typing import List, Optional, Dict, Any
 from datetime import datetime
 
-from app.db.turso_http import execute_query, to_str
+from app.db.turso_http import execute_query
 from app.services.market_data_2025 import (
-    COUNTRY_DEVELOPER_RATES,
-    CITY_RATES,
-    PLATFORM_RATES,
-    UPWORK_SERVICE_RATES,
-    PAKISTAN_FREELANCE_STATS,
-    SOUTH_ASIA_BENCHMARKS,
-    DEMAND_INDEX_2025,
     DATA_VERSION,
-    DATA_SOURCES,
     get_country_rate_data,
-    get_city_rate_data,
     get_pakistan_cities,
     get_platform_rates,
     get_upwork_service_rate,
     get_demand_data,
     get_south_asia_benchmark,
     calculate_data_driven_rate,
-    get_data_version_info,
 )
 
 logger = logging.getLogger("megilance")
@@ -1190,7 +1180,7 @@ def _build_factors(
         "label": "Experience Level",
         "value": exp_labels.get(experience_level, experience_level),
         "impact": exp_impact.get(experience_level, "neutral"),
-        "description": f"Sets the base hourly rate tier",
+        "description": "Sets the base hourly rate tier",
     })
 
     # Region — enhanced with country-level detail
@@ -1353,7 +1343,7 @@ def _build_roi_insights(
         insights.append({
             "type": "info",
             "title": "Tech Investment ROI",
-            "message": f"Software projects typically see 3-5x ROI within 18 months when properly scoped and executed.",
+            "message": "Software projects typically see 3-5x ROI within 18 months when properly scoped and executed.",
         })
     elif category == "marketing":
         insights.append({

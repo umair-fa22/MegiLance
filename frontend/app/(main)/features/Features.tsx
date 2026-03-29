@@ -5,7 +5,7 @@ import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { PageTransition } from '@/components/Animations';
+import { PageTransition } from '@/app/components/Animations';
 import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';
 import {
   Brain, Shield, Zap, Users, CreditCard, BarChart3,

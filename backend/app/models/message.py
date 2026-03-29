@@ -1,6 +1,6 @@
 # @AI-HINT: Message model for direct messages within conversations
 """Message models for MegiLance platform"""
-from sqlalchemy import String, Integer, Text, Boolean, DateTime, ForeignKey
+from sqlalchemy import String, Text, Boolean, DateTime, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 from datetime import datetime, timezone

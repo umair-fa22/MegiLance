@@ -9,8 +9,8 @@ import {
   Bell, Mail, Smartphone, MessageSquare,
   Save, CheckCircle 
 } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
-import Select from '@/app/components/Select/Select';
+import Button from '@/app/components/atoms/Button/Button';
+import Select from '@/app/components/molecules/Select/Select';
 
 import commonStyles from './NotificationPreferences.common.module.css';
 import lightStyles from './NotificationPreferences.light.module.css';

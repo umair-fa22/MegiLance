@@ -5,10 +5,10 @@ import { useState, useEffect, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { portfolioShowcaseApi as _portfolioShowcaseApi } from '@/lib/api';
-import Button from '@/app/components/Button/Button';
-import Input from '@/app/components/Input/Input';
-import Select from '@/app/components/Select/Select';
-import Textarea from '@/app/components/Textarea/Textarea';
+import Button from '@/app/components/atoms/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
+import Select from '@/app/components/molecules/Select/Select';
+import Textarea from '@/app/components/atoms/Textarea/Textarea';
 import {
   Plus, Settings, Trash2, Edit3, Star, Eye, Heart, X, Search,
   Briefcase, ExternalLink, Link2, Grid3x3, LayoutList, LayoutGrid,

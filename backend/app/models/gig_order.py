@@ -1,7 +1,7 @@
 # @AI-HINT: Gig Order model for tracking purchases of gig packages with revision tracking and delivery management
 """Gig Order model for service marketplace orders."""
 
-from sqlalchemy import String, Integer, Float, DateTime, Text, ForeignKey, Boolean, Numeric
+from sqlalchemy import String, Integer, DateTime, Text, ForeignKey, Boolean, Numeric
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 from datetime import datetime, timedelta, timezone

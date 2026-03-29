@@ -6,7 +6,6 @@ import json
 logger = logging.getLogger(__name__)
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator, model_validator
-from typing import Literal
 
 
 class PortfolioItemSchema(BaseModel):

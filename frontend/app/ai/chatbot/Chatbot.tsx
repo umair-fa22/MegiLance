@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { getAuthToken } from '@/lib/api';
 import { Send, Sparkles, MoreVertical, Trash2, Settings } from 'lucide-react'
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 

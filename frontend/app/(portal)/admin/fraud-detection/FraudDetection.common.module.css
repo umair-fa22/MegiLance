@@ -459,3 +459,35 @@
     flex-direction: column;
   }
 }
+
+/* Base table responsive enforcements */
+.tableContainer, .tableWrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+@media (max-width: 380px) {
+  .header, .filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .detailGrid, .statsGrid {
+    grid-template-columns: 1fr;
+  }
+  .td, .th {
+    padding: 8px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 320px) {
+  .header, .filters {
+    gap: 8px;
+  }
+  .td, .th {
+    padding: 6px;
+    font-size: 12px;
+  }
+}

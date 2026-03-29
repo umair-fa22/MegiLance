@@ -1,9 +1,8 @@
 # @AI-HINT: Workroom service layer - all database operations for Kanban, files, discussions, activity
 import json
-import os
 import logging
 from datetime import datetime, timezone
-from typing import Optional, List, Tuple
+from typing import Optional, List
 
 from app.db.turso_http import execute_query
 from app.services.db_utils import get_val as _get_val
@@ -14,18 +13,6 @@ logger = logging.getLogger(__name__)
 # ==================== Table Initialization ====================
 
 _workroom_tables_initialized = False
-
-
-def ensure_workroom_tables():
-    """Create workroom tables if they don't exist."""
-    global _workroom_tables_initialized
-    if _workroom_tables_initialized:
-        return
-    try:
-        _create_workroom_tables()
-        _workroom_tables_initialized = True
-    except Exception as e:
-        logger.warning(f"Could not initialize workroom tables: {e}")
 
 
 def _create_workroom_tables():
@@ -571,3 +558,4 @@ def get_workroom_summary_data(contract_id: int) -> dict:
     summary["recent_activities"] = _get_val(activity_result["rows"][0], 0) or 0 if activity_result and activity_result.get("rows") else 0
 
     return summary
+

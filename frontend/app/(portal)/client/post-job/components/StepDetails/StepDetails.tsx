@@ -6,8 +6,8 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, AlertCircle, Sparkles } from 'lucide-react';
-import Input from '@/app/components/Input/Input';
-import Select from '@/app/components/Select/Select';
+import Input from '@/app/components/atoms/Input/Input';
+import Select from '@/app/components/molecules/Select/Select';
 import { PostJobData, PostJobErrors } from '../../PostJob.types';
 
 import common from './StepDetails.common.module.css';

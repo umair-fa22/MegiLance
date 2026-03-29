@@ -37,3 +37,17 @@
     font-size: 0.875rem;
   }
 }
+
+@media (max-width: 380px) {
+  .container {
+    padding: 1rem;
+  }
+}
+@media (max-width: 320px) {
+  .title {
+    font-size: 1.15rem;
+  }
+  .subtitle {
+    font-size: 0.8rem;
+  }
+}

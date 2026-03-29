@@ -4,11 +4,11 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Button from '@/app/components/Button/Button';
-import Select from '@/app/components/Select/Select';
-import Loading from '@/app/components/Loading/Loading';
+import Button from '@/app/components/atoms/Button/Button';
+import Select from '@/app/components/molecules/Select/Select';
+import Loading from '@/app/components/atoms/Loading/Loading';
 import { portalApi } from '@/lib/api'
-import { PageTransition, ScrollReveal } from '@/components/Animations';
+import { PageTransition, ScrollReveal } from '@/app/components/Animations';
 import { 
   BarChart3, 
   TrendingUp, 

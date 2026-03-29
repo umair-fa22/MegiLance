@@ -40,3 +40,33 @@
     gap: 3rem;
   }
 }
+
+@media (max-width: 380px) {
+  .title {
+    font-size: 1.5rem;
+  }
+  .subtitle {
+    font-size: 0.875rem;
+  }
+  .mainContainer {
+    gap: 1.5rem;
+  }
+  .header {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .title {
+    font-size: 1.25rem;
+  }
+  .subtitle {
+    font-size: 0.8125rem;
+  }
+  .mainContainer {
+    gap: 1rem;
+  }
+  .header {
+    margin-bottom: 1rem;
+  }
+}

@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Shield, AlertTriangle, CheckCircle, XCircle, RefreshCw, FileText, Zap } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 

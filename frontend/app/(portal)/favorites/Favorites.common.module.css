@@ -69,3 +69,19 @@
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+@media (max-width: 380px) {
+  .container { padding: 1rem; }
+  .filterSection { flex-direction: column; align-items: stretch; }
+  .filterRight { flex-direction: column; align-items: stretch; }
+  .cardHeader { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .cardActions { flex-direction: column; }
+  .actionRow { flex-direction: column; }
+}
+
+@media (max-width: 320px) {
+  .container { padding: 0.5rem; }
+  .title { font-size: 1.5rem; }
+  .statCard { flex-direction: column; text-align: center; }
+}
+

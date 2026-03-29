@@ -1,11 +1,9 @@
 # @AI-HINT: Timezone management service for global users
 """Timezone Management Service - Smart timezone handling and scheduling."""
 
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from typing import Optional, List, Dict, Any
-from enum import Enum
 import logging
-import uuid
 logger = logging.getLogger(__name__)
 
 

@@ -243,17 +243,6 @@ def get_time_summary(contract_id: int) -> Dict[str, Any]:
     }
 
 
-def get_entry_contract_client(entry_contract_id: int) -> Optional[int]:
-    """Get client_id of the contract an entry belongs to."""
-    result = execute_query(
-        "SELECT client_id FROM contracts WHERE id = ?", [entry_contract_id]
-    )
-    if not result or not result.get("rows"):
-        return None
-    val = result["rows"][0][0]
-    return val.get("value") if val.get("type") != "null" else None
-
-
 def update_time_entry(entry_id: int, update_dict: dict) -> Optional[dict]:
     """Update time entry fields. Returns updated entry."""
     if not update_dict:
@@ -411,3 +400,4 @@ def reject_entries(entry_ids: List[int]) -> None:
         f"UPDATE time_entries SET status = 'rejected', updated_at = ? WHERE id IN ({placeholders})",
         [now] + entry_ids
     )
+

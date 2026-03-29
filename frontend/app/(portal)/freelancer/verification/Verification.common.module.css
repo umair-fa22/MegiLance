@@ -549,3 +549,69 @@
     padding: 0.875rem;
   }
 }
+
+
+@media (max-width: 380px) {
+  .modalHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .progressHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .verificationHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .modalActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding: 0.5rem;
+  }
+  .modalHeader {
+    padding: 0.75rem;
+  }
+  .tierCard {
+    padding: 0.75rem;
+  }
+  .modalOverlay {
+    padding: 0.75rem;
+  }
+  .modalContent {
+    padding: 0.75rem;
+  }
+  .verificationCard {
+    padding: 0.75rem;
+  }
+  .progressCard {
+    padding: 0.75rem;
+  }
+  .modalActions {
+    padding: 0.75rem;
+  }
+  .sectionTitle {
+    font-size: 1.125rem;
+  }
+  .title {
+    font-size: 1.125rem;
+  }
+  .modalTitle {
+    font-size: 1.125rem;
+  }
+  .progressTitle {
+    font-size: 1.125rem;
+  }
+}

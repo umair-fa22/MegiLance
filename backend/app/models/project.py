@@ -1,5 +1,5 @@
 # @AI-HINT: Project model - client job postings with budget, timeline, and status management
-from sqlalchemy import String, Integer, Float, DateTime, Text, ForeignKey, Enum, Boolean, Numeric
+from sqlalchemy import String, Integer, DateTime, Text, ForeignKey, Boolean, Numeric
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 from datetime import datetime, timezone

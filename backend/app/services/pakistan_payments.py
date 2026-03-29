@@ -8,7 +8,6 @@ from pydantic import BaseModel, Field
 from enum import Enum
 import logging
 import os
-import httpx
 import json
 import secrets
 logger = logging.getLogger(__name__)

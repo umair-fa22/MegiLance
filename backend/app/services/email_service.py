@@ -8,7 +8,6 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
 import smtplib
-import os
 import logging
 from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
@@ -250,7 +249,7 @@ class EmailService:
         })
         return self.send_email(
             to_email=to_email,
-            subject=f"Milestone Approved - Payment Released",
+            subject="Milestone Approved - Payment Released",
             html_content=html_content
         )
     

@@ -1,6 +1,6 @@
 # @AI-HINT: Notification model for in-app alerts, email triggers, and push notifications
 """Notification models for MegiLance platform"""
-from sqlalchemy import String, Integer, Text, Boolean, DateTime, ForeignKey
+from sqlalchemy import String, Text, Boolean, DateTime, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 from datetime import datetime, timezone

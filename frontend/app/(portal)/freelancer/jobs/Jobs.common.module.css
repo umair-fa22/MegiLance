@@ -418,3 +418,33 @@
   border-radius: 4px;
   text-decoration: underline;
 }
+
+@media (max-width: 380px) {
+  .tabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .tab {
+    text-align: center;
+    padding: 0.75rem;
+  }
+  .quickChips {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .activeFilters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 320px) {
+  .title {
+    font-size: 1.25rem;
+  }
+  .filterHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

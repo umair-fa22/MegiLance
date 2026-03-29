@@ -4,12 +4,12 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { PageTransition, ScrollReveal, StaggerContainer } from '@/components/Animations';
+import { PageTransition, ScrollReveal, StaggerContainer } from '@/app/components/Animations';
 import Skeleton from '@/app/components/Animations/Skeleton/Skeleton';
-import Select from '@/app/components/Select/Select';
-import Button from '@/app/components/Button/Button';
-import Badge from '@/app/components/Badge/Badge';
-import Input from '@/app/components/Input/Input';
+import Select from '@/app/components/molecules/Select/Select';
+import Button from '@/app/components/atoms/Button/Button';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import Input from '@/app/components/atoms/Input/Input';
 import { portalApi, walletApi } from '@/lib/api';
 import commonStyles from './Earnings.common.module.css';
 import lightStyles from './Earnings.light.module.css';

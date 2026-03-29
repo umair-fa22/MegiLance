@@ -481,3 +481,35 @@
     width: 100%;
   }
 }
+
+/* Base table responsive enforcements */
+.tableContainer, .tableWrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+@media (max-width: 380px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .fieldsGrid, .formGrid, .templateGrid {
+    grid-template-columns: 1fr;
+  }
+  .td, .th {
+    padding: 8px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 320px) {
+  .header {
+    gap: 8px;
+  }
+  .td, .th {
+    padding: 6px;
+    font-size: 12px;
+  }
+}

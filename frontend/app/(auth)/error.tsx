@@ -7,7 +7,7 @@ import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import { AlertTriangle } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 
 import commonStyles from './AuthError.common.module.css';
 import lightStyles from './AuthError.light.module.css';

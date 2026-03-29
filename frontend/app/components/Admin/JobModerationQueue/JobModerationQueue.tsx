@@ -5,12 +5,12 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
-import Button from '@/app/components/Button/Button';
-import Badge from '@/app/components/Badge/Badge';
-import Card from '@/app/components/Card/Card';
-import Input from '@/app/components/Input/Input';
-import Select from '@/app/components/Select/Select';
-import UserAvatar from '@/app/components/UserAvatar/UserAvatar';
+import Button from '@/app/components/atoms/Button/Button';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import Card from '@/app/components/molecules/Card/Card';
+import Input from '@/app/components/atoms/Input/Input';
+import Select from '@/app/components/molecules/Select/Select';
+import UserAvatar from '@/app/components/atoms/UserAvatar/UserAvatar';
 import { Check, X, Search, ListFilter, Building2, CalendarDays, ChevronDown, ChevronUp, Loader2, AlertTriangle, RefreshCw } from 'lucide-react'
 
 import commonStyles from './JobModerationQueue.common.module.css';

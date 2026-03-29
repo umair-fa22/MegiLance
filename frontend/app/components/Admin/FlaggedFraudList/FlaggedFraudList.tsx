@@ -5,11 +5,11 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
-import Button from '@/app/components/Button/Button';
-import Badge from '@/app/components/Badge/Badge';
-import Card from '@/app/components/Card/Card';
-import Input from '@/app/components/Input/Input';
-import Select from '@/app/components/Select/Select';
+import Button from '@/app/components/atoms/Button/Button';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import Card from '@/app/components/molecules/Card/Card';
+import Input from '@/app/components/atoms/Input/Input';
+import Select from '@/app/components/molecules/Select/Select';
 import { User, CreditCard, ShieldCheck, ShieldOff, Search, ListFilter, Loader2 } from 'lucide-react';
 
 import commonStyles from './FlaggedFraudList.common.module.css';

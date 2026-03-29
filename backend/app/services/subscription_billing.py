@@ -10,6 +10,8 @@ import uuid
 import logging
 
 from app.db.turso_http import execute_query, parse_rows
+from app.services.stripe_service import StripeService
+from app.core.config import get_settings
 
 logger = logging.getLogger(__name__)
 
@@ -143,6 +145,7 @@ class SubscriptionBillingService:
     
     def __init__(self):
         self._ensure_table()
+        self.stripe_service = StripeService()
     
     def _ensure_table(self):
         """Create subscriptions table if not exists"""
@@ -162,6 +165,8 @@ class SubscriptionBillingService:
                 cancellation_scheduled_at TEXT,
                 scheduled_downgrade TEXT,
                 cancelled_at TEXT,
+                stripe_customer_id TEXT,
+                stripe_subscription_id TEXT,
                 created_at TEXT NOT NULL DEFAULT (datetime('now')),
                 updated_at TEXT NOT NULL DEFAULT (datetime('now'))
             )""")
@@ -180,6 +185,11 @@ class SubscriptionBillingService:
     def _user_exists(self, user_id: int) -> bool:
         result = execute_query("SELECT id FROM users WHERE id = ?", [user_id])
         return len(parse_rows(result)) > 0
+
+    def _get_user(self, user_id: int) -> Optional[Dict[str, Any]]:
+        result = execute_query("SELECT * FROM users WHERE id = ?", [user_id])
+        rows = parse_rows(result)
+        return rows[0] if rows else None
     
     # Plan Management
     async def get_available_plans(self) -> List[Dict[str, Any]]:
@@ -305,7 +315,8 @@ class SubscriptionBillingService:
     ) -> Dict[str, Any]:
         """Create a new subscription for user"""
         try:
-            if not self._user_exists(user_id):
+            user = self._get_user(user_id)
+            if not user:
                 return {"error": "User not found"}
             
             plan = SUBSCRIPTION_PLANS.get(tier)
@@ -329,8 +340,42 @@ class SubscriptionBillingService:
             
             sub_id = f"sub_{user_id}_{now.strftime('%Y%m%d%H%M%S')}"
             
-            # Upsert subscription
+            # Stripe Integration
+            stripe_customer_id = None
+            stripe_subscription_id = None
             existing = self._get_subscription(user_id)
+            
+            if existing:
+                stripe_customer_id = existing.get("stripe_customer_id")
+            
+            if tier != PlanTier.FREE:
+                try:
+                    if not stripe_customer_id:
+                        customer = self.stripe_service.create_customer(
+                            email=user.get("email", f"user{user_id}@example.com"),
+                            name=user.get("first_name", f"User {user_id}"),
+                            metadata={"user_id": str(user_id)}
+                        )
+                        stripe_customer_id = customer.id
+                    
+                    if stripe_customer_id:
+                        # Dummy mapping mapping tier to stripe price ID
+                        # In production these would be mapped to Stripe Product/Price IDs
+                        price_id = f"price_dummy_{tier.value}_{billing_cycle.value}"
+                        
+                        stripe_sub = self.stripe_service.create_subscription(
+                            customer_id=stripe_customer_id,
+                            price_id=price_id,
+                            metadata={"megilance_user_id": str(user_id), "tier": tier.value},
+                            trial_period_days=trial_days if trial_days > 0 else None
+                        )
+                        stripe_subscription_id = stripe_sub.id
+                except Exception as e:
+                    logger.error(f"Stripe subscription error for user {user_id}: {e}")
+                    # Fallback to local only for dev environment
+                    pass
+            
+            # Upsert subscription
             if existing:
                 execute_query(
                     """UPDATE user_subscriptions SET
@@ -339,22 +384,27 @@ class SubscriptionBillingService:
                         current_period_end = ?, trial_end = ?,
                         cancel_at_period_end = 0, cancellation_reason = NULL,
                         cancellation_scheduled_at = NULL, scheduled_downgrade = NULL,
-                        cancelled_at = NULL, updated_at = ?
+                        cancelled_at = NULL, stripe_customer_id = ?, 
+                        stripe_subscription_id = ?, updated_at = ?
                     WHERE user_id = ?""",
                     [sub_id, tier.value, status.value, billing_cycle.value,
                      payment_method_id, now.isoformat(), period_end.isoformat(),
                      (now + timedelta(days=trial_days)).isoformat() if trial_days > 0 else None,
+                     stripe_customer_id, stripe_subscription_id,
                      now.isoformat(), user_id]
                 )
             else:
                 execute_query(
                     """INSERT INTO user_subscriptions
                         (id, user_id, tier, status, billing_cycle, payment_method_id,
-                         current_period_start, current_period_end, trial_end, created_at, updated_at)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                         current_period_start, current_period_end, trial_end, 
+                         stripe_customer_id, stripe_subscription_id,
+                         created_at, updated_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                     [sub_id, user_id, tier.value, status.value, billing_cycle.value,
                      payment_method_id, now.isoformat(), period_end.isoformat(),
                      (now + timedelta(days=trial_days)).isoformat() if trial_days > 0 else None,
+                     stripe_customer_id, stripe_subscription_id,
                      now.isoformat(), now.isoformat()]
                 )
             
@@ -516,6 +566,18 @@ class SubscriptionBillingService:
             
             now = datetime.now(timezone.utc)
             
+            # Cancel in Stripe if applicable
+            stripe_subscription_id = sub.get("stripe_subscription_id")
+            if stripe_subscription_id:
+                try:
+                    if immediate:
+                        self.stripe_service.cancel_subscription(stripe_subscription_id)
+                    else:
+                        self.stripe_service.update_subscription(stripe_subscription_id, {"cancel_at_period_end": True})
+                except Exception as e:
+                    logger.error(f"Stripe cancellation error for user {user_id}: {e}")
+                    # Continue local cancellation
+            
             if immediate:
                 execute_query(
                     """UPDATE user_subscriptions SET
@@ -556,6 +618,15 @@ class SubscriptionBillingService:
             
             if sub.get("cancel_at_period_end"):
                 now = datetime.now(timezone.utc)
+                
+                # Reactivate in Stripe if applicable
+                stripe_subscription_id = sub.get("stripe_subscription_id")
+                if stripe_subscription_id:
+                    try:
+                        self.stripe_service.update_subscription(stripe_subscription_id, {"cancel_at_period_end": False})
+                    except Exception as e:
+                        logger.error(f"Stripe reactivation error for user {user_id}: {e}")
+                
                 execute_query(
                     """UPDATE user_subscriptions SET
                         cancel_at_period_end = 0, cancellation_scheduled_at = NULL,

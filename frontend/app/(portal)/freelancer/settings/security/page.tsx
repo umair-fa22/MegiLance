@@ -5,13 +5,13 @@ import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { twoFactorApi } from '@/lib/api';
-import Modal from '@/app/components/Modal/Modal';
-import Button from '@/app/components/Button/Button';
-import Loader from '@/app/components/Loader/Loader';
+import Modal from '@/app/components/organisms/Modal/Modal';
+import Button from '@/app/components/atoms/Button/Button';
+import Loader from '@/app/components/atoms/Loader/Loader';
 import commonStyles from './Security.common.module.css';
 import lightStyles from './Security.light.module.css';
 import darkStyles from './Security.dark.module.css';
-import LinkedAccounts from '@/app/components/LinkedAccounts/LinkedAccounts';
+import LinkedAccounts from '@/app/components/organisms/LinkedAccounts/LinkedAccounts';
 
 interface TwoFactorStatus {
   enabled: boolean;

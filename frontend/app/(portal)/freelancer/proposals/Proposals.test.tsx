@@ -37,7 +37,7 @@ jest.mock('@/app/lib/hooks/usePersistedState', () => ({
 }));
 
 // Mock Toast
-jest.mock('@/app/components/Toast/ToasterProvider', () => ({
+jest.mock('@/app/components/molecules/Toast/ToasterProvider', () => ({
   useToaster: () => ({ notify: jest.fn() }),
 }));
 
@@ -50,24 +50,24 @@ jest.mock('./components/StatusFilter/StatusFilter', () => {
   const StatusFilter = () => <div data-testid="status-filter" />;
   return { __esModule: true, default: StatusFilter };
 });
-jest.mock('@/app/components/DataToolbar/DataToolbar', () => {
+jest.mock('@/app/components/organisms/DataToolbar/DataToolbar', () => {
   const DataToolbar = () => <div data-testid="data-toolbar" />;
   return { __esModule: true, default: DataToolbar };
 });
-jest.mock('@/app/components/PaginationBar/PaginationBar', () => {
+jest.mock('@/app/components/molecules/PaginationBar/PaginationBar', () => {
   const PaginationBar = () => <div data-testid="pagination-bar" />;
   return { __esModule: true, default: PaginationBar };
 });
-jest.mock('@/app/components/Modal/Modal', () => {
+jest.mock('@/app/components/organisms/Modal/Modal', () => {
   const Modal = ({ children, isOpen }: { children: React.ReactNode; isOpen: boolean }) =>
     isOpen ? <div data-testid="modal">{children}</div> : null;
   return { __esModule: true, default: Modal };
 });
-jest.mock('@/app/components/Button/Button', () => {
+jest.mock('@/app/components/atoms/Button/Button', () => {
   const Button = ({ children, ...props }: any) => <button {...props}>{children}</button>;
   return { __esModule: true, default: Button };
 });
-jest.mock('@/app/components/DataTableExtras/TableSkeleton', () => {
+jest.mock('@/app/components/organisms/DataTableExtras/TableSkeleton', () => {
   const TableSkeleton = () => <div data-testid="table-skeleton" />;
   return { __esModule: true, default: TableSkeleton };
 });
@@ -78,7 +78,7 @@ describe('Proposals Component', () => {
   test('renders the page title and subtitle', async () => {
     render(<Proposals />);
     expect(screen.getByText('My Proposals')).toBeInTheDocument();
-    expect(screen.getByText(/Track and manage all your job proposals/i)).toBeInTheDocument();
+    expect(screen.getByText(/Track your submitted proposals/i)).toBeInTheDocument();
   });
 
   test('renders loading skeleton initially', () => {

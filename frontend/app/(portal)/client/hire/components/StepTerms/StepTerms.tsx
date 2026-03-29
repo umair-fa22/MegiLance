@@ -4,8 +4,8 @@
 import React from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Input from '@/app/components/Input/Input';
-import Select from '@/app/components/Select/Select';
+import Input from '@/app/components/atoms/Input/Input';
+import Select from '@/app/components/molecules/Select/Select';
 import { Calendar, DollarSign } from 'lucide-react';
 
 import common from './StepTerms.common.module.css';

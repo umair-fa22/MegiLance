@@ -433,3 +433,75 @@
 .retryButton:hover {
   opacity: 0.9;
 }
+
+/* Small phones (380px and below) */
+@media (max-width: 380px) {
+  .main {
+    padding: 0.75rem;
+  }
+  
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .header_actions {
+    width: 100%;
+  }
+
+  .date_select {
+    width: 100%;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .metric_card {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  
+  .chart_card {
+    padding: 1rem;
+  }
+  
+  .bar_chart {
+    height: 150px;
+    padding-top: 1.5rem;
+  }
+  
+  .freelancers_section {
+    padding: 1rem;
+  }
+  
+  .freelancer_card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .freelancer_stats {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* Extra small phones (320px) */
+@media (max-width: 320px) {
+  .title {
+    font-size: 1.25rem;
+  }
+  
+  .metric_value {
+    font-size: 1.25rem;
+  }
+  
+  .bar_value {
+    font-size: 0.65rem;
+  }
+  
+  .bar_label {
+    font-size: 0.65rem;
+  }
+}

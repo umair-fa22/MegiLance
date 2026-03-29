@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { PageTransition, ScrollReveal, StaggerContainer } from '@/components/Animations';
+import { PageTransition, ScrollReveal, StaggerContainer } from '@/app/components/Animations';
 import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';
 import { X, Shield, Lock, FileText, CheckCircle } from 'lucide-react'
 import common from './Security.common.module.css';

@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { ArrowRight, ChevronDown, ChevronUp, Calculator, DollarSign, TrendingDown, Users } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import commonStyles from './CostCalculator.common.module.css';
 import lightStyles from './CostCalculator.light.module.css';
 import darkStyles from './CostCalculator.dark.module.css';

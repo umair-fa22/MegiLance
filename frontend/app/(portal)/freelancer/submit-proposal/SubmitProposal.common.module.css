@@ -216,3 +216,40 @@
     width: 100%;
   }
 }
+
+@media (max-width: 380px) {
+  .header, .headerActions, .filterBar, .kpiGrid, .statsRow, .quickActionsGrid, .tabBar, .cardHeader, .metaGroup, .cardFooter, .actionRow, .stepRow, .termsRow, .grid, .flexRow, .row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem;
+  }
+  .kpiGrid, .grid, .statsRow {
+    grid-template-columns: 1fr !important;
+  }
+  .container, .card, .wrapper {
+    padding: 1rem !important;
+  }
+  .title, :global(h1), :global(h2) {
+    font-size: 1.25rem !important;
+  }
+  .subtitle, :global(p) {
+    font-size: 0.875rem !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .container, .card, .wrapper {
+    padding: 0.75rem !important;
+  }
+  .title, :global(h1), :global(h2) {
+    font-size: 1.15rem !important;
+  }
+  .subtitle, :global(p), :global(span) {
+    font-size: 0.8rem !important;
+  }
+  :global(button), .btn, .tab, .filterBtn {
+    padding: 0.5rem !important;
+    font-size: 0.8rem !important;
+    width: 100% !important;
+  }
+}

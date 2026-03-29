@@ -1,5 +1,5 @@
 # @AI-HINT: Pydantic schemas for Escrow API validation and responses
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field
 from datetime import datetime
 from typing import Optional
 

@@ -383,3 +383,360 @@
     padding: 3rem 1rem 2rem;
   }
 }
+
+/* Small phones (380px and below) */
+@media (max-width: 380px) {
+  .hero {
+    padding: 2.5rem 0.75rem 1.75rem;
+  }
+  
+  .badge {
+    padding: 0.35rem 0.85rem;
+    font-size: 0.8rem;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+  }
+  
+  .heroCtas {
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .heroTrust {
+    gap: 0.4rem;
+    font-size: 0.8rem;
+  }
+  
+  .statsBar {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .statsGrid {
+    gap: 1rem;
+  }
+  
+  .statValue {
+    font-size: 1.6rem;
+  }
+  
+  .statLabel {
+    font-size: 0.78rem;
+  }
+  
+  .section {
+    padding: 3rem 0.75rem;
+  }
+  
+  .sectionSubtitle {
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.55;
+  }
+  
+  .stepsGrid {
+    gap: 1rem;
+  }
+  
+  .stepCard {
+    padding: 1.25rem;
+    border-radius: 10px;
+  }
+  
+  .stepNum {
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+    margin-bottom: 0.875rem;
+  }
+  
+  .stepTitle {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .stepDesc {
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+  
+  .benefitsGrid {
+    gap: 1rem;
+  }
+  
+  .benefitCard {
+    padding: 1.25rem;
+    border-radius: 10px;
+  }
+  
+  .benefitIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 9px;
+    margin-bottom: 0.6rem;
+  }
+  
+  .benefitTitle {
+    font-size: 0.95rem;
+    margin-bottom: 0.35rem;
+  }
+  
+  .benefitDesc {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+  
+  .categoriesGrid {
+    gap: 1rem;
+  }
+  
+  .categoryCard {
+    padding: 1rem;
+    border-radius: 10px;
+    gap: 0.875rem;
+  }
+  
+  .categoryIcon {
+    width: 42px;
+    height: 42px;
+    border-radius: 9px;
+  }
+  
+  .categoryName {
+    font-size: 0.9rem;
+    margin-bottom: 0.1rem;
+  }
+  
+  .categoryCount {
+    font-size: 0.75rem;
+  }
+  
+  .comparisonTable {
+    border-radius: 10px;
+    margin-top: 1.5rem;
+  }
+  
+  .compRow {
+    grid-template-columns: 1.5fr 1fr 0.75fr 0.75fr;
+    padding: 0.6rem 0.625rem;
+    font-size: 0.75rem;
+    gap: 0.25rem;
+  }
+  
+  .compHeader {
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
+  }
+  
+  .faqList {
+    margin-top: 1.5rem;
+    gap: 0.4rem;
+  }
+  
+  .faqItem {
+    border-radius: 8px;
+  }
+  
+  .faqQuestion {
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .faqAnswer {
+    padding: 0 1rem 0.875rem;
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+  
+  .finalCta {
+    padding: 3rem 0.75rem;
+  }
+  
+  .finalCtaDesc {
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
+    line-height: 1.55;
+  }
+}
+
+/* Extra small phones (320px) */
+@media (max-width: 320px) {
+  .hero {
+    padding: 2rem 0.5rem 1.5rem;
+  }
+  
+  .badge {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.75rem;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+  
+  .heroCtas {
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  
+  .heroTrust {
+    gap: 0.35rem;
+    font-size: 0.75rem;
+  }
+  
+  .statsBar {
+    padding: 1.25rem 0.5rem;
+  }
+  
+  .statsGrid {
+    gap: 0.75rem;
+  }
+  
+  .statValue {
+    font-size: 1.4rem;
+  }
+  
+  .statLabel {
+    font-size: 0.72rem;
+  }
+  
+  .section {
+    padding: 2.5rem 0.5rem;
+  }
+  
+  .sectionSubtitle {
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+  }
+  
+  .stepsGrid {
+    gap: 0.875rem;
+  }
+  
+  .stepCard {
+    padding: 1rem;
+    border-radius: 9px;
+  }
+  
+  .stepNum {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .stepTitle {
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+  }
+  
+  .stepDesc {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  
+  .benefitsGrid {
+    gap: 0.875rem;
+  }
+  
+  .benefitCard {
+    padding: 1rem;
+    border-radius: 9px;
+  }
+  
+  .benefitIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .benefitTitle {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .benefitDesc {
+    font-size: 0.78rem;
+    line-height: 1.4;
+  }
+  
+  .categoriesGrid {
+    gap: 0.875rem;
+  }
+  
+  .categoryCard {
+    padding: 0.875rem;
+    border-radius: 9px;
+    gap: 0.75rem;
+  }
+  
+  .categoryIcon {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+  }
+  
+  .categoryName {
+    font-size: 0.85rem;
+  }
+  
+  .categoryCount {
+    font-size: 0.7rem;
+  }
+  
+  .comparisonTable {
+    border-radius: 9px;
+    margin-top: 1.25rem;
+  }
+  
+  .compRow {
+    grid-template-columns: 1.25fr 1fr 0.7fr 0.7fr;
+    padding: 0.5rem 0.5rem;
+    font-size: 0.7rem;
+  }
+  
+  .compHeader {
+    font-size: 0.65rem;
+  }
+  
+  .faqList {
+    margin-top: 1.25rem;
+    gap: 0.35rem;
+  }
+  
+  .faqItem {
+    border-radius: 7px;
+  }
+  
+  .faqQuestion {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.825rem;
+  }
+  
+  .faqAnswer {
+    padding: 0 0.875rem 0.75rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  
+  .finalCta {
+    padding: 2.5rem 0.5rem;
+  }
+  
+  .finalCtaDesc {
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+}

@@ -4,8 +4,8 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Button from '@/app/components/Button/Button';
-import Loading from '@/app/components/Loading/Loading';
+import Button from '@/app/components/atoms/Button/Button';
+import Loading from '@/app/components/atoms/Loading/Loading';
 import { Activity, Server, Database, CheckCircle, AlertTriangle, XCircle, RefreshCw } from 'lucide-react'
 import { apiFetch } from '@/lib/api/core';
 

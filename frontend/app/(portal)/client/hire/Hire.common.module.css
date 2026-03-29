@@ -154,7 +154,7 @@
   }
 }
 
-@media (max-width: 374px) {
+@media (max-width: 380px) {
   .page {
     padding: 1rem 0.75rem;
   }
@@ -166,5 +166,24 @@
   .form {
     padding: 1rem;
     gap: 1rem;
+  }
+  
+  .leftActions, .rightActions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .leftActions button, .rightActions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+  .page {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
   }
 }

@@ -4,7 +4,7 @@
 import React, { useMemo, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { PageTransition, ScrollReveal, StaggerContainer } from '@/components/Animations';
+import { PageTransition, ScrollReveal, StaggerContainer } from '@/app/components/Animations';
 import { useAdminData } from '@/hooks/useAdmin';
 import common from './AdminPayments.common.module.css';
 import light from './AdminPayments.light.module.css';

@@ -5,10 +5,10 @@ import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { timeEntriesApi as _timeEntriesApi } from '@/lib/api';
-import Button from '@/app/components/Button/Button';
-import Input from '@/app/components/Input/Input';
-import Select from '@/app/components/Select/Select';
-import Textarea from '@/app/components/Textarea/Textarea';
+import Button from '@/app/components/atoms/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
+import Select from '@/app/components/molecules/Select/Select';
+import Textarea from '@/app/components/atoms/Textarea/Textarea';
 import { PageTransition, ScrollReveal, StaggerContainer, StaggerItem } from '@/app/components/Animations';
 import { Clock, Pause, Trash2, Plus } from 'lucide-react'
 import commonStyles from './TimeEntries.common.module.css';

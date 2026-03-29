@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import commonStyles from './UpdateNotification.common.module.css';
 import lightStyles from './UpdateNotification.light.module.css';
 import darkStyles from './UpdateNotification.dark.module.css';

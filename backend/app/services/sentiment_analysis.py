@@ -15,8 +15,7 @@ Features:
 import re
 import math
 import logging
-from typing import Dict, Any, List, Optional, Tuple
-from collections import Counter
+from typing import Dict, Any, List, Optional
 
 logger = logging.getLogger(__name__)
 

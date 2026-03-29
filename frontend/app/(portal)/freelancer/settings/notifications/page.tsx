@@ -4,9 +4,9 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { useToaster } from '@/app/components/Toast/ToasterProvider';
+import { useToaster } from '@/app/components/molecules/Toast/ToasterProvider';
 
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import NotificationOption from './components/NotificationOption/NotificationOption';
 
 import commonStyles from '../Settings.common.module.css';

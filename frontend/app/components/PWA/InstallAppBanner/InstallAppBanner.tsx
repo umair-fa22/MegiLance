@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import commonStyles from './InstallAppBanner.common.module.css';
 import lightStyles from './InstallAppBanner.light.module.css';
 import darkStyles from './InstallAppBanner.dark.module.css';

@@ -3,7 +3,7 @@
 
 import logging
 from datetime import datetime, timedelta, timezone
-from typing import Optional, List, Dict, Any, Tuple
+from typing import Optional, List, Dict, Any
 from app.db.turso_http import execute_query, parse_rows
 from collections import defaultdict
 import math

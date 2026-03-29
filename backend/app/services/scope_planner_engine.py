@@ -8,7 +8,6 @@ risk assessments, and budget estimates for freelance projects.
 import logging
 from typing import List, Optional, Dict, Any
 from datetime import datetime
-import math
 
 logger = logging.getLogger("megilance")
 

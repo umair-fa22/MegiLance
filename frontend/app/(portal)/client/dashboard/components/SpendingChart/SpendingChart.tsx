@@ -5,7 +5,7 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import DashboardWidget from '@/app/components/DashboardWidget/DashboardWidget';
+import DashboardWidget from '@/app/components/molecules/DashboardWidget/DashboardWidget';
 import { DollarSign } from 'lucide-react';
 
 import common from './SpendingChart.common.module.css';

@@ -4,12 +4,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import EmptyState from '@/app/components/EmptyState/EmptyState';
+import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer } from '@/app/components/Animations/StaggerContainer';
 import { celebrationAnimation } from '@/app/components/Animations/LottieAnimation';
-import { useToaster } from '@/app/components/Toast/ToasterProvider';
+import { useToaster } from '@/app/components/molecules/Toast/ToasterProvider';
 import { Loader2 } from 'lucide-react';
 import { notificationsApi } from '@/lib/api';
 import common from './Notifications.common.module.css';

@@ -11,12 +11,12 @@ import {
   CheckCircle, ArrowRight, ArrowLeft, SkipForward,
   Rocket, Star, TrendingUp, Eye, Zap
 } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
-import Input from '@/app/components/Input/Input';
-import Textarea from '@/app/components/Textarea/Textarea';
-import Select from '@/app/components/Select/Select';
-import TagsInput from '@/app/components/TagsInput/TagsInput';
-import FileUpload from '@/app/components/FileUpload/FileUpload';
+import Button from '@/app/components/atoms/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
+import Textarea from '@/app/components/atoms/Textarea/Textarea';
+import Select from '@/app/components/molecules/Select/Select';
+import TagsInput from '@/app/components/atoms/TagsInput/TagsInput';
+import FileUpload from '@/app/components/molecules/FileUpload/FileUpload';
 
 import commonStyles from './ProfileWizard.common.module.css';
 import lightStyles from './ProfileWizard.light.module.css';

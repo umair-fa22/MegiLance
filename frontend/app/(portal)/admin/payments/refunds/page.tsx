@@ -5,10 +5,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { refundsApi } from '@/lib/api';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
-import { useToaster } from '@/app/components/Toast/ToasterProvider';
+import { useToaster } from '@/app/components/molecules/Toast/ToasterProvider';
 import { RotateCcw, CheckCircle, XCircle, DollarSign, Clock } from 'lucide-react';
 
 import commonStyles from '../AdminPayments.common.module.css';

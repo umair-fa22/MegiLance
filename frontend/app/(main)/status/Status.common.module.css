@@ -687,4 +687,566 @@
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
   }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 1.5rem 0;
+  }
+  
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  .header {
+    margin-bottom: 2rem;
+  }
+  
+  .heroRow {
+    gap: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+    gap: 0.4rem;
+  }
+  
+  .subtitle {
+    font-size: 1.05rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .heroStatusBanner {
+    margin: 1.5rem auto;
+    padding: 1.25rem;
+    border-radius: 12px;
+    border-width: 2px;
+  }
+  
+  .heroStatusMain {
+    gap: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .heroStatusIconLarge svg {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .heroStatusTitle {
+    font-size: 1.25rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .heroStatusSubtitle {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .heroStatusMeta {
+    gap: 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .heroRefreshBtn {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .quickServiceStatus {
+    gap: 0.5rem;
+  }
+  
+  .quickServicePill {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+  }
+  
+  .quickServiceLatency {
+    padding: 0.1rem 0.3rem;
+    font-size: 0.7rem;
+  }
+  
+  .section {
+    margin-bottom: 3rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    gap: 0.4rem;
+  }
+  
+  .statusCard {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+  
+  .cardHeader {
+    margin-bottom: 0.75rem;
+  }
+  
+  .serviceIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+  }
+  
+  .statusPill {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+    gap: 0.3rem;
+  }
+  
+  .statusTitle {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .latency {
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .statusTime {
+    font-size: 0.75rem;
+  }
+  
+  .incidentsList {
+    gap: 1.25rem;
+  }
+  
+  .incidentCard {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+  
+  .incidentTitle {
+    font-size: 1rem;
+  }
+  
+  .incidentDate {
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .incidentDescription {
+    font-size: 0.9rem;
+  }
+  
+  .incidentStatus {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+  }
+  
+  .metricsGrid {
+    gap: 1rem;
+  }
+  
+  .metricCard {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+  
+  .metricIcon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+  }
+  
+  .metricTitle {
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .metricValue {
+    font-size: 2rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .metricPeriod {
+    font-size: 0.8rem;
+  }
+  
+  .overallBanner {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.8rem;
+    gap: 0.5rem;
+  }
+  
+  .lastUpdate {
+    font-size: 0.8rem;
+  }
+}
+
+/* Small phones (380px and below) */
+@media (max-width: 380px) {
+  .page {
+    padding: 1.25rem 0;
+  }
+  
+  .container {
+    padding: 0 0.625rem;
+  }
+  
+  .header {
+    margin-bottom: 1.75rem;
+  }
+  
+  .heroRow {
+    gap: 1.25rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    gap: 0.35rem;
+  }
+  
+  .subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+  
+  .heroStatusBanner {
+    margin: 1.25rem auto;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  
+  .heroStatusMain {
+    gap: 1rem;
+    margin-bottom: 0.875rem;
+  }
+  
+  .heroStatusIconLarge svg {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .heroStatusTitle {
+    font-size: 1.1rem;
+    margin-bottom: 0.35rem;
+  }
+  
+  .heroStatusSubtitle {
+    font-size: 0.85rem;
+    line-height: 1.45;
+    margin-bottom: 0.6rem;
+  }
+  
+  .heroStatusMeta {
+    gap: 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .heroStatusMetaItem {
+    gap: 0.35rem;
+  }
+  
+  .heroRefreshBtn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 6px;
+  }
+  
+  .quickServiceStatus {
+    gap: 0.4rem;
+  }
+  
+  .quickServicePill {
+    padding: 0.35rem 0.625rem;
+    font-size: 0.75rem;
+    border-radius: 5px;
+    gap: 0.35rem;
+  }
+  
+  .quickServiceLatency {
+    padding: 0.08rem 0.25rem;
+    font-size: 0.65rem;
+    border-radius: 3px;
+  }
+  
+  .section {
+    margin-bottom: 2.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.25rem;
+    margin-bottom: 1.25rem;
+    gap: 0.35rem;
+  }
+  
+  .statusCard {
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  
+  .cardHeader {
+    margin-bottom: 0.6rem;
+  }
+  
+  .serviceIcon {
+    width: 32px;
+    height: 32px;
+    border-radius: 7px;
+  }
+  
+  .statusPill {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.65rem;
+    gap: 0.25rem;
+  }
+  
+  .statusTitle {
+    font-size: 0.95rem;
+    margin-bottom: 0.35rem;
+  }
+  
+  .latency {
+    font-size: 0.75rem;
+    margin-bottom: 0.35rem;
+  }
+  
+  .statusTime {
+    font-size: 0.7rem;
+  }
+  
+  .incidentsList {
+    gap: 1rem;
+  }
+  
+  .incidentCard {
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  
+  .incidentTitle {
+    font-size: 0.95rem;
+  }
+  
+  .incidentDate {
+    font-size: 0.75rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .incidentDescription {
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+  
+  .incidentStatus {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.65rem;
+  }
+  
+  .metricsGrid {
+    gap: 0.875rem;
+  }
+  
+  .metricCard {
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  
+  .metricIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 9px;
+    margin-bottom: 0.625rem;
+  }
+  
+  .metricTitle {
+    font-size: 0.75rem;
+    margin-bottom: 0.35rem;
+  }
+  
+  .metricValue {
+    font-size: 1.75rem;
+    margin-bottom: 0.15rem;
+  }
+  
+  .metricPeriod {
+    font-size: 0.75rem;
+  }
+  
+  .overallBanner {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.75rem;
+    gap: 0.4rem;
+  }
+  
+  .lastUpdate {
+    font-size: 0.75rem;
+  }
+}
+
+/* Extra small phones (320px) */
+@media (max-width: 320px) {
+  .page {
+    padding: 1rem 0;
+  }
+  
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .title {
+    font-size: 1.35rem;
+  }
+  
+  .subtitle {
+    font-size: 0.875rem;
+    margin-bottom: 0.875rem;
+  }
+  
+  .heroStatusBanner {
+    margin: 1rem auto;
+    padding: 0.875rem;
+    border-radius: 8px;
+  }
+  
+  .heroStatusMain {
+    gap: 0.875rem;
+  }
+  
+  .heroStatusIconLarge svg {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .heroStatusTitle {
+    font-size: 1rem;
+  }
+  
+  .heroStatusSubtitle {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+  
+  .heroStatusMeta {
+    gap: 0.6rem;
+    font-size: 0.7rem;
+  }
+  
+  .heroRefreshBtn {
+    padding: 0.45rem 0.875rem;
+    font-size: 0.8rem;
+    border-radius: 5px;
+  }
+  
+  .quickServicePill {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.7rem;
+    border-radius: 4px;
+    gap: 0.3rem;
+  }
+  
+  .quickServiceLatency {
+    font-size: 0.6rem;
+  }
+  
+  .section {
+    margin-bottom: 2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .statusCard {
+    padding: 0.875rem;
+    border-radius: 8px;
+  }
+  
+  .serviceIcon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+  }
+  
+  .statusPill {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.6rem;
+  }
+  
+  .statusTitle {
+    font-size: 0.9rem;
+  }
+  
+  .latency {
+    font-size: 0.7rem;
+  }
+  
+  .statusTime {
+    font-size: 0.65rem;
+  }
+  
+  .incidentCard {
+    padding: 0.875rem;
+    border-radius: 8px;
+  }
+  
+  .incidentTitle {
+    font-size: 0.9rem;
+  }
+  
+  .incidentDate {
+    font-size: 0.7rem;
+  }
+  
+  .incidentDescription {
+    font-size: 0.8rem;
+  }
+  
+  .incidentStatus {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.6rem;
+  }
+  
+  .metricsGrid {
+    gap: 0.75rem;
+  }
+  
+  .metricCard {
+    padding: 0.875rem;
+    border-radius: 8px;
+  }
+  
+  .metricIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .metricTitle {
+    font-size: 0.7rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .metricValue {
+    font-size: 1.5rem;
+  }
+  
+  .metricPeriod {
+    font-size: 0.7rem;
+  }
+  
+  .overallBanner {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+  }
+  
+  .lastUpdate {
+    font-size: 0.7rem;
+  }
 } 

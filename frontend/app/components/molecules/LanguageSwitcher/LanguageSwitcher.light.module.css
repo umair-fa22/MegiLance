@@ -1,0 +1,27 @@
+/* @AI-HINT: LanguageSwitcher light colors */
+.button {
+  color: var(--foreground, #09090b);
+}
+
+.button:hover {
+  background-color: var(--muted, #f4f4f5);
+}
+
+.dropdown {
+  background-color: var(--card, #ffffff);
+  border: 1px solid var(--border, #e4e4e7);
+}
+
+.option {
+  color: var(--foreground, #09090b);
+}
+
+.option:hover {
+  background-color: var(--muted, #f4f4f5);
+}
+
+.optionActive {
+  background-color: var(--primary-light, #eff6ff);
+  color: var(--primary, #3b82f6);
+  font-weight: 600;
+}

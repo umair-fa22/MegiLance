@@ -15,7 +15,7 @@ import { PostJobData, PostJobErrors, Category, BudgetType } from './PostJob.type
 import { loadDraft, saveDraft, clearDraft } from '@/app/mocks/jobs';
 import api, { APIError } from '@/lib/api';
 
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import StepIndicator from './components/StepIndicator/StepIndicator';
 import StepDetails from './components/StepDetails/StepDetails';
 import StepScope from './components/StepScope/StepScope';

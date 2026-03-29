@@ -9,7 +9,7 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { Briefcase, User, Check } from 'lucide-react';
 import api, { setAuthToken, setRefreshToken } from '@/lib/api';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 
 import commonStyles from './RoleSelect.common.module.css';
 import lightStyles from './RoleSelect.light.module.css';

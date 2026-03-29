@@ -6,7 +6,7 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { Wallet, History, ArrowUpRight, ArrowDownRight, Loader2 } from 'lucide-react';
-import { PageTransition, ScrollReveal } from '@/components/Animations';
+import { PageTransition, ScrollReveal } from '@/app/components/Animations';
 import { getAuthToken } from '@/lib/api';
 import common from './Payments.common.module.css';
 import light from './Payments.light.module.css';

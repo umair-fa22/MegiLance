@@ -5,10 +5,10 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Card from '@/app/components/Card/Card';
-import Select from '@/app/components/Select/Select';
-import BarChart from '@/app/components/BarChart/BarChart';
-import UserAvatar from '@/app/components/UserAvatar/UserAvatar';
+import Card from '@/app/components/molecules/Card/Card';
+import Select from '@/app/components/molecules/Select/Select';
+import BarChart from '@/app/components/molecules/BarChart/BarChart';
+import UserAvatar from '@/app/components/atoms/UserAvatar/UserAvatar';
 import { adminApi } from '@/lib/api';
 
 import commonStyles from './ReviewSentimentDashboard.common.module.css';

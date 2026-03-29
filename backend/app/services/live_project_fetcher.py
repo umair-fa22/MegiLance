@@ -25,7 +25,6 @@ Usage:
 
 import json
 import logging
-import hashlib
 import requests
 from datetime import datetime, timezone, timedelta
 from typing import Any
@@ -634,7 +633,7 @@ def main():
     )
 
     logger.info(f"\n{'=' * 70}")
-    logger.info(f"  Results:")
+    logger.info("  Results:")
     logger.info(f"    Fetched:  {result['fetched']}")
     logger.info(f"    Inserted: {result['inserted']}")
     logger.info(f"    Skipped:  {result['skipped']} (already existed)")

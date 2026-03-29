@@ -524,6 +524,76 @@
   }
 }
 
+@media (max-width: 380px) {
+  .container {
+    padding: 0.75rem;
+  }
+
+  .summaryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .timerActions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .timerActions button {
+    width: 100%;
+  }
+
+  .headerTop {
+    flex-direction: column;
+  }
+
+  .startButton {
+    width: 100%;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  .filterSelect {
+    width: 100%;
+  }
+
+  .tagInput {
+    flex-direction: column;
+  }
+
+  .addTagBtn {
+    width: 100%;
+  }
+
+  .modalFooter {
+    flex-direction: column;
+  }
+
+  .cancelBtn,
+  .startTimerBtn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .activeTimer {
+    padding: 1rem;
+  }
+
+  .timerDuration {
+    font-size: 1.5rem;
+  }
+}
+
 .confirmText {
   font-size: 0.95rem;
   line-height: 1.5;

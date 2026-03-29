@@ -8,9 +8,9 @@ import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Sparkles, User, Briefcase, ShieldCheck, Laptop, ListChecks, UserCog } from 'lucide-react';
 
-import Button from '@/app/components/Button/Button';
-import Input from '@/app/components/Input/Input';
-import Tabs from '@/app/components/Tabs/Tabs';
+import Button from '@/app/components/atoms/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
+import Tabs from '@/app/components/molecules/Tabs/Tabs';
 import AuthBrandingPanel from '@/app/components/Auth/BrandingPanel/BrandingPanel';
 import { isPreviewMode } from '@/app/utils/flags';
 import { PageTransition } from '@/app/components/Animations/PageTransition';

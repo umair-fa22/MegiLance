@@ -1,16 +1,16 @@
 # @AI-HINT: AI service for matching, fraud detection, and quality assessment
 """ML-based matching engine, fraud scoring, and content quality analysis."""
 
-from typing import Dict, List, Any, Optional, Tuple
+from typing import Dict, List, Any, Optional
 from decimal import Decimal
 from datetime import datetime, timedelta, timezone
 from pydantic import BaseModel
 import json
 import re
-import math
 import logging
 
 from app.db.turso_http import execute_query, parse_rows
+from app.services.llm_gateway import llm_gateway
 
 logger = logging.getLogger(__name__)
 
@@ -551,261 +551,74 @@ class AdvancedAIService:
             )
 
     async def _assess_code_quality(self, work_id: int, code: str) -> QualityAssessment:
-        """Assess code quality"""
-        issues = []
-        suggestions = []
-        score = 100.0
+        """Assess code quality using advanced LLM models."""
+        prompt = f"""Analyze the following code snippet and provide a quality assessment. Return a JSON with 'score' (0-100), 'issues' (list of {{'severity': str, 'message': str}}), and 'suggestions' (list of strings).
 
-        # Check code length
-        if len(code) < 100:
-            issues.append({"severity": "warning", "message": "Code is very short"})
-            score -= 10
-
-        # Check for basic patterns (simplified)
-        if "TODO" in code:
-            issues.append({"severity": "info", "message": "Contains TODO comments"})
-            score -= 5
-
-        # Check for security patterns
-        if "eval(" in code:
-            issues.append({"severity": "critical", "message": "Uses eval() - security risk"})
-            score -= 30
-
-        # Suggestions
-        suggestions.append("Consider adding more comments")
-        suggestions.append("Add unit tests")
+Code:
+{code[:3000]}"""
+        try:
+            from app.services.llm_gateway import llm_gateway
+            response = await llm_gateway.generate_text(prompt=prompt, system_message="You are an expert code reviewer.")
+            start = response.find("{")
+            end = response.rfind("}") + 1
+            if start != -1 and end != 0:
+                import json
+                data = json.loads(response[start:end])
+                score = float(data.get("score", 70.0))
+                issues = data.get("issues", [])
+                suggestions = data.get("suggestions", [])
+            else:
+                raise ValueError("No JSON found")
+        except Exception as e:
+            logger.error(f"LLM Code Assessment failed: {e}")
+            score = 70.0
+            issues = [{"severity": "warning", "message": "Automated code assessment failed. Falling back to default."}]
+            suggestions = ["Review code manually for best results."]
 
         return QualityAssessment(
             work_id=work_id,
             work_type="code",
-            quality_score=max(score, 0),
-            assessment_details={
-                "lines_of_code": len(code.split("\n")),
-                "complexity": "medium",
-                "maintainability": "good"
-            },
-            issues=issues,
-            suggestions=suggestions
-        )
-
-    async def _assess_design_quality(self, work_id: int, design_data: Any) -> QualityAssessment:
-        """Assess design quality based on available design metadata"""
-        issues = []
-        suggestions = []
-        
-        accessibility_score = 50.0
-        consistency_score = 50.0
-        aesthetics_score = 50.0
-        
-        if isinstance(design_data, dict):
-            # Assess based on provided metadata
-            if design_data.get("colors"):
-                colors = design_data["colors"]
-                if len(colors) > 6:
-                    issues.append({"severity": "warning", "message": "Too many colors — may lack visual cohesion"})
-                    consistency_score -= 15
-                elif len(colors) < 2:
-                    issues.append({"severity": "info", "message": "Limited color palette"})
-                else:
-                    consistency_score += 20
-                    aesthetics_score += 10
-            
-            if design_data.get("has_alt_text") is False:
-                issues.append({"severity": "critical", "message": "Missing alt text on images"})
-                accessibility_score -= 30
-                suggestions.append("Add descriptive alt text to all images for accessibility")
-            elif design_data.get("has_alt_text") is True:
-                accessibility_score += 30
-            
-            if design_data.get("responsive") is True:
-                aesthetics_score += 15
-                accessibility_score += 10
-            elif design_data.get("responsive") is False:
-                issues.append({"severity": "warning", "message": "Design is not responsive"})
-                suggestions.append("Ensure the design adapts to different screen sizes")
-                aesthetics_score -= 10
-            
-            if design_data.get("contrast_ratio"):
-                ratio = float(design_data["contrast_ratio"])
-                if ratio >= 4.5:
-                    accessibility_score += 20
-                elif ratio >= 3.0:
-                    issues.append({"severity": "warning", "message": f"Contrast ratio ({ratio}) below AA standard (4.5:1)"})
-                    accessibility_score -= 10
-                    suggestions.append("Improve text-background contrast ratio to at least 4.5:1")
-                else:
-                    issues.append({"severity": "critical", "message": f"Poor contrast ratio ({ratio})"})
-                    accessibility_score -= 25
-                    suggestions.append("Significantly improve contrast for readability")
-        elif isinstance(design_data, str) and len(design_data) > 0:
-            # If it's a URL or path, we can at least note it exists
-            aesthetics_score += 10
-            suggestions.append("Provide structured design metadata for a more detailed assessment")
-        else:
-            suggestions.append("Provide design data (colors, responsive flag, contrast ratio) for accurate assessment")
-        
-        # Clamp scores
-        accessibility_score = max(0, min(100, accessibility_score))
-        consistency_score = max(0, min(100, consistency_score))
-        aesthetics_score = max(0, min(100, aesthetics_score))
-        
-        quality_score = (accessibility_score * 0.4 + consistency_score * 0.3 + aesthetics_score * 0.3)
-        
-        if not suggestions:
-            suggestions.append("Consider improving color contrast for accessibility")
-        
-        return QualityAssessment(
-            work_id=work_id,
-            work_type="design",
-            quality_score=round(quality_score, 1),
-            assessment_details={
-                "accessibility_score": round(accessibility_score, 1),
-                "consistency_score": round(consistency_score, 1),
-                "aesthetics_score": round(aesthetics_score, 1)
-            },
+            quality_score=min(100.0, max(0.0, score)),
+            assessment_details={"assessor": "DigitalOcean AI", "method": "deep_analysis"},
             issues=issues,
             suggestions=suggestions
         )
 
     async def _assess_content_quality(self, work_id: int, content: str) -> QualityAssessment:
-        """Assess content quality"""
-        issues = []
-        suggestions = []
-        score = 100.0
+        """Assess content quality using advanced LLM models."""
+        prompt = f"""Analyze the following content and provide a quality assessment. Return a JSON with 'score' (0-100), 'issues' (list of {{'severity': str, 'message': str}}), and 'suggestions' (list of strings).
 
-        # Basic readability check
-        words = content.split()
-        sentences = content.split('.')
-
-        if len(words) < 100:
-            issues.append({"severity": "warning", "message": "Content is quite short"})
-            score -= 10
-
-        # Average words per sentence
-        if sentences:
-            avg_words = len(words) / len(sentences)
-            if avg_words > 25:
-                suggestions.append("Consider shorter sentences for better readability")
+Content:
+{content[:3000]}"""
+        try:
+            from app.services.llm_gateway import llm_gateway
+            response = await llm_gateway.generate_text(prompt=prompt, system_message="You are an expert editor and content reviewer.")
+            start = response.find("{")
+            end = response.rfind("}") + 1
+            if start != -1 and end != 0:
+                import json
+                data = json.loads(response[start:end])
+                score = float(data.get("score", 70.0))
+                issues = data.get("issues", [])
+                suggestions = data.get("suggestions", [])
+            else:
+                raise ValueError("No JSON found")
+        except Exception as e:
+            logger.error(f"LLM Content Assessment failed: {e}")
+            score = 70.0
+            issues = [{"severity": "warning", "message": "Automated content assessment failed. Falling back to default."}]
+            suggestions = ["Review content manually for best results."]
 
         return QualityAssessment(
             work_id=work_id,
             work_type="content",
-            quality_score=max(score, 0),
-            assessment_details={
-                "word_count": len(words),
-                "readability": "good",
-                "grammar_score": 90
-            },
+            quality_score=min(100.0, max(0.0, score)),
+            assessment_details={"assessor": "DigitalOcean AI", "method": "deep_analysis"},
             issues=issues,
             suggestions=suggestions
         )
 
-    # ========================================================================
-    # Price Optimization
-    # ========================================================================
-
-    async def optimize_price(
-        self,
-        freelancer_id: int,
-        project_category: str,
-        skill_level: str,
-        market_data: Dict[str, Any]
-    ) -> PriceOptimization:
-        """
-        AI-powered price optimization
-        
-        Uses reinforcement learning to:
-        - Maximize conversion rate
-        - Optimize revenue
-        - Find competitive sweet spot
-        """
-        # Get market rates from DB
-        result = execute_query("""
-            SELECT AVG(budget_min) as avg_min, AVG(budget_max) as avg_max,
-                   COUNT(*) as project_count
-            FROM projects
-            WHERE category_id = (
-                SELECT id FROM categories WHERE name = ? LIMIT 1
-            )
-        """, [project_category])
-
-        rows = parse_rows(result)
-        market_rate = 1000.0
-        project_count = 0
-        if rows and rows[0].get("avg_max"):
-            avg_min = float(rows[0].get("avg_min") or 500)
-            avg_max = float(rows[0].get("avg_max") or 1500)
-            market_rate = (avg_min + avg_max) / 2
-            project_count = int(rows[0].get("project_count", 0))
-
-        # Get freelancer's win rate for conversion estimate
-        fr_result = execute_query("""
-            SELECT 
-                COUNT(*) as total_proposals,
-                SUM(CASE WHEN status = 'accepted' THEN 1 ELSE 0 END) as accepted
-            FROM proposals WHERE freelancer_id = ?
-        """, [freelancer_id])
-        
-        fr_rows = parse_rows(fr_result)
-        total_proposals = int(fr_rows[0].get("total_proposals", 0)) if fr_rows else 0
-        accepted = int(fr_rows[0].get("accepted", 0)) if fr_rows else 0
-        
-        # Calculate conversion probability from actual data
-        if total_proposals >= 5:
-            conversion_prob = accepted / total_proposals
-        elif total_proposals > 0:
-            # Small sample — blend with baseline
-            conversion_prob = (accepted / total_proposals) * 0.5 + 0.5 * 0.3
-        else:
-            conversion_prob = 0.3  # Default for new freelancers
-
-        # Skill level multiplier
-        multipliers = {
-            "entry": 0.7,
-            "intermediate": 1.0,
-            "expert": 1.3,
-            "advanced": 1.6
-        }
-        multiplier = Decimal(str(multipliers.get(skill_level, 1.0)))
-
-        # Calculate optimal price
-        optimal_price = Decimal(str(market_rate)) * multiplier
-
-        # Calculate price range (80% - 120% of optimal)
-        price_range = {
-            "min": optimal_price * Decimal("0.8"),
-            "max": optimal_price * Decimal("1.2"),
-            "median": optimal_price
-        }
-
-        # Determine market position
-        if market_rate > 0:
-            ratio = float(optimal_price) / market_rate
-            if ratio < 0.85:
-                market_position = "budget"
-            elif ratio < 1.15:
-                market_position = "competitive"
-            else:
-                market_position = "premium"
-        else:
-            market_position = "competitive"
-
-        # Calculate expected revenue
-        expected_revenue = optimal_price * Decimal(str(round(conversion_prob, 4)))
-
-        return PriceOptimization(
-            optimal_price=optimal_price,
-            price_range=price_range,
-            market_position=market_position,
-            conversion_probability=round(conversion_prob, 4),
-            expected_revenue=expected_revenue
-        )
-
-    # ========================================================================
-    # Helper Methods
-    # ========================================================================
-
-    async def _get_project_details(self, project_id: int) -> Optional[Dict[str, Any]]:
+    def _get_project_details(self, project_id: int) -> Optional[Dict[str, Any]]:
         """Get project details"""
         result = execute_query("""
             SELECT id, title, description, budget_min, budget_type,

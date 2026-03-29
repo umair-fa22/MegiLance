@@ -6,8 +6,9 @@ import { useTheme } from 'next-themes';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import GigCard from '@/app/components/GigCard/GigCard';
-import Button from '@/app/components/Button/Button';
+import GigCard from '@/app/components/organisms/GigCard/GigCard';
+import Button from '@/app/components/atoms/Button/Button';
+import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
 import { PageTransition, ScrollReveal } from '@/app/components/Animations';
 import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';
 import {
@@ -510,16 +511,18 @@ const Gigs: React.FC = () => {
                 ))}
               </div>
             ) : gigs.length === 0 ? (
-              <div className={common.emptyState}>
-                <Package className={common.emptyIcon} />
-                <h3 className={cn(common.emptyTitle, themed.emptyTitle)}>No services found</h3>
-                <p className={cn(common.emptyText, themed.emptyText)}>
-                  Try adjusting your search or filter criteria to find what you&apos;re looking for.
-                </p>
-                <button className={cn(common.emptyButton, themed.emptyButton)} onClick={handleClearFilters}>
-                  <RefreshCw size={16} />
-                  Clear filters
-                </button>
+              <div className="w-full flex justify-center py-12">
+                <EmptyState 
+                  title="No services found" 
+                  description="Try adjusting your search or filter criteria to find what you're looking for."
+                  icon={<Package size={48} />}
+                  action={
+                    <button className={cn(common.emptyButton, themed.emptyButton)} onClick={handleClearFilters}>
+                      <RefreshCw size={16} />
+                      Clear filters
+                    </button>
+                  }
+                />
               </div>
             ) : (
               <div className={common.loadingGrid}>

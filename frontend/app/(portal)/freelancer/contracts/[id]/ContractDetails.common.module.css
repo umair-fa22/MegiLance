@@ -313,3 +313,28 @@
     padding: 0.75rem;
   }
 }
+@media (max-width: 380px) {
+  .headerActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .progressHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .title {
+    font-size: 1.15rem;
+  }
+  .contractMeta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .milestoneHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

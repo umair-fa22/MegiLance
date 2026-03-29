@@ -7,12 +7,12 @@ import { cn } from '@/lib/utils';
 import { User, Shield, Bell, CreditCard, LifeBuoy, CheckCircle, AlertCircle } from 'lucide-react';
 import api from '@/lib/api';
 
-import SettingsSection from '@/app/components/SettingsSection/SettingsSection';
-import Input from '@/app/components/Input/Input';
-import Textarea from '@/app/components/Textarea/Textarea';
-import Select from '@/app/components/Select/Select';
-import Button from '@/app/components/Button/Button';
-import ToggleSwitch from '@/app/components/ToggleSwitch/ToggleSwitch';
+import SettingsSection from '@/app/components/organisms/SettingsSection/SettingsSection';
+import Input from '@/app/components/atoms/Input/Input';
+import Textarea from '@/app/components/atoms/Textarea/Textarea';
+import Select from '@/app/components/molecules/Select/Select';
+import Button from '@/app/components/atoms/Button/Button';
+import ToggleSwitch from '@/app/components/atoms/ToggleSwitch/ToggleSwitch';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 

@@ -4,10 +4,10 @@
 import React from 'react';
 // Link not used; navigate via router on button click
 import { cn } from '@/lib/utils';
-import UserAvatar from '@/app/components/UserAvatar/UserAvatar';
-import StarRating from '@/app/components/StarRating/StarRating';
-import Badge from '@/app/components/Badge/Badge';
-import Button from '@/app/components/Button/Button';
+import UserAvatar from '@/app/components/atoms/UserAvatar/UserAvatar';
+import StarRating from '@/app/components/molecules/StarRating/StarRating';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import Button from '@/app/components/atoms/Button/Button';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import { Briefcase, MapPin, DollarSign, Sparkles, ShieldCheck, Heart } from 'lucide-react';

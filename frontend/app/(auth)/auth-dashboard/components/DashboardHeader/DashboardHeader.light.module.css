@@ -1,9 +1,56 @@
-/* AI-HINT: Light theme for the redesigned premium Dashboard Header. */
+/* @AI-HINT: Light theme for premium Dashboard Header */
 
-.headerTitle h1 {
-  color: #23272f; /* A strong, dark gray for text */
+.header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.headerTitle p {
-  color: #333333; /* A softer gray for subtitles */
+/* ─── Text Colors ─── */
+.title {
+  color: #111827;
+}
+
+.subtitle {
+  color: #6b7280;
+}
+
+.greetingIcon {
+  color: #f59e0b;
+}
+
+.greetingTime {
+  color: #9ca3af;
+}
+
+/* ─── Action Buttons ─── */
+.actionButton {
+  background: rgba(0, 0, 0, 0.03);
+  color: #374151;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.actionButton:hover {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.actionButton:active {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* Primary Action - Gradient CTA */
+.actionButtonPrimary {
+  background: linear-gradient(135deg, #4573df 0%, #3b5fc9 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(69, 115, 223, 0.25);
+}
+
+.actionButtonPrimary:hover {
+  background: linear-gradient(135deg, #3b5fc9 0%, #2f4db3 100%);
+  box-shadow: 0 6px 20px rgba(69, 115, 223, 0.35);
+}
+
+.actionButtonPrimary:active {
+  background: linear-gradient(135deg, #2f4db3 0%, #254199 100%);
 }

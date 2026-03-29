@@ -4,12 +4,10 @@
 import logging
 import hashlib
 import secrets
-import re
-from datetime import datetime, timedelta, timezone
-from typing import Optional, List, Dict, Any, Tuple
+from datetime import datetime, timezone
+from typing import Optional, List, Dict, Any
 from enum import Enum
 import os
-import json
 
 logger = logging.getLogger(__name__)
 
@@ -515,6 +513,31 @@ class IdentityVerificationService:
         # Generate and store verification code
         code = str(secrets.randbelow(900000) + 100000)
         
+        # Real Twilio Integration
+        try:
+            from twilio.rest import Client
+            import os
+            
+            TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
+            TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
+            TWILIO_PHONE_NUMBER = os.getenv("TWILIO_PHONE_NUMBER")
+            
+            if TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN and TWILIO_PHONE_NUMBER:
+                client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+                message = client.messages.create(
+                    body=f"Your MegiLance verification code is: {code} \nValid for 15 minutes.",
+                    from_=TWILIO_PHONE_NUMBER,
+                    to=phone_number
+                )
+                logger.info(f"SMS sent successfully via Twilio to {phone_number}. SID: {message.sid}")
+            else:
+                logger.info(f"Twilio not configured. MOCK SMS: Code {code} for phone {phone_number}")
+                
+        except Exception as e:
+            logger.error(f"Failed to send SMS using Twilio: {str(e)}")
+            # Fallback to mock behavior on exception so UI doesn't crash during dev
+            pass
+        
         # Store pending verification
         if user_id not in self._verifications:
             self._verifications[user_id] = {
@@ -821,11 +844,3 @@ class IdentityVerificationService:
 
 # Singleton instance
 _verification_service: Optional[IdentityVerificationService] = None
-
-
-def get_verification_service() -> IdentityVerificationService:
-    """Get or create verification service instance."""
-    global _verification_service
-    if _verification_service is None:
-        _verification_service = IdentityVerificationService()
-    return _verification_service

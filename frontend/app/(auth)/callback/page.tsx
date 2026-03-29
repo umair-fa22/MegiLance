@@ -9,7 +9,7 @@ import { useTheme } from 'next-themes';
 import { CheckCircle, XCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import api, { setAuthToken, setRefreshToken } from '@/lib/api';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 
 import commonStyles from './AuthCallback.common.module.css';
 import lightStyles from './AuthCallback.light.module.css';

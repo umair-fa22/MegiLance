@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import commonStyles from './HireSkillIndustry.common.module.css';
 import lightStyles from './HireSkillIndustry.light.module.css';
 import darkStyles from './HireSkillIndustry.dark.module.css';

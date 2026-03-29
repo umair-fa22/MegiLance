@@ -13,26 +13,19 @@ This tool helps FREELANCERS set their personal hourly and project rates based on
 Data-driven using Arc.dev 2025 survey, Upwork/Fiverr actual rates, and regional benchmarks.
 """
 
-import math
 import logging
 from typing import List, Optional, Dict, Any
 from datetime import datetime
 
 from app.services.market_data_2025 import (
     UPWORK_SERVICE_RATES,
-    DEMAND_INDEX_2025,
     COUNTRY_DEVELOPER_RATES,
-    CITY_RATES,
-    PLATFORM_RATES,
-    SOUTH_ASIA_BENCHMARKS,
     PAKISTAN_FREELANCE_STATS,
     get_country_rate_data,
     get_city_rate_data,
     get_platform_rates,
     get_upwork_service_rate,
     get_demand_data,
-    get_south_asia_benchmark,
-    calculate_data_driven_rate,
     DATA_VERSION,
 )
 

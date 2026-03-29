@@ -6,7 +6,8 @@ import { useTheme } from 'next-themes';
 import { useSearchParams } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
+import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
 import {
   Search, MapPin, Star, X, SlidersHorizontal, RefreshCw,
   ChevronLeft, ChevronRight, Grid3X3, List, Filter, DollarSign,
@@ -445,17 +446,22 @@ const PublicFreelancers: React.FC = () => {
                 ))}
               </div>
             ) : error ? (
-              <div className={cn(common.emptyState, themed.emptyState)}>
-                <Users size={48} className={common.emptyIcon} />
-                <h3>{error}</h3>
-                <Button variant="primary" size="md" onClick={searchFreelancers}>Retry</Button>
-              </div>
-            ) : filteredFreelancers.length === 0 ? (
-              <div className={cn(common.emptyState, themed.emptyState)}>
-                <Users size={48} className={common.emptyIcon} />
-                <h3>No freelancers found</h3>
-                <p>Try adjusting your search or filters.</p>
-                <Button variant="outline" size="md" onClick={handleClearFilters}><RefreshCw size={16} /> Clear all filters</Button>
+                <div className="w-full py-12 flex justify-center">
+                  <EmptyState 
+                    title="Something went wrong" 
+                    description={error}
+                    icon={<Users size={48} />}
+                    action={<Button variant="primary" size="md" onClick={searchFreelancers}>Retry</Button>}
+                  />
+                </div>
+              ) : filteredFreelancers.length === 0 ? (
+                <div className="w-full py-12 flex justify-center">
+                  <EmptyState 
+                    title="No freelancers found" 
+                    description="Try adjusting your search or filters."
+                    icon={<Users size={48} />}
+                    action={<Button variant="outline" size="md" onClick={handleClearFilters}><RefreshCw size={16} /> Clear all filters</Button>}
+                  />
               </div>
             ) : (
               <StaggerContainer className={cn(viewMode === 'grid' ? common.grid : common.listView)}>

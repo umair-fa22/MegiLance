@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { ArrowRight, Scale } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import commonStyles from './CompareIndex.common.module.css';
 import lightStyles from './CompareIndex.light.module.css';
 import darkStyles from './CompareIndex.dark.module.css';

@@ -1,0 +1,1252 @@
+
+> frontend@0.1.0 test:unit
+> jest --verbose --forceExit
+
+  console.error
+    An update to Proposals inside a test was not wrapped in act(...).
+    
+    When testing, code that causes React state updates should be wrapped into act(...):
+    
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+    
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+    [0m [90m 137 |[39m       })[33m;[39m
+     [90m 138 |[39m       
+    [31m[1m>[22m[39m[90m 139 |[39m       setProposals(transformedProposals)[33m;[39m
+     [90m     |[39m       [31m[1m^[22m[39m
+     [90m 140 |[39m     } [36mcatch[39m (err) {
+     [90m 141 |[39m       [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m [32m'development'[39m) {
+     [90m 142 |[39m         console[33m.[39merror([32m'Failed to fetch proposals:'[39m[33m,[39m err)[33m;[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at setProposals (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:139:7)
+      at Generator.call (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at Generator._invoke [as next] (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+
+FAIL app/components/Card/Card.test.tsx (5.781 s)
+  Card Component
+    ├ù renders with children content (16 ms)
+    ├ù renders with title (3 ms)
+    ├ù renders with icon when provided (2 ms)
+    ├ù applies variant classes correctly (2 ms)
+    ├ù applies size classes correctly (2 ms)
+    ├ù shows loading state when loading prop is true (1 ms)
+    ├ù applies custom className when provided (2 ms)
+
+  ÔùÅ Card Component ÔÇ║ renders with children content
+
+    ReferenceError: React is not defined
+
+      18 | describe('Card Component', () => {
+      19 |   test('renders with children content', () => {
+    > 20 |     render(<Card>Card content</Card>);
+         |            ^
+      21 |     
+      22 |     expect(screen.getByText('Card content')).toBeInTheDocument();
+      23 |   });
+
+      at Object.React (app/components/Card/Card.test.tsx:20:12)
+
+  ÔùÅ Card Component ÔÇ║ renders with title
+
+    ReferenceError: React is not defined
+
+      24 |
+      25 |   test('renders with title', () => {
+    > 26 |     render(<Card title="Card Title">Card content</Card>);
+         |            ^
+      27 |     
+      28 |     expect(screen.getByText('Card Title')).toBeInTheDocument();
+      29 |     expect(screen.getByText('Card content')).toBeInTheDocument();
+
+      at Object.React (app/components/Card/Card.test.tsx:26:12)
+
+  ÔùÅ Card Component ÔÇ║ renders with icon when provided
+
+    ReferenceError: React is not defined
+
+      32 |   test('renders with icon when provided', () => {
+      33 |     render(
+    > 34 |       <Card title="Card Title" icon={MockIcon}>
+         |       ^
+      35 |         Card content
+      36 |       </Card>
+      37 |     );
+
+      at Object.React (app/components/Card/Card.test.tsx:34:7)
+
+  ÔùÅ Card Component ÔÇ║ applies variant classes correctly
+
+    ReferenceError: React is not defined
+
+      42 |
+      43 |   test('applies variant classes correctly', () => {
+    > 44 |     const { rerender } = render(<Card variant="default">Content</Card>);
+         |                                 ^
+      45 |     let card = screen.getByText('Content').closest('.card');
+      46 |     expect(card).toHaveClass('variant-default');
+      47 |     
+
+      at Object.React (app/components/Card/Card.test.tsx:44:33)
+
+  ÔùÅ Card Component ÔÇ║ applies size classes correctly
+
+    ReferenceError: React is not defined
+
+      60 |
+      61 |   test('applies size classes correctly', () => {
+    > 62 |     const { rerender } = render(<Card size="sm">Content</Card>);
+         |                                 ^
+      63 |     let card = screen.getByText('Content').closest('.card');
+      64 |     expect(card).toHaveClass('size-sm');
+      65 |     
+
+      at Object.React (app/components/Card/Card.test.tsx:62:33)
+
+  ÔùÅ Card Component ÔÇ║ shows loading state when loading prop is true
+
+    ReferenceError: React is not defined
+
+      74 |
+      75 |   test('shows loading state when loading prop is true', () => {
+    > 76 |     render(<Card loading>Content</Card>);
+         |            ^
+      77 |     
+      78 |     const card = screen.getByText('Content').closest('.card');
+      79 |     expect(card).toHaveClass('loading');
+
+      at Object.React (app/components/Card/Card.test.tsx:76:12)
+
+  ÔùÅ Card Component ÔÇ║ applies custom className when provided
+
+    ReferenceError: React is not defined
+
+      81 |
+      82 |   test('applies custom className when provided', () => {
+    > 83 |     render(<Card className="custom-class">Content</Card>);
+         |            ^
+      84 |     
+      85 |     const card = screen.getByText('Content').closest('.card');
+      86 |     expect(card).toHaveClass('custom-class');
+
+      at Object.React (app/components/Card/Card.test.tsx:83:12)
+
+  console.error
+    An update to Proposals inside a test was not wrapped in act(...).
+    
+    When testing, code that causes React state updates should be wrapped into act(...):
+    
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+    
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+    [0m [90m 145 |[39m       setProposals([])[33m;[39m
+     [90m 146 |[39m     } [36mfinally[39m {
+    [31m[1m>[22m[39m[90m 147 |[39m       setLoading([36mfalse[39m)[33m;[39m
+     [90m     |[39m       [31m[1m^[22m[39m
+     [90m 148 |[39m     }
+     [90m 149 |[39m   }[33m,[39m [])[33m;[39m
+     [90m 150 |[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at setLoading (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:147:7)
+      at Generator.call (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at Generator._invoke [as next] (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+
+  console.error
+    An update to Proposals inside a test was not wrapped in act(...).
+    
+    When testing, code that causes React state updates should be wrapped into act(...):
+    
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+    
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+    [0m [90m 137 |[39m       })[33m;[39m
+     [90m 138 |[39m       
+    [31m[1m>[22m[39m[90m 139 |[39m       setProposals(transformedProposals)[33m;[39m
+     [90m     |[39m       [31m[1m^[22m[39m
+     [90m 140 |[39m     } [36mcatch[39m (err) {
+     [90m 141 |[39m       [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m [32m'development'[39m) {
+     [90m 142 |[39m         console[33m.[39merror([32m'Failed to fetch proposals:'[39m[33m,[39m err)[33m;[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at setProposals (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:139:7)
+      at Generator.call (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at Generator._invoke [as next] (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+
+  console.error
+    An update to Proposals inside a test was not wrapped in act(...).
+    
+    When testing, code that causes React state updates should be wrapped into act(...):
+    
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+    
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+    [0m [90m 145 |[39m       setProposals([])[33m;[39m
+     [90m 146 |[39m     } [36mfinally[39m {
+    [31m[1m>[22m[39m[90m 147 |[39m       setLoading([36mfalse[39m)[33m;[39m
+     [90m     |[39m       [31m[1m^[22m[39m
+     [90m 148 |[39m     }
+     [90m 149 |[39m   }[33m,[39m [])[33m;[39m
+     [90m 150 |[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at setLoading (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:147:7)
+      at Generator.call (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at Generator._invoke [as next] (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+
+FAIL app/home/Home.test.tsx (6.311 s)
+  Home Page Component
+    ÔêÜ renders major sections (192 ms)
+    ├ù renders AI and stats sections (45 ms)
+    ÔêÜ renders page with theme-aware structure (21 ms)
+
+  ÔùÅ Home Page Component ÔÇ║ renders AI and stats sections
+
+    TestingLibraryElementError: Unable to find an element by: [data-testid="powered-by-ai"]
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="homePage homePage"
+        >
+          <div
+            class="pageContent"
+          >
+            <div>
+              <div
+                data-testid="hero-section"
+              >
+                Hero Section
+              </div>
+            </div>
+            <div
+              class="homeSection"
+            >
+              <div
+                class="sectionContainer"
+              >
+                <div>
+                  <div
+                    data-testid="trust-indicators"
+                  >
+                    Trust Indicators
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="homeSection"
+            >
+              <div
+                class="sectionContainer"
+              >
+                <div>
+                  <div
+                    data-testid="features-section"
+                  >
+                    Features Section
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="homeSection"
+            >
+              <div
+                class="sectionContainer"
+              >
+                <div>
+                  <div
+                    data-testid="how-it-works"
+                  >
+                    How It Works Section
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="homeSection"
+            >
+              <div
+                class="sectionContainer"
+              >
+                <div>
+                  <div
+                    data-testid="testimonials"
+                  >
+                    Testimonials Section
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      67 |     render(<Home />);
+      68 |     
+    > 69 |     expect(screen.getByTestId('powered-by-ai')).toBeInTheDocument();
+         |                   ^
+      70 |     expect(screen.getByTestId('project-stats')).toBeInTheDocument();
+      71 |   });
+      72 |
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.getByTestId (app/home/Home.test.tsx:69:19)
+
+  console.error
+    An update to Proposals inside a test was not wrapped in act(...).
+    
+    When testing, code that causes React state updates should be wrapped into act(...):
+    
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+    
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+    [0m [90m 137 |[39m       })[33m;[39m
+     [90m 138 |[39m       
+    [31m[1m>[22m[39m[90m 139 |[39m       setProposals(transformedProposals)[33m;[39m
+     [90m     |[39m       [31m[1m^[22m[39m
+     [90m 140 |[39m     } [36mcatch[39m (err) {
+     [90m 141 |[39m       [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m [32m'development'[39m) {
+     [90m 142 |[39m         console[33m.[39merror([32m'Failed to fetch proposals:'[39m[33m,[39m err)[33m;[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at setProposals (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:139:7)
+      at Generator.call (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at Generator._invoke [as next] (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+
+  console.error
+    An update to Proposals inside a test was not wrapped in act(...).
+    
+    When testing, code that causes React state updates should be wrapped into act(...):
+    
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+    
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+    [0m [90m 145 |[39m       setProposals([])[33m;[39m
+     [90m 146 |[39m     } [36mfinally[39m {
+    [31m[1m>[22m[39m[90m 147 |[39m       setLoading([36mfalse[39m)[33m;[39m
+     [90m     |[39m       [31m[1m^[22m[39m
+     [90m 148 |[39m     }
+     [90m 149 |[39m   }[33m,[39m [])[33m;[39m
+     [90m 150 |[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at setLoading (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:147:7)
+      at Generator.call (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at Generator._invoke [as next] (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+
+  console.error
+    An update to Proposals inside a test was not wrapped in act(...).
+    
+    When testing, code that causes React state updates should be wrapped into act(...):
+    
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+    
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+    [0m [90m 137 |[39m       })[33m;[39m
+     [90m 138 |[39m       
+    [31m[1m>[22m[39m[90m 139 |[39m       setProposals(transformedProposals)[33m;[39m
+     [90m     |[39m       [31m[1m^[22m[39m
+     [90m 140 |[39m     } [36mcatch[39m (err) {
+     [90m 141 |[39m       [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m [32m'development'[39m) {
+     [90m 142 |[39m         console[33m.[39merror([32m'Failed to fetch proposals:'[39m[33m,[39m err)[33m;[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at setProposals (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:139:7)
+      at Generator.call (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at Generator._invoke [as next] (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+
+  console.error
+    An update to Proposals inside a test was not wrapped in act(...).
+    
+    When testing, code that causes React state updates should be wrapped into act(...):
+    
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+    
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+    [0m [90m 145 |[39m       setProposals([])[33m;[39m
+     [90m 146 |[39m     } [36mfinally[39m {
+    [31m[1m>[22m[39m[90m 147 |[39m       setLoading([36mfalse[39m)[33m;[39m
+     [90m     |[39m       [31m[1m^[22m[39m
+     [90m 148 |[39m     }
+     [90m 149 |[39m   }[33m,[39m [])[33m;[39m
+     [90m 150 |[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at setLoading (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:147:7)
+      at Generator.call (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at Generator._invoke [as next] (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.tsx:2:1)
+
+FAIL app/(portal)/freelancer/proposals/Proposals.test.tsx (7.123 s)
+  Proposals Component
+    ├ù renders the page title and subtitle (682 ms)
+    ÔêÜ renders loading skeleton initially (208 ms)
+    ÔêÜ renders the data toolbar (105 ms)
+    ÔêÜ renders the status filter (80 ms)
+    ÔêÜ page.tsx re-exports Proposals component (79 ms)
+
+  ÔùÅ Proposals Component ÔÇ║ renders the page title and subtitle
+
+    TestingLibraryElementError: Unable to find an element with the text: /Track and manage all your job proposals/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div>
+          <div
+            class="container"
+          >
+            <div>
+              <header
+                class="header header"
+              >
+                <h1
+                  class="title title"
+                >
+                  My Proposals
+                </h1>
+                <p
+                  class="subtitle subtitle"
+                >
+                  Track your submitted proposals, monitor their status, and manage pending bids.
+                </p>
+              </header>
+            </div>
+            <div>
+              <div
+                class="toolbarContainer toolbarContainer"
+              >
+                <div
+                  data-testid="data-toolbar"
+                />
+              </div>
+              <div
+                class="filterContainer filterContainer"
+              >
+                <div
+                  data-testid="status-filter"
+                />
+              </div>
+            </div>
+            <div
+              class="grid"
+            >
+              <div
+                data-testid="table-skeleton"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      79 |     render(<Proposals />);
+      80 |     expect(screen.getByText('My Proposals')).toBeInTheDocument();
+    > 81 |     expect(screen.getByText(/Track and manage all your job proposals/i)).toBeInTheDocument();
+         |                   ^
+      82 |   });
+      83 |
+      84 |   test('renders loading skeleton initially', () => {
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at getByText (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.test.tsx:81:19)
+      at Generator.call (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.test.tsx:2:1)
+      at Generator._invoke [as next] (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.test.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.test.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.test.tsx:2:1)
+      at _next (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.test.tsx:2:1)
+      at Object.<anonymous> (E:\MegiLance\frontend\app\(portal)../../freelancer/proposals/Proposals.test.tsx:2:1)
+
+FAIL app/components/Input/Input.test.tsx (6.875 s)
+  Input Component
+    ├ù renders with label (16 ms)
+    ├ù renders with placeholder (4 ms)
+    ├ù renders with initial value (3 ms)
+    ├ù handles user input (3 ms)
+    ├ù displays error message when error prop is provided (2 ms)
+    ├ù displays help text when provided (33 ms)
+    ├ù shows character counter when characterLimit is set (2 ms)
+    ├ù toggles password visibility when showPasswordToggle is true (2 ms)
+    ├ù applies disabled state correctly (7 ms)
+    ├ù renders with iconBefore and iconAfter (2 ms)
+    ├ù renders with addonBefore and addonAfter (2 ms)
+    ├ù applies fullWidth class when fullWidth prop is true (1 ms)
+    ├ù focuses and blurs correctly (1 ms)
+
+  ÔùÅ Input Component ÔÇ║ renders with label
+
+    ReferenceError: React is not defined
+
+      14 | describe('Input Component', () => {
+      15 |   test('renders with label', () => {
+    > 16 |     render(<Input label="Email" />);
+         |            ^
+      17 |     
+      18 |     const input = screen.getByRole('textbox');
+      19 |     const label = screen.getByText('Email');
+
+      at Object.React (app/components/Input/Input.test.tsx:16:12)
+
+  ÔùÅ Input Component ÔÇ║ renders with placeholder
+
+    ReferenceError: React is not defined
+
+      25 |
+      26 |   test('renders with placeholder', () => {
+    > 27 |     render(<Input placeholder="Enter your email" />);
+         |            ^
+      28 |     
+      29 |     const input = screen.getByPlaceholderText('Enter your email');
+      30 |     expect(input).toBeInTheDocument();
+
+      at Object.React (app/components/Input/Input.test.tsx:27:12)
+
+  ÔùÅ Input Component ÔÇ║ renders with initial value
+
+    ReferenceError: React is not defined
+
+      32 |
+      33 |   test('renders with initial value', () => {
+    > 34 |     render(<Input value="test@example.com" />);
+         |            ^
+      35 |     
+      36 |     const input = screen.getByDisplayValue('test@example.com');
+      37 |     expect(input).toBeInTheDocument();
+
+      at Object.React (app/components/Input/Input.test.tsx:34:12)
+
+  ÔùÅ Input Component ÔÇ║ handles user input
+
+    ReferenceError: React is not defined
+
+      39 |
+      40 |   test('handles user input', () => {
+    > 41 |     render(<Input />);
+         |            ^
+      42 |     
+      43 |     const input = screen.getByRole('textbox');
+      44 |     fireEvent.change(input, { target: { value: 'test@example.com' } });
+
+      at Object.React (app/components/Input/Input.test.tsx:41:12)
+
+  ÔùÅ Input Component ÔÇ║ displays error message when error prop is provided
+
+    ReferenceError: React is not defined
+
+      48 |
+      49 |   test('displays error message when error prop is provided', () => {
+    > 50 |     render(<Input label="Email" error="Please enter a valid email" />);
+         |            ^
+      51 |     
+      52 |     const errorMessage = screen.getByText('Please enter a valid email');
+      53 |     expect(errorMessage).toBeInTheDocument();
+
+      at Object.React (app/components/Input/Input.test.tsx:50:12)
+
+  ÔùÅ Input Component ÔÇ║ displays help text when provided
+
+    ReferenceError: React is not defined
+
+      56 |
+      57 |   test('displays help text when provided', () => {
+    > 58 |     render(<Input label="Email" helpText="We will never share your email" />);
+         |            ^
+      59 |     
+      60 |     const helpText = screen.getByText('We will never share your email');
+      61 |     expect(helpText).toBeInTheDocument();
+
+      at Object.React (app/components/Input/Input.test.tsx:58:12)
+
+  ÔùÅ Input Component ÔÇ║ shows character counter when characterLimit is set
+
+    ReferenceError: React is not defined
+
+      64 |
+      65 |   test('shows character counter when characterLimit is set', () => {
+    > 66 |     render(<Input characterLimit={100} value="Test input" />);
+         |            ^
+      67 |     
+      68 |     const characterCounter = screen.getByText('10/100');
+      69 |     expect(characterCounter).toBeInTheDocument();
+
+      at Object.React (app/components/Input/Input.test.tsx:66:12)
+
+  ÔùÅ Input Component ÔÇ║ toggles password visibility when showPasswordToggle is true
+
+    ReferenceError: React is not defined
+
+      71 |
+      72 |   test('toggles password visibility when showPasswordToggle is true', () => {
+    > 73 |     render(<Input type="password" label="Password" showPasswordToggle />);
+         |            ^
+      74 |     
+      75 |     const passwordInput = screen.getByLabelText('Password');
+      76 |     const toggleButton = screen.getByLabelText('Show password');
+
+      at Object.React (app/components/Input/Input.test.tsx:73:12)
+
+  ÔùÅ Input Component ÔÇ║ applies disabled state correctly
+
+    ReferenceError: React is not defined
+
+      86 |
+      87 |   test('applies disabled state correctly', () => {
+    > 88 |     render(<Input disabled />);
+         |            ^
+      89 |     
+      90 |     const input = screen.getByRole('textbox');
+      91 |     expect(input).toBeDisabled();
+
+      at Object.React (app/components/Input/Input.test.tsx:88:12)
+
+  ÔùÅ Input Component ÔÇ║ renders with iconBefore and iconAfter
+
+    ReferenceError: React is not defined
+
+       96 |     const IconAfter = () => <span>IconAfter</span>;
+       97 |     
+    >  98 |     render(<Input iconBefore={<IconBefore />} iconAfter={<IconAfter />} />);
+          |            ^
+       99 |     
+      100 |     expect(screen.getByText('IconBefore')).toBeInTheDocument();
+      101 |     expect(screen.getByText('IconAfter')).toBeInTheDocument();
+
+      at Object.React (app/components/Input/Input.test.tsx:98:12)
+
+  ÔùÅ Input Component ÔÇ║ renders with addonBefore and addonAfter
+
+    ReferenceError: React is not defined
+
+      103 |
+      104 |   test('renders with addonBefore and addonAfter', () => {
+    > 105 |     render(<Input addonBefore="$" addonAfter=".00" />);
+          |            ^
+      106 |     
+      107 |     expect(screen.getByText('$')).toBeInTheDocument();
+      108 |     expect(screen.getByText('.00')).toBeInTheDocument();
+
+      at Object.React (app/components/Input/Input.test.tsx:105:12)
+
+  ÔùÅ Input Component ÔÇ║ applies fullWidth class when fullWidth prop is true
+
+    ReferenceError: React is not defined
+
+      110 |
+      111 |   test('applies fullWidth class when fullWidth prop is true', () => {
+    > 112 |     render(<Input fullWidth />);
+          |            ^
+      113 |     
+      114 |     const wrapper = screen.getByRole('textbox').closest('.inputWrapper');
+      115 |     expect(wrapper).toHaveClass('inputWrapperFullWidth');
+
+      at Object.React (app/components/Input/Input.test.tsx:112:12)
+
+  ÔùÅ Input Component ÔÇ║ focuses and blurs correctly
+
+    ReferenceError: React is not defined
+
+      117 |
+      118 |   test('focuses and blurs correctly', () => {
+    > 119 |     render(<Input />);
+          |            ^
+      120 |     
+      121 |     const input = screen.getByRole('textbox');
+      122 |     const wrapper = input.closest('.inputWrapper');
+
+      at Object.React (app/components/Input/Input.test.tsx:119:12)
+
+  console.error
+    An update to Contracts inside a test was not wrapped in act(...).
+    
+    When testing, code that causes React state updates should be wrapped into act(...):
+    
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+    
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+    [0m [90m 93 |[39m           contractAddress[33m:[39m c[33m.[39mcontract_address [33m||[39m c[33m.[39mescrow_address [33m||[39m [32m'ÔÇö'[39m[33m,[39m
+     [90m 94 |[39m         }))[33m;[39m
+    [31m[1m>[22m[39m[90m 95 |[39m         setContracts(mapped)[33m;[39m
+     [90m    |[39m         [31m[1m^[22m[39m
+     [90m 96 |[39m       } [36mcatch[39m (err[33m:[39m any) {
+     [90m 97 |[39m         setFetchError(err[33m.[39mmessage [33m||[39m [32m'Failed to load contracts'[39m)[33m;[39m
+     [90m 98 |[39m       } [36mfinally[39m {[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at setContracts (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.tsx:95:9)
+      at Generator.call (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.tsx:2:1)
+      at Generator._invoke [as next] (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.tsx:2:1)
+
+  console.error
+    An update to Contracts inside a test was not wrapped in act(...).
+    
+    When testing, code that causes React state updates should be wrapped into act(...):
+    
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+    
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+    [0m [90m  97 |[39m         setFetchError(err[33m.[39mmessage [33m||[39m [32m'Failed to load contracts'[39m)[33m;[39m
+     [90m  98 |[39m       } [36mfinally[39m {
+    [31m[1m>[22m[39m[90m  99 |[39m         setFetchLoading([36mfalse[39m)[33m;[39m
+     [90m     |[39m         [31m[1m^[22m[39m
+     [90m 100 |[39m       }
+     [90m 101 |[39m     }[33m;[39m
+     [90m 102 |[39m     fetchContracts()[33m;[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at setFetchLoading (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.tsx:99:9)
+      at Generator.call (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.tsx:2:1)
+      at Generator._invoke [as next] (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.tsx:2:1)
+
+PASS app/components/Button/Button.test.tsx (7.32 s)
+  Button Component
+    ÔêÜ renders with default variant and children (617 ms)
+    ÔêÜ renders with secondary variant (92 ms)
+    ÔêÜ renders with destructive variant (104 ms)
+    ÔêÜ renders with outline variant (37 ms)
+    ÔêÜ renders with ghost variant (28 ms)
+    ÔêÜ renders with link variant (24 ms)
+    ÔêÜ applies correct size classes (66 ms)
+    ÔêÜ is disabled when disabled prop is true (68 ms)
+    ÔêÜ calls onClick handler when clicked (77 ms)
+    ÔêÜ does not call onClick handler when disabled (29 ms)
+    ÔêÜ is accessible with proper aria attributes (29 ms)
+
+PASS app/components/ProjectCard/ProjectCard.test.tsx
+  ProjectCard Component
+    ÔêÜ renders project title with link to project details (332 ms)
+    ÔêÜ displays project status with correct badge variant (38 ms)
+    ÔêÜ shows financial information with paid and budget amounts (37 ms)
+    ÔêÜ renders progress bar with correct progress value (39 ms)
+    ÔêÜ displays freelancer avatars (42 ms)
+    ÔêÜ shows additional freelancer count when more than 3 freelancers (94 ms)
+    ÔêÜ displays updated time information (25 ms)
+    ÔêÜ renders action menu with correct items (45 ms)
+    ÔêÜ shows different badge variants for different statuses (126 ms)
+
+FAIL app/(portal)/freelancer/contracts/Contracts.test.tsx (8.697 s)
+  Contracts Component
+    ÔêÜ renders the page title (257 ms)
+    ├ù renders subtitle text (1227 ms)
+    ÔêÜ shows loading state initially (283 ms)
+    ├ù shows empty state when no contracts loaded (1084 ms)
+    ÔêÜ page.tsx re-exports Contracts component (16 ms)
+
+  ÔùÅ Contracts Component ÔÇ║ renders subtitle text
+
+    Unable to find an element with the text: /View and manage all your smart contracts/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div>
+          <div>
+            <div>
+              <header>
+                <h1>
+                  Your Contracts
+                </h1>
+                <p>
+                  View and manage all your active and completed contracts with clients.
+                </p>
+              </header>
+            </div>
+            <main>
+              <div>
+                <div
+                  data-testid="data-toolbar"
+                />
+                <span
+                  aria-live="polite"
+                >
+                  Filters updated. 
+                  Sort: 
+                  projectTitle
+                   
+                  asc
+                  . Page size: 
+                  10
+                  .
+                </span>
+                <div
+                  aria-label="Table view options"
+                  role="group"
+                >
+                  <div
+                    aria-label="Filter by status"
+                    role="group"
+                  >
+                    <button
+                      aria-pressed="false"
+                      title="Add filter: Active"
+                      variant="outline"
+                    >
+                      Active
+                    </button>
+                    <button
+                      aria-pressed="false"
+                      title="Add filter: Completed"
+                      variant="outline"
+                    >
+                      Completed
+                    </button>
+                    <button
+                      aria-pressed="false"
+                      title="Add filter: Disputed"
+                      variant="outline"
+                    >
+                      Disputed
+                    </button>
+                    <span
+                      aria-live="polite"
+                    >
+                      No status filters active
+                    </span>
+                  </div>
+                  <div
+                    data-testid="column-menu"
+                  />
+                  <div
+                    data-testid="density-toggle"
+                  />
+                  <div
+                    data-testid="saved-views"
+                  />
+                </div>
+                <div
+                  data-testid="selection-bar"
+                />
+              </div>
+              <div>
+                <div>
+                  <table
+                    data-density="comfortable"
+                  >
+                    <thead>
+                      <tr>
+                        <th
+                          scope="col"
+                        >
+                          <input
+                            aria-label="Select page rows"
+                            type="checkbox"
+                          />
+                        </th>
+                        <th
+                          aria-sort="ascending"
+                          scope="col"
+                        >
+                          <button
+                            aria-label="Sort by project"
+                            type="button"
+                          >
+                            Project 
+                            <span
+                              aria-hidden="true"
+                            >
+                              Ôû▓
+                            </span>
+                          </button>
+                        </th>
+                        <th
+                          scope="col"
+                        >
+                          <button
+                            aria-label="Sort by client"
+                            type="button"
+                          >
+                            Client 
+                          </button>
+                        </th>
+                        <th
+                          scope="col"
+                        >
+                          <button
+                            aria-label="Sort by value"
+                            type="button"
+                          >
+                            Value 
+                          </button>
+                        </th>
+                        <th
+                          scope="col"
+                        >
+                          <button
+                            aria-label="Sort by status"
+                            type="button"
+                          >
+                            Status 
+                          </button>
+                        </th>
+                        <th
+                          scope="col"
+                        >
+                          Contract
+                        </th>
+                        <th
+                          scope="col"
+                        >
+                          Actions
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody />
+                  </table>
+                  <div
+                    aria-live="polite"
+                    role="status"
+                  >
+                    No contracts yet. Contracts are created when a client accepts your proposal.
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      102 |   test('renders subtitle text', async () => {
+      103 |     render(<Contracts />);
+    > 104 |     await waitFor(() => {
+          |                  ^
+      105 |       expect(screen.getByText(/View and manage all your smart contracts/i)).toBeInTheDocument();
+      106 |     });
+      107 |   });
+
+      at waitForWrapper (node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.test.tsx:104:18
+      at Generator.call (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.test.tsx:2:1)
+      at Generator._invoke [as next] (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.test.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.test.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.test.tsx:2:1)
+      at _next (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.test.tsx:2:1)
+      at Object.<anonymous> (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.test.tsx:2:1)
+
+  ÔùÅ Contracts Component ÔÇ║ shows empty state when no contracts loaded
+
+    Unable to find an element with the text: /No contracts found/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div>
+          <div>
+            <div>
+              <header>
+                <h1>
+                  Your Contracts
+                </h1>
+                <p>
+                  View and manage all your active and completed contracts with clients.
+                </p>
+              </header>
+            </div>
+            <main>
+              <div>
+                <div
+                  data-testid="data-toolbar"
+                />
+                <span
+                  aria-live="polite"
+                >
+                  Filters updated. 
+                  Sort: 
+                  projectTitle
+                   
+                  asc
+                  . Page size: 
+                  10
+                  .
+                </span>
+                <div
+                  aria-label="Table view options"
+                  role="group"
+                >
+                  <div
+                    aria-label="Filter by status"
+                    role="group"
+                  >
+                    <button
+                      aria-pressed="false"
+                      title="Add filter: Active"
+                      variant="outline"
+                    >
+                      Active
+                    </button>
+                    <button
+                      aria-pressed="false"
+                      title="Add filter: Completed"
+                      variant="outline"
+                    >
+                      Completed
+                    </button>
+                    <button
+                      aria-pressed="false"
+                      title="Add filter: Disputed"
+                      variant="outline"
+                    >
+                      Disputed
+                    </button>
+                    <span
+                      aria-live="polite"
+                    >
+                      No status filters active
+                    </span>
+                  </div>
+                  <div
+                    data-testid="column-menu"
+                  />
+                  <div
+                    data-testid="density-toggle"
+                  />
+                  <div
+                    data-testid="saved-views"
+                  />
+                </div>
+                <div
+                  data-testid="selection-bar"
+                />
+              </div>
+              <div>
+                <div>
+                  <table
+                    data-density="comfortable"
+                  >
+                    <thead>
+                      <tr>
+                        <th
+                          scope="col"
+                        >
+                          <input
+                            aria-label="Select page rows"
+                            type="checkbox"
+                          />
+                        </th>
+                        <th
+                          aria-sort="ascending"
+                          scope="col"
+                        >
+                          <button
+                            aria-label="Sort by project"
+                            type="button"
+                          >
+                            Project 
+                            <span
+                              aria-hidden="true"
+                            >
+                              Ôû▓
+                            </span>
+                          </button>
+                        </th>
+                        <th
+                          scope="col"
+                        >
+                          <button
+                            aria-label="Sort by client"
+                            type="button"
+                          >
+                            Client 
+                          </button>
+                        </th>
+                        <th
+                          scope="col"
+                        >
+                          <button
+                            aria-label="Sort by value"
+                            type="button"
+                          >
+                            Value 
+                          </button>
+                        </th>
+                        <th
+                          scope="col"
+                        >
+                          <button
+                            aria-label="Sort by status"
+                            type="button"
+                          >
+                            Status 
+                          </button>
+                        </th>
+                        <th
+                          scope="col"
+                        >
+                          Contract
+                        </th>
+                        <th
+                          scope="col"
+                        >
+                          Actions
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody />
+                  </table>
+                  <div
+                    aria-live="polite"
+                    role="status"
+                  >
+                    No contracts yet. Contracts are created when a client accepts your proposal.
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      114 |   test('shows empty state when no contracts loaded', async () => {
+      115 |     render(<Contracts />);
+    > 116 |     await waitFor(() => {
+          |                  ^
+      117 |       expect(screen.getByText(/No contracts found/i)).toBeInTheDocument();
+      118 |     });
+      119 |   });
+
+      at waitForWrapper (node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.test.tsx:116:18
+      at Generator.call (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.test.tsx:2:1)
+      at Generator._invoke [as next] (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.test.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.test.tsx:2:1)
+      at asyncGeneratorStep (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.test.tsx:2:1)
+      at _next (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.test.tsx:2:1)
+      at Object.<anonymous> (E:\MegiLance\frontend\app\(portal)../../freelancer/contracts/Contracts.test.tsx:2:1)
+
+PASS app/(main)/features/Features.test.tsx (9.962 s)
+  Features Component
+    ÔêÜ renders the page title and description (797 ms)
+    ÔêÜ renders the hero stats (566 ms)
+    ÔêÜ renders All category tab as active by default (744 ms)
+    ÔêÜ renders all category tabs (320 ms)
+    ÔêÜ filters features when a category tab is clicked (451 ms)
+    ÔêÜ renders feature cards with status pills (255 ms)
+    ÔêÜ renders CTA section (282 ms)
+    ÔêÜ has proper ARIA tablist role on category navigation (167 ms)
+    ÔêÜ renders all feature cards when All tab is active (240 ms)
+
+Test Suites: 5 failed, 3 passed, 8 total
+Tests:       24 failed, 38 passed, 62 total
+Snapshots:   0 total
+Time:        14.625 s
+Ran all test suites.
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?

@@ -624,8 +624,8 @@ def _get_clause_content(
             f"area where the {party_a_role} actively conducts business."
         ),
         "non_solicitation": (
-            f"For a period of 12 months following termination of this Agreement, neither party shall directly solicit or attempt "
-            f"to hire any employees, contractors, or clients of the other party who were involved in the performance of this Agreement."
+            "For a period of 12 months following termination of this Agreement, neither party shall directly solicit or attempt "
+            "to hire any employees, contractors, or clients of the other party who were involved in the performance of this Agreement."
         ),
         "limitation_liability": (
             f"The total liability of either party under this Agreement shall not exceed "
@@ -633,9 +633,9 @@ def _get_clause_content(
             f"In no event shall either party be liable for indirect, incidental, consequential, special, or punitive damages."
         ),
         "indemnification": (
-            f"Each party agrees to indemnify, defend, and hold harmless the other party from and against any and all claims, "
-            f"damages, losses, costs, and expenses (including reasonable attorneys' fees) arising from a breach of this Agreement "
-            f"or the negligent or wrongful acts of the indemnifying party."
+            "Each party agrees to indemnify, defend, and hold harmless the other party from and against any and all claims, "
+            "damages, losses, costs, and expenses (including reasonable attorneys' fees) arising from a breach of this Agreement "
+            "or the negligent or wrongful acts of the indemnifying party."
         ),
         "warranty": (
             f"The {party_b_role} warrants that all work product will be free from material defects for a period of {warranty_days} days "
@@ -646,8 +646,8 @@ def _get_clause_content(
             f"Upon termination, the {party_a_role} shall pay for all work completed up to the effective date of termination."
         ),
         "termination_cause": (
-            f"Either party may terminate this Agreement immediately upon written notice if the other party materially breaches "
-            f"this Agreement and fails to cure such breach within 10 business days of receiving written notice of the breach."
+            "Either party may terminate this Agreement immediately upon written notice if the other party materially breaches "
+            "this Agreement and fails to cure such breach within 10 business days of receiving written notice of the breach."
         ),
         "kill_fee": (
             f"If the {party_a_role} terminates this Agreement before completion for reasons other than the {party_b_role}'s breach, "
@@ -656,26 +656,26 @@ def _get_clause_content(
         ),
         "scope_of_work": (
             f"{scope_description or 'The scope of work shall be as mutually agreed upon by both parties.'}"
-            + (f"\n\nDeliverables:\n" + "\n".join(f"• {d}" for d in deliverables) if deliverables else "")
+            + ("\n\nDeliverables:\n" + "\n".join(f"• {d}" for d in deliverables) if deliverables else "")
         ),
         "change_orders": (
-            f"Any changes to the agreed scope of work must be documented in a written Change Order, "
-            f"signed by both parties. Change Orders shall specify the modified deliverables, timeline impact, "
-            f"and any additional costs. Work on changes shall not begin until the Change Order is approved."
+            "Any changes to the agreed scope of work must be documented in a written Change Order, "
+            "signed by both parties. Change Orders shall specify the modified deliverables, timeline impact, "
+            "and any additional costs. Work on changes shall not begin until the Change Order is approved."
         ),
         "revision_policy": (
             f"This Agreement includes up to {revision_rounds} rounds of revisions for each deliverable. "
             f"Additional revision rounds beyond the included amount will be billed at the {party_b_role}'s standard hourly rate."
         ),
         "force_majeure": (
-            f"Neither party shall be liable for delays or failures in performance resulting from circumstances beyond their "
-            f"reasonable control, including but not limited to natural disasters, war, pandemic, government restrictions, "
-            f"or disruption to essential services. The affected party shall provide prompt notice and make reasonable efforts to mitigate."
+            "Neither party shall be liable for delays or failures in performance resulting from circumstances beyond their "
+            "reasonable control, including but not limited to natural disasters, war, pandemic, government restrictions, "
+            "or disruption to essential services. The affected party shall provide prompt notice and make reasonable efforts to mitigate."
         ),
         "dispute_resolution": (
-            f"Any disputes arising under this Agreement shall first be resolved through good-faith negotiation. "
-            f"If negotiation fails, the parties agree to submit the dispute to binding arbitration in accordance with "
-            f"the rules of the jurisdiction specified herein, before resorting to litigation."
+            "Any disputes arising under this Agreement shall first be resolved through good-faith negotiation. "
+            "If negotiation fails, the parties agree to submit the dispute to binding arbitration in accordance with "
+            "the rules of the jurisdiction specified herein, before resorting to litigation."
         ),
         "governing_law": (
             f"This Agreement shall be governed by and construed in accordance with the laws of "
@@ -683,9 +683,9 @@ def _get_clause_content(
             f"Any legal proceedings shall be brought in the courts of that jurisdiction."
         ),
         "entire_agreement": (
-            f"This Agreement constitutes the entire understanding between the parties concerning the subject matter hereof "
-            f"and supersedes all prior negotiations, agreements, and understandings, whether written or oral. "
-            f"No modification of this Agreement shall be valid unless made in writing and signed by both parties."
+            "This Agreement constitutes the entire understanding between the parties concerning the subject matter hereof "
+            "and supersedes all prior negotiations, agreements, and understandings, whether written or oral. "
+            "No modification of this Agreement shall be valid unless made in writing and signed by both parties."
         ),
         "uptime_guarantee": (
             f"The service provider guarantees a minimum uptime of {uptime_percentage}% measured on a monthly basis. "

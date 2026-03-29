@@ -1,5 +1,5 @@
 # @AI-HINT: Payment model for tracking all financial transactions on the platform
-from sqlalchemy import String, Integer, Float, DateTime, Text, ForeignKey, Numeric
+from sqlalchemy import String, DateTime, Text, ForeignKey, Numeric
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 from datetime import datetime, timezone

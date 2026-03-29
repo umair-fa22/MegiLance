@@ -1,0 +1,198 @@
+app/(main)/pricing/Pricing.tsx(7,29): error TS2307: Cannot find module '@/app/components/organisms/PricingCard/PricingCard' or its corresponding type declarations.
+app/(portal)/layout.tsx(12,21): error TS2307: Cannot find module '../components/Loading/Loading' or its corresponding type declarations.
+app/components/Admin/AdminPolicyEditor/AdminPolicyEditor.tsx(8,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Admin/AdminPolicyEditor/AdminPolicyEditor.tsx(9,22): error TS2307: Cannot find module '@/app/components/Textarea/Textarea' or its corresponding type declarations.
+app/components/Admin/AdminPolicyEditor/AdminPolicyEditor.tsx(108,22): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Admin/AISettings/AISettings.tsx(7,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Admin/AISettings/AISettings.tsx(8,18): error TS2307: Cannot find module '@/app/components/Card/Card' or its corresponding type declarations.
+app/components/Admin/AISettings/AISettings.tsx(10,20): error TS2307: Cannot find module '@/app/components/Slider/Slider' or its corresponding type declarations.
+app/components/Admin/AuditLog/AuditLog.tsx(8,18): error TS2307: Cannot find module '@/app/components/Card/Card' or its corresponding type declarations.
+app/components/Admin/AuditLog/AuditLog.tsx(9,19): error TS2307: Cannot find module '@/app/components/Badge/Badge' or its corresponding type declarations.
+app/components/Admin/AuditLog/AuditLog.tsx(11,19): error TS2307: Cannot find module '@/app/components/Input/Input' or its corresponding type declarations.
+app/components/Admin/AuditLog/AuditLog.tsx(12,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Admin/FlaggedFraudList/FlaggedFraudList.tsx(8,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Admin/FlaggedFraudList/FlaggedFraudList.tsx(9,19): error TS2307: Cannot find module '@/app/components/Badge/Badge' or its corresponding type declarations.
+app/components/Admin/FlaggedFraudList/FlaggedFraudList.tsx(10,18): error TS2307: Cannot find module '@/app/components/Card/Card' or its corresponding type declarations.
+app/components/Admin/FlaggedFraudList/FlaggedFraudList.tsx(11,19): error TS2307: Cannot find module '@/app/components/Input/Input' or its corresponding type declarations.
+app/components/Admin/FlaggedFraudList/FlaggedFraudList.tsx(165,22): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Admin/FlaggedReviews/FlaggedReviews.tsx(8,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Admin/FlaggedReviews/FlaggedReviews.tsx(9,19): error TS2307: Cannot find module '@/app/components/Badge/Badge' or its corresponding type declarations.
+app/components/Admin/FlaggedReviews/FlaggedReviews.tsx(10,18): error TS2307: Cannot find module '@/app/components/Card/Card' or its corresponding type declarations.
+app/components/Admin/FlaggedReviews/FlaggedReviews.tsx(11,19): error TS2307: Cannot find module '@/app/components/Input/Input' or its corresponding type declarations.
+app/components/Admin/FlaggedReviews/FlaggedReviews.tsx(13,24): error TS2307: Cannot find module '@/app/components/UserAvatar/UserAvatar' or its corresponding type declarations.
+app/components/Admin/FlaggedReviews/FlaggedReviews.tsx(14,24): error TS2307: Cannot find module '@/app/components/StarRating/StarRating' or its corresponding type declarations.
+app/components/Admin/FlaggedReviews/FlaggedReviews.tsx(197,22): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Admin/JobModerationQueue/JobModerationQueue.tsx(8,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Admin/JobModerationQueue/JobModerationQueue.tsx(9,19): error TS2307: Cannot find module '@/app/components/Badge/Badge' or its corresponding type declarations.
+app/components/Admin/JobModerationQueue/JobModerationQueue.tsx(10,18): error TS2307: Cannot find module '@/app/components/Card/Card' or its corresponding type declarations.
+app/components/Admin/JobModerationQueue/JobModerationQueue.tsx(11,19): error TS2307: Cannot find module '@/app/components/Input/Input' or its corresponding type declarations.
+app/components/Admin/JobModerationQueue/JobModerationQueue.tsx(13,24): error TS2307: Cannot find module '@/app/components/UserAvatar/UserAvatar' or its corresponding type declarations.
+app/components/Admin/JobModerationQueue/JobModerationQueue.tsx(260,22): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Admin/ReviewSentimentDashboard/ReviewSentimentDashboard.tsx(8,18): error TS2307: Cannot find module '@/app/components/Card/Card' or its corresponding type declarations.
+app/components/Admin/ReviewSentimentDashboard/ReviewSentimentDashboard.tsx(10,22): error TS2307: Cannot find module '@/app/components/BarChart/BarChart' or its corresponding type declarations.
+app/components/Admin/ReviewSentimentDashboard/ReviewSentimentDashboard.tsx(11,24): error TS2307: Cannot find module '@/app/components/UserAvatar/UserAvatar' or its corresponding type declarations.
+app/components/Admin/UserSearchTable/UserSearchTable.tsx(8,19): error TS2307: Cannot find module '@/app/components/Badge/Badge' or its corresponding type declarations.
+app/components/Admin/UserSearchTable/UserSearchTable.tsx(9,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Admin/UserSearchTable/UserSearchTable.tsx(10,18): error TS2307: Cannot find module '@/app/components/Card/Card' or its corresponding type declarations.
+app/components/Admin/UserSearchTable/UserSearchTable.tsx(11,19): error TS2307: Cannot find module '@/app/components/Input/Input' or its corresponding type declarations.
+app/components/Admin/UserSearchTable/UserSearchTable.tsx(13,24): error TS2307: Cannot find module '@/app/components/UserAvatar/UserAvatar' or its corresponding type declarations.
+app/components/Admin/UserSearchTable/UserSearchTable.tsx(14,44): error TS2307: Cannot find module '@/app/components/ActionMenu/ActionMenu' or its corresponding type declarations.
+app/components/Admin/UserSearchTable/UserSearchTable.tsx(207,22): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Admin/Withdrawals/Withdrawals.tsx(10,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Admin/Withdrawals/Withdrawals.tsx(11,19): error TS2307: Cannot find module '@/app/components/Badge/Badge' or its corresponding type declarations.
+app/components/Admin/Withdrawals/Withdrawals.tsx(12,24): error TS2307: Cannot find module '@/app/components/UserAvatar/UserAvatar' or its corresponding type declarations.
+app/components/Admin/Withdrawals/Withdrawals.tsx(13,49): error TS2307: Cannot find module '@/app/components/ActionMenu/ActionMenu' or its corresponding type declarations.
+app/components/AI/FreelancerRankVisualizer/FreelancerRankVisualizer.tsx(7,29): error TS2307: Cannot find module '@/app/components/DashboardWidget/DashboardWidget' or its corresponding type declarations.
+app/components/atoms/Logo/Logo.tsx(4,27): error TS2307: Cannot find module '@/app/components/MegiLanceLogo/MegiLanceLogo' or its corresponding type declarations.
+app/components/Auth/DevQuickLogin/DevQuickLogin.tsx(8,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/DataDisplay/index.ts(1,40): error TS2307: Cannot find module '../DataToolbar/DataToolbar' or its corresponding type declarations.
+app/components/DataDisplay/index.ts(2,42): error TS2307: Cannot find module '../DataTableExtras/DensityToggle' or its corresponding type declarations.
+app/components/DataDisplay/index.ts(3,49): error TS2307: Cannot find module '../DataTableExtras/ColumnVisibilityMenu' or its corresponding type declarations.
+app/components/DataDisplay/index.ts(4,43): error TS2307: Cannot find module '../DataTableExtras/SavedViewsMenu' or its corresponding type declarations.
+app/components/DataDisplay/index.ts(5,41): error TS2307: Cannot find module '../DataTableExtras/SelectionBar' or its corresponding type declarations.
+app/components/DataDisplay/index.ts(6,42): error TS2307: Cannot find module '../DataTableExtras/TableSkeleton' or its corresponding type declarations.
+app/components/DataDisplay/index.ts(7,45): error TS2307: Cannot find module '../DataTableExtras/VirtualTableBody' or its corresponding type declarations.
+app/components/DataDisplay/index.ts(8,42): error TS2307: Cannot find module '../PaginationBar/PaginationBar' or its corresponding type declarations.
+app/components/Freelancer/PortfolioItemCard/PortfolioItemCard.tsx(8,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/molecules/ActionMenu/ActionMenu.tsx(8,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/molecules/FileUpload/FileUpload.tsx(8,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/molecules/HireMeCard/HireMeCard.tsx(8,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/molecules/ProfileMenu/ProfileMenu.tsx(9,24): error TS2307: Cannot find module '@/app/components/UserAvatar/UserAvatar' or its corresponding type declarations.
+app/components/molecules/ProfileMenu/ProfileMenu.tsx(10,48): error TS2307: Cannot find module '@/app/components/StatusIndicator/StatusIndicator' or its corresponding type declarations.
+app/components/molecules/StatCard/StatCard.tsx(9,26): error TS2307: Cannot find module '@/app/components/KPISparkline/KPISparkline' or its corresponding type declarations.
+app/components/molecules/StatusIndicator/StatusIndicator.tsx(7,37): error TS2307: Cannot find module '@/app/components/Badge/Badge' or its corresponding type declarations.
+app/components/molecules/TimeTracker/TimeTracker.tsx(7,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/molecules/VideoCall/VideoCall.tsx(9,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/AnalyticsDashboard/AnalyticsDashboard.tsx(7,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/AppChrome/AppChrome.tsx(10,20): error TS2307: Cannot find module '@/app/components/Header/Header' or its corresponding type declarations.
+app/components/organisms/AppChrome/AppChrome.tsx(11,26): error TS2307: Cannot find module '@/app/components/Layout/PublicFooter/PublicFooter' or its corresponding type declarations.
+app/components/organisms/AppChrome/AppChrome.tsx(12,31): error TS2307: Cannot find module '@/app/components/ThemeToggleButton' or its corresponding type declarations.
+app/components/organisms/AppChrome/AppChrome.tsx(13,35): error TS2307: Cannot find module '@/app/components/FloatingActionButtons/FloatingActionButtons' or its corresponding type declarations.
+app/components/organisms/AppChrome/AppChrome.tsx(18,25): error TS2307: Cannot find module '@/app/components/Breadcrumbs/Breadcrumbs' or its corresponding type declarations.
+app/components/organisms/CookieConsent/CookieConsent.tsx(7,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/EmailCapture/EmailCapture.tsx(9,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/Footer/Footer.tsx(10,27): error TS2307: Cannot find module '@/app/components/MegiLanceLogo/MegiLanceLogo' or its corresponding type declarations.
+app/components/organisms/FraudAlerts/FraudAlerts.tsx(13,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/FraudAlerts/FraudAlerts.tsx(14,19): error TS2307: Cannot find module '@/app/components/Modal/Modal' or its corresponding type declarations.
+app/components/organisms/GigGrid/GigGrid.tsx(8,39): error TS2307: Cannot find module '@/app/components/GigCard/GigCard' or its corresponding type declarations.
+app/components/organisms/GigGrid/GigGrid.tsx(9,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/Header/Header.tsx(14,31): error TS2307: Cannot find module '@/app/components/MegiLanceLogo/MegiLanceLogo' or its corresponding type declarations.
+app/components/organisms/Header/Header.tsx(15,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/Header/Header.tsx(16,55): error TS2307: Cannot find module '@/app/components/FeatureStatusPill' or its corresponding type declarations.
+app/components/organisms/JobCard/JobCard.tsx(8,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/LinkedAccounts/LinkedAccounts.tsx(12,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/Messaging/ChatInbox/ChatInbox.tsx(7,24): error TS2307: Cannot find module '@/app/components/UserAvatar/UserAvatar' or its corresponding type declarations.
+app/components/organisms/Messaging/ChatInbox/ChatInbox.tsx(8,19): error TS2307: Cannot find module '@/app/components/Badge/Badge' or its corresponding type declarations.
+app/components/organisms/Messaging/FileShareComponent/FileShareComponent.tsx(6,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/Messaging/RealtimeChat.tsx(12,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/Messaging/RealtimeChat.tsx(13,19): error TS2307: Cannot find module '@/app/components/Input/Input' or its corresponding type declarations.
+app/components/organisms/Messaging/RealtimeChat.tsx(377,26): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/MFASetup/MFASetup.tsx(8,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/MFASetup/MFASetup.tsx(9,19): error TS2307: Cannot find module '@/app/components/Input/Input' or its corresponding type declarations.
+app/components/organisms/MFASetup/MFASetup.tsx(199,24): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/MFASetup/MFASetup.tsx(220,20): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/MultiStepForm/MultiStepForm.tsx(10,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/Notifications/Notifications.tsx(9,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/PaymentCard/PaymentCard.tsx(9,24): error TS2307: Cannot find module '@/app/components/UserAvatar/UserAvatar' or its corresponding type declarations.
+app/components/organisms/PaymentCard/PaymentCard.tsx(10,35): error TS2307: Cannot find module '@/app/components/Badge/Badge' or its corresponding type declarations.
+app/components/organisms/PaymentCard/PaymentCard.tsx(11,24): error TS2307: Cannot find module '@/app/components/ActionMenu/ActionMenu' or its corresponding type declarations.
+app/components/organisms/PaymentHistory/PaymentHistory.tsx(7,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/PostProjectCard/PostProjectCard.tsx(8,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/ProjectCard/ProjectCard.tsx(9,24): error TS2307: Cannot find module '@/app/components/UserAvatar/UserAvatar' or its corresponding type declarations.
+app/components/organisms/ProjectCard/ProjectCard.tsx(10,25): error TS2307: Cannot find module '@/app/components/ProgressBar/ProgressBar' or its corresponding type declarations.
+app/components/organisms/ProjectCard/ProjectCard.tsx(11,24): error TS2307: Cannot find module '@/app/components/ActionMenu/ActionMenu' or its corresponding type declarations.
+app/components/organisms/ProjectCard/ProjectCard.tsx(12,35): error TS2307: Cannot find module '@/app/components/Badge/Badge' or its corresponding type declarations.
+app/components/organisms/QuickLogin/QuickLogin.tsx(7,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/QuickLogin/QuickLogin.tsx(8,18): error TS2307: Cannot find module '@/app/components/Card/Card' or its corresponding type declarations.
+app/components/organisms/Search/AdvancedSearch/AdvancedSearch.tsx(13,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/SecuritySettings/SecuritySettings.tsx(9,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/SecuritySettings/SecuritySettings.tsx(10,28): error TS2307: Cannot find module '@/app/components/LinkedAccounts/LinkedAccounts' or its corresponding type declarations.
+app/components/organisms/Sidebar/Sidebar.tsx(10,31): error TS2307: Cannot find module '../MegiLanceLogo/MegiLanceLogo' or its corresponding type declarations.
+app/components/organisms/Sidebar/Sidebar.tsx(11,24): error TS2307: Cannot find module '../UserAvatar/UserAvatar' or its corresponding type declarations.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(8,45): error TS2307: Cannot find module '@/app/components/Wizard/WizardContainer/WizardContainer' or its corresponding type declarations.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(10,19): error TS2307: Cannot find module '@/app/components/Input/Input' or its corresponding type declarations.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(11,22): error TS2307: Cannot find module '@/app/components/Textarea/Textarea' or its corresponding type declarations.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(12,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(328,22): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(339,22): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(354,28): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(379,22): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(387,22): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(419,26): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(442,30): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(448,30): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(457,32): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(464,32): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(482,24): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(491,24): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(503,24): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(560,22): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(575,22): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/Wizard/ContractWizard/ContractWizard.tsx(625,24): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/organisms/Wizard/WizardContainer/WizardContainer.tsx(8,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(14,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(15,19): error TS2307: Cannot find module '@/app/components/Input/Input' or its corresponding type declarations.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(16,22): error TS2307: Cannot find module '@/app/components/Textarea/Textarea' or its corresponding type declarations.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(18,23): error TS2307: Cannot find module '@/app/components/TagsInput/TagsInput' or its corresponding type declarations.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(19,24): error TS2307: Cannot find module '@/app/components/FileUpload/FileUpload' or its corresponding type declarations.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(448,36): error TS7006: Parameter 'url' implicitly has an 'any' type.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(456,26): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(464,26): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(473,28): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(484,28): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(495,26): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(516,32): error TS7006: Parameter 'skills' implicitly has an 'any' type.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(526,26): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(560,32): error TS7006: Parameter 'languages' implicitly has an 'any' type.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(605,40): error TS7006: Parameter 'url' implicitly has an 'any' type.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(613,34): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(620,34): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(628,36): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(638,40): error TS7006: Parameter 'tags' implicitly has an 'any' type.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(660,28): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(670,26): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(678,26): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Profile/ProfileWizard/ProfileWizard.tsx(686,28): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Profile/UserProfile/UserProfile.tsx(15,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Profile/UserProfile/UserProfile.tsx(16,24): error TS2307: Cannot find module '@/app/components/StarRating/StarRating' or its corresponding type declarations.
+app/components/Project/FeasibilityAnalyzer/FeasibilityAnalyzer.tsx(8,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Project/ProjectWizard/ProjectAICopilot.tsx(8,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Project/ProjectWizard/ProjectWizard.tsx(16,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Project/ProjectWizard/ProjectWizard.tsx(17,19): error TS2307: Cannot find module '@/app/components/Input/Input' or its corresponding type declarations.
+app/components/Project/ProjectWizard/ProjectWizard.tsx(18,22): error TS2307: Cannot find module '@/app/components/Textarea/Textarea' or its corresponding type declarations.
+app/components/Project/ProjectWizard/ProjectWizard.tsx(20,23): error TS2307: Cannot find module '@/app/components/TagsInput/TagsInput' or its corresponding type declarations.
+app/components/Project/ProjectWizard/ProjectWizard.tsx(21,24): error TS2307: Cannot find module '@/app/components/FileUpload/FileUpload' or its corresponding type declarations.
+app/components/Project/ProjectWizard/ProjectWizard.tsx(424,30): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Project/ProjectWizard/ProjectWizard.tsx(438,30): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Project/ProjectWizard/ProjectWizard.tsx(466,38): error TS7006: Parameter 'url' implicitly has an 'any' type.
+app/components/Project/ProjectWizard/ProjectWizard.tsx(511,30): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Project/ProjectWizard/ProjectWizard.tsx(525,30): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Project/ProjectWizard/ProjectWizard.tsx(572,34): error TS7006: Parameter 'skills' implicitly has an 'any' type.
+app/components/Proposal/ProposalBuilder/ProposalAICopilot.tsx(8,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Proposal/ProposalBuilder/ProposalBuilder.tsx(12,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Proposal/ProposalBuilder/ProposalBuilder.tsx(13,19): error TS2307: Cannot find module '@/app/components/Input/Input' or its corresponding type declarations.
+app/components/Proposal/ProposalBuilder/ProposalBuilder.tsx(14,22): error TS2307: Cannot find module '@/app/components/Textarea/Textarea' or its corresponding type declarations.
+app/components/Proposal/ProposalBuilder/ProposalBuilder.tsx(16,24): error TS2307: Cannot find module '@/app/components/FileUpload/FileUpload' or its corresponding type declarations.
+app/components/Proposal/ProposalBuilder/ProposalBuilder.tsx(344,26): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Proposal/ProposalBuilder/ProposalBuilder.tsx(369,28): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Proposal/ProposalBuilder/ProposalBuilder.tsx(379,28): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Proposal/ProposalBuilder/ProposalBuilder.tsx(388,28): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/Proposal/ProposalBuilder/ProposalBuilder.tsx(415,34): error TS7006: Parameter 'url' implicitly has an 'any' type.
+app/components/Proposal/UpsellSuggestions/UpsellSuggestions.tsx(8,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/PWA/InstallAppBanner/InstallAppBanner.tsx(6,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/PWA/UpdateNotification/UpdateNotification.tsx(6,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Review/ReviewForm/ReviewForm.tsx(9,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/Settings/NotificationPreferences/NotificationPreferences.tsx(12,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/templates/AppLayout/AppLayout.tsx(5,21): error TS2307: Cannot find module '../Sidebar/Sidebar' or its corresponding type declarations.
+app/components/templates/AppLayout/AppLayout.tsx(8,29): error TS2307: Cannot find module '../MobileBottomNav/MobileBottomNav' or its corresponding type declarations.
+app/components/templates/AppLayout/AppLayout.tsx(10,28): error TS2307: Cannot find module '@/app/components/CommandPalette/CommandPalette' or its corresponding type declarations.
+app/components/templates/AppLayout/AppLayout.tsx(12,27): error TS2307: Cannot find module '@/app/components/ErrorBoundary/ErrorBoundary' or its corresponding type declarations.
+app/components/templates/AppLayout/AppLayout.tsx(14,21): error TS2307: Cannot find module '../Loading/Loading' or its corresponding type declarations.
+app/components/templates/Layout/PortalNavbar/PortalNavbar.tsx(15,46): error TS2307: Cannot find module '@/app/components/ProfileMenu/ProfileMenu' or its corresponding type declarations.
+app/components/templates/Layout/PublicFooter/PublicFooter.tsx(10,31): error TS2307: Cannot find module '@/app/components/MegiLanceLogo/MegiLanceLogo' or its corresponding type declarations.
+app/components/templates/Layout/PublicHeader/PublicHeader.tsx(10,31): error TS2307: Cannot find module '@/app/components/MegiLanceLogo/MegiLanceLogo' or its corresponding type declarations.
+app/components/templates/Layout/PublicHeader/PublicHeader.tsx(11,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.
+app/components/templates/Layout/PublicHeader/PublicHeader.tsx(12,48): error TS2307: Cannot find module '@/app/components/StatusIndicator/StatusIndicator' or its corresponding type declarations.
+app/components/templates/Layouts/DashboardLayout.tsx(5,21): error TS2307: Cannot find module '../Sidebar/Sidebar' or its corresponding type declarations.
+app/loading.tsx(2,24): error TS2307: Cannot find module './components/Loading/MegaLoader' or its corresponding type declarations.
+components/pricing/PricingCard/PricingCard.tsx(9,20): error TS2307: Cannot find module '@/app/components/Button/Button' or its corresponding type declarations.

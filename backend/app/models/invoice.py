@@ -2,7 +2,7 @@
 """
 Invoice model for billing and payment tracking
 """
-from sqlalchemy import String, Integer, Float, DateTime, Text, ForeignKey
+from sqlalchemy import String, Float, DateTime, Text, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 from datetime import datetime, timezone

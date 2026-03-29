@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { TrendingUp, AlertTriangle, CheckCircle, Lightbulb } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import api from '@/lib/api';
 
 import commonStyles from './FeasibilityAnalyzer.common.module.css';

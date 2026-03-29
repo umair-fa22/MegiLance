@@ -57,3 +57,104 @@
 .contactCard .primary { background: white; color: var(--brand); }
 .secondary { background: var(--surface-2); color: inherit; border: 1px solid var(--border); }
 .secondary:hover { transform: translateY(-2px); box-shadow: var(--elevation-sm); }
+
+/* Responsive */
+@media (max-width: 480px) {
+  .container { padding: 48px 16px; }
+  .header { margin-bottom: 32px; }
+  .title { font-size: 2rem; margin: 10px 0; }
+  .subtitle { font-size: 1rem; }
+  .badge { padding: 5px 12px; font-size: 0.7rem; }
+  .section { margin: 40px 0; }
+  .sectionTitle { font-size: 1.25rem; margin-bottom: 20px; gap: 6px; }
+  .statsGrid { gap: 16px; }
+  .statCard { padding: 20px; border-radius: 14px; }
+  .statValue { font-size: 1.75rem; }
+  .statLabel { font-size: 0.8rem; }
+  .grid { gap: 20px; }
+  .card { padding: 20px; border-radius: 14px; gap: 10px; }
+  .cardIcon { width: 44px; height: 44px; border-radius: 10px; }
+  .cardTitle { font-size: 1rem; }
+  .releasesList { gap: 16px; }
+  .releaseCard { padding: 20px; border-radius: 14px; }
+  .releaseDate { font-size: 0.8rem; margin-bottom: 6px; }
+  .releaseTitle { font-size: 1rem; margin-bottom: 6px; }
+  .releaseDesc { font-size: 0.875rem; margin-bottom: 10px; }
+  .releaseLink { font-size: 0.875rem; }
+  .mediaGrid { gap: 16px; }
+  .mediaCard { padding: 16px; border-radius: 10px; }
+  .mediaOutlet { font-size: 1.1rem; margin-bottom: 6px; }
+  .mediaTitle { font-size: 0.8rem; }
+  .contactCard { padding: 36px 20px; border-radius: 16px; }
+  .contactIcon { width: 56px; height: 56px; margin-bottom: 12px; }
+  .button { height: 40px; padding: 0 16px; font-size: 0.9rem; border-radius: 8px; }
+}
+
+/* Small phones (380px and below) */
+@media (max-width: 380px) {
+  .container { padding: 40px 12px; }
+  .header { margin-bottom: 28px; }
+  .title { font-size: 1.75rem; margin: 8px 0; }
+  .subtitle { font-size: 0.9rem; }
+  .badge { padding: 4px 10px; font-size: 0.65rem; }
+  .section { margin: 32px 0; }
+  .sectionTitle { font-size: 1.1rem; margin-bottom: 16px; }
+  .statsGrid { gap: 12px; }
+  .statCard { padding: 16px; border-radius: 12px; }
+  .statValue { font-size: 1.5rem; }
+  .statLabel { font-size: 0.75rem; }
+  .grid { gap: 16px; grid-template-columns: 1fr; }
+  .card { padding: 16px; border-radius: 12px; gap: 8px; }
+  .cardIcon { width: 40px; height: 40px; border-radius: 8px; }
+  .cardTitle { font-size: 0.95rem; }
+  .link { font-size: 0.85rem; }
+  .releasesList { gap: 12px; }
+  .releaseCard { padding: 16px; border-radius: 12px; }
+  .releaseDate { font-size: 0.75rem; margin-bottom: 5px; gap: 4px; }
+  .releaseTitle { font-size: 0.95rem; margin-bottom: 5px; }
+  .releaseDesc { font-size: 0.8rem; margin-bottom: 8px; line-height: 1.45; }
+  .releaseLink { font-size: 0.8rem; gap: 4px; }
+  .mediaGrid { gap: 12px; grid-template-columns: repeat(2, 1fr); }
+  .mediaCard { padding: 14px; border-radius: 8px; }
+  .mediaOutlet { font-size: 1rem; margin-bottom: 4px; }
+  .mediaTitle { font-size: 0.75rem; }
+  .contactCard { padding: 28px 16px; border-radius: 14px; }
+  .contactIcon { width: 48px; height: 48px; margin-bottom: 10px; }
+  .contactCard .sectionTitle { font-size: 1.1rem; }
+  .contactCard p { font-size: 0.9rem; margin-bottom: 20px; }
+  .button { height: 38px; padding: 0 14px; font-size: 0.85rem; border-radius: 7px; gap: 6px; }
+}
+
+/* Extra small phones (320px) */
+@media (max-width: 320px) {
+  .container { padding: 32px 8px; }
+  .header { margin-bottom: 24px; }
+  .title { font-size: 1.5rem; margin: 6px 0; }
+  .subtitle { font-size: 0.85rem; }
+  .badge { padding: 3px 8px; font-size: 0.6rem; }
+  .section { margin: 28px 0; }
+  .sectionTitle { font-size: 1rem; margin-bottom: 14px; }
+  .statsGrid { gap: 10px; }
+  .statCard { padding: 14px; border-radius: 10px; }
+  .statValue { font-size: 1.35rem; }
+  .statLabel { font-size: 0.7rem; }
+  .grid { gap: 12px; }
+  .card { padding: 14px; border-radius: 10px; gap: 6px; }
+  .cardIcon { width: 36px; height: 36px; border-radius: 7px; }
+  .cardTitle { font-size: 0.9rem; }
+  .releasesList { gap: 10px; }
+  .releaseCard { padding: 14px; border-radius: 10px; }
+  .releaseDate { font-size: 0.7rem; }
+  .releaseTitle { font-size: 0.9rem; }
+  .releaseDesc { font-size: 0.75rem; margin-bottom: 6px; }
+  .releaseLink { font-size: 0.75rem; }
+  .mediaGrid { gap: 10px; }
+  .mediaCard { padding: 12px; border-radius: 7px; }
+  .mediaOutlet { font-size: 0.9rem; }
+  .mediaTitle { font-size: 0.7rem; }
+  .contactCard { padding: 24px 12px; border-radius: 12px; }
+  .contactIcon { width: 44px; height: 44px; margin-bottom: 8px; }
+  .contactCard .sectionTitle { font-size: 1rem; }
+  .contactCard p { font-size: 0.85rem; margin-bottom: 16px; }
+  .button { height: 36px; padding: 0 12px; font-size: 0.8rem; border-radius: 6px; gap: 5px; }
+}

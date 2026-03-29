@@ -3,7 +3,7 @@
 
 from typing import Optional, Dict, List, Any
 from datetime import datetime, timedelta, timezone
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 import logging
 import secrets
 import hashlib
@@ -230,7 +230,7 @@ class AdvancedSecurityService:
                     user_id,
                     "mfa_verified",
                     "low",
-                    f"TOTP verification successful",
+                    "TOTP verification successful",
                     device_info
                 )
                 return {"verified": True, "method": method}
@@ -239,7 +239,7 @@ class AdvancedSecurityService:
                     user_id,
                     "mfa_failed",
                     "medium",
-                    f"TOTP verification failed",
+                    "TOTP verification failed",
                     device_info
                 )
                 return {"verified": False, "error": "Invalid code"}

@@ -38,7 +38,6 @@ const PageTransitionClient: React.FC<PageTransitionProps> = ({ children, classNa
     <div
       ref={wrapperRef}
       className={[styles.base, themeClass, className].filter(Boolean).join(' ')}
-      style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column' as const }}
       role="region"
       aria-label="Page content"
       tabIndex={-1}

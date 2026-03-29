@@ -59,18 +59,18 @@ jest.mock('@/app/lib/hooks/useColumnVisibility', () => ({
 }));
 
 // Mock Toast
-jest.mock('@/app/components/Toast', () => ({
+jest.mock('@/app/components/molecules/Toast', () => ({
   useToaster: () => ({ notify: jest.fn() }),
 }));
 
 // Mock child components
-jest.mock('@/app/components/Button', () => ({
+jest.mock('@/app/components/atoms/Button', () => ({
   Button: ({ children, ...props }: any) => <button {...props}>{children}</button>,
 }));
-jest.mock('@/app/components/Badge', () => ({
+jest.mock('@/app/components/atoms/Badge', () => ({
   Badge: ({ children }: any) => <span>{children}</span>,
 }));
-jest.mock('@/app/components/Modal', () => ({
+jest.mock('@/app/components/organisms/Modal', () => ({
   Modal: ({ children, isOpen }: any) => isOpen ? <div data-testid="modal">{children}</div> : null,
 }));
 jest.mock('@/app/components/DataDisplay', () => ({
@@ -102,7 +102,7 @@ describe('Contracts Component', () => {
   test('renders subtitle text', async () => {
     render(<Contracts />);
     await waitFor(() => {
-      expect(screen.getByText(/View and manage all your smart contracts/i)).toBeInTheDocument();
+      expect(screen.getByText(/View and manage all your active and completed contracts/i)).toBeInTheDocument();
     });
   });
 
@@ -112,9 +112,13 @@ describe('Contracts Component', () => {
   });
 
   test('shows empty state when no contracts loaded', async () => {
+    // Override the mock to return no contracts
+    const api = require('@/lib/api').default;
+    (api.contracts.list as jest.Mock).mockResolvedValueOnce({ items: [] });
+    
     render(<Contracts />);
     await waitFor(() => {
-      expect(screen.getByText(/No contracts found/i)).toBeInTheDocument();
+      expect(screen.getByText(/No contracts yet/i)).toBeInTheDocument();
     });
   });
 

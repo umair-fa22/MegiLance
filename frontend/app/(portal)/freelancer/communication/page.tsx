@@ -4,8 +4,8 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Button from '@/app/components/Button/Button';
-import Badge from '@/app/components/Badge/Badge';
+import Button from '@/app/components/atoms/Button/Button';
+import Badge from '@/app/components/atoms/Badge/Badge';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';

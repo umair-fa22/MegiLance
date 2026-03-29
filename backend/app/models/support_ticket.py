@@ -2,7 +2,7 @@
 """
 Support ticket model for customer service
 """
-from sqlalchemy import String, Integer, DateTime, Text, ForeignKey
+from sqlalchemy import String, DateTime, Text, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 from datetime import datetime, timezone

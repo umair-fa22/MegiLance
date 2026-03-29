@@ -289,3 +289,45 @@
   .statsRow { grid-template-columns: repeat(2, 1fr); }
   .toolbar { flex-direction: column; }
 }
+
+
+@media (max-width: 380px) {
+  .selectAllRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .headerTop {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .noteActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .jobTitleRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding: 0.5rem;
+  }
+  .jobCard {
+    padding: 0.75rem;
+  }
+  .title {
+    font-size: 1.125rem;
+  }
+  .jobTitle {
+    font-size: 1.125rem;
+  }
+}

@@ -213,3 +213,33 @@
   margin: var(--space-1) 0 0 0;
   line-height: 1.4;
 }
+
+@media (max-width: 380px) {
+  .heroRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+  .balanceAmount {
+    font-size: 2rem;
+  }
+  .feeRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 320px) {
+  .title {
+    font-size: 1.5rem;
+  }
+  .balanceCard,
+  .transactionsCard {
+    padding: var(--space-4);
+  }
+  .balanceAmount {
+    font-size: 1.75rem;
+  }
+}

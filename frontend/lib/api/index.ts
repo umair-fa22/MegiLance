@@ -20,7 +20,7 @@ export { messagesApi, notificationsApi, communicationApi, realtimeApi } from './
 export { searchApi, categoriesApi, tagsApi, favoritesApi, searchesApi, searchAnalyticsApi } from './search';
 
 // Users & profiles
-export { usersApi, portalApi, verificationApi, portfolioApi, portfolioShowcaseApi, skillsApi, skillTaxonomyApi, publicProfileApi } from './users';
+export { usersApi, portalApi, verificationApi, portfolioApi, portfolioShowcaseApi, skillsApi, publicProfileApi } from './users';
 
 // Admin & analytics
 export { adminApi, analyticsApi, metricsApi, auditTrailApi, complianceApi, featureFlagsApi } from './admin';
@@ -38,7 +38,7 @@ export { webhooksApi, apiKeysApi, teamsApi, workflowApi, brandingApi, emailTempl
 export { aiApi, aiWritingApi, fraudDetectionApi } from './ai';
 
 // Content & misc
-export { knowledgeBaseApi, legalDocsApi, fileVersionsApi, videoCallsApi, notesTagsApi, activityFeedApi, uploadsApi, externalProjectsApi, userFeedbackApi } from './content';
+export { knowledgeBaseApi, legalDocsApi, videoCallsApi, activityFeedApi, uploadsApi, externalProjectsApi, userFeedbackApi } from './content';
 
 // Workroom & data export
 export { workroomApi } from './workroom';
@@ -50,13 +50,13 @@ import { projectsApi, contractsApi, proposalsApi, milestonesApi } from './projec
 import { paymentsApi, paymentMethodsApi, walletApi, invoicesApi, escrowApi, refundsApi, payoutMethodsApi, multiCurrencyApi } from './payments';
 import { messagesApi, notificationsApi, communicationApi, realtimeApi } from './messaging';
 import { searchApi, categoriesApi, tagsApi, favoritesApi, searchesApi, searchAnalyticsApi } from './search';
-import { usersApi, portalApi, verificationApi, portfolioApi, portfolioShowcaseApi, skillsApi, skillTaxonomyApi, publicProfileApi } from './users';
+import { usersApi, portalApi, verificationApi, portfolioApi, portfolioShowcaseApi, skillsApi, publicProfileApi } from './users';
 import { adminApi, analyticsApi, metricsApi, auditTrailApi, complianceApi, featureFlagsApi } from './admin';
 import { gigsApi, jobAlertsApi, clientApi, supportTicketsApi, matchingApi, disputesApi, reviewsApi, reviewResponsesApi } from './marketplace';
 import { referralApi, careerApi, availabilityApi, rateCardsApi, proposalTemplatesApi, gamificationApi, timeEntriesApi } from './features';
 import { webhooksApi, apiKeysApi, teamsApi, workflowApi, brandingApi, emailTemplatesApi, integrationsApi } from './integrations';
 import { aiApi, aiWritingApi, fraudDetectionApi } from './ai';
-import { knowledgeBaseApi, legalDocsApi, fileVersionsApi, videoCallsApi, notesTagsApi, activityFeedApi, uploadsApi, externalProjectsApi, userFeedbackApi } from './content';
+import { knowledgeBaseApi, legalDocsApi, videoCallsApi, activityFeedApi, uploadsApi, externalProjectsApi, userFeedbackApi } from './content';
 import { workroomApi } from './workroom';
 import { dataExportApi } from './dataExport';
 
@@ -115,7 +115,6 @@ export default {
   gigs: gigsApi,
   workflow: workflowApi,
   knowledgeBase: knowledgeBaseApi,
-  fileVersions: fileVersionsApi,
   multiCurrency: multiCurrencyApi,
   matching: matchingApi,
   gamification: gamificationApi,
@@ -123,8 +122,6 @@ export default {
   videoCalls: videoCallsApi,
   legalDocs: legalDocsApi,
   portfolioShowcase: portfolioShowcaseApi,
-  skillTaxonomy: skillTaxonomyApi,
-  notesTags: notesTagsApi,
   reviewResponses: reviewResponsesApi,
   externalProjects: externalProjectsApi,
   activityFeed: activityFeedApi,

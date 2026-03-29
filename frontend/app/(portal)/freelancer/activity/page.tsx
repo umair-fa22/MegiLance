@@ -8,7 +8,7 @@ import { activityFeedApi } from '@/lib/api';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import {
   Activity, Bell, BellOff, Search, Filter, ChevronDown, ChevronUp,
   FileText, DollarSign, MessageSquare, Star, Target, User, FolderOpen,

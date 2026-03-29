@@ -8,9 +8,9 @@ import { cn } from '@/lib/utils';
 import api from '@/lib/api';
 import { ArrowLeft, Download, Loader2, AlertTriangle } from 'lucide-react';
 
-import Button from '@/app/components/Button/Button';
-import Badge from '@/app/components/Badge/Badge';
-import { useToaster } from '@/app/components/Toast/ToasterProvider';
+import Button from '@/app/components/atoms/Button/Button';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import { useToaster } from '@/app/components/molecules/Toast/ToasterProvider';
 
 import commonStyles from './ContractDetails.common.module.css';
 import lightStyles from './ContractDetails.light.module.css';

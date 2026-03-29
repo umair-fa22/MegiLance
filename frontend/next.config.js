@@ -7,6 +7,9 @@ const withPWA = withPWAInit({
   register: true,
   skipWaiting: true,
   disable: process.env.NODE_ENV === 'development' && process.env.NEXT_ENABLE_PWA !== '1',
+  fallbacks: {
+    document: '/~offline',
+  },
   runtimeCaching: [
     {
       urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
@@ -150,6 +153,9 @@ const nextConfig = {
       { protocol: 'https', hostname: 'i.pravatar.cc' },
       { protocol: 'https', hostname: 'unpkg.com' },
       { protocol: 'https', hostname: 'images.unsplash.com' },
+        { protocol: 'http', hostname: 'localhost' },
+        { protocol: 'http', hostname: '127.0.0.1' },
+        { protocol: 'https', hostname: '**' },
       { protocol: 'https', hostname: 'avatars.githubusercontent.com' },
       { protocol: 'https', hostname: 'lh3.googleusercontent.com' },
       { protocol: 'https', hostname: 'ui-avatars.com' },

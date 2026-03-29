@@ -6,7 +6,6 @@ Can be easily upgraded to cloud storage (S3, Cloudflare R2, etc.) in the future.
 
 import logging
 import os
-import shutil
 from pathlib import Path
 from typing import Optional
 from datetime import datetime

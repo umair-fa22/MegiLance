@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Loading from '@/app/components/Loading/Loading';
+import Loading from '@/app/components/atoms/Loading/Loading';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';

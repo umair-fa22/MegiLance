@@ -10,7 +10,7 @@ jest.mock('next-themes', () => ({
 }));
 
 // Mock the Animations barrel export
-jest.mock('@/components/Animations', () => ({
+jest.mock('@/app/components/Animations', () => ({
   PageTransition: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }));
 

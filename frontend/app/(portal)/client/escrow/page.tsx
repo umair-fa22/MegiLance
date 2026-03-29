@@ -4,11 +4,11 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Button from '@/app/components/Button/Button';
-import Badge from '@/app/components/Badge/Badge';
-import Loading from '@/app/components/Loading/Loading';
+import Button from '@/app/components/atoms/Button/Button';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import Loading from '@/app/components/atoms/Loading/Loading';
 import { escrowApi } from '@/lib/api';
-import { PageTransition, ScrollReveal } from '@/components/Animations';
+import { PageTransition, ScrollReveal } from '@/app/components/Animations';
 import { CreditCard, Clock, CheckCircle, FileText, ShieldAlert, DollarSign } from 'lucide-react';
 import commonStyles from './Escrow.common.module.css';
 import lightStyles from './Escrow.light.module.css';

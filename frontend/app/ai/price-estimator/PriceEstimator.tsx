@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import Input from '@/app/components/Input/Input';
+import Input from '@/app/components/atoms/Input/Input';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import {

@@ -6,8 +6,8 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AlertCircle, CheckCircle, Lightbulb, Info } from 'lucide-react';
-import Textarea from '@/app/components/Textarea/Textarea';
-import TagsInput from '@/app/components/TagsInput/TagsInput';
+import Textarea from '@/app/components/atoms/Textarea/Textarea';
+import TagsInput from '@/app/components/atoms/TagsInput/TagsInput';
 import { PostJobData, PostJobErrors } from '../../PostJob.types';
 
 import common from './StepScope.common.module.css';

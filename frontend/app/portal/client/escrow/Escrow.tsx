@@ -7,8 +7,8 @@ import { cn } from '@/lib/utils';
 import { escrowApi, contractsApi } from '@/lib/api';
 import type { Escrow, EscrowBalance, Contract, EscrowFundData } from '@/types/api';
 import { Shield, Clock, CheckCircle, XCircle, ArrowUpCircle, ArrowDownCircle } from 'lucide-react'
-import Modal from '@/app/components/Modal/Modal';
-import Button from '@/app/components/Button/Button';
+import Modal from '@/app/components/organisms/Modal/Modal';
+import Button from '@/app/components/atoms/Button/Button';
 import commonStyles from './Escrow.common.module.css';
 import lightStyles from './Escrow.light.module.css';
 import darkStyles from './Escrow.dark.module.css';

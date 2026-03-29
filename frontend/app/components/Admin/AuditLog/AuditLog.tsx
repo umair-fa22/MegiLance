@@ -5,11 +5,11 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
-import Card from '@/app/components/Card/Card';
-import Badge from '@/app/components/Badge/Badge';
-import Select from '@/app/components/Select/Select';
-import Input from '@/app/components/Input/Input';
-import Button from '@/app/components/Button/Button';
+import Card from '@/app/components/molecules/Card/Card';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import Select from '@/app/components/molecules/Select/Select';
+import Input from '@/app/components/atoms/Input/Input';
+import Button from '@/app/components/atoms/Button/Button';
 import { ChevronsUpDown, ArrowUp, ArrowDown, Loader2 } from 'lucide-react'
 
 import commonStyles from './AuditLog.common.module.css';

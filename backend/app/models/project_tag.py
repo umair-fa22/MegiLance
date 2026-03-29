@@ -2,7 +2,7 @@
 """
 ProjectTag model for project-tag association
 """
-from sqlalchemy import Integer, DateTime, ForeignKey, UniqueConstraint
+from sqlalchemy import DateTime, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 from datetime import datetime, timezone

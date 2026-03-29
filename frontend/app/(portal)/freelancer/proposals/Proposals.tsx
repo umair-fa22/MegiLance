@@ -6,17 +6,17 @@ import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { usePersistedState } from '@/app/lib/hooks/usePersistedState';
-import { useToaster } from '@/app/components/Toast/ToasterProvider';
+import { useToaster } from '@/app/components/molecules/Toast/ToasterProvider';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer } from '@/app/components/Animations/StaggerContainer';
 
 import { apiFetch } from '@/lib/api/core';
-import DataToolbar, { SortOption } from '@/app/components/DataToolbar/DataToolbar';
-import PaginationBar from '@/app/components/PaginationBar/PaginationBar';
-import Modal from '@/app/components/Modal/Modal';
-import Button from '@/app/components/Button/Button';
-import TableSkeleton from '@/app/components/DataTableExtras/TableSkeleton';
+import DataToolbar, { SortOption } from '@/app/components/organisms/DataToolbar/DataToolbar';
+import PaginationBar from '@/app/components/molecules/PaginationBar/PaginationBar';
+import Modal from '@/app/components/organisms/Modal/Modal';
+import Button from '@/app/components/atoms/Button/Button';
+import TableSkeleton from '@/app/components/organisms/DataTableExtras/TableSkeleton';
 import ProposalCard, { Proposal } from './components/ProposalCard/ProposalCard';
 import StatusFilter from './components/StatusFilter/StatusFilter';
 

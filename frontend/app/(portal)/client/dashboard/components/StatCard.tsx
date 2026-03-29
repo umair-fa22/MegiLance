@@ -2,7 +2,7 @@ import React from 'react';
 import { TrendingUp, TrendingDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
-import KPISparkline from '@/app/components/KPISparkline/KPISparkline';
+import KPISparkline from '@/app/components/organisms/KPISparkline/KPISparkline';
 import commonStyles from './StatCard.common.module.css';
 import lightStyles from './StatCard.light.module.css';
 import darkStyles from './StatCard.dark.module.css';

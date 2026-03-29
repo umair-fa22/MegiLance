@@ -2,7 +2,7 @@
 # Contains business logic and all direct database queries for user endpoints
 
 from app.db.turso_http import execute_query
-from app.core.security import verify_password, get_password_hash
+from app.core.security import get_password_hash
 from typing import Optional
 
 

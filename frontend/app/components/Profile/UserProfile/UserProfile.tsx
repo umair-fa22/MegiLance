@@ -12,9 +12,9 @@ import {
   Briefcase, GraduationCap, Languages, Video, ExternalLink,
   Twitter, Palette, Layers
 } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
-import StarRating from '@/app/components/StarRating/StarRating';
-import Loading from '@/app/components/Loading/Loading';
+import Button from '@/app/components/atoms/Button/Button';
+import StarRating from '@/app/components/molecules/StarRating/StarRating';
+import Loading from '@/app/components/atoms/Loading/Loading';
 import Image from 'next/image';
 
 import commonStyles from './UserProfile.common.module.css';

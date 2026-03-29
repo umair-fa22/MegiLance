@@ -1,9 +1,56 @@
-﻿/* AI-HINT: Dark theme for the redesigned premium Dashboard Header. */
+/* @AI-HINT: Dark theme for premium Dashboard Header */
 
-.headerTitle h1 {
-  color: #f8fafc; /* A bright, clean white for text */
+.header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.headerTitle p {
-  color: #94a3b8; /* A softer gray for subtitles */
+/* ─── Text Colors ─── */
+.title {
+  color: #f8fafc;
+}
+
+.subtitle {
+  color: #94a3b8;
+}
+
+.greetingIcon {
+  color: #fbbf24;
+}
+
+.greetingTime {
+  color: #64748b;
+}
+
+/* ─── Action Buttons ─── */
+.actionButton {
+  background: rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.actionButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.actionButton:active {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Primary Action - Gradient CTA */
+.actionButtonPrimary {
+  background: linear-gradient(135deg, #4573df 0%, #5b8aff 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 2px 12px rgba(69, 115, 223, 0.4);
+}
+
+.actionButtonPrimary:hover {
+  background: linear-gradient(135deg, #5b8aff 0%, #6b9aff 100%);
+  box-shadow: 0 6px 24px rgba(69, 115, 223, 0.5);
+}
+
+.actionButtonPrimary:active {
+  background: linear-gradient(135deg, #3b5fc9 0%, #4573df 100%);
 }

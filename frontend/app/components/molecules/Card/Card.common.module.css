@@ -1,0 +1,541 @@
+/* @AI-HINT: Premium 2025 Card component - Premium glassmorphism, 3D effects, micro-interactions */
+
+.card {
+  border-radius: 20px;
+  padding: 24px;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 4px 16px rgba(0,0,0,0.06),
+    0 2px 4px rgba(0,0,0,0.04),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+  will-change: transform, box-shadow;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  position: relative;
+  overflow: hidden;
+  contain: layout style paint;
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Premium gradient border glow */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(69, 115, 223, 0.3) 0%,
+    rgba(155, 89, 182, 0.2) 50%,
+    rgba(240, 147, 251, 0.3) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Shine effect overlay */
+.card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg) translateX(-100%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+.card:hover::after {
+  transform: rotate(45deg) translateX(100%);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--card-header-border);
+  position: relative;
+  z-index: 1;
+}
+
+.cardIcon {
+  margin-right: 12px;
+  color: var(--card-icon-color);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.card:hover .cardIcon {
+  transform: scale(1.1) translateY(-2px);
+  filter: drop-shadow(0 4px 8px rgba(69, 115, 223, 0.3));
+}
+
+.cardTitle {
+  font-family: var(--font-poppins, 'Poppins', sans-serif);
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--card-title-color);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
+}
+
+.cardContent {
+  flex-grow: 1;
+  color: var(--card-content-color);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 1;
+}
+
+/* Premium hover elevation with 3D tilt */
+.card:hover {
+  box-shadow: 
+    0 20px 50px rgba(0,0,0,0.12), 
+    0 8px 20px rgba(0,0,0,0.08),
+    0 0 40px rgba(69, 115, 223, 0.08);
+  transform: translateY(-8px) scale(1.01);
+}
+
+.card:active {
+  transform: translateY(-4px) scale(0.99);
+  box-shadow: 
+    0 10px 30px rgba(0,0,0,0.1), 
+    0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* Accessible focus ring */
+.card:focus-visible,
+.card:focus-within {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
+  box-shadow: 
+    0 0 0 3px rgba(69, 115, 223, 0.3), 
+    0 12px 32px rgba(0,0,0,0.12);
+}
+
+@supports (color: color-mix(in oklab, white, black)) {
+  .card:focus-visible,
+  .card:focus-within {
+    box-shadow: 
+      0 0 0 3px color-mix(in oklab, var(--primary) 30%, transparent), 
+      0 12px 32px rgba(0,0,0,0.12);
+  }
+}
+
+@media (forced-colors: active) {
+  .card:focus-visible,
+  .card:focus-within {
+    outline: 2px solid highlight;
+    outline-offset: 2px;
+    box-shadow: none;
+  }
+}
+
+/* ==========================================
+   CARD VARIANTS - Premium 2025 Styles
+   ========================================== */
+
+/* 3D Interactive Card */
+.card3D {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.card3D:hover {
+  box-shadow: 
+    0 30px 60px rgba(0,0,0,0.2), 
+    0 0 50px rgba(69, 115, 223, 0.15);
+}
+
+/* Dynamic shine overlay for 3D effect */
+.shineOverlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+/* Glass Variant - Full glassmorphism */
+.variant-glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.variant-glass:hover {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 20px 60px rgba(0,0,0,0.15), 
+    0 0 40px rgba(69, 115, 223, 0.1);
+}
+
+/* Premium Variant - Maximum visual impact */
+.variant-premium {
+  background: linear-gradient(
+    135deg, 
+    rgba(69, 115, 223, 0.08) 0%, 
+    rgba(155, 89, 182, 0.06) 50%, 
+    rgba(240, 147, 251, 0.08) 100%
+  );
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transform-style: preserve-3d;
+}
+
+.variant-premium::before {
+  opacity: 0.5;
+}
+
+.variant-premium:hover {
+  background: linear-gradient(
+    135deg, 
+    rgba(69, 115, 223, 0.12) 0%, 
+    rgba(155, 89, 182, 0.1) 50%, 
+    rgba(240, 147, 251, 0.12) 100%
+  );
+  box-shadow: 
+    0 30px 80px rgba(0,0,0,0.18), 
+    0 0 60px rgba(69, 115, 223, 0.12),
+    0 0 80px rgba(155, 89, 182, 0.08);
+}
+
+.variant-premium::before {
+  background: linear-gradient(
+    135deg,
+    rgba(69, 115, 223, 0.5) 0%,
+    rgba(155, 89, 182, 0.4) 50%,
+    rgba(240, 147, 251, 0.5) 100%
+  );
+}
+
+/* Holographic Variant - Rainbow animated effect */
+.variant-holographic {
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.variant-holographic::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 0, 0, 0.1),
+    rgba(255, 154, 0, 0.1),
+    rgba(208, 222, 33, 0.1),
+    rgba(79, 220, 74, 0.1),
+    rgba(63, 218, 216, 0.1),
+    rgba(47, 201, 226, 0.1),
+    rgba(28, 127, 238, 0.1),
+    rgba(95, 21, 242, 0.1),
+    rgba(186, 12, 248, 0.1),
+    rgba(251, 7, 217, 0.1)
+  );
+  background-size: 400% 400%;
+  animation: holographicShift 8s ease infinite;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.variant-holographic:hover::before {
+  opacity: 1;
+}
+
+@keyframes holographicShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Elevated Variant - More dramatic shadow */
+.variant-elevated {
+  box-shadow: 
+    0 8px 24px rgba(0,0,0,0.08), 
+    0 4px 8px rgba(0,0,0,0.04),
+    0 0 0 1px rgba(0,0,0,0.02);
+}
+
+.variant-elevated:hover {
+  box-shadow: 
+    0 24px 60px rgba(0,0,0,0.14), 
+    0 10px 20px rgba(0,0,0,0.08),
+    0 0 50px rgba(69, 115, 223, 0.1);
+}
+
+/* Outline Variant */
+.variant-outline {
+  background: transparent;
+  border: 2px solid var(--card-border);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.variant-outline::before,
+.variant-outline::after {
+  display: none;
+}
+
+.variant-outline:hover {
+  border-color: var(--primary, #4573df);
+  box-shadow: 
+    0 8px 24px rgba(0,0,0,0.06), 
+    0 0 20px rgba(69, 115, 223, 0.1);
+}
+
+/* Filled Variant */
+.variant-filled {
+  background: var(--card-filled-bg);
+  border: none;
+}
+
+/* Gradient Variant - Premium gradient background */
+.variant-gradient {
+  background: linear-gradient(
+    135deg, 
+    rgba(69, 115, 223, 0.1) 0%, 
+    rgba(155, 89, 182, 0.05) 50%, 
+    rgba(240, 147, 251, 0.1) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================
+   CARD SIZES
+   ========================================== */
+.card.size-sm {
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.card.size-lg {
+  padding: 32px;
+  border-radius: 24px;
+}
+
+.card.size-xl {
+  padding: 40px;
+  border-radius: 28px;
+}
+
+/* ==========================================
+   INTERACTIVE STATES
+   ========================================== */
+
+/* Clickable card with ripple */
+.card.clickable {
+  cursor: pointer;
+}
+
+.card.clickable:active::after {
+  animation: cardRipple 0.6s ease-out;
+}
+
+@keyframes cardRipple {
+  from { 
+    transform: rotate(45deg) translateX(-100%) scale(0.5); 
+    opacity: 0.5; 
+  }
+  to { 
+    transform: rotate(45deg) translateX(100%) scale(1); 
+    opacity: 0; 
+  }
+}
+
+/* Loading state - Premium shimmer */
+.card.loading {
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.card.loading > * {
+  opacity: 0.5;
+}
+
+.card.loading .cardHeader,
+.card.loading .cardContent {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.02) 20%,
+    rgba(0, 0, 0, 0.04) 50%,
+    rgba(0, 0, 0, 0.02) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: loadingShimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Selected/Active state */
+.card.selected {
+  border-color: var(--primary, #4573df);
+  box-shadow: 
+    0 0 0 2px var(--primary, #4573df),
+    0 8px 24px rgba(69, 115, 223, 0.2);
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+@media (max-width: 768px) {
+  .card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .card.size-sm {
+    padding: 12px;
+    border-radius: 12px;
+  }
+  
+  .card.size-lg {
+    padding: 24px;
+    border-radius: 20px;
+  }
+}
+
+/* Small phones (380px and below) */
+@media (max-width: 380px) {
+  .card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+  
+  .card.size-sm {
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .card.size-lg {
+    padding: 20px;
+    border-radius: 16px;
+  }
+  
+  .cardTitle {
+    font-size: 1rem;
+  }
+  
+  .cardContent {
+    font-size: 0.875rem;
+  }
+}
+
+/* Extra small phones (320px) */
+@media (max-width: 320px) {
+  .card {
+    padding: 12px;
+    border-radius: 12px;
+  }
+  
+  .card.size-sm {
+    padding: 8px;
+    border-radius: 8px;
+  }
+  
+  .card.size-lg {
+    padding: 16px;
+    border-radius: 14px;
+  }
+  
+  .cardTitle {
+    font-size: 0.9375rem;
+  }
+  
+  .cardContent {
+    font-size: 0.8125rem;
+    line-height: 1.6;
+  }
+  
+  .cardHeader {
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+  }
+  
+  .cardIcon {
+    margin-right: 8px;
+  }
+}
+
+/* ==========================================
+   REDUCED MOTION SUPPORT
+   ========================================== */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: box-shadow 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: none;
+  }
+  
+  .card::after {
+    display: none;
+  }
+  
+  .card.loading .cardHeader,
+  .card.loading .cardContent {
+    animation: none;
+  }
+}

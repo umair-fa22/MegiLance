@@ -2,7 +2,7 @@
 """Service layer for the Community Hub."""
 
 from datetime import datetime, timezone
-from typing import Optional, List
+from typing import Optional
 import json
 import logging
 

@@ -3,18 +3,18 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { useTheme } from 'next-themes';
-import { useToaster } from '@/app/components/Toast/ToasterProvider';
+import { useToaster } from '@/app/components/molecules/Toast/ToasterProvider';
 import api from '@/lib/api';
-import Button from '@/app/components/Button/Button';
-import Badge from '@/app/components/Badge/Badge';
-import Input from '@/app/components/Input/Input';
-import Select, { SelectOption } from '@/app/components/Select/Select';
-import ToggleSwitch from '@/app/components/ToggleSwitch/ToggleSwitch';
-import Card from '@/app/components/Card/Card';
-import EmptyState from '@/app/components/EmptyState/EmptyState';
-import Modal from '@/app/components/Modal/Modal';
+import Button from '@/app/components/atoms/Button/Button';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import Input from '@/app/components/atoms/Input/Input';
+import Select, { SelectOption } from '@/app/components/molecules/Select/Select';
+import ToggleSwitch from '@/app/components/atoms/ToggleSwitch/ToggleSwitch';
+import Card from '@/app/components/molecules/Card/Card';
+import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
+import Modal from '@/app/components/organisms/Modal/Modal';
 import { searchingAnimation } from '@/app/components/Animations/LottieAnimation';
-import MegaLoader from '@/app/components/Loading/MegaLoader';
+import MegaLoader from '@/app/components/atoms/Loading/MegaLoader';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';

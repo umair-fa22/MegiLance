@@ -1,0 +1,531 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.0rc3, pytest-9.0.2, pluggy-1.6.0 -- e:\MegiLance\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: E:\MegiLance\backend
+configfile: pytest.ini
+plugins: anyio-4.12.0, asyncio-1.3.0, cov-7.0.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... 
+============================================================
+  MEGILANCE COMPREHENSIVE E2E TEST SUITE
+  2026-03-29 16:25:20
+  Test ID: ff7a218d
+============================================================
+
+============================================================
+  1. HEALTH & INFRASTRUCTURE
+============================================================
+  ÔØî ERROR: Health ready - ConnectionError
+  ÔØî ERROR: Health live - ConnectionError
+  ÔØî ERROR: Health metrics - ConnectionError
+  ÔØî ERROR: Health root - ConnectionError
+
+============================================================
+  2. AUTHENTICATION - Registration
+============================================================
+  ÔØî ERROR: Register client - ConnectionError
+  ÔØî ERROR: Register freelancer - ConnectionError
+  ÔØî ERROR: Duplicate email rejected - ConnectionError
+  ÔØî ERROR: Weak password rejected - ConnectionError
+  ÔØî ERROR: Invalid email rejected - ConnectionError
+
+============================================================
+  3. AUTHENTICATION - Login & Tokens
+============================================================
+  ÔØî ERROR: Login client - ConnectionError
+  ÔØî ERROR: Login freelancer - ConnectionError
+  ÔØî ERROR: Invalid login rejected - ConnectionError
+  ÔØî ERROR: Protected endpoint without auth - ConnectionError
+
+============================================================
+  4. USER PROFILE MANAGEMENT
+============================================================
+
+============================================================
+  5. PROJECTS (Client Flow)
+============================================================
+  ÔØî ERROR: Public project listing - ConnectionError
+
+============================================================
+  6. PROPOSALS (Freelancer Flow)
+============================================================
+
+============================================================
+  7. GIGS (Freelancer Marketplace)
+============================================================
+  ÔØî ERROR: Public gig listing - ConnectionError
+
+============================================================
+  8. CONTRACTS & MILESTONES
+============================================================
+
+============================================================
+  9. MESSAGES & CONVERSATIONS
+============================================================
+
+============================================================
+  10. NOTIFICATIONS
+============================================================
+
+============================================================
+  11. REVIEWS & RATINGS
+============================================================
+
+============================================================
+  12. WALLET & PAYMENTS
+============================================================
+
+============================================================
+  13. INVOICES
+============================================================
+
+============================================================
+  14. ESCROW
+============================================================
+
+============================================================
+  15. CATEGORIES, SKILLS & TAGS
+============================================================
+  ÔØî ERROR: Categories list - ConnectionError
+  ÔØî ERROR: Category tree - ConnectionError
+  ÔØî ERROR: Skills list - ConnectionError
+  ÔØî ERROR: Skill categories - ConnectionError
+  ÔØî ERROR: Tags list - ConnectionError
+
+============================================================
+  16. SEARCH & MARKETPLACE
+============================================================
+  ÔØî ERROR: Search projects - ConnectionError
+  ÔØî ERROR: Search freelancers - ConnectionError
+  Ô£à PASS: Marketplace stats [200]
+  Ô£à PASS: Trending skills [200]
+  Ô£à PASS: Marketplace categories [200]
+  Ô£à PASS: Marketplace projects [200]
+  Ô£à PASS: Marketplace freelancers [200]
+
+============================================================
+  17. FREELANCER PUBLIC PROFILES
+============================================================
+  Ô£à PASS: Featured freelancers [200]
+  Ô£à PASS: Search freelancers [200]
+
+============================================================
+  18. BLOG
+============================================================
+  Ô£à PASS: Blog posts list [200]
+
+============================================================
+  19. PORTFOLIO
+============================================================
+
+============================================================
+  20. FAVORITES & SAVED SEARCHES
+============================================================
+
+============================================================
+  21. SUPPORT TICKETS
+============================================================
+
+============================================================
+  22. TIME ENTRIES
+============================================================
+
+============================================================
+  23. AVAILABILITY CALENDAR
+============================================================
+
+============================================================
+  24. DISPUTES & REFUNDS
+============================================================
+
+============================================================
+  25. PORTAL ENDPOINTS
+============================================================
+
+============================================================
+  26. SELLER STATS
+============================================================
+
+============================================================
+  27. GAMIFICATION
+============================================================
+
+============================================================
+  28. AI SERVICES
+============================================================
+
+============================================================
+  29. KNOWLEDGE BASE & LEARNING
+============================================================
+  Ô£à PASS: KB articles [200]
+  Ô£à PASS: KB categories [200]
+  Ô£à PASS: KB FAQs [200]
+  Ô£à PASS: KB popular [200]
+  Ô£à PASS: KB search [200]
+
+============================================================
+  30. ASSESSMENTS
+============================================================
+
+============================================================
+  31. I18N (Internationalization)
+============================================================
+  Ô£à PASS: Available languages [200]
+  Ô£à PASS: English translations [200]
+
+============================================================
+  32. EXTERNAL PROJECTS
+============================================================
+  Ô£à PASS: External projects [200]
+  Ô£à PASS: External project categories [200]
+  Ô£à PASS: External project stats [200]
+
+============================================================
+  33. PRICE ESTIMATOR
+============================================================
+  Ô£à PASS: Price estimate [422]
+  Ô£à PASS: Price categories [200]
+
+============================================================
+  34. STANDALONE TOOLS
+============================================================
+  Ô£à PASS: Invoice generator options [200]
+  Ô£à PASS: Generate invoice [422]
+  Ô£à PASS: Contract builder options [200]
+  Ô£à PASS: Income calculator options [200]
+  Ô£à PASS: Calculate income [200]
+  Ô£à PASS: Scope plan [200]
+  Ô£à PASS: Expense tax options [200]
+  Ô£à PASS: Calculate expense tax [422]
+  Ô£à PASS: Analyze skills [200]
+  Ô£à PASS: Rate advisor [422]
+  Ô£à PASS: Generate proposal [422]
+
+============================================================
+  35. COMMUNITY
+============================================================
+
+============================================================
+  36. FEATURE FLAGS
+============================================================
+
+============================================================
+  37. ANALYTICS
+============================================================
+
+============================================================
+  38. COMPLIANCE
+============================================================
+
+============================================================
+  39. INVITATIONS
+============================================================
+
+============================================================
+  40. JOB ALERTS
+============================================================
+
+============================================================
+  41. ORGANIZATIONS & TEAMS
+============================================================
+
+============================================================
+  42. TEMPLATES
+============================================================
+
+============================================================
+  43. NOTIFICATION PREFERENCES
+============================================================
+
+============================================================
+  44. 2FA
+============================================================
+
+============================================================
+  45. API KEYS
+============================================================
+
+============================================================
+  46. WEBHOOKS
+============================================================
+
+============================================================
+  47. DATA EXPORT
+============================================================
+
+============================================================
+  48. SKILL GRAPH
+============================================================
+
+============================================================
+  49. PK PAYMENTS
+============================================================
+  ÔØî FAIL: PK payment providers [401] - Could not validate credentials
+  ÔØî FAIL: PK exchange rate [401] - Could not validate credentials
+  Ô£à PASS: PK network status [200]
+
+============================================================
+  50. SECURITY TESTS
+============================================================
+  Ô£à PASS: SQL injection test (search) [200]
+  Ô£à PASS: SQL injection test (login) [422]
+  Ô£à PASS: XSS in name field [201] got_token
+  Ô£à PASS: Invalid JWT rejected [401]
+
+============================================================
+  51. ADMIN ENDPOINTS
+============================================================
+  Ô£à PASS: Admin login attempt [401]
+  ÔÜá´©Å  SKIP: Admin endpoints (no admin credentials)
+
+============================================================
+  52. RATE CARDS
+============================================================
+
+============================================================
+  53. MODERATION
+============================================================
+
+============================================================
+  54. EMAIL TEMPLATES
+============================================================
+
+============================================================
+  55. TIMEZONE
+============================================================
+
+============================================================
+  56. FILE VERSIONS
+============================================================
+
+============================================================
+  57. REFERRALS
+============================================================
+
+============================================================
+  58. CUSTOM FIELDS & STATUSES
+============================================================
+
+============================================================
+  59. NOTES & TAGS
+============================================================
+
+============================================================
+  60. PROPOSAL TEMPLATES
+============================================================
+
+============================================================
+  61. LEGAL DOCUMENTS
+============================================================
+
+============================================================
+  62. SUBSCRIPTIONS
+============================================================
+
+============================================================
+  63. WORKFLOW AUTOMATION
+============================================================
+
+============================================================
+  64. FEEDBACK SYSTEM
+============================================================
+
+============================================================
+  65. PUBLIC CLIENT PROFILES
+============================================================
+  Ô£à PASS: Public client list [200]
+
+============================================================
+  66. MATCHING ENGINE
+============================================================
+
+============================================================
+  67. AUDIT TRAIL
+============================================================
+
+============================================================
+  68. CONTRACT BUILDER
+============================================================
+
+============================================================
+  69. PORTFOLIO BUILDER
+============================================================
+
+============================================================
+  70. FRAUD DETECTION
+============================================================
+
+============================================================
+  71. SOCIAL AUTH
+============================================================
+  Ô£à PASS: Social auth providers [200]
+
+============================================================
+  72. VERIFICATION
+============================================================
+
+============================================================
+  73. MULTICURRENCY
+============================================================
+  Ô£à PASS: Currencies list [200]
+  Ô£à PASS: Crypto list [200]
+
+============================================================
+  74. CLEANUP & LOGOUT
+============================================================
+
+============================================================
+  FINAL RESULTS
+============================================================
+  Ô£à PASSED:  41
+  ÔØî FAILED:  24
+  ÔÜá´©Å  SKIPPED: 8
+  TOTAL:    73
+  PASS RATE: 56.2%
+
+============================================================
+  FAILURES (24)
+============================================================
+  ERROR: Health ready - ConnectionError
+  ERROR: Health live - ConnectionError
+  ERROR: Health metrics - ConnectionError
+  ERROR: Health root - ConnectionError
+  ERROR: Register client - ConnectionError
+  ERROR: Register freelancer - ConnectionError
+  ERROR: Duplicate email rejected - ConnectionError
+  ERROR: Weak password rejected - ConnectionError
+  ERROR: Invalid email rejected - ConnectionError
+  ERROR: Login client - ConnectionError
+  ERROR: Login freelancer - ConnectionError
+  ERROR: Invalid login rejected - ConnectionError
+  ERROR: Protected endpoint without auth - ConnectionError
+  ERROR: Public project listing - ConnectionError
+  ERROR: Public gig listing - ConnectionError
+  ERROR: Categories list - ConnectionError
+  ERROR: Category tree - ConnectionError
+  ERROR: Skills list - ConnectionError
+  ERROR: Skill categories - ConnectionError
+  ERROR: Tags list - ConnectionError
+  ERROR: Search projects - ConnectionError
+  ERROR: Search freelancers - ConnectionError
+  [49. PK PAYMENTS] PK payment providers: expected 2xx, got 401 - Could not validate credentials
+  [49. PK PAYMENTS] PK exchange rate: expected [200, 422], got 401 - Could not validate credentials
+
+============================================================
+  Test completed at 16:33:52
+============================================================
+mainloop: caught unexpected SystemExit!
+collected 76 items
+INTERNALERROR> Traceback (most recent call last):
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\main.py", line 318, in wrap_session
+INTERNALERROR>     session.exitstatus = doit(config, session) or 0
+INTERNALERROR>                          ~~~~^^^^^^^^^^^^^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\main.py", line 371, in _main
+INTERNALERROR>     config.hook.pytest_collection(session=session)
+INTERNALERROR>     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+INTERNALERROR>     return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+INTERNALERROR>            ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+INTERNALERROR>     return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+INTERNALERROR>            ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\pluggy\_callers.py", line 167, in _multicall
+INTERNALERROR>     raise exception
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\pluggy\_callers.py", line 139, in _multicall
+INTERNALERROR>     teardown.throw(exception)
+INTERNALERROR>     ~~~~~~~~~~~~~~^^^^^^^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\logging.py", line 788, in pytest_collection
+INTERNALERROR>     return (yield)
+INTERNALERROR>             ^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\pluggy\_callers.py", line 139, in _multicall
+INTERNALERROR>     teardown.throw(exception)
+INTERNALERROR>     ~~~~~~~~~~~~~~^^^^^^^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\warnings.py", line 98, in pytest_collection
+INTERNALERROR>     return (yield)
+INTERNALERROR>             ^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\pluggy\_callers.py", line 139, in _multicall
+INTERNALERROR>     teardown.throw(exception)
+INTERNALERROR>     ~~~~~~~~~~~~~~^^^^^^^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\config\__init__.py", line 1403, in pytest_collection
+INTERNALERROR>     return (yield)
+INTERNALERROR>             ^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+INTERNALERROR>     res = hook_impl.function(*args)
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\main.py", line 382, in pytest_collection
+INTERNALERROR>     session.perform_collect()
+INTERNALERROR>     ~~~~~~~~~~~~~~~~~~~~~~~^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\main.py", line 857, in perform_collect
+INTERNALERROR>     self.items.extend(self.genitems(node))
+INTERNALERROR>     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\main.py", line 1023, in genitems
+INTERNALERROR>     yield from self.genitems(subnode)
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\main.py", line 1020, in genitems
+INTERNALERROR>     rep, duplicate = self._collect_one_node(node, handle_dupes)
+INTERNALERROR>                      ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\main.py", line 883, in _collect_one_node
+INTERNALERROR>     rep = collect_one_node(node)
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\runner.py", line 576, in collect_one_node
+INTERNALERROR>     rep: CollectReport = ihook.pytest_make_collect_report(collector=collector)
+INTERNALERROR>                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+INTERNALERROR>     return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+INTERNALERROR>            ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+INTERNALERROR>     return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+INTERNALERROR>            ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\pluggy\_callers.py", line 167, in _multicall
+INTERNALERROR>     raise exception
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\pluggy\_callers.py", line 139, in _multicall
+INTERNALERROR>     teardown.throw(exception)
+INTERNALERROR>     ~~~~~~~~~~~~~~^^^^^^^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\capture.py", line 880, in pytest_make_collect_report
+INTERNALERROR>     rep = yield
+INTERNALERROR>           ^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+INTERNALERROR>     res = hook_impl.function(*args)
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\runner.py", line 400, in pytest_make_collect_report
+INTERNALERROR>     call = CallInfo.from_call(
+INTERNALERROR>         collect, "collect", reraise=(KeyboardInterrupt, SystemExit)
+INTERNALERROR>     )
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\runner.py", line 353, in from_call
+INTERNALERROR>     result: TResult | None = func()
+INTERNALERROR>                              ~~~~^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\runner.py", line 398, in collect
+INTERNALERROR>     return list(collector.collect())
+INTERNALERROR>                 ~~~~~~~~~~~~~~~~~^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\python.py", line 563, in collect
+INTERNALERROR>     self._register_setup_module_fixture()
+INTERNALERROR>     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\python.py", line 576, in _register_setup_module_fixture
+INTERNALERROR>     self.obj, ("setUpModule", "setup_module")
+INTERNALERROR>     ^^^^^^^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\python.py", line 289, in obj
+INTERNALERROR>     self._obj = obj = self._getobj()
+INTERNALERROR>                       ~~~~~~~~~~~~^^
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\python.py", line 560, in _getobj
+INTERNALERROR>     return importtestmodule(self.path, self.config)
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\python.py", line 507, in importtestmodule
+INTERNALERROR>     mod = import_path(
+INTERNALERROR>         path,
+INTERNALERROR>     ...<2 lines>...
+INTERNALERROR>         consider_namespace_packages=config.getini("consider_namespace_packages"),
+INTERNALERROR>     )
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\pathlib.py", line 587, in import_path
+INTERNALERROR>     importlib.import_module(module_name)
+INTERNALERROR>     ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+INTERNALERROR>   File "C:\Users\ghula\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+INTERNALERROR>     return _bootstrap._gcd_import(name[level:], package, level)
+INTERNALERROR>            ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+INTERNALERROR>   File "<frozen importlib._bootstrap>", line 1398, in _gcd_import
+INTERNALERROR>   File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+INTERNALERROR>   File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+INTERNALERROR>   File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+INTERNALERROR>   File "e:\MegiLance\.venv\Lib\site-packages\_pytest\assertion\rewrite.py", line 197, in exec_module
+INTERNALERROR>     exec(co, module.__dict__)
+INTERNALERROR>     ~~~~^^^^^^^^^^^^^^^^^^^^^
+INTERNALERROR>   File "E:\MegiLance\backend\tests\test_e2e_all_flows.py", line 942, in <module>
+INTERNALERROR>     sys.exit(1 if results['fail'] > 0 else 0)
+INTERNALERROR>     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+INTERNALERROR> SystemExit: 1
+
+====================== 17 warnings in 511.63s (0:08:31) =======================

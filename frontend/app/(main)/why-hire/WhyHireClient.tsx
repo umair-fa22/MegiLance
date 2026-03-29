@@ -9,8 +9,8 @@ import {
   ArrowRight, CheckCircle2, Shield, Zap, Users, Clock, Star, DollarSign,
   TrendingUp, Globe, Bot, ChevronDown, ChevronUp,
 } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
-import EmailCapture from '@/app/components/EmailCapture/EmailCapture';
+import Button from '@/app/components/atoms/Button/Button';
+import EmailCapture from '@/app/components/organisms/EmailCapture/EmailCapture';
 
 import commonStyles from './WhyHire.common.module.css';
 import lightStyles from './WhyHire.light.module.css';

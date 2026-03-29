@@ -5,13 +5,13 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
-import Badge from '@/app/components/Badge/Badge';
-import Button from '@/app/components/Button/Button';
-import Card from '@/app/components/Card/Card';
-import Input from '@/app/components/Input/Input';
-import Select from '@/app/components/Select/Select';
-import UserAvatar from '@/app/components/UserAvatar/UserAvatar';
-import ActionMenu, { ActionMenuItem } from '@/app/components/ActionMenu/ActionMenu';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import Button from '@/app/components/atoms/Button/Button';
+import Card from '@/app/components/molecules/Card/Card';
+import Input from '@/app/components/atoms/Input/Input';
+import Select from '@/app/components/molecules/Select/Select';
+import UserAvatar from '@/app/components/atoms/UserAvatar/UserAvatar';
+import ActionMenu, { ActionMenuItem } from '@/app/components/molecules/ActionMenu/ActionMenu';
 import { Users, Briefcase, Calendar, Search, User, Edit, Eye, UserX, Shield, UserCog, Loader2, AlertTriangle, RefreshCw } from 'lucide-react'
 
 import commonStyles from './UserSearchTable.common.module.css';

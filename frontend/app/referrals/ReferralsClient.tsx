@@ -4,8 +4,8 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Button from '@/app/components/Button/Button';
-import Input from '@/app/components/Input/Input';
+import Button from '@/app/components/atoms/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
 import commonStyles from './Referrals.common.module.css';
 import lightStyles from './Referrals.light.module.css';
 import darkStyles from './Referrals.dark.module.css';

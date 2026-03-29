@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
 import { Clock, Briefcase } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import Link from 'next/link';
 
 import commonStyles from './JobDetails.common.module.css';

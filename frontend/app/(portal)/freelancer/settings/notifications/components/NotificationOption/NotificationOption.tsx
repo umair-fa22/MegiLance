@@ -5,7 +5,7 @@ import React from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 
-import ToggleSwitch from '@/app/components/ToggleSwitch/ToggleSwitch';
+import ToggleSwitch from '@/app/components/atoms/ToggleSwitch/ToggleSwitch';
 
 import commonStyles from './NotificationOption.common.module.css';
 import lightStyles from './NotificationOption.light.module.css';

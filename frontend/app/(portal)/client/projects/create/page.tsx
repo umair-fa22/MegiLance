@@ -7,9 +7,9 @@ import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { ArrowLeft, Save } from 'lucide-react'
 import api, { aiApi } from '@/lib/api';
-import Input from '@/app/components/Input/Input';
-import Select from '@/app/components/Select/Select';
-import Button from '@/app/components/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
+import Select from '@/app/components/molecules/Select/Select';
+import Button from '@/app/components/atoms/Button/Button';
 import { AIPriceEstimator } from '@/app/components/AI';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import common from './CreateProject.common.module.css';

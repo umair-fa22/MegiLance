@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
 import { Clock } from 'lucide-react'
 import Link from 'next/link';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import commonStyles from './JobCard.common.module.css';
 import lightStyles from './JobCard.light.module.css';
 import darkStyles from './JobCard.dark.module.css';

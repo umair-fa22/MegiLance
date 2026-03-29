@@ -740,3 +740,537 @@
   outline: 2px solid var(--color-primary, #4573df);
   outline-offset: 2px;
 }
+
+/* Small phones (380px and below) */
+@media (max-width: 380px) {
+  .page {
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+  }
+  
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  .header {
+    margin-bottom: 2rem;
+  }
+  
+  .headerTop {
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 0.35rem;
+  }
+  
+  .subtitle {
+    font-size: 0.875rem;
+  }
+  
+  .headerActions {
+    gap: 0.5rem;
+  }
+  
+  .searchSection {
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .searchBar {
+    padding: 0.6rem 0.85rem;
+    border-radius: 0.625rem;
+    gap: 0.5rem;
+  }
+  
+  .searchInput {
+    font-size: 0.9rem;
+  }
+  
+  .filterButton {
+    padding: 0.6rem 0.85rem;
+    font-size: 0.85rem;
+    border-radius: 0.625rem;
+  }
+  
+  .filterBadge {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.4rem;
+  }
+  
+  .categoriesSection {
+    margin-bottom: 1.5rem;
+  }
+  
+  .categoriesWrapper {
+    gap: 0.5rem;
+  }
+  
+  .categoryChip {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    gap: 0.4rem;
+  }
+  
+  .categoryIcon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .mainContent {
+    gap: 1.5rem;
+  }
+  
+  .resultsHeader {
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .resultsCount {
+    font-size: 0.825rem;
+  }
+  
+  .sortViewControls {
+    gap: 0.5rem;
+  }
+  
+  .sortSelect {
+    padding: 0.4rem 1.5rem 0.4rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: 0.4rem;
+  }
+  
+  .viewButton {
+    padding: 0.4rem;
+  }
+  
+  .featuredSection {
+    margin-bottom: 2rem;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.1rem;
+    gap: 0.4rem;
+  }
+  
+  .sectionLink {
+    font-size: 0.8rem;
+  }
+  
+  .featuredScroll {
+    gap: 1rem;
+    padding: 0.35rem 0;
+  }
+  
+  .featuredCard {
+    width: 250px;
+  }
+  
+  .emptyState {
+    padding: 3rem 1.5rem;
+  }
+  
+  .emptyIcon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+  }
+  
+  .emptyTitle {
+    font-size: 1.1rem;
+  }
+  
+  .emptyText {
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .emptyButton {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.875rem;
+    border-radius: 0.625rem;
+  }
+  
+  .loadingGrid {
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+  
+  .skeletonImage {
+    height: 140px;
+  }
+  
+  .skeletonContent {
+    padding: 0.875rem;
+  }
+  
+  .mobileFiltersContent {
+    max-height: 80vh;
+    border-radius: 1.25rem 1.25rem 0 0;
+  }
+  
+  .mobileFiltersHeader {
+    padding: 0.875rem 1rem;
+  }
+  
+  .mobileFiltersTitle {
+    font-size: 1rem;
+  }
+  
+  .mobileFiltersBody {
+    padding: 1rem;
+    max-height: calc(80vh - 120px);
+  }
+  
+  .mobileFiltersFooter {
+    gap: 0.5rem;
+    padding: 0.875rem 1rem;
+  }
+  
+  .mobileFiltersClear,
+  .mobileFiltersApply {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    border-radius: 0.625rem;
+  }
+  
+  .filterGroup {
+    margin-bottom: 1.25rem;
+  }
+  
+  .filterLabel {
+    font-size: 0.8rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .filterOptions {
+    gap: 0.4rem;
+  }
+  
+  .filterOption {
+    padding: 0.4rem 0.6rem;
+    gap: 0.6rem;
+    border-radius: 0.4rem;
+  }
+  
+  .filterCheckbox {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+  }
+  
+  .filterOptionText {
+    font-size: 0.85rem;
+  }
+  
+  .filterOptionCount {
+    font-size: 0.7rem;
+  }
+  
+  .priceInputs {
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .priceInputLabel {
+    font-size: 0.7rem;
+  }
+  
+  .priceInput {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+    border-radius: 0.4rem;
+  }
+  
+  .deliveryOptions {
+    gap: 0.4rem;
+  }
+  
+  .deliveryChip {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.75rem;
+  }
+  
+  .ratingOption {
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .ratingText {
+    font-size: 0.8rem;
+  }
+  
+  .clearFilters {
+    padding: 0.6rem 0.875rem;
+    font-size: 0.8rem;
+    margin-top: 0.75rem;
+  }
+}
+
+/* Extra small phones (320px) */
+@media (max-width: 320px) {
+  .page {
+    padding-top: 1.25rem;
+    padding-bottom: 2.5rem;
+  }
+  
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .headerTop {
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .title {
+    font-size: 1.35rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .headerActions {
+    gap: 0.4rem;
+  }
+  
+  .searchSection {
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .searchBar {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    gap: 0.4rem;
+  }
+  
+  .searchInput {
+    font-size: 0.85rem;
+  }
+  
+  .filterButton {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    border-radius: 0.5rem;
+  }
+  
+  .filterBadge {
+    font-size: 0.65rem;
+    padding: 0.08rem 0.35rem;
+  }
+  
+  .categoriesSection {
+    margin-bottom: 1.25rem;
+  }
+  
+  .categoriesWrapper {
+    gap: 0.4rem;
+  }
+  
+  .categoryChip {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.75rem;
+    gap: 0.35rem;
+  }
+  
+  .categoryIcon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .resultsHeader {
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .resultsCount {
+    font-size: 0.775rem;
+  }
+  
+  .sortSelect {
+    padding: 0.35rem 1.25rem 0.35rem 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .viewButton {
+    padding: 0.35rem;
+  }
+  
+  .featuredSection {
+    margin-bottom: 1.75rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1rem;
+    gap: 0.35rem;
+  }
+  
+  .sectionLink {
+    font-size: 0.75rem;
+  }
+  
+  .featuredScroll {
+    gap: 0.875rem;
+  }
+  
+  .featuredCard {
+    width: 220px;
+  }
+  
+  .emptyState {
+    padding: 2.5rem 1rem;
+  }
+  
+  .emptyIcon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 0.875rem;
+  }
+  
+  .emptyTitle {
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+  }
+  
+  .emptyText {
+    font-size: 0.825rem;
+    margin-bottom: 1rem;
+  }
+  
+  .emptyButton {
+    padding: 0.55rem 1rem;
+    font-size: 0.825rem;
+    border-radius: 0.5rem;
+  }
+  
+  .loadingGrid {
+    gap: 1rem;
+  }
+  
+  .skeletonImage {
+    height: 120px;
+  }
+  
+  .skeletonContent {
+    padding: 0.75rem;
+  }
+  
+  .skeletonLine {
+    height: 0.875rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .mobileFiltersContent {
+    max-height: 78vh;
+    border-radius: 1rem 1rem 0 0;
+  }
+  
+  .mobileFiltersHeader {
+    padding: 0.75rem 0.875rem;
+  }
+  
+  .mobileFiltersTitle {
+    font-size: 0.95rem;
+  }
+  
+  .mobileFiltersClose {
+    padding: 0.35rem;
+  }
+  
+  .mobileFiltersBody {
+    padding: 0.875rem;
+    max-height: calc(78vh - 110px);
+  }
+  
+  .mobileFiltersFooter {
+    gap: 0.4rem;
+    padding: 0.75rem 0.875rem;
+  }
+  
+  .mobileFiltersClear,
+  .mobileFiltersApply {
+    padding: 0.65rem;
+    font-size: 0.85rem;
+    border-radius: 0.5rem;
+  }
+  
+  .filterGroup {
+    margin-bottom: 1rem;
+  }
+  
+  .filterLabel {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .filterOptions {
+    gap: 0.35rem;
+  }
+  
+  .filterOption {
+    padding: 0.35rem 0.5rem;
+    gap: 0.5rem;
+  }
+  
+  .filterCheckbox {
+    width: 15px;
+    height: 15px;
+  }
+  
+  .filterOptionText {
+    font-size: 0.8rem;
+  }
+  
+  .filterOptionCount {
+    font-size: 0.65rem;
+  }
+  
+  .priceInputs {
+    gap: 0.4rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .priceInputLabel {
+    font-size: 0.65rem;
+  }
+  
+  .priceInput {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  .deliveryOptions {
+    gap: 0.35rem;
+  }
+  
+  .deliveryChip {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.7rem;
+  }
+  
+  .ratingOption {
+    padding: 0.35rem 0.5rem;
+  }
+  
+  .ratingText {
+    font-size: 0.75rem;
+  }
+  
+  .clearFilters {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    margin-top: 0.6rem;
+  }
+}

@@ -343,3 +343,49 @@
   .kpiGrid { grid-template-columns: 1fr; }
   .headerControls { width: 100%; justify-content: flex-start; }
 }
+
+
+@media (max-width: 380px) {
+  .headerControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .goalHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .skillDemandItem {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .perfRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .headerTop {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .exportGroup {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding: 0.5rem;
+  }
+  .skillsCard {
+    padding: 0.75rem;
+  }
+  .chartCard {
+    padding: 0.75rem;
+  }
+  .kpiCard {
+    padding: 0.75rem;
+  }
+}

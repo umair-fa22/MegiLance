@@ -153,3 +153,36 @@
     max-width: 100%;
   }
 }
+
+/* Small phones (380px and below) */
+@media (max-width: 380px) {
+  .page {
+    padding: var(--spacing-3);
+  }
+  .title {
+    font-size: var(--font-size-xl);
+  }
+  .container {
+    gap: var(--spacing-4);
+  }
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+  .actionRow {
+    padding: var(--spacing-3);
+  }
+  .supportContent {
+    gap: var(--spacing-3);
+  }
+}
+
+/* Extra small phones (320px) */
+@media (max-width: 320px) {
+  .page {
+    padding: var(--spacing-2);
+  }
+  .navButton {
+    padding: var(--spacing-1) var(--spacing-2);
+    font-size: var(--font-size-xs);
+  }
+}

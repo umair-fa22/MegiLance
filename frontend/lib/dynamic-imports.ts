@@ -32,12 +32,12 @@ export const DynamicFloatingSphere = dynamic(
  * Only load when dashboard/analytics views are active
  */
 export const DynamicBarChart = dynamic(
-  () => import('@/app/components/BarChart/BarChart'),
+  () => import('@/app/components/molecules/BarChart/BarChart'),
   { ssr: false }
 );
 
 export const DynamicPieChart = dynamic(
-  () => import('@/app/components/PieChart/PieChart'),
+  () => import('@/app/components/molecules/PieChart/PieChart'),
   { ssr: false }
 );
 
@@ -46,7 +46,7 @@ export const DynamicPieChart = dynamic(
  * Only load when entering a video call
  */
 export const DynamicVideoCall = dynamic(
-  () => import('@/app/components/VideoCall/VideoCall'),
+  () => import('@/app/components/molecules/VideoCall/VideoCall'),
   { ssr: false }
 );
 

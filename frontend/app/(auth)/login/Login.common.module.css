@@ -159,8 +159,9 @@
   min-height: 100svh; /* better small viewport unit support */
   min-height: 100vh; /* fallback */
   font-family: var(--font-family-body);
-  align-items: stretch;
-  /* overflow removed to preserve sticky positioning on branding panel */
+  align-items: start; /* Allow content to start at top and scroll naturally */
+  overflow-x: hidden;
+  overflow-y: auto; /* Enable vertical scroll when content exceeds viewport */
   position: relative;
 }
 
@@ -183,10 +184,14 @@
   .loginPage { 
     grid-template-columns: 5fr 7fr; /* slightly larger form column */
     grid-template-areas: 'brand form';
+    overflow: visible; /* Let form panel handle its own scroll */
   }
   .brandingSlot {
     display: block;
-    position: relative;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    align-self: start; /* Keep branding panel fixed while form scrolls */
   }
   .brandingPanel { display: flex; }
 }
@@ -255,13 +260,16 @@
 /* Right Panel: Form */
 .formPanel {
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Start from top, allow natural scroll */
   justify-content: center;
   padding: 2.5rem 1.25rem;
+  padding-top: 4rem; /* Add top padding to visually center shorter forms */
+  padding-bottom: 4rem;
   background-color: var(--form-bg-color);
   grid-area: form;
   position: relative;
   overflow-x: hidden;
+  min-height: 100vh; /* Ensure it takes at least full viewport */
 }
 
 .formPanel::before {
@@ -615,10 +623,17 @@
 }
 
 @media (max-width: 768px) {
+  .loginPage {
+    min-height: 100dvh; /* Use dynamic viewport height on mobile */
+    overflow-y: auto;
+  }
+
   .formPanel {
     padding: 1.5rem 1rem;
-    align-items: flex-start;
     padding-top: 2rem;
+    padding-bottom: 2rem;
+    align-items: flex-start;
+    min-height: auto; /* Allow content to dictate height on mobile */
   }
 
   .formContainer {
@@ -697,8 +712,8 @@
   }
 }
 
-/* ── Extra-small ≤ 374px ── */
-@media (max-width: 374px) {
+/* ── Small phones ≤ 380px ── */
+@media (max-width: 380px) {
   .formPanel {
     padding: 1.25rem 0.75rem;
   }
@@ -738,5 +753,71 @@
 
   .loginForm {
     gap: 0.875rem;
+  }
+}
+
+/* ── Extra-small ≤ 320px ── */
+@media (max-width: 320px) {
+  .formPanel {
+    padding: 1rem 0.5rem;
+  }
+
+  .formTitle {
+    font-size: 1.1rem;
+  }
+
+  .formSubtitle {
+    font-size: 12px;
+  }
+
+  .roleSelector {
+    gap: 0.25rem;
+  }
+
+  .roleButton {
+    padding: 0.375rem 0.125rem;
+    font-size: 10px;
+  }
+
+  .roleIcon {
+    font-size: 1.125rem;
+  }
+
+  .brandingIconWrapper {
+    width: 56px;
+    height: 56px;
+  }
+
+  .formContainer {
+    padding: 0.5rem;
+    border-radius: 12px;
+  }
+
+  .formHeader {
+    margin-bottom: 1rem;
+  }
+
+  .dividerText {
+    font-size: 0.625rem;
+    padding: 0 0.5rem;
+  }
+
+  .loginForm {
+    gap: 0.75rem;
+  }
+
+  .signupPrompt {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .forgotPasswordLink,
+  .passwordlessLink {
+    font-size: 0.7rem;
+  }
+
+  .previewBanner {
+    padding: 0.5rem;
+    font-size: 0.75rem;
   }
 }

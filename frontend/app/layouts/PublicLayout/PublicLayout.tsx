@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 import commonStyles from './PublicLayout.common.module.css';
 import lightStyles from './PublicLayout.light.module.css';
 import darkStyles from './PublicLayout.dark.module.css';
-import SmartBanner from '@/app/components/SmartBanner/SmartBanner';
+import SmartBanner from '@/app/components/molecules/SmartBanner/SmartBanner';
 
 type Props = { children: React.ReactNode };
 

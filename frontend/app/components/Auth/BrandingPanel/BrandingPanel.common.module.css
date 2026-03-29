@@ -56,11 +56,8 @@
   font-weight: 700;
   margin-bottom: 1rem;
   color: var(--brand-title-color);
-  background: linear-gradient(135deg, var(--brand-title-color, #1a2b4d), var(--brand-icon-color, #4573df));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
   letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .brandingText {

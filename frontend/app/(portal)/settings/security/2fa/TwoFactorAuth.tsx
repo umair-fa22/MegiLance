@@ -8,9 +8,9 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { QRCodeCanvas } from 'qrcode.react';
 import { ShieldCheck, KeyRound, CheckCircle, XCircle, Download } from 'lucide-react';
-import Modal from '@/app/components/Modal/Modal';
-import Button from '@/app/components/Button/Button';
-import Input from '@/app/components/Input/Input';
+import Modal from '@/app/components/organisms/Modal/Modal';
+import Button from '@/app/components/atoms/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
 
 import commonStyles from './TwoFactorAuth.common.module.css';
 import lightStyles from './TwoFactorAuth.light.module.css';

@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 
 import { blogApi, BlogPost } from '@/lib/api/blog';
-import { PageTransition, ScrollReveal } from '@/components/Animations';
+import { PageTransition, ScrollReveal } from '@/app/components/Animations';
 import { AnimatedOrb, ParticlesSystem } from '@/app/components/3D';
 import { cn } from '@/lib/utils';
 

@@ -5,10 +5,10 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { adminApi } from '@/lib/api'
-import Button from '@/app/components/Button/Button';
-import Badge from '@/app/components/Badge/Badge';
-import Loading from '@/app/components/Loading/Loading';
-import { PageTransition, ScrollReveal } from '@/components/Animations';
+import Button from '@/app/components/atoms/Button/Button';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import Loading from '@/app/components/atoms/Loading/Loading';
+import { PageTransition, ScrollReveal } from '@/app/components/Animations';
 import {
   BarChart3, Users, Briefcase, DollarSign, TrendingUp, Download,
   FileText, Calendar, Clock, ShieldAlert, Activity, Eye

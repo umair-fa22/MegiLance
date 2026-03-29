@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 
 import { ProposalData } from '../../SubmitProposal.types';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 
 import common from './StepReview.common.module.css';
 import light from './StepReview.light.module.css';

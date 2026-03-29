@@ -5,12 +5,10 @@ No authentication required. Works for freelancers, small businesses, anyone.
 Supports multi-currency, tax calculation, custom line items, and PDF-ready output.
 """
 
-import math
 import logging
-from typing import List, Optional, Dict, Any
+from typing import List, Dict, Any
 from datetime import datetime, timedelta
 import hashlib
-import json
 
 logger = logging.getLogger("megilance")
 

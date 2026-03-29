@@ -6,10 +6,10 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { searchApi, projectsApi } from '@/lib/api';
 import api from '@/lib/api';
-import { Button } from '@/app/components/Button';
-import Input from '@/app/components/Input/Input';
-import Select from '@/app/components/Select/Select';
-import JobCard from '@/app/components/JobCard/JobCard';
+import { Button } from '@/app/components/atoms/Button';
+import Input from '@/app/components/atoms/Input/Input';
+import Select from '@/app/components/molecules/Select/Select';
+import JobCard from '@/app/components/organisms/JobCard/JobCard';
 import { PageTransition, StaggerContainer, StaggerItem } from '@/app/components/Animations';
 import Skeleton from '@/app/components/Animations/Skeleton/Skeleton';
 import { Search, Filter, X, Briefcase, ChevronLeft, ChevronRight, Zap } from 'lucide-react'

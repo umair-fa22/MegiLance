@@ -77,7 +77,71 @@
   .pageBtn { width: 36px; height: 36px; }
 }
 
-@media (max-width: 374px) {
-  .container { padding: 1rem; }
+@media (max-width: 380px) {
+  .container { padding: 0.75rem; }
   .freelancerCard { padding: 1rem; }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .filterToggleRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filterToggle, .availabilityToggle {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .favoriteBtn {
+    align-self: flex-end;
+    margin-top: -3rem;
+  }
+
+  .meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .cardActions {
+    flex-direction: column;
+  }
+  
+  .cardActions button, .cardActions a {
+    width: 100%;
+  }
+
+  .pageBtn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .title {
+    font-size: 1.25rem;
+  }
+  
+  .name {
+    font-size: 1rem;
+  }
+  
+  .rateRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .pagination {
+    flex-wrap: wrap;
+  }
 }

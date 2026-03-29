@@ -5,7 +5,7 @@ import React, { useMemo } from 'react';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
 
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import { cn } from '@/lib/utils';
 import commonStyles from './PortfolioItemCard.common.module.css';
 import lightStyles from './PortfolioItemCard.light.module.css';

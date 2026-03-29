@@ -1,7 +1,7 @@
 // @AI-HINT: Reusable CSS-only animated globe decoration for section backgrounds. Configurable size, position, opacity, and color variant. Used across multiple pages for visual cohesion.
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 
@@ -26,8 +26,16 @@ const SectionGlobe: React.FC<SectionGlobeProps> = ({
   position = 'right',
   className,
 }) => {
+  const [mounted, setMounted] = useState(false);
   const { resolvedTheme } = useTheme();
-  const styles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
+  // Use consistent theme during SSR to prevent hydration mismatch
+  const effectiveTheme = mounted ? (resolvedTheme ?? 'dark') : 'dark';
+  const styles = effectiveTheme === 'dark' ? darkStyles : lightStyles;
 
   const sizeClass = size === 'sm' ? commonStyles.sizeSm : size === 'lg' ? commonStyles.sizeLg : commonStyles.sizeMd;
   const posClass = position === 'left' ? commonStyles.posLeft : position === 'center' ? commonStyles.posCenter : commonStyles.posRight;

@@ -5,8 +5,8 @@ import { useState } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { Bot, Sparkles, X, Check } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
-import Select from '@/app/components/Select/Select';
+import Button from '@/app/components/atoms/Button/Button';
+import Select from '@/app/components/molecules/Select/Select';
 import api from '@/lib/api';
 
 import commonStyles from './ProposalAICopilot.common.module.css';

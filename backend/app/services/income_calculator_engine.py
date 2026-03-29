@@ -6,7 +6,7 @@ factors in taxes, expenses, retirement, and provides financial health insights.
 """
 
 import logging
-from typing import List, Optional, Dict, Any
+from typing import List, Dict, Any
 from datetime import datetime
 
 logger = logging.getLogger("megilance")

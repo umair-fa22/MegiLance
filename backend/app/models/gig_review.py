@@ -1,7 +1,7 @@
 # @AI-HINT: Gig Review model for reviews specific to gig orders with multi-category ratings
 """Gig Review model for service marketplace reviews."""
 
-from sqlalchemy import String, Integer, Float, DateTime, Text, ForeignKey, Boolean
+from sqlalchemy import Integer, Float, DateTime, Text, ForeignKey, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 from datetime import datetime, timezone

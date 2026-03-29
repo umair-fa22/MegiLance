@@ -7,10 +7,8 @@ import functools
 import inspect
 logger = logging.getLogger(__name__)
 
-from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi import Limiter
 from slowapi.util import get_remote_address
-from slowapi.errors import RateLimitExceeded
-from slowapi.middleware import SlowAPIMiddleware
 from fastapi import Request
 from starlette.responses import Response as StarletteResponse
 

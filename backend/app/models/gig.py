@@ -1,7 +1,7 @@
 # @AI-HINT: Gig model for Fiverr-style service packages - freelancers create fixed-price offerings with Basic/Standard/Premium tiers
 """Gig model for service marketplace functionality."""
 
-from sqlalchemy import String, Integer, Float, DateTime, Text, ForeignKey, Boolean, JSON
+from sqlalchemy import String, Integer, Float, DateTime, Text, ForeignKey, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 from datetime import datetime, timezone

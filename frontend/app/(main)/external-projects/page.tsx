@@ -7,7 +7,8 @@ import { cn } from '@/lib/utils';
 import { externalProjectsApi } from '@/lib/api';
 import { PageTransition, ScrollReveal } from '@/app/components/Animations';
 import SectionGlobe from '@/app/components/Animations/SectionGlobe/SectionGlobe';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
+import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
 import {
   Globe, Search, RefreshCw, ExternalLink, MapPin, DollarSign,
   Clock, Shield, ShieldCheck, ShieldAlert, ChevronLeft, ChevronRight,
@@ -493,20 +494,20 @@ export default function ExternalProjectsPage() {
             )}
           </>
         ) : (
-          <div className={cn(commonStyles.emptyState, themed.emptyState)}>
-            <Sparkles className={cn(commonStyles.emptyIcon, themed.emptyIcon)} />
-            <h3 className={commonStyles.emptyTitle}>No Projects Found</h3>
-            <p className={cn(commonStyles.emptyText, themed.emptyText)}>
-              {query || selectedCategory || selectedSource
-                ? 'Try adjusting your filters or search query.'
-                : 'Click "Refresh Projects" to scrape the latest freelance projects from external platforms.'}
-            </p>
-            {!query && !selectedCategory && !selectedSource && (
-              <Button variant="primary" size="md" onClick={handleScrape} isLoading={scraping}>
-                <RefreshCw size={16} /> Fetch Projects Now
-              </Button>
-            )}
-          </div>
+            <div className="w-full flex justify-center py-12">
+              <EmptyState
+                title="No Projects Found"
+                description={query || selectedCategory || selectedSource
+                  ? 'Try adjusting your filters or search query.'
+                  : 'Click "Refresh Projects" to scrape the latest freelance projects from external platforms.'}
+                icon={<Sparkles size={48} />}
+                action={!query && !selectedCategory && !selectedSource ? (
+                  <Button variant="primary" size="md" onClick={handleScrape} isLoading={scraping}>
+                    <RefreshCw size={16} /> Fetch Projects Now
+                  </Button>
+                ) : undefined}
+              />
+            </div>
         )}
 
         {/* Last Updated */}

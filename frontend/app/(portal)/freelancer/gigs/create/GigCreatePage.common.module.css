@@ -32,3 +32,15 @@
     min-height: 80vh;
   }
 }
+
+@media (max-width: 380px) {
+  .loadingSpinner {
+    width: 32px;
+    height: 32px;
+  }
+}
+@media (max-width: 320px) {
+  .loadingWrapper {
+    min-height: 70vh;
+  }
+}

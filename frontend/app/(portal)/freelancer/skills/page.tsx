@@ -4,11 +4,11 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Button from '@/app/components/Button/Button';
-import Input from '@/app/components/Input/Input';
-import Modal from '@/app/components/Modal/Modal';
-import Loading from '@/app/components/Loading/Loading';
-import EmptyState from '@/app/components/EmptyState/EmptyState';
+import Button from '@/app/components/atoms/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
+import Modal from '@/app/components/organisms/Modal/Modal';
+import Loading from '@/app/components/atoms/Loading/Loading';
+import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';

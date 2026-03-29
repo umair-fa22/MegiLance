@@ -22,7 +22,7 @@ import {
   ChevronDown,
   ChevronUp,
 } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 
 import commonStyles from './PostProject.common.module.css';
 import lightStyles from './PostProject.light.module.css';

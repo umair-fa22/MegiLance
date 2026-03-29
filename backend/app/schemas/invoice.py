@@ -1,7 +1,7 @@
 # @AI-HINT: Pydantic schemas for Invoice API validation and responses
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from datetime import datetime, date
-from typing import Optional, List, Dict, Any, List, Dict, Any
+from typing import Optional, List, Dict, Any
 
 class InvoiceBase(BaseModel):
     """Base invoice schema with common fields"""

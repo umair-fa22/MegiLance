@@ -3,7 +3,7 @@
 import logging
 import re
 from pydantic import BaseModel, ConfigDict, Field, field_validator
-from typing import Optional, Dict, Any
+from typing import Optional, Dict
 from datetime import datetime
 logger = logging.getLogger(__name__)
 

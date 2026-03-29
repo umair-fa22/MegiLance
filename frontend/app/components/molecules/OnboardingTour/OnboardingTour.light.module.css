@@ -1,0 +1,29 @@
+.modal {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+}
+
+.imageContainer {
+  background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 100%);
+}
+
+.title {
+  color: var(--text-primary);
+}
+
+.description {
+  color: var(--text-secondary);
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+  background-color: var(--background);
+}
+
+.dot {
+  background-color: var(--border);
+}
+
+.dotActive {
+  background-color: var(--primary);
+}

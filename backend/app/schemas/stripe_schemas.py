@@ -1,8 +1,7 @@
 # @AI-HINT: Pydantic schemas for Stripe payment API requests and responses
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Optional, Dict, List
-from datetime import datetime
+from typing import Optional, Dict
 
 
 # ===== Customer Schemas =====

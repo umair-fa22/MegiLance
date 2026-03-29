@@ -4,10 +4,10 @@
 import React, { useMemo, useState, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { PageTransition, ScrollReveal } from '@/components/Animations'
+import { PageTransition, ScrollReveal } from '@/app/components/Animations'
 import { useAdminData } from '@/hooks/useAdmin';
-import Modal from '@/app/components/Modal/Modal';
-import Button from '@/app/components/Button/Button';
+import Modal from '@/app/components/organisms/Modal/Modal';
+import Button from '@/app/components/atoms/Button/Button';
 import { supportTicketsApi } from '@/lib/api';
 import common from './AdminSupport.common.module.css';
 import light from './AdminSupport.light.module.css';

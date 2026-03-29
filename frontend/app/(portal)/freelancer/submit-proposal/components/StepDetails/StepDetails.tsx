@@ -8,10 +8,10 @@ import { motion } from 'framer-motion';
 import { Calculator, CheckCircle, AlertCircle, Clock } from 'lucide-react';
 
 import { ProposalData, ProposalErrors } from '../../SubmitProposal.types';
-import Textarea from '@/app/components/Textarea/Textarea';
-import Input from '@/app/components/Input/Input';
-import { Label } from '@/app/components/Label/Label';
-import Select from '@/app/components/Select/Select';
+import Textarea from '@/app/components/atoms/Textarea/Textarea';
+import Input from '@/app/components/atoms/Input/Input';
+import { Label } from '@/app/components/atoms/Label/Label';
+import Select from '@/app/components/molecules/Select/Select';
 import { AIProposalAssistant } from '@/app/components/AI';
 
 import common from './StepDetails.common.module.css';

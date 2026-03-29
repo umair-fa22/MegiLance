@@ -4,12 +4,12 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Button from '@/app/components/Button/Button';
-import Badge from '@/app/components/Badge/Badge';
-import Select from '@/app/components/Select/Select';
-import Loader from '@/app/components/Loader/Loader';
-import EmptyState from '@/app/components/EmptyState/EmptyState';
-import Modal from '@/app/components/Modal/Modal';
+import Button from '@/app/components/atoms/Button/Button';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import Select from '@/app/components/molecules/Select/Select';
+import Loader from '@/app/components/atoms/Loader/Loader';
+import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
+import Modal from '@/app/components/organisms/Modal/Modal';
 import { PageTransition, ScrollReveal, StaggerContainer, StaggerItem } from '@/app/components/Animations';
 import {
   Shield, AlertTriangle, Ban, CheckCircle, Eye, XCircle,

@@ -2,7 +2,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import Loading from '@/app/components/Loading/Loading';
+import Loading from '@/app/components/atoms/Loading/Loading';
 
 const Integrations = dynamic(() => import('./Integrations'), {
   loading: () => <Loading text="Loading integrations..." />,

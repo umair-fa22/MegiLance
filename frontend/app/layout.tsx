@@ -204,6 +204,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
       </head>
       <body className="bg-[var(--background)] text-[var(--text-primary)] antialiased">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[9999] focus:p-4 focus:bg-[var(--primary)] focus:text-white top-0 left-0">Skip to main content</a>
         <ClientRoot>
           {children}
         </ClientRoot>

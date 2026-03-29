@@ -7,7 +7,7 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
-import { useToaster } from '@/app/components/Toast/ToasterProvider';
+import { useToaster } from '@/app/components/molecules/Toast/ToasterProvider';
 import { getAuthToken } from '@/lib/api';
 import commonStyles from './Wallet.common.module.css';
 import lightStyles from './Wallet.light.module.css';

@@ -5,7 +5,6 @@ import logging
 import socketio
 from typing import Dict, Set, Optional, List
 from datetime import datetime, timezone
-import json
 import os
 logger = logging.getLogger(__name__)
 
@@ -125,15 +124,22 @@ class WebSocketManager:
             user_id = self.user_sessions.get(sid)
             
             if chat_id and message and user_id:
+                payload = {
+                    'chat_id': chat_id,
+                    'message': message,
+                    'user_id': user_id,
+                    'timestamp': datetime.now(timezone.utc).isoformat()
+                }
+                
+                # Forward any additional metadata (like attachment_url, sender_name)
+                for key, value in data.items():
+                    if key not in ['chat_id', 'message']:
+                        payload[key] = value
+
                 await self.broadcast_to_chat(
                     str(chat_id),
                     'new_message',
-                    {
-                        'chat_id': chat_id,
-                        'message': message,
-                        'user_id': user_id,
-                        'timestamp': datetime.now(timezone.utc).isoformat()
-                    },
+                    payload,
                     exclude_sid=sid
                 )
     

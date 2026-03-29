@@ -18,8 +18,8 @@ import {
 } from 'lucide-react';
 
 import { ProposalData, ProposalErrors } from '../../SubmitProposal.types';
-import { Label } from '@/app/components/Label/Label';
-import Checkbox from '@/app/components/Checkbox/Checkbox';
+import { Label } from '@/app/components/atoms/Label/Label';
+import Checkbox from '@/app/components/atoms/Checkbox/Checkbox';
 
 import common from './StepTerms.common.module.css';
 import light from './StepTerms.light.module.css';

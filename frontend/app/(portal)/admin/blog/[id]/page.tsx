@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { blogApi, BlogPost, UpdateBlogPost } from '@/lib/api/blog';
 import BlogPostForm from '../_components/BlogPostForm';
-import Loader from '@/app/components/Loader/Loader';
+import Loader from '@/app/components/atoms/Loader/Loader';
 
 export default function EditBlogPage() {
   const params = useParams();

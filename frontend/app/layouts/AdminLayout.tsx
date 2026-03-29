@@ -4,7 +4,7 @@
 import React from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import SidebarNav from '@/app/components/SidebarNav/SidebarNav';
+import SidebarNav from '@/app/components/organisms/SidebarNav/SidebarNav';
 import commonStyles from './DashboardLayout.common.module.css';
 import lightStyles from './DashboardLayout.light.module.css';
 import darkStyles from './DashboardLayout.dark.module.css';

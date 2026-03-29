@@ -1,7 +1,7 @@
 # @AI-HINT: Service layer for public client showcase and statistics
 # All database queries for the public-clients endpoints (no auth required)
 
-from app.db.turso_http import execute_query, to_str, to_int, to_float
+from app.db.turso_http import execute_query
 from typing import List, Optional, Dict, Any
 
 

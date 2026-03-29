@@ -1,5 +1,5 @@
 # @AI-HINT: Referral model for tracking user referral codes, invites, and reward bonuses
-from sqlalchemy import String, Integer, Float, DateTime, ForeignKey, Boolean, Enum
+from sqlalchemy import String, Float, DateTime, ForeignKey, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 from datetime import datetime, timezone

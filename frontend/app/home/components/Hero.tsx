@@ -20,7 +20,7 @@ import {
   Video
 } from 'lucide-react';
 
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 
 import commonStyles from './Hero.common.module.css';
 import lightStyles from './Hero.light.module.css';

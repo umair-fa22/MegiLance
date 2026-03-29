@@ -1,17 +1,13 @@
 # @AI-HINT: Database seeding script - populates demo/development data for users, projects, skills
 import logging
-import json
-from sqlalchemy.orm import Session
 from app.db.session import engine
 from app.db.base import Base
 from app.models.user import User
 from app.models.project import Project
 from app.models.proposal import Proposal
-from app.models.contract import Contract
 from app.models.portfolio import PortfolioItem
-from app.models.payment import Payment
 from app.core.security import get_password_hash
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 logger = logging.getLogger(__name__)
 
 def seed_database():

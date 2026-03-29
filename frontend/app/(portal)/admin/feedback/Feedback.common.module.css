@@ -521,3 +521,35 @@
     min-width: auto;
   }
 }
+
+/* Base table responsive enforcements */
+.tableContainer, .tableWrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+@media (max-width: 380px) {
+  .filters, .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+  .td, .th {
+    padding: 8px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 320px) {
+  .filters, .header {
+    gap: 8px;
+  }
+  .td, .th {
+    padding: 6px;
+    font-size: 12px;
+  }
+}

@@ -177,6 +177,117 @@
   .budget { align-self: flex-start; }
 }
 
+/* Small phones (380px and below) */
+@media (max-width: 380px) {
+  .header { padding: 1.5rem 0.75rem 1rem; }
+  .title { font-size: 1.4rem; letter-spacing: -0.015em; }
+  .subtitle { font-size: 1rem; }
+  
+  .searchSection { gap: 0.5rem; margin-top: 1rem; }
+  .searchBar { height: 46px; border-radius: 10px; padding: 0 0.75rem; gap: 0.5rem; }
+  .searchInput { font-size: 0.9rem; }
+  .mobileFilterBtn { padding: 0.6rem 1rem; font-size: 0.85rem; border-radius: 10px; }
+  .filterBadge { width: 18px; height: 18px; font-size: 0.7rem; }
+  
+  .categoriesSection { padding: 0 0.75rem; margin-bottom: 1rem; }
+  .categoriesScroll { gap: 0.4rem; padding: 0.4rem 0; }
+  .categoryPill { padding: 0.4rem 0.8rem; font-size: 0.8rem; gap: 0.3rem; }
+  
+  .mainLayout { padding: 0 0.75rem 2rem; gap: 1rem; }
+  
+  .toolbar { padding: 0.5rem 0; margin-bottom: 0.75rem; gap: 0.5rem; }
+  .resultCount { font-size: 0.85rem; }
+  .toolbarActions { gap: 0.5rem; }
+  .sortSelect { padding: 0.4rem 0.6rem; font-size: 0.8rem; }
+  .viewBtn { padding: 0.35rem 0.5rem; }
+  
+  .activeFilters { gap: 0.4rem; margin-bottom: 0.75rem; }
+  .activeTag { padding: 0.25rem 0.6rem; font-size: 0.75rem; gap: 0.3rem; }
+  .clearAllBtn { font-size: 0.75rem; }
+  
+  .jobsList { gap: 0.75rem; }
+  .jobsGrid { gap: 0.75rem; grid-template-columns: 1fr; }
+  
+  .card { padding: 1.25rem; border-radius: 12px; gap: 0.6rem; }
+  .cardTop { gap: 0.75rem; }
+  .jobTitle { font-size: 1.05rem; line-height: 1.3; }
+  .cardMeta { gap: 0.5rem; font-size: 0.78rem; margin-top: 0.3rem; }
+  .experienceBadge { font-size: 0.7rem; padding: 0.1rem 0.5rem; }
+  .budget { font-size: 1rem; }
+  .description { font-size: 0.85rem; line-height: 1.55; }
+  .tags { gap: 0.3rem; }
+  .tag { font-size: 0.72rem; padding: 0.15rem 0.6rem; }
+  .cardFooter { padding-top: 0.4rem; }
+  .footerItem { font-size: 0.78rem; gap: 0.25rem; }
+  
+  .emptyState { padding: 3rem 1.5rem; gap: 0.75rem; }
+  .emptyState h3 { font-size: 1.15rem; }
+  .emptyState p { font-size: 0.9rem; }
+  
+  .pagination { gap: 0.3rem; margin-top: 1.5rem; padding: 0.75rem 0; }
+  .pageBtn { width: 36px; height: 36px; font-size: 0.85rem; border-radius: 8px; }
+  
+  .mobilePanel { width: 300px; }
+  .mobilePanelHeader { padding: 1rem 1.25rem; }
+  .mobilePanelHeader h3 { font-size: 1rem; }
+  .mobilePanelBody { padding: 1.25rem; }
+  .mobilePanelFooter { padding: 0.875rem 1.25rem; }
+}
+
+/* Extra small phones (320px) */
+@media (max-width: 320px) {
+  .header { padding: 1.25rem 0.5rem 0.75rem; }
+  .title { font-size: 1.25rem; }
+  .subtitle { font-size: 0.9rem; }
+  
+  .searchSection { gap: 0.4rem; margin-top: 0.75rem; }
+  .searchBar { height: 42px; border-radius: 8px; padding: 0 0.6rem; }
+  .searchInput { font-size: 0.85rem; }
+  .mobileFilterBtn { padding: 0.5rem 0.85rem; font-size: 0.8rem; border-radius: 8px; }
+  .filterBadge { width: 16px; height: 16px; font-size: 0.65rem; }
+  
+  .categoriesSection { padding: 0 0.5rem; margin-bottom: 0.75rem; }
+  .categoriesScroll { gap: 0.3rem; }
+  .categoryPill { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  
+  .mainLayout { padding: 0 0.5rem 1.5rem; gap: 0.75rem; }
+  
+  .toolbar { margin-bottom: 0.5rem; }
+  .resultCount { font-size: 0.8rem; }
+  .sortSelect { padding: 0.35rem 0.5rem; font-size: 0.75rem; }
+  .viewBtn { padding: 0.3rem 0.4rem; }
+  
+  .activeFilters { gap: 0.3rem; margin-bottom: 0.5rem; }
+  .activeTag { padding: 0.2rem 0.5rem; font-size: 0.7rem; }
+  .clearAllBtn { font-size: 0.7rem; }
+  
+  .jobsList { gap: 0.6rem; }
+  .jobsGrid { gap: 0.6rem; }
+  
+  .card { padding: 1rem; border-radius: 10px; gap: 0.5rem; }
+  .jobTitle { font-size: 0.95rem; }
+  .cardMeta { gap: 0.4rem; font-size: 0.72rem; }
+  .experienceBadge { font-size: 0.65rem; padding: 0.08rem 0.4rem; }
+  .budget { font-size: 0.95rem; }
+  .description { font-size: 0.8rem; line-height: 1.5; }
+  .tags { gap: 0.25rem; }
+  .tag { font-size: 0.68rem; padding: 0.12rem 0.5rem; }
+  .footerItem { font-size: 0.72rem; }
+  
+  .emptyState { padding: 2.5rem 1rem; }
+  .emptyState h3 { font-size: 1.05rem; }
+  .emptyState p { font-size: 0.85rem; }
+  
+  .pagination { gap: 0.25rem; margin-top: 1.25rem; }
+  .pageBtn { width: 32px; height: 32px; font-size: 0.8rem; border-radius: 7px; }
+  
+  .mobilePanel { width: 280px; }
+  .mobilePanelHeader { padding: 0.875rem 1rem; }
+  .mobilePanelHeader h3 { font-size: 0.95rem; }
+  .mobilePanelBody { padding: 1rem; }
+  .mobilePanelFooter { padding: 0.75rem 1rem; gap: 0.5rem; }
+}
+
 .searchInput:focus-visible {
   outline: 2px solid var(--color-primary, #4573df);
   outline-offset: 2px;

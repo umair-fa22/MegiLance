@@ -5,11 +5,10 @@ import stripe
 import json
 import logging
 from typing import Optional, Dict, Any, List
-from decimal import Decimal
 from datetime import datetime, timezone
 
 from ..core.config import get_settings
-from ..db.turso_http import execute_query, parse_rows
+from ..db.turso_http import execute_query
 
 logger = logging.getLogger(__name__)
 
@@ -360,7 +359,32 @@ class StripeService:
     
     async def _handle_payment_succeeded(self, payment_intent: Dict) -> Dict:
         """Handle successful payment"""
+        from app.services import wallet_service
+        
         metadata = payment_intent.get("metadata", {})
+        payment_type = metadata.get("type")
+        
+        # Handle wallet deposit completion
+        if payment_type == "wallet_deposit":
+            user_id = metadata.get("user_id")
+            reference_id = metadata.get("reference_id")
+            amount_cents = payment_intent.get("amount", 0)
+            amount = amount_cents / 100  # Convert cents to dollars
+            
+            if user_id and reference_id:
+                try:
+                    user_id_int = int(user_id)
+                    # Credit the user's wallet balance
+                    wallet_service.credit_balance(user_id_int, amount)
+                    # Update transaction status to completed
+                    wallet_service.update_transaction_status(reference_id, "completed", completed=True)
+                    logger.info(f"Wallet deposit completed: user={user_id}, amount=${amount}, ref={reference_id}")
+                    return {"status": "success", "type": "wallet_deposit", "user_id": user_id, "amount": amount}
+                except Exception as e:
+                    logger.error(f"Failed to credit wallet for deposit {reference_id}: {e}")
+                    return {"status": "error", "type": "wallet_deposit", "error": str(e)}
+        
+        # Handle regular payment (project payments, etc.)
         payment_id = metadata.get("payment_id")
         if payment_id:
             execute_query(
@@ -371,7 +395,20 @@ class StripeService:
     
     async def _handle_payment_failed(self, payment_intent: Dict) -> Dict:
         """Handle failed payment"""
+        from app.services import wallet_service
+        
         metadata = payment_intent.get("metadata", {})
+        payment_type = metadata.get("type")
+        
+        # Handle wallet deposit failure
+        if payment_type == "wallet_deposit":
+            reference_id = metadata.get("reference_id")
+            if reference_id:
+                wallet_service.update_transaction_status(reference_id, "failed", completed=False)
+                logger.info(f"Wallet deposit failed: ref={reference_id}")
+                return {"status": "failed", "type": "wallet_deposit", "reference_id": reference_id}
+        
+        # Handle regular payment failure
         payment_id = metadata.get("payment_id")
         if payment_id:
             execute_query(

@@ -1,9 +1,32 @@
 /* @AI-HINT: Light theme styles for the reusable Branding Panel component. */
 
 .brandingPanel {
-  --branding-panel-bg: #f0f4ff; /* A very light, inviting blue */
-  --brand-icon-color: #4573df;
-  --brand-title-color: #1a2b4d; /* Darker blue for contrast */
-  --brand-text-color: #4a5568; /* Slate gray */
+  /* On blue background, use white text for proper contrast */
+  --branding-panel-bg: #4573df;
+  --brand-icon-color: #ffffff;
+  --brand-title-color: #ffffff;
+  --brand-text-color: rgba(255, 255, 255, 0.9);
   background-color: #4573df;
+}
+
+.brandingIconWrapper {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.brandingIcon {
+  color: #ffffff;
+}
+
+.brandingTitle {
+  color: #ffffff;
+}
+
+.brandingText {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.brandingFooter {
+  color: rgba(255, 255, 255, 0.7);
 }

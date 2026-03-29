@@ -4,17 +4,17 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { useToaster } from '@/app/components/Toast/ToasterProvider';
+import { useToaster } from '@/app/components/molecules/Toast/ToasterProvider';
 import { Bell, Lock, Eye, Mail, Globe } from 'lucide-react';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer } from '@/app/components/Animations/StaggerContainer';
 
-import Input from '@/app/components/Input/Input';
-import Textarea from '@/app/components/Textarea/Textarea';
-import Button from '@/app/components/Button/Button';
-import { Label } from '@/app/components/Label/Label';
-import Switch from '@/app/components/ToggleSwitch/ToggleSwitch';
+import Input from '@/app/components/atoms/Input/Input';
+import Textarea from '@/app/components/atoms/Textarea/Textarea';
+import Button from '@/app/components/atoms/Button/Button';
+import { Label } from '@/app/components/atoms/Label/Label';
+import Switch from '@/app/components/atoms/ToggleSwitch/ToggleSwitch';
 import api from '@/lib/api';
 
 import commonStyles from './Settings.common.module.css';

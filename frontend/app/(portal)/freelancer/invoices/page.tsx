@@ -11,9 +11,9 @@ import { StaggerContainer, StaggerItem } from '@/app/components/Animations/Stagg
 import commonStyles from './Invoices.common.module.css';
 import lightStyles from './Invoices.light.module.css';
 import darkStyles from './Invoices.dark.module.css';
-import Button from '@/app/components/Button/Button';
-import Input from '@/app/components/Input/Input';
-import Textarea from '@/app/components/Textarea/Textarea';
+import Button from '@/app/components/atoms/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
+import Textarea from '@/app/components/atoms/Textarea/Textarea';
 import {
   FileText, DollarSign, CheckCircle, Clock, AlertTriangle,
   Plus, Send, Edit2, Download, Trash2, X, Search,

@@ -92,7 +92,7 @@
   }
 }
 
-@media (max-width: 374px) {
+@media (max-width: 380px) {
   .stepName {
     display: none;
   }
@@ -105,5 +105,20 @@
   .icon {
     width: 1rem;
     height: 1rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .indicator {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
+  .stepNumber {
+    font-size: 0.75rem;
+  }
+  
+  .progressBarContainer {
+    top: calc(0.75rem - 2px);
   }
 }

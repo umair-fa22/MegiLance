@@ -31,26 +31,7 @@ export const legalDocsApi = {
   getAcceptanceHistory: () => apiFetch('/legal-documents/acceptance-history'),
 };
 
-export const fileVersionsApi = {
-  getVersions: (fileId: ResourceId) => apiFetch(`/file-versions/${fileId}`),
-  uploadVersion: (fileId: ResourceId, file: File, notes?: string) => {
-    const formData = new FormData();
-    formData.append('file', file);
-    if (notes) formData.append('notes', notes);
-    return apiFetch(`/file-versions/${fileId}`, {
-      method: 'POST',
-      body: formData,
-    });
-  },
-  getVersion: (fileId: ResourceId, versionId: ResourceId) =>
-    apiFetch(`/file-versions/${fileId}/versions/${versionId}`),
-  restoreVersion: (fileId: ResourceId, versionId: ResourceId) =>
-    apiFetch(`/file-versions/${fileId}/versions/${versionId}/restore`, { method: 'POST' }),
-  deleteVersion: (fileId: ResourceId, versionId: ResourceId) =>
-    apiFetch(`/file-versions/${fileId}/versions/${versionId}`, { method: 'DELETE' }),
-  compare: (fileId: ResourceId, versionA: string, versionB: string) =>
-    apiFetch(`/file-versions/${fileId}/compare?version_a=${versionA}&version_b=${versionB}`),
-};
+// NOTE: fileVersionsApi was removed as dead code - never used in the app
 
 export const videoCallsApi = {
   createRoom: (data: { participant_ids: string[]; scheduled_at?: string }) =>
@@ -66,30 +47,7 @@ export const videoCallsApi = {
   getRecording: (roomId: ResourceId) => apiFetch(`/video-calls/rooms/${roomId}/recording`),
 };
 
-export const notesTagsApi = {
-  getNotes: (resourceType: string, resourceId: ResourceId) =>
-    apiFetch(`/notes-tags/notes/${resourceType}/${resourceId}`),
-  createNote: (resourceType: string, resourceId: ResourceId, content: string) =>
-    apiFetch(`/notes-tags/notes/${resourceType}/${resourceId}`, {
-      method: 'POST',
-      body: JSON.stringify({ content }),
-    }),
-  updateNote: (noteId: ResourceId, content: string) =>
-    apiFetch(`/notes-tags/notes/${noteId}`, {
-      method: 'PUT',
-      body: JSON.stringify({ content }),
-    }),
-  deleteNote: (noteId: ResourceId) => apiFetch(`/notes-tags/notes/${noteId}`, { method: 'DELETE' }),
-  getTags: (resourceType: string, resourceId: ResourceId) =>
-    apiFetch(`/notes-tags/tags/${resourceType}/${resourceId}`),
-  addTag: (resourceType: string, resourceId: ResourceId, tag: string) =>
-    apiFetch(`/notes-tags/tags/${resourceType}/${resourceId}`, {
-      method: 'POST',
-      body: JSON.stringify({ tag }),
-    }),
-  removeTag: (resourceType: string, resourceId: ResourceId, tag: string) =>
-    apiFetch(`/notes-tags/tags/${resourceType}/${resourceId}/${encodeURIComponent(tag)}`, { method: 'DELETE' }),
-};
+// NOTE: notesTagsApi was removed as dead code - never used in the app
 
 export const activityFeedApi = {
   list: (filters?: { type?: string; page?: number; page_size?: number }) => {

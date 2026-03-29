@@ -5,9 +5,9 @@ import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Button from '@/app/components/Button/Button';
-import Loading from '@/app/components/Loading/Loading';
-import EmptyState from '@/app/components/EmptyState/EmptyState';
+import Button from '@/app/components/atoms/Button/Button';
+import Loading from '@/app/components/atoms/Loading/Loading';
+import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
 import { errorAlertAnimation, emptyBoxAnimation } from '@/app/components/Animations/LottieAnimation';
 import { invoicesApi } from '@/lib/api';
 import { 

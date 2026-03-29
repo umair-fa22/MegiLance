@@ -34,6 +34,8 @@ class PaymentRead(PaymentBase):
     contract_id: Optional[int]
     from_user_id: int
     to_user_id: int
+    stripe_client_secret: Optional[str] = None
+    stripe_payment_id: Optional[str] = None
     created_at: datetime
     updated_at: datetime
 

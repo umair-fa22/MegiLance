@@ -378,3 +378,115 @@
   margin-top: var(--space-3);
 }
 .paginationInfo { opacity: .8; }
+
+/* Small phones (380px and below) */
+@media (max-width: 380px) {
+  .page {
+    padding: var(--space-3);
+    gap: var(--space-4);
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .subtitle {
+    font-size: 0.875rem;
+  }
+  
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+
+  .controls {
+    gap: var(--space-3);
+  }
+
+  .searchInput {
+    min-width: 100%;
+  }
+
+  .filters {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .filtersRow {
+    gap: var(--space-3);
+  }
+
+  .dateRangeFilter {
+    padding: var(--space-3);
+    gap: var(--space-3);
+  }
+
+  .dateInput {
+    font-size: 0.875rem;
+    padding: 0.4rem 0.5rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .selectionBar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-3);
+    gap: var(--space-3);
+  }
+
+  .bulkActions {
+    margin-left: 0;
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .bulkActions button {
+    width: 100%;
+  }
+  
+  .paginationBar {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+  }
+}
+
+/* Extra small phones (320px) */
+@media (max-width: 320px) {
+  .page {
+    padding: var(--space-2);
+    gap: var(--space-3);
+  }
+  
+  .title {
+    font-size: 1.25rem;
+  }
+  
+  .paymentMeta {
+    padding: var(--space-2);
+  }
+
+  .metaRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .badge__verified, .badge__escrow {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+  }
+  
+  .refundBtn {
+    width: 100%;
+    margin-top: var(--space-2);
+  }
+}
+

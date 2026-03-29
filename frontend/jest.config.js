@@ -56,7 +56,7 @@ module.exports = {
   
   // Transform files with babel presets (next/babel was removed in Next.js 15+)
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'] }],
+    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['@babel/preset-env', ['@babel/preset-react', { runtime: 'automatic' }], '@babel/preset-typescript'] }],
   },
   
   // Transform ignore patterns

@@ -4,8 +4,8 @@
 import React, { useMemo, useState, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { PageTransition, ScrollReveal, StaggerContainer } from '@/components/Animations';
-import Button from '@/app/components/Button/Button';
+import { PageTransition, ScrollReveal, StaggerContainer } from '@/app/components/Animations';
+import Button from '@/app/components/atoms/Button/Button';
 import {
   Search, MessageSquare, ThumbsUp, TrendingUp, Clock, Users,
   Hash, Flame, Star, Send, Plus, Filter, ChevronRight,

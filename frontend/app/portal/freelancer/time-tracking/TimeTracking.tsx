@@ -9,8 +9,8 @@ import { cn } from '@/lib/utils';
 import { timeEntriesApi, contractsApi } from '@/lib/api';
 import type { TimeEntry, TimeEntrySummary, Contract } from '@/types/api';
 import { Play, Square, Clock, DollarSign, Calendar, Check, X } from 'lucide-react'
-import Button from '@/app/components/Button/Button';
-import Modal from '@/app/components/Modal/Modal';
+import Button from '@/app/components/atoms/Button/Button';
+import Modal from '@/app/components/organisms/Modal/Modal';
 
 import commonStyles from './TimeTracking.common.module.css';
 import lightStyles from './TimeTracking.light.module.css';

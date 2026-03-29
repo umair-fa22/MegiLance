@@ -1,7 +1,7 @@
 # @AI-HINT: Pydantic schemas for Seller Stats and Tier system
 """Seller stats and tier system schemas."""
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 from typing import Optional, Dict
 from datetime import datetime
 from enum import Enum

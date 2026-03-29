@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { PageTransition, ScrollReveal } from '@/app/components/Animations';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import commonStyles from './MultiCurrency.common.module.css';
 import lightStyles from './MultiCurrency.light.module.css';
 import darkStyles from './MultiCurrency.dark.module.css';

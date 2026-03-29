@@ -211,18 +211,18 @@ export const useWebSocket = (options: UseWebSocketOptions = {}) => {
   }, []);
 
   const joinRoom = useCallback((room: string) => {
-    send('join_room', { room });
+    send('join_chat', { chat_id: room });
   }, [send]);
 
   const leaveRoom = useCallback((room: string) => {
-    send('leave_room', { room });
+    send('leave_chat', { chat_id: room });
   }, [send]);
 
   const sendMessage = useCallback((room: string, message: string, metadata?: Record<string, unknown>) => {
-    send('message', {
-      room,
+    send('send_message', {
+      chat_id: room,
       message,
-      metadata,
+      ...metadata,
     });
   }, [send]);
 

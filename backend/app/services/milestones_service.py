@@ -85,7 +85,7 @@ def create_milestone(contract_id: int, title: str, description: Optional[str],
                      amount: float, due_date: Optional[str]) -> Optional[dict]:
     """Insert a new milestone and return it."""
     now = datetime.now(timezone.utc).isoformat()
-    insert_result = execute_query(f"""
+    insert_result = execute_query("""
         INSERT INTO milestones (contract_id, title, description, amount, due_date, status, created_at, updated_at)
         VALUES (?, ?, ?, ?, ?, 'pending', ?, ?)
     """, [contract_id, title, description, amount, due_date, now, now])

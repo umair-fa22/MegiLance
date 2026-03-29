@@ -469,3 +469,35 @@
   from { opacity: 0; transform: translateY(20px) scale(0.95); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
+
+/* Base table responsive enforcements */
+.tableContainer, .tableWrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+@media (max-width: 380px) {
+  .headerActions, .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .metricsGrid, .chartsGrid, .bottomGrid {
+    grid-template-columns: 1fr;
+  }
+  .td, .th {
+    padding: 8px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 320px) {
+  .headerActions, .header {
+    gap: 8px;
+  }
+  .td, .th {
+    padding: 6px;
+    font-size: 12px;
+  }
+}

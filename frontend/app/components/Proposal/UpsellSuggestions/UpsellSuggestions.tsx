@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { Lightbulb, Plus, Rocket } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import api from '@/lib/api';
 
 import commonStyles from './UpsellSuggestions.common.module.css';

@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
 import { Star, SendHorizontal, CheckCircle } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 
 import commonStyles from './ReviewForm.common.module.css';
 import lightStyles from './ReviewForm.light.module.css';

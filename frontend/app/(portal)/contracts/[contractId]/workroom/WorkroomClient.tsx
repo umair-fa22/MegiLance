@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { workroomApi } from '@/lib/api';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import commonStyles from './Workroom.common.module.css';
 import lightStyles from './Workroom.light.module.css';
 import darkStyles from './Workroom.dark.module.css';

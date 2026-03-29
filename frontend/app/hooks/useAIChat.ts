@@ -598,4 +598,4 @@ export function useAIChat(options: UseAIChatOptions = {}): UseAIChatReturn {
   };
 }
 
-export default useAIChat;
+

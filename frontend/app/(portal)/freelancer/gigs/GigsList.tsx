@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import {
   Plus,
   Search,
@@ -27,8 +27,8 @@ import { gigsApi } from '@/lib/api';
 import common from './GigsList.common.module.css';
 import light from './GigsList.light.module.css';
 import dark from './GigsList.dark.module.css';
-import Select from '@/app/components/Select/Select';
-import Modal from '@/app/components/Modal/Modal';
+import Select from '@/app/components/molecules/Select/Select';
+import Modal from '@/app/components/organisms/Modal/Modal';
 
 interface Gig {
   id: string;

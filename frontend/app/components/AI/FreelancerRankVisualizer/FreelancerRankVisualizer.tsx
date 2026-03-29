@@ -4,7 +4,7 @@
 import React from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import DashboardWidget from '@/app/components/DashboardWidget/DashboardWidget';
+import DashboardWidget from '@/app/components/molecules/DashboardWidget/DashboardWidget';
 import { Award, Gem, Medal, Shield, Trophy, TrendingUp, Zap } from 'lucide-react'
 
 import commonStyles from './FreelancerRankVisualizer.common.module.css';

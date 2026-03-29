@@ -60,3 +60,30 @@
 
 /* ── Timeline Section ───────────────── */
 .timelineSection { border-color: #e2e8f0; }
+
+/* ── Alert Cards ────────────────────── */
+.alertCard {
+  background-color: #ffffff;
+}
+
+.alertCard-warning {
+  border-color: rgba(242, 201, 76, 0.4) !important;
+  background: rgba(242, 201, 76, 0.08) !important;
+}
+
+.alertCard-info {
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  background: rgba(59, 130, 246, 0.08) !important;
+}
+
+.alertCard-warning .alertIcon {
+  color: #d4a017;
+}
+
+.alertCard-info .alertIcon {
+  color: #3b82f6;
+}
+
+.alertTitle { color: #0f172a; }
+.alertMessage { color: #475569; }
+.alertAction { color: #4573df; }

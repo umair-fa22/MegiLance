@@ -4,8 +4,8 @@
 import logging
 import uuid
 import re
-from datetime import datetime, date, timezone
-from typing import Dict, List, Any, Optional, Union
+from datetime import datetime, timezone
+from typing import Dict, List, Any, Optional
 from collections import defaultdict
 logger = logging.getLogger(__name__)
 
@@ -145,7 +145,7 @@ class CustomFieldsService:
     ) -> Dict[str, Any]:
         """Get all field definitions for an entity type."""
         if entity_type not in self.ENTITY_TYPES:
-            raise ValueError(f"Invalid entity type")
+            raise ValueError("Invalid entity type")
         
         field_ids = self._entity_fields.get(entity_type, [])
         fields = []

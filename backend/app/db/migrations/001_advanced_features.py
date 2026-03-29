@@ -6,9 +6,7 @@ Creates 25+ new tables for MFA, multi-currency, AI, security, and video features
 import logging
 import asyncio
 from pathlib import Path
-from typing import Optional
 from app.db.database import get_db
-from app.core.config import settings
 logger = logging.getLogger(__name__)
 
 

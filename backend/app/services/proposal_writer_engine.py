@@ -13,15 +13,11 @@ Different from ai_writing.py (which requires auth + DB session).
 This is a standalone public tool like scope_planner / price_estimator.
 """
 
-import re
-import math
 import logging
 from typing import List, Optional, Dict, Any
 from datetime import datetime
 
 from app.services.market_data_2025 import (
-    UPWORK_SERVICE_RATES,
-    DEMAND_INDEX_2025,
     get_upwork_service_rate,
     get_demand_data,
     get_country_rate_data,
@@ -106,7 +102,7 @@ def get_proposal_options() -> Dict[str, Any]:
     }
 
 
-def generate_proposal(
+async def generate_proposal(
     project_title: str,
     project_description: str,
     freelancer_skills: List[str],
@@ -140,7 +136,7 @@ def generate_proposal(
     suggested_rate = _suggest_rate(detected_type, experience_level, country_code)
 
     # 4. Generate the proposal
-    proposal_text = _compose_proposal(
+    proposal_text = await _compose_proposal(
         project_title=project_title,
         project_description=project_description,
         skills=freelancer_skills,
@@ -294,7 +290,7 @@ def _suggest_rate(
     }
 
 
-def _compose_proposal(
+async def _compose_proposal(
     project_title: str,
     project_description: str,
     skills: List[str],

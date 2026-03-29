@@ -6,6 +6,7 @@ import { useTheme } from 'next-themes';
 import { MessageSquare, X, Send, Sparkles, Zap, HelpCircle, FileText, User } from 'lucide-react';
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import RobotModel from './RobotModel';
 import commonStyles from './ChatbotAgent.common.module.css';
 import lightStyles from './ChatbotAgent.light.module.css';
 import darkStyles from './ChatbotAgent.dark.module.css';
@@ -265,7 +266,7 @@ export default function ChatbotAgent() {
           aria-label="Loading chat"
           disabled
         >
-          <MessageSquare size={24} />
+          <RobotModel size={28} />
         </button>
       </div>
     );
@@ -279,7 +280,9 @@ export default function ChatbotAgent() {
           <div className={cn(commonStyles.chatbotAgentHeader, themeStyles.chatbotAgentHeader)}>
             <div className={commonStyles.headerLeft}>
               <div className={cn(commonStyles.aiAvatar, themeStyles.aiAvatar)}>
-                <Sparkles size={18} />
+                  <div style={{ marginLeft: '-1px', marginTop: '1px' }}>
+                    <RobotModel size={24} />
+                  </div>
                 <div className={cn(commonStyles.aiAvatarPulse, themeStyles.aiAvatarPulse)} />
               </div>
               <div className={commonStyles.headerInfo}>
@@ -467,7 +470,9 @@ export default function ChatbotAgent() {
               transition={{ duration: 0.3, type: 'spring' }}
               className={commonStyles.flexCenter}
             >
-              <MessageSquare size={24} />
+              <div style={{ pointerEvents: 'none', marginLeft: '-2px', marginTop: '2px' }}>
+                <RobotModel size={34} />
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

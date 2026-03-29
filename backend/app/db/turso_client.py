@@ -4,8 +4,7 @@ Bypasses libsql_client due to bugs in 0.3.1 response parsing
 """
 import logging
 import aiohttp
-import json
-from typing import Any, Dict, List, Optional
+from typing import Any, List, Optional
 from dataclasses import dataclass
 logger = logging.getLogger(__name__)
 

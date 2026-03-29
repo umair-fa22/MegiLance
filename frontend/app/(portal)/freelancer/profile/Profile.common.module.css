@@ -629,6 +629,77 @@
   }
 }
 
+@media (max-width: 380px) {
+  .profileContainer {
+    padding: 1rem 0;
+    gap: 1.5rem;
+  }
+  .header {
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+  .headerActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .name {
+    font-size: 1.25rem;
+  }
+  .title {
+    font-size: 1rem;
+  }
+  .headerMeta {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .arrayCardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .mediaCard {
+    flex-direction: column;
+  }
+  .shareButtons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .shareTabBar {
+    flex-direction: column;
+  }
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .actions :global(button) {
+    width: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+  .name {
+    font-size: 1.125rem;
+  }
+  .title {
+    font-size: 0.875rem;
+  }
+  .navBtn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+  .sectionTitle {
+    font-size: 1rem;
+  }
+  .rateRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .mediaCard, .arrayCard, .settingRow, .shareSection, .shareModalContent {
+    padding: 0.75rem;
+  }
+}
+
 /* Screen-reader only utility */
 .srOnly {
   position: absolute !important;

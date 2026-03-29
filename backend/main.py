@@ -101,11 +101,33 @@ async def lifespan(app: FastAPI):
             logger.info("startup.indexes_ensured")
         except Exception as e:
             logger.warning(f"startup.indexes_warning: {e}")
+
+        # Start background schedulers
+        try:
+            from app.services.escrow_autodial import start_escrow_scheduler
+            start_escrow_scheduler()
+            
+            from app.services.milestone_deadline_loop import start_overdue_scheduler
+            start_overdue_scheduler()
+            logger.info("startup.escrow_scheduler_started")
+        except Exception as e:
+            logger.warning(f"startup.escrow_scheduler_warning: {e}")
+
     except Exception as e:
         logger.error(f"startup.database_failed error={e}")
     yield
     # Shutdown — clean up caches and resources
     try:
+        try:
+            from app.services.escrow_autodial import stop_escrow_scheduler
+            stop_escrow_scheduler()
+            
+            from app.services.milestone_deadline_loop import stop_overdue_scheduler
+            stop_overdue_scheduler()
+            logger.info("shutdown.escrow_scheduler_stopped")
+        except Exception:
+            pass
+
         with _idempotency_lock:
             _idempotency_cache.clear()
         from app.core.security import _user_cache, _user_cache_lock
@@ -447,7 +469,7 @@ async def serve_upload(file_path: str):
         headers={
             "Content-Disposition": f'{disposition}; filename="{resolved.name}"',
             "X-Content-Type-Options": "nosniff",
-            "Cache-Control": "private, max-age=3600",
+            "Cache-Control": "public, max-age=31536000, immutable",
         },
     )
 

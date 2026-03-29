@@ -7,7 +7,7 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import ProposalBuilder from '@/app/components/Proposal/ProposalBuilder/ProposalBuilder';
 import { Clock, Banknote, Tag, User, CheckCircle } from 'lucide-react';
 import SimilarJobs from '@/app/components/Matching/SimilarJobs/SimilarJobs';

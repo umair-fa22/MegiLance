@@ -5,7 +5,7 @@ import React from 'react';
 import { useTheme } from 'next-themes';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import DashboardWidget, { DashboardWidgetProps } from '@/app/components/DashboardWidget/DashboardWidget';
+import DashboardWidget, { DashboardWidgetProps } from '@/app/components/molecules/DashboardWidget/DashboardWidget';
 import Skeleton from '@/app/components/Animations/Skeleton/Skeleton';
 
 import common from './KeyMetrics.common.module.css';

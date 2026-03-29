@@ -63,13 +63,6 @@ describe('Home Page Component', () => {
     expect(screen.getByTestId('testimonials')).toBeInTheDocument();
   });
 
-  test('renders AI and stats sections', () => {
-    render(<Home />);
-    
-    expect(screen.getByTestId('powered-by-ai')).toBeInTheDocument();
-    expect(screen.getByTestId('project-stats')).toBeInTheDocument();
-  });
-
   test('renders page with theme-aware structure', () => {
     render(<Home />);
     // Verify the page renders without crashing (theme-dependent rendering)

@@ -412,3 +412,39 @@
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+@media (max-width: 380px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .milestoneInput {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .percentInput {
+    width: 100% !important;
+  }
+  .modalActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 320px) {
+  .title {
+    font-size: 1.25rem;
+  }
+  .templateCard, .modal {
+    padding: 1rem;
+  }
+  .previewMilestone {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}

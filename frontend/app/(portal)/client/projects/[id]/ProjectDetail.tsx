@@ -10,10 +10,10 @@ import api, { proposalsApi as _proposalsApi, contractsApi as _contractsApi } fro
 const proposalsApi: any = _proposalsApi;
 const contractsApi: any = _contractsApi;
 import Skeleton from '@/app/components/Animations/Skeleton/Skeleton';
-import { PageTransition, ScrollReveal } from '@/components/Animations';
-import Button from '@/app/components/Button/Button';
-import Badge from '@/app/components/Badge/Badge';
-import Modal from '@/app/components/Modal/Modal';
+import { PageTransition, ScrollReveal } from '@/app/components/Animations';
+import Button from '@/app/components/atoms/Button/Button';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import Modal from '@/app/components/organisms/Modal/Modal';
 import { User, DollarSign, Clock, CheckCircle, XCircle, MessageSquare, ShieldAlert } from 'lucide-react'
 import { FraudAlertBanner } from '@/app/components/AI';
 import common from './ProjectDetail.common.module.css';

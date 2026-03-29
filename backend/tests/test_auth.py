@@ -180,7 +180,7 @@ def _mock_turso(monkeypatch):
     _reset_db()
     targets = [
         "app.db.turso_http.execute_query",
-        "app.api.v1.auth.execute_query",
+        "app.api.v1.identity.auth.execute_query",
         "app.services.auth_service.execute_query",
         "app.core.security.execute_query",
         "app.services.token_blacklist_service.execute_query",

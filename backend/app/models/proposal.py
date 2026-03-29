@@ -1,10 +1,10 @@
 # @AI-HINT: Proposal model - freelancer bids on projects with pricing and cover letter
-from sqlalchemy import String, Integer, Float, DateTime, Text, ForeignKey, Boolean, Numeric
+from sqlalchemy import String, Integer, DateTime, Text, ForeignKey, Boolean, Numeric
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 from datetime import datetime, timezone
 from decimal import Decimal
-from typing import List, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from .user import User

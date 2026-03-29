@@ -5,7 +5,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
-import { PageTransition, ScrollReveal } from '@/components/Animations';
+import { PageTransition, ScrollReveal } from '@/app/components/Animations';
 import common from './Wallet.common.module.css';
 import light from './Wallet.light.module.css';
 import dark from './Wallet.dark.module.css';

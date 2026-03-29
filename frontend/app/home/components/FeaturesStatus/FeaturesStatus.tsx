@@ -10,7 +10,7 @@ import {
   Brain, Search, BarChart3, Zap, Lock, FileText, Star,
   TrendingUp, Activity, Settings, Globe, Bot, Sparkles
 } from 'lucide-react';
-import FeatureStatusPill from '@/app/components/FeatureStatusPill/FeatureStatusPill';
+import FeatureStatusPill from '@/app/components/molecules/FeatureStatusPill/FeatureStatusPill';
 
 import commonStyles from './FeaturesStatus.common.module.css';
 import lightStyles from './FeaturesStatus.light.module.css';

@@ -4,10 +4,10 @@
 import React, { useState } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Button from '@/app/components/Button/Button';
-import Card from '@/app/components/Card/Card';
-import Select from '@/app/components/Select/Select';
-import Slider from '@/app/components/Slider/Slider';
+import Button from '@/app/components/atoms/Button/Button';
+import Card from '@/app/components/molecules/Card/Card';
+import Select from '@/app/components/molecules/Select/Select';
+import Slider from '@/app/components/organisms/Slider/Slider';
 import { Shield, Scale, BrainCircuit, Save } from 'lucide-react';
 
 import commonStyles from './AISettings.common.module.css';

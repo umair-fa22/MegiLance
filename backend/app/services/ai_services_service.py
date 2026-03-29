@@ -4,9 +4,8 @@ AI Services Data Access v2.0 - Enriched queries with rating data,
 completion metrics, skill normalization, and market intelligence.
 """
 import json
-import re
 import logging
-from typing import List, Optional, Dict, Any
+from typing import List, Optional, Any
 
 from app.db.turso_http import execute_query, to_str
 

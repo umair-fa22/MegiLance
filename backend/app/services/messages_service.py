@@ -1,11 +1,9 @@
 # @AI-HINT: Messages service layer - all database operations for conversations and messaging endpoints
-import re
 import logging
-from datetime import datetime, timezone
 from typing import Optional, List
 
 from app.db.turso_http import execute_query, parse_rows
-from app.services.db_utils import SCRIPT_PATTERN, sanitize_text
+from app.services.db_utils import sanitize_text
 
 logger = logging.getLogger(__name__)
 

@@ -6,9 +6,9 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TrendingUp, Info, Calculator, CheckCircle, AlertTriangle, Sparkles, Loader2, DollarSign } from 'lucide-react';
-import Input from '@/app/components/Input/Input';
-import Select from '@/app/components/Select/Select';
-import RadioGroup from '@/app/components/RadioGroup/RadioGroup';
+import Input from '@/app/components/atoms/Input/Input';
+import Select from '@/app/components/molecules/Select/Select';
+import RadioGroup from '@/app/components/molecules/RadioGroup/RadioGroup';
 import { PostJobData, PostJobErrors, BudgetType } from '../../PostJob.types';
 
 import common from './StepBudget.common.module.css';

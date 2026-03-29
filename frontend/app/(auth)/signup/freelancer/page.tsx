@@ -3,7 +3,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Loader from '@/app/components/Loader/Loader';
+import Loader from '@/app/components/atoms/Loader/Loader';
 import styles from '../../AuthShared.module.css';
 
 export default function SignupFreelancerPage() {

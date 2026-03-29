@@ -8,11 +8,11 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
-import Button from '@/app/components/Button/Button';
-import Input from '@/app/components/Input/Input';
-import Select from '@/app/components/Select/Select';
-import Textarea from '@/app/components/Textarea/Textarea';
-import { useToast } from '@/app/components/Toast/use-toast';
+import Button from '@/app/components/atoms/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
+import Select from '@/app/components/molecules/Select/Select';
+import Textarea from '@/app/components/atoms/Textarea/Textarea';
+import { useToast } from '@/app/components/molecules/Toast/use-toast';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';

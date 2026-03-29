@@ -1,7 +1,7 @@
 # @AI-HINT: Seller Level/Tier model for automatic progression based on performance (Bronze → Platinum)
 """Seller Level model for reputation tiers."""
 
-from sqlalchemy import String, Integer, Float, DateTime, Text, ForeignKey, Boolean
+from sqlalchemy import String, Integer, Float, DateTime, ForeignKey, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 from datetime import datetime, timezone

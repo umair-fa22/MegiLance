@@ -466,3 +466,62 @@
     align-items: flex-start;
   }
 }
+
+@media (max-width: 380px) {
+  .container {
+    padding: 0.75rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .headerActions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .headerActions button {
+    width: 100%;
+  }
+
+  .notesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .noteMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .createTagRow {
+    flex-direction: column;
+  }
+
+  .createTagRow button {
+    width: 100%;
+  }
+
+  .modalFooter {
+    flex-direction: column;
+  }
+
+  .modalFooter button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .title {
+    font-size: 1.125rem;
+  }
+
+  .noteCard {
+    padding: 0.75rem;
+  }
+}

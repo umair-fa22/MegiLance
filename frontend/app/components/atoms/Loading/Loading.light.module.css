@@ -1,0 +1,13 @@
+/* Loading Component - Light Theme Colors */
+
+.container {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.spinner {
+  color: #2563eb; /* blue-600 */
+}
+
+.text {
+  color: #1e293b; /* slate-800 */
+}

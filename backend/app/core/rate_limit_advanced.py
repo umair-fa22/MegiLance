@@ -6,7 +6,6 @@ Implements tiered rate limiting based on user roles and endpoint sensitivity
 from fastapi import Request, HTTPException, status
 from starlette.middleware.base import BaseHTTPMiddleware
 from typing import Dict, Optional, Tuple, Callable, Any
-from datetime import datetime, timedelta
 from dataclasses import dataclass, field
 from collections import defaultdict
 import asyncio

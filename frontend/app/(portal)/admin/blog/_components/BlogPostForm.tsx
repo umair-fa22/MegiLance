@@ -3,11 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { CreateBlogPost, UpdateBlogPost, BlogPost } from '@/lib/api/blog';
-import Button from '@/app/components/Button/Button';
-import Input from '@/app/components/Input/Input';
-import Textarea from '@/app/components/Textarea/Textarea';
-import Card from '@/app/components/Card/Card';
-import ToggleSwitch from '@/app/components/ToggleSwitch/ToggleSwitch';
+import Button from '@/app/components/atoms/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
+import Textarea from '@/app/components/atoms/Textarea/Textarea';
+import Card from '@/app/components/molecules/Card/Card';
+import ToggleSwitch from '@/app/components/atoms/ToggleSwitch/ToggleSwitch';
 
 interface BlogPostFormProps {
   initialData?: BlogPost;

@@ -5,8 +5,8 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { FileText, ShieldCheck, UserCheck, Save, CheckCircle } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
-import Textarea from '@/app/components/Textarea/Textarea';
+import Button from '@/app/components/atoms/Button/Button';
+import Textarea from '@/app/components/atoms/Textarea/Textarea';
 
 import commonStyles from './AdminPolicyEditor.common.module.css';
 import lightStyles from './AdminPolicyEditor.light.module.css';

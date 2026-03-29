@@ -7,10 +7,10 @@ import { cn } from '@/lib/utils';
 import { CheckCircle, XCircle, MoreVertical, Copy, ArrowDownUp, Calendar, Inbox, Loader2 } from 'lucide-react'
 
 import api from '@/lib/api';
-import Button from '@/app/components/Button/Button';
-import Badge from '@/app/components/Badge/Badge';
-import UserAvatar from '@/app/components/UserAvatar/UserAvatar';
-import ActionMenu, { type ActionMenuItem } from '@/app/components/ActionMenu/ActionMenu';
+import Button from '@/app/components/atoms/Button/Button';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import UserAvatar from '@/app/components/atoms/UserAvatar/UserAvatar';
+import ActionMenu, { type ActionMenuItem } from '@/app/components/molecules/ActionMenu/ActionMenu';
 import commonStyles from './Withdrawals.common.module.css';
 import lightStyles from './Withdrawals.light.module.css';
 import darkStyles from './Withdrawals.dark.module.css';

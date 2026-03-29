@@ -4,12 +4,12 @@
 import React, { useState } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { useToaster } from '@/app/components/Toast/ToasterProvider';
+import { useToaster } from '@/app/components/molecules/Toast/ToasterProvider';
 import { apiFetch } from '@/lib/api/core';
 
-import Input from '@/app/components/Input/Input';
-import Button from '@/app/components/Button/Button';
-import { Label } from '@/app/components/Label/Label';
+import Input from '@/app/components/atoms/Input/Input';
+import Button from '@/app/components/atoms/Button/Button';
+import { Label } from '@/app/components/atoms/Label/Label';
 import PasswordStrength from './components/PasswordStrength/PasswordStrength';
 
 import commonStyles from '../Settings.common.module.css';

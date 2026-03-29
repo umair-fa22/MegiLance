@@ -5,12 +5,11 @@ Intelligent matching using skill graphs, synonym resolution, behavioral signals,
 historical success data, and multi-factor scoring with configurable weights.
 """
 
-from typing import List, Dict, Any, Optional, Set, Tuple
+from typing import List, Dict, Any, Optional, Set
 from app.db.turso_http import execute_query, parse_rows
-from datetime import datetime, timedelta
+from datetime import datetime
 import json
 import logging
-import math
 from collections import defaultdict
 
 logger = logging.getLogger(__name__)

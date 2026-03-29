@@ -4,11 +4,11 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import EmptyState from '@/app/components/EmptyState/EmptyState';
+import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
 import { welcomeWaveAnimation } from '@/app/components/Animations/LottieAnimation';
-import { useToaster } from '@/app/components/Toast/ToasterProvider';
-import Button from '@/app/components/Button/Button';
-import Input from '@/app/components/Input/Input';
+import { useToaster } from '@/app/components/molecules/Toast/ToasterProvider';
+import Button from '@/app/components/atoms/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';

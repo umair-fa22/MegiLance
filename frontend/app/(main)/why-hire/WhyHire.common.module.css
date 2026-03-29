@@ -78,3 +78,77 @@
   .savingsRow { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
   .savingsHeader { display: none; }
 }
+
+@media (max-width: 480px) {
+  .hero { padding: 4rem 1rem 2.5rem; }
+  .heroTitle { font-size: 1.75rem; margin-bottom: 1rem; line-height: 1.2; }
+  .heroDesc { font-size: 1.05rem; margin-bottom: 1.5rem; line-height: 1.55; }
+  .heroCtas { gap: 0.75rem; }
+  .section { padding: 3.5rem 1rem; }
+  .sectionTitle { font-size: 1.75rem; margin-bottom: 0.75rem; }
+  .sectionSub { font-size: 1rem; margin-bottom: 2.5rem; }
+  .reasonsGrid { gap: 1.25rem; }
+  .reasonCard { padding: 1.5rem 1.25rem; border-radius: 14px; }
+  .reasonIcon { width: 42px; height: 42px; border-radius: 10px; margin-bottom: 0.875rem; }
+  .reasonTitle { font-size: 1rem; margin-bottom: 0.4rem; }
+  .reasonDesc { font-size: 0.9rem; line-height: 1.5; }
+  .savingsTable { border-radius: 14px; }
+  .savingsRow { padding: 0.75rem 1rem; font-size: 0.85rem; }
+  .faqList { gap: 0.6rem; }
+  .faqItem { border-radius: 10px; }
+  .faqQ { padding: 1rem 1.25rem; font-size: 0.9rem; }
+  .faqA { padding: 0 1.25rem 1rem; font-size: 0.9rem; line-height: 1.55; }
+  .finalCta { padding: 3.5rem 1rem; }
+  .ctaTitle { font-size: 1.75rem; margin-bottom: 0.75rem; }
+  .ctaDesc { font-size: 1rem; margin-bottom: 1.5rem; }
+}
+
+/* Small phones (380px and below) */
+@media (max-width: 380px) {
+  .hero { padding: 3rem 0.75rem 2rem; }
+  .heroTitle { font-size: 1.5rem; margin-bottom: 0.875rem; line-height: 1.15; }
+  .heroDesc { font-size: 0.95rem; margin-bottom: 1.25rem; line-height: 1.5; }
+  .heroCtas { gap: 0.6rem; }
+  .section { padding: 3rem 0.75rem; }
+  .sectionTitle { font-size: 1.5rem; margin-bottom: 0.6rem; }
+  .sectionSub { font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; }
+  .reasonsGrid { gap: 1rem; }
+  .reasonCard { padding: 1.25rem 1rem; border-radius: 12px; }
+  .reasonIcon { width: 38px; height: 38px; border-radius: 9px; margin-bottom: 0.75rem; }
+  .reasonTitle { font-size: 0.95rem; margin-bottom: 0.35rem; }
+  .reasonDesc { font-size: 0.85rem; line-height: 1.45; }
+  .savingsTable { border-radius: 12px; }
+  .savingsRow { padding: 0.6rem 0.85rem; font-size: 0.8rem; gap: 0.4rem; }
+  .faqList { gap: 0.5rem; }
+  .faqItem { border-radius: 8px; }
+  .faqQ { padding: 0.875rem 1rem; font-size: 0.85rem; }
+  .faqA { padding: 0 1rem 0.875rem; font-size: 0.85rem; line-height: 1.5; }
+  .finalCta { padding: 3rem 0.75rem; }
+  .ctaTitle { font-size: 1.5rem; margin-bottom: 0.6rem; }
+  .ctaDesc { font-size: 0.9rem; margin-bottom: 1.25rem; line-height: 1.5; }
+}
+
+/* Extra small phones (320px) */
+@media (max-width: 320px) {
+  .hero { padding: 2.5rem 0.5rem 1.75rem; }
+  .heroTitle { font-size: 1.35rem; margin-bottom: 0.75rem; }
+  .heroDesc { font-size: 0.875rem; margin-bottom: 1rem; line-height: 1.45; }
+  .heroCtas { gap: 0.5rem; }
+  .section { padding: 2.5rem 0.5rem; }
+  .sectionTitle { font-size: 1.35rem; margin-bottom: 0.5rem; }
+  .sectionSub { font-size: 0.85rem; margin-bottom: 1.75rem; }
+  .reasonsGrid { gap: 0.875rem; }
+  .reasonCard { padding: 1rem 0.875rem; border-radius: 10px; }
+  .reasonIcon { width: 34px; height: 34px; border-radius: 8px; margin-bottom: 0.6rem; }
+  .reasonTitle { font-size: 0.9rem; margin-bottom: 0.3rem; }
+  .reasonDesc { font-size: 0.8rem; line-height: 1.4; }
+  .savingsTable { border-radius: 10px; }
+  .savingsRow { padding: 0.5rem 0.7rem; font-size: 0.75rem; gap: 0.35rem; }
+  .faqList { gap: 0.4rem; }
+  .faqItem { border-radius: 7px; }
+  .faqQ { padding: 0.75rem 0.875rem; font-size: 0.8rem; }
+  .faqA { padding: 0 0.875rem 0.75rem; font-size: 0.8rem; line-height: 1.45; }
+  .finalCta { padding: 2.5rem 0.5rem; }
+  .ctaTitle { font-size: 1.35rem; margin-bottom: 0.5rem; }
+  .ctaDesc { font-size: 0.85rem; margin-bottom: 1rem; }
+}

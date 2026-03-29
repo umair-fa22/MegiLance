@@ -11,9 +11,9 @@ import { StaggerContainer, StaggerItem } from '@/app/components/Animations/Stagg
 import commonStyles from './Teams.common.module.css';
 import lightStyles from './Teams.light.module.css';
 import darkStyles from './Teams.dark.module.css';
-import Button from '@/app/components/Button/Button';
-import Input from '@/app/components/Input/Input';
-import Badge from '@/app/components/Badge/Badge';
+import Button from '@/app/components/atoms/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
+import Badge from '@/app/components/atoms/Badge/Badge';
 import {
   Users, UserPlus, Mail, Shield, Eye, Trash2, RotateCw, X,
   Search, Crown, Settings, Clock, CheckCircle, AlertCircle,

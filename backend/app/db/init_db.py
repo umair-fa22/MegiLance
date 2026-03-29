@@ -3,19 +3,10 @@
 # and this function returns immediately. Tables are managed via turso_schema.sql.
 # Kept for SQLAlchemy model registration side-effects (imports).
 import logging
-import subprocess
-import sys
-from pathlib import Path
 from sqlalchemy import Engine, inspect
 from app.db.base import Base
 from app.models import user, project, proposal, contract, portfolio, payment  # noqa: F401  ensure models are imported
 # Import all other models to ensure they're registered with Base
-from app.models import (
-    skill, user_skill, message, conversation, notification, review, dispute,
-    milestone, session, audit_log, escrow, time_entry, invoice, category,
-    favorite, tag, project_tag, support_ticket, refund, scope_change,
-    analytics, embedding, verification
-)  # noqa: F401
 logger = logging.getLogger(__name__)
 
 

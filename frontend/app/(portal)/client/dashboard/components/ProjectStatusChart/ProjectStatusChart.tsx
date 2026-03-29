@@ -5,7 +5,7 @@ import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import DashboardWidget from '@/app/components/DashboardWidget/DashboardWidget';
+import DashboardWidget from '@/app/components/molecules/DashboardWidget/DashboardWidget';
 import { Briefcase } from 'lucide-react';
 
 import common from './ProjectStatusChart.common.module.css';

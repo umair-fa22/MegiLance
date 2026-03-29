@@ -12,16 +12,12 @@ Analyzes a freelancer's current skills against 2025 market demand data to:
 Uses real data from market_data_2025 module (Arc.dev, Upwork, Fiverr datasets).
 """
 
-import math
 import logging
 from typing import List, Optional, Dict, Any
 from datetime import datetime
 
 from app.services.market_data_2025 import (
-    UPWORK_SERVICE_RATES,
-    DEMAND_INDEX_2025,
     COUNTRY_DEVELOPER_RATES,
-    SOUTH_ASIA_BENCHMARKS,
     PAKISTAN_FREELANCE_STATS,
     get_country_rate_data,
     get_demand_data,

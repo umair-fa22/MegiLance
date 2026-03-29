@@ -12,7 +12,7 @@ from typing import Any, Dict, Optional
 from functools import wraps
 logger = logging.getLogger(__name__)
 
-from fastapi import Request, Response
+from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
 
 from app.core.config import get_settings

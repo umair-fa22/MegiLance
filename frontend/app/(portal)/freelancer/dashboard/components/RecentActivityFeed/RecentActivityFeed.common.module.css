@@ -144,12 +144,70 @@
   }
 }
 
-@media (max-width: 374px) {
+@media (max-width: 380px) {
   .container {
     padding: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.625rem;
+  }
+
+  .itemLeft {
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .iconWrapper {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.875rem;
   }
 
   .title {
     font-size: 1rem;
+  }
+
+  .description {
+    font-size: 0.8125rem;
+  }
+
+  .date {
+    font-size: 0.6875rem;
+  }
+
+  .amount {
+    font-size: 0.8125rem;
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .item {
+    padding: 0.5rem;
+  }
+
+  .title {
+    font-size: 0.9375rem;
+  }
+
+  .viewAll {
+    font-size: 0.75rem;
+  }
+
+  .description {
+    font-size: 0.75rem;
+  }
+
+  .amount {
+    font-size: 0.75rem;
   }
 }

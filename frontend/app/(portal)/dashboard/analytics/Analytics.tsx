@@ -5,7 +5,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { analyticsApi } from '@/lib/api';
-import { PageTransition, ScrollReveal, StaggerContainer } from '@/components/Animations';
+import { PageTransition, ScrollReveal, StaggerContainer } from '@/app/components/Animations';
 import common from './Analytics.common.module.css';
 import light from './Analytics.light.module.css';
 import dark from './Analytics.dark.module.css';

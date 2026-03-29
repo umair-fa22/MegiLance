@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { PostJobData } from '../../PostJob.types';
-import Badge from '@/app/components/Badge/Badge';
+import Badge from '@/app/components/atoms/Badge/Badge';
 
 import common from './StepReview.common.module.css';
 import light from './StepReview.light.module.css';

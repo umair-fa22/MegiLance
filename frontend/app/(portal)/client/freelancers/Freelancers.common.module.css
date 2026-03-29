@@ -635,3 +635,172 @@
   .sortRow { flex-direction: column; align-items: flex-start; }
   .paginationBar { gap: var(--spacing-1); }
 }
+
+/* Small phones (380px and below) */
+@media (max-width: 380px) {
+  .page {
+    padding: var(--spacing-4) 0;
+  }
+  
+  .container {
+    padding: 0 var(--spacing-2);
+    gap: var(--spacing-3);
+  }
+  
+  .title {
+    font-size: var(--font-size-xxl);
+  }
+  
+  .subtitle {
+    font-size: var(--font-size-md);
+  }
+  
+  .headerActions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .headerActions button {
+    width: 100%;
+  }
+
+  .quickStats {
+    padding: var(--spacing-3);
+    gap: var(--spacing-3);
+  }
+
+  .quickStatItem {
+    width: 100%;
+    font-size: var(--font-size-xs);
+  }
+
+  .controlsSection {
+    padding: var(--spacing-3);
+  }
+
+  .searchRow {
+    gap: var(--spacing-2);
+  }
+
+  .filterToggle {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .viewToggle {
+    width: 100%;
+  }
+
+  .viewBtn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .sortRow {
+    gap: var(--spacing-2);
+  }
+  
+  .sortGroup {
+    width: 100%;
+  }
+
+  .sortGroup select {
+    flex: 1;
+  }
+
+  .advancedFilters {
+    padding: var(--spacing-3);
+    gap: var(--spacing-3);
+  }
+
+  .rateRange {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .rateInput {
+    width: 100%;
+  }
+
+  .ratingFilter {
+    flex-wrap: wrap;
+  }
+
+  .ratingBtn {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .compareBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-3);
+    padding: var(--spacing-3);
+  }
+  
+  .compareActions {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .compareActions button {
+    width: 100%;
+  }
+  
+  .comparePanel {
+    padding: var(--spacing-3);
+  }
+  
+  .comparePanelHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-2);
+  }
+  
+  .comparePanelTitle {
+    font-size: var(--font-size-lg);
+  }
+
+  .paginationBar {
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+  
+  .paginationInfo {
+    margin-left: 0;
+  }
+  
+  .quickChipsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .activeChipsBar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Extra small phones (320px) */
+@media (max-width: 320px) {
+  .title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .quickStatItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .compareCell {
+    padding: var(--spacing-2);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .pageNumbers {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

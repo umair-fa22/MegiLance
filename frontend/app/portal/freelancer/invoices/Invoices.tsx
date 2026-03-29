@@ -7,8 +7,8 @@ import { cn } from '@/lib/utils';
 import { invoicesApi } from '@/lib/api';
 import type { Invoice, InvoiceFormData, InvoiceItem, Contract } from '@/types/api';
 import { FileText, Plus, Send, Download, X, Check, Eye } from 'lucide-react'
-import Modal from '@/app/components/Modal/Modal';
-import Button from '@/app/components/Button/Button';
+import Modal from '@/app/components/organisms/Modal/Modal';
+import Button from '@/app/components/atoms/Button/Button';
 import commonStyles from './Invoices.common.module.css';
 import lightStyles from './Invoices.light.module.css';
 import darkStyles from './Invoices.dark.module.css';

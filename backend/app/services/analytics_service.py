@@ -5,7 +5,7 @@ retention metrics, period-over-period growth, and platform health scoring.
 """
 
 from datetime import datetime, timedelta, timezone
-from typing import List, Optional, Dict, Any
+from typing import List, Dict, Any
 
 from app.db.turso_http import execute_query, to_str
 

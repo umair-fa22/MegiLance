@@ -3,7 +3,7 @@ from app.db.turso_http import execute_query, parse_rows
 from app.schemas.scope_change import ScopeChangeCreate, ScopeChangeStatus
 from fastapi import HTTPException
 from datetime import datetime, timezone
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List
 import logging
 
 logger = logging.getLogger(__name__)

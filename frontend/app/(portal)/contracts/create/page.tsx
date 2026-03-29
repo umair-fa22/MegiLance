@@ -1,5 +1,5 @@
 // @AI-HINT: Contract creation page
-import ContractWizard from '@/app/components/Wizard/ContractWizard/ContractWizard';
+import ContractWizard from '@/app/components/organisms/Wizard/ContractWizard/ContractWizard';
 
 export const metadata = {
   title: 'Create Contract - MegiLance',

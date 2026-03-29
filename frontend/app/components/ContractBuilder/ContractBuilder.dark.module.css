@@ -1,0 +1,42 @@
+/* @AI-HINT: ContractBuilder dark theme colors */
+.container {
+  color: var(--foreground, #fafafa);
+}
+
+.panel {
+  background-color: var(--card, #18181b);
+  border: 1px solid var(--border, #27272a);
+}
+
+.input, .select, .textarea {
+  background-color: var(--background, #09090b);
+  border-color: var(--border, #27272a);
+  color: var(--foreground, #fafafa);
+}
+
+.input:focus, .select:focus, .textarea:focus {
+  border-color: var(--primary, #4573df);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(69, 115, 223, 0.2);
+}
+
+.button {
+  background-color: var(--primary, #4573df);
+  color: #ffffff;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #5b87ee; /* lighter primary */
+}
+
+.preview {
+  background-color: #0f172a; /* slate-900 */
+  border: 1px solid var(--border, #27272a);
+  color: #cbd5e1; /* slate-300 */
+}
+
+.analysis {
+  background-color: rgba(22, 101, 52, 0.2);
+  border: 1px solid rgba(187, 247, 208, 0.2);
+  color: #bbf7d0;
+}

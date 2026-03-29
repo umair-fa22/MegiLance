@@ -2,7 +2,7 @@
 """Marketplace Service - Advanced search and discovery features."""
 
 from typing import Optional, List, Dict, Any
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from enum import Enum
 import logging
 import uuid

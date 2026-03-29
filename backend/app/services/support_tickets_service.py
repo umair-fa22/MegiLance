@@ -30,7 +30,7 @@ def create_ticket(user_id, subject: str, description: str, category: str,
     """Create a support ticket and return it."""
     now = datetime.now(timezone.utc).isoformat()
     result = execute_query(
-        f"""INSERT INTO support_tickets (user_id, subject, description, category, priority, status, attachments, created_at, updated_at)
+        """INSERT INTO support_tickets (user_id, subject, description, category, priority, status, attachments, created_at, updated_at)
            VALUES (?, ?, ?, ?, ?, 'open', ?, ?, ?)""",
         [user_id, subject, description, category, priority or "medium", attachments, now, now]
     )

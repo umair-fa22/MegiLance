@@ -4,7 +4,7 @@
 import React from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Input from '@/app/components/Input/Input';
+import Input from '@/app/components/atoms/Input/Input';
 import { UserSearch } from 'lucide-react';
 
 import common from './StepFreelancer.common.module.css';

@@ -1061,3 +1061,119 @@
     overflow-x: auto;
   }
 }
+
+
+@media (max-width: 380px) {
+  .funnelStepHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .modalHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .tiersList {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .referralsHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .headerActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .milestoneHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .referralItem {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .milestoneItem {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .rewardHistoryItem {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .inviteActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .milestonesList {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .emailRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding: 0.5rem;
+  }
+  .statCard {
+    padding: 0.75rem;
+  }
+  .tierCard {
+    padding: 0.75rem;
+  }
+  .shareCard {
+    padding: 0.75rem;
+  }
+  .modalOverlay {
+    padding: 0.75rem;
+  }
+  .milestoneCard {
+    padding: 0.75rem;
+  }
+  .codeCard {
+    padding: 0.75rem;
+  }
+  .modalHeader {
+    padding: 0.75rem;
+  }
+  .referralsCard {
+    padding: 0.75rem;
+  }
+  .funnelCard {
+    padding: 0.75rem;
+  }
+  .rewardsCard {
+    padding: 0.75rem;
+  }
+  .modalFooter {
+    padding: 0.75rem;
+  }
+  .modalBody {
+    padding: 0.75rem;
+  }
+  .leaderboardCard {
+    padding: 0.75rem;
+  }
+  .funnelTitle {
+    font-size: 1.125rem;
+  }
+  .title {
+    font-size: 1.125rem;
+  }
+  .shareTitle {
+    font-size: 1.125rem;
+  }
+  .rewardsTitle {
+    font-size: 1.125rem;
+  }
+}

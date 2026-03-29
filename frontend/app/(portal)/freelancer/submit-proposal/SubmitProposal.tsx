@@ -11,7 +11,7 @@ import { CheckCircle, AlertTriangle, ArrowLeft, ArrowRight, Send, Loader2, Brief
 import api, { APIError } from '@/lib/api';
 import { ProposalData, ProposalErrors } from './SubmitProposal.types';
 
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import StepIndicator from './components/StepIndicator/StepIndicator';
 import StepDetails from './components/StepDetails/StepDetails';
 import StepTerms from './components/StepTerms/StepTerms';

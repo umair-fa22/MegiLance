@@ -20,3 +20,23 @@
     gap: var(--space-1);
   }
 }
+
+@media (max-width: 380px) {
+  .nav {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .link {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 320px) {
+  .link {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+}

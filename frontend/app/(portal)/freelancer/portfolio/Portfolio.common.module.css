@@ -670,3 +670,58 @@
     bottom: 1rem;
   }
 }
+
+@media (max-width: 380px) {
+  .headerTop {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .headerActions {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+  }
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .categories {
+    flex-direction: column;
+    width: 100%;
+  }
+  .categoryBtn {
+    width: 100%;
+    text-align: center;
+  }
+  .statsRow {
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+  }
+  .publicUrl {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .modalFooter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .tagInputRow {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding: 0.5rem;
+  }
+  .title {
+    font-size: 1.25rem;
+  }
+  .modalContent, .modalHeader, .modalFooter {
+    padding: 1rem;
+  }
+  .featuredGrid, .portfolioGrid {
+    gap: 1rem;
+  }
+}

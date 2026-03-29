@@ -4,11 +4,11 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Button from '@/app/components/Button/Button';
-import Modal from '@/app/components/Modal/Modal';
-import Badge from '@/app/components/Badge/Badge';
-import EmptyState from '@/app/components/EmptyState/EmptyState';
-import Loader from '@/app/components/Loader/Loader';
+import Button from '@/app/components/atoms/Button/Button';
+import Modal from '@/app/components/organisms/Modal/Modal';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
+import Loader from '@/app/components/atoms/Loader/Loader';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';

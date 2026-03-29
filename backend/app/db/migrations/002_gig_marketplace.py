@@ -92,7 +92,7 @@ def apply_migration():
                 logger.info(f"  ❌ [{i}/{len(statements)}] Error: {error_str[:100]}")
                 error_count += 1
     
-    logger.info(f"\n📊 Migration Summary:")
+    logger.info("\n📊 Migration Summary:")
     logger.info(f"  ✅ Successful: {success_count}")
     logger.info(f"  ❌ Failed: {error_count}")
     logger.info(f"  📝 Total: {len(statements)}")

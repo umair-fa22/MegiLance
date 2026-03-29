@@ -5,7 +5,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
-import { PageTransition, ScrollReveal, StaggerContainer } from '@/components/Animations';
+import { PageTransition, ScrollReveal, StaggerContainer } from '@/app/components/Animations';
 import { Loader2 } from 'lucide-react';
 import common from './AuditLogs.common.module.css';
 import light from './AuditLogs.light.module.css';

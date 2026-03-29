@@ -574,3 +574,48 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+@media (max-width: 380px) {
+  .container {
+    padding: 0.75rem;
+  }
+
+  .headerActions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .headerActions button {
+    width: 100%;
+  }
+
+  .statsBar {
+    grid-template-columns: 1fr;
+  }
+
+  .fileGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .modalFooter {
+    flex-direction: column;
+  }
+
+  .modalFooter button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .statCard {
+    padding: 0.75rem;
+  }
+}

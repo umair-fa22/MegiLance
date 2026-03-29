@@ -491,7 +491,7 @@
 /* Responsive - Mobile fullscreen chatbot */
 @media (max-width: 768px) {
   .chatbotAgent {
-    width: 100vw;
+    width: 100%;
     height: calc(100dvh - env(safe-area-inset-top, 0px));
     max-height: 100dvh;
     border-radius: 0;

@@ -9,7 +9,6 @@ import secrets
 from datetime import datetime, timezone
 from typing import Optional, List, Dict, Any
 from enum import Enum
-from collections import defaultdict
 
 logger = logging.getLogger(__name__)
 

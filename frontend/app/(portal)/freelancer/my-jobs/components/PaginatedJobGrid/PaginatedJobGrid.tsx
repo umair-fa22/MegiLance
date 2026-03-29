@@ -4,10 +4,10 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { usePersistedState } from '@/app/lib/hooks/usePersistedState';
-import DataToolbar, { SortOption } from '@/app/components/DataToolbar/DataToolbar';
-import PaginationBar from '@/app/components/PaginationBar/PaginationBar';
-import TableSkeleton from '@/app/components/DataTableExtras/TableSkeleton';
-import SavedViewsMenu from '@/app/components/DataTableExtras/SavedViewsMenu';
+import DataToolbar, { SortOption } from '@/app/components/organisms/DataToolbar/DataToolbar';
+import PaginationBar from '@/app/components/molecules/PaginationBar/PaginationBar';
+import TableSkeleton from '@/app/components/organisms/DataTableExtras/TableSkeleton';
+import SavedViewsMenu from '@/app/components/organisms/DataTableExtras/SavedViewsMenu';
 import JobStatusCard, { JobStatusCardProps } from '../JobStatusCard/JobStatusCard';
 
 import commonStyles from './PaginatedJobGrid.common.module.css';

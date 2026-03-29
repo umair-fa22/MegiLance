@@ -7,11 +7,11 @@ import { cn } from '@/lib/utils';
 import api from '@/lib/api';
 import { Search, AlertTriangle, Clock, CheckCircle, XCircle, Shield, FileText } from 'lucide-react'
 
-import Button from '@/app/components/Button/Button';
-import { Badge } from '@/app/components/Badge';
-import Loading from '@/app/components/Loading/Loading';
-import Modal from '@/app/components/Modal/Modal';
-import EmptyState from '@/app/components/EmptyState/EmptyState';
+import Button from '@/app/components/atoms/Button/Button';
+import { Badge } from '@/app/components/atoms/Badge';
+import Loading from '@/app/components/atoms/Loading/Loading';
+import Modal from '@/app/components/organisms/Modal/Modal';
+import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';

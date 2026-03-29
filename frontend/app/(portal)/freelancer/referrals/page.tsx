@@ -5,13 +5,13 @@ import { useState, useEffect, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { referralApi as _referralApi } from '@/lib/api';
-import Card from '@/app/components/Card/Card';
-import Badge from '@/app/components/Badge/Badge';
-import ProgressBar from '@/app/components/ProgressBar/ProgressBar';
-import Button from '@/app/components/Button/Button';
-import Input from '@/app/components/Input/Input';
-import Loader from '@/app/components/Loader/Loader';
-import { Modal } from '@/app/components/Modal';
+import Card from '@/app/components/molecules/Card/Card';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import ProgressBar from '@/app/components/atoms/ProgressBar/ProgressBar';
+import Button from '@/app/components/atoms/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
+import Loader from '@/app/components/atoms/Loader/Loader';
+import { Modal } from '@/app/components/organisms/Modal';
 import { PageTransition, ScrollReveal, StaggerContainer, StaggerItem } from '@/app/components/Animations';
 import {
   Users, UserCheck, DollarSign, TrendingUp, Copy, Check, Share2, Mail,

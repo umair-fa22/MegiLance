@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import WizardContainer from '@/app/components/Wizard/WizardContainer/WizardContainer';
+import WizardContainer from '@/app/components/organisms/Wizard/WizardContainer/WizardContainer';
 import commonStyles from './RefundRequestWizard.common.module.css';
 import lightStyles from './RefundRequestWizard.light.module.css';
 import darkStyles from './RefundRequestWizard.dark.module.css';

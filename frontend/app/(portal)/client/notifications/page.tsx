@@ -3,7 +3,7 @@
 
 import dynamic from 'next/dynamic';
 
-const Notifications = dynamic(() => import('@/app/components/Notifications/Notifications'), {
+const Notifications = dynamic(() => import('@/app/components/organisms/Notifications/Notifications'), {
   ssr: false,
   loading: () => <div role="status" aria-label="Loading notifications" style={{ padding: '2rem', textAlign: 'center' }}>Loading notifications...</div>,
 });

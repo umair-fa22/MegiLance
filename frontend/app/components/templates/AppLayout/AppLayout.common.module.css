@@ -1,0 +1,159 @@
+/* @AI-HINT: Overhauled application layout with modern spacing, smooth transitions, and optimized content area */
+
+/* ===== SCREEN READER ONLY (Accessibility) ===== */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== ROOT LAYOUT ===== */
+.appLayout {
+  display: flex;
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+  overflow-x: hidden;
+  isolation: isolate;
+}
+
+/* ===== SKIP LINK (Keyboard Accessibility) ===== */
+.skipLink {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 0.75rem 0.75rem;
+  transition: top 0.25s var(--ease-premium, cubic-bezier(0.22, 1, 0.36, 1));
+  letter-spacing: -0.01em;
+}
+
+.skipLink:focus {
+  top: 0;
+  outline: 2px solid var(--focus-ring-color, #4573df);
+  outline-offset: 2px;
+}
+
+/* ===== MAIN CONTENT AREA ===== */
+.mainContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
+  overflow-y: visible;
+  margin-left: 272px;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+}
+
+/* Collapsed sidebar state */
+.mainContentCollapsed {
+  margin-left: 72px;
+}
+
+.pageContent {
+  flex-grow: 1;
+  padding: 2rem 2.25rem 2.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ===== FOOTER WRAPPER ===== */
+.footerWrapper {
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+/* NOTE: Chatbot is rendered by AppChrome globally, not here */
+
+/* ===== MOBILE OVERLAY BACKDROP ===== */
+.mobileOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.mobileOverlayVisible {
+  display: block;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1400px) {
+  .pageContent {
+    padding: 1.75rem 2rem 2rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .mainContent {
+    margin-left: 260px;
+  }
+  
+  .mainContentCollapsed {
+    margin-left: 72px;
+  }
+  
+  .pageContent {
+    padding: 1.5rem 1.75rem 1.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    margin-left: 0 !important;
+    /* Account for bottom nav bar height + safe area */
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+  
+  .mainContentCollapsed {
+    margin-left: 0 !important;
+  }
+  
+  .pageContent {
+    padding: 1rem 0.875rem 1.25rem;
+    max-width: 100%;
+  }
+  
+  .mobileOverlay {
+    display: none;
+  }
+  
+  .mobileOverlayVisible {
+    display: block;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 380px) {
+  .mainContent {
+    padding-bottom: calc(58px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .pageContent {
+    padding: 0.75rem 0.625rem 1rem;
+  }
+}

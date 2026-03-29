@@ -21,7 +21,7 @@ html {
 }
 
 html, body {
-  max-width: 100vw;
+  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -407,9 +407,16 @@ This project follows strict CSS Module architecture:
 /*   it using the aside element directly.        */
 /* ============================================= */
 @media (max-width: 768px) {
-  aside {
+  aside[class*="sidebar"]:not([class*="sidebarMobileOpen"]) {
     display: none !important;
     animation: none !important;
   }
+}
+
+
+/* Accessibility: Global Focus Styles */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 

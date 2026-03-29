@@ -25,3 +25,16 @@
     padding: 1rem 0.5rem;
   }
 }
+
+@media (max-width: 380px) {
+  .pageContainer {
+    padding: 1rem 0.5rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .pageContainer {
+    padding: 0.75rem 0.25rem;
+  }
+}
+

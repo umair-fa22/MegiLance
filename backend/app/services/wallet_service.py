@@ -1,5 +1,5 @@
 # @AI-HINT: Wallet service layer - all database operations for wallet/balance/transaction endpoints
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from typing import Optional
 
 from app.db.turso_http import execute_query
@@ -274,3 +274,61 @@ def disable_payout_schedule(user_id: int):
         "UPDATE payout_schedules SET is_active = 0, updated_at = ? WHERE user_id = ?",
         [datetime.now(timezone.utc).isoformat(), user_id]
     )
+
+
+def credit_balance(user_id: int, amount: float) -> bool:
+    """Credit the available balance for a user (e.g., after successful deposit).
+    Returns True if credit succeeded."""
+    now = datetime.now(timezone.utc).isoformat()
+    # Ensure wallet exists first
+    get_or_create_balance(user_id)
+    
+    result = execute_query(
+        "UPDATE wallet_balances SET available = available + ?, updated_at = ? WHERE user_id = ?",
+        [amount, now, user_id]
+    )
+    rows_affected = 0
+    if isinstance(result, dict):
+        rows_affected = result.get("rows_affected", 0)
+    elif isinstance(result, int):
+        rows_affected = result
+    return rows_affected > 0
+
+
+def update_transaction_status(reference_id: str, new_status: str, completed: bool = False):
+    """Update a wallet transaction's status by reference_id.
+    If completed=True, also sets completed_at timestamp."""
+    now = datetime.now(timezone.utc).isoformat()
+    if completed:
+        execute_query(
+            "UPDATE wallet_transactions SET status = ?, completed_at = ? WHERE reference_id = ?",
+            [new_status, now, reference_id]
+        )
+    else:
+        execute_query(
+            "UPDATE wallet_transactions SET status = ? WHERE reference_id = ?",
+            [new_status, reference_id]
+        )
+
+
+def get_transaction_by_reference(reference_id: str) -> Optional[dict]:
+    """Get a wallet transaction by its reference_id."""
+    result = execute_query(
+        "SELECT id, user_id, type, amount, currency, status, description, reference_id, created_at, completed_at FROM wallet_transactions WHERE reference_id = ?",
+        [reference_id]
+    )
+    if result and result.get("rows") and len(result["rows"]) > 0:
+        row = result["rows"][0]
+        return {
+            "id": _get_val(row, 0),
+            "user_id": _get_val(row, 1),
+            "type": _get_val(row, 2, "unknown"),
+            "amount": float(_get_val(row, 3, 0)),
+            "currency": _get_val(row, 4, "USD"),
+            "status": _get_val(row, 5, "pending"),
+            "description": _get_val(row, 6),
+            "reference_id": _get_val(row, 7),
+            "created_at": _get_val(row, 8, ""),
+            "completed_at": _get_val(row, 9)
+        }
+    return None

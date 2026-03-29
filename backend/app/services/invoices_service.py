@@ -2,7 +2,7 @@
 import logging
 import json
 from datetime import datetime, date, timezone
-from typing import Optional, List
+from typing import Optional
 logger = logging.getLogger(__name__)
 
 from app.db.turso_http import execute_query, to_str, parse_date, parse_rows

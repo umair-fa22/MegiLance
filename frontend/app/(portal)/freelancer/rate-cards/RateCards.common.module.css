@@ -374,3 +374,33 @@
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+@media (max-width: 380px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .tagInput {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .modalActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 320px) {
+  .title {
+    font-size: 1.25rem;
+  }
+  .rateAmount {
+    font-size: 1.5rem;
+  }
+  .rateCard {
+    padding: 1rem;
+  }
+  .modal {
+    padding: 1rem;
+  }
+}

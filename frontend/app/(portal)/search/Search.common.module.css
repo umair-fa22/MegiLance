@@ -177,3 +177,18 @@
   transform: translateY(0); 
   transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
 }
+
+@media (max-width: 380px) {
+  .page { padding: 1rem; }
+  .controls { display: flex; flex-direction: column; }
+  .filters { flex-direction: column; align-items: stretch; }
+  .chip { text-align: center; }
+  .cardMeta { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+}
+
+@media (max-width: 320px) {
+  .page { padding: 0.5rem; }
+  .title { font-size: 1.5rem; }
+  .card { padding: 1rem; }
+}
+

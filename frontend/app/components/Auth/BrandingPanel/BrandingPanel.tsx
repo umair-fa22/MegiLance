@@ -1,7 +1,7 @@
 // @AI-HINT: This is a shared, reusable branding panel for all authentication pages (Login, Signup, etc.). It centralizes the dynamic, role-based branding to ensure a consistent, premium user experience and follows the DRY principle.
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import type { LucideIcon } from 'lucide-react';
@@ -23,9 +23,17 @@ export interface AuthBrandingPanelProps {
 }
 
 const AuthBrandingPanel: React.FC<AuthBrandingPanelProps> = ({ roleConfig }) => {
+  const [mounted, setMounted] = useState(false);
   const { resolvedTheme } = useTheme();
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Use a consistent theme during SSR to prevent hydration mismatch
+  const effectiveTheme = mounted ? (resolvedTheme ?? 'dark') : 'dark';
+  
   const styles = React.useMemo(() => {
-    const effectiveTheme = resolvedTheme ?? 'light';
     const themeStyles = effectiveTheme === 'dark' ? darkStyles : lightStyles;
     return {
       brandingPanel: cn(commonStyles.brandingPanel, themeStyles.brandingPanel),
@@ -36,10 +44,9 @@ const AuthBrandingPanel: React.FC<AuthBrandingPanelProps> = ({ roleConfig }) => 
       brandingText: cn(commonStyles.brandingText, themeStyles.brandingText),
       brandingFooter: cn(commonStyles.brandingFooter, themeStyles.brandingFooter),
     } as const;
-  }, [resolvedTheme]);
+  }, [effectiveTheme]);
+  
   const { brandIcon: BrandIcon, brandTitle, brandText } = roleConfig;
-
-  // Always render to avoid initial layout shift; theme styles will hydrate on mount.
 
   return (
     <div className={styles.brandingPanel}>

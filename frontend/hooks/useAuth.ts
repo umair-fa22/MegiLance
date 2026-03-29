@@ -18,6 +18,7 @@ export interface User {
   skills?: string;
   hourly_rate?: number;
   profile_image_url?: string;
+  avatar_url?: string; // Alternative avatar field from some API responses
   location?: string;
   title?: string;
   is_verified?: boolean;

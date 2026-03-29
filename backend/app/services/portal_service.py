@@ -2,10 +2,9 @@
 import json
 import logging
 import time
-from datetime import datetime, timezone
 from typing import Optional, List
 
-from app.db.turso_http import execute_query, to_str, parse_date, get_turso_http
+from app.db.turso_http import execute_query, parse_date, get_turso_http
 from app.services.db_utils import get_val as _get_val, safe_str as _safe_str
 
 logger = logging.getLogger(__name__)
@@ -506,7 +505,7 @@ def create_withdrawal(freelancer_id: int, amount: float, now: str) -> bool:
            status, description, platform_fee, freelancer_amount, created_at, updated_at)
            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
         [freelancer_id, freelancer_id, amount, "withdrawal", "bank_transfer",
-         "pending", f"Withdrawal of ", 0, amount, now, now]
+         "pending", "Withdrawal of ", 0, amount, now, now]
     )
     return bool(result)
 

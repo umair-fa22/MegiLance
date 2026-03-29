@@ -88,3 +88,54 @@
     font-size: 0.8125rem;
   }
 }
+
+/* ── Small phones ≤ 380px ── */
+@media (max-width: 380px) {
+  .activityFeedCard {
+    padding: 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .cardTitle {
+    font-size: 1.125rem;
+  }
+}
+
+/* ── Extra-small ≤ 320px ── */
+@media (max-width: 320px) {
+  .activityFeedCard {
+    padding: 1.25rem;
+    gap: 1rem;
+    border-radius: 10px;
+  }
+
+  .cardTitle {
+    font-size: 1rem;
+  }
+
+  .activityList {
+    gap: 1rem;
+  }
+
+  .activityItem {
+    gap: 0.75rem;
+    padding-left: 1.75rem;
+  }
+
+  .activityIconContainer {
+    width: 18px;
+    height: 18px;
+  }
+
+  .activityIcon {
+    font-size: 0.75rem;
+  }
+
+  .activityContent p {
+    font-size: 0.75rem;
+  }
+
+  .activityTimestamp {
+    font-size: 0.6875rem;
+  }
+}

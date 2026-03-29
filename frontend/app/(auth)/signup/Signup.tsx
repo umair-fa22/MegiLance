@@ -11,10 +11,10 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { isPreviewMode } from '@/app/utils/flags';
 import { trackSignupStart, trackSignupComplete } from '@/lib/tracking';
 
-import Button from '@/app/components/Button/Button';
-import Input from '@/app/components/Input/Input';
-import Checkbox from '@/app/components/Checkbox/Checkbox';
-import Tabs from '@/app/components/Tabs/Tabs';
+import Button from '@/app/components/atoms/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
+import Checkbox from '@/app/components/atoms/Checkbox/Checkbox';
+import Tabs from '@/app/components/molecules/Tabs/Tabs';
 import AuthBrandingPanel from '@/app/components/Auth/BrandingPanel/BrandingPanel';
 import ClientOnly from '@/app/components/ClientOnly';
 import PasswordStrengthMeter from '@/app/components/AdvancedFeatures/PasswordStrengthMeter/PasswordStrengthMeter';
@@ -251,7 +251,7 @@ const Signup: React.FC = () => {
     <PageTransition className={styles.loginPage}>
       {/* Background Decor - REMOVED */}
 
-      <div className={styles.brandingSlot} style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', alignSelf: 'start' }}>
+      <div className={styles.brandingSlot}>
         <AuthBrandingPanel roleConfig={roleConfig[selectedRole]} />
       </div>
       <div className={styles.formPanel}>

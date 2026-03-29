@@ -29,8 +29,36 @@
   }
 }
 
-@media (max-width: 374px) {
+@media (max-width: 380px) {
   .container {
     height: 180px;
+  }
+
+  .tooltip {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .tooltipLabel {
+    margin-bottom: 2px;
+  }
+
+  .tooltipValue {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    height: 160px;
+  }
+
+  .tooltip {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  .tooltipValue {
+    font-size: 11px;
   }
 }

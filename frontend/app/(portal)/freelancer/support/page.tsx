@@ -6,12 +6,12 @@ import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 
-import Button from '@/app/components/Button/Button';
-import Input from '@/app/components/Input/Input';
-import Textarea from '@/app/components/Textarea/Textarea';
-import Accordion, { AccordionItem } from '@/app/components/Accordion/Accordion';
-import Loading from '@/app/components/Loading/Loading';
-import Badge from '@/app/components/Badge/Badge';
+import Button from '@/app/components/atoms/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
+import Textarea from '@/app/components/atoms/Textarea/Textarea';
+import Accordion, { AccordionItem } from '@/app/components/molecules/Accordion/Accordion';
+import Loading from '@/app/components/atoms/Loading/Loading';
+import Badge from '@/app/components/atoms/Badge/Badge';
 import { apiFetch } from '@/lib/api/core';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';

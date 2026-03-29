@@ -1,0 +1,38 @@
+/* @AI-HINT: Dark theme styles for the Error page */
+
+.container {
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+.errorCode {
+  color: #60a5fa;
+}
+
+.title {
+  color: #f1f5f9;
+}
+
+.description {
+  color: #94a3b8;
+}
+
+.primaryButton {
+  background-color: #4573df;
+  color: #ffffff;
+}
+
+.primaryButton:hover {
+  background-color: #5b85e8;
+}
+
+.secondaryButton {
+  border: 1px solid #475569;
+  color: #e2e8f0;
+  background-color: transparent;
+}
+
+.secondaryButton:hover {
+  background-color: #1e293b;
+  border-color: #64748b;
+}

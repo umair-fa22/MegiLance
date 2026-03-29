@@ -10,11 +10,14 @@ import { useClientData } from '@/hooks/useClient';
 import { useRecommendations } from '@/hooks/useRecommendations';
 import { useAuth } from '@/hooks/useAuth';
 import { useUnreadCounts } from '@/contexts/UnreadCountContext';
-import Button from '@/app/components/Button/Button';
-import Loading from '@/app/components/Loading/Loading';
-import EmptyState from '@/app/components/EmptyState/EmptyState';
-import ActivityTimeline, { TimelineEvent } from '@/app/components/ActivityTimeline/ActivityTimeline';
-import ProgressRing from '@/app/components/ProgressRing/ProgressRing';
+import Button from '@/app/components/atoms/Button/Button';
+import Loading from '@/app/components/atoms/Loading/Loading';
+import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
+import ActivityTimeline, { TimelineEvent } from '@/app/components/molecules/ActivityTimeline/ActivityTimeline';
+import ProgressRing from '@/app/components/atoms/ProgressRing/ProgressRing';
+import { PageTransition } from '@/app/components/Animations/PageTransition';
+import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
+import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
 import { emptyBoxAnimation, aiSparkleAnimation } from '@/app/components/Animations/LottieAnimation';
 import { 
   Briefcase, 
@@ -35,7 +38,7 @@ import {
   Star,
 } from 'lucide-react';
 
-import ProfileCompleteness from '@/app/components/ProfileCompleteness/ProfileCompleteness';
+import ProfileCompleteness from '@/app/components/organisms/ProfileCompleteness/ProfileCompleteness';
 import StatCard from './components/StatCard';
 import ProjectCard from './components/ProjectCard';
 import TalentCard from './components/TalentCard';
@@ -197,71 +200,86 @@ const ClientDashboard: React.FC = () => {
   }
 
   return (
-    <div className={cn(commonStyles.dashboardContainer, themeStyles.dashboardContainer)}>
-      {/* Header Section */}
-      <div className={commonStyles.headerSection}>
-        <div className={cn(commonStyles.welcomeText, themeStyles.welcomeText)}>
-          <h1>Welcome back{user?.name ? `, ${user.name.split(' ')[0]}` : ''} 👋</h1>
-          <p>Here&apos;s what&apos;s happening with your projects today.</p>
-        </div>
-        <div className={commonStyles.headerActions}>
-          <Link href="/client/hire">
-            <Button variant="outline" size="lg" iconBefore={<Search size={18} />}>
-              Browse Talent
-            </Button>
-          </Link>
-          <Link href="/client/post-job">
-            <Button variant="primary" size="lg" iconBefore={<Plus size={20} />}>
-              Post a Project
-            </Button>
-          </Link>
-        </div>
-      </div>
+    <PageTransition>
+      <div className={cn(commonStyles.dashboardContainer, themeStyles.dashboardContainer)}>
+        {/* Header Section */}
+        <ScrollReveal>
+          <div className={commonStyles.headerSection}>
+            <div className={cn(commonStyles.welcomeText, themeStyles.welcomeText)}>
+              <h1>Welcome back{user?.name ? `, ${user.name.split(' ')[0]}` : ''} 👋</h1>
+              <p>Here&apos;s what&apos;s happening with your projects today.</p>
+            </div>
+            <div className={commonStyles.headerActions}>
+              <Link href="/client/hire">
+                <Button variant="outline" size="lg" iconBefore={<Search size={18} />}>
+                  Browse Talent
+                </Button>
+              </Link>
+              <Link href="/client/post-job">
+                <Button variant="primary" size="lg" iconBefore={<Plus size={20} />}>
+                  Post a Project
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </ScrollReveal>
 
-      {/* Stats Grid — with sparklines */}
-      <section aria-label="Key statistics">
-      <div className={commonStyles.statsGrid}>
-        <StatCard
-          title="Total Spent"
-          value={metrics.totalSpent}
-          icon={DollarSign}
-          sparklineData={spendingSparkline}
-          sparklineColor="primary"
-          href="/client/payments"
-        />
-        <StatCard
-          title="Active Projects"
-          value={metrics.activeProjects.toString()}
-          icon={Briefcase}
-          sparklineColor="success"
-          href="/client/projects"
-        />
-        <StatCard
-          title="Pending Proposals"
-          value={metrics.pendingProposals.toString()}
-          icon={Clock}
-          href="/client/projects"
-        />
-        <StatCard
-          title="Unread Messages"
-          value={metrics.unreadMessages.toString()}
-          icon={MessageSquare}
-          href="/client/messages"
-        />
-        <StatCard
-          title="Avg Project Value"
-          value={`$${metrics.averageProjectValue.toLocaleString()}`}
-          icon={TrendingUp}
-          href="/client/analytics"
-        />
-        <StatCard
-          title="On-Hold Projects"
-          value={metrics.onHoldProjects.toString()}
-          icon={Clock}
-          href="/client/projects"
-        />
-      </div>
-      </section>
+        {/* Stats Grid — with sparklines */}
+        <section aria-label="Key statistics">
+        <StaggerContainer className={commonStyles.statsGrid}>
+          <StaggerItem>
+            <StatCard
+              title="Total Spent"
+              value={metrics.totalSpent}
+              icon={DollarSign}
+              sparklineData={spendingSparkline}
+              sparklineColor="primary"
+              href="/client/payments"
+            />
+          </StaggerItem>
+          <StaggerItem>
+            <StatCard
+              title="Active Projects"
+              value={metrics.activeProjects.toString()}
+              icon={Briefcase}
+              sparklineColor="success"
+              href="/client/projects"
+            />
+          </StaggerItem>
+          <StaggerItem>
+            <StatCard
+              title="Pending Proposals"
+              value={metrics.pendingProposals.toString()}
+              icon={Clock}
+              href="/client/projects"
+            />
+          </StaggerItem>
+          <StaggerItem>
+            <StatCard
+              title="Unread Messages"
+              value={metrics.unreadMessages.toString()}
+              icon={MessageSquare}
+              href="/client/messages"
+            />
+          </StaggerItem>
+          <StaggerItem>
+            <StatCard
+              title="Avg Project Value"
+              value={`$${metrics.averageProjectValue.toLocaleString()}`}
+              icon={TrendingUp}
+              href="/client/analytics"
+            />
+          </StaggerItem>
+          <StaggerItem>
+            <StatCard
+              title="On-Hold Projects"
+              value={metrics.onHoldProjects.toString()}
+              icon={Clock}
+              href="/client/projects"
+            />
+          </StaggerItem>
+        </StaggerContainer>
+        </section>
 
       {error && (
         <div className={commonStyles.errorBanner} role="alert">
@@ -303,20 +321,22 @@ const ClientDashboard: React.FC = () => {
 
       {/* Quick Actions */}
       <section aria-label="Quick actions">
-      <div className={commonStyles.quickActionsSection}>
-        <h2 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Quick Actions</h2>
-        <div className={commonStyles.quickActionsGrid}>
-          {quickActions.map((action) => (
-            <Link key={action.label} href={action.href} className={cn(commonStyles.quickActionCard, themeStyles.quickActionCard)} aria-label={`${action.label}: ${action.desc}`}>
-              <div className={cn(commonStyles.quickActionIcon, commonStyles[`quickActionIcon-${action.color}`])} aria-hidden="true">
-                <action.icon size={20} />
-              </div>
-              <span className={cn(commonStyles.quickActionLabel, themeStyles.quickActionLabel)}>{action.label}</span>
-              <span className={cn(commonStyles.quickActionDesc, themeStyles.quickActionDesc)}>{action.desc}</span>
-            </Link>
-          ))}
+      <ScrollReveal>
+        <div className={commonStyles.quickActionsSection}>
+          <h2 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Quick Actions</h2>
+          <div className={commonStyles.quickActionsGrid}>
+            {quickActions.map((action) => (
+              <Link key={action.label} href={action.href} className={cn(commonStyles.quickActionCard, themeStyles.quickActionCard)} aria-label={`${action.label}: ${action.desc}`}>
+                <div className={cn(commonStyles.quickActionIcon, commonStyles[`quickActionIcon-${action.color}`])} aria-hidden="true">
+                  <action.icon size={20} />
+                </div>
+                <span className={cn(commonStyles.quickActionLabel, themeStyles.quickActionLabel)}>{action.label}</span>
+                <span className={cn(commonStyles.quickActionDesc, themeStyles.quickActionDesc)}>{action.desc}</span>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
       </section>
 
       {/* Project Completion Metrics */}
@@ -469,7 +489,8 @@ const ClientDashboard: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </PageTransition>
   );
 };
 

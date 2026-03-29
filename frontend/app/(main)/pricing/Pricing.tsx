@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { PricingCard } from '@/components/pricing/PricingCard/PricingCard';
+import { PricingCard } from '@/app/components/organisms/PricingCard/PricingCard';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';

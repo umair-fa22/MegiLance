@@ -2,7 +2,7 @@
 # Defines data models for analytics endpoints
 
 from pydantic import BaseModel, Field, ConfigDict
-from typing import List, Dict, Any, Optional
+from typing import Dict
 from datetime import datetime
 from enum import Enum
 

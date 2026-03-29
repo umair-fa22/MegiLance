@@ -1,192 +1,49 @@
 /* @AI-HINT: Common layout/structure styles for Messages component */
 
 .container {
-  max-width: 800px;
+  max-width: 1400px;
   margin: 0 auto;
+  height: calc(100vh - 120px);
+  min-height: 600px;
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 1.5rem;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-}
-
-.headerIcon {
-  width: 28px;
-  height: 28px;
-}
-
-.title {
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-@media (min-width: 768px) {
-  .title {
-    font-size: 1.875rem;
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    height: calc(100vh - 80px);
   }
 }
 
-.searchWrapper {
-  position: relative;
-  margin-bottom: 1.5rem;
-}
-
-.searchIcon {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  pointer-events: none;
-}
-
-.searchInput {
-  width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.75rem;
-  border-radius: 0.75rem;
-  border: 1px solid;
-  font-size: 0.875rem;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.searchInput:focus {
-  box-shadow: 0 0 0 2px rgba(69, 115, 223, 0.2);
-}
-
-.conversationList {
+.chatSection {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   border-radius: 0.75rem;
   overflow: hidden;
   border: 1px solid;
-}
-
-.loadingState {
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
-}
-
-.spinner {
-  width: 1.5rem;
-  height: 1.5rem;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 .emptyState {
   padding: 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  opacity: 0.7;
 }
 
 .emptyIcon {
-  width: 3rem;
-  height: 3rem;
-  margin: 0 auto 0.75rem;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 1rem;
 }
 
 .emptyTitle {
   font-weight: 500;
-}
-
-.emptySubtitle {
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-}
-
-.conversationButton {
-  width: 100%;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  text-align: left;
-  transition: background-color 0.15s;
-  cursor: pointer;
-  border: none;
-  background: none;
-}
-
-.conversationButton:not(:last-child) {
-  border-bottom: 1px solid;
-}
-
-.avatar {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 0.875rem;
-  flex-shrink: 0;
-  overflow: hidden;
-}
-
-.avatarImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.conversationContent {
-  flex: 1;
-  min-width: 0;
-}
-
-.conversationTop {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.25rem;
-}
-
-.contactName {
-  font-weight: 600;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.timestamp {
-  font-size: 0.75rem;
-  flex-shrink: 0;
-  margin-left: 0.5rem;
-}
-
-.conversationBottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.lastMessage {
-  font-size: 0.875rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.unreadBadge {
-  margin-left: 0.5rem;
-  padding: 0.125rem 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  background-color: var(--color-primary, #4573df);
-  color: white;
-  border-radius: 9999px;
-  flex-shrink: 0;
-}
-
-.searchInput:focus-visible {
-  outline: 2px solid var(--color-primary, #4573df);
-  outline-offset: 2px;
+  font-size: 1.25rem;
 }

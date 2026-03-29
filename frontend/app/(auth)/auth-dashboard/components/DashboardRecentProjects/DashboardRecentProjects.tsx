@@ -5,6 +5,7 @@
 import React from 'react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
+import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
 import { cn } from '@/lib/utils';
 import { useDashboardData } from '@/hooks/useDashboardData';
 import { RecentProject } from '../../types';
@@ -47,7 +48,7 @@ const DashboardRecentProjects: React.FC = () => {
         <div className={styles.cardHeader}>
           <h2 className={styles.cardTitle}>Recent Projects</h2>
         </div>
-        <div className={styles.emptyState}>No recent projects available.</div>
+        <EmptyState title="No recent projects" description="You have no active or recent projects at the moment." />
       </div>
     );
   }

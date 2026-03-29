@@ -331,3 +331,14 @@
     font-size: 0.825rem;
   }
 }
+
+
+@media (max-width: 380px) {
+  .ticketItem {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 320px) {
+}

@@ -319,3 +319,28 @@
   min-height: 200px;
   text-align: center;
 }
+
+@media (max-width: 380px) {
+  .extrasRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .statusFilters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 320px) {
+  .title {
+    font-size: 1.25rem;
+  }
+  .table th,
+  .table td {
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+  .toolbar {
+    flex-direction: column;
+  }
+}

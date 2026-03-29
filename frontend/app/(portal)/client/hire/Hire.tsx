@@ -12,7 +12,7 @@ import api from '@/lib/api';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import StepIndicator from './components/StepIndicator/StepIndicator';
 import StepFreelancer from './components/StepFreelancer/StepFreelancer';
 import StepScope from './components/StepScope/StepScope';

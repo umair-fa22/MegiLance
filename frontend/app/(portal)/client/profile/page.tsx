@@ -1,5 +1,5 @@
 // @AI-HINT: Client Profile page scoped under the (portal) layout so it renders with the dashboard shell.
-import Profile from '../../../profile/Profile';
+import Profile from '@/app/profile/Profile';
 
 export const metadata = {
   title: 'Client Profile — MegiLance',

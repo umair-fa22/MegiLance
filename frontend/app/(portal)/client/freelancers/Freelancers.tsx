@@ -4,15 +4,15 @@
 import React, { useId, useMemo, useState, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { PageTransition, ScrollReveal, StaggerContainer } from '@/components/Animations';
+import { PageTransition, ScrollReveal, StaggerContainer } from '@/app/components/Animations';
 import { useClientData } from '@/hooks/useClient';
 import { AIMatchCard } from '@/app/components/AI';
 import Skeleton from '@/app/components/Animations/Skeleton/Skeleton';
-import Input from '@/app/components/Input/Input';
-import Select from '@/app/components/Select/Select';
-import Button from '@/app/components/Button/Button';
-import UserAvatar from '@/app/components/UserAvatar/UserAvatar';
-import Badge from '@/app/components/Badge/Badge';
+import Input from '@/app/components/atoms/Input/Input';
+import Select from '@/app/components/molecules/Select/Select';
+import Button from '@/app/components/atoms/Button/Button';
+import UserAvatar from '@/app/components/atoms/UserAvatar/UserAvatar';
+import Badge from '@/app/components/atoms/Badge/Badge';
 import {
   Search, Download, Star, MapPin, DollarSign,
   ChevronDown, ChevronUp, X, Users, BarChart3,

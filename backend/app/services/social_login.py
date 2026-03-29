@@ -5,16 +5,15 @@
 
 import logging
 from datetime import datetime, timedelta, timezone
-from typing import Optional, List, Dict, Any, Tuple
+from typing import Optional, List, Dict, Any
 from enum import Enum
-import hashlib
 import secrets
 from urllib.parse import urlencode
 
 import requests
 
 from app.core.config import get_settings
-from app.core.security import create_access_token, create_refresh_token, get_password_hash, verify_password
+from app.core.security import create_access_token, create_refresh_token, get_password_hash
 from app.db.turso_http import execute_query, parse_rows
 
 logger = logging.getLogger("megilance")

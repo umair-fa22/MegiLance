@@ -1,5 +1,5 @@
 # @AI-HINT: Profile completeness validation service - checks required fields and calculates completion %
-from typing import List, Dict, Any, Optional
+from typing import List
 from app.models.user import User
 
 

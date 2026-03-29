@@ -7,7 +7,6 @@ from typing import Optional
 import boto3
 from botocore.exceptions import ClientError
 import logging
-from datetime import datetime, timedelta
 
 from app.core.config import get_settings
 

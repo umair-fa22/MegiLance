@@ -4,7 +4,7 @@ import React from 'react';
 import Script from 'next/script';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Accordion, { AccordionItem } from '@/app/components/Accordion/Accordion';
+import Accordion, { AccordionItem } from '@/app/components/molecules/Accordion/Accordion';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';

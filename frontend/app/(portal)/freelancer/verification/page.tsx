@@ -7,7 +7,7 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { PageTransition, ScrollReveal, StaggerContainer, StaggerItem } from '@/app/components/Animations';
 import { apiFetch } from '@/lib/api/core';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 import {
   ShieldCheck, Mail, Phone, CreditCard, Target, MapPin, IdCard,
   CheckCircle, Clock, XCircle, Circle, Upload, FileText, Lock,

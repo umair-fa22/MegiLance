@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { Button } from '@/app/components/Button';
+import { Button } from '@/app/components/atoms/Button';
 import { apiFetch } from '@/lib/api/core';
 import commonStyles from './Notes.common.module.css';
 import lightStyles from './Notes.light.module.css';

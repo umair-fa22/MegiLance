@@ -3,10 +3,9 @@
 Provides caching for API responses, database queries, and computed values
 """
 
-from typing import Any, Optional, Callable, TypeVar, Union, Dict
-from datetime import timedelta
+from typing import Any, Optional, Callable, TypeVar, Dict
 from functools import wraps
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from collections import OrderedDict
 import asyncio
 import json

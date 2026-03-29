@@ -5,12 +5,12 @@ import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from 
 import { searchApi } from '@/lib/api';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import EmptyState from '@/app/components/EmptyState/EmptyState';
+import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer } from '@/app/components/Animations/StaggerContainer';
 import { LottieAnimation, searchingAnimation, emptyBoxAnimation } from '@/app/components/Animations/LottieAnimation';
-import { useToaster } from '@/app/components/Toast/ToasterProvider';
+import { useToaster } from '@/app/components/molecules/Toast/ToasterProvider';
 import common from './Search.common.module.css';
 import light from './Search.light.module.css';
 import dark from './Search.dark.module.css';

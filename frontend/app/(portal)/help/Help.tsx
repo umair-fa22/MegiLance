@@ -5,11 +5,11 @@ import React, { useState, useMemo, useCallback } from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { PageTransition, ScrollReveal, StaggerContainer } from '@/components/Animations';
+import { PageTransition, ScrollReveal, StaggerContainer } from '@/app/components/Animations';
 import { StaggerItem } from '@/app/components/Animations/StaggerContainer';
 import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';
-import Button from '@/app/components/Button/Button';
-import Input from '@/app/components/Input/Input';
+import Button from '@/app/components/atoms/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
 import {
   Search, BookOpen, CreditCard, Shield, Users, Briefcase, Settings,
   MessageCircle, FileText, ChevronDown, ChevronUp, ExternalLink,

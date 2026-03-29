@@ -5,12 +5,12 @@ returns None. All runtime DB operations use Turso HTTP API (turso_http.py).
 The SQLAlchemy code paths below are kept as reference / Alembic compatibility only.
 """
 
-from sqlalchemy import create_engine, event, Engine, text
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import QueuePool
 from app.core.config import get_settings
 import logging
-from typing import Optional, Generator
+from typing import Generator
 
 logger = logging.getLogger(__name__)
 settings = get_settings()

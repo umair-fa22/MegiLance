@@ -5,8 +5,8 @@ import api from '@/lib/api';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTheme } from 'next-themes';
 
-import UserAvatar from '@/app/components/UserAvatar/UserAvatar';
-import Button from '@/app/components/Button/Button';
+import UserAvatar from '@/app/components/atoms/UserAvatar/UserAvatar';
+import Button from '@/app/components/atoms/Button/Button';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';

@@ -7,8 +7,8 @@ import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
 
-import Button from '@/app/components/Button/Button';
-import Input from '@/app/components/Input/Input';
+import Button from '@/app/components/atoms/Button/Button';
+import Input from '@/app/components/atoms/Input/Input';
 import { KeyRound } from 'lucide-react';
 import AuthBrandingPanel from '@/app/components/Auth/BrandingPanel/BrandingPanel';
 

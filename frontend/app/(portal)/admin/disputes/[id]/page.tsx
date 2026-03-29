@@ -8,13 +8,13 @@ import { cn } from '@/lib/utils';
 import api from '@/lib/api';
 import { ArrowLeft, FileText, CheckCircle } from 'lucide-react';
 
-import Button from '@/app/components/Button/Button';
-import Badge from '@/app/components/Badge/Badge';
-import Textarea from '@/app/components/Textarea/Textarea';
-import Select from '@/app/components/Select/Select';
-import Loader from '@/app/components/Loader/Loader';
+import Button from '@/app/components/atoms/Button/Button';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import Textarea from '@/app/components/atoms/Textarea/Textarea';
+import Select from '@/app/components/molecules/Select/Select';
+import Loader from '@/app/components/atoms/Loader/Loader';
 import { PageTransition, ScrollReveal } from '@/app/components/Animations';
-import { useToaster } from '@/app/components/Toast/ToasterProvider';
+import { useToaster } from '@/app/components/molecules/Toast/ToasterProvider';
 
 import commonStyles from './DisputeDetails.common.module.css';
 import lightStyles from './DisputeDetails.light.module.css';

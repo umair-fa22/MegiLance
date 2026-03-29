@@ -7,8 +7,8 @@ import { cn } from '@/lib/utils';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
-import Button from '@/app/components/Button/Button';
-import Loader from '@/app/components/Loader/Loader';
+import Button from '@/app/components/atoms/Button/Button';
+import Loader from '@/app/components/atoms/Loader/Loader';
 import { apiFetch } from '@/lib/api/core';
 import {
   CreditCard, Crown, Zap, Shield, Rocket, Check, X, ArrowRight,

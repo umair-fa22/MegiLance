@@ -1,7 +1,7 @@
 # @AI-HINT: Pydantic schemas for external project listings - request/response models
 # Used by the external projects API endpoints for serialization and validation
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 from typing import List, Optional
 from datetime import datetime
 import logging

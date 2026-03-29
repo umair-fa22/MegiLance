@@ -2,7 +2,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
 import { MoreHorizontal, Star, MapPin, Circle } from 'lucide-react';
-import UserAvatar from '@/app/components/UserAvatar/UserAvatar';
+import UserAvatar from '@/app/components/atoms/UserAvatar/UserAvatar';
 import commonStyles from './TalentCard.common.module.css';
 import lightStyles from './TalentCard.light.module.css';
 import darkStyles from './TalentCard.dark.module.css';

@@ -8,16 +8,15 @@ import { useTheme } from 'next-themes';
 import {
   Loader2
 } from 'lucide-react';
-import { Button } from '@/app/components/Button';
-import { Badge } from '@/app/components/Badge';
-import { Modal } from '@/app/components/Modal';
-import { useToaster } from '@/app/components/Toast';
+import { Button } from '@/app/components/atoms/Button';
+import { Badge } from '@/app/components/atoms/Badge';
+import { Modal } from '@/app/components/organisms/Modal';
+import { useToaster } from '@/app/components/molecules/Toast';
 import api from '@/lib/api';
 import { apiFetch } from '@/lib/api/core';
 import { usePersistedState } from '@/app/lib/hooks/usePersistedState';
 import { useSelection } from '@/app/lib/hooks/useSelection';
 import { useColumnVisibility } from '@/app/lib/hooks/useColumnVisibility';
-// import { exportCSV, exportData } from '@/app/utils/exportUtils';
 const exportCSV = (header: string[], rows: string[][], name: string) => {
   const csv = [header.join(','), ...rows.map(r => r.join(','))].join('\n');
   const blob = new Blob([csv], { type: 'text/csv' });
@@ -318,14 +317,14 @@ const Contracts = () => {
           <ScrollReveal delay={0.1}>
             <DataToolbar
               query={query}
-              onQueryChange={(v) => { setQuery(v); setPage(1); }}
+              onQueryChange={(v: string) => { setQuery(v); setPage(1); }}
               sortValue={`${sortKey}:${sortDir}`}
-              onSortChange={(val) => {
+              onSortChange={(val: string) => {
                 const [k, d] = val.split(':') as [typeof sortKey, typeof sortDir];
                 setSortKey(k); setSortDir(d); setPage(1);
               }}
               pageSize={pageSize}
-              onPageSizeChange={(sz) => { setPageSize(sz); setPage(1); }}
+              onPageSizeChange={(sz: number) => { setPageSize(sz); setPage(1); }}
               sortOptions={sortOptions}
               onExport={onExport}
               exportLabel="Export"
@@ -479,7 +478,7 @@ const Contracts = () => {
                     rowHeight={rowHeight}
                     overscan={6}
                     containerRef={tableContainerRef}
-                    renderRow={(contract) => (
+                    renderRow={(contract: any) => (
                       <tr
                         key={contract.id}
                         tabIndex={0}

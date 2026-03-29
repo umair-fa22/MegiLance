@@ -14,7 +14,7 @@ import {
   Trophy,
   Zap,
 } from 'lucide-react';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 
 import commonStyles from './Compare.common.module.css';
 import lightStyles from './Compare.light.module.css';

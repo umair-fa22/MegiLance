@@ -366,6 +366,277 @@
   }
 }
 
+/* Small phones (380px and below) */
+@media (max-width: 380px) {
+  .hero {
+    padding: 2.5rem 1rem 1.5rem;
+  }
+  
+  .heroContent {
+    gap: 1rem;
+  }
+  
+  .heroBadge {
+    padding: 5px 12px;
+    font-size: 0.75rem;
+    border-radius: 16px;
+  }
+  
+  .heroTitle {
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+  }
+  
+  .heroSubtitle {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  .heroStat {
+    padding: 0.4rem 0.75rem;
+    border-radius: 10px;
+    min-width: 80px;
+  }
+  
+  .heroStatNumber {
+    font-size: 1.5rem;
+  }
+  
+  .heroStatLabel {
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+  }
+  
+  .tabsWrapper {
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .tabs {
+    gap: 0.25rem;
+    padding: 3px;
+    border-radius: 12px;
+  }
+  
+  .tab {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.75rem;
+    border-radius: 8px;
+    gap: 4px;
+  }
+  
+  .tabCount {
+    font-size: 0.65rem;
+    padding: 1px 6px;
+    min-width: 18px;
+  }
+  
+  .gridSection,
+  .cta {
+    padding: 0 1rem;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .card {
+    padding: 1.5rem;
+    border-radius: 14px;
+  }
+  
+  .iconBox {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+  }
+  
+  .statusPill {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  
+  .cardTitle {
+    font-size: 1rem;
+  }
+  
+  .cardDesc {
+    font-size: 0.825rem;
+    line-height: 1.55;
+  }
+  
+  .highlight {
+    font-size: 0.72rem;
+    padding: 3px 8px;
+    border-radius: 6px;
+    gap: 3px;
+  }
+  
+  .cta {
+    margin-top: 3rem;
+  }
+  
+  .ctaCard {
+    padding: 2.5rem 1.5rem;
+    border-radius: 16px;
+  }
+  
+  .ctaTitle {
+    font-size: 1.5rem;
+  }
+  
+  .ctaDesc {
+    font-size: 0.9rem;
+  }
+  
+  .ctaBtn {
+    padding: 0.65rem 1.5rem;
+    font-size: 0.875rem;
+    border-radius: 10px;
+    gap: 6px;
+  }
+}
+
+/* Extra small phones (320px) */
+@media (max-width: 320px) {
+  .hero {
+    padding: 2rem 0.75rem 1.25rem;
+  }
+  
+  .heroContent {
+    gap: 0.875rem;
+  }
+  
+  .heroBadge {
+    padding: 4px 10px;
+    font-size: 0.7rem;
+  }
+  
+  .heroTitle {
+    font-size: 1.25rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 0.875rem;
+  }
+  
+  .heroStat {
+    padding: 0.35rem 0.6rem;
+    min-width: 70px;
+  }
+  
+  .heroStatNumber {
+    font-size: 1.35rem;
+  }
+  
+  .heroStatLabel {
+    font-size: 0.65rem;
+  }
+  
+  .tabsWrapper {
+    padding: 0 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .tabs {
+    gap: 0.2rem;
+    padding: 2px;
+    border-radius: 10px;
+  }
+  
+  .tab {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.7rem;
+    border-radius: 7px;
+  }
+  
+  .tabCount {
+    font-size: 0.6rem;
+    padding: 1px 5px;
+    min-width: 16px;
+  }
+  
+  .gridSection,
+  .cta {
+    padding: 0 0.75rem;
+  }
+  
+  .grid {
+    gap: 0.875rem;
+  }
+  
+  .card {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+  
+  .cardHeader {
+    margin-bottom: 0.75rem;
+  }
+  
+  .iconBox {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+  }
+  
+  .statusPill {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+  }
+  
+  .cardTitle {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .cardDesc {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+  
+  .highlights {
+    gap: 0.35rem;
+  }
+  
+  .highlight {
+    font-size: 0.68rem;
+    padding: 2px 6px;
+  }
+  
+  .cta {
+    margin-top: 2.5rem;
+  }
+  
+  .ctaCard {
+    padding: 2rem 1.25rem;
+    border-radius: 14px;
+  }
+  
+  .ctaTitle {
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .ctaDesc {
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .ctaActions {
+    gap: 0.75rem;
+  }
+  
+  .ctaBtn {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.825rem;
+    border-radius: 8px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .card {
     animation: none;

@@ -4,12 +4,12 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import Button from '@/app/components/Button/Button';
-import Badge from '@/app/components/Badge/Badge';
-import Input from '@/app/components/Input/Input';
-import Select from '@/app/components/Select/Select';
-import Loader from '@/app/components/Loader/Loader';
-import EmptyState from '@/app/components/EmptyState/EmptyState';
+import Button from '@/app/components/atoms/Button/Button';
+import Badge from '@/app/components/atoms/Badge/Badge';
+import Input from '@/app/components/atoms/Input/Input';
+import Select from '@/app/components/molecules/Select/Select';
+import Loader from '@/app/components/atoms/Loader/Loader';
+import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
 import { PageTransition, ScrollReveal } from '@/app/components/Animations';
 import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
 import {
