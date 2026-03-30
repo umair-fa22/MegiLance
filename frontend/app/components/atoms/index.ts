@@ -1,6 +1,6 @@
 // @AI-HINT: Barrel export for all atom components. Import atoms from '@/components/atoms'.
 
-export { default as Avatar } from './Avatar';
+export { default as Avatar } from './UserAvatar';
 export { default as Badge } from './Badge';
 export { default as Button } from './Button';
 export { default as Checkbox } from './Checkbox';

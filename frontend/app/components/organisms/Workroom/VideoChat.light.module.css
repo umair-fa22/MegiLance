@@ -1,0 +1,18 @@
+.container {
+  background-color: var(--white);
+  border-color: var(--gray-200);
+}
+
+.controls {
+  background-color: var(--gray-100);
+}
+
+.controlBtn {
+  background-color: var(--white);
+  color: var(--gray-700);
+  box-shadow: var(--shadow-sm);
+}
+
+.controlBtn:hover {
+  background-color: var(--gray-50);
+}

@@ -3,6 +3,7 @@
 
 import React from 'react';
 import { useTheme } from 'next-themes';
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { PageTransition, ScrollReveal, StaggerContainer } from '@/app/components/Animations';
 import { AnimatedOrb, ParticlesSystem, FloatingCube, FloatingSphere } from '@/app/components/3D';
@@ -63,9 +64,9 @@ const Support: React.FC = () => {
                 <h3 id="cat-jobs" className={common.cardTitle}>Jobs & Projects</h3>
                 <p className={common.cardDesc}>Posting jobs, proposals, milestones, and escrow.</p>
                 <ul className={common.list}>
-                  <li><a className={common.link} href="/jobs">Browse jobs</a></li>
-                  <li><a className={common.link} href="/faq#jobs">Create a posting</a></li>
-                  <li><a className={common.link} href="/faq#payments">Use escrow</a></li>
+                  <li><Link className={common.link} href="/projects">Browse jobs</Link></li>
+                  <li><Link className={common.link} href="/faq#jobs">Create a posting</Link></li>
+                  <li><Link className={common.link} href="/faq#payments">Use escrow</Link></li>
                 </ul>
               </article>
             </StaggerContainer>

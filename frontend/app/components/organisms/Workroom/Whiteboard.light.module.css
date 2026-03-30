@@ -1,0 +1,25 @@
+.container {
+  background-color: var(--white);
+  border-color: var(--gray-200);
+}
+
+.header {
+  background-color: var(--gray-50);
+  border-bottom-color: var(--gray-200);
+  color: var(--gray-900);
+}
+
+.button {
+  padding: 4px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gray-200);
+  background-color: var(--white);
+  color: var(--gray-700);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button:hover {
+  background-color: var(--gray-100);
+}

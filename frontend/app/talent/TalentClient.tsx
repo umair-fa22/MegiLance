@@ -35,6 +35,19 @@ const CATEGORIES = [
   { id: 'writing', label: 'Writing' },
 ];
 
+interface FreelancerApiResponse {
+  id?: string | number;
+  full_name?: string;
+  name?: string;
+  title?: string;
+  headline?: string;
+  ai_score?: number;
+  rating?: number;
+  skills?: string[];
+  profile_image_url?: string;
+  avatar_url?: string;
+}
+
 async function fetchFreelancers(): Promise<TalentProfile[]> {
   const token = typeof window !== 'undefined' ? getAuthToken() : null;
   try {
@@ -43,11 +56,11 @@ async function fetchFreelancers(): Promise<TalentProfile[]> {
     });
     if (!res.ok) return [];
     const data = await res.json();
-    return (data.freelancers || data || []).map((f: any, idx: number) => ({
+    return (data.freelancers || data || []).map((f: FreelancerApiResponse, idx: number) => ({
       id: String(f.id || idx),
       name: f.full_name || f.name || `Freelancer ${idx + 1}`,
       role: f.title || f.headline || 'Freelancer',
-      rank: f.ai_score || Math.floor(f.rating * 20) || 0,
+      rank: f.ai_score || Math.floor((f.rating || 0) * 20) || 0,
       skills: f.skills || [],
       avatar: f.profile_image_url || f.avatar_url || '',
     }));
@@ -66,9 +79,6 @@ const TalentDirectoryPage = () => {
   const [loading, setLoading] = useState(true);
   const [profiles, setProfiles] = useState<TalentProfile[]>([]);
 
-  if (!resolvedTheme) return null;
-  const themed = resolvedTheme === 'dark' ? dark : light;
-  
   const loadProfiles = useCallback(async () => {
     setLoading(true);
     const data = await fetchFreelancers();
@@ -85,6 +95,10 @@ const TalentDirectoryPage = () => {
       m.skills.some(s => s.toLowerCase().includes(q.toLowerCase()))
     );
   }, [profiles, q]);
+
+  // Early return after all hooks are called
+  if (!resolvedTheme) return null;
+  const themed = resolvedTheme === 'dark' ? dark : light;
 
   return (
     <PageTransition>

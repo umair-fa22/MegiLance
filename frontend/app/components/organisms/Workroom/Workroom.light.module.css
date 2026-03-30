@@ -1,0 +1,69 @@
+.container {
+  color: var(--gray-900);
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  color: var(--gray-500);
+  text-decoration: none;
+  font-size: var(--text-sm);
+}
+
+.backButton:hover {
+  color: var(--gray-900);
+}
+
+.contractBadge {
+  background-color: var(--gray-100);
+  color: var(--gray-600);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.tabs {
+  display: flex;
+  gap: var(--spacing-2);
+  background-color: var(--gray-100);
+  padding: 4px;
+  border-radius: var(--radius-lg);
+  width: fit-content;
+}
+
+.tabBtn {
+  color: var(--gray-600);
+}
+
+.tabBtn:hover {
+  color: var(--gray-900);
+}
+
+.activeTab {
+  background-color: var(--white);
+  color: var(--gray-900);
+  box-shadow: var(--shadow-sm);
+}
+
+.participantList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.participantList li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3);
+  background-color: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  color: var(--gray-900);
+  font-weight: 500;
+}

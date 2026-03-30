@@ -1,45 +1,82 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+// @AI-HINT: ESLint 9 flat config for Next.js 16 with TypeScript
+import nextPlugin from "@next/eslint-plugin-next";
+import reactPlugin from "eslint-plugin-react";
+import hooksPlugin from "eslint-plugin-react-hooks";
+import jsxA11yPlugin from "eslint-plugin-jsx-a11y";
+import tseslint from "typescript-eslint";
+import js from "@eslint/js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
+/** @type {import('eslint').Linter.Config[]} */
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  // Base JavaScript recommended rules
+  js.configs.recommended,
+  
+  // TypeScript config
+  ...tseslint.configs.recommended,
+  
+  // Global ignores
   {
-    ignores: ["node_modules/", ".next/", "out/", "build/", "**/*.js"],
+    ignores: [
+      "node_modules/**",
+      ".next/**",
+      "out/**",
+      "build/**",
+      "public/sw.js",
+      "public/workbox-*.js",
+      "**/*.d.ts",
+    ],
   },
+  
+  // Main config for TypeScript/React files
   {
+    files: ["**/*.ts", "**/*.tsx"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    plugins: {
+      "@next/next": nextPlugin,
+      "react": reactPlugin,
+      "react-hooks": hooksPlugin,
+      "jsx-a11y": jsxA11yPlugin,
+    },
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
     rules: {
-      // TypeScript best practices - style prop is used for dynamic theming with CSS custom properties
+      // Next.js rules
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs["core-web-vitals"].rules,
       
       // TypeScript best practices
-      "@typescript-eslint/no-unused-vars": ["warn", { 
-        "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_",
-        "destructuredArrayIgnorePattern": "^_"
+      "@typescript-eslint/no-unused-vars": ["warn", {
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
+        destructuredArrayIgnorePattern: "^_",
       }],
       "@typescript-eslint/no-explicit-any": "warn",
-      "@typescript-eslint/prefer-optional-chain": "warn",
       "@typescript-eslint/no-non-null-assertion": "warn",
+      "@typescript-eslint/no-require-imports": "off",
       
-      // React best practices (vercel recommended)
-      "react/self-closing-comp": ["warn", { "component": true, "html": true }],
+      // React best practices
+      "react/self-closing-comp": ["warn", { component: true, html: true }],
       "react/no-array-index-key": "warn",
       "react/jsx-no-target-blank": "error",
       "react/jsx-boolean-value": ["warn", "never"],
-      "react/jsx-curly-brace-presence": ["warn", { "props": "never", "children": "never" }],
+      "react/jsx-curly-brace-presence": ["warn", { props: "never", children: "never" }],
       
-      // React Hooks best practices
+      // React Hooks
       "react-hooks/exhaustive-deps": "warn",
       "react-hooks/rules-of-hooks": "error",
       
-      // Accessibility (a11y) best practices
+      // Accessibility
       "jsx-a11y/alt-text": "error",
       "jsx-a11y/anchor-is-valid": "warn",
       "jsx-a11y/click-events-have-key-events": "warn",
@@ -48,15 +85,11 @@ const eslintConfig = [
       "jsx-a11y/aria-role": "error",
       "jsx-a11y/role-has-required-aria-props": "error",
       
-      // Next.js best practices
-      "@next/next/no-img-element": "error",
-      "@next/next/no-html-link-for-pages": "error",
-      
-      // General JS best practices
-      "no-console": ["warn", { "allow": ["warn", "error", "info"] }],
+      // General best practices
+      "no-console": ["warn", { allow: ["warn", "error", "info"] }],
       "prefer-const": "warn",
       "no-var": "error",
-      "eqeqeq": ["error", "always", { "null": "ignore" }],
+      "eqeqeq": ["error", "always", { null: "ignore" }],
       "no-nested-ternary": "warn",
     },
   },

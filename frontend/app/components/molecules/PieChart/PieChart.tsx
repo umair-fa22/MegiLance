@@ -45,12 +45,6 @@ const PieChart: React.FC<PieChartProps> = ({
   const chartTitleId = `${uniqueId}-title`;
   const chartDescId = `${uniqueId}-desc`;
   
-  if (!resolvedTheme) {
-    return null; // Don't render until theme is resolved
-  }
-  
-  const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
-  
   // Calculate total value
   const total = data.reduce((sum, item) => sum + item.value, 0);
   
@@ -126,6 +120,13 @@ const PieChart: React.FC<PieChartProps> = ({
       setHoveredIndex(focusedIndex);
     }
   }, [focusedIndex]);
+
+  // Early return after all hooks
+  if (!resolvedTheme) {
+    return null;
+  }
+  
+  const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
   
   // Render pie slices
   const renderPieSlices = () => {
