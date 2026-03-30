@@ -415,7 +415,7 @@ def accept_proposal(proposal_id: int, proposal: dict, client_id: int) -> Optiona
     except Exception:
         pass
 
-    from app.api.v1.payments import calculate_tiered_fee
+    from app.api.v1.payments_domain.payments import calculate_tiered_fee
     fee_info = calculate_tiered_fee(contract_amount, lifetime_billing)
     platform_fee = fee_info["platform_fee"]
 

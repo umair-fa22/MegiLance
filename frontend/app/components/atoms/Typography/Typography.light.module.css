@@ -1,0 +1,7 @@
+.color-primary { color: var(--color-text-primary, #111827); }
+.color-secondary { color: var(--color-text-secondary, #4b5563); }
+.color-muted { color: var(--color-text-muted, #9ca3af); }
+.color-error { color: var(--color-error, #dc2626); }
+.color-success { color: var(--color-success, #16a34a); }
+.color-warning { color: var(--color-warning, #d97706); }
+.color-inverse { color: var(--color-text-inverse, #ffffff); }

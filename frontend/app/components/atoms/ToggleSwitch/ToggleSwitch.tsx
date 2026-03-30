@@ -4,6 +4,7 @@
 import React, { useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 import commonStyles from './ToggleSwitch.common.module.css';
 import lightStyles from './ToggleSwitch.light.module.css';

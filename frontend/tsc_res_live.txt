@@ -1,4 +1,0 @@
-app/(main)/pricing/Pricing.tsx(7,29): error TS2307: Cannot find module '@/app/components/organisms/PricingCard/PricingCard' or its corresponding type declarations.
-app/(portal)/layout.tsx(12,21): error TS2307: Cannot find module '../components/Loading/Loading' or its corresponding type declarations.
-app/components/organisms/Header/Header.tsx(16,10): error TS2724: '"@/app/components/molecules/FeatureStatusPill/FeatureStatusPill"' has no exported member named 'FeatureStatusPill'. Did you mean 'FeatureStatus'?
-components/pricing/PricingCard/PricingCard.tsx(9,20): error TS2307: Cannot find module '@/appcomponentsatomsButton/Button' or its corresponding type declarations.

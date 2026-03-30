@@ -1,0 +1,49 @@
+.typography {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-body, inherit);
+  line-height: var(--line-height-normal, 1.5);
+  transition: color 0.2s ease;
+}
+
+/* Alignment */
+.align-left { text-align: left; }
+.align-center { text-align: center; }
+.align-right { text-align: right; }
+.align-justify { text-align: justify; }
+
+/* Truncate */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Gutters */
+.gutterBottom {
+  margin-bottom: var(--spacing-sm, 16px);
+}
+
+/* Base Variants */
+.variant-h1 { font-size: 2.5rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; font-family: var(--font-family-heading, inherit); }
+.variant-h2 { font-size: 2rem; font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; font-family: var(--font-family-heading, inherit); }
+.variant-h3 { font-size: 1.75rem; font-weight: 600; line-height: 1.3; font-family: var(--font-family-heading, inherit); }
+.variant-h4 { font-size: 1.5rem; font-weight: 600; line-height: 1.35; font-family: var(--font-family-heading, inherit); }
+.variant-h5 { font-size: 1.25rem; font-weight: 600; line-height: 1.4; font-family: var(--font-family-heading, inherit); }
+.variant-h6 { font-size: 1.125rem; font-weight: 600; line-height: 1.4; font-family: var(--font-family-heading, inherit); }
+
+.variant-subtitle1 { font-size: 1rem; font-weight: 500; line-height: 1.5; }
+.variant-subtitle2 { font-size: 0.875rem; font-weight: 500; line-height: 1.5; }
+
+.variant-body1 { font-size: 1rem; font-weight: 400; line-height: 1.5; }
+.variant-body2 { font-size: 0.875rem; font-weight: 400; line-height: 1.43; }
+
+.variant-caption { font-size: 0.75rem; font-weight: 400; line-height: 1.66; letter-spacing: 0.033em; }
+.variant-overline { font-size: 0.75rem; font-weight: 500; line-height: 2.66; letter-spacing: 0.083em; text-transform: uppercase; }
+
+/* Font Weights overridden explicitly if provided */
+.weight-regular { font-weight: 400 !important; }
+.weight-medium { font-weight: 500 !important; }
+.weight-semibold { font-weight: 600 !important; }
+.weight-bold { font-weight: 700 !important; }
+.weight-extrabold { font-weight: 800 !important; }

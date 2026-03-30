@@ -556,6 +556,7 @@ def complete_user_profile(
         
         if updates:
             turso.execute(f"UPDATE users SET {', '.join(updates)} WHERE id = ?", params)
+            invalidate_user_cache(current_user.email)
         
         # Return updated user
         row = turso.fetch_one(
