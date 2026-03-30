@@ -1,0 +1,11 @@
+/* @AI-HINT: Light theme styles for AppLayout */
+
+.layoutWrapper {
+  background-color: var(--color-background, #f3f4f6);
+  color: var(--color-text, #111827);
+}
+
+.mainContent {
+  /* add subtle ambient background mapping for light mode if needed */
+  background: radial-gradient(circle at top right, rgba(69, 115, 223, 0.05) 0%, transparent 400px);
+}

@@ -150,6 +150,25 @@ class SocialLoginService:
             "expires_at": (datetime.now(timezone.utc) + timedelta(minutes=10)).isoformat(),
         }
 
+        # Persist OAuth state to Turso database for cross-process requests
+        try:
+            execute_query(
+                """INSERT INTO oauth_states 
+                   (state, provider, redirect_uri, user_id, portal_area, intent, expires_at)
+                   VALUES (?, ?, ?, ?, ?, ?, ?)""",
+                [
+                    state, 
+                    provider.value, 
+                    redirect_uri, 
+                    str(user_id) if user_id else None, 
+                    portal_area, 
+                    intent or ("link" if user_id else "auto"), 
+                    (datetime.now(timezone.utc) + timedelta(minutes=10)).isoformat()
+                ]
+            )
+        except Exception as e:
+            logger.warning(f"Failed to persist oauth_state in database: {e}. Falling back to memory store.")
+
         params = {
             "client_id": client_id,
             "redirect_uri": redirect_uri,
@@ -216,6 +235,26 @@ class SocialLoginService:
     ) -> Dict[str, Any]:
         """Complete OAuth flow - exchange code for tokens and get or create user."""
         state_data = self._oauth_states.get(state)
+        
+        # Fallback/Primary to check Turso database for state
+        if not state_data:
+            try:
+                db_state = parse_rows(execute_query("SELECT * FROM oauth_states WHERE state = ?", [state]))
+                if db_state:
+                    state_row = db_state[0]
+                    state_data = {
+                        "provider": state_row["provider"],
+                        "redirect_uri": state_row["redirect_uri"],
+                        "user_id": int(state_row["user_id"]) if state_row.get("user_id") else None,
+                        "portal_area": state_row.get("portal_area"),
+                        "intent": state_row.get("intent", "auto"),
+                        "expires_at": state_row["expires_at"]
+                    }
+                    # Also clean it up
+                    execute_query("DELETE FROM oauth_states WHERE state = ?", [state])
+            except Exception as e:
+                logger.warning(f"Error checking oauth_states in db: {e}")
+
         if not state_data:
             return {"success": False, "error": "Invalid or expired state"}
 

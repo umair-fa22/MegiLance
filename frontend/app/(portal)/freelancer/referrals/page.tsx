@@ -79,14 +79,7 @@ export default function ReferralPage() {
   const [copiedItem, setCopiedItem] = useState<string | null>(null);
   const [filterStatus, setFilterStatus] = useState<string>('all');
 
-  const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
-  if (!resolvedTheme) return null;
-
-  useEffect(() => {
-    loadReferralData();
-  }, []);
-
-  const loadReferralData = async () => {
+  const loadReferralData = useCallback(async () => {
     try {
       setLoading(true);
       const [codeData, statsData, referralsData, milestonesData, shareLinksData] = await Promise.all([
@@ -108,13 +101,21 @@ export default function ReferralPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    loadReferralData();
+  }, [loadReferralData]);
 
   const copyToClipboard = useCallback((text: string, label: string) => {
     navigator.clipboard.writeText(text);
     setCopiedItem(label);
     setTimeout(() => setCopiedItem(null), 2000);
   }, []);
+
+  // Theme check after all hooks
+  if (!resolvedTheme) return null;
+  const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   const addEmailField = () => {
     if (inviteEmails.length < 5) {

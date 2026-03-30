@@ -5,6 +5,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { useFloating, offset, flip, shift, autoUpdate, FloatingPortal, useClick, useDismiss, useInteractions } from '@floating-ui/react';
 import { getAuthToken } from '@/lib/api';
 import { 
   Bell, Check, Mail, DollarSign, Briefcase, 
@@ -52,6 +53,7 @@ export default function RealTimeNotifications({
   const router = useRouter();
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const { refs, floatingStyles, context } = useFloating({ open: isOpen, onOpenChange: setIsOpen, placement: 'bottom-end', middleware: [offset(8), flip(), shift({ padding: 8 })], whileElementsMounted: autoUpdate }); const click = useClick(context); const dismiss = useDismiss(context); const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss]);
   const [ws, setWs] = useState<WebSocket | null>(null);
   const [connectionStatus, setConnectionStatus] = useState<'connecting' | 'connected' | 'disconnected'>('connecting');
 
@@ -229,8 +231,9 @@ export default function RealTimeNotifications({
   return (
     <div className={styles.container}>
       <button
+        ref={refs.setReference}
+        {...getReferenceProps()}
         className={styles.bellButton}
-        onClick={() => setIsOpen(!isOpen)}
         aria-label="Notifications"
       >
         <Bell size={20} />
@@ -241,7 +244,12 @@ export default function RealTimeNotifications({
       </button>
 
       {isOpen && (
-        <div className={styles.dropdown}>
+        <FloatingPortal>
+        <div
+          ref={refs.setFloating}
+          style={{ ...floatingStyles, zIndex: 1000 }}
+          {...getFloatingProps()}
+          className={styles.dropdown}>
           <div className={styles.header}>
             <h3 className={styles.headerTitle}>Notifications</h3>
             {unreadCount > 0 && (
@@ -292,6 +300,7 @@ export default function RealTimeNotifications({
             )}
           </div>
         </div>
+        </FloatingPortal>
       )}
     </div>
   );

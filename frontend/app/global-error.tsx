@@ -1,4 +1,6 @@
 // @AI-HINT: Global error page with professional error handling and recovery options
+// NOTE: global-error.tsx runs outside the normal app context, so we use <a> tags for navigation
+/* eslint-disable @next/next/no-html-link-for-pages */
 'use client';
 
 import React, { useEffect } from 'react';

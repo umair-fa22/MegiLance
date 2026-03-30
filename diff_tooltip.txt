@@ -1,0 +1,13 @@
+diff --git a/frontend/app/components/atoms/Tooltip/Tooltip.tsx b/frontend/app/components/atoms/Tooltip/Tooltip.tsx
+index 58f69411..95ed9e7b 100644
+--- a/frontend/app/components/atoms/Tooltip/Tooltip.tsx
++++ b/frontend/app/components/atoms/Tooltip/Tooltip.tsx
+@@ -3,6 +3,8 @@
+ 
+ import React, { useState, useRef, cloneElement, useId } from 'react';
+ import { useTheme } from 'next-themes';
++import { useFloating, offset, flip, shift, autoUpdate, FloatingPortal, useHover, useFocus, useDismiss, useInteractions } from '@floating-ui/react';
++import { useFloating, offset, flip, shift, autoUpdate, FloatingPortal, useHover, useFocus, useDismiss, useInteractions } from '@floating-ui/react';
+ import { cn } from '@/lib/utils';
+ import commonStyles from './Tooltip.common.module.css';
+ import lightStyles from './Tooltip.light.module.css';

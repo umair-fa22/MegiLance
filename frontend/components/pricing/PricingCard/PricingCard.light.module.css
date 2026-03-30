@@ -1,0 +1,21 @@
+/* @AI-HINT: Light theme styles for PricingCard */
+
+.card {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--color-text, #111827);
+}
+
+.card:hover {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.popularCard {
+  background: white;
+  border-color: var(--color-primary, #4573df);
+  box-shadow: 0 16px 40px rgba(69, 115, 223, 0.15);
+}

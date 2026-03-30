@@ -155,7 +155,7 @@ export default function WorkflowsPage() {
     setShowCreateModal(false);
   };
 
-  const useTemplate = (template: WorkflowTemplate) => {
+  const applyTemplate = (template: WorkflowTemplate) => {
     setNewWorkflow({
       name: template.name,
       trigger: template.trigger,
@@ -328,7 +328,7 @@ export default function WorkflowsPage() {
                       </div>
                       <button 
                         className={cn(commonStyles.useButton, themeStyles.useButton)}
-                        onClick={() => useTemplate(template)}
+                        onClick={() => applyTemplate(template)}
                       >
                         Use Template
                       </button>

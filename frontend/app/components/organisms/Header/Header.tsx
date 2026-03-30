@@ -44,8 +44,8 @@ const megaMenuData = {
       {
         title: 'Payments & Security',
         items: [
-          { name: 'Secure Escrow', href: '/how-it-works#payments', icon: Shield, description: 'Protected milestone payments', status: 'complete' as FeatureStatus },
-          { name: 'Milestone Payments', href: '/how-it-works#payments', icon: CreditCard, description: 'Pay per deliverable', status: 'complete' as FeatureStatus },
+          { name: 'Secure Escrow', href: '/how-it-works#escrow', icon: Shield, description: 'Protected milestone payments', status: 'complete' as FeatureStatus },
+          { name: 'Milestone Payments', href: '/how-it-works#milestones', icon: CreditCard, description: 'Pay per deliverable', status: 'complete' as FeatureStatus },
         ]
       }
     ]

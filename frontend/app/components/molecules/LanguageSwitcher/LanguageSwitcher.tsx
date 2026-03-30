@@ -6,6 +6,7 @@ import { useTheme } from 'next-themes';
 import { Globe, ChevronDown, Check } from 'lucide-react';
 import { useTranslation } from '@/lib/i18n/I18nContext';
 import { cn } from '@/lib/utils';
+import { useFloating, offset, flip, shift, autoUpdate, FloatingPortal, useClick, useDismiss, useInteractions } from '@floating-ui/react';
 
 import commonStyles from './LanguageSwitcher.common.module.css';
 import lightStyles from './LanguageSwitcher.light.module.css';
@@ -48,7 +49,7 @@ export default function LanguageSwitcher() {
   if (!resolvedTheme) return null;
 
   return (
-    <div className={commonStyles.container} ref={dropdownRef}>
+    <div className={commonStyles.container} >
       <button 
         type="button"
         className={cn(commonStyles.button, themeStyles.button)}

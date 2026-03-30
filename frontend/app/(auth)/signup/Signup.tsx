@@ -49,33 +49,31 @@ const Signup: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   
-  // Get initial role from URL params or localStorage
+  // Get initial role from URL params
   const getInitialRole = (): UserRole => {
     const urlRole = searchParams.get('role');
     if (urlRole === 'client' || urlRole === 'freelancer') return urlRole;
-    
-    // Check localStorage fallback
-    if (typeof window !== 'undefined') {
-      try {
-        const storedRole = window.localStorage.getItem('signup_role');
-        if (storedRole === 'client' || storedRole === 'freelancer') {
-          window.localStorage.removeItem('signup_role'); // Clear after use
-          return storedRole;
-        }
-      } catch (e) {}
-    }
-    return 'freelancer';
+    return 'freelancer'; // Deterministic fallback to prevent hydration mismatch
   };
   
   const [selectedRole, setSelectedRole] = useState<UserRole>(getInitialRole());
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   
-  // Update role when URL params change
+  // Update role when URL params change or read from localStorage on mount
   useEffect(() => {
     const urlRole = searchParams.get('role');
     if (urlRole === 'client' || urlRole === 'freelancer') {
       setSelectedRole(urlRole);
+    } else {
+      // Check localStorage fallback only on client after mount
+      try {
+        const storedRole = window.localStorage.getItem('signup_role');
+        if (storedRole === 'client' || storedRole === 'freelancer') {
+          window.localStorage.removeItem('signup_role'); // Clear after use
+          setSelectedRole(storedRole);
+        }
+      } catch (e) {}
     }
   }, [searchParams]);
   

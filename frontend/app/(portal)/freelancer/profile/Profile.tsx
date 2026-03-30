@@ -341,6 +341,7 @@ const Profile: React.FC = () => {
   const sections = [
     { id: 'basic', label: 'Basic Info' },
     { id: 'professional', label: 'Professional' },
+    { id: 'portfolio', label: 'Portfolio' },
     { id: 'experience', label: 'Experience' },
     { id: 'education', label: 'Education & Certs' },
     { id: 'social', label: 'Links & Social' },
@@ -393,14 +394,17 @@ const Profile: React.FC = () => {
 
         {/* Section Navigation */}
         <ScrollReveal>
-          <nav className={styles.sectionNav} aria-label="Profile sections">
+          <nav className={styles.sectionNav} role="tablist" aria-label="Profile sections">
             {sections.map(sec => (
               <button
                 key={sec.id}
+                role="tab"
                 type="button"
                 onClick={() => setActiveSection(sec.id)}
                 className={`${styles.navBtn} ${activeSection === sec.id ? styles.navBtnActive : ''}`}
-                aria-current={activeSection === sec.id ? 'page' : undefined}
+                aria-selected={activeSection === sec.id}
+                aria-controls={`panel-${sec.id}`}
+                id={`tab-${sec.id}`}
               >
                 <span className={styles.navLabel}>{sec.label}</span>
               </button>
@@ -408,7 +412,7 @@ const Profile: React.FC = () => {
           </nav>
         </ScrollReveal>
 
-        <form className={styles.form} onSubmit={onSubmit} noValidate>
+        <form className={styles.form} onSubmit={onSubmit} noValidate role="tabpanel" id={`panel-${activeSection}`} aria-labelledby={`tab-${activeSection}`}>
           {status && (
             <div className={styles.status} role="status" aria-live="polite">{status}</div>
           )}
@@ -621,12 +625,28 @@ const Profile: React.FC = () => {
                   <div className={styles.socialItem}>
                     <Input label="Stack Overflow" value={stackoverflowUrl} onChange={e => setStackoverflowUrl(e.target.value)} placeholder="https://stackoverflow.com/users/..." error={errors.stackoverflowUrl} />
                   </div>
-                  <div className={styles.socialItem}>
-                    <Input label="Portfolio URL" value={portfolioUrl} onChange={e => setPortfolioUrl(e.target.value)} placeholder="https://portfolio.dev" error={errors.portfolioUrl} />
                   </div>
-                </div>
-              </StaggerItem>
-            </StaggerContainer>
+                </StaggerItem>
+              </StaggerContainer>
+            )}
+
+            {/* PORTFOLIO & PROJECTS */}
+            {activeSection === 'portfolio' && (
+              <StaggerContainer>
+                <StaggerItem className={styles.section}>
+                  <h2 className={styles.sectionTitle}>Portfolio Projects</h2>
+                  <p className={styles.sectionDescription}>Showcase your best work. Enter your portfolio link below. Managing individual project items will be available soon.</p>
+                  <div className={styles.twoColumnGrid}>
+                    <Input 
+                      label="Primary Portfolio URL" 
+                      value={portfolioUrl} 
+                      onChange={e => setPortfolioUrl(e.target.value)} 
+                      placeholder="https://portfolio.dev" 
+                      error={errors.portfolioUrl} 
+                    />
+                  </div>
+                  <div className={styles.emptyStateContainer} style={{ marginTop: '20px', padding: '30px', textAlign: 'center', border: '1px dashed var(--border-color)', borderRadius: '8px' }}>
+                    <p style={{ color: 'var(--text-muted)' }}>Project Gallery feature coming soon. For now, link your external portfolio or GitHub repositories above.</p>
           )}
 
           {/* MEDIA & FILES */}

@@ -225,7 +225,7 @@ export default function ProposalBuilder({
     }
   };
 
-  const useTemplate = (template: typeof proposalTemplates[0]) => {
+  const applyProposalTemplate = (template: typeof proposalTemplates[0]) => {
     setProposalData({ ...proposalData, coverLetter: template.content });
   };
   const handleAIApply = (content: string) => {
@@ -309,7 +309,7 @@ export default function ProposalBuilder({
               <Button
                 variant="secondary"
                 size="sm"
-                onClick={() => useTemplate(template)}
+                onClick={() => applyProposalTemplate(template)}
               >
                 Use Template
               </Button>

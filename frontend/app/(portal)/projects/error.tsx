@@ -2,6 +2,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import Link from 'next/link';
 import { RefreshCw, FolderOpen } from 'lucide-react';
 import { LottieAnimation, errorAlertAnimation } from '@/app/components/Animations/LottieAnimation';
 
@@ -60,13 +61,13 @@ export default function ProjectsError({
             <RefreshCw className="w-4 h-4" aria-hidden="true" />
             Try again
           </button>
-          <a
+          <Link
             href="/projects"
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
           >
             <FolderOpen className="w-4 h-4" aria-hidden="true" />
             All Projects
-          </a>
+          </Link>
         </div>
       </div>
     </div>

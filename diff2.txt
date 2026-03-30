@@ -1,0 +1,53 @@
+diff --git a/frontend/app/components/molecules/DatePicker/DatePicker.tsx b/frontend/app/components/molecules/DatePicker/DatePicker.tsx
+index 1af8d5d7..f9d8216b 100644
+--- a/frontend/app/components/molecules/DatePicker/DatePicker.tsx
++++ b/frontend/app/components/molecules/DatePicker/DatePicker.tsx
+@@ -4,6 +4,7 @@
+ 
+ import React, { useState, useRef, useEffect, useId, useCallback } from 'react';
+ import { useTheme } from 'next-themes';
++import { useFloating, offset, flip, shift, autoUpdate, FloatingPortal } from '@floating-ui/react';
+ import { cn } from '@/lib/utils';
+ import { Calendar, ChevronLeft, ChevronRight, X } from 'lucide-react';
+ import commonStyles from './DatePicker.common.module.css';
+@@ -53,6 +54,12 @@ const DatePicker: React.FC<DatePickerProps> = ({
+ }) => {
+   const { resolvedTheme } = useTheme();
+   const [isOpen, setIsOpen] = useState(false);
++  const { refs, floatingStyles } = useFloating({
++    open: isOpen,
++    onOpenChange: setIsOpen,
++    middleware: [offset(4), flip(), shift({ padding: 8 })],
++    whileElementsMounted: autoUpdate
++  });
+   const [selectedDate, setSelectedDate] = useState<Date | null>(value);
+   const [currentMonth, setCurrentMonth] = useState(new Date());
+   const [selectedTime, setSelectedTime] = useState<{ hours: number; minutes: number }>({ hours: 12, minutes: 0 });
+@@ -487,6 +494,8 @@ const DatePicker: React.FC<DatePickerProps> = ({
+         aria-describedby={hasError ? errorId : undefined}
+         aria-disabled={disabled}
+         tabIndex={disabled ? -1 : 0}
++        ref={refs.setReference}
++        ref={refs.setReference}
+         className={cn(
+           commonStyles.inputContainer,
+           themeStyles.inputContainer,
+@@ -536,7 +545,10 @@ const DatePicker: React.FC<DatePickerProps> = ({
+         </div>
+         
+         {isOpen && (
++          <FloatingPortal>
+           <div
++            ref={refs.setFloating}
++            style={{ ...floatingStyles, zIndex: 1000 }}
+             id={calendarId}
+             role="dialog"
+             aria-modal="true"
+@@ -550,6 +562,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
+             {renderCalendarGrid()}
+             {renderCalendarFooter()}
+           </div>
++          </FloatingPortal>
+         )}
+       </div>
+       

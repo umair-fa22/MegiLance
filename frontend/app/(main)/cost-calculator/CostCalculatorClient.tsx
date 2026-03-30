@@ -35,9 +35,6 @@ export default function CostCalculatorClient({ faqs }: { faqs: FAQ[] }) {
   const [weeks, setWeeks] = useState(12);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  if (!resolvedTheme) return null;
-  const theme = resolvedTheme === 'dark' ? darkStyles : lightStyles;
-
   const role = ROLES[selectedRole];
 
   const results = useMemo(() => {
@@ -52,6 +49,10 @@ export default function CostCalculatorClient({ faqs }: { faqs: FAQ[] }) {
 
     return { ftTotal, freelanceTotal, upworkTotal, savings, savingsPercent, upworkSavings };
   }, [role, hoursPerWeek, weeks]);
+
+  // Early return after all hooks
+  if (!resolvedTheme) return null;
+  const theme = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   const fmt = (n: number) => '$' + Math.round(n).toLocaleString();
 

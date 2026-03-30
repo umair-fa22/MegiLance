@@ -1,12 +1,13 @@
 // @AI-HINT: Stub implementation of framer-motion to remove dependency while maintaining API compatibility
 // ES module version for Next.js compatibility
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import React from 'react';
 
 // Create a generic component factory that passes through all props
 const createMotionComponent = (element) => {
   return React.forwardRef((props, ref) => {
-    // Filter out motion-specific props
+    // Filter out motion-specific props (extracted but intentionally unused)
     const {
       initial,
       animate,

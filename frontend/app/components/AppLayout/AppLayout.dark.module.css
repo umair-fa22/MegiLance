@@ -1,0 +1,10 @@
+/* @AI-HINT: Dark theme styles for AppLayout */
+
+.layoutWrapper {
+  background-color: var(--color-background-dark, #0f172a);
+  color: var(--color-text-dark, #f8fafc);
+}
+
+.mainContent {
+  background: radial-gradient(circle at top right, rgba(69, 115, 223, 0.1) 0%, transparent 400px);
+}

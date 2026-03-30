@@ -194,16 +194,7 @@ export default function ActivityPage() {
     }
   };
 
-  if (!resolvedTheme) return null;
-  const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
-
-  const unreadCount = activities.filter(a => !a.read).length;
-  const todayCount = activities.filter(a => {
-    const d = new Date(a.created_at);
-    return d.toDateString() === new Date().toDateString();
-  }).length;
-
-  // Apply filters
+  // Apply filters - useMemo must be before conditional return
   const filtered = useMemo(() => {
     let result = activities;
     if (activeFilter !== 'all') {
@@ -222,6 +213,15 @@ export default function ActivityPage() {
     }
     return result;
   }, [activities, activeFilter, timePeriod, searchQuery]);
+
+  if (!resolvedTheme) return null;
+  const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
+
+  const unreadCount = activities.filter(a => !a.read).length;
+  const todayCount = activities.filter(a => {
+    const d = new Date(a.created_at);
+    return d.toDateString() === new Date().toDateString();
+  }).length;
 
   const groupedActivities = groupByDate(filtered);
 

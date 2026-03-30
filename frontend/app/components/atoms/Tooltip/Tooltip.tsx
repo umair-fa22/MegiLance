@@ -3,6 +3,7 @@
 
 import React, { useState, useRef, cloneElement, useId } from 'react';
 import { useTheme } from 'next-themes';
+import { useFloating, offset, flip, shift, autoUpdate, FloatingPortal, useHover, useFocus, useDismiss, useInteractions } from '@floating-ui/react';
 import { cn } from '@/lib/utils';
 import commonStyles from './Tooltip.common.module.css';
 import lightStyles from './Tooltip.light.module.css';
@@ -22,6 +23,19 @@ const Tooltip: React.FC<TooltipProps> = ({ children, text, position = 'top', del
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const tooltipId = useId();
 
+  const { refs, floatingStyles, context } = useFloating({
+    open: visible,
+    onOpenChange: setVisible,
+    placement: position,
+    middleware: [offset(8), flip(), shift({ padding: 8 })],
+    whileElementsMounted: autoUpdate
+  });
+  
+  const hover = useHover(context, { delay });
+  const focus = useFocus(context);
+  const dismiss = useDismiss(context);
+  const { getReferenceProps, getFloatingProps } = useInteractions([hover, focus, dismiss]);
+
   const positionMap = {
     top: commonStyles.tooltipTop,
     bottom: commonStyles.tooltipBottom,
@@ -29,35 +43,20 @@ const Tooltip: React.FC<TooltipProps> = ({ children, text, position = 'top', del
     right: commonStyles.tooltipRight,
   };
 
-  const showTooltip = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    timeoutRef.current = setTimeout(() => {
-      setVisible(true);
-    }, delay);
-  };
-
-  const hideTooltip = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    setVisible(false);
-  };
-
-  const triggerProps = {
-    onMouseEnter: showTooltip,
-    onMouseLeave: hideTooltip,
-    onFocus: showTooltip,
-    onBlur: hideTooltip,
+  const triggerProps = getReferenceProps({
+    ref: refs.setReference,
     'aria-describedby': visible ? tooltipId : undefined,
-  };
+  });
 
   return (
-    <div className={cn(commonStyles.tooltipWrapper, className)}>
+    <>
       {cloneElement(children, triggerProps)}
       {visible && (
+        <FloatingPortal>
         <div
+          ref={refs.setFloating}
+          style={{ ...floatingStyles, zIndex: 10000 }}
+          {...getFloatingProps()}
           id={tooltipId}
           role="tooltip"
           className={cn(
@@ -69,8 +68,9 @@ const Tooltip: React.FC<TooltipProps> = ({ children, text, position = 'top', del
           {text}
           <div className={commonStyles.tooltipArrow} data-popper-arrow />
         </div>
+        </FloatingPortal>
       )}
-    </div>
+    </>
   );
 };
 

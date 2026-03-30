@@ -78,6 +78,10 @@ const DevQuickLogin: React.FC<DevQuickLoginProps> = ({ onCredentialSelect, onAut
 
   React.useEffect(() => {
     setMounted(true);
+    // Disable onboarding tour automatically for developers/E2E
+    if (SHOW_DEMO_LOGIN && typeof window !== 'undefined') {
+      window.localStorage.setItem('megilance_onboarding_done', 'true');
+    }
   }, []);
 
   // Only show when demo login is enabled

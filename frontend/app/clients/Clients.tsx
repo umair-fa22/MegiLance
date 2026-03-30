@@ -74,8 +74,6 @@ const defaultMetrics: Metric[] = [
 
 const Clients: React.FC = () => {
   const { resolvedTheme } = useTheme();
-  if (!resolvedTheme) return null;
-  const themed = resolvedTheme === 'dark' ? dark : light;
   const { notify } = useToaster();
 
   const [selected, setSelected] = useState<string>(ALL);
@@ -126,6 +124,10 @@ const Clients: React.FC = () => {
       duration: 1800,
     });
   }, [notify]);
+
+  // Early return after all hooks
+  if (!resolvedTheme) return null;
+  const themed = resolvedTheme === 'dark' ? dark : light;
 
   return (
     <PageTransition>

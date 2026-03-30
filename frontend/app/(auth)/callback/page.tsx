@@ -110,7 +110,11 @@ function AuthCallbackPage() {
 
             // New users go to onboarding, returning users go to dashboard
             if (response.is_new_user) {
-              setTimeout(() => router.push('/onboarding/role'), 800);
+              if (role === 'freelancer' || storedRole === 'freelancer') {
+                setTimeout(() => router.push('/onboarding'), 800);
+              } else {
+                setTimeout(() => router.push(redirectPath), 800);
+              }
             } else {
               setTimeout(() => router.push(redirectPath), 800);
             }
