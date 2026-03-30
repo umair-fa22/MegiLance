@@ -92,8 +92,8 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
         onClick={toggleMenu}
         aria-haspopup="true"
         aria-expanded={isOpen ? 'true' : 'false'}
-        aria-label={Open user menu for }
-        title={Open user menu for }
+        aria-label={`Open user menu for ${userName}`}
+        title={`Open user menu for ${userName}`}
       >
         <UserAvatar name={userName} src={userImageUrl} size="medium" />
       </button>

@@ -113,7 +113,7 @@ const ActionMenu: React.FC<ActionMenuProps> = ({
       ) : (
         <button
           type="button"
-          className={cn(commonStyles.trigger, themeStyles.trigger, commonStyles[\size-\\])}
+          className={cn(commonStyles.trigger, themeStyles.trigger, commonStyles[`size-${size}`])}
           onClick={toggleMenu}
           aria-haspopup="true"
           aria-expanded={isOpen}

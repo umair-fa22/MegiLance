@@ -647,9 +647,12 @@ const Profile: React.FC = () => {
                   </div>
                   <div className={styles.emptyStateContainer} style={{ marginTop: '20px', padding: '30px', textAlign: 'center', border: '1px dashed var(--border-color)', borderRadius: '8px' }}>
                     <p style={{ color: 'var(--text-muted)' }}>Project Gallery feature coming soon. For now, link your external portfolio or GitHub repositories above.</p>
-          )}
+                  </div>
+                </StaggerItem>
+              </StaggerContainer>
+            )}
 
-          {/* MEDIA & FILES */}
+            {/* MEDIA & FILES */}
           {activeSection === 'media' && (
             <StaggerContainer>
               <StaggerItem className={styles.section}>
