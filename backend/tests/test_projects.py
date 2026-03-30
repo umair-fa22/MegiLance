@@ -132,7 +132,7 @@ _freelancer_user = _FakeUser(id=2, email="freelancer@test.com", user_type="freel
 def _mock_turso(monkeypatch):
     """Patch get_turso_http for the projects router."""
     fake = FakeTurso()
-    monkeypatch.setattr("app.api.v1.projects.get_turso_http", lambda: fake)
+    monkeypatch.setattr("app.api.v1.projects_domain.projects.get_turso_http", lambda: fake)
     yield
     app.dependency_overrides.clear()
 

@@ -117,7 +117,7 @@ _auth_user = _FakeUser()
 def _mock_turso(monkeypatch):
     """Patch get_turso_http for the users router."""
     fake = FakeTurso()
-    monkeypatch.setattr("app.api.v1.users.get_turso_http", lambda: fake)
+    monkeypatch.setattr("app.api.v1.identity.users.get_turso_http", lambda: fake)
     yield
     app.dependency_overrides.clear()
 

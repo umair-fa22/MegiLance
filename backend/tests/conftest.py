@@ -147,6 +147,12 @@ def admin_headers(admin_user: User) -> dict:
     }
 
 
+@pytest.fixture
+def tokens(auth_tokens: dict) -> dict:
+    """Alias for auth_tokens for backward compatibility with E2E tests."""
+    return auth_tokens
+
+
 # ==================== Configuration ====================
 
 def pytest_configure(config):
