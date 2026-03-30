@@ -3,8 +3,9 @@
 'use client';
 
 import React from 'react';
+import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import styles from './BillingToggle.module.css';
+import commonStyles from './BillingToggle.common.module.css';
 import lightStyles from './BillingToggle.light.module.css';
 import darkStyles from './BillingToggle.dark.module.css';
 
@@ -14,38 +15,42 @@ interface BillingToggleProps {
 }
 
 export const BillingToggle: React.FC<BillingToggleProps> = ({ billingCycle, setBillingCycle }) => {
+  const { resolvedTheme } = useTheme();
+  if (!resolvedTheme) return null;
+
   const isYearly = billingCycle === 'yearly';
+  const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   const handleToggle = () => {
     setBillingCycle(isYearly ? 'monthly' : 'yearly');
   };
 
   return (
-    <div className={cn(styles.toggleWrapper, lightStyles.theme, darkStyles.theme)}>
+    <div className={cn(commonStyles.toggleWrapper, themeStyles.theme)}>
       <label 
-        className={cn(styles.toggleLabel, !isYearly && styles.toggleLabelActive)}
+        className={cn(commonStyles.toggleLabel, themeStyles.toggleLabel, !isYearly && commonStyles.toggleLabelActive, !isYearly && themeStyles.toggleLabelActive)}
         onClick={() => setBillingCycle('monthly')}
       >
         Monthly
       </label>
-      <div className={styles.toggle} onClick={handleToggle}>
+      <div className={commonStyles.toggle} onClick={handleToggle}>
         <input
           type="checkbox"
           id="billing-toggle"
-          className={styles.toggleCheckbox}
+          className={commonStyles.toggleCheckbox}
           checked={isYearly}
           onChange={handleToggle}
           aria-label="Toggle billing cycle"
         />
-        <label htmlFor="billing-toggle" className={styles.toggleSlider}></label>
+        <label htmlFor="billing-toggle" className={cn(commonStyles.toggleSlider, themeStyles.toggleSlider)}></label>
       </div>
       <label 
-        className={cn(styles.toggleLabel, isYearly && styles.toggleLabelActive)}
+        className={cn(commonStyles.toggleLabel, themeStyles.toggleLabel, isYearly && commonStyles.toggleLabelActive, isYearly && themeStyles.toggleLabelActive)}
         onClick={() => setBillingCycle('yearly')}
       >
         Yearly
       </label>
-      <div className={styles.toggleDiscount}>
+      <div className={cn(commonStyles.toggleDiscount, themeStyles.toggleDiscount)}>
         Save 20%
       </div>
     </div>

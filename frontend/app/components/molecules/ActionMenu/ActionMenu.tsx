@@ -65,8 +65,8 @@ const ActionMenu: React.FC<ActionMenuProps> = ({
 
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const toggleMenu = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
+  const toggleMenu = useCallback((e?: React.MouseEvent | React.KeyboardEvent) => {
+    e?.stopPropagation();
     setIsOpen((prev) => !prev);
   }, []);
 
@@ -120,7 +120,7 @@ const ActionMenu: React.FC<ActionMenuProps> = ({
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
-              toggleMenu();
+              toggleMenu(e);
             }
           }}
           role="button" 

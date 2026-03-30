@@ -4,7 +4,7 @@
 
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import styles from './FaqItem.module.css';
+import commonStyles from './FaqItem.common.module.css';
 import lightStyles from './FaqItem.light.module.css';
 import darkStyles from './FaqItem.dark.module.css';
 
@@ -17,29 +17,29 @@ export const FaqItem: React.FC<FaqItemProps> = ({ question, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const itemClasses = [
-    styles.item,
-    lightStyles.theme,
-    darkStyles.theme,
+    commonStyles.item,
+    lightcommonStyles.theme,
+    darkcommonStyles.theme,
   ].join(' ');
 
   const chevronClasses = [
-    styles.chevron,
-    isOpen ? styles.chevronOpen : ''
+    commonStyles.chevron,
+    isOpen ? commonStyles.chevronOpen : ''
   ].join(' ');
 
   const answerClasses = [
-    styles.answer,
-    isOpen ? styles.answerOpen : ''
+    commonStyles.answer,
+    isOpen ? commonStyles.answerOpen : ''
   ].join(' ');
 
   return (
     <div className={itemClasses}>
-      <button className={styles.question} onClick={() => setIsOpen(!isOpen)}>
+      <button className={commonStyles.question} onClick={() => setIsOpen(!isOpen)}>
         <span>{question}</span>
         <ChevronDown className={chevronClasses} />
       </button>
       <div className={answerClasses}>
-        <div className={styles.answerContent}>
+        <div className={commonStyles.answerContent}>
           {children}
         </div>
       </div>
