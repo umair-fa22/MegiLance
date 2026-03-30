@@ -186,7 +186,7 @@ def _trim_cache() -> None:
             del _blacklist_cache[k]
 
 
-
+def init_token_blacklist() -> None:
     """Initialize the token blacklist table on startup."""
     try:
         _ensure_table_exists()

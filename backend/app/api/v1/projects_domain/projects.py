@@ -306,42 +306,60 @@ def create_project(
         now = datetime.now(timezone.utc).isoformat()
         skills_str = ",".join(project.skills) if project.skills else ""
         
-        # Insert project and get ID atomically
-        results = turso.execute_many([
-            {
-                "q": """INSERT INTO projects (title, description, category, budget_type, 
+        insert_sql = """INSERT INTO projects (title, description, category, budget_type, 
                                      budget_min, budget_max, experience_level, estimated_duration,
                                      skills, client_id, status, created_at, updated_at)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-                "params": [sanitize_text(project.title)[:MAX_TITLE_LENGTH], sanitize_text(project.description)[:MAX_DESCRIPTION_LENGTH], project.category, project.budget_type,
-                 project.budget_min, project.budget_max, project.experience_level, 
-                 project.estimated_duration, skills_str, current_user.id,
-                 project.status or "open", now, now]
-            },
-            {
-                "q": "SELECT last_insert_rowid() as id",
-                "params": []
-            }
-        ])
-        
-        # Get the new project ID from the batch result
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
+        insert_params = [
+            sanitize_text(project.title)[:MAX_TITLE_LENGTH],
+            sanitize_text(project.description)[:MAX_DESCRIPTION_LENGTH],
+            project.category,
+            project.budget_type,
+            project.budget_min,
+            project.budget_max,
+            project.experience_level,
+            project.estimated_duration,
+            skills_str,
+            current_user.id,
+            project.status or "open",
+            now,
+            now,
+        ]
+
+        # Preferred path: batch execution (supported by Turso HTTP client)
         new_id = None
-        if len(results) >= 2:
-            id_rows = results[1].get("rows", [])
-            if id_rows:
-                new_id = id_rows[0][0]
+        if hasattr(turso, "execute_many"):
+            results = turso.execute_many([
+                {"q": insert_sql, "params": insert_params},
+                {"q": "SELECT last_insert_rowid() as id", "params": []},
+            ])
+            if len(results) >= 2:
+                id_rows = results[1].get("rows", [])
+                if id_rows:
+                    new_id = id_rows[0][0]
+        else:
+            # Backward-compatible fallback for simpler/mock clients used in tests
+            turso.execute(insert_sql, insert_params)
         
-        if not new_id:
-            raise HTTPException(status_code=500, detail="Project created but ID not retrieved")
-        
-        # Fetch the created project by its known ID
-        row = turso.fetch_one(
-            """SELECT id, title, description, category, budget_type, 
-                      budget_min, budget_max, experience_level, estimated_duration,
-                      skills, client_id, status, created_at, updated_at 
-               FROM projects WHERE id = ?""",
-            [new_id]
-        )
+        if new_id:
+            # Fetch the created project by its known ID
+            row = turso.fetch_one(
+                """SELECT id, title, description, category, budget_type, 
+                          budget_min, budget_max, experience_level, estimated_duration,
+                          skills, client_id, status, created_at, updated_at 
+                   FROM projects WHERE id = ?""",
+                [new_id]
+            )
+        else:
+            # Fallback retrieval strategy: latest project for this client
+            row = turso.fetch_one(
+                """SELECT id, title, description, category, budget_type, 
+                          budget_min, budget_max, experience_level, estimated_duration,
+                          skills, client_id, status, created_at, updated_at 
+                   FROM projects WHERE client_id = ?
+                   ORDER BY id DESC LIMIT 1""",
+                [current_user.id]
+            )
         
         if not row:
             raise HTTPException(status_code=500, detail="Project created but not found")

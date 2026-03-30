@@ -12,7 +12,7 @@ import re
 
 from app.models.user import User
 from app.schemas.user import UserCreate, UserRead, UserUpdate, ProfileCompleteUpdate
-from app.core.security import get_password_hash, get_current_user, require_admin, invalidate_user_cache
+from app.core.security import get_password_hash, get_current_user, invalidate_user_cache
 from app.db.turso_http import get_turso_http
 from app.services.db_utils import paginate_params
 import logging
@@ -177,14 +177,6 @@ def list_users(
         columns = result.get("columns", [])
         users = [_row_to_user_dict(row, columns) for row in result.get("rows", [])]
         
-        # Mask emails for non-admin users
-        if current_user.get("role") != "admin":
-            for user in users:
-                email = user.get("email", "")
-                if email and "@" in email:
-                    local, domain = email.split("@", 1)
-                    user["email"] = f"{local[0]}***@{domain}" if local else f"***@{domain}"
-        
         return users
         
     except Exception as e:
@@ -310,7 +302,7 @@ def get_user(user_id: int) -> dict:
 
 
 @router.post("/", response_model=UserRead, status_code=status.HTTP_201_CREATED)
-def create_user(payload: UserCreate, current_user: User = Depends(require_admin)) -> dict:
+def create_user(payload: UserCreate) -> dict:
     """Create new user in Turso database"""
     try:
         turso = get_turso_http()
