@@ -19,8 +19,20 @@ interface ToggleSwitchProps {
   helpText?: string;
 }
 
-const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ label, id, defaultChecked, checked, onChange, helpText }) => {
+const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ label, id, defaultChecked = false, checked, onChange, helpText }) => {
   const { resolvedTheme } = useTheme();
+  const [internalChecked, setInternalChecked] = React.useState(defaultChecked);
+  
+  const isChecked = checked !== undefined ? checked : internalChecked;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.checked;
+    if (checked === undefined) {
+      setInternalChecked(val);
+    }
+    onChange?.(val);
+  };
+
   const styles = useMemo(() => {
     const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
     return { ...commonStyles, ...themeStyles };
@@ -32,16 +44,29 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ label, id, defaultChecked, 
         <label htmlFor={id} className={cn(styles.label)}>
           {label}
         </label>
-        <div className={cn(styles.switchContainer)}>
+        <div className={cn(styles.switchContainer, isChecked ? styles.switchChecked : styles.switchUnchecked)}>
           <input
             type="checkbox"
             id={id}
             className={cn(styles.input)}
-            {...(checked !== undefined
-              ? { checked, onChange: (e: React.ChangeEvent<HTMLInputElement>) => onChange?.(e.target.checked), 'aria-checked': checked, role: 'switch' }
-              : { defaultChecked, onChange: (e: React.ChangeEvent<HTMLInputElement>) => onChange?.(e.target.checked) })}
+            checked={isChecked}
+            onChange={handleChange}
+            role="switch"
+            aria-checked={isChecked}
           />
-          <div className={cn(styles.slider)}></div>
+          <motion.div 
+            className={cn(styles.slider)} 
+            animate={{ backgroundColor: isChecked ? 'var(--color-primary, #4573df)' : 'transparent' }}
+          >
+            <motion.div
+              layout
+              transition={{ type: "spring", stiffness: 700, damping: 30 }}
+              className={cn(styles.sliderKnob)}
+              animate={{ 
+                x: isChecked ? 20 : 2 
+              }}
+            />
+          </motion.div>
         </div>
       </div>
       {helpText && <p className={cn(styles.helpText)}>{helpText}</p>}
