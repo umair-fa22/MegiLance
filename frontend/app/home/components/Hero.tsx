@@ -25,6 +25,8 @@ import Button from '@/app/components/atoms/Button/Button';
 import commonStyles from './Hero.common.module.css';
 import lightStyles from './Hero.light.module.css';
 import darkStyles from './Hero.dark.module.css';
+import { HeroScene3D, FloatingDevice3D } from '@/app/components/3D';
+import AnimatedBackground from './AnimatedBackground';
 
 const POPULAR_CATEGORIES = [
   { label: 'Web Development', icon: Code, href: '/explore?category=web-development' },
@@ -67,14 +69,16 @@ const Hero: React.FC = () => {
   }
 
   return (
-    <section 
-      className={cn(commonStyles.heroContainer, styles.heroContainer)}
-      aria-label="Find freelance talent or work"
-    >
-      {/* Background */}
-      <div className={cn(commonStyles.meshBackground, styles.meshBackground)} />
+    <HeroScene3D className={cn(commonStyles.heroContainer, styles.heroContainer)}>
+      <section 
+        className={commonStyles.heroSectionContent}
+        aria-label="Find freelance talent or work"
+      >
+        {/* Background */}
+        <AnimatedBackground />
+        <div className={cn(commonStyles.meshBackground, styles.meshBackground)} />
 
-      <div className={commonStyles.contentWrapper}>
+        <div className={commonStyles.contentWrapper}>
         {/* Main headline — direct and clear */}
         <h1 className={cn(commonStyles.mainHeading, styles.mainHeading)}>
           <span className={commonStyles.headingLine}>Hire expert freelancers</span>
@@ -174,6 +178,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
     </section>
+    </HeroScene3D>
   );
 };
 
