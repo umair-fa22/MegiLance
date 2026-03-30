@@ -13,15 +13,23 @@ import darkStyles from './ActionMenu.dark.module.css';
 
 export interface ActionMenuItem {
   /** Unique identifier */
-  id: string;
+  id?: string;
   /** Display label */
-  label: string;
+  label?: string;
   /** Action handler */
-  action: () => void;
+  action?: () => void;
+  /** Legacy action handler */
+  onClick?: () => void;
+  /** Anchor href */
+  href?: string;
   /** Optional icon (Lucide or custom) */
-  icon?: React.ReactNode;
+  icon?: React.ReactNode | React.ElementType;
   /** Optional destructive flag for styling (e.g. red color) */
   destructive?: boolean;
+  /** Is this just a separator */
+  isSeparator?: boolean;
+  /** Disable the item */
+  disabled?: boolean;
 }
 
 export interface ActionMenuProps {
@@ -107,7 +115,20 @@ const ActionMenu: React.FC<ActionMenuProps> = ({
     <div className={cn(commonStyles.container, themeStyles.container, className)} ref={menuRef}>
       <div ref={refs.setReference}>
       {trigger ? (
-        <div onClick={toggleMenu} role="button" tabIndex={0} aria-haspopup="true" aria-expanded={isOpen} className={commonStyles.customTrigger}>
+        <div 
+          onClick={toggleMenu} 
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              toggleMenu();
+            }
+          }}
+          role="button" 
+          tabIndex={0} 
+          aria-haspopup="true" 
+          aria-expanded={isOpen} 
+          className={commonStyles.customTrigger}
+        >
           {trigger}
         </div>
       ) : (
@@ -141,23 +162,72 @@ const ActionMenu: React.FC<ActionMenuProps> = ({
               {items.length === 0 ? (
                 <div className={cn(commonStyles.empty, themeStyles.empty)}>No actions</div>
               ) : (
-                items.map((item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    className={cn(
-                      commonStyles.item,
-                      themeStyles.item,
-                      item.destructive && commonStyles.destructive,
-                      item.destructive && themeStyles.destructive
-                    )}
-                    onClick={(e) => handleAction(e, item.action)}
-                    role="menuitem"
-                  >
-                    {item.icon && <span className={commonStyles.itemIcon}>{item.icon}</span>}
-                    <span>{item.label}</span>
-                  </button>
-                ))
+                items.map((item, index) => {
+                  if (item.isSeparator) {
+                    // eslint-disable-next-line react/no-array-index-key
+                    return <div key={`sep-${index}`} className={cn(commonStyles.separator, themeStyles.separator)} />;
+                  }
+
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  const IconComponent = typeof item.icon === 'function' || typeof item.icon === 'object' && 'render' in (item.icon as any) ? item.icon as React.ElementType : null;
+
+                  return (
+                    item.href ? (
+                      // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                      <a
+                        key={item.id || item.label || `item-${index}`}
+                        href={item.disabled ? undefined : item.href}
+                        className={cn(
+                          commonStyles.item,
+                          themeStyles.item,
+                          item.destructive && commonStyles.destructive,
+                          item.destructive && themeStyles.destructive,
+                          item.disabled && commonStyles.disabled,
+                          item.disabled && themeStyles.disabled
+                        )}
+                        onClick={(e) => {
+                          if (item.disabled) e.preventDefault();
+                        }}
+                        role="menuitem"
+                        aria-disabled={item.disabled}
+                      >
+                        {item.icon && (
+                          <span className={commonStyles.itemIcon}>
+                            {IconComponent ? <IconComponent size={16} /> : item.icon as React.ReactNode}
+                          </span>
+                        )}
+                        <span>{item.label}</span>
+                      </a>
+                    ) : (
+                      <button
+                        key={item.id || `item-${index}`}
+                        type="button"
+                        disabled={item.disabled}
+                        className={cn(
+                          commonStyles.item,
+                          themeStyles.item,
+                          item.destructive && commonStyles.destructive,
+                          item.destructive && themeStyles.destructive,
+                          item.disabled && commonStyles.disabled,
+                          item.disabled && themeStyles.disabled
+                        )}
+                        onClick={(e) => {
+                          if (item.disabled) return;
+                          handleAction(e, item.action || item.onClick || (() => {}));
+                        }}
+                        role="menuitem"
+                        aria-disabled={item.disabled}
+                      >
+                        {item.icon && (
+                          <span className={commonStyles.itemIcon}>
+                            {IconComponent ? <IconComponent size={16} /> : item.icon as React.ReactNode}
+                          </span>
+                        )}
+                        <span>{item.label}</span>
+                      </button>
+                    )
+                  );
+                })
               )}
             </motion.div>
           )}

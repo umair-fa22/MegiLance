@@ -18,7 +18,7 @@ import darkStyles from './AuthCallback.dark.module.css';
 export default function AuthCallbackPageWrapper() {
   return (
     <Suspense fallback={
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+      <div className="flex justify-center items-center min-h-screen">
         <div>Authenticating...</div>
       </div>
     }>

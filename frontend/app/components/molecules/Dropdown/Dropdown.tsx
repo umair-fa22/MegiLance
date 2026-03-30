@@ -1,7 +1,7 @@
 // @AI-HINT: This is a Dropdown component, recreated to use Floating UI and Portals to prevent layout clipping.
 'use client';
 
-import React, { useState, useRef, useEffect, useId, useCallback, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useId, useCallback } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -152,20 +152,25 @@ const Dropdown: React.FC<DropdownProps> = ({
         case 'Tab':
           setIsOpen(false);
           break;
-        case 'Home':
+        case 'Home': {
           event.preventDefault();
           const firstEnabled = options.findIndex((opt) => !opt.disabled);
           setFocusedIndex(firstEnabled >= 0 ? firstEnabled : 0);
           break;
-        case 'End':
+        }
+        case 'End': {
           event.preventDefault();
+          let endFound = false;
           for (let i = options.length - 1; i >= 0; i--) {
             if (!options[i].disabled) {
               setFocusedIndex(i);
+              endFound = true;
               break;
             }
           }
+          if (!endFound) setFocusedIndex(options.length - 1);
           break;
+        }
         default:
           if (event.key.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey) {
             handleTypeAhead(event.key);
@@ -184,7 +189,7 @@ const Dropdown: React.FC<DropdownProps> = ({
 
   useEffect(() => {
     if (isOpen && focusedIndex !== -1) {
-      const optionElement = document.getElementById(${listId}-option-);
+      const optionElement = document.getElementById(`${listId}-option-${focusedIndex}`);
       optionElement?.scrollIntoView({ block: 'nearest' });
     }
   }, [isOpen, focusedIndex, listId]);
@@ -235,7 +240,7 @@ const Dropdown: React.FC<DropdownProps> = ({
               className={cn(commonStyles.options, themeStyles.options)}
               role="listbox"
               aria-labelledby={labelId}
-              aria-activedescendant={focusedIndex >= 0 ? ${listId}-option- : undefined}
+              aria-activedescendant={focusedIndex >= 0 ? `${listId}-option-${focusedIndex}` : undefined}
               tabIndex={-1}
               initial={{ opacity: 0, scale: 0.95, y: -10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -243,13 +248,13 @@ const Dropdown: React.FC<DropdownProps> = ({
               transition={{ duration: 0.2, ease: "easeOut" }}
             >
               {options.length === 0 ? (
-                <li className={cn(commonStyles.noOptions, themeStyles.noOptions)} role="option" aria-disabled="true">
+                <li className={cn(commonStyles.noOptions, themeStyles.noOptions)} role="status" aria-live="polite">
                   No options available
                 </li>
               ) : (
                 options.map((option, index) => (
                   <li
-                    id={${listId}-option-}
+                    id={`${listId}-option-${index}`}
                     key={option.value}
                     className={cn(
                       commonStyles.option,
@@ -262,6 +267,12 @@ const Dropdown: React.FC<DropdownProps> = ({
                       option.disabled && themeStyles.optionDisabled
                     )}
                     onClick={() => handleSelect(option)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleSelect(option);
+                      }
+                    }}
                     onMouseEnter={() => !option.disabled && setFocusedIndex(index)}
                     role="option"
                     aria-selected={selected?.value === option.value}
