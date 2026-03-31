@@ -1,0 +1,731 @@
+ai-service 2026-03-31T18:32:42.012473496Z [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
+ai-service 2026-03-31T18:32:42.012493403Z [34m│[0m [34m › fetching app source code[0m
+ai-service 2026-03-31T18:32:42.012496061Z [34m│[0m => Selecting branch "main"
+frontend 2026-03-31T18:32:47.456466861Z [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
+frontend 2026-03-31T18:32:47.456487766Z [34m│[0m [34m › fetching app source code[0m
+frontend 2026-03-31T18:32:47.456490543Z [34m│[0m => Selecting branch "main"
+ai-service 2026-03-31T18:32:50.654962867Z [34m│[0m => Checking out commit "9e15aca59de1ef3e5e2d17d5a0d80eb07e74dc60"
+ai-service 2026-03-31T18:32:51.233227650Z [34m│[0m 
+ai-service 2026-03-31T18:32:51.234863552Z [34m│[0m [32m ✔ cloned repo to [35m/.app_platform_workspace[0m[0m
+ai-service 2026-03-31T18:32:51.244930110Z [34m╰────────────────────────────────────────╼[0m
+ai-service 2026-03-31T18:32:51.244953035Z 
+ai-service 2026-03-31T18:32:51.527958432Z [34m╭────────────[34m[30m[44m dockerfile build [0m[0m[34m───────────╼[0m
+ai-service 2026-03-31T18:32:51.538885340Z [34m│[0m [34m › using dockerfile [35m/.app_platform_workspace/ai/Dockerfile[0m[0m
+ai-service 2026-03-31T18:32:51.539871926Z [34m│[0m [34m › using build context [35m/.app_platform_workspace/[0m[0m
+ai-service 2026-03-31T18:32:51.540031283Z [34m│[0m 
+ai-service 2026-03-31T18:32:51.577012469Z [34m│[0m [36mINFO[0m[0000] Using dockerignore file: /.app_platform_workspace/.dockerignore 
+ai-service 2026-03-31T18:32:51.577292859Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest python:3.10-slim   
+ai-service 2026-03-31T18:32:51.577310274Z [34m│[0m [36mINFO[0m[0000] Retrieving image library/python:3.10-slim from registry mirror <registry-uri-0> 
+ai-service 2026-03-31T18:32:51.882603278Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest python:3.10-slim   
+ai-service 2026-03-31T18:32:51.882845131Z [34m│[0m [36mINFO[0m[0000] Returning cached image manifest              
+ai-service 2026-03-31T18:32:51.888773983Z [34m│[0m [36mINFO[0m[0000] Built cross stage deps: map[]                
+ai-service 2026-03-31T18:32:51.889520866Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest python:3.10-slim   
+ai-service 2026-03-31T18:32:51.889534260Z [34m│[0m [36mINFO[0m[0000] Returning cached image manifest              
+ai-service 2026-03-31T18:32:51.889536905Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest python:3.10-slim   
+ai-service 2026-03-31T18:32:51.889539118Z [34m│[0m [36mINFO[0m[0000] Returning cached image manifest              
+ai-service 2026-03-31T18:32:51.889540938Z [34m│[0m [36mINFO[0m[0000] Executing 0 build triggers                   
+ai-service 2026-03-31T18:32:51.889543008Z [34m│[0m [36mINFO[0m[0000] Building stage 'python:3.10-slim' [idx: '0', base-idx: '-1'] 
+ai-service 2026-03-31T18:32:51.889545089Z [34m│[0m [36mINFO[0m[0000] Checking for cached layer <registry-uri-1> 
+ai-service 2026-03-31T18:32:52.042831555Z [34m│[0m [36mINFO[0m[0000] Using caching version of cmd: RUN apt-get update && apt-get install -y --no-install-recommends     curl     build-essential     && rm -rf /var/lib/apt/lists/* 
+ai-service 2026-03-31T18:32:52.043206665Z [34m│[0m [36mINFO[0m[0000] Checking for cached layer <registry-uri-2> 
+ai-service 2026-03-31T18:32:52.158270106Z [34m│[0m [36mINFO[0m[0000] Using caching version of cmd: RUN pip install --no-cache-dir --upgrade pip 
+ai-service 2026-03-31T18:32:52.158810077Z [34m│[0m [36mINFO[0m[0000] Checking for cached layer <registry-uri-3> 
+ai-service 2026-03-31T18:32:52.279585679Z [34m│[0m [36mINFO[0m[0000] Using caching version of cmd: RUN pip install --no-cache-dir -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu 
+ai-service 2026-03-31T18:32:52.281789698Z [34m│[0m [36mINFO[0m[0000] Checking for cached layer <registry-uri-4> 
+ai-service 2026-03-31T18:32:52.411615286Z [34m│[0m [36mINFO[0m[0000] Using caching version of cmd: RUN useradd -m -u 1000 user 
+ai-service 2026-03-31T18:32:52.411951101Z [34m│[0m [36mINFO[0m[0000] Cmd: USER                                    
+ai-service 2026-03-31T18:32:52.411984101Z [34m│[0m [36mINFO[0m[0000] Cmd: EXPOSE                                  
+ai-service 2026-03-31T18:32:52.411986081Z [34m│[0m [36mINFO[0m[0000] Adding exposed port: 8001/tcp                
+ai-service 2026-03-31T18:32:52.411988301Z [34m│[0m [36mINFO[0m[0000] Unpacking rootfs as cmd COPY ai/requirements.txt requirements.txt requires it. 
+ai-service 2026-03-31T18:32:53.605429016Z [34m│[0m [36mINFO[0m[0002] Initializing snapshotter ...                 
+ai-service 2026-03-31T18:32:53.605625945Z [34m│[0m [36mINFO[0m[0002] Taking snapshot of full filesystem...        
+ai-service 2026-03-31T18:32:54.435114688Z [34m│[0m [36mINFO[0m[0002] WORKDIR /app                                 
+ai-service 2026-03-31T18:32:54.435325083Z [34m│[0m [36mINFO[0m[0002] Cmd: workdir                                 
+ai-service 2026-03-31T18:32:54.435344424Z [34m│[0m [36mINFO[0m[0002] Changed working directory to /app            
+ai-service 2026-03-31T18:32:54.435346937Z [34m│[0m [36mINFO[0m[0002] Creating directory /app with uid -1 and gid -1 
+ai-service 2026-03-31T18:32:54.436312654Z [34m│[0m [36mINFO[0m[0002] Taking snapshot of files...                  
+ai-service 2026-03-31T18:32:54.439028516Z [34m│[0m [36mINFO[0m[0002] RUN apt-get update && apt-get install -y --no-install-recommends     curl     build-essential     && rm -rf /var/lib/apt/lists/* 
+ai-service 2026-03-31T18:32:54.439233354Z [34m│[0m [36mINFO[0m[0002] Found cached layer, extracting to filesystem 
+frontend 2026-03-31T18:32:55.421035459Z [34m│[0m => Checking out commit "9e15aca59de1ef3e5e2d17d5a0d80eb07e74dc60"
+frontend 2026-03-31T18:32:55.981017152Z [34m│[0m 
+frontend 2026-03-31T18:32:55.982054248Z [34m│[0m [32m ✔ cloned repo to [35m/.app_platform_workspace[0m[0m
+frontend 2026-03-31T18:32:55.990573276Z [34m╰────────────────────────────────────────╼[0m
+frontend 2026-03-31T18:32:55.990595149Z 
+frontend 2026-03-31T18:32:56.202432672Z [34m › configuring build-time app environment variables:[0m
+frontend 2026-03-31T18:32:56.202457598Z      NEXT_PUBLIC_DEV_CLIENT_EMAIL NEXT_PUBLIC_DEV_CLIENT_PASSWORD NEXT_PUBLIC_BACKEND_URL NEXT_PUBLIC_DEV_FREELANCER_EMAIL NEXT_PUBLIC_DEV_FREELANCER_PASSWORD NEXT_PUBLIC_APP_URL GOOGLE_SITE_VERIFICATION NEXT_TELEMETRY_DISABLED NODE_ENV NEXT_PUBLIC_API_URL NEXT_PUBLIC_AI_URL NEXT_PUBLIC_SHOW_DEMO_LOGIN NEXT_PUBLIC_DEV_ADMIN_EMAIL NEXT_PUBLIC_DEV_ADMIN_PASSWORD
+frontend 2026-03-31T18:32:56.214622295Z [34m╭────────────[34m[30m[44m dockerfile build [0m[0m[34m───────────╼[0m
+frontend 2026-03-31T18:32:56.224908477Z [34m│[0m [34m › using dockerfile [35m/.app_platform_workspace/frontend/Dockerfile[0m[0m
+frontend 2026-03-31T18:32:56.225650358Z [34m│[0m [34m › using build context [35m/.app_platform_workspace/[0m[0m
+frontend 2026-03-31T18:32:56.225809004Z [34m│[0m 
+frontend 2026-03-31T18:32:56.253908167Z [34m│[0m [36mINFO[0m[0000] Resolved base name node:22-alpine to base    
+frontend 2026-03-31T18:32:56.253924870Z [34m│[0m [36mINFO[0m[0000] Resolved base name base to deps              
+frontend 2026-03-31T18:32:56.253927214Z [34m│[0m [36mINFO[0m[0000] Resolved base name base to builder           
+frontend 2026-03-31T18:32:56.253929265Z [34m│[0m [36mINFO[0m[0000] Resolved base name base to runner            
+frontend 2026-03-31T18:32:56.253932985Z [34m│[0m [36mINFO[0m[0000] Using dockerignore file: /.app_platform_workspace/.dockerignore 
+frontend 2026-03-31T18:32:56.254088318Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest node:22-alpine     
+frontend 2026-03-31T18:32:56.254096706Z [34m│[0m [36mINFO[0m[0000] Retrieving image library/node:22-alpine from registry mirror <registry-uri-0> 
+frontend 2026-03-31T18:32:56.560426624Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest node:22-alpine     
+frontend 2026-03-31T18:32:56.560454764Z [34m│[0m [36mINFO[0m[0000] Returning cached image manifest              
+frontend 2026-03-31T18:32:56.564514136Z [34m│[0m [36mINFO[0m[0000] Built cross stage deps: map[1:[/app/node_modules] 2:[/app/.next/standalone /app/.next/static]] 
+frontend 2026-03-31T18:32:56.564530006Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest node:22-alpine     
+frontend 2026-03-31T18:32:56.564532292Z [34m│[0m [36mINFO[0m[0000] Returning cached image manifest              
+frontend 2026-03-31T18:32:56.564534275Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest node:22-alpine     
+frontend 2026-03-31T18:32:56.564536683Z [34m│[0m [36mINFO[0m[0000] Returning cached image manifest              
+frontend 2026-03-31T18:32:56.564538770Z [34m│[0m [36mINFO[0m[0000] Executing 0 build triggers                   
+frontend 2026-03-31T18:32:56.570495887Z [34m│[0m [36mINFO[0m[0000] Building stage 'node:22-alpine' [idx: '0', base-idx: '-1'] 
+frontend 2026-03-31T18:32:56.570515356Z [34m│[0m [36mINFO[0m[0000] Skipping unpacking as no commands require it. 
+frontend 2026-03-31T18:32:56.570519012Z [34m│[0m [36mINFO[0m[0000] Initializing snapshotter ...                 
+frontend 2026-03-31T18:32:56.570521846Z [34m│[0m [36mINFO[0m[0000] Taking snapshot of full filesystem...        
+frontend 2026-03-31T18:32:56.885444483Z [34m│[0m [36mINFO[0m[0000] Storing source image from stage 0 at path /kaniko/stages/0 
+frontend 2026-03-31T18:32:57.091265211Z [34m│[0m [36mINFO[0m[0000] Deleting filesystem...                       
+frontend 2026-03-31T18:32:57.092236230Z [34m│[0m [36mINFO[0m[0000] Base image from previous stage 0 found, using saved tar at path /kaniko/stages/0 
+frontend 2026-03-31T18:32:57.092510412Z [34m│[0m [36mINFO[0m[0000] Executing 0 build triggers                   
+frontend 2026-03-31T18:32:57.228445758Z [34m│[0m [36mINFO[0m[0000] Building stage 'base' [idx: '1', base-idx: '0'] 
+frontend 2026-03-31T18:32:57.228473074Z [34m│[0m [36mINFO[0m[0000] Resolving srcs [frontend/package.json frontend/package-lock.json*]... 
+frontend 2026-03-31T18:32:57.249646019Z [34m│[0m [36mINFO[0m[0001] Checking for cached layer <registry-uri-1> 
+frontend 2026-03-31T18:32:57.371042416Z [34m│[0m [36mINFO[0m[0001] Using caching version of cmd: RUN npm install --legacy-peer-deps 
+frontend 2026-03-31T18:32:57.371068316Z [34m│[0m [36mINFO[0m[0001] Unpacking rootfs as cmd COPY frontend/package.json frontend/package-lock.json* ./ requires it. 
+frontend 2026-03-31T18:32:58.432247749Z [34m│[0m [36mINFO[0m[0002] Initializing snapshotter ...                 
+frontend 2026-03-31T18:32:58.432273843Z [34m│[0m [36mINFO[0m[0002] Taking snapshot of full filesystem...        
+frontend 2026-03-31T18:32:58.989889876Z [34m│[0m [36mINFO[0m[0002] WORKDIR /app                                 
+frontend 2026-03-31T18:32:58.989916664Z [34m│[0m [36mINFO[0m[0002] Cmd: workdir                                 
+frontend 2026-03-31T18:32:58.989920131Z [34m│[0m [36mINFO[0m[0002] Changed working directory to /app            
+frontend 2026-03-31T18:32:58.989922677Z [34m│[0m [36mINFO[0m[0002] Creating directory /app with uid -1 and gid -1 
+frontend 2026-03-31T18:32:58.990201023Z [34m│[0m [36mINFO[0m[0002] Taking snapshot of files...                  
+frontend 2026-03-31T18:32:58.992312400Z [34m│[0m [36mINFO[0m[0002] Resolving srcs [frontend/package.json frontend/package-lock.json*]... 
+frontend 2026-03-31T18:32:59.012616523Z [34m│[0m [36mINFO[0m[0002] COPY frontend/package.json frontend/package-lock.json* ./ 
+frontend 2026-03-31T18:32:59.012842247Z [34m│[0m [36mINFO[0m[0002] Resolving srcs [frontend/package.json frontend/package-lock.json*]... 
+frontend 2026-03-31T18:32:59.032264871Z [34m│[0m [36mINFO[0m[0002] Taking snapshot of files...                  
+frontend 2026-03-31T18:32:59.034997772Z [34m│[0m [36mINFO[0m[0002] RUN npm install --legacy-peer-deps           
+frontend 2026-03-31T18:32:59.035208627Z [34m│[0m [36mINFO[0m[0002] Found cached layer, extracting to filesystem 
+ai-service 2026-03-31T18:33:11.816292499Z [34m│[0m [36mINFO[0m[0020] RUN pip install --no-cache-dir --upgrade pip 
+ai-service 2026-03-31T18:33:11.816324330Z [34m│[0m [36mINFO[0m[0020] Found cached layer, extracting to filesystem 
+ai-service 2026-03-31T18:33:12.871249185Z [34m│[0m [36mINFO[0m[0021] COPY ai/requirements.txt requirements.txt    
+ai-service 2026-03-31T18:33:12.878106723Z [34m│[0m [36mINFO[0m[0021] Taking snapshot of files...                  
+ai-service 2026-03-31T18:33:12.882042070Z [34m│[0m [36mINFO[0m[0021] RUN pip install --no-cache-dir -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu 
+ai-service 2026-03-31T18:33:12.882049768Z [34m│[0m [36mINFO[0m[0021] Found cached layer, extracting to filesystem 
+ai-service 2026-03-31T18:33:15.185306463Z [34m│[0m [36mINFO[0m[0023] COPY ai/ .                                   
+ai-service 2026-03-31T18:33:15.187726711Z [34m│[0m [36mINFO[0m[0023] Taking snapshot of files...                  
+ai-service 2026-03-31T18:33:15.189463682Z [34m│[0m [36mINFO[0m[0023] RUN useradd -m -u 1000 user                  
+ai-service 2026-03-31T18:33:15.189476108Z [34m│[0m [36mINFO[0m[0023] Found cached layer, extracting to filesystem 
+ai-service 2026-03-31T18:33:15.376649545Z [34m│[0m [36mINFO[0m[0023] USER user                                    
+ai-service 2026-03-31T18:33:15.376671516Z [34m│[0m [36mINFO[0m[0023] Cmd: USER                                    
+ai-service 2026-03-31T18:33:15.377789611Z [34m│[0m [36mINFO[0m[0023] No files changed in this command, skipping snapshotting. 
+ai-service 2026-03-31T18:33:15.377999934Z [34m│[0m [36mINFO[0m[0023] ENV HOME=/home/user     PATH=/home/user/.local/bin:$PATH     PYTHONUNBUFFERED=1     PORT=${PORT:-8001} 
+ai-service 2026-03-31T18:33:15.378266369Z [34m│[0m [36mINFO[0m[0023] No files changed in this command, skipping snapshotting. 
+ai-service 2026-03-31T18:33:15.378269498Z [34m│[0m [36mINFO[0m[0023] EXPOSE 8001                                  
+ai-service 2026-03-31T18:33:15.378271365Z [34m│[0m [36mINFO[0m[0023] Cmd: EXPOSE                                  
+ai-service 2026-03-31T18:33:15.378465923Z [34m│[0m [36mINFO[0m[0023] Adding exposed port: 8001/tcp                
+ai-service 2026-03-31T18:33:15.378469082Z [34m│[0m [36mINFO[0m[0023] No files changed in this command, skipping snapshotting. 
+ai-service 2026-03-31T18:33:15.378471554Z [34m│[0m [36mINFO[0m[0023] HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=5     CMD curl -f http://localhost:${PORT:-8001}/health || exit 1 
+ai-service 2026-03-31T18:33:15.378486508Z [34m│[0m [36mINFO[0m[0023] No files changed in this command, skipping snapshotting. 
+ai-service 2026-03-31T18:33:15.378489024Z [34m│[0m [36mINFO[0m[0023] CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8001}"] 
+ai-service 2026-03-31T18:33:15.378490679Z [34m│[0m [36mINFO[0m[0023] No files changed in this command, skipping snapshotting. 
+ai-service 2026-03-31T18:33:15.379342548Z [34m│[0m [36mINFO[0m[0023] Pushing image to <image-5> 
+ai-service 2026-03-31T18:33:16.376456782Z [34m│[0m [36mINFO[0m[0024] Pushed <registry-uri-6> 
+ai-service 2026-03-31T18:33:16.386722253Z [34m│[0m 
+ai-service 2026-03-31T18:33:16.529490437Z [34m│[0m [32m ✔ built and uploaded app container image to DOCR[0m
+ai-service 2026-03-31T18:33:16.531113818Z [34m╰──────────────────────────────────────────╼[0m
+ai-service 2026-03-31T18:33:16.531325549Z 
+ai-service 2026-03-31T18:33:16.536484632Z [32m ✔ [0m[30m[42m build complete [0m[0m
+ai-service 2026-03-31T18:33:16.536496316Z 
+frontend 2026-03-31T18:33:26.218539381Z [34m│[0m [36mINFO[0m[0029] Saving file app/node_modules for later use   
+frontend 2026-03-31T18:33:36.336129292Z [34m│[0m [36mINFO[0m[0040] Deleting filesystem...                       
+frontend 2026-03-31T18:33:37.934064389Z [34m│[0m [36mINFO[0m[0041] Base image from previous stage 0 found, using saved tar at path /kaniko/stages/0 
+frontend 2026-03-31T18:33:37.934332779Z [34m│[0m [36mINFO[0m[0041] Executing 0 build triggers                   
+frontend 2026-03-31T18:33:38.070445701Z [34m│[0m [36mINFO[0m[0041] Building stage 'base' [idx: '2', base-idx: '0'] 
+frontend 2026-03-31T18:33:49.109685328Z [34m│[0m [36mINFO[0m[0052] Checking for cached layer <registry-uri-2> 
+frontend 2026-03-31T18:33:49.152080252Z [34m│[0m [36mINFO[0m[0052] No cached layer found for cmd RUN npm run build 
+frontend 2026-03-31T18:33:49.152362372Z [34m│[0m [36mINFO[0m[0052] Unpacking rootfs as cmd COPY --from=deps /app/node_modules ./node_modules requires it. 
+frontend 2026-03-31T18:33:50.209984058Z [34m│[0m [36mINFO[0m[0053] Initializing snapshotter ...                 
+frontend 2026-03-31T18:33:50.210284348Z [34m│[0m [36mINFO[0m[0053] Taking snapshot of full filesystem...        
+backend 2026-03-31T18:33:52.309519128Z [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
+backend 2026-03-31T18:33:52.309548090Z [34m│[0m [34m › fetching app source code[0m
+backend 2026-03-31T18:33:52.309551141Z [34m│[0m => Selecting branch "main"
+frontend 2026-03-31T18:33:52.727966079Z [34m│[0m [36mINFO[0m[0056] WORKDIR /app                                 
+frontend 2026-03-31T18:33:52.728437983Z [34m│[0m [36mINFO[0m[0056] Cmd: workdir                                 
+frontend 2026-03-31T18:33:52.728457163Z [34m│[0m [36mINFO[0m[0056] Changed working directory to /app            
+frontend 2026-03-31T18:33:52.728460004Z [34m│[0m [36mINFO[0m[0056] Creating directory /app with uid -1 and gid -1 
+frontend 2026-03-31T18:33:52.728641914Z [34m│[0m [36mINFO[0m[0056] Taking snapshot of files...                  
+backend 2026-03-31T18:34:00.898408391Z [34m│[0m => Checking out commit "9e15aca59de1ef3e5e2d17d5a0d80eb07e74dc60"
+backend 2026-03-31T18:34:01.523498485Z [34m│[0m 
+backend 2026-03-31T18:34:01.524537594Z [34m│[0m [32m ✔ cloned repo to [35m/.app_platform_workspace[0m[0m
+backend 2026-03-31T18:34:01.535655473Z [34m╰────────────────────────────────────────╼[0m
+backend 2026-03-31T18:34:01.535663224Z 
+backend 2026-03-31T18:34:01.808236334Z [34m╭────────────[34m[30m[44m dockerfile build [0m[0m[34m───────────╼[0m
+backend 2026-03-31T18:34:01.818781573Z [34m│[0m [34m › using dockerfile [35m/.app_platform_workspace/backend/Dockerfile[0m[0m
+backend 2026-03-31T18:34:01.819826115Z [34m│[0m [34m › using build context [35m/.app_platform_workspace/[0m[0m
+backend 2026-03-31T18:34:01.819990903Z [34m│[0m 
+backend 2026-03-31T18:34:01.850513805Z [34m│[0m [36mINFO[0m[0000] Resolved base name python:3.13-slim to builder 
+backend 2026-03-31T18:34:01.850529909Z [34m│[0m [36mINFO[0m[0000] Using dockerignore file: /.app_platform_workspace/.dockerignore 
+backend 2026-03-31T18:34:01.850532820Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest python:3.13-slim   
+backend 2026-03-31T18:34:01.850729810Z [34m│[0m [36mINFO[0m[0000] Retrieving image library/python:3.13-slim from registry mirror <registry-uri-0> 
+backend 2026-03-31T18:34:02.136664472Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest python:3.13-slim   
+backend 2026-03-31T18:34:02.136700011Z [34m│[0m [36mINFO[0m[0000] Returning cached image manifest              
+backend 2026-03-31T18:34:02.141500068Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest python:3.13-slim   
+backend 2026-03-31T18:34:02.141506981Z [34m│[0m [36mINFO[0m[0000] Returning cached image manifest              
+backend 2026-03-31T18:34:02.141508851Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest python:3.13-slim   
+backend 2026-03-31T18:34:02.141510855Z [34m│[0m [36mINFO[0m[0000] Returning cached image manifest              
+backend 2026-03-31T18:34:02.141785652Z [34m│[0m [36mINFO[0m[0000] Built cross stage deps: map[0:[/root/.local]] 
+backend 2026-03-31T18:34:02.141788406Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest python:3.13-slim   
+backend 2026-03-31T18:34:02.141790153Z [34m│[0m [36mINFO[0m[0000] Returning cached image manifest              
+backend 2026-03-31T18:34:02.141792286Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest python:3.13-slim   
+backend 2026-03-31T18:34:02.141794135Z [34m│[0m [36mINFO[0m[0000] Returning cached image manifest              
+backend 2026-03-31T18:34:02.141796038Z [34m│[0m [36mINFO[0m[0000] Executing 0 build triggers                   
+backend 2026-03-31T18:34:02.142278866Z [34m│[0m [36mINFO[0m[0000] Building stage 'python:3.13-slim' [idx: '0', base-idx: '-1'] 
+backend 2026-03-31T18:34:02.142281127Z [34m│[0m [36mINFO[0m[0000] Checking for cached layer <registry-uri-1> 
+backend 2026-03-31T18:34:02.270721230Z [34m│[0m [36mINFO[0m[0000] Using caching version of cmd: RUN apt-get update && apt-get install -y --no-install-recommends     libmagic1     gcc     g++     make     libc-dev     && rm -rf /var/lib/apt/lists/* 
+backend 2026-03-31T18:34:02.271245029Z [34m│[0m [36mINFO[0m[0000] Checking for cached layer <registry-uri-2> 
+frontend 2026-03-31T18:34:02.341820370Z [34m│[0m [36mINFO[0m[0066] COPY --from=deps /app/node_modules ./node_modules 
+backend 2026-03-31T18:34:02.378717759Z [34m│[0m [36mINFO[0m[0000] Using caching version of cmd: RUN pip install --no-cache-dir --user -r requirements.txt 
+backend 2026-03-31T18:34:02.378747781Z [34m│[0m [36mINFO[0m[0000] Unpacking rootfs as cmd COPY backend/requirements.txt . requires it. 
+backend 2026-03-31T18:34:03.523261265Z [34m│[0m [36mINFO[0m[0001] Initializing snapshotter ...                 
+backend 2026-03-31T18:34:03.523292812Z [34m│[0m [36mINFO[0m[0001] Taking snapshot of full filesystem...        
+backend 2026-03-31T18:34:04.195440030Z [34m│[0m [36mINFO[0m[0002] WORKDIR /app                                 
+backend 2026-03-31T18:34:04.195468923Z [34m│[0m [36mINFO[0m[0002] Cmd: workdir                                 
+backend 2026-03-31T18:34:04.195471776Z [34m│[0m [36mINFO[0m[0002] Changed working directory to /app            
+backend 2026-03-31T18:34:04.195474148Z [34m│[0m [36mINFO[0m[0002] Creating directory /app with uid -1 and gid -1 
+backend 2026-03-31T18:34:04.196067344Z [34m│[0m [36mINFO[0m[0002] Taking snapshot of files...                  
+backend 2026-03-31T18:34:04.199438195Z [34m│[0m [36mINFO[0m[0002] RUN apt-get update && apt-get install -y --no-install-recommends     libmagic1     gcc     g++     make     libc-dev     && rm -rf /var/lib/apt/lists/* 
+backend 2026-03-31T18:34:04.199451512Z [34m│[0m [36mINFO[0m[0002] Found cached layer, extracting to filesystem 
+frontend 2026-03-31T18:34:06.416128184Z [34m│[0m [36mINFO[0m[0070] Taking snapshot of files...                  
+backend 2026-03-31T18:34:19.376452900Z [34m│[0m [36mINFO[0m[0017] COPY backend/requirements.txt .              
+backend 2026-03-31T18:34:19.378182306Z [34m│[0m [36mINFO[0m[0017] Taking snapshot of files...                  
+backend 2026-03-31T18:34:19.379495559Z [34m│[0m [36mINFO[0m[0017] RUN pip install --no-cache-dir --user -r requirements.txt 
+backend 2026-03-31T18:34:19.379507990Z [34m│[0m [36mINFO[0m[0017] Found cached layer, extracting to filesystem 
+frontend 2026-03-31T18:34:29.475606481Z [34m│[0m [36mINFO[0m[0093] COPY frontend/ .                             
+frontend 2026-03-31T18:34:32.580470140Z [34m│[0m [36mINFO[0m[0096] Taking snapshot of files...                  
+frontend 2026-03-31T18:34:33.732046994Z [34m│[0m [36mINFO[0m[0097] ARG NEXT_PUBLIC_BACKEND_URL=https://www.megilance.site 
+frontend 2026-03-31T18:34:33.750282805Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.750299729Z [34m│[0m [36mINFO[0m[0097] ARG NEXT_PUBLIC_API_URL=https://www.megilance.site/api 
+frontend 2026-03-31T18:34:33.750424081Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.750445553Z [34m│[0m [36mINFO[0m[0097] ARG NEXT_PUBLIC_SHOW_DEMO_LOGIN=true         
+frontend 2026-03-31T18:34:33.750447781Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.750449797Z [34m│[0m [36mINFO[0m[0097] ARG NEXT_PUBLIC_DEV_ADMIN_EMAIL=admin@megilance.com 
+frontend 2026-03-31T18:34:33.750451614Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.750570333Z [34m│[0m [36mINFO[0m[0097] ARG NEXT_PUBLIC_DEV_ADMIN_PASSWORD=Admin@123 
+frontend 2026-03-31T18:34:33.750573022Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.750574802Z [34m│[0m [36mINFO[0m[0097] ARG NEXT_PUBLIC_DEV_CLIENT_EMAIL=client1@example.com 
+frontend 2026-03-31T18:34:33.750576438Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.750578289Z [34m│[0m [36mINFO[0m[0097] ARG NEXT_PUBLIC_DEV_CLIENT_PASSWORD=Client@123 
+frontend 2026-03-31T18:34:33.750580195Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.750979120Z [34m│[0m [36mINFO[0m[0097] ARG NEXT_PUBLIC_DEV_FREELANCER_EMAIL=freelancer1@example.com 
+frontend 2026-03-31T18:34:33.750981116Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.750982773Z [34m│[0m [36mINFO[0m[0097] ARG NEXT_PUBLIC_DEV_FREELANCER_PASSWORD=Freelancer@123 
+frontend 2026-03-31T18:34:33.750984596Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.750986210Z [34m│[0m [36mINFO[0m[0097] ENV NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL} 
+frontend 2026-03-31T18:34:33.750987834Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.750989658Z [34m│[0m [36mINFO[0m[0097] ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL} 
+frontend 2026-03-31T18:34:33.750991506Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.750993203Z [34m│[0m [36mINFO[0m[0097] ENV NEXT_PUBLIC_SHOW_DEMO_LOGIN=${NEXT_PUBLIC_SHOW_DEMO_LOGIN} 
+frontend 2026-03-31T18:34:33.751681245Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.751687364Z [34m│[0m [36mINFO[0m[0097] ENV NEXT_PUBLIC_DEV_ADMIN_EMAIL=${NEXT_PUBLIC_DEV_ADMIN_EMAIL} 
+frontend 2026-03-31T18:34:33.751689317Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.751692499Z [34m│[0m [36mINFO[0m[0097] ENV NEXT_PUBLIC_DEV_ADMIN_PASSWORD=${NEXT_PUBLIC_DEV_ADMIN_PASSWORD} 
+frontend 2026-03-31T18:34:33.751694168Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.751695781Z [34m│[0m [36mINFO[0m[0097] ENV NEXT_PUBLIC_DEV_CLIENT_EMAIL=${NEXT_PUBLIC_DEV_CLIENT_EMAIL} 
+frontend 2026-03-31T18:34:33.751697301Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.751698869Z [34m│[0m [36mINFO[0m[0097] ENV NEXT_PUBLIC_DEV_CLIENT_PASSWORD=${NEXT_PUBLIC_DEV_CLIENT_PASSWORD} 
+frontend 2026-03-31T18:34:33.751700332Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.751701827Z [34m│[0m [36mINFO[0m[0097] ENV NEXT_PUBLIC_DEV_FREELANCER_EMAIL=${NEXT_PUBLIC_DEV_FREELANCER_EMAIL} 
+frontend 2026-03-31T18:34:33.751703353Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.751704820Z [34m│[0m [36mINFO[0m[0097] ENV NEXT_PUBLIC_DEV_FREELANCER_PASSWORD=${NEXT_PUBLIC_DEV_FREELANCER_PASSWORD} 
+frontend 2026-03-31T18:34:33.751706286Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.751708073Z [34m│[0m [36mINFO[0m[0097] ENV NEXT_TELEMETRY_DISABLED 1                
+frontend 2026-03-31T18:34:33.751709746Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.751711154Z [34m│[0m [36mINFO[0m[0097] ENV TURBOPACK 0                              
+frontend 2026-03-31T18:34:33.751712614Z [34m│[0m [36mINFO[0m[0097] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:34:33.751714001Z [34m│[0m [36mINFO[0m[0097] RUN npm run build                            
+frontend 2026-03-31T18:34:34.457346922Z [34m│[0m [36mINFO[0m[0098] Cmd: /bin/sh                                 
+frontend 2026-03-31T18:34:34.457375256Z [34m│[0m [36mINFO[0m[0098] Args: [-c npm run build]                     
+frontend 2026-03-31T18:34:34.457378474Z [34m│[0m [36mINFO[0m[0098] Running: [/bin/sh -c npm run build]          
+frontend 2026-03-31T18:34:34.968278584Z [34m│[0m 
+frontend 2026-03-31T18:34:34.968529481Z [34m│[0m > frontend@0.1.0 build
+frontend 2026-03-31T18:34:34.968559078Z [34m│[0m > cross-env NEXT_TELEMETRY_DISABLED=1 TAILWIND_DISABLE_OPTIMISTIC=true TURBOPACK=0 next build
+frontend 2026-03-31T18:34:34.968561480Z [34m│[0m 
+frontend 2026-03-31T18:34:35.938624983Z [34m│[0m Warning: Custom Cache-Control headers detected for the following routes:
+frontend 2026-03-31T18:34:35.938658554Z [34m│[0m   - /_next/static/:path*
+frontend 2026-03-31T18:34:35.938660858Z [34m│[0m 
+frontend 2026-03-31T18:34:35.938662777Z [34m│[0m Setting a custom Cache-Control header can break Next.js development behavior.
+frontend 2026-03-31T18:34:35.944514358Z [34m│[0m ▲ Next.js 16.2.1 (Turbopack)
+frontend 2026-03-31T18:34:35.944724843Z [34m│[0m - Experiments (use with caution):
+frontend 2026-03-31T18:34:35.944727769Z [34m│[0m   · optimizePackageImports
+frontend 2026-03-31T18:34:35.944730800Z [34m│[0m   · serverActions
+frontend 2026-03-31T18:34:35.944732767Z [34m│[0m 
+frontend 2026-03-31T18:34:35.947547099Z [34m│[0m ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+frontend 2026-03-31T18:34:36.034727945Z [34m│[0m   Creating an optimized production build ...
+backend 2026-03-31T18:34:48.221980326Z [34m│[0m [36mINFO[0m[0046] Saving file root/.local for later use        
+backend 2026-03-31T18:34:53.508597798Z [34m│[0m [36mINFO[0m[0051] Deleting filesystem...                       
+backend 2026-03-31T18:34:54.092158364Z [34m│[0m [36mINFO[0m[0052] Retrieving image manifest python:3.13-slim   
+backend 2026-03-31T18:34:54.092187648Z [34m│[0m [36mINFO[0m[0052] Returning cached image manifest              
+backend 2026-03-31T18:34:54.092191348Z [34m│[0m [36mINFO[0m[0052] Retrieving image manifest python:3.13-slim   
+backend 2026-03-31T18:34:54.092195798Z [34m│[0m [36mINFO[0m[0052] Returning cached image manifest              
+backend 2026-03-31T18:34:54.092211875Z [34m│[0m [36mINFO[0m[0052] Executing 0 build triggers                   
+backend 2026-03-31T18:34:54.092711833Z [34m│[0m [36mINFO[0m[0052] Building stage 'python:3.13-slim' [idx: '1', base-idx: '-1'] 
+backend 2026-03-31T18:34:54.092723062Z [34m│[0m [36mINFO[0m[0052] Checking for cached layer <registry-uri-3> 
+backend 2026-03-31T18:34:54.211541125Z [34m│[0m [36mINFO[0m[0052] Using caching version of cmd: RUN useradd -m -u 1000 -s /bin/bash appuser 
+frontend 2026-03-31T18:34:54.485733060Z [34m│[0m ✓ Compiled successfully in 17.7s
+frontend 2026-03-31T18:34:54.488088140Z [34m│[0m   Running TypeScript ...
+backend 2026-03-31T18:34:58.384499188Z [34m│[0m [36mINFO[0m[0056] Checking for cached layer <registry-uri-4> 
+backend 2026-03-31T18:34:58.426166539Z [34m│[0m [36mINFO[0m[0056] No cached layer found for cmd RUN mkdir -p /app/uploads && chown -R appuser:appuser /app/uploads 
+backend 2026-03-31T18:34:58.426187543Z [34m│[0m [36mINFO[0m[0056] Cmd: USER                                    
+backend 2026-03-31T18:34:58.426190530Z [34m│[0m [36mINFO[0m[0056] Cmd: EXPOSE                                  
+backend 2026-03-31T18:34:58.426193038Z [34m│[0m [36mINFO[0m[0056] Adding exposed port: 8000/tcp                
+backend 2026-03-31T18:34:58.426409974Z [34m│[0m [36mINFO[0m[0056] Unpacking rootfs as cmd COPY --from=builder --chown=appuser:appuser /root/.local /home/appuser/.local requires it. 
+backend 2026-03-31T18:34:59.588270409Z [34m│[0m [36mINFO[0m[0057] Initializing snapshotter ...                 
+backend 2026-03-31T18:34:59.588306398Z [34m│[0m [36mINFO[0m[0057] Taking snapshot of full filesystem...        
+backend 2026-03-31T18:35:01.195966024Z [34m│[0m [36mINFO[0m[0059] ENV PYTHONDONTWRITEBYTECODE=1     PYTHONUNBUFFERED=1     PATH="/home/appuser/.local/bin:$PATH"     PIP_NO_CACHE_DIR=1     PIP_DISABLE_PIP_VERSION_CHECK=1 
+backend 2026-03-31T18:35:01.196740211Z [34m│[0m [36mINFO[0m[0059] No files changed in this command, skipping snapshotting. 
+backend 2026-03-31T18:35:01.196756705Z [34m│[0m [36mINFO[0m[0059] WORKDIR /app                                 
+backend 2026-03-31T18:35:01.196759565Z [34m│[0m [36mINFO[0m[0059] Cmd: workdir                                 
+backend 2026-03-31T18:35:01.196761976Z [34m│[0m [36mINFO[0m[0059] Changed working directory to /app            
+backend 2026-03-31T18:35:01.196764129Z [34m│[0m [36mINFO[0m[0059] Creating directory /app with uid -1 and gid -1 
+backend 2026-03-31T18:35:01.196766966Z [34m│[0m [36mINFO[0m[0059] Taking snapshot of files...                  
+backend 2026-03-31T18:35:01.197788602Z [34m│[0m [36mINFO[0m[0059] RUN useradd -m -u 1000 -s /bin/bash appuser  
+backend 2026-03-31T18:35:01.197800784Z [34m│[0m [36mINFO[0m[0059] Found cached layer, extracting to filesystem 
+backend 2026-03-31T18:35:04.930863668Z [34m│[0m [36mINFO[0m[0063] COPY --from=builder --chown=appuser:appuser /root/.local /home/appuser/.local 
+backend 2026-03-31T18:35:07.090215401Z [34m│[0m [36mINFO[0m[0065] Taking snapshot of files...                  
+backend 2026-03-31T18:35:17.531919376Z [34m│[0m [36mINFO[0m[0075] COPY --chown=appuser:appuser backend/ .      
+backend 2026-03-31T18:35:17.671855299Z [34m│[0m [36mINFO[0m[0075] Taking snapshot of files...                  
+backend 2026-03-31T18:35:17.776080279Z [34m│[0m [36mINFO[0m[0075] RUN mkdir -p /app/uploads && chown -R appuser:appuser /app/uploads 
+backend 2026-03-31T18:35:18.960474007Z [34m│[0m [36mINFO[0m[0077] Cmd: /bin/sh                                 
+backend 2026-03-31T18:35:18.960500094Z [34m│[0m [36mINFO[0m[0077] Args: [-c mkdir -p /app/uploads && chown -R appuser:appuser /app/uploads] 
+backend 2026-03-31T18:35:18.960503064Z [34m│[0m [36mINFO[0m[0077] Running: [/bin/sh -c mkdir -p /app/uploads && chown -R appuser:appuser /app/uploads] 
+backend 2026-03-31T18:35:19.412108277Z [34m│[0m [36mINFO[0m[0077] Taking snapshot of files...                  
+backend 2026-03-31T18:35:19.499742535Z [34m│[0m [36mINFO[0m[0077] Pushing layer <registry-uri-5> to cache now 
+backend 2026-03-31T18:35:19.499771437Z [34m│[0m [36mINFO[0m[0077] Pushing image to <registry-uri-6> 
+backend 2026-03-31T18:35:19.500290707Z [34m│[0m [36mINFO[0m[0077] RUN apt-get update && apt-get install -y --no-install-recommends libmagic1 &&     apt-get purge -y --auto-remove &&     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
+backend 2026-03-31T18:35:19.825834402Z [34m│[0m [36mINFO[0m[0077] Cmd: /bin/sh                                 
+backend 2026-03-31T18:35:19.826065076Z [34m│[0m [36mINFO[0m[0077] Args: [-c apt-get update && apt-get install -y --no-install-recommends libmagic1 &&     apt-get purge -y --auto-remove &&     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*] 
+backend 2026-03-31T18:35:19.826068813Z [34m│[0m [36mINFO[0m[0077] Running: [/bin/sh -c apt-get update && apt-get install -y --no-install-recommends libmagic1 &&     apt-get purge -y --auto-remove &&     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*] 
+backend 2026-03-31T18:35:19.860478378Z [34m│[0m Hit:1 http://deb.debian.org/debian trixie InRelease
+backend 2026-03-31T18:35:19.860501157Z [34m│[0m Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+backend 2026-03-31T18:35:19.861766377Z [34m│[0m Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+backend 2026-03-31T18:35:19.873849486Z [34m│[0m Get:4 http://deb.debian.org/debian trixie/main amd64 Packages [9671 kB]
+backend 2026-03-31T18:35:19.973888602Z [34m│[0m Get:5 http://deb.debian.org/debian trixie-updates/main amd64 Packages [5412 B]
+backend 2026-03-31T18:35:19.973910695Z [34m│[0m Get:6 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [114 kB]
+backend 2026-03-31T18:35:20.273591273Z [34m│[0m [36mINFO[0m[0078] Pushed <registry-uri-7> 
+backend 2026-03-31T18:35:20.863315851Z [34m│[0m Fetched 9881 kB in 1s (9685 kB/s)
+backend 2026-03-31T18:35:21.523630087Z [34m│[0m Reading package lists...
+backend 2026-03-31T18:35:21.975008651Z [34m│[0m Reading package lists...
+backend 2026-03-31T18:35:22.072207252Z [34m│[0m Building dependency tree...
+backend 2026-03-31T18:35:22.072233564Z [34m│[0m Reading state information...
+backend 2026-03-31T18:35:22.207512641Z [34m│[0m The following additional packages will be installed:
+backend 2026-03-31T18:35:22.208133380Z [34m│[0m   libmagic-mgc
+backend 2026-03-31T18:35:22.209118460Z [34m│[0m Suggested packages:
+backend 2026-03-31T18:35:22.209128543Z [34m│[0m   file
+backend 2026-03-31T18:35:22.224894116Z [34m│[0m The following NEW packages will be installed:
+backend 2026-03-31T18:35:22.225396139Z [34m│[0m   libmagic-mgc libmagic1t64
+backend 2026-03-31T18:35:22.252556296Z [34m│[0m 0 upgraded, 2 newly installed, 0 to remove and 0 not upgraded.
+backend 2026-03-31T18:35:22.252572406Z [34m│[0m Need to get 447 kB of archives.
+backend 2026-03-31T18:35:22.252575261Z [34m│[0m After this operation, 10.6 MB of additional disk space will be used.
+backend 2026-03-31T18:35:22.252580143Z [34m│[0m Get:1 http://deb.debian.org/debian trixie/main amd64 libmagic-mgc amd64 1:5.46-5 [338 kB]
+backend 2026-03-31T18:35:22.256250163Z [34m│[0m Get:2 http://deb.debian.org/debian trixie/main amd64 libmagic1t64 amd64 1:5.46-5 [109 kB]
+backend 2026-03-31T18:35:22.343537916Z [34m│[0m debconf: unable to initialize frontend: Dialog
+backend 2026-03-31T18:35:22.343568074Z [34m│[0m debconf: (TERM is not set, so the dialog frontend is not usable.)
+backend 2026-03-31T18:35:22.343571029Z [34m│[0m debconf: falling back to frontend: Readline
+backend 2026-03-31T18:35:22.343573438Z [34m│[0m debconf: unable to initialize frontend: Readline
+backend 2026-03-31T18:35:22.343576632Z [34m│[0m debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.40.1 /usr/local/share/perl/5.40.1 /usr/lib/x86_64-linux-gnu/perl5/5.40 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.40 /usr/share/perl/5.40 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8, <STDIN> line 2.)
+backend 2026-03-31T18:35:22.343584491Z [34m│[0m debconf: falling back to frontend: Teletype
+backend 2026-03-31T18:35:22.348145433Z [34m│[0m debconf: unable to initialize frontend: Teletype
+backend 2026-03-31T18:35:22.348163623Z [34m│[0m debconf: (This frontend requires a controlling tty.)
+backend 2026-03-31T18:35:22.348165692Z [34m│[0m debconf: falling back to frontend: Noninteractive
+backend 2026-03-31T18:35:22.823266154Z [34m│[0m Fetched 447 kB in 0s (19.3 MB/s)
+backend 2026-03-31T18:35:22.896533072Z [34m│[0m Selecting previously unselected package libmagic-mgc.
+backend 2026-03-31T18:35:22.899574614Z [34m│[0m (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5645 files and directories currently installed.)
+backend 2026-03-31T18:35:22.899981229Z [34m│[0m Preparing to unpack .../libmagic-mgc_1%3a5.46-5_amd64.deb ...
+backend 2026-03-31T18:35:22.902079923Z [34m│[0m Unpacking libmagic-mgc (1:5.46-5) ...
+backend 2026-03-31T18:35:22.959311366Z [34m│[0m Selecting previously unselected package libmagic1t64:amd64.
+backend 2026-03-31T18:35:22.959905439Z [34m│[0m Preparing to unpack .../libmagic1t64_1%3a5.46-5_amd64.deb ...
+backend 2026-03-31T18:35:22.963170775Z [34m│[0m Unpacking libmagic1t64:amd64 (1:5.46-5) ...
+backend 2026-03-31T18:35:22.984336483Z [34m│[0m Setting up libmagic-mgc (1:5.46-5) ...
+backend 2026-03-31T18:35:22.989907425Z [34m│[0m Setting up libmagic1t64:amd64 (1:5.46-5) ...
+backend 2026-03-31T18:35:22.999202124Z [34m│[0m Processing triggers for libc-bin (2.41-12+deb13u2) ...
+backend 2026-03-31T18:35:23.461133266Z [34m│[0m Reading package lists...
+backend 2026-03-31T18:35:23.559640187Z [34m│[0m Building dependency tree...
+backend 2026-03-31T18:35:23.559664482Z [34m│[0m Reading state information...
+backend 2026-03-31T18:35:23.714656894Z [34m│[0m 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+backend 2026-03-31T18:35:24.039663578Z [34m│[0m [36mINFO[0m[0082] Taking snapshot of files...                  
+backend 2026-03-31T18:35:24.196243119Z [34m│[0m [36mINFO[0m[0082] USER appuser                                 
+backend 2026-03-31T18:35:24.196270758Z [34m│[0m [36mINFO[0m[0082] Cmd: USER                                    
+backend 2026-03-31T18:35:24.200317519Z [34m│[0m [36mINFO[0m[0082] Pushing layer <registry-uri-8> to cache now 
+backend 2026-03-31T18:35:24.200497717Z [34m│[0m [36mINFO[0m[0082] Pushing image to <registry-uri-9> 
+backend 2026-03-31T18:35:24.204037182Z [34m│[0m [36mINFO[0m[0082] No files changed in this command, skipping snapshotting. 
+backend 2026-03-31T18:35:24.204187265Z [34m│[0m [36mINFO[0m[0082] EXPOSE 8000                                  
+backend 2026-03-31T18:35:24.204193262Z [34m│[0m [36mINFO[0m[0082] Cmd: EXPOSE                                  
+backend 2026-03-31T18:35:24.204290033Z [34m│[0m [36mINFO[0m[0082] Adding exposed port: 8000/tcp                
+backend 2026-03-31T18:35:24.204446825Z [34m│[0m [36mINFO[0m[0082] No files changed in this command, skipping snapshotting. 
+backend 2026-03-31T18:35:24.204648345Z [34m│[0m [36mINFO[0m[0082] HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3     CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health/live').read()" || exit 1 
+backend 2026-03-31T18:35:24.204718507Z [34m│[0m [36mINFO[0m[0082] No files changed in this command, skipping snapshotting. 
+backend 2026-03-31T18:35:24.205071539Z [34m│[0m [36mINFO[0m[0082] CMD ["gunicorn", "main:app",      "-w", "2",      "-k", "uvicorn.workers.UvicornWorker",      "--bind", "0.0.0.0:8000",      "--access-logfile", "-",      "--error-logfile", "-",      "--timeout", "120",      "--graceful-timeout", "30",      "--keep-alive", "5",      "--max-requests", "1000",      "--max-requests-jitter", "50"] 
+backend 2026-03-31T18:35:24.205144526Z [34m│[0m [36mINFO[0m[0082] No files changed in this command, skipping snapshotting. 
+backend 2026-03-31T18:35:24.964695663Z [34m│[0m [36mINFO[0m[0083] Pushed <registry-uri-10> 
+backend 2026-03-31T18:35:24.965546276Z [34m│[0m [36mINFO[0m[0083] Pushing image to <image-11> 
+frontend 2026-03-31T18:35:26.248485723Z [34m│[0m   Finished TypeScript in 31.8s ...
+frontend 2026-03-31T18:35:26.252596631Z [34m│[0m   Collecting page data using 9 workers ...
+frontend 2026-03-31T18:35:27.238582440Z [34m│[0m   Generating static pages using 9 workers (0/318) ...
+frontend 2026-03-31T18:35:28.112557943Z [34m│[0m   Generating static pages using 9 workers (79/318) 
+frontend 2026-03-31T18:35:28.398864912Z [34m│[0m   Generating static pages using 9 workers (158/318) 
+frontend 2026-03-31T18:35:28.778676560Z [34m│[0m   Generating static pages using 9 workers (238/318) 
+backend 2026-03-31T18:35:30.493932913Z [34m│[0m [36mINFO[0m[0088] Pushed <registry-uri-12> 
+backend 2026-03-31T18:35:30.513864497Z [34m│[0m 
+frontend 2026-03-31T18:35:30.773766268Z [34m│[0m ✓ Generating static pages using 9 workers (318/318) in 3.5s
+frontend 2026-03-31T18:35:30.788177308Z [34m│[0m   Finalizing page optimization ...
+backend 2026-03-31T18:35:30.796769249Z [34m│[0m [32m ✔ built and uploaded app container image to DOCR[0m
+backend 2026-03-31T18:35:30.799126484Z [34m╰──────────────────────────────────────────╼[0m
+backend 2026-03-31T18:35:30.799294921Z 
+backend 2026-03-31T18:35:30.805032227Z [32m ✔ [0m[30m[42m build complete [0m[0m
+backend 2026-03-31T18:35:30.805180740Z 
+frontend 2026-03-31T18:35:31.823002710Z [34m│[0m 
+frontend 2026-03-31T18:35:31.833310628Z [34m│[0m Route (app)                             Revalidate  Expire
+frontend 2026-03-31T18:35:31.833317217Z [34m│[0m ┌ ○ /
+frontend 2026-03-31T18:35:31.833319638Z [34m│[0m ├ ○ /_not-found
+frontend 2026-03-31T18:35:31.833321440Z [34m│[0m ├ ○ /~offline
+frontend 2026-03-31T18:35:31.833323158Z [34m│[0m ├ ○ /about
+frontend 2026-03-31T18:35:31.833324979Z [34m│[0m ├ ○ /admin
+frontend 2026-03-31T18:35:31.833331954Z [34m│[0m ├ ○ /admin/ai-monitoring
+frontend 2026-03-31T18:35:31.833334156Z [34m│[0m ├ ○ /admin/analytics
+frontend 2026-03-31T18:35:31.833335869Z [34m│[0m ├ ○ /admin/api-keys
+frontend 2026-03-31T18:35:31.833337492Z [34m│[0m ├ ○ /admin/audit
+frontend 2026-03-31T18:35:31.833585050Z [34m│[0m ├ ○ /admin/billing
+frontend 2026-03-31T18:35:31.833589250Z [34m│[0m ├ ○ /admin/blog
+frontend 2026-03-31T18:35:31.833590988Z [34m│[0m ├ ƒ /admin/blog/[id]
+frontend 2026-03-31T18:35:31.833592594Z [34m│[0m ├ ○ /admin/blog/create
+frontend 2026-03-31T18:35:31.833594487Z [34m│[0m ├ ○ /admin/branding
+frontend 2026-03-31T18:35:31.833596058Z [34m│[0m ├ ○ /admin/calendar
+frontend 2026-03-31T18:35:31.833597691Z [34m│[0m ├ ○ /admin/categories
+frontend 2026-03-31T18:35:31.833599238Z [34m│[0m ├ ○ /admin/compliance
+frontend 2026-03-31T18:35:31.833600756Z [34m│[0m ├ ○ /admin/dashboard
+frontend 2026-03-31T18:35:31.833602417Z [34m│[0m ├ ○ /admin/disputes
+frontend 2026-03-31T18:35:31.833603960Z [34m│[0m ├ ƒ /admin/disputes/[id]
+frontend 2026-03-31T18:35:31.833605601Z [34m│[0m ├ ○ /admin/email-templates
+frontend 2026-03-31T18:35:31.833607143Z [34m│[0m ├ ○ /admin/export
+frontend 2026-03-31T18:35:31.833608587Z [34m│[0m ├ ○ /admin/feature-flags
+frontend 2026-03-31T18:35:31.833610203Z [34m│[0m ├ ○ /admin/feedback
+frontend 2026-03-31T18:35:31.833611664Z [34m│[0m ├ ○ /admin/fraud-detection
+frontend 2026-03-31T18:35:31.833613083Z [34m│[0m ├ ○ /admin/health
+frontend 2026-03-31T18:35:31.833614555Z [34m│[0m ├ ○ /admin/help
+frontend 2026-03-31T18:35:31.833616076Z [34m│[0m ├ ○ /admin/integrations
+frontend 2026-03-31T18:35:31.833617503Z [34m│[0m ├ ○ /admin/messages
+frontend 2026-03-31T18:35:31.833618990Z [34m│[0m ├ ○ /admin/metrics
+frontend 2026-03-31T18:35:31.833620443Z [34m│[0m ├ ○ /admin/moderation
+frontend 2026-03-31T18:35:31.833621951Z [34m│[0m ├ ○ /admin/payments
+frontend 2026-03-31T18:35:31.833623406Z [34m│[0m ├ ○ /admin/payments/invoices
+frontend 2026-03-31T18:35:31.833625388Z [34m│[0m ├ ○ /admin/payments/multicurrency
+frontend 2026-03-31T18:35:31.833626934Z [34m│[0m ├ ○ /admin/payments/refunds
+frontend 2026-03-31T18:35:31.833628447Z [34m│[0m ├ ○ /admin/profile
+frontend 2026-03-31T18:35:31.833629903Z [34m│[0m ├ ○ /admin/projects
+frontend 2026-03-31T18:35:31.833641861Z [34m│[0m ├ ○ /admin/refunds
+frontend 2026-03-31T18:35:31.833643431Z [34m│[0m ├ ○ /admin/reports
+frontend 2026-03-31T18:35:31.833644956Z [34m│[0m ├ ○ /admin/search-analytics
+frontend 2026-03-31T18:35:31.833646365Z [34m│[0m ├ ○ /admin/security
+frontend 2026-03-31T18:35:31.833647810Z [34m│[0m ├ ○ /admin/settings
+frontend 2026-03-31T18:35:31.833649268Z [34m│[0m ├ ○ /admin/skills
+frontend 2026-03-31T18:35:31.833650793Z [34m│[0m ├ ○ /admin/support
+frontend 2026-03-31T18:35:31.833652216Z [34m│[0m ├ ○ /admin/tags
+frontend 2026-03-31T18:35:31.833653816Z [34m│[0m ├ ○ /admin/users
+frontend 2026-03-31T18:35:31.833655218Z [34m│[0m ├ ○ /admin/video-calls
+frontend 2026-03-31T18:35:31.833656649Z [34m│[0m ├ ○ /admin/webhooks
+frontend 2026-03-31T18:35:31.833658824Z [34m│[0m ├ ○ /ai
+frontend 2026-03-31T18:35:31.833660468Z [34m│[0m ├ ○ /ai-matching
+frontend 2026-03-31T18:35:31.833661903Z [34m│[0m ├ ○ /ai/chatbot
+frontend 2026-03-31T18:35:31.833663342Z [34m│[0m ├ ○ /ai/contract-builder
+frontend 2026-03-31T18:35:31.833664744Z [34m│[0m ├ ○ /ai/expense-calculator
+frontend 2026-03-31T18:35:31.833666281Z [34m│[0m ├ ○ /ai/fraud-check
+frontend 2026-03-31T18:35:31.833667732Z [34m│[0m ├ ○ /ai/income-calculator
+frontend 2026-03-31T18:35:31.833669168Z [34m│[0m ├ ○ /ai/invoice-generator
+frontend 2026-03-31T18:35:31.833670571Z [34m│[0m ├ ○ /ai/price-estimator
+frontend 2026-03-31T18:35:31.833672173Z [34m│[0m ├ ○ /ai/proposal-writer
+frontend 2026-03-31T18:35:31.833673609Z [34m│[0m ├ ○ /ai/rate-advisor
+frontend 2026-03-31T18:35:31.833675047Z [34m│[0m ├ ○ /ai/scope-planner
+frontend 2026-03-31T18:35:31.833676487Z [34m│[0m ├ ○ /ai/skill-analyzer
+frontend 2026-03-31T18:35:31.833678064Z [34m│[0m ├ ○ /analytics
+frontend 2026-03-31T18:35:31.833679489Z [34m│[0m ├ ƒ /api/[...catchall]
+frontend 2026-03-31T18:35:31.833681461Z [34m│[0m ├ ƒ /api/admin/ai-monitoring
+frontend 2026-03-31T18:35:31.833682994Z [34m│[0m ├ ƒ /api/admin/dashboard
+frontend 2026-03-31T18:35:31.833684409Z [34m│[0m ├ ƒ /api/admin/payments
+frontend 2026-03-31T18:35:31.833685833Z [34m│[0m ├ ƒ /api/admin/projects
+frontend 2026-03-31T18:35:31.833687478Z [34m│[0m ├ ƒ /api/admin/settings
+frontend 2026-03-31T18:35:31.833689026Z [34m│[0m ├ ƒ /api/admin/support
+frontend 2026-03-31T18:35:31.833690521Z [34m│[0m ├ ƒ /api/admin/users
+frontend 2026-03-31T18:35:31.833692066Z [34m│[0m ├ ƒ /api/auth/[...path]
+frontend 2026-03-31T18:35:31.833693556Z [34m│[0m ├ ƒ /api/client/jobs
+frontend 2026-03-31T18:35:31.833694994Z [34m│[0m ├ ƒ /api/dashboard
+frontend 2026-03-31T18:35:31.833696401Z [34m│[0m ├ ƒ /api/messages
+frontend 2026-03-31T18:35:31.833697801Z [34m│[0m ├ ƒ /api/messages/[id]
+frontend 2026-03-31T18:35:31.833699190Z [34m│[0m ├ ƒ /api/payments
+frontend 2026-03-31T18:35:31.833700664Z [34m│[0m ├ ƒ /api/projects
+frontend 2026-03-31T18:35:31.833702105Z [34m│[0m ├ ƒ /api/user
+frontend 2026-03-31T18:35:31.833703582Z [34m│[0m ├ ○ /audit-logs
+frontend 2026-03-31T18:35:31.833705002Z [34m│[0m ├ ƒ /backend/[...path]
+frontend 2026-03-31T18:35:31.833706467Z [34m│[0m ├ ○ /blog
+frontend 2026-03-31T18:35:31.833707917Z [34m│[0m ├ ƒ /blog/[slug]
+frontend 2026-03-31T18:35:31.833709362Z [34m│[0m ├ ƒ /blog/feed.xml
+frontend 2026-03-31T18:35:31.833710789Z [34m│[0m ├ ○ /blog/search
+frontend 2026-03-31T18:35:31.833712208Z [34m│[0m ├ ○ /callback
+frontend 2026-03-31T18:35:31.833713925Z [34m│[0m ├ ○ /careers
+frontend 2026-03-31T18:35:31.833715570Z [34m│[0m ├ ○ /client
+frontend 2026-03-31T18:35:31.833717035Z [34m│[0m ├ ○ /client/analytics
+frontend 2026-03-31T18:35:31.833718451Z [34m│[0m ├ ○ /client/contracts
+frontend 2026-03-31T18:35:31.833719848Z [34m│[0m ├ ƒ /client/contracts/[id]
+frontend 2026-03-31T18:35:31.833721313Z [34m│[0m ├ ○ /client/dashboard
+frontend 2026-03-31T18:35:31.833724823Z [34m│[0m ├ ○ /client/escrow
+frontend 2026-03-31T18:35:31.833726294Z [34m│[0m ├ ○ /client/freelancers
+frontend 2026-03-31T18:35:31.833727836Z [34m│[0m ├ ○ /client/help
+frontend 2026-03-31T18:35:31.833729226Z [34m│[0m ├ ○ /client/hire
+frontend 2026-03-31T18:35:31.833730680Z [34m│[0m ├ ○ /client/invoices
+frontend 2026-03-31T18:35:31.833732182Z [34m│[0m ├ ○ /client/messages
+frontend 2026-03-31T18:35:31.833733686Z [34m│[0m ├ ○ /client/notifications
+frontend 2026-03-31T18:35:31.833735127Z [34m│[0m ├ ○ /client/payments
+frontend 2026-03-31T18:35:31.833736602Z [34m│[0m ├ ○ /client/post-job
+frontend 2026-03-31T18:35:31.833738062Z [34m│[0m ├ ○ /client/profile
+frontend 2026-03-31T18:35:31.833739604Z [34m│[0m ├ ○ /client/projects
+frontend 2026-03-31T18:35:31.833741108Z [34m│[0m ├ ƒ /client/projects/[id]
+frontend 2026-03-31T18:35:31.833742506Z [34m│[0m ├ ○ /client/projects/create
+frontend 2026-03-31T18:35:31.833743922Z [34m│[0m ├ ○ /client/reports
+frontend 2026-03-31T18:35:31.833745366Z [34m│[0m ├ ○ /client/reviews
+frontend 2026-03-31T18:35:31.833746765Z [34m│[0m ├ ○ /client/search
+frontend 2026-03-31T18:35:31.833748164Z [34m│[0m ├ ○ /client/security
+frontend 2026-03-31T18:35:31.833749564Z [34m│[0m ├ ○ /client/settings
+frontend 2026-03-31T18:35:31.833750990Z [34m│[0m ├ ○ /client/video-calls
+frontend 2026-03-31T18:35:31.833752406Z [34m│[0m ├ ○ /client/wallet
+frontend 2026-03-31T18:35:31.833753821Z [34m│[0m ├ ○ /clients
+frontend 2026-03-31T18:35:31.833755320Z [34m│[0m ├ ƒ /clients/[id]
+frontend 2026-03-31T18:35:31.833756734Z [34m│[0m ├ ○ /community
+frontend 2026-03-31T18:35:31.833758183Z [34m│[0m ├ ○ /compare
+frontend 2026-03-31T18:35:31.833759699Z [34m│[0m ├ ● /compare/[slug]
+frontend 2026-03-31T18:35:31.833761097Z [34m│[0m │ ├ /compare/upwork
+frontend 2026-03-31T18:35:31.833762588Z [34m│[0m │ ├ /compare/fiverr
+frontend 2026-03-31T18:35:31.833765550Z [34m│[0m │ ├ /compare/toptal
+frontend 2026-03-31T18:35:31.833767182Z [34m│[0m │ └ /compare/freelancer-com
+frontend 2026-03-31T18:35:31.833768589Z [34m│[0m ├ ○ /complete-profile
+frontend 2026-03-31T18:35:31.833770004Z [34m│[0m ├ ○ /contact
+frontend 2026-03-31T18:35:31.833771471Z [34m│[0m ├ ○ /contracts
+frontend 2026-03-31T18:35:31.833772981Z [34m│[0m ├ ƒ /contracts/[contractId]/review
+frontend 2026-03-31T18:35:31.833774612Z [34m│[0m ├ ƒ /contracts/[contractId]/workroom
+frontend 2026-03-31T18:35:31.833776141Z [34m│[0m ├ ○ /contracts/create
+frontend 2026-03-31T18:35:31.833777554Z [34m│[0m ├ ○ /cookies
+frontend 2026-03-31T18:35:31.833779008Z [34m│[0m ├ ○ /cost-calculator
+frontend 2026-03-31T18:35:31.833780440Z [34m│[0m ├ ○ /create-project
+frontend 2026-03-31T18:35:31.833781869Z [34m│[0m ├ ○ /dashboard
+frontend 2026-03-31T18:35:31.833783480Z [34m│[0m ├ ○ /dashboard/analytics
+frontend 2026-03-31T18:35:31.833784917Z [34m│[0m ├ ○ /dashboard/community
+frontend 2026-03-31T18:35:31.833786374Z [34m│[0m ├ ○ /dashboard/projects
+frontend 2026-03-31T18:35:31.833787801Z [34m│[0m ├ ○ /dashboard/wallet
+frontend 2026-03-31T18:35:31.833789228Z [34m│[0m ├ ○ /disputes
+frontend 2026-03-31T18:35:31.833790638Z [34m│[0m ├ ƒ /disputes/[id]
+frontend 2026-03-31T18:35:31.833792070Z [34m│[0m ├ ○ /disputes/create
+frontend 2026-03-31T18:35:31.833793488Z [34m│[0m ├ ○ /enterprise
+frontend 2026-03-31T18:35:31.833795017Z [34m│[0m ├ ○ /explore
+frontend 2026-03-31T18:35:31.833796414Z [34m│[0m ├ ○ /external-projects
+frontend 2026-03-31T18:35:31.833797899Z [34m│[0m ├ ○ /faq
+frontend 2026-03-31T18:35:31.833799460Z [34m│[0m ├ ○ /favorites
+frontend 2026-03-31T18:35:31.833800892Z [34m│[0m ├ ○ /features
+frontend 2026-03-31T18:35:31.833802377Z [34m│[0m ├ ○ /forgot-password
+frontend 2026-03-31T18:35:31.833805765Z [34m│[0m ├ ○ /freelancer
+frontend 2026-03-31T18:35:31.833807212Z [34m│[0m ├ ○ /freelancer/activity
+frontend 2026-03-31T18:35:31.833808674Z [34m│[0m ├ ○ /freelancer/analytics
+frontend 2026-03-31T18:35:31.833810067Z [34m│[0m ├ ○ /freelancer/assessments
+frontend 2026-03-31T18:35:31.833811517Z [34m│[0m ├ ○ /freelancer/assessments/new
+frontend 2026-03-31T18:35:31.833812917Z [34m│[0m ├ ○ /freelancer/availability
+frontend 2026-03-31T18:35:31.833814350Z [34m│[0m ├ ○ /freelancer/calls
+frontend 2026-03-31T18:35:31.833815749Z [34m│[0m ├ ○ /freelancer/career
+frontend 2026-03-31T18:35:31.833817169Z [34m│[0m ├ ○ /freelancer/communication
+frontend 2026-03-31T18:35:31.833818554Z [34m│[0m ├ ○ /freelancer/contracts
+frontend 2026-03-31T18:35:31.833819987Z [34m│[0m ├ ƒ /freelancer/contracts/[id]
+frontend 2026-03-31T18:35:31.833821378Z [34m│[0m ├ ○ /freelancer/dashboard
+frontend 2026-03-31T18:35:31.833822784Z [34m│[0m ├ ○ /freelancer/earnings
+frontend 2026-03-31T18:35:31.833824222Z [34m│[0m ├ ○ /freelancer/feedback
+frontend 2026-03-31T18:35:31.833825602Z [34m│[0m ├ ○ /freelancer/files
+frontend 2026-03-31T18:35:31.833827015Z [34m│[0m ├ ○ /freelancer/files/versions
+frontend 2026-03-31T18:35:31.833828435Z [34m│[0m ├ ○ /freelancer/gigs
+frontend 2026-03-31T18:35:31.833829832Z [34m│[0m ├ ○ /freelancer/gigs/create
+frontend 2026-03-31T18:35:31.833831224Z [34m│[0m ├ ○ /freelancer/help
+frontend 2026-03-31T18:35:31.833832615Z [34m│[0m ├ ○ /freelancer/integrations
+frontend 2026-03-31T18:35:31.833834028Z [34m│[0m ├ ○ /freelancer/invoices
+frontend 2026-03-31T18:35:31.833835456Z [34m│[0m ├ ○ /freelancer/job-alerts
+frontend 2026-03-31T18:35:31.833836875Z [34m│[0m ├ ○ /freelancer/jobs
+frontend 2026-03-31T18:35:31.833838276Z [34m│[0m ├ ○ /freelancer/jobs/saved-searches
+frontend 2026-03-31T18:35:31.833839795Z [34m│[0m ├ ○ /freelancer/legal
+frontend 2026-03-31T18:35:31.833841195Z [34m│[0m ├ ○ /freelancer/messages
+frontend 2026-03-31T18:35:31.833842590Z [34m│[0m ├ ○ /freelancer/my-jobs
+frontend 2026-03-31T18:35:31.833844160Z [34m│[0m ├ ○ /freelancer/notes
+frontend 2026-03-31T18:35:31.833845678Z [34m│[0m ├ ○ /freelancer/notifications
+frontend 2026-03-31T18:35:31.833847074Z [34m│[0m ├ ○ /freelancer/portfolio
+frontend 2026-03-31T18:35:31.833848456Z [34m│[0m ├ ○ /freelancer/profile
+frontend 2026-03-31T18:35:31.833849841Z [34m│[0m ├ ○ /freelancer/projects
+frontend 2026-03-31T18:35:31.833851228Z [34m│[0m ├ ○ /freelancer/proposals
+frontend 2026-03-31T18:35:31.833852634Z [34m│[0m ├ ○ /freelancer/rank
+frontend 2026-03-31T18:35:31.833854022Z [34m│[0m ├ ○ /freelancer/rate-cards
+frontend 2026-03-31T18:35:31.833855410Z [34m│[0m ├ ○ /freelancer/referrals
+frontend 2026-03-31T18:35:31.833856879Z [34m│[0m ├ ○ /freelancer/reviews
+frontend 2026-03-31T18:35:31.833858299Z [34m│[0m ├ ○ /freelancer/saved-jobs
+frontend 2026-03-31T18:35:31.833859723Z [34m│[0m ├ ○ /freelancer/security
+frontend 2026-03-31T18:35:31.833861119Z [34m│[0m ├ ○ /freelancer/settings
+frontend 2026-03-31T18:35:31.833862536Z [34m│[0m ├ ○ /freelancer/settings/currency
+frontend 2026-03-31T18:35:31.833863998Z [34m│[0m ├ ○ /freelancer/settings/notifications
+frontend 2026-03-31T18:35:31.833865559Z [34m│[0m ├ ○ /freelancer/settings/password
+frontend 2026-03-31T18:35:31.833867035Z [34m│[0m ├ ○ /freelancer/settings/security
+frontend 2026-03-31T18:35:31.833868543Z [34m│[0m ├ ○ /freelancer/skills
+frontend 2026-03-31T18:35:31.833869938Z [34m│[0m ├ ○ /freelancer/submit-proposal
+frontend 2026-03-31T18:35:31.833871426Z [34m│[0m ├ ○ /freelancer/subscription
+frontend 2026-03-31T18:35:31.833872824Z [34m│[0m ├ ○ /freelancer/support
+frontend 2026-03-31T18:35:31.833874248Z [34m│[0m ├ ○ /freelancer/support/knowledge-base
+frontend 2026-03-31T18:35:31.833879878Z [34m│[0m ├ ○ /freelancer/teams
+frontend 2026-03-31T18:35:31.833881523Z [34m│[0m ├ ○ /freelancer/templates
+frontend 2026-03-31T18:35:31.833883038Z [34m│[0m ├ ○ /freelancer/time-entries
+frontend 2026-03-31T18:35:31.833884523Z [34m│[0m ├ ○ /freelancer/verification
+frontend 2026-03-31T18:35:31.833885925Z [34m│[0m ├ ○ /freelancer/video-calls
+frontend 2026-03-31T18:35:31.833887458Z [34m│[0m ├ ○ /freelancer/wallet
+frontend 2026-03-31T18:35:31.833888958Z [34m│[0m ├ ○ /freelancer/withdraw
+frontend 2026-03-31T18:35:31.833890402Z [34m│[0m ├ ○ /freelancer/workflows
+frontend 2026-03-31T18:35:31.833891873Z [34m│[0m ├ ○ /freelancers
+frontend 2026-03-31T18:35:31.833893275Z [34m│[0m ├ ƒ /freelancers/[id]
+frontend 2026-03-31T18:35:31.833894880Z [34m│[0m ├ ○ /gigs
+frontend 2026-03-31T18:35:31.833896390Z [34m│[0m ├ ƒ /gigs/[slug]
+frontend 2026-03-31T18:35:31.833897813Z [34m│[0m ├ ○ /help
+frontend 2026-03-31T18:35:31.833899236Z [34m│[0m ├ ○ /hire
+frontend 2026-03-31T18:35:31.833900655Z [34m│[0m ├ ● /hire/[skill]
+frontend 2026-03-31T18:35:31.833902112Z [34m│[0m │ ├ /hire/react-developer
+frontend 2026-03-31T18:35:31.833903572Z [34m│[0m │ ├ /hire/python-developer
+frontend 2026-03-31T18:35:31.833904966Z [34m│[0m │ ├ /hire/nodejs-developer
+frontend 2026-03-31T18:35:31.833906425Z [34m│[0m │ └ [+41 more paths]
+frontend 2026-03-31T18:35:31.833908506Z [34m│[0m ├ ● /hire/[skill]/[industry]                    1h      1y
+frontend 2026-03-31T18:35:31.833910093Z [34m│[0m │ ├ /hire/react-developer/healthcare            1h      1y
+frontend 2026-03-31T18:35:31.833911658Z [34m│[0m │ ├ /hire/react-developer/fintech               1h      1y
+frontend 2026-03-31T18:35:31.833914058Z [34m│[0m │ ├ /hire/react-developer/ecommerce             1h      1y
+frontend 2026-03-31T18:35:31.833915663Z [34m│[0m │ └ [+22 more paths]
+frontend 2026-03-31T18:35:31.833917103Z [34m│[0m ├ ○ /home
+frontend 2026-03-31T18:35:31.833920138Z [34m│[0m ├ ○ /how-it-works
+frontend 2026-03-31T18:35:31.833922828Z [34m│[0m ├ ○ /icon.svg
+frontend 2026-03-31T18:35:31.833924335Z [34m│[0m ├ ○ /install
+frontend 2026-03-31T18:35:31.833925783Z [34m│[0m ├ ○ /invoices
+frontend 2026-03-31T18:35:31.833927339Z [34m│[0m ├ ○ /invoices/create
+frontend 2026-03-31T18:35:31.833928777Z [34m│[0m ├ ○ /jobs
+frontend 2026-03-31T18:35:31.833930195Z [34m│[0m ├ ƒ /jobs/[id]
+frontend 2026-03-31T18:35:31.833931625Z [34m│[0m ├ ○ /legal/privacy
+frontend 2026-03-31T18:35:31.833933045Z [34m│[0m ├ ○ /legal/terms
+frontend 2026-03-31T18:35:31.833934522Z [34m│[0m ├ ○ /login
+frontend 2026-03-31T18:35:31.833936041Z [34m│[0m ├ ○ /logout
+frontend 2026-03-31T18:35:31.833937460Z [34m│[0m ├ ○ /messages
+frontend 2026-03-31T18:35:31.833939035Z [34m│[0m ├ ○ /messages/new
+frontend 2026-03-31T18:35:31.833940447Z [34m│[0m ├ ○ /notifications
+frontend 2026-03-31T18:35:31.833941867Z [34m│[0m ├ ○ /offline
+frontend 2026-03-31T18:35:31.833943276Z [34m│[0m ├ ○ /onboarding
+frontend 2026-03-31T18:35:31.833944740Z [34m│[0m ├ ○ /onboarding/role
+frontend 2026-03-31T18:35:31.833946238Z [34m│[0m ├ ○ /opengraph-image
+frontend 2026-03-31T18:35:31.833947663Z [34m│[0m ├ ○ /passwordless
+frontend 2026-03-31T18:35:31.833949102Z [34m│[0m ├ ○ /payments
+frontend 2026-03-31T18:35:31.833950504Z [34m│[0m ├ ○ /payments/add-funds
+frontend 2026-03-31T18:35:31.833951930Z [34m│[0m ├ ○ /portal
+frontend 2026-03-31T18:35:31.833953430Z [34m│[0m ├ ○ /post-project
+frontend 2026-03-31T18:35:31.833954897Z [34m│[0m ├ ○ /press
+frontend 2026-03-31T18:35:31.833956321Z [34m│[0m ├ ○ /pricing
+frontend 2026-03-31T18:35:31.833957824Z [34m│[0m ├ ○ /privacy
+frontend 2026-03-31T18:35:31.833959358Z [34m│[0m ├ ○ /profile
+frontend 2026-03-31T18:35:31.833964857Z [34m│[0m ├ ○ /projects
+frontend 2026-03-31T18:35:31.833966292Z [34m│[0m ├ ƒ /projects/[id]
+frontend 2026-03-31T18:35:31.833967741Z [34m│[0m ├ ○ /proposals
+frontend 2026-03-31T18:35:31.833969149Z [34m│[0m ├ ○ /referral
+frontend 2026-03-31T18:35:31.833970569Z [34m│[0m ├ ○ /referrals
+frontend 2026-03-31T18:35:31.833971957Z [34m│[0m ├ ○ /refunds
+frontend 2026-03-31T18:35:31.833973379Z [34m│[0m ├ ○ /refunds/create
+frontend 2026-03-31T18:35:31.833974801Z [34m│[0m ├ ○ /reset-password
+frontend 2026-03-31T18:35:31.833976241Z [34m│[0m ├ ○ /robots.txt
+frontend 2026-03-31T18:35:31.833977657Z [34m│[0m ├ ○ /search
+frontend 2026-03-31T18:35:31.833979042Z [34m│[0m ├ ○ /security
+frontend 2026-03-31T18:35:31.833980439Z [34m│[0m ├ ○ /settings
+frontend 2026-03-31T18:35:31.833981893Z [34m│[0m ├ ○ /settings/notifications
+frontend 2026-03-31T18:35:31.833983470Z [34m│[0m ├ ○ /settings/payout-methods/add
+frontend 2026-03-31T18:35:31.833984981Z [34m│[0m ├ ○ /settings/security/2fa
+frontend 2026-03-31T18:35:31.833986400Z [34m│[0m ├ ○ /signup
+frontend 2026-03-31T18:35:31.833987868Z [34m│[0m ├ ○ /signup/client
+frontend 2026-03-31T18:35:31.833989336Z [34m│[0m ├ ○ /signup/freelancer
+frontend 2026-03-31T18:35:31.833990805Z [34m│[0m ├ ○ /sitemap.xml                                1h      1y
+frontend 2026-03-31T18:35:31.833992312Z [34m│[0m ├ ○ /status
+frontend 2026-03-31T18:35:31.833993716Z [34m│[0m ├ ○ /support
+frontend 2026-03-31T18:35:31.833995176Z [34m│[0m ├ ○ /support/new
+frontend 2026-03-31T18:35:31.833996689Z [34m│[0m ├ ○ /talent
+frontend 2026-03-31T18:35:31.833998092Z [34m│[0m ├ ○ /teams
+frontend 2026-03-31T18:35:31.833999543Z [34m│[0m ├ ○ /terms
+frontend 2026-03-31T18:35:31.834000976Z [34m│[0m ├ ○ /testimonials
+frontend 2026-03-31T18:35:31.834002444Z [34m│[0m ├ ○ /tools/contract-builder
+frontend 2026-03-31T18:35:31.834003906Z [34m│[0m ├ ○ /twitter-image
+frontend 2026-03-31T18:35:31.834005335Z [34m│[0m ├ ○ /user-management
+frontend 2026-03-31T18:35:31.834006760Z [34m│[0m ├ ○ /verify-email
+frontend 2026-03-31T18:35:31.834008259Z [34m│[0m ├ ○ /wallet
+frontend 2026-03-31T18:35:31.834009844Z [34m│[0m ├ ○ /why-hire
+frontend 2026-03-31T18:35:31.834011242Z [34m│[0m └ ƒ /workroom/[contractId]
+frontend 2026-03-31T18:35:31.834012710Z [34m│[0m 
+frontend 2026-03-31T18:35:31.834014221Z [34m│[0m 
+frontend 2026-03-31T18:35:31.834015656Z [34m│[0m ƒ Proxy (Middleware)
+frontend 2026-03-31T18:35:31.834017195Z [34m│[0m 
+frontend 2026-03-31T18:35:31.834018663Z [34m│[0m ○  (Static)   prerendered as static content
+frontend 2026-03-31T18:35:31.834020660Z [34m│[0m ●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+frontend 2026-03-31T18:35:31.834022210Z [34m│[0m ƒ  (Dynamic)  server-rendered on demand
+frontend 2026-03-31T18:35:31.834023704Z [34m│[0m 
+frontend 2026-03-31T18:35:32.095831090Z [34m│[0m npm notice
+frontend 2026-03-31T18:35:32.095860654Z [34m│[0m npm notice New major version of npm available! 10.9.7 -> 11.12.1
+frontend 2026-03-31T18:35:32.095863397Z [34m│[0m npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.12.1
+frontend 2026-03-31T18:35:32.095865092Z [34m│[0m npm notice To update run: npm install -g npm@11.12.1
+frontend 2026-03-31T18:35:32.095867397Z [34m│[0m npm notice
+frontend 2026-03-31T18:35:33.420361950Z [34m│[0m [36mINFO[0m[0157] Taking snapshot of files...                  
+frontend 2026-03-31T18:35:37.301761477Z [34m│[0m [36mINFO[0m[0161] Pushing layer <registry-uri-3> to cache now 
+frontend 2026-03-31T18:35:37.301792663Z [34m│[0m [36mINFO[0m[0161] Pushing image to <registry-uri-4> 
+frontend 2026-03-31T18:35:40.406797045Z [34m│[0m [36mINFO[0m[0164] Pushed <registry-uri-5> 
+frontend 2026-03-31T18:35:40.407101344Z [34m│[0m [36mINFO[0m[0164] Saving file app/.next/static for later use   
+frontend 2026-03-31T18:35:40.439232237Z [34m│[0m [36mINFO[0m[0164] Saving file app/.next/standalone for later use 
+frontend 2026-03-31T18:35:40.907545557Z [34m│[0m [36mINFO[0m[0164] Deleting filesystem...                       
+frontend 2026-03-31T18:35:42.605168258Z [34m│[0m [36mINFO[0m[0166] Base image from previous stage 0 found, using saved tar at path /kaniko/stages/0 
+frontend 2026-03-31T18:35:42.605424082Z [34m│[0m [36mINFO[0m[0166] Executing 0 build triggers                   
+frontend 2026-03-31T18:35:42.741696748Z [34m│[0m [36mINFO[0m[0166] Building stage 'base' [idx: '3', base-idx: '0'] 
+frontend 2026-03-31T18:35:42.741723489Z [34m│[0m [36mINFO[0m[0166] Checking for cached layer <registry-uri-6> 
+frontend 2026-03-31T18:35:42.863988135Z [34m│[0m [36mINFO[0m[0166] Using caching version of cmd: RUN addgroup --system --gid 1001 nodejs 
+frontend 2026-03-31T18:35:42.864016903Z [34m│[0m [36mINFO[0m[0166] Checking for cached layer <registry-uri-7> 
+frontend 2026-03-31T18:35:42.962186640Z [34m│[0m [36mINFO[0m[0166] Using caching version of cmd: RUN adduser --system --uid 1001 nextjs 
+frontend 2026-03-31T18:35:44.660622349Z [34m│[0m [36mINFO[0m[0168] Cmd: USER                                    
+frontend 2026-03-31T18:35:44.660656182Z [34m│[0m [36mINFO[0m[0168] Cmd: EXPOSE                                  
+frontend 2026-03-31T18:35:44.660659248Z [34m│[0m [36mINFO[0m[0168] Adding exposed port: 3000/tcp                
+frontend 2026-03-31T18:35:44.660834423Z [34m│[0m [36mINFO[0m[0168] Unpacking rootfs as cmd COPY frontend/public ./public requires it. 
+frontend 2026-03-31T18:35:45.738516624Z [34m│[0m [36mINFO[0m[0169] Initializing snapshotter ...                 
+frontend 2026-03-31T18:35:45.738549130Z [34m│[0m [36mINFO[0m[0169] Taking snapshot of full filesystem...        
+frontend 2026-03-31T18:35:47.004719591Z [34m│[0m [36mINFO[0m[0170] WORKDIR /app                                 
+frontend 2026-03-31T18:35:47.004774867Z [34m│[0m [36mINFO[0m[0170] Cmd: workdir                                 
+frontend 2026-03-31T18:35:47.004778819Z [34m│[0m [36mINFO[0m[0170] Changed working directory to /app            
+frontend 2026-03-31T18:35:47.004781175Z [34m│[0m [36mINFO[0m[0170] Creating directory /app with uid -1 and gid -1 
+frontend 2026-03-31T18:35:47.005255649Z [34m│[0m [36mINFO[0m[0170] Taking snapshot of files...                  
+frontend 2026-03-31T18:35:47.006526132Z [34m│[0m [36mINFO[0m[0170] ENV NODE_ENV production                      
+frontend 2026-03-31T18:35:47.008243205Z [34m│[0m [36mINFO[0m[0170] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:35:47.008250939Z [34m│[0m [36mINFO[0m[0170] ENV NEXT_TELEMETRY_DISABLED 1                
+frontend 2026-03-31T18:35:47.008652605Z [34m│[0m [36mINFO[0m[0170] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:35:47.008657354Z [34m│[0m [36mINFO[0m[0170] RUN addgroup --system --gid 1001 nodejs      
+frontend 2026-03-31T18:35:47.008659758Z [34m│[0m [36mINFO[0m[0170] Found cached layer, extracting to filesystem 
+frontend 2026-03-31T18:35:47.048957460Z [34m│[0m [36mINFO[0m[0170] RUN adduser --system --uid 1001 nextjs       
+frontend 2026-03-31T18:35:47.048981087Z [34m│[0m [36mINFO[0m[0170] Found cached layer, extracting to filesystem 
+frontend 2026-03-31T18:35:47.221474150Z [34m│[0m [36mINFO[0m[0170] COPY frontend/public ./public                
+frontend 2026-03-31T18:35:47.295176877Z [34m│[0m [36mINFO[0m[0171] Taking snapshot of files...                  
+frontend 2026-03-31T18:35:48.973258200Z [34m│[0m [36mINFO[0m[0172] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./ 
+frontend 2026-03-31T18:35:49.537605697Z [34m│[0m [36mINFO[0m[0173] Taking snapshot of files...                  
+frontend 2026-03-31T18:35:51.051576721Z [34m│[0m [36mINFO[0m[0174] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static 
+frontend 2026-03-31T18:35:51.089179889Z [34m│[0m [36mINFO[0m[0174] Taking snapshot of files...                  
+frontend 2026-03-31T18:35:51.294520805Z [34m│[0m [36mINFO[0m[0175] USER nextjs                                  
+frontend 2026-03-31T18:35:51.294548757Z [34m│[0m [36mINFO[0m[0175] Cmd: USER                                    
+frontend 2026-03-31T18:35:51.297497054Z [34m│[0m [36mINFO[0m[0175] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:35:51.297518048Z [34m│[0m [36mINFO[0m[0175] EXPOSE 3000                                  
+frontend 2026-03-31T18:35:51.297520956Z [34m│[0m [36mINFO[0m[0175] Cmd: EXPOSE                                  
+frontend 2026-03-31T18:35:51.297523345Z [34m│[0m [36mINFO[0m[0175] Adding exposed port: 3000/tcp                
+frontend 2026-03-31T18:35:51.297526289Z [34m│[0m [36mINFO[0m[0175] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:35:51.297528643Z [34m│[0m [36mINFO[0m[0175] ENV PORT 3000                                
+frontend 2026-03-31T18:35:51.297531004Z [34m│[0m [36mINFO[0m[0175] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:35:51.297717197Z [34m│[0m [36mINFO[0m[0175] ENV HOSTNAME "0.0.0.0"                       
+frontend 2026-03-31T18:35:51.297906774Z [34m│[0m [36mINFO[0m[0175] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:35:51.297911570Z [34m│[0m [36mINFO[0m[0175] CMD ["node", "server.js"]                    
+frontend 2026-03-31T18:35:51.297914015Z [34m│[0m [36mINFO[0m[0175] No files changed in this command, skipping snapshotting. 
+frontend 2026-03-31T18:35:51.298609012Z [34m│[0m [36mINFO[0m[0175] Pushing image to <image-8> 
+frontend 2026-03-31T18:35:55.314815717Z [34m│[0m [36mINFO[0m[0179] Pushed <registry-uri-9> 
+frontend 2026-03-31T18:35:55.324502810Z [34m│[0m 
+frontend 2026-03-31T18:35:55.655004844Z [34m│[0m [32m ✔ built and uploaded app container image to DOCR[0m
+frontend 2026-03-31T18:35:55.656583751Z [34m╰──────────────────────────────────────────╼[0m
+frontend 2026-03-31T18:35:55.656604890Z 
+frontend 2026-03-31T18:35:55.661604735Z [32m ✔ [0m[30m[42m build complete [0m[0m
+frontend 2026-03-31T18:35:55.661731300Z 
