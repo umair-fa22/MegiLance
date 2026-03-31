@@ -17,6 +17,7 @@ from app.schemas.milestone import (
 )
 from app.services import milestones_service
 from app.services.db_utils import paginate_params
+from app.services.email_service import email_service
 
 router = APIRouter()
 
@@ -223,6 +224,29 @@ async def approve_milestone(
         priority="high",
         action_url=f"/payments/{payment_id}" if payment_id else f"/milestones/{milestone_id}"
     )
+
+    # Send payment receipt emails
+    freelancer_email = milestones_service.get_user_email(freelancer_id)
+    freelancer_name = milestones_service.get_user_name(freelancer_id)
+    if freelancer_email:
+        try:
+            email_service.send_milestone_approved_notification(
+                to_email=freelancer_email,
+                freelancer_name=freelancer_name or "Freelancer",
+                milestone_title=title,
+                amount=freelancer_amount
+            )
+            if payment_id:
+                email_service.send_payment_received_notification(
+                    to_email=freelancer_email,
+                    user_name=freelancer_name or "Freelancer",
+                    amount=freelancer_amount,
+                    payment_id=payment_id
+                )
+        except Exception as e:
+            # Log but don't fail the request if email fails
+            import logging
+            logging.getLogger(__name__).warning(f"Failed to send payment email: {e}")
 
     # Auto-complete contract if all milestones are approved (#204)
     milestones_service.check_and_complete_contract(contract_id)

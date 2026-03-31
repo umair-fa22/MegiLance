@@ -21,8 +21,10 @@
 /*   HEADING - GLOW GRADIENTS                   */
 /* ============================================= */
 .mainHeading {
-  color: #f1f5f9;
-  text-shadow: 0 0 40px rgba(69, 115, 223, 0.15);
+  color: #ffffff; /* Pure white for better contrast against dark background */
+  text-shadow: 
+    0 0 40px rgba(69, 115, 223, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.5); /* Add shadow for depth and readability */
 }
 
 .headingGradient {

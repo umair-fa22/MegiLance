@@ -1,10 +1,12 @@
 // @AI-HINT: Public user profile - portfolio showcase, reviews, contact. Fully theme-aware with CSS modules.
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useTheme } from 'next-themes';
+import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
+import { useAuth } from '@/hooks/useAuth';
 import {
   Star, MapPin, Clock, CheckCircle, DollarSign,
   Linkedin, Github, Globe, Mail, Phone,
@@ -53,11 +55,14 @@ interface UserProfileProps {
 
 export default function UserProfile({ userId }: UserProfileProps) {
   const { resolvedTheme } = useTheme();
+  const router = useRouter();
+  const { user: currentUser, isAuthenticated } = useAuth();
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState<any>(null);
   const [portfolio, setPortfolio] = useState<PortfolioItem[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [selectedPortfolioItem, setSelectedPortfolioItem] = useState<PortfolioItem | null>(null);
+  const [contactLoading, setContactLoading] = useState(false);
 
   const themed = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
@@ -155,6 +160,42 @@ export default function UserProfile({ userId }: UserProfileProps) {
     const sum = reviews.reduce((acc, review) => acc + review.rating, 0);
     return sum / reviews.length;
   };
+
+  const handleContact = useCallback(async () => {
+    setContactLoading(true);
+    try {
+      if (!isAuthenticated || !currentUser) {
+        router.push('/login?redirect=' + encodeURIComponent(`/freelancers/${userId}`));
+        return;
+      }
+      
+      const currentUserId = currentUser.id;
+      const currentRole = currentUser.role || 'client';
+      
+      // Determine client/freelancer IDs based on current user role
+      const conversationData = currentRole === 'freelancer'
+        ? { client_id: Number(userId), freelancer_id: Number(currentUserId) }
+        : { client_id: Number(currentUserId), freelancer_id: Number(userId) };
+      
+      const result = await api.messages.createConversation(conversationData) as { id?: number; conversation_id?: number } | undefined;
+      const conversationId = result?.id || result?.conversation_id;
+      if (conversationId) {
+        router.push(`/messages?conversation=${conversationId}`);
+      } else {
+        router.push(`/messages`);
+      }
+    } catch (error) {
+      console.error('Failed to start conversation:', error);
+      // Fallback: just navigate to messages
+      router.push('/messages');
+    } finally {
+      setContactLoading(false);
+    }
+  }, [userId, router, isAuthenticated, currentUser]);
+
+  const handleHire = useCallback(() => {
+    router.push(`/client/post-job?freelancer=${userId}`);
+  }, [userId, router]);
 
   if (loading) {
     return (
@@ -293,11 +334,22 @@ export default function UserProfile({ userId }: UserProfileProps) {
         </div>
 
         <div className={cn(commonStyles.actions, themed.actions)}>
-          <Button variant="primary" size="lg" aria-label={`Contact ${profile.name}`}>
+          <Button 
+            variant="primary" 
+            size="lg" 
+            aria-label={`Contact ${profile.name}`}
+            onClick={handleContact}
+            disabled={contactLoading}
+          >
             <Mail size={16} aria-hidden="true" />
-            Contact
+            {contactLoading ? 'Starting chat...' : 'Contact'}
           </Button>
-          <Button variant="secondary" size="lg" aria-label={`Hire ${profile.name}`}>
+          <Button 
+            variant="secondary" 
+            size="lg" 
+            aria-label={`Hire ${profile.name}`}
+            onClick={handleHire}
+          >
             Hire Now
           </Button>
         </div>

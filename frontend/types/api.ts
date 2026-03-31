@@ -504,7 +504,9 @@ export interface MilestoneUpdateData {
 }
 
 export interface ConversationCreateData {
-  participant_ids: number[];
+  participant_ids?: number[];
+  client_id?: number;
+  freelancer_id?: number;
   subject?: string;
   project_id?: number;
 }

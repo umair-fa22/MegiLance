@@ -257,3 +257,19 @@ def reject_milestone(milestone_id: int, rejection_notes: str):
 def delete_milestone(milestone_id: int):
     """Delete a milestone record."""
     execute_query("DELETE FROM milestones WHERE id = ?", [milestone_id])
+
+
+def get_user_email(user_id: int) -> Optional[str]:
+    """Get user email by ID."""
+    result = execute_query("SELECT email FROM users WHERE id = ?", [user_id])
+    if result and result.get("rows"):
+        return to_str(result["rows"][0][0])
+    return None
+
+
+def get_user_name(user_id: int) -> Optional[str]:
+    """Get user name by ID."""
+    result = execute_query("SELECT name FROM users WHERE id = ?", [user_id])
+    if result and result.get("rows"):
+        return to_str(result["rows"][0][0])
+    return None

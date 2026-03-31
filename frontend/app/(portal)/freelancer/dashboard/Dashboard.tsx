@@ -118,9 +118,38 @@ const Dashboard: React.FC = () => {
     const fetchEarnings = async () => {
       try {
         const data = await apiFetch('/portal/freelancer/earnings/monthly?months=6') as { earnings?: { month: string; amount: number }[] };
-        setEarningsData(data.earnings || []);
+        const earningsArray = data.earnings || [];
+        
+        // Show chart even with no data (will display empty state)
+        if (earningsArray.length === 0) {
+          // Generate empty months for past 6 months
+          const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+          const now = new Date();
+          const emptyData = [];
+          for (let i = 5; i >= 0; i--) {
+            const date = new Date(now.getFullYear(), now.getMonth() - i, 1);
+            emptyData.push({
+              month: monthNames[date.getMonth()],
+              amount: 0
+            });
+          }
+          setEarningsData(emptyData);
+        } else {
+          setEarningsData(earningsArray);
+        }
       } catch {
-        // Earnings chart is optional
+        // Show empty chart on error
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const now = new Date();
+        const emptyData = [];
+        for (let i = 5; i >= 0; i--) {
+          const date = new Date(now.getFullYear(), now.getMonth() - i, 1);
+          emptyData.push({
+            month: monthNames[date.getMonth()],
+            amount: 0
+          });
+        }
+        setEarningsData(emptyData);
       }
     };
     
@@ -414,13 +443,11 @@ const Dashboard: React.FC = () => {
       </div>
       </section>
 
-      {/* Earnings Chart */}
-      {earningsData.length > 0 && (
-        <div className={commonStyles.sectionContainer}>
-          <h2 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Monthly Earnings</h2>
-          <EarningsChart data={earningsData} />
-        </div>
-      )}
+      {/* Earnings Chart - Always show, displays empty state if no data */}
+      <div className={commonStyles.sectionContainer}>
+        <h2 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Monthly Earnings</h2>
+        <EarningsChart data={earningsData} />
+      </div>
 
       {/* Quick Actions */}
       <section aria-label="Quick actions">

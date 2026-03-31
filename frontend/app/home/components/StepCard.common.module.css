@@ -132,7 +132,8 @@
 
 .stepNumber {
   position: absolute;
-  bottom: 0.5rem;
+  top: 0.75rem;
+  right: 1rem;
   font-family: var(--font-heading);
   font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 800;
@@ -143,11 +144,12 @@
 }
 
 .client .stepNumber {
-  right: 0.5rem;
+  right: 1rem;
 }
 
 .freelancer .stepNumber {
-  left: 0.5rem;
+  right: 1rem;
+  left: auto;
 }
 
 /* Responsive Design */
@@ -174,6 +176,7 @@
   }
   
   .client .stepNumber, .freelancer .stepNumber {
+    top: 0.5rem;
     right: 0.75rem;
     left: auto;
   }

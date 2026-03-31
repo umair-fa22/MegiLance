@@ -52,6 +52,7 @@ const GigsList: React.FC = () => {
   const router = useRouter();
   const [gigs, setGigs] = useState<Gig[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [sortBy, setSortBy] = useState('newest');
@@ -61,12 +62,20 @@ const GigsList: React.FC = () => {
   useEffect(() => {
     const fetchGigs = async () => {
       try {
+        setError(null);
         const data = await gigsApi.myGigs();
         const items = data as any;
         setGigs(Array.isArray(items) ? items : items?.items || items?.gigs || []);
-      } catch (error) {
+      } catch (err: any) {
         if (process.env.NODE_ENV === 'development') {
-          console.error('Failed to fetch gigs:', error);
+          console.error('Failed to fetch gigs:', err);
+        }
+        // Handle auth errors gracefully
+        if (err?.message?.includes('Unauthorized') || err?.status === 401) {
+          setError('Please sign in to view your gigs');
+        } else {
+          // Don't show error, just show empty state
+          setError(null);
         }
         setGigs([]);
       } finally {
@@ -165,6 +174,22 @@ const GigsList: React.FC = () => {
         <div className={common.container}>
           <div className={common.emptyState}>
             Loading gigs...
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  if (error) {
+    return (
+      <main className={cn(common.page, themed.themeWrapper)}>
+        <div className={common.container}>
+          <div className={common.emptyState}>
+            <Package className={cn(common.emptyIcon, themed.emptyIcon)} size={48} />
+            <h2 className={cn(common.emptyTitle, themed.emptyTitle)}>{error}</h2>
+            <Button variant="primary" onClick={() => router.push('/login')}>
+              Sign In
+            </Button>
           </div>
         </div>
       </main>

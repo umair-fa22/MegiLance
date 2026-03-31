@@ -438,6 +438,38 @@ class MatchingEngine:
 
     def _calculate_recency_score(self, freelancer_id: int) -> float:
         """Score based on how recently the freelancer was active."""
+        result = execute_query(
+            "SELECT MAX(created_at) as last_activity FROM proposals WHERE freelancer_id = ?",
+            [freelancer_id]
+        )
+        rows = parse_rows(result)
+        last_activity_str = rows[0]["last_activity"] if rows and rows[0].get("last_activity") else None
+
+        if not last_activity_str:
+            result = execute_query(
+                "SELECT MAX(created_at) as last_activity FROM contracts WHERE freelancer_id = ?",
+                [freelancer_id]
+            )
+            rows = parse_rows(result)
+            last_activity_str = rows[0]["last_activity"] if rows and rows[0].get("last_activity") else None
+
+        if not last_activity_str:
+            return 0.3  # New freelancer - neutral-low
+
+        try:
+            last_activity = datetime.fromisoformat(str(last_activity_str).replace("Z", "+00:00"))
+            days_ago = (datetime.utcnow() - last_activity.replace(tzinfo=None)).days
+        except (ValueError, TypeError):
+            return 0.3
+
+        if days_ago <= 7:
+            return 1.0
+        elif days_ago <= 30:
+            return 0.8
+        elif days_ago <= 90:
+            return 0.5
+        else:
+            return 0.2
 
     def _calculate_sentiment_score(self, freelancer_id: int) -> float:
         """
@@ -484,38 +516,6 @@ class MatchingEngine:
         except Exception as e:
             logger.warning("Sentiment score calculation failed: %s", e)
             return 0.5
-        result = execute_query(
-            "SELECT MAX(created_at) as last_activity FROM proposals WHERE freelancer_id = ?",
-            [freelancer_id]
-        )
-        rows = parse_rows(result)
-        last_activity_str = rows[0]["last_activity"] if rows and rows[0].get("last_activity") else None
-
-        if not last_activity_str:
-            result = execute_query(
-                "SELECT MAX(created_at) as last_activity FROM contracts WHERE freelancer_id = ?",
-                [freelancer_id]
-            )
-            rows = parse_rows(result)
-            last_activity_str = rows[0]["last_activity"] if rows and rows[0].get("last_activity") else None
-
-        if not last_activity_str:
-            return 0.3  # New freelancer - neutral-low
-
-        try:
-            last_activity = datetime.fromisoformat(str(last_activity_str).replace("Z", "+00:00"))
-            days_ago = (datetime.utcnow() - last_activity.replace(tzinfo=None)).days
-        except (ValueError, TypeError):
-            return 0.3
-
-        if days_ago <= 7:
-            return 1.0
-        elif days_ago <= 30:
-            return 0.8
-        elif days_ago <= 90:
-            return 0.5
-        else:
-            return 0.2
     
     def get_recommended_freelancers(
         self,

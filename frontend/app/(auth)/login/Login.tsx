@@ -273,7 +273,17 @@ const Login: React.FC = () => {
         throw new Error('No authorization URL returned');
       }
     } catch (error: any) {
-      setErrors({ email: '', password: '', general: error.message || `Sign in with ${provider} failed.` });
+      // Check for common OAuth configuration issues
+      const errorMsg = error.message || '';
+      if (errorMsg.includes('not configured') || errorMsg.includes('Missing client') || errorMsg.includes('client ID')) {
+        setErrors({ 
+          email: '', 
+          password: '', 
+          general: `${provider === 'google' ? 'Google' : 'GitHub'} sign-in is being configured. Please use email/password login for now.` 
+        });
+      } else {
+        setErrors({ email: '', password: '', general: error.message || `Sign in with ${provider} failed.` });
+      }
       setLoading(false);
     }
   };

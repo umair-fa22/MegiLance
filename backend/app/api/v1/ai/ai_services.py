@@ -15,9 +15,32 @@ logger = logging.getLogger("megilance")
 from app.core.security import get_current_user
 from app.models.project import ProjectCategory
 from app.services import ai_services_service
+from app.services.llm_gateway import llm_gateway
 
 router = APIRouter(tags=["AI Services"])  # Prefix is added in routers.py
 
+# System prompt for the MegiLance chatbot
+CHATBOT_SYSTEM_PROMPT = """You are the MegiLance AI Assistant, a helpful and professional customer support agent for MegiLance - an AI-powered freelancing platform.
+
+Your capabilities:
+- Answer questions about how MegiLance works
+- Explain the freelancer hiring process
+- Describe payment protection and escrow system
+- Help users understand project posting, proposals, and contracts
+- Provide guidance on platform features
+- Be friendly, concise, and professional
+
+Key MegiLance features you should know:
+1. Escrow Protection: Funds are held securely until work is approved
+2. Milestone-based Payments: Projects can be split into paid milestones
+3. Smart Matching: AI recommends freelancers based on skills and project needs
+4. Reviews & Ratings: Both clients and freelancers are rated
+5. Secure Messaging: Built-in chat with file sharing
+6. Contract Builder: Create professional contracts with templates
+
+If asked about specific account issues, pricing, or technical problems, suggest contacting support@megilance.site or visiting the Help Center.
+
+Keep responses concise (under 150 words) unless detailed explanation is needed."""
 
 # ============ Chatbot Endpoint ============
 
@@ -26,37 +49,60 @@ async def ai_chatbot(
     message: str,
 ):
     """
-    AI Chatbot endpoint - responds to user queries
+    AI Chatbot endpoint - responds to user queries using LLM
     
     **No authentication required** - public chatbot
     """
-    # Simple rule-based responses for now
+    # Use LLM for intelligent responses
+    try:
+        response = await llm_gateway.generate_text(
+            prompt=message,
+            system_message=CHATBOT_SYSTEM_PROMPT,
+            max_tokens=300,
+            temperature=0.7
+        )
+        
+        if response and not response.startswith("Error") and not response.startswith("AI service"):
+            return {
+                "response": response,
+                "confidence": 0.9,
+                "source": "llm"
+            }
+    except Exception as e:
+        logger.warning(f"LLM chatbot failed: {e}")
+    
+    # Fallback to rule-based responses if LLM fails
     message_lower = message.lower()
     
     if "hello" in message_lower or "hi" in message_lower:
         return {
             "response": "Hello! I'm MegiLance AI assistant. How can I help you today?",
-            "confidence": 0.95
+            "confidence": 0.95,
+            "source": "rules"
         }
     elif "price" in message_lower or "cost" in message_lower:
         return {
             "response": "I can help you estimate project costs! Please use the /ai/estimate-price endpoint with your project details.",
-            "confidence": 0.9
+            "confidence": 0.9,
+            "source": "rules"
         }
     elif "freelancer" in message_lower:
         return {
             "response": "Looking for freelancers? I can match you with the best talent for your project. Try posting a project first!",
-            "confidence": 0.85
+            "confidence": 0.85,
+            "source": "rules"
         }
     elif "help" in message_lower:
         return {
             "response": "I can assist with: project price estimation, freelancer matching, and answering questions about MegiLance. What would you like to know?",
-            "confidence": 0.9
+            "confidence": 0.9,
+            "source": "rules"
         }
     else:
         return {
-            "response": "Thanks for your message! I'm still learning. For now, try asking about pricing, freelancers, or help.",
-            "confidence": 0.6
+            "response": "Thanks for your message! I'm here to help with questions about MegiLance - hiring freelancers, posting projects, payments, and more. What would you like to know?",
+            "confidence": 0.6,
+            "source": "rules"
         }
 
 

@@ -47,6 +47,33 @@ const AdminPayments: React.FC = () => {
   const [status, setStatus] = useState<(typeof STATUSES)[number]>('All');
   const [role, setRole] = useState<(typeof ROLES)[number]>('All');
 
+  const handleExportCSV = () => {
+    if (filtered.length === 0) return;
+    
+    const headers = ['Date', 'User', 'Role', 'Type', 'Amount', 'Status'];
+    const csvRows = filtered.map(row => [
+      row.date,
+      row.user,
+      row.role,
+      row.type,
+      row.amount,
+      row.status
+    ]);
+    
+    const csvContent = [
+      headers.join(','),
+      ...csvRows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+    
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `admin-payments-${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return rows.filter(t =>
@@ -91,7 +118,7 @@ const AdminPayments: React.FC = () => {
             <select id="role" className={cn(common.select, themed.select)} value={role} onChange={(e) => setRole(e.target.value as (typeof ROLES)[number])}>
               {ROLES.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
-            <button type="button" className={cn(common.button, themed.button)}>Export CSV</button>
+            <button type="button" className={cn(common.button, themed.button)} onClick={handleExportCSV} disabled={filtered.length === 0}>Export CSV</button>
           </div>
         </ScrollReveal>
 

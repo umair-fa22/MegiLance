@@ -20,6 +20,13 @@ logger = logging.getLogger("megilance")
 router = APIRouter(prefix="/matching", tags=["ai-matching"])
 
 
+def _user_field(user, field: str, default=None):
+    """Read auth user field from dict-like or object-like user payloads."""
+    if isinstance(user, dict):
+        return user.get(field, default)
+    return getattr(user, field, default)
+
+
 # Response Models
 class MatchFactors(BaseModel):
     """Match score breakdown"""
@@ -82,7 +89,7 @@ async def get_general_recommendations(
         # Check if client has active projects
         result = execute_query(
             "SELECT id, title FROM projects WHERE client_id = ? AND status IN ('open', 'in_progress') ORDER BY created_at DESC LIMIT 1",
-            [current_user["id"]]
+            [_user_field(current_user, "id")]
         )
         projects = parse_rows(result)
         
@@ -209,7 +216,7 @@ async def get_project_recommendations(
     - Availability
     - Historical success in similar projects
     """
-    freelancer_id = current_user["id"]
+    freelancer_id = _user_field(current_user, "id")
     matching_service = get_matching_service()
     
     try:
@@ -291,7 +298,7 @@ async def track_recommendation_click(
     
     try:
         matching_service.track_recommendation_click(
-            user_id=current_user["id"],
+            user_id=_user_field(current_user, "id"),
             item_type=item_type,
             item_id=item_id,
             score=score

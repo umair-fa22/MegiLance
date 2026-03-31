@@ -3,7 +3,9 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useTheme } from 'next-themes';
 import { ChevronDown } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import commonStyles from './FaqItem.common.module.css';
 import lightStyles from './FaqItem.light.module.css';
 import darkStyles from './FaqItem.dark.module.css';
@@ -15,31 +17,25 @@ interface FaqItemProps {
 
 export const FaqItem: React.FC<FaqItemProps> = ({ question, children }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { resolvedTheme } = useTheme();
 
-  const itemClasses = [
-    commonStyles.item,
-    lightcommonStyles.theme,
-    darkcommonStyles.theme,
-  ].join(' ');
+  if (!resolvedTheme) return null;
+  const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
-  const chevronClasses = [
-    commonStyles.chevron,
-    isOpen ? commonStyles.chevronOpen : ''
-  ].join(' ');
+  const itemClasses = cn(commonStyles.item, themeStyles.item);
 
-  const answerClasses = [
-    commonStyles.answer,
-    isOpen ? commonStyles.answerOpen : ''
-  ].join(' ');
+  const chevronClasses = cn(commonStyles.chevron, themeStyles.chevron, isOpen && commonStyles.chevronOpen);
+
+  const answerClasses = cn(commonStyles.answer, isOpen && commonStyles.answerOpen);
 
   return (
     <div className={itemClasses}>
-      <button className={commonStyles.question} onClick={() => setIsOpen(!isOpen)}>
+      <button className={cn(commonStyles.question, themeStyles.question)} onClick={() => setIsOpen(!isOpen)}>
         <span>{question}</span>
         <ChevronDown className={chevronClasses} />
       </button>
       <div className={answerClasses}>
-        <div className={commonStyles.answerContent}>
+        <div className={cn(commonStyles.answerContent, themeStyles.answerContent)}>
           {children}
         </div>
       </div>

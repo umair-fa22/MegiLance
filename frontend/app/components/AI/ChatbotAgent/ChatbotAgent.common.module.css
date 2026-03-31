@@ -49,11 +49,14 @@
 }
 
 .chatbotContainer {
-  position: relative; /* Changed from static to relative for absolute positioning of window */
+  position: fixed; /* Fixed positioning to always be visible */
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999; /* Very high z-index to stay above everything */
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Critical: Ensures button stays right-aligned when window opens */
-  gap: 0; /* No gap needed - window will be absolutely positioned */
+  align-items: flex-end;
+  gap: 0;
 }
 
 .chatbotAgent {

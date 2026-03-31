@@ -1042,17 +1042,33 @@ export default function PaymentWizard({
     setIsSubmitting(true);
 
     try {
-      const data = flowType === 'withdrawal' ? withdrawalData : addFundsData;
-      const payload = {
-        ...data,
-        user_id: userId
-      };
-
       let result: any;
       if (flowType === 'withdrawal') {
-        result = await api.payments.withdraw(payload);
+        // Map wizard data to wallet API format
+        const withdrawPayload = {
+          amount: withdrawalData.amount,
+          method: withdrawalData.method === 'bank' ? 'bank_transfer' as const : 
+                  withdrawalData.method === 'paypal' ? 'paypal' as const :
+                  withdrawalData.method === 'crypto' ? 'crypto' as const : 'wise' as const,
+          destination: withdrawalData.method === 'bank' 
+            ? `${withdrawalData.bankName || ''} - ****${(withdrawalData.accountNumber || '').slice(-4)}`
+            : withdrawalData.method === 'paypal' 
+            ? withdrawalData.paypalEmail || ''
+            : withdrawalData.method === 'crypto'
+            ? withdrawalData.cryptoWallet || ''
+            : withdrawalData.stripeAccountId || '',
+          currency: 'USD',
+        };
+        result = await api.wallet.withdraw(withdrawPayload);
       } else {
-        result = await api.payments.addFunds(payload);
+        // Map wizard data to wallet deposit API format
+        const depositPayload = {
+          amount: addFundsData.amount,
+          method: addFundsData.method === 'card' ? 'card' as const :
+                  addFundsData.method === 'bank' ? 'bank_transfer' as const : 'crypto' as const,
+          currency: 'USD',
+        };
+        result = await api.wallet.deposit(depositPayload);
       }
 
       // Clear draft

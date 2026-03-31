@@ -25,6 +25,7 @@ from .v1.core_domain import bulk_operations
 from .v1.core_domain import client
 from .v1.core_domain import community
 from .v1.core_domain import compliance
+from .v1.core_domain import contact
 from .v1.core_domain import contract_builder
 from .v1.core_domain import contract_builder_standalone
 from .v1.core_domain import custom_fields
@@ -51,6 +52,7 @@ from .v1.core_domain import learning_center
 from .v1.core_domain import legal_documents
 from .v1.core_domain import marketplace
 from .v1.core_domain import moderation
+from .v1.core_domain import newsletter
 from .v1.core_domain import notes_tags
 from .v1.core_domain import notifications
 from .v1.core_domain import notifications_pro
@@ -263,6 +265,9 @@ api_router.include_router(referrals.router, prefix="/referrals", tags=["referral
 # Content Moderation - AI-powered content safety
 api_router.include_router(moderation.router, prefix="/moderation", tags=["moderation"])
 
+# Newsletter - Email subscription
+api_router.include_router(newsletter.router, tags=["newsletter"])
+
 # Bulk Operations - Batch processing
 api_router.include_router(bulk_operations.router, prefix="/bulk", tags=["bulk-operations"])
 
@@ -331,6 +336,9 @@ api_router.include_router(portfolio_builder.router, tags=["portfolio-builder"])
 
 # Compliance Center - GDPR and regulatory compliance
 api_router.include_router(compliance.router, tags=["compliance"])
+
+# Contact Form - Customer inquiries
+api_router.include_router(contact.router, tags=["contact"])
 
 # Learning Center - Tutorials and courses
 api_router.include_router(learning_center.router, tags=["learning-center"])
