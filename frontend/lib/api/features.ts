@@ -164,7 +164,7 @@ export const rateCardsApi = {
     currency?: string;
     description?: string;
   }) =>
-    apiFetch('/rate-cards/', {
+    apiFetch(\'/rate-cards\', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -213,7 +213,7 @@ export const proposalTemplatesApi = {
   getMyTemplates: (tag?: string, page = 1, pageSize = 20) => {
     const params = new URLSearchParams({ page: page.toString(), page_size: pageSize.toString() });
     if (tag) params.append('tag', tag);
-    return apiFetch(`/proposal-templates/?${params}`);
+    return apiFetch(`/proposal-templates?${params}`);
   },
   create: (data: {
     name: string;
@@ -223,7 +223,7 @@ export const proposalTemplatesApi = {
     default_rate?: number;
     tags?: string[];
   }) =>
-    apiFetch('/proposal-templates/', {
+    apiFetch(\'/proposal-templates\', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -278,7 +278,7 @@ export const timeEntriesApi = {
   list: (contractId?: number, page = 1, pageSize = 50) => {
     const params = new URLSearchParams({ page: page.toString(), page_size: pageSize.toString() });
     if (contractId) params.append('contract_id', contractId.toString());
-    return apiFetch(`/time-entries/?${params}`);
+    return apiFetch(`/time-entries?${params}`);
   },
 
   create: (data: {
@@ -287,7 +287,7 @@ export const timeEntriesApi = {
     hours: number;
     date: string;
   }) =>
-    apiFetch('/time-entries/', {
+    apiFetch(\'/time-entries\', {
       method: 'POST',
       body: JSON.stringify(data),
     }),

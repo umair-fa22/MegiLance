@@ -56,7 +56,7 @@ export const messagesApi = {
 
 export const notificationsApi = {
   list: (page = 1, pageSize = 20) =>
-    apiFetch(`/notifications/?page=${page}&page_size=${pageSize}`),
+    apiFetch(`/notifications?page=${page}&page_size=${pageSize}`),
 
   markAsRead: (notificationId: ResourceId) =>
     apiFetch(`/notifications/${notificationId}`, { 
@@ -108,5 +108,5 @@ export const realtimeApi = {
     apiFetch<{ user_id: number; online: boolean }>(`/realtime/user-status/${userId}`),
 
   getNotificationCount: () =>
-    apiFetch<{ unread_count: number }>('/notifications/unread-count'),
+    apiFetch<{ unread_count: number }>('/notifications/unread/count'),
 };

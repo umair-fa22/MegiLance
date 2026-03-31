@@ -64,10 +64,10 @@ export const gigsApi = {
 };
 
 export const jobAlertsApi = {
-  list: () => apiFetch('/job-alerts/'),
-  getAll: () => apiFetch('/job-alerts/'),
+  list: () => apiFetch(\'/job-alerts\'),
+  getAll: () => apiFetch(\'/job-alerts\'),
   create: (data: Record<string, unknown>) =>
-    apiFetch('/job-alerts/', {
+    apiFetch(\'/job-alerts\', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -108,7 +108,7 @@ export const clientApi = {
   },
   getReviews: async () => {
     try {
-      const response = await apiFetch<{ reviews: Record<string, unknown>[] }>('/reviews/?page_size=10');
+      const response = await apiFetch<{ reviews: Record<string, unknown>[] }>('/reviews?page_size=10');
       const reviews = response.reviews || response;
       return Array.isArray(reviews) ? reviews.map((r: Record<string, unknown>) => ({
         id: String(r.id),
@@ -131,7 +131,7 @@ export const clientApi = {
 
 export const supportTicketsApi = {
   create: (data: { subject: string; description?: string; message?: string; category?: string; priority?: string } | FormData) =>
-    apiFetch('/support-tickets/', {
+    apiFetch(\'/support-tickets\', {
       method: 'POST',
       body: data instanceof FormData ? data : JSON.stringify(data),
     }),
@@ -170,7 +170,7 @@ export const matchingApi = {
 
 export const disputesApi = {
   create: (data: DisputeCreateData | FormData) =>
-    apiFetch('/disputes/', {
+    apiFetch(\'/disputes\', {
       method: 'POST',
       body: data instanceof FormData ? data : JSON.stringify(data),
     }),
@@ -181,7 +181,7 @@ export const disputesApi = {
         if (value !== undefined) params.append(key, value.toString());
       });
     }
-    return apiFetch(`/disputes/?${params}`);
+    return apiFetch(`/disputes?${params}`);
   },
   get: (disputeId: ResourceId) =>
     apiFetch(`/disputes/${disputeId}`),
@@ -228,7 +228,7 @@ export const reviewsApi = {
     professionalism_rating?: number;
     would_recommend?: boolean;
   }) =>
-    apiFetch('/reviews/', {
+    apiFetch(\'/reviews\', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -239,7 +239,7 @@ export const reviewsApi = {
         if (value !== undefined) params.append(key, value.toString());
       });
     }
-    return apiFetch(`/reviews/?${params}`);
+    return apiFetch(`/reviews?${params}`);
   },
   getForUser: (userId: ResourceId) => apiFetch(`/reviews/user/${userId}`),
   getForContract: (contractId: ResourceId) => apiFetch(`/reviews/contract/${contractId}`),

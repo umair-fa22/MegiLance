@@ -4,9 +4,9 @@ import type { ResourceId } from './core';
 import type { WorkflowAction } from '@/types/api';
 
 export const webhooksApi = {
-  list: () => apiFetch('/webhooks/'),
+  list: () => apiFetch(\'/webhooks\'),
   create: (data: { url: string; events: string[]; secret?: string }) =>
-    apiFetch('/webhooks/', {
+    apiFetch(\'/webhooks\', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -23,9 +23,9 @@ export const webhooksApi = {
 };
 
 export const apiKeysApi = {
-  list: () => apiFetch('/api-keys/'),
+  list: () => apiFetch(\'/api-keys\'),
   create: (data: { name: string; scopes: string[]; expires_at?: string }) =>
-    apiFetch('/api-keys/', {
+    apiFetch(\'/api-keys\', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -35,9 +35,9 @@ export const apiKeysApi = {
 };
 
 export const teamsApi = {
-  list: () => apiFetch('/teams/'),
+  list: () => apiFetch(\'/teams\'),
   create: (data: { name: string; description?: string }) =>
-    apiFetch('/teams/', {
+    apiFetch(\'/teams\', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -64,9 +64,9 @@ export const teamsApi = {
 };
 
 export const workflowApi = {
-  list: () => apiFetch('/workflows/'),
+  list: () => apiFetch(\'/workflows\'),
   create: (data: { name: string; trigger: string; actions: WorkflowAction[] }) =>
-    apiFetch('/workflows/', {
+    apiFetch(\'/workflows\', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -151,7 +151,7 @@ export const emailTemplatesApi = {
 };
 
 export const integrationsApi = {
-  list: () => apiFetch('/integrations/'),
+  list: () => apiFetch(\'/integrations\'),
   get: (integrationId: ResourceId) => apiFetch(`/integrations/${integrationId}`),
   connect: (provider: string, data?: Record<string, string>) =>
     apiFetch(`/integrations/${provider}/connect`, {

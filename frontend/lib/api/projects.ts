@@ -46,11 +46,11 @@ export const contractsApi = {
         if (value !== undefined) params.append(key, value.toString());
       });
     }
-    return apiFetch(`/contracts/?${params}`);
+    return apiFetch(`/contracts?${params}`);
   },
 
   create: (data: ContractCreateData) =>
-    apiFetch('/contracts/', {
+    apiFetch(\'/contracts\', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -98,7 +98,7 @@ export const proposalsApi = {
         if (value !== undefined) params.append(key, value.toString());
       });
     }
-    return apiFetch(`/proposals/?${params}`);
+    return apiFetch(`/proposals?${params}`);
   },
 
   getDrafts: (projectId?: ResourceId) => {
@@ -118,7 +118,7 @@ export const proposalsApi = {
     availability?: string;
     attachments?: string;
   }) =>
-    apiFetch('/proposals/', {
+    apiFetch(\'/proposals\', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -166,12 +166,12 @@ export const proposalsApi = {
 
 export const milestonesApi = {
   create: (data: MilestoneCreateData) =>
-    apiFetch('/milestones/', {
+    apiFetch(\'/milestones\', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
     
-  list: (projectId: ResourceId) => apiFetch(`/milestones/?project_id=${projectId}`),
+  list: (projectId: ResourceId) => apiFetch(`/milestones?project_id=${projectId}`),
   
   get: (id: ResourceId) => apiFetch(`/milestones/${id}`),
   

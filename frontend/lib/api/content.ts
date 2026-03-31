@@ -22,7 +22,7 @@ export const knowledgeBaseApi = {
 };
 
 export const legalDocsApi = {
-  getDocuments: () => apiFetch('/legal-documents/'),
+  getDocuments: () => apiFetch(\'/legal-documents\'),
   getDocument: (docType: string) => apiFetch(`/legal-documents/${docType}`),
   getVersion: (docType: string, version: string) =>
     apiFetch(`/legal-documents/${docType}/versions/${version}`),
@@ -57,7 +57,7 @@ export const activityFeedApi = {
         if (value !== undefined) params.append(key, value.toString());
       });
     }
-    return apiFetch(`/activity-feed/?${params}`);
+    return apiFetch(`/activity-feed?${params}`);
   },
   get: (activityId: ResourceId) => apiFetch(`/activity-feed/${activityId}`),
   markAsRead: (activityId: ResourceId) =>
@@ -128,7 +128,7 @@ export const externalProjectsApi = {
 
 export const userFeedbackApi = {
   submit: (data: { type: string; message: string; page?: string; rating?: number }) =>
-    apiFetch('/user-feedback/', {
+    apiFetch(\'/user-feedback\', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -139,7 +139,7 @@ export const userFeedbackApi = {
         if (value !== undefined) params.append(key, value.toString());
       });
     }
-    return apiFetch(`/user-feedback/?${params}`);
+    return apiFetch(`/user-feedback?${params}`);
   },
   get: (feedbackId: ResourceId) => apiFetch(`/user-feedback/${feedbackId}`),
   update: (feedbackId: ResourceId, data: { status?: string; admin_response?: string }) =>

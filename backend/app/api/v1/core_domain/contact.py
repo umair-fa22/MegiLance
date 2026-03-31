@@ -7,7 +7,8 @@ from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel, EmailStr
 from datetime import datetime
 import httpx
-from app.core.config import settings
+from app.core.config import get_settings
+settings = get_settings()
 import logging
 
 logger = logging.getLogger(__name__)

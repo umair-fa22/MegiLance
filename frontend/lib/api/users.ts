@@ -94,7 +94,7 @@ export const portalApi = {
           if (value !== undefined) params.append(key, value.toString());
         });
       }
-      return apiFetch(`/proposals/?${params}`);
+      return apiFetch(`/proposals?${params}`);
     },
     submitProposal: (data: {
       project_id: number;

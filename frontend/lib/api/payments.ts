@@ -8,7 +8,7 @@ import type {
 
 export const paymentsApi = {
   list: (page = 1, pageSize = 50) =>
-    apiFetch(`/payments/?page=${page}&page_size=${pageSize}`),
+    apiFetch(`/payments?page=${page}&page_size=${pageSize}`),
     
   get: (paymentId: ResourceId) =>
     apiFetch(`/payments/${paymentId}`),
@@ -37,7 +37,7 @@ export const paymentMethodsApi = {
 };
 
 export const walletApi = {
-  get: () => apiFetch('/wallet/'),
+  get: () => apiFetch(\'/wallet\'),
 
   deposit: (data: { amount: number; method: 'card' | 'bank_transfer' | 'crypto'; currency?: string }) =>
     apiFetch('/wallet/deposit', {
@@ -60,7 +60,7 @@ export const walletApi = {
 
 export const invoicesApi = {
   create: (data: { contract_id?: number; items?: { description: string; amount: number }[]; due_date?: string; notes?: string; [key: string]: unknown }) =>
-    apiFetch('/invoices/', {
+    apiFetch(\'/invoices\', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -72,7 +72,7 @@ export const invoicesApi = {
         if (value !== undefined) params.append(key, value.toString());
       });
     }
-    return apiFetch(`/invoices/?${params}`);
+    return apiFetch(`/invoices?${params}`);
   },
 
   get: (invoiceId: ResourceId) =>
@@ -99,7 +99,7 @@ export const invoicesApi = {
 
 export const escrowApi = {
   list: (page = 1, pageSize = 20) =>
-    apiFetch(`/escrow/?page=${page}&page_size=${pageSize}`),
+    apiFetch(`/escrow?page=${page}&page_size=${pageSize}`),
 
   get: (escrowId: ResourceId) =>
     apiFetch(`/escrow/${escrowId}`),
@@ -130,11 +130,11 @@ export const refundsApi = {
   list: (filter?: string, page = 1, pageSize = 20) => {
     const params = new URLSearchParams({ page: page.toString(), page_size: pageSize.toString() });
     if (filter) params.append('status', filter);
-    return apiFetch(`/refunds/?${params}`);
+    return apiFetch(`/refunds?${params}`);
   },
 
   request: (data: { payment_id: number; reason: string; amount?: number } | FormData) =>
-    apiFetch('/refunds/', {
+    apiFetch(\'/refunds\', {
       method: 'POST',
       body: data instanceof FormData ? data : JSON.stringify(data),
     }),
@@ -157,12 +157,12 @@ export const refundsApi = {
 
 export const payoutMethodsApi = {
   create: (data: PayoutMethodCreateData) =>
-    apiFetch('/payout-methods/', {
+    apiFetch(\'/payout-methods\', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
     
-  list: () => apiFetch('/payout-methods/'),
+  list: () => apiFetch(\'/payout-methods\'),
   
   get: (id: ResourceId) => apiFetch(`/payout-methods/${id}`),
   

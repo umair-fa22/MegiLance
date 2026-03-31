@@ -205,7 +205,8 @@ def get_financial_metrics() -> dict:
     if result and result.get("rows"):
         pending = float(_get_val(result["rows"][0], 0) or 0)
 
-    from app.core.config import settings
+    from app.core.config import get_settings
+    settings = get_settings()
     platform_fee_rate = settings.STRIPE_PLATFORM_FEE_PERCENT / 100.0
     platform_fees = total_revenue * platform_fee_rate
 
