@@ -67,11 +67,11 @@ export const searchApi = {
 };
 
 export const categoriesApi = {
-  list: () => apiFetch(\'/categories\'),
+  list: () => apiFetch('/categories'),
   getTree: () => apiFetch('/categories/tree'),
   getBySlug: (slug: string) => apiFetch(`/categories/${slug}`),
   create: (data: { name: string; slug: string; description?: string }) =>
-    apiFetch(\'/categories\', { method: 'POST', body: JSON.stringify(data) }),
+    apiFetch('/categories', { method: 'POST', body: JSON.stringify(data) }),
   update: (id: ResourceId, data: { name: string; slug: string; description?: string }) =>
     apiFetch(`/categories/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
   delete: (id: ResourceId) =>
@@ -90,7 +90,7 @@ export const tagsApi = {
   },
 
   create: (data: { name: string; type: 'skill' | 'priority' | 'location' | 'budget' | 'general' }) =>
-    apiFetch(\'/tags\', {
+    apiFetch('/tags', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -128,7 +128,7 @@ export const favoritesApi = {
     })}`),
 
   create: (targetType: 'project' | 'freelancer' | 'client', targetId: ResourceId) =>
-    apiFetch(\'/favorites\', {
+    apiFetch('/favorites', {
       method: 'POST',
       body: JSON.stringify({ target_type: targetType, target_id: targetId }),
     }),

@@ -37,7 +37,7 @@ export const paymentMethodsApi = {
 };
 
 export const walletApi = {
-  get: () => apiFetch(\'/wallet\'),
+  get: () => apiFetch('/wallet'),
 
   deposit: (data: { amount: number; method: 'card' | 'bank_transfer' | 'crypto'; currency?: string }) =>
     apiFetch('/wallet/deposit', {
@@ -60,7 +60,7 @@ export const walletApi = {
 
 export const invoicesApi = {
   create: (data: { contract_id?: number; items?: { description: string; amount: number }[]; due_date?: string; notes?: string; [key: string]: unknown }) =>
-    apiFetch(\'/invoices\', {
+    apiFetch('/invoices', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -134,7 +134,7 @@ export const refundsApi = {
   },
 
   request: (data: { payment_id: number; reason: string; amount?: number } | FormData) =>
-    apiFetch(\'/refunds\', {
+    apiFetch('/refunds', {
       method: 'POST',
       body: data instanceof FormData ? data : JSON.stringify(data),
     }),
@@ -157,12 +157,12 @@ export const refundsApi = {
 
 export const payoutMethodsApi = {
   create: (data: PayoutMethodCreateData) =>
-    apiFetch(\'/payout-methods\', {
+    apiFetch('/payout-methods', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
     
-  list: () => apiFetch(\'/payout-methods\'),
+  list: () => apiFetch('/payout-methods'),
   
   get: (id: ResourceId) => apiFetch(`/payout-methods/${id}`),
   

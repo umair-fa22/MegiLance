@@ -22,7 +22,7 @@ export const knowledgeBaseApi = {
 };
 
 export const legalDocsApi = {
-  getDocuments: () => apiFetch(\'/legal-documents\'),
+  getDocuments: () => apiFetch('/legal-documents'),
   getDocument: (docType: string) => apiFetch(`/legal-documents/${docType}`),
   getVersion: (docType: string, version: string) =>
     apiFetch(`/legal-documents/${docType}/versions/${version}`),
@@ -128,7 +128,7 @@ export const externalProjectsApi = {
 
 export const userFeedbackApi = {
   submit: (data: { type: string; message: string; page?: string; rating?: number }) =>
-    apiFetch(\'/user-feedback\', {
+    apiFetch('/user-feedback', {
       method: 'POST',
       body: JSON.stringify(data),
     }),

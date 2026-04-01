@@ -50,7 +50,7 @@ export const contractsApi = {
   },
 
   create: (data: ContractCreateData) =>
-    apiFetch(\'/contracts\', {
+    apiFetch('/contracts', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -118,7 +118,7 @@ export const proposalsApi = {
     availability?: string;
     attachments?: string;
   }) =>
-    apiFetch(\'/proposals\', {
+    apiFetch('/proposals', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -166,7 +166,7 @@ export const proposalsApi = {
 
 export const milestonesApi = {
   create: (data: MilestoneCreateData) =>
-    apiFetch(\'/milestones\', {
+    apiFetch('/milestones', {
       method: 'POST',
       body: JSON.stringify(data),
     }),

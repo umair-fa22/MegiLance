@@ -164,7 +164,7 @@ export const rateCardsApi = {
     currency?: string;
     description?: string;
   }) =>
-    apiFetch(\'/rate-cards\', {
+    apiFetch('/rate-cards', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -223,7 +223,7 @@ export const proposalTemplatesApi = {
     default_rate?: number;
     tags?: string[];
   }) =>
-    apiFetch(\'/proposal-templates\', {
+    apiFetch('/proposal-templates', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -287,7 +287,7 @@ export const timeEntriesApi = {
     hours: number;
     date: string;
   }) =>
-    apiFetch(\'/time-entries\', {
+    apiFetch('/time-entries', {
       method: 'POST',
       body: JSON.stringify(data),
     }),

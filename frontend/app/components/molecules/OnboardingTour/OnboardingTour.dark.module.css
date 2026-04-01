@@ -1,29 +1,42 @@
 .modal {
-  background-color: var(--card);
-  border: 1px solid var(--border);
+  background-color: var(--card, #1e293b);
+  border: 1px solid var(--border, #334155);
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
 }
 
 .imageContainer {
-  background: linear-gradient(135deg, #1e1b4b 0%, #1f2937 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-bottom: 1px solid var(--border, #334155);
+}
+
+.closeButton {
+  background: rgba(15, 23, 42, 0.8);
+  color: var(--text-secondary, #94a3b8);
+  border: 1px solid var(--border, #334155);
+}
+
+.closeButton:hover {
+  background: #334155;
+  color: var(--text-primary, #f8fafc);
 }
 
 .title {
-  color: var(--text-primary);
+  color: var(--text-primary, #f8fafc);
 }
 
 .description {
-  color: var(--text-secondary);
+  color: var(--text-secondary, #94a3b8);
 }
 
 .footer {
-  border-top: 1px solid var(--border);
-  background-color: var(--background);
+  border-top: 1px solid var(--border, #334155);
+  background-color: var(--background, #0f172a);
 }
 
 .dot {
-  background-color: #374151;
+  background-color: var(--border, #475569);
 }
 
 .dotActive {
-  background-color: var(--primary);
+  background-color: var(--primary, #4573df);
 }

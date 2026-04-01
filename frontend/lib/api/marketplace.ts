@@ -64,10 +64,10 @@ export const gigsApi = {
 };
 
 export const jobAlertsApi = {
-  list: () => apiFetch(\'/job-alerts\'),
-  getAll: () => apiFetch(\'/job-alerts\'),
+  list: () => apiFetch('/job-alerts'),
+  getAll: () => apiFetch('/job-alerts'),
   create: (data: Record<string, unknown>) =>
-    apiFetch(\'/job-alerts\', {
+    apiFetch('/job-alerts', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -131,7 +131,7 @@ export const clientApi = {
 
 export const supportTicketsApi = {
   create: (data: { subject: string; description?: string; message?: string; category?: string; priority?: string } | FormData) =>
-    apiFetch(\'/support-tickets\', {
+    apiFetch('/support-tickets', {
       method: 'POST',
       body: data instanceof FormData ? data : JSON.stringify(data),
     }),
@@ -170,7 +170,7 @@ export const matchingApi = {
 
 export const disputesApi = {
   create: (data: DisputeCreateData | FormData) =>
-    apiFetch(\'/disputes\', {
+    apiFetch('/disputes', {
       method: 'POST',
       body: data instanceof FormData ? data : JSON.stringify(data),
     }),
@@ -228,7 +228,7 @@ export const reviewsApi = {
     professionalism_rating?: number;
     would_recommend?: boolean;
   }) =>
-    apiFetch(\'/reviews\', {
+    apiFetch('/reviews', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
