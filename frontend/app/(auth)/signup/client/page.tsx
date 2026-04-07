@@ -12,8 +12,8 @@ export default function SignupClientPage() {
   useEffect(() => {
     try {
       window.localStorage.setItem('signup_role', 'client');
-    } catch (e) {
-      // localStorage not available
+    } catch {
+      // localStorage not available in private browsing
     }
     router.replace('/signup?role=client');
   }, [router]);

@@ -12,8 +12,8 @@ export default function SignupFreelancerPage() {
   useEffect(() => {
     try {
       window.localStorage.setItem('signup_role', 'freelancer');
-    } catch (e) {
-      // localStorage not available
+    } catch {
+      // localStorage not available in private browsing
     }
     router.replace('/signup?role=freelancer');
   }, [router]);

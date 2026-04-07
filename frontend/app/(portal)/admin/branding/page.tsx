@@ -104,7 +104,12 @@ export default function BrandingPage() {
   const handleSave = async () => {
     try {
       setSaving(true);
-      await (brandingApi as any).updateConfig?.('default', settings) || await (brandingApi as any).updateSettings?.(settings);
+      const brandingApiTyped = brandingApi as { updateConfig?: (id: string, settings: BrandingSettings) => Promise<void>; updateSettings?: (settings: BrandingSettings) => Promise<void> };
+      if (brandingApiTyped.updateConfig) {
+        await brandingApiTyped.updateConfig('default', settings);
+      } else if (brandingApiTyped.updateSettings) {
+        await brandingApiTyped.updateSettings(settings);
+      }
       setHasChanges(false);
       showToast('Branding settings saved!');
     } catch (err) {

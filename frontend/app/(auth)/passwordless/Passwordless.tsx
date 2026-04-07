@@ -95,7 +95,7 @@ const Passwordless: React.FC = () => {
     
     try {
       if (isPreviewMode()) {
-        try { window.localStorage.setItem('portal_area', selectedRole); } catch {}
+        try { window.localStorage.setItem('portal_area', selectedRole); } catch { /* localStorage unavailable in private browsing */ }
         router.push(roleConfig[selectedRole].redirectPath);
         return;
       }
@@ -146,7 +146,7 @@ const Passwordless: React.FC = () => {
 
   const styles = React.useMemo(() => {
     const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
-    const merge = (key: keyof typeof commonStyles) => cn((commonStyles as any)[key], (themeStyles as any)[key]);
+    const merge = (key: keyof typeof commonStyles) => cn((commonStyles as Record<string, string>)[key], (themeStyles as Record<string, string>)[key]);
     return {
       loginPage: merge('loginPage'),
       brandingSlot: merge('brandingSlot'),

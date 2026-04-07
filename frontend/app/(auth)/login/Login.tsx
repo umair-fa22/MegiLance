@@ -78,7 +78,7 @@ const Login: React.FC = () => {
 
   const styles = React.useMemo(() => {
     const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
-    const merge = (key: keyof typeof commonStyles) => cn((commonStyles as any)[key], (themeStyles as any)[key]);
+    const merge = (key: keyof typeof commonStyles) => cn((commonStyles as Record<string, string>)[key], (themeStyles as Record<string, string>)[key]);
     return {
       loginPage: merge('loginPage'),
       brandingSlot: merge('brandingSlot'),
@@ -177,11 +177,12 @@ const Login: React.FC = () => {
         if (data.user) {
           localStorage.setItem('user', JSON.stringify(data.user));
         }
-        try { window.localStorage.setItem('portal_area', role); } catch {}
+        try { window.localStorage.setItem('portal_area', role); } catch { /* localStorage unavailable in private browsing */ }
         router.push(getRedirect(role));
       }
-    } catch (error: any) {
-      setErrors({ email: '', password: '', general: error.message || 'Auto-login failed. Please try again.' });
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Auto-login failed. Please try again.';
+      setErrors({ email: '', password: '', general: errorMessage });
     } finally {
       setLoading(false);
     }
@@ -191,7 +192,7 @@ const Login: React.FC = () => {
     e.preventDefault();
     if (isPreviewMode()) {
       // Preview mode: bypass validation and go straight to the role destination
-      try { window.localStorage.setItem('portal_area', selectedRole); } catch {}
+      try { window.localStorage.setItem('portal_area', selectedRole); } catch { /* localStorage unavailable in private browsing */ }
       router.push(getRedirect(selectedRole));
       return;
     }
@@ -215,11 +216,12 @@ const Login: React.FC = () => {
         // Redirect based on user's actual role from API, not the selected tab
         const userRole = (data.user?.user_type || data.user?.role || selectedRole).toLowerCase() as UserRole;
         const actualRole = userRole === 'admin' ? 'admin' : userRole === 'freelancer' ? 'freelancer' : 'client';
-        try { window.localStorage.setItem('portal_area', actualRole); } catch {}
+        try { window.localStorage.setItem('portal_area', actualRole); } catch { /* localStorage unavailable in private browsing */ }
         router.push(getRedirect(actualRole));
       }
-    } catch (error: any) {
-      setErrors({ email: '', password: '', general: error.message || 'Login failed. Please check your credentials.' });
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Login failed. Please check your credentials.';
+      setErrors({ email: '', password: '', general: errorMessage });
     } finally {
       setLoading(false);
     }
@@ -250,10 +252,11 @@ const Login: React.FC = () => {
         setToken(data.access_token);
       }
 
-      try { window.localStorage.setItem('portal_area', selectedRole); } catch {}
+      try { window.localStorage.setItem('portal_area', selectedRole); } catch { /* localStorage unavailable in private browsing */ }
       router.push(getRedirect(selectedRole));
-    } catch (error: any) {
-      setErrors({ email: '', password: '', general: error.message || 'Verification failed. Please try again.' });
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Verification failed. Please try again.';
+      setErrors({ email: '', password: '', general: errorMessage });
     } finally {
       setLoading(false);
     }
@@ -263,7 +266,7 @@ const Login: React.FC = () => {
     setLoading(true);
     try {
       const redirectUri = `${window.location.origin}/callback`;
-      try { window.localStorage.setItem('portal_area', selectedRole); } catch {}
+      try { window.localStorage.setItem('portal_area', selectedRole); } catch { /* localStorage unavailable in private browsing */ }
       
       const response = await api.socialAuth.start(provider, redirectUri, selectedRole, 'login') as { authorization_url?: string };
       
@@ -272,9 +275,9 @@ const Login: React.FC = () => {
       } else {
         throw new Error('No authorization URL returned');
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Check for common OAuth configuration issues
-      const errorMsg = error.message || '';
+      const errorMsg = error instanceof Error ? error.message : '';
       if (errorMsg.includes('not configured') || errorMsg.includes('Missing client') || errorMsg.includes('client ID')) {
         setErrors({ 
           email: '', 
@@ -282,7 +285,7 @@ const Login: React.FC = () => {
           general: `${provider === 'google' ? 'Google' : 'GitHub'} sign-in is being configured. Please use email/password login for now.` 
         });
       } else {
-        setErrors({ email: '', password: '', general: error.message || `Sign in with ${provider} failed.` });
+        setErrors({ email: '', password: '', general: errorMsg || `Sign in with ${provider} failed.` });
       }
       setLoading(false);
     }

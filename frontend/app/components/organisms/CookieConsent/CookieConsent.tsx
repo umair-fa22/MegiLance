@@ -30,12 +30,12 @@ const CookieConsent: React.FC = () => {
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   const handleAccept = () => {
-    try { localStorage.setItem(STORAGE_KEY, 'accepted'); } catch {}
+    try { localStorage.setItem(STORAGE_KEY, 'accepted'); } catch { /* localStorage unavailable */ }
     setVisible(false);
   };
 
   const handleDecline = () => {
-    try { localStorage.setItem(STORAGE_KEY, 'declined'); } catch {}
+    try { localStorage.setItem(STORAGE_KEY, 'declined'); } catch { /* localStorage unavailable */ }
     setVisible(false);
   };
 

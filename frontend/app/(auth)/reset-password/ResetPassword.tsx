@@ -84,7 +84,7 @@ const ResetPassword: React.FC = () => {
 
   const styles = React.useMemo(() => {
     const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
-    const merge = (key: keyof typeof commonStyles) => cn((commonStyles as any)[key], (themeStyles as any)[key]);
+    const merge = (key: keyof typeof commonStyles) => cn((commonStyles as Record<string, string>)[key], (themeStyles as Record<string, string>)[key]);
     return {
       loginPage: merge('loginPage'),
       brandingSlot: merge('brandingSlot'),

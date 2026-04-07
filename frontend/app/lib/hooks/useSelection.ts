@@ -55,7 +55,7 @@ export function useSelection<T extends string | number>(allIds: T[], opts?: { st
     try {
       const arr = Array.from(selected);
       window.localStorage.setItem(storageKey, JSON.stringify(arr));
-    } catch {}
+    } catch { /* localStorage unavailable */ }
   }, [selected, storageKey]);
 
   // Prune selection when the available IDs change (e.g., filters)

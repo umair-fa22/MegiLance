@@ -63,9 +63,9 @@ const VerifyEmail: React.FC = () => {
       await api.auth.verifyEmail(verificationToken);
       setStatus('success');
       setMessage('Your email has been successfully verified! You can now log in to your account.');
-    } catch (error: any) {
+    } catch (error: unknown) {
       setStatus('error');
-      setMessage(error.message || 'Invalid or expired verification link.');
+      setMessage(error instanceof Error ? error.message : 'Invalid or expired verification link.');
       if (process.env.NODE_ENV === 'development') {
         console.error('Email verification error:', error);
       }
@@ -77,8 +77,8 @@ const VerifyEmail: React.FC = () => {
     try {
       await api.auth.resendVerification();
       setMessage('Verification email has been resent! Please check your inbox.');
-    } catch (error: any) {
-      setMessage(error.message || 'Failed to resend verification email. Please log in first.');
+    } catch (error: unknown) {
+      setMessage(error instanceof Error ? error.message : 'Failed to resend verification email. Please log in first.');
     } finally {
       setResending(false);
     }

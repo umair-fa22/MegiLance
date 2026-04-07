@@ -15,6 +15,23 @@ import commonStyles from './AuthCallback.common.module.css';
 import lightStyles from './AuthCallback.light.module.css';
 import darkStyles from './AuthCallback.dark.module.css';
 
+interface SocialAuthResponse {
+  success?: boolean;
+  action?: 'login' | 'register' | 'link';
+  access_token?: string;
+  refresh_token?: string;
+  user?: {
+    id: string;
+    email: string;
+    name: string;
+    role?: string;
+    user_type?: string;
+  };
+  is_new_user?: boolean;
+  needs_role_selection?: boolean;
+  error?: string;
+}
+
 export default function AuthCallbackPageWrapper() {
   return (
     <Suspense fallback={
@@ -65,7 +82,7 @@ function AuthCallbackPage() {
       }
 
       try {
-        const response: any = await api.socialAuth.complete(code, state);
+        const response = await api.socialAuth.complete(code, state) as SocialAuthResponse;
 
         if (response.success) {
           if (response.action === 'login' || response.action === 'register') {
@@ -127,13 +144,14 @@ function AuthCallbackPage() {
         } else {
           throw new Error(response.error || 'Authentication failed');
         }
-      } catch (err: any) {
+      } catch (err: unknown) {
         if (process.env.NODE_ENV === 'development') {
           console.error('Social auth error:', err);
         }
+        const errMessage = err instanceof Error ? err.message : 'Authentication failed. Please try again.';
         setStatus('error');
-        setMessage(err.message || 'Authentication failed. Please try again.');
-        showToast(err.message || 'Authentication failed', 'error');
+        setMessage(errMessage);
+        showToast(errMessage, 'error');
         setTimeout(() => router.push('/login'), 3000);
       }
     };

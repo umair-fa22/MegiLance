@@ -73,7 +73,7 @@ const Signup: React.FC = () => {
           window.localStorage.removeItem('signup_role'); // Clear after use
           setSelectedRole(storedRole);
         }
-      } catch (e) {}
+      } catch { /* localStorage unavailable in private browsing */ }
     }
   }, [searchParams]);
   
@@ -100,7 +100,7 @@ const Signup: React.FC = () => {
       newErrors.fullName = 'Name must be at least 2 characters.';
     } else if (trimmedName.length > 100) {
       newErrors.fullName = 'Name is too long (max 100 characters).';
-    } else if (!/^[a-zA-Z\s\-'\.]+$/.test(trimmedName)) {
+    } else if (!/^[a-zA-Z\s\-'.]+$/.test(trimmedName)) {
       newErrors.fullName = 'Name contains invalid characters.';
     }
     
@@ -172,8 +172,8 @@ const Signup: React.FC = () => {
         trackSignupComplete(selectedRole, 'email');
         // Show verification notice
         router.push('/verify-email?registered=true');
-      } catch (error: any) {
-        setErrors({ email: error.message || 'Registration failed. Please try again.' });
+      } catch (error: unknown) {
+        setErrors({ email: error instanceof Error ? error.message : 'Registration failed. Please try again.' });
       } finally {
         setLoading(false);
       }
@@ -194,7 +194,7 @@ const Signup: React.FC = () => {
     setLoading(true);
     try {
       const redirectUri = `${window.location.origin}/callback`;
-      try { window.localStorage.setItem('portal_area', selectedRole); } catch {}
+      try { window.localStorage.setItem('portal_area', selectedRole); } catch { /* localStorage unavailable in private browsing */ }
       
       const response = await api.socialAuth.start(provider, redirectUri, selectedRole, 'register') as { authorization_url?: string };
       
@@ -203,15 +203,15 @@ const Signup: React.FC = () => {
       } else {
         throw new Error('No authorization URL returned');
       }
-    } catch (error: any) {
-      setErrors({ email: error.message || `Sign up with ${provider} failed.` });
+    } catch (error: unknown) {
+      setErrors({ email: error instanceof Error ? error.message : `Sign up with ${provider} failed.` });
       setLoading(false);
     }
   };
 
   const styles = useMemo(() => {
     const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
-    const merge = (key: keyof typeof commonStyles) => cn((commonStyles as any)[key], (themeStyles as any)[key]);
+    const merge = (key: keyof typeof commonStyles) => cn((commonStyles as Record<string, string>)[key], (themeStyles as Record<string, string>)[key]);
     return {
       loginPage: merge('loginPage'),
       brandingSlot: merge('brandingSlot'),

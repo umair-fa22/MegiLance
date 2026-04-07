@@ -45,7 +45,7 @@ const Wallet: React.FC = () => {
         const transactions: Txn[] = (Array.isArray(data) ? data : []).map((p: any, idx: number) => {
           const amountStr = String(p.amount || '0');
           const isCredit = amountStr.startsWith('+') || p.direction === 'credit';
-          const numericValue = parseFloat(amountStr.replace(/[$,+\-]/g, '') || '0');
+          const numericValue = parseFloat(amountStr.replace(/[$,+-]/g, '') || '0');
           const amount = isCredit ? numericValue : -numericValue;
           
           let txnType: Txn['type'] = 'Payment';
