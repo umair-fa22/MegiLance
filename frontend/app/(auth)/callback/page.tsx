@@ -87,8 +87,8 @@ function AuthCallbackPage() {
         if (response.success) {
           if (response.action === 'login' || response.action === 'register') {
             // Store tokens
-            setAuthToken(response.access_token);
-            setRefreshToken(response.refresh_token);
+            setAuthToken(response.access_token || null);
+            setRefreshToken(response.refresh_token || null);
 
             if (response.user) {
               localStorage.setItem('user', JSON.stringify(response.user));
@@ -135,7 +135,7 @@ function AuthCallbackPage() {
             } else {
               setTimeout(() => router.push(redirectPath), 800);
             }
-          } else if (response.action === 'linked') {
+          } else if ((response.action as any) === 'linked' || response.action === 'link') {
             setStatus('success');
             setMessage('Account linked successfully!');
             showToast('Account linked successfully!', 'success');

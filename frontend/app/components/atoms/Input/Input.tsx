@@ -6,7 +6,7 @@ import React, { useId, useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { Eye, EyeOff, AlertCircle, CheckCircle, XCircle } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
 import commonStyles from './Input.common.module.css';
 import lightStyles from './Input.light.module.css';
 import darkStyles from './Input.dark.module.css';
@@ -53,7 +53,24 @@ const Input: React.FC<InputProps> = ({
   const [mounted, setMounted] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  
+  // Spotlight effect
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const spotlightX = useSpring(mouseX, { stiffness: 100, damping: 20 });
+  const spotlightY = useSpring(mouseY, { stiffness: 100, damping: 20 });
+  
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!wrapperRef.current) return;
+    const { left, top } = wrapperRef.current.getBoundingClientRect();
+    mouseX.set(e.clientX - left);
+    mouseY.set(e.clientY - top);
+  };
+
+  const spotlightBackground = useMotionTemplate`radial-gradient(150px circle at ${spotlightX}px ${spotlightY}px, var(--input-spotlight-color, rgba(69, 115, 223, 0.15)), transparent 80%)`;
+
   
   useEffect(() => {
     setMounted(true);
@@ -225,6 +242,8 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <div
+      ref={wrapperRef}
+      onPointerMove={handlePointerMove}
       className={cn(
         commonStyles.inputWrapper,
         themeStyles.inputWrapper,
@@ -239,6 +258,15 @@ const Input: React.FC<InputProps> = ({
         isFocused && commonStyles.inputWrapperFocused
       )}
     >
+      {/* 2026 Interactive Spotlight Effect */}
+      <motion.div
+        className={commonStyles.interactiveSpotlight}
+        style={{
+          background: spotlightBackground,
+          opacity: isFocused ? 0.8 : 0,
+        }}
+        animate={{ opacity: isFocused ? 0.8 : 0 }}
+      />
       {label && !hideLabel && (
         <motion.label 
           htmlFor={inputId} 

@@ -25,9 +25,9 @@
 
 ### 3. **Component Modernization Priority**
 1. **Public Pages** (High Impact)
-   - [ ] Home/Hero
+   - [x] Home/Hero
    - [ ] Contact
-   - [ ] How It Works
+   - [x] How It Works
    - [ ] Testimonials
    - [ ] Features showcase
 

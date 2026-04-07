@@ -1,165 +1,92 @@
-/* @AI-HINT: Light theme styles for enterprise Header with mega menu - 2026 glassmorphic design */
-
+/* @AI-HINT: Light Theme - Glassmorphism, Airy layout, Subtle shadows */
 .header {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
-  border-color: rgba(0, 0, 0, 0.06);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08),
-              inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(0, 0, 0, 0.05);
 }
 
-.brandName {
-  background: linear-gradient(135deg, #1a1a1a 0%, #454545 100%);
+.header[data-scrolled="true"] {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+.brandText {
+  background: linear-gradient(135deg, #1f2937 0%, #4b5563 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Dropdown Trigger */
-.navDropdownTrigger {
+.navBtn {
   color: #4b5563;
 }
 
-.navDropdownTrigger:hover {
+.navBtn:hover, .navBtnActive {
   color: #111827;
   background: rgba(69, 115, 223, 0.06);
 }
 
-.navDropdownTriggerActive {
-  background: rgba(69, 115, 223, 0.1);
+.featuredBtn {
   color: #4573df;
+  background: rgba(69, 115, 223, 0.08);
+}
+.featuredBtn:hover {
+  background: rgba(69, 115, 223, 0.15);
 }
 
-/* Mega Menu */
-.megaMenu {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 100%);
+.megaMenuContent {
+  background: #ffffff;
   border-color: rgba(0, 0, 0, 0.08);
 }
 
-.megaMenuSectionTitle {
-  color: #64748b;
+.megaMenuLabel {
+  color: #6b7280;
 }
 
 .megaMenuItem {
-  color: #374151;
-}
-
-.megaMenuItem:hover {
-  background: rgba(69, 115, 223, 0.06);
-}
-
-.megaMenuItemIcon {
-  background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
-}
-
-.megaMenuItem:hover .megaMenuItemIcon {
-  background: rgba(69, 115, 223, 0.18);
-  transform: scale(1.1);
-}
-
-.megaMenuItemDesc {
-  color: #64748b;
-}
-
-/* Legacy nav link */
-.navLink {
-  color: #4b5563;
-}
-
-.navLink:hover {
-  color: #111827;
-  background: rgba(69, 115, 223, 0.06);
-}
-
-/* Mobile Menu */
-.mobileMenuButton {
   color: #1f2937;
 }
 
-.mobileMenuButton:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+.megaMenuItem:hover {
+  background: #f3f4f6;
+  transform: translateY(-1px);
 }
 
-.mobileNavMenu {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
-  border-color: rgba(0, 0, 0, 0.06);
-}
-
-.mobileMenuSectionTitle {
-  color: #64748b;
-}
-
-.mobileMenuItem {
-  color: #374151;
-}
-
-.mobileMenuItem:hover {
-  background: rgba(69, 115, 223, 0.06);
+.iconWrap {
+  background: #f9fafb;
   color: #4573df;
 }
 
-/* Explore Featured Link */
-.exploreLink {
-  background: linear-gradient(135deg, #4573df 0%, #6b8ceb 100%);
-  color: #fff;
+.megaMenuItem:hover .iconWrap {
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.exploreLink:hover {
-  background: linear-gradient(135deg, #3a62c4 0%, #4573df 100%);
-  box-shadow: 0 8px 28px rgba(69, 115, 223, 0.35);
+.itemDesc {
+  color: #6b7280;
 }
 
-/* Theme Toggle */
-.themeToggle {
-  color: #64748b;
-}
-
-.themeToggle:hover {
-  background: rgba(0, 0, 0, 0.05);
-  color: #334155;
-}
-
-/* Header Icon Buttons */
-.headerIconBtn {
+.hamburger {
   color: #4b5563;
 }
-
-.headerIconBtn:hover {
-  background: rgba(0, 0, 0, 0.04);
+.hamburger:hover {
+  background: #f3f4f6;
 }
 
-/* User Dropdown */
-.userDropdown {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 100%);
+.mobileFlyout {
+  background: #ffffff;
+}
+
+.mobileHeader {
   border-color: rgba(0, 0, 0, 0.08);
 }
 
-.userDropdownHeader {
-  background: rgba(69, 115, 223, 0.05);
-  color: #0f172a;
-}
-
-.userDropdownName {
-  color: #0f172a;
-}
-
-.userDropdownRole {
-  color: #64748b;
-}
-
-.userDropdownItem {
-  color: #374151;
-}
-
-.userDropdownItem:hover {
-  background: rgba(69, 115, 223, 0.08);
+.mobileTabActive {
+  opacity: 1;
+  border-color: #4573df;
   color: #4573df;
 }
 
-.userDropdownLogout {
-  color: #e81123;
-}
-
-.userDropdownLogout:hover {
-  background: rgba(232, 17, 35, 0.08);
+.mobileFooter {
+  background: #f9fafb;
+  border-color: rgba(0, 0, 0, 0.08);
 }

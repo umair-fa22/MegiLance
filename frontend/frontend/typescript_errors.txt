@@ -1,0 +1,2 @@
+../app/(portal)/client/projects/[id]/ProjectDetail.tsx(393,86): error TS2339: Property 'risk_score' does not exist on type 'FraudCheckResult'.
+../app/(portal)/client/projects/[id]/ProjectDetail.tsx(395,71): error TS2339: Property 'risk_factors' does not exist on type 'FraudCheckResult'.

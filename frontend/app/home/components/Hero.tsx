@@ -1,53 +1,49 @@
-// @AI-HINT: Action-oriented Hero — search bar, popular categories, and clear value props. Designed like Upwork/Toptal for real-world usability.
+// @AI-HINT: Premium Immersive Hero Component - Editorial Brutalism & Organic Fluidity blend
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { 
-  ArrowRight, 
-  Search,
-  ShieldCheck, 
-  Zap,
-  CheckCircle2,
-  Code,
-  Palette,
-  Smartphone,
-  BarChart3,
-  PenTool,
-  Video
+  ArrowRight, Search, ShieldCheck, Zap, 
+  Code, Palette, Smartphone, BarChart3
 } from 'lucide-react';
-
 import Button from '@/app/components/atoms/Button/Button';
 
 import commonStyles from './Hero.common.module.css';
 import lightStyles from './Hero.light.module.css';
 import darkStyles from './Hero.dark.module.css';
-import { HeroScene3D, FloatingDevice3D } from '@/app/components/3D';
-import AnimatedBackground from './AnimatedBackground';
+
+// Using Optional HeroScene3D wrapper if available
+import { HeroScene3D } from '@/app/components/3D'; 
 
 const POPULAR_CATEGORIES = [
   { label: 'Web Development', icon: Code, href: '/explore?category=web-development' },
   { label: 'UI/UX Design', icon: Palette, href: '/explore?category=ui-ux-design' },
   { label: 'Mobile Apps', icon: Smartphone, href: '/explore?category=mobile-apps' },
   { label: 'Data Science', icon: BarChart3, href: '/explore?category=data-science' },
-  { label: 'Content Writing', icon: PenTool, href: '/explore?category=content-writing' },
-  { label: 'Video & Animation', icon: Video, href: '/explore?category=video-animation' },
 ];
 
-const Hero: React.FC = () => {
+export default function Hero() {
   const { resolvedTheme } = useTheme();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   
-  const styles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end start"] });
+  const yParallax = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const opacityFade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // Pointer spotlight effect
+  const [mousePos, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
+
+  useEffect(() => setMounted(true), []);
 
   const handleSearch = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -56,130 +52,136 @@ const Hero: React.FC = () => {
     }
   }, [searchQuery, router]);
 
-  if (!mounted) {
-    return (
-      <section className={cn(commonStyles.heroContainer)} aria-label="Hero">
-        <div className={commonStyles.contentWrapper}>
-          <div className={commonStyles.loadingContainer}>
-            <div className={commonStyles.loadingSpinner} />
-          </div>
-        </div>
-      </section>
-    );
-  }
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  const HeadlineText = "Find Top Talent.\nFast & Secure.";
+  
+  if (!mounted) return <div className={commonStyles.preloadSpacer} />;
+
+  const Wrapper = HeroScene3D ? HeroScene3D : 'div';
 
   return (
-    <HeroScene3D className={cn(commonStyles.heroContainer, styles.heroContainer)}>
-      <section 
-        className={commonStyles.heroSectionContent}
-        aria-label="Find freelance talent or work"
+    <Wrapper className={cn(commonStyles.heroContainer, themeStyles.heroContainer)}>
+      <motion.div 
+        ref={containerRef}
+        className={commonStyles.heroInteractiveSurface}
+        onMouseMove={handleMouseMove}
+        style={{ y: yParallax, opacity: opacityFade }}
       >
-        {/* Background */}
-        <AnimatedBackground />
-        <div className={cn(commonStyles.meshBackground, styles.meshBackground)} />
+        {/* Mouse Glow Spotlight */}
+        <motion.div 
+          className={cn(commonStyles.mouseGlow, themeStyles.mouseGlow)}
+          animate={{ x: mousePos.x - 400, y: mousePos.y - 400 }}
+          transition={{ type: "spring", bounce: 0.25, mass: 0.5 }}
+        />
 
-        <div className={commonStyles.contentWrapper}>
-        {/* Main headline — direct and clear */}
-        <h1 className={cn(commonStyles.mainHeading, styles.mainHeading)}>
-          <span className={commonStyles.headingLine}>Hire expert freelancers</span>
-          <span className={cn(commonStyles.headingGradient, styles.headingGradient)}>
-            for any project
-          </span>
-        </h1>
+        {/* Ambient background depth elements */}
+        <div className={cn(commonStyles.ambientOrb1, themeStyles.ambientOrb1)} />
+        <div className={cn(commonStyles.ambientOrb2, themeStyles.ambientOrb2)} />
 
-        {/* Short, direct value prop */}
-        <p className={cn(commonStyles.subheading, styles.subheading)}>
-          Post a project, get matched with vetted professionals in minutes. 
-          Secure payments, milestone tracking, and AI-powered talent matching included.
-        </p>
-
-        {/* Search bar — the primary action */}
-        <form onSubmit={handleSearch} className={cn(commonStyles.searchForm, styles.searchForm)} role="search">
-          <div className={cn(commonStyles.searchInputWrapper, styles.searchInputWrapper)}>
-            <Search size={20} className={cn(commonStyles.searchIcon, styles.searchIcon)} aria-hidden="true" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder='Try "React developer", "Logo design", "SEO expert"...'
-              className={cn(commonStyles.searchInput, styles.searchInput)}
-              aria-label="Search for freelancers or projects"
-            />
-            <Button 
-              type="submit" 
-              variant="primary" 
-              size="md"
-              className={cn(commonStyles.searchButton, styles.searchButton)}
+        <div className={commonStyles.contentLayout}>
+          
+          {/* Typographic Engine Headline - Staggered Words */}
+          <div className={commonStyles.titleWrapper}>
+            <motion.h1 
+              className={cn(commonStyles.mainHeadline, themeStyles.mainHeadline)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.1 }}
             >
-              Search
-              <ArrowRight size={16} />
-            </Button>
-          </div>
-        </form>
-
-        {/* Quick popular searches */}
-        <div className={cn(commonStyles.popularSearches, styles.popularSearches)}>
-          <span className={cn(commonStyles.popularLabel, styles.popularLabel)}>Popular:</span>
-          {['React Developer', 'WordPress', 'Logo Design', 'Python', 'Content Writer'].map((term) => (
-            <Link 
-              key={term} 
-              href={`/explore?q=${encodeURIComponent(term)}`}
-              className={cn(commonStyles.popularTag, styles.popularTag)}
+              {HeadlineText.split('\n').map((line, i) => (
+                <span key={i} className={commonStyles.headlineLine}>
+                  {line.split(' ').map((word, j) => (
+                    <motion.span
+                      key={j}
+                      className={commonStyles.headlineWord}
+                      initial={{ y: 80, opacity: 0, rotateZ: 5 }}
+                      animate={{ y: 0, opacity: 1, rotateZ: 0 }}
+                      transition={{ 
+                        type: "spring", 
+                        stiffness: 100, 
+                        damping: 15, 
+                        delay: (i * 0.2) + (j * 0.1) 
+                      }}
+                    >
+                      {word}&nbsp;
+                    </motion.span>
+                  ))}
+                </span>
+              ))}
+            </motion.h1>
+            
+            <motion.p 
+              className={cn(commonStyles.heroSubtitle, themeStyles.heroSubtitle)}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              {term}
-            </Link>
-          ))}
-        </div>
+              The premium marketplace for independent professionals. Connect with curated experts instantly and pay securely with escrow protection.
+            </motion.p>
+          </div>
 
-        {/* CTA buttons */}
-        <div className={commonStyles.ctaGroup}>
-          <Link href="/signup?role=client">
-            <Button variant="primary" size="lg" className={cn(commonStyles.primaryCta, styles.primaryCta)}>
-              Post a Project — It&apos;s Free
-              <ArrowRight size={18} />
-            </Button>
-          </Link>
-          <Link href="/signup?role=freelancer">
-            <Button variant="outline" size="lg" className={cn(commonStyles.secondaryCta, styles.secondaryCta)}>
-              Earn as a Freelancer
-            </Button>
-          </Link>
-        </div>
+          {/* Premium Search Experience */}
+          <motion.div 
+            className={commonStyles.searchSection}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.8, ease: "easeOut" }}
+          >
+            <form onSubmit={handleSearch} className={cn(commonStyles.searchForm, themeStyles.searchForm)}>
+              <Search size={22} className={cn(commonStyles.searchIcon, themeStyles.searchIcon)} />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="What project are you hiring for today?"
+                className={cn(commonStyles.searchInput, themeStyles.searchInput)}
+              />
+              <Button type="submit" variant="primary" size="lg" className={commonStyles.searchBtn}>
+                Explore Talent
+              </Button>
+            </form>
 
-        {/* Value props — concrete benefits, not vague marketing */}
-        <div className={cn(commonStyles.valueProps, styles.valueProps)}>
-          <div className={cn(commonStyles.valueProp, styles.valueProp)}>
-            <CheckCircle2 size={16} />
-            <span>No upfront fees</span>
-          </div>
-          <div className={cn(commonStyles.valueProp, styles.valueProp)}>
-            <ShieldCheck size={16} />
-            <span>Escrow payment protection</span>
-          </div>
-          <div className={cn(commonStyles.valueProp, styles.valueProp)}>
-            <Zap size={16} />
-            <span>AI-matched in under 24h</span>
-          </div>
-        </div>
+            {/* Quick Categories */}
+            <div className={commonStyles.popularTagsWrap}>
+              <span className={cn(commonStyles.popularPrefix, themeStyles.popularPrefix)}>Trending:</span>
+              <div className={commonStyles.tagsList}>
+                {POPULAR_CATEGORIES.map(({ label, href }) => (
+                  <Link href={href} key={label} className={cn(commonStyles.tagPill, themeStyles.tagPill)}>
+                    {label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </motion.div>
 
-        {/* Browse by category — actionable grid */}
-        <div className={cn(commonStyles.categoriesSection, styles.categoriesSection)}>
-          <h2 className={cn(commonStyles.categoriesTitle, styles.categoriesTitle)}>
-            Browse by category
-          </h2>
-          <div className={commonStyles.categoriesGrid}>
-            {POPULAR_CATEGORIES.map(({ label, icon: Icon, href }) => (
-              <Link key={label} href={href} className={cn(commonStyles.categoryCard, styles.categoryCard)}>
-                <Icon size={24} className={cn(commonStyles.categoryIcon, styles.categoryIcon)} />
-                <span className={cn(commonStyles.categoryLabel, styles.categoryLabel)}>{label}</span>
-              </Link>
-            ))}
-          </div>
+          {/* Social Proof & Metrics */}
+          <motion.div 
+            className={commonStyles.metricsRow}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 1 }}
+          >
+            <div className={commonStyles.metricItem}>
+              <ShieldCheck size={20} className={themeStyles.metricIcon} />
+              <span className={cn(commonStyles.metricText, themeStyles.metricText)}>100% Escrow Protected</span>
+            </div>
+            <div className={commonStyles.metricDivider} />
+            <div className={commonStyles.metricItem}>
+              <Zap size={20} className={themeStyles.metricIcon} />
+              <span className={cn(commonStyles.metricText, themeStyles.metricText)}>AI Matched under 24h</span>
+            </div>
+          </motion.div>
+
         </div>
-      </div>
-    </section>
-    </HeroScene3D>
+      </motion.div>
+    </Wrapper>
   );
-};
-
-export default Hero;
+}

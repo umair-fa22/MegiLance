@@ -285,9 +285,9 @@ const ProjectDetail: React.FC = () => {
                     <div>{new Date(project.created_at).toLocaleString()}</div>
                     <div>Project created</div>
                 </div>
-                {project.updated_at !== project.created_at && (
+                {project.updated_at && project.updated_at !== project.created_at && (
                     <div className={cn(common.item, themed.item)}>
-                        <div>{new Date(project.updated_at).toLocaleString()}</div>
+                        <div>{new Date(project.updated_at || project.created_at).toLocaleString()}</div>
                         <div>Project updated</div>
                     </div>
                 )}
@@ -390,9 +390,9 @@ const ProjectDetail: React.FC = () => {
                         {fraudCheckResults[proposal.id] && (
                           <div className={common.fraudResultWrapper}>
                             <FraudAlertBanner 
-                              message={`Risk Score: ${fraudCheckResults[proposal.id].risk_score}/100. ${fraudCheckResults[proposal.id].recommendation}`}
+                              message={`Risk Score: ${fraudCheckResults[proposal.id].score}/100. ${fraudCheckResults[proposal.id].recommendation || ''}`}
                               severity={fraudCheckResults[proposal.id].risk_level as 'high' | 'medium' | 'low'}
-                              details={fraudCheckResults[proposal.id].risk_factors}
+                              details={fraudCheckResults[proposal.id].flags || []}
                               onDismiss={() => {
                                 const newResults = {...fraudCheckResults};
                                 delete newResults[proposal.id];

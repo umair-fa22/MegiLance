@@ -1,11 +1,11 @@
 // @AI-HINT: A section explaining the platform's process for both freelancers and clients, designed for clarity and visual appeal.
-
 'use client';
 
 import React from 'react';
 import { useTheme } from 'next-themes';
-import { Search, ClipboardList, Users, FileSignature } from 'lucide-react'
+import { Search, ClipboardList, Users, FileSignature } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 import StepCard from './StepCard';
 import type { StepCardProps } from './StepCard';
@@ -38,6 +38,27 @@ const steps: Array<Omit<StepCardProps, 'stepNumber' | 'type'>> = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 50, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: { type: 'spring', stiffness: 200, damping: 20 }
+  },
+};
+
 const HowItWorks: React.FC = () => {
   const { resolvedTheme } = useTheme();
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
@@ -45,34 +66,51 @@ const HowItWorks: React.FC = () => {
   return (
     <section className={cn(commonStyles.howItWorks, themeStyles.howItWorks)}>
       <SectionGlobe variant="blue" size="lg" position="left" />
-      <div className={cn(commonStyles.container)}>
-        <div className={cn(commonStyles.header)}>
+      <motion.div 
+        className={cn(commonStyles.container)}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <motion.div variants={itemVariants} className={cn(commonStyles.header)}>
           <span className={cn(commonStyles.tagline, themeStyles.tagline)}>The Process</span>
-          <LottieAnimation
-            animationData={workflowAnimation}
-            width={120}
-            height={120}
-            ariaLabel="Workflow process illustration"
-            className="mx-auto mb-2"
-          />
+          <motion.div 
+            whileHover={{ scale: 1.1, rotate: 5 }} 
+            transition={{ type: "spring", stiffness: 300, damping: 15 }}
+          >
+            <LottieAnimation
+              animationData={workflowAnimation}
+              width={120}
+              height={120}
+              ariaLabel="Workflow process illustration"
+              className="mx-auto mb-2"
+            />
+          </motion.div>
           <h2 className={cn(commonStyles.title, themeStyles.title)}>How MegiLance Works</h2>
           <p className={cn(commonStyles.subtitle, themeStyles.subtitle)}>
             A simple, streamlined process for clients and freelancers to connect, collaborate, and achieve great things.
           </p>
-        </div>
-        <div className={cn(commonStyles.timeline)}>
+        </motion.div>
+        
+        <motion.div variants={itemVariants} className={cn(commonStyles.timeline)}>
           {steps.map((step, index) => (
-            <StepCard
+            <motion.div 
               key={step.title}
-              stepNumber={index + 1}
-              icon={step.icon}
-              title={step.title}
-              description={step.description}
-              type={index % 2 === 0 ? 'client' : 'freelancer'}
-            />
+              whileHover={{ scale: 1.03, y: -5 }}
+              transition={{ type: "spring", stiffness: 400, damping: 15 }}
+            >
+              <StepCard
+                stepNumber={index + 1}
+                icon={step.icon}
+                title={step.title}
+                description={step.description}
+                type={index % 2 === 0 ? 'client' : 'freelancer'}
+              />
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

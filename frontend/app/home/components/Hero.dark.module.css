@@ -1,240 +1,76 @@
-/* @AI-HINT: Modern 2026 Dark theme Hero — advanced glassmorphism, glowing accents */
-
+/* @AI-HINT: Premium Hero Dark Theme - Deep OLED blacks, cinematic neon bloom, stark high-contrast typography */
 .heroContainer {
-  background: linear-gradient(
-    180deg,
-    #0f172a 0%,
-    #1e293b 30%,
-    #1e293b 60%,
-    #0f172a 100%
-  );
+  background: linear-gradient(to bottom, #020617 0%, #0f172a 100%);
 }
 
-.meshBackground {
-  background:
-    radial-gradient(ellipse at 20% 30%, rgba(69, 115, 223, 0.18) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(99, 102, 241, 0.14) 0%, transparent 40%),
-    radial-gradient(ellipse at 50% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 60%);
+.mouseGlow {
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, rgba(2, 6, 23, 0) 70%);
 }
 
-/* ============================================= */
-/*   HEADING - GLOW GRADIENTS                   */
-/* ============================================= */
-.mainHeading {
-  color: #ffffff; /* Pure white for better contrast against dark background */
-  text-shadow: 
-    0 0 40px rgba(69, 115, 223, 0.2),
-    0 2px 8px rgba(0, 0, 0, 0.5); /* Add shadow for depth and readability */
+.ambientOrb1 {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(2, 6, 23, 0) 70%);
 }
 
-.headingGradient {
-  background: linear-gradient(
-    90deg,
-    #60a5fa 0%,
-    #818cf8 25%,
-    #a78bfa 50%,
-    #ec4899 75%,
-    #60a5fa 100%
-  );
-  background-size: 300% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientFlow 6s linear infinite;
-  filter: drop-shadow(0 0 20px rgba(69, 115, 223, 0.3));
+.ambientOrb2 {
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(2, 6, 23, 0) 70%);
 }
 
-.subheading {
-  color: #cbd5e1;
-  font-weight: 500;
+.mainHeadline {
+  color: #f8fafc;
 }
 
-/* ============================================= */
-/*   SEARCH - DARK GLASSMORPHISM                */
-/* ============================================= */
-.searchInputWrapper {
-  background: linear-gradient(
-    135deg,
-    rgba(30, 41, 59, 0.85) 0%,
-    rgba(15, 23, 42, 0.75) 100%
-  );
-  border: 2px solid rgba(69, 115, 223, 0.25);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    0 0 40px rgba(69, 115, 223, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+.heroSubtitle {
+  color: #94a3b8;
 }
 
-.searchInputWrapper:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(30, 41, 59, 0.9) 0%,
-    rgba(15, 23, 42, 0.85) 100%
-  );
-  border-color: rgba(69, 115, 223, 0.4);
-  box-shadow:
-    0 12px 48px rgba(0, 0, 0, 0.5),
-    0 0 60px rgba(69, 115, 223, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+.searchForm {
+  background: rgba(15, 23, 42, 0.6);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
 }
 
-.searchInputWrapper:focus-within {
-  background: linear-gradient(
-    135deg,
-    rgba(30, 41, 59, 0.95) 0%,
-    rgba(15, 23, 42, 0.9) 100%
-  );
-  border-color: rgba(99, 102, 241, 0.6);
-  box-shadow:
-    0 0 0 4px rgba(69, 115, 223, 0.2),
-    0 12px 48px rgba(0, 0, 0, 0.5),
-    0 0 80px rgba(99, 102, 241, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+.searchForm:focus-within {
+  border-color: rgba(96, 165, 250, 0.4);
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(96, 165, 250, 0.2);
+  background: rgba(15, 23, 42, 0.9);
 }
 
 .searchIcon {
-  color: #93c5fd;
-}
-
-.searchInput {
-  color: #f1f5f9;
-  font-weight: 500;
-}
-
-.searchInput::placeholder {
   color: #64748b;
 }
 
-/* ============================================= */
-/*   POPULAR SEARCHES - DARK PILLS               */
-/* ============================================= */
-.popularSearches {
-  color: #cbd5e1;
-}
-
-.popularLabel {
-  color: #cbd5e1;
-  font-weight: 700;
-}
-
-.popularTag {
-  background: linear-gradient(
-    135deg,
-    rgba(30, 41, 59, 0.75) 0%,
-    rgba(15, 23, 42, 0.65) 100%
-  );
-  color: #cbd5e1;
-  border: 2px solid rgba(69, 115, 223, 0.25);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  font-weight: 600;
-}
-
-.popularTag:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(30, 41, 59, 0.9) 0%,
-    rgba(15, 23, 42, 0.85) 100%
-  );
-  color: #a5d6ff;
-  border-color: rgba(99, 102, 241, 0.5);
-  box-shadow: 0 8px 24px rgba(69, 115, 223, 0.3);
-}
-
-/* ============================================= */
-/*   CTA BUTTONS                                */
-/* ============================================= */
-.primaryCta {
-  box-shadow:
-    0 8px 24px rgba(69, 115, 223, 0.4),
-    0 0 60px rgba(99, 102, 241, 0.2);
-  font-weight: 700;
-}
-
-.primaryCta:hover {
-  box-shadow:
-    0 12px 36px rgba(69, 115, 223, 0.5),
-    0 0 80px rgba(99, 102, 241, 0.3);
-}
-
-.secondaryCta {
-  background: linear-gradient(
-    135deg,
-    rgba(30, 41, 59, 0.75) 0%,
-    rgba(15, 23, 42, 0.65) 100%
-  );
-  color: #e2e8f0;
-  border: 2px solid rgba(69, 115, 223, 0.25);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  font-weight: 700;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-}
-
-.secondaryCta:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(30, 41, 59, 0.9) 0%,
-    rgba(15, 23, 42, 0.8) 100%
-  );
-  border-color: rgba(99, 102, 241, 0.5);
-  color: #a5d6ff;
-  box-shadow: 0 8px 28px rgba(69, 115, 223, 0.25);
-}
-
-/* ============================================= */
-/*   VALUE PROPS                                */
-/* ============================================= */
-.valueProps {
-  color: #cbd5e1;
-}
-
-.valueProp {
-  color: #cbd5e1;
-  font-weight: 700;
-}
-
-.valueProp svg {
-  color: #34d399;
-}
-
-/* ============================================= */
-/*   CATEGORIES - MODERN DARK CARDS             */
-/* ============================================= */
-.categoriesTitle {
-  color: #f1f5f9;
-  font-weight: 900;
-}
-
-.categoryCard {
-  background: linear-gradient(
-    135deg,
-    rgba(30, 41, 59, 0.7) 0%,
-    rgba(15, 23, 42, 0.6) 100%
-  );
-  border: 2px solid rgba(69, 115, 223, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-}
-
-.categoryCard:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(30, 41, 59, 0.85) 0%,
-    rgba(15, 23, 42, 0.75) 100%
-  );
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 0 12px 40px rgba(69, 115, 223, 0.2), 0 0 60px rgba(99, 102, 241, 0.15);
-}
-
-.categoryIcon {
+.searchForm:focus-within .searchIcon {
   color: #60a5fa;
 }
 
-.categoryLabel {
-  color: #e2e8f0;
-  font-weight: 700;
+.searchInput {
+  color: #f8fafc;
+}
+.searchInput::placeholder {
+  color: #475569;
+}
+
+.popularPrefix {
+  color: #64748b;
+}
+
+.tagPill {
+  background: rgba(30, 41, 59, 0.5);
+  color: #cbd5e1;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.tagPill:hover {
+  background: rgba(30, 41, 59, 0.9);
+  color: #f8fafc;
+  border-color: rgba(96, 165, 250, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
+}
+
+.metricText {
+  color: #94a3b8;
+}
+.metricIcon {
+  color: #60a5fa;
 }

@@ -39,6 +39,24 @@
   transform: translateX(100%);
 }
 
+.interactiveShine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.button:hover .interactiveShine {
+  opacity: 1;
+}
+
+.buttonText, .iconBefore, .iconAfter, .spinner {
+  position: relative;
+  z-index: 10;
+}
+
 /* Group: Ripple on Click */
 .button::after {
   content: '';

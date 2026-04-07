@@ -1,170 +1,97 @@
-/* @AI-HINT: Dark theme styles for enterprise Header with mega menu - 2026 premium design */
-
+/* @AI-HINT: Dark Theme - Deep Contrast, OLED-ready, Vivid Neon hints */
 .header {
-  background: linear-gradient(135deg, rgba(10, 10, 12, 0.85) 0%, rgba(15, 23, 42, 0.75) 100%);
-  border-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3),
-              inset 0 1px 0 rgba(107, 147, 245, 0.08);
+  background: rgba(15, 23, 42, 0.75);
+  border-color: rgba(255, 255, 255, 0.05);
 }
 
-.brandName {
-  background: linear-gradient(135deg, #ffffff 0%, #a5a5a5 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+.header[data-scrolled="true"] {
+  background: rgba(15, 23, 42, 0.95);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
-/* Dropdown Trigger */
-.navDropdownTrigger {
-  color: #94a3b8;
+.brandText {
+  color: #F8FAFC;
 }
 
-.navDropdownTrigger:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
+.navBtn {
+  color: #9ca3af;
 }
 
-.navDropdownTriggerActive {
-  background: rgba(107, 147, 245, 0.15);
-  color: #7fa3f7;
+.navBtn:hover, .navBtnActive {
+  color: #f9fafb;
+  background: rgba(255, 255, 255, 0.05);
 }
 
-/* Mega Menu */
-.megaMenu {
-  background: linear-gradient(135deg, rgba(22, 22, 26, 0.98) 0%, rgba(15, 23, 42, 0.95) 100%);
+.featuredBtn {
+  color: #60a5fa;
+  background: rgba(59, 130, 246, 0.15);
+}
+.featuredBtn:hover {
+  background: rgba(59, 130, 246, 0.25);
+  color: #93c5fd;
+}
+
+.megaMenuContent {
+  background: #1e293b;
   border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.5),
-              inset 0 1px 0 rgba(107, 147, 245, 0.1);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
 }
 
-.megaMenuSectionTitle {
-  color: #6b7280;
+.megaMenuLabel {
+  color: #9ca3af;
 }
 
 .megaMenuItem {
-  color: #cbd5e1;
+  color: #f3f4f6;
 }
 
 .megaMenuItem:hover {
-  background: rgba(88, 166, 255, 0.1);
+  background: #334155;
+  transform: translateY(-1px);
 }
 
-.megaMenuItemIcon {
-  background: rgba(88, 166, 255, 0.15);
-  color: #58a6ff;
+.iconWrap {
+  background: #0f172a;
+  color: #60a5fa;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.megaMenuItem:hover .megaMenuItemIcon {
-  background: rgba(88, 166, 255, 0.25);
-  transform: scale(1.1);
+.megaMenuItem:hover .iconWrap {
+  background: #1e293b;
+  border-color: rgba(96, 165, 250, 0.3);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.2);
 }
 
-.megaMenuItemDesc {
-  color: #6b7280;
+.itemDesc {
+  color: #9ca3af;
 }
 
-/* Legacy nav link */
-.navLink {
-  color: #94a3b8;
+.hamburger {
+  color: #d1d5db;
+}
+.hamburger:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.navLink:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+.mobileFlyout {
+  background: #0f172a;
 }
 
-/* Mobile Menu */
-.mobileMenuButton {
-  color: #e2e8f0;
-}
-
-.mobileMenuButton:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.mobileNavMenu {
-  background: linear-gradient(180deg, rgba(10, 10, 12, 0.95) 0%, rgba(15, 23, 42, 0.9) 100%);
-  border-color: rgba(255, 255, 255, 0.08);
-}
-
-.mobileMenuSectionTitle {
-  color: #6b7280;
-}
-
-.mobileMenuItem {
-  color: #cbd5e1;
-}
-
-.mobileMenuItem:hover {
-  background: rgba(88, 166, 255, 0.1);
-  color: #58a6ff;
-}
-
-/* Explore Featured Link */
-.exploreLink {
-  background: linear-gradient(135deg, #58a6ff 0%, #4573df 100%);
-  color: #0f172a;
-}
-
-.exploreLink:hover {
-  background: linear-gradient(135deg, #79b8ff 0%, #58a6ff 100%);
-  box-shadow: 0 8px 28px rgba(88, 166, 255, 0.35);
-}
-
-/* Theme Toggle */
-.themeToggle {
-  color: #cbd5e1;
-}
-
-.themeToggle:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #e2e8f0;
-}
-
-/* Header Icon Buttons */
-.headerIconBtn {
-  color: #94a3b8;
-}
-
-.headerIconBtn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #e2e8f0;
-}
-
-/* User Dropdown */
-.userDropdown {
-  background: linear-gradient(135deg, rgba(22, 22, 26, 0.98) 0%, rgba(15, 23, 42, 0.95) 100%);
+.mobileHeader {
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-.userDropdownHeader {
-  background: rgba(107, 147, 245, 0.1);
-  color: #f1f5f9;
+.mobileTab {
+  color: #d1d5db;
 }
 
-.userDropdownName {
-  color: #f1f5f9;
+.mobileTabActive {
+  opacity: 1;
+  border-color: #60a5fa;
+  color: #60a5fa;
 }
 
-.userDropdownRole {
-  color: #6b7280;
-}
-
-.userDropdownItem {
-  color: #cbd5e1;
-}
-
-.userDropdownItem:hover {
-  background: rgba(88, 166, 255, 0.12);
-  color: #58a6ff;
-}
-
-.userDropdownLogout {
-  color: #ff4757;
-}
-
-.userDropdownLogout:hover {
-  background: rgba(255, 71, 87, 0.12);
+.mobileFooter {
+  background: #1e293b;
+  border-color: rgba(255, 255, 255, 0.1);
 }

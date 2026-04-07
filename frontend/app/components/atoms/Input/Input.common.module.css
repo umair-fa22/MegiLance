@@ -29,8 +29,18 @@
   opacity: 1;
 }
 
+.interactiveSpotlight {
+  position: absolute;
+  inset: -2px;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.3s ease;
+  border-radius: var(--border-radius-xl);
+}
+
 .inputLabel {
   font-family: var(--font-family-body);
+  position: relative;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   color: var(--input-label-text);
