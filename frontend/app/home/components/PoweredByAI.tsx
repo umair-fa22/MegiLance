@@ -174,7 +174,7 @@ interface FeatureCardProps {
   feature: AIFeature;
   isHovered: boolean;
   onHover: (id: string | null) => void;
-  themeStyles: any;
+  themeStyles: typeof lightStyles;
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({

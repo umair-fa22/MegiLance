@@ -8,8 +8,17 @@ import commonStyles from './JobCard.common.module.css';
 import lightStyles from './JobCard.light.module.css';
 import darkStyles from './JobCard.dark.module.css';
 
+interface Job {
+  id: string | number;
+  title: string;
+  clientName?: string;
+  budget?: number;
+  skills?: string[];
+  postedTime?: string | Date;
+}
+
 interface JobCardProps {
-  job: any;
+  job: Job;
 }
 
 const JobCard: React.FC<JobCardProps> = ({ job }) => {
@@ -32,15 +41,15 @@ const JobCard: React.FC<JobCardProps> = ({ job }) => {
         {job.skills?.slice(0, 3).map((skill: string) => (
           <span key={skill} className={cn(commonStyles.tag, themeStyles.tag)}>{skill}</span>
         ))}
-        {job.skills?.length > 3 && (
-          <span className={cn(commonStyles.tag, themeStyles.tag)}>+{job.skills.length - 3} more</span>
+        {(job.skills?.length ?? 0) > 3 && (
+          <span className={cn(commonStyles.tag, themeStyles.tag)}>+{(job.skills?.length ?? 0) - 3} more</span>
         )}
       </div>
 
       <div className={commonStyles.footer}>
         <div className={cn(commonStyles.meta, themeStyles.meta)}>
           <Clock size={14} />
-          <span>Posted {new Date(job.postedTime).toLocaleDateString()}</span>
+          <span>Posted {job.postedTime ? new Date(job.postedTime).toLocaleDateString() : 'N/A'}</span>
         </div>
         <Link href={`/jobs/${job.id}`}>
           <Button variant="outline" size="sm">View Job</Button>

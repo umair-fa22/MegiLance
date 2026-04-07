@@ -180,10 +180,11 @@ const Wallet: React.FC = () => {
       setWithdrawOpen(false);
       // Ideally we should refetch data here, but reload is a simple way to ensure consistency for now
       window.location.reload();
-    } catch (e: any) {
+    } catch (e: unknown) {
+      const errorMessage = e instanceof Error ? e.message : 'Failed to submit withdrawal. Please try again.';
       toaster.notify({
         title: 'Withdrawal failed',
-        description: e.message || 'Failed to submit withdrawal. Please try again.',
+        description: errorMessage,
         variant: 'danger',
         duration: 5000,
       });

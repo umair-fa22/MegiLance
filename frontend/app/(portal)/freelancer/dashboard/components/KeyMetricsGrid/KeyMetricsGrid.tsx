@@ -16,8 +16,15 @@ import commonStyles from './KeyMetricsGrid.common.module.css';
 import lightStyles from './KeyMetricsGrid.light.module.css';
 import darkStyles from './KeyMetricsGrid.dark.module.css';
 
+export interface AnalyticsData {
+  totalEarnings?: number | string;
+  activeProjects?: number;
+  completedProjects?: number;
+  pendingProposals?: number;
+}
+
 export interface KeyMetricsGridProps {
-  analytics?: any;
+  analytics?: AnalyticsData;
   loading?: boolean;
 }
 

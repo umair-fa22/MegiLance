@@ -84,7 +84,7 @@ const TrustIndicators: React.FC = () => {
 
 interface TrustIndicatorItemProps {
   indicator: TrustIndicator;
-  themeStyles: any;
+  themeStyles: typeof lightStyles;
 }
 
 const TrustIndicatorItem: React.FC<TrustIndicatorItemProps> = ({ indicator, themeStyles }) => {

@@ -96,7 +96,7 @@ interface ValueCardProps {
   prop: ValueProp;
   isHovered: boolean;
   onHover: (id: string | null) => void;
-  themeStyles: any;
+  themeStyles: typeof lightStyles;
 }
 
 const ValueCard: React.FC<ValueCardProps> = ({

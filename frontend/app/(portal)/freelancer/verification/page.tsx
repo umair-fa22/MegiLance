@@ -187,8 +187,10 @@ export default function VerificationPage() {
       setSelectedVerification(null);
       setSelectedFile(null);
       showToast('Document submitted for review');
-    } catch (error: any) {
-      showToast(error?.detail || 'Upload failed', 'error');
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Upload failed';
+      const apiError = error as { detail?: string };
+      showToast(apiError?.detail || errorMessage, 'error');
     } finally {
       setUploading(false);
     }

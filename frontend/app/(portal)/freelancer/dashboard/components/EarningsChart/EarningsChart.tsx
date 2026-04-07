@@ -18,7 +18,14 @@ interface EarningsChartProps {
   data: EarningsData[];
 }
 
-const CustomTooltip = ({ active, payload, label, themeStyles }: any) => {
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: Array<{ value: number }>;
+  label?: string;
+  themeStyles: typeof light;
+}
+
+const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload, label, themeStyles }) => {
   if (active && payload && payload.length) {
     return (
       <div className={cn(common.tooltip, themeStyles.tooltip)}>

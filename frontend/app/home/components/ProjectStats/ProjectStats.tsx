@@ -117,7 +117,7 @@ const ProjectStats: React.FC = () => {
 const StatCard: React.FC<{ 
   stat: StatItem; 
   index: number; 
-  themeStyles: any;
+  themeStyles: typeof lightStyles;
   isInView: boolean;
 }> = ({ stat, index, themeStyles, isInView }) => {
   const x = useMotionValue(0);
