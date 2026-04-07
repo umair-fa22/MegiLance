@@ -1,0 +1,23 @@
+app/components/atoms/Badge/Badge.tsx(69,10): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+app/components/atoms/Badge/Badge.tsx(74,11): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+app/components/atoms/Badge/Badge.tsx(78,10): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+app/components/atoms/Badge/Badge.tsx(83,11): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+app/components/atoms/Badge/Badge.tsx(102,6): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+app/components/atoms/Badge/Badge.tsx(108,7): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+app/components/molecules/Table/Table.tsx(189,12): error TS2304: Cannot find name 'motion'.
+app/components/molecules/Table/Table.tsx(222,13): error TS2304: Cannot find name 'motion'.
+app/components/molecules/Table/Table.tsx(226,14): error TS2304: Cannot find name 'motion'.
+app/components/molecules/Table/Table.tsx(233,15): error TS2304: Cannot find name 'motion'.
+app/components/molecules/Table/Table.tsx(236,16): error TS2304: Cannot find name 'motion'.
+app/components/molecules/Table/Table.tsx(246,42): error TS7006: Parameter 'e' implicitly has an 'any' type.
+app/components/molecules/Table/Table.tsx(263,17): error TS2304: Cannot find name 'motion'.
+app/components/organisms/Footer/Footer.tsx(115,6): error TS2304: Cannot find name 'motion'.
+app/components/organisms/Footer/Footer.tsx(204,7): error TS2304: Cannot find name 'motion'.
+app/components/organisms/Header/Header.tsx(153,8): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+app/components/organisms/Header/Header.tsx(248,9): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+app/components/organisms/Sidebar/Sidebar.tsx(97,6): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+app/components/organisms/Sidebar/Sidebar.tsx(113,8): error TS2304: Cannot find name 'motion'.
+app/components/organisms/Sidebar/Sidebar.tsx(154,9): error TS2304: Cannot find name 'motion'.
+app/components/organisms/Sidebar/Sidebar.tsx(162,8): error TS2304: Cannot find name 'motion'.
+app/components/organisms/Sidebar/Sidebar.tsx(188,9): error TS2304: Cannot find name 'motion'.
+app/components/organisms/Sidebar/Sidebar.tsx(189,7): error TS2304: Cannot find name 'motion'.

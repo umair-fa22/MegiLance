@@ -3,6 +3,7 @@
 
 import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import { useTheme } from 'next-themes';
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
 import { useFreelancerData } from '@/hooks/useFreelancer';
@@ -204,7 +205,7 @@ const MyJobs: React.FC = () => {
     const contract = allContracts.find(c => (c.title || `Project #${c.project_id}`) === title);
     if (!contract) return;
 
-    let milestones: Milestone[] = [];
+    let milestones: Milestone[];
     try {
       const parsed = JSON.parse(contract.milestones || '[]');
       milestones = Array.isArray(parsed) ? parsed.map((m: any) => ({
@@ -426,30 +427,30 @@ const MyJobs: React.FC = () => {
           <div className={cn(commonStyles.quickActions, styles.quickActions)}>
             <h3 className={commonStyles.quickActionsTitle}>Quick Actions</h3>
             <div className={commonStyles.quickActionsGrid}>
-              <a href="/freelancer/time-entries" className={cn(commonStyles.quickAction, styles.quickAction)}>
+              <Link href="/freelancer/time-entries" className={cn(commonStyles.quickAction, styles.quickAction)}>
                 <Timer size={18} />
                 <span>Time Tracking</span>
-              </a>
-              <a href="/freelancer/messages" className={cn(commonStyles.quickAction, styles.quickAction)}>
+              </Link>
+              <Link href="/freelancer/messages" className={cn(commonStyles.quickAction, styles.quickAction)}>
                 <MessageCircle size={18} />
                 <span>Messages</span>
-              </a>
-              <a href="/freelancer/invoices" className={cn(commonStyles.quickAction, styles.quickAction)}>
+              </Link>
+              <Link href="/freelancer/invoices" className={cn(commonStyles.quickAction, styles.quickAction)}>
                 <FileText size={18} />
                 <span>Invoices</span>
-              </a>
-              <a href="/freelancer/contracts" className={cn(commonStyles.quickAction, styles.quickAction)}>
+              </Link>
+              <Link href="/freelancer/contracts" className={cn(commonStyles.quickAction, styles.quickAction)}>
                 <FileText size={18} />
                 <span>Contracts</span>
-              </a>
-              <a href="/freelancer/earnings" className={cn(commonStyles.quickAction, styles.quickAction)}>
+              </Link>
+              <Link href="/freelancer/earnings" className={cn(commonStyles.quickAction, styles.quickAction)}>
                 <DollarSign size={18} />
                 <span>Earnings</span>
-              </a>
-              <a href="/freelancer/reviews" className={cn(commonStyles.quickAction, styles.quickAction)}>
+              </Link>
+              <Link href="/freelancer/reviews" className={cn(commonStyles.quickAction, styles.quickAction)}>
                 <Star size={18} />
                 <span>Reviews</span>
-              </a>
+              </Link>
             </div>
           </div>
         </ScrollReveal>
@@ -530,3 +531,5 @@ const MyJobs: React.FC = () => {
 };
 
 export default MyJobs;
+
+

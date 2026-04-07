@@ -5,6 +5,7 @@ import React, { useState, useId, useCallback, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 import { useTheme } from 'next-themes';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import SidebarNav from '../SidebarNav/SidebarNav';
 import { MegiLanceLogo } from '@/app/components/atoms/MegiLanceLogo/MegiLanceLogo';
@@ -189,3 +190,4 @@ export default function Sidebar({ isCollapsed, toggleSidebar, userType, isMobile
     </motion.aside>
   );
 };
+

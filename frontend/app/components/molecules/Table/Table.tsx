@@ -1,7 +1,8 @@
 // @AI-HINT: This is a Table component, an organism for displaying structured data with full accessibility support.
 'use client';
 
-import React, { useId, useMemo, useState, useCallback } from 'react';
+import React, { useId, useMemo, useState, useCallback, KeyboardEvent } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { ChevronUp, ChevronDown, ChevronsUpDown } from 'lucide-react';
@@ -243,7 +244,7 @@ const Table: React.FC<TableProps> = ({
                   onRowClick && commonStyles.clickable
                 )}
                 onClick={onRowClick ? () => onRowClick(row, rowIndex) : undefined}
-                onKeyDown={onRowClick ? (e) => {
+                onKeyDown={onRowClick ? (e: KeyboardEvent<HTMLTableRowElement>) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     onRowClick(row, rowIndex);

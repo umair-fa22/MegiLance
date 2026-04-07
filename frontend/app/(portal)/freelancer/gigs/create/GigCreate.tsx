@@ -243,7 +243,7 @@ const GigCreate: React.FC = () => {
           return false;
         }
         return true;
-      case 2:
+      case 2: {
         const { basic, standard, premium } = form.packages;
         if (!basic.title || !standard.title || !premium.title) {
           setError('Please enter titles for all packages');
@@ -254,6 +254,7 @@ const GigCreate: React.FC = () => {
           return false;
         }
         return true;
+      }
       case 3:
         if (form.description.length < 100) {
           setError('Description should be at least 100 characters');

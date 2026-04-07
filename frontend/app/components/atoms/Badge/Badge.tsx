@@ -3,6 +3,7 @@
 
 import { ReactNode } from 'react';
 import { useTheme } from 'next-themes';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 import commonStyles from './Badge.common.module.css';
@@ -108,3 +109,4 @@ export default function Badge({
     </motion.span>
   );
 };
+

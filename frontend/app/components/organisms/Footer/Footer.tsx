@@ -4,6 +4,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Linkedin, Facebook, Mail, ArrowRight, CheckCircle2, Loader2 } from 'lucide-react';
 
@@ -206,3 +207,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

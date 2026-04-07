@@ -1,5 +1,6 @@
 // @AI-HINT: Explore directory - comprehensive search across all platform entities
 import React, { Suspense } from 'react';
+import Link from 'next/link';
 import commonStyles from './Explore.common.module.css';
 
 export default async function ExplorePage() {
@@ -14,11 +15,11 @@ export default async function ExplorePage() {
         <form style={{ marginTop: '2.5rem', display: 'flex', maxWidth: '800px', margin: '2.5rem auto 0', gap: '0.5rem' }}>
           <input 
              type="search" 
-             placeholder="Search for skills, services, freelancers..." 
+             placeholder="Search for skills, services, freelancers..."
              style={{ flexGrow: 1, padding: '1rem 1.5rem', fontSize: '1.125rem', borderRadius: '999px', border: '1px solid #cbd5e1', outline: 'none' }}
           />
           <button style={{ background: '#4573df', color: 'white', border: 'none', padding: '0 2rem', borderRadius: '999px', fontSize: '1.125rem', fontWeight: 600, cursor: 'pointer' }}>
-             Search
+            Search
           </button>
         </form>
       </header>
@@ -28,21 +29,21 @@ export default async function ExplorePage() {
           <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>👨‍💻</div>
           <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Top Talent</h2>
           <p style={{ color: '#64748b', marginBottom: '1.5rem' }}>Find the perfect specialist for your next big project.</p>
-          <a href="/freelancers" style={{ color: '#4573df', fontWeight: 600, textDecoration: 'none' }}>Browse Freelancers &rarr;</a>
+          <Link href="/freelancers" style={{ color: '#4573df', fontWeight: 600, textDecoration: 'none' }}>Browse Freelancers &rarr;</Link>
         </div>
         
         <div style={{ background: '#f8fafc', padding: '2rem', borderRadius: '16px', textAlign: 'center' }}>
           <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📦</div>
           <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Services (Gigs)</h2>
           <p style={{ color: '#64748b', marginBottom: '1.5rem' }}>Fixed-price, ready-to-buy services from vetted pros.</p>
-          <a href="/gigs" style={{ color: '#4573df', fontWeight: 600, textDecoration: 'none' }}>Browse Gigs &rarr;</a>
+          <Link href="/gigs" style={{ color: '#4573df', fontWeight: 600, textDecoration: 'none' }}>Browse Gigs &rarr;</Link>
         </div>
 
         <div style={{ background: '#f8fafc', padding: '2rem', borderRadius: '16px', textAlign: 'center' }}>
           <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>💼</div>
           <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Jobs</h2>
           <p style={{ color: '#64748b', marginBottom: '1.5rem' }}>Start pitching customized project requests tailored to you.</p>
-          <a href="/jobs" style={{ color: '#4573df', fontWeight: 600, textDecoration: 'none' }}>Find Work &rarr;</a>
+          <Link href="/jobs" style={{ color: '#4573df', fontWeight: 600, textDecoration: 'none' }}>Find Work &rarr;</Link>
         </div>
       </section>
     </main>

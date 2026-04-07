@@ -5,6 +5,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Menu, X, Sparkles, ChevronDown, Briefcase, Users, Shield, 
   Search, Zap, Globe, MessageSquare, CreditCard, 
@@ -319,3 +320,4 @@ export default function Header() {
     </>
   );
 }
+

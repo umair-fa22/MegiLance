@@ -324,12 +324,12 @@
     ],
     "phase_last_updated_at": "2026-04-07T08:04:29Z",
     "created_at": "2026-04-07T08:04:24Z",
-    "updated_at": "2026-04-07T08:04:31Z",
+    "updated_at": "2026-04-07T08:06:31Z",
     "cause": "commit 3cb739f pushed to github.com/Mwaqarulmulk/MegiLance/tree/main",
     "progress": {
-      "pending_steps": 10,
+      "pending_steps": 8,
       "running_steps": 1,
-      "success_steps": 1,
+      "success_steps": 3,
       "total_steps": 12,
       "steps": [
         {
@@ -348,7 +348,7 @@
               "steps": [
                 {
                   "name": "backend",
-                  "status": "RUNNING",
+                  "status": "SUCCESS",
                   "started_at": "0001-01-01T00:00:00Z",
                   "ended_at": "0001-01-01T00:00:00Z",
                   "component_name": "backend",
@@ -356,25 +356,17 @@
                 },
                 {
                   "name": "ai-service",
-                  "status": "PENDING",
+                  "status": "SUCCESS",
                   "started_at": "0001-01-01T00:00:00Z",
                   "ended_at": "0001-01-01T00:00:00Z",
-                  "reason": {
-                    "code": "BuildRateLimit",
-                    "message": "Your build job is being rate-limited due to concurrent build limits."
-                  },
                   "component_name": "ai-service",
                   "message_base": "Building service"
                 },
                 {
                   "name": "frontend",
-                  "status": "PENDING",
+                  "status": "RUNNING",
                   "started_at": "0001-01-01T00:00:00Z",
                   "ended_at": "0001-01-01T00:00:00Z",
-                  "reason": {
-                    "code": "BuildRateLimit",
-                    "message": "Your build job is being rate-limited due to concurrent build limits."
-                  },
                   "component_name": "frontend",
                   "message_base": "Building service"
                 }
@@ -492,11 +484,11 @@
       ],
       "summary_steps": [
         {
-          "name": "build.components.backend",
+          "name": "build.components.frontend",
           "status": "RUNNING",
           "started_at": "0001-01-01T00:00:00Z",
           "ended_at": "0001-01-01T00:00:00Z",
-          "component_name": "backend",
+          "component_name": "frontend",
           "message_base": "Building service"
         }
       ]
@@ -518,8 +510,22 @@
     },
     "timing": {
       "pending": "4.767971053s",
-      "build_total": "1.475658003s",
-      "build_billable": "0s"
+      "build_total": "122.001274489s",
+      "build_billable": "122.960523592s",
+      "components": [
+        {
+          "name": "backend",
+          "build_billable": "87.614087454s"
+        },
+        {
+          "name": "ai-service",
+          "build_billable": "35.346436138s"
+        },
+        {
+          "name": "frontend",
+          "build_billable": "0s"
+        }
+      ]
     }
   },
   {
@@ -847,7 +853,7 @@
     ],
     "phase_last_updated_at": "2026-04-07T08:04:29Z",
     "created_at": "2026-04-07T08:03:40Z",
-    "updated_at": "2026-04-07T08:04:29Z",
+    "updated_at": "2026-04-07T08:04:38Z",
     "cause": "commit 7c78c9f pushed to github.com/Mwaqarulmulk/MegiLance/tree/main",
     "progress": {
       "pending_steps": 9,
