@@ -2,17 +2,6 @@
 > frontend@0.1.0 build
 > cross-env NEXT_TELEMETRY_DISABLED=1 TAILWIND_DISABLE_OPTIMISTIC=true TURBOPACK=0 next build
 
-ÔÜá Warning: Next.js inferred your workspace root, but it may not be correct.
- We detected multiple lockfiles and selected the directory of E:\MegiLance\package-lock.json as the root directory.
- To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
-   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
- Detected additional lockfiles: 
-   * E:\MegiLance\frontend\package-lock.json
-
-Warning: Custom Cache-Control headers detected for the following routes:
-  - /_next/static/:path*
-
-Setting a custom Cache-Control header can break Next.js development behavior.
 Ôû▓ Next.js 16.2.1 (Turbopack)
 - Environments: .env.local, .env.production
 - Experiments (use with caution):
@@ -21,15 +10,15 @@ Setting a custom Cache-Control header can break Next.js development behavior.
 
 ÔÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
   Creating an optimized production build ...
-Ô£ô Compiled successfully in 111s
+Ô£ô Compiled successfully in 2.3min
   Running TypeScript ...
-  Finished TypeScript in 112s ...
+  Finished TypeScript in 6.4min ...
   Collecting page data using 7 workers ...
-  Generating static pages using 7 workers (0/318) ...
-  Generating static pages using 7 workers (79/318) 
-  Generating static pages using 7 workers (158/318) 
-  Generating static pages using 7 workers (238/318) 
-Ô£ô Generating static pages using 7 workers (318/318) in 17.3s
+  Generating static pages using 7 workers (0/320) ...
+  Generating static pages using 7 workers (80/320) 
+  Generating static pages using 7 workers (160/320) 
+  Generating static pages using 7 workers (240/320) 
+Ô£ô Generating static pages using 7 workers (320/320) in 30.4s
   Finalizing page optimization ...
 
 Route (app)                             Revalidate  Expire
@@ -119,6 +108,7 @@ Route (app)                             Revalidate  Expire
 Ôö£ Ôùï /blog/search
 Ôö£ Ôùï /callback
 Ôö£ Ôùï /careers
+Ôö£ Ôùï /categories
 Ôö£ Ôùï /client
 Ôö£ Ôùï /client/analytics
 Ôö£ Ôùï /client/contracts
@@ -234,7 +224,7 @@ Route (app)                             Revalidate  Expire
 Ôö£ Ôùï /freelancer/wallet
 Ôö£ Ôùï /freelancer/withdraw
 Ôö£ Ôùï /freelancer/workflows
-Ôö£ Ôùï /freelancers
+Ôö£ ãÆ /freelancers
 Ôö£ ãÆ /freelancers/[id]
 Ôö£ Ôùï /gigs
 Ôö£ ãÆ /gigs/[slug]
@@ -304,6 +294,7 @@ Route (app)                             Revalidate  Expire
 Ôö£ Ôùï /teams
 Ôö£ Ôùï /terms
 Ôö£ Ôùï /testimonials
+Ôö£ Ôùï /tools
 Ôö£ Ôùï /tools/contract-builder
 Ôö£ Ôùï /twitter-image
 Ôö£ Ôùï /user-management

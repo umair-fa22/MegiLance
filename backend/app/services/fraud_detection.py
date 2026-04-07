@@ -435,8 +435,8 @@ class FraudDetectionService:
                     if doc.get('score', 0) > 60:
                         risk_score += 40
                         # Try inserting if signals list exists below
-                except:
-                    pass
+                except (json.JSONDecodeError, ValueError, TypeError, KeyError):
+                    pass  # AI response parsing failed, continue with other signals
             # ------------------------------------------------
 
             flags = []

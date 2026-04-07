@@ -1,0 +1,34 @@
+.workspaceContainer {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+.toolbar {
+  background-color: var(--bg-card);
+}
+.modeBtn {
+  color: var(--text-secondary);
+}
+.activeMode {
+  background: var(--bg-secondary);
+  color: var(--primary);
+  font-weight: 500;
+  border-radius: 6px;
+}
+.toolBtn {
+  color: var(--text-secondary);
+}
+.toolBtn:hover {
+  color: var(--primary);
+}
+.sendBtn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.sendBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

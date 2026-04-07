@@ -128,8 +128,8 @@ class BackupRestoreService:
                 expire_date = datetime.fromisoformat(expire_str)
                 if expire_date < datetime.now(timezone.utc):
                     return {"error": "Download link expired"}
-            except:
-                pass
+            except (ValueError, TypeError):
+                pass  # Invalid date format, treat as not expired
                 
         return {
             "url": f"https://storage.megilance.com/backups/{user_id}/{backup_id}.zip",

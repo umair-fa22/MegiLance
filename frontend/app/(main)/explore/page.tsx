@@ -3,7 +3,7 @@ import React, { Suspense } from 'react';
 import Link from 'next/link';
 import commonStyles from './Explore.common.module.css';
 
-export default async function ExplorePage() {
+export default function ExplorePage() {
   return (
     <main className={commonStyles.container}>
       <header className={commonStyles.header} style={{ textAlign: 'center', padding: '4rem 0' }}>
@@ -18,7 +18,7 @@ export default async function ExplorePage() {
              placeholder="Search for skills, services, freelancers..."
              style={{ flexGrow: 1, padding: '1rem 1.5rem', fontSize: '1.125rem', borderRadius: '999px', border: '1px solid #cbd5e1', outline: 'none' }}
           />
-          <button style={{ background: '#4573df', color: 'white', border: 'none', padding: '0 2rem', borderRadius: '999px', fontSize: '1.125rem', fontWeight: 600, cursor: 'pointer' }}>
+          <button type="submit" style={{ background: '#4573df', color: 'white', border: 'none', padding: '0 2rem', borderRadius: '999px', fontSize: '1.125rem', fontWeight: 600, cursor: 'pointer' }}>
             Search
           </button>
         </form>

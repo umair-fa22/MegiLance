@@ -53,6 +53,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
   size = 'md'
 }) => {
   const { resolvedTheme } = useTheme();
+  const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
   const [isOpen, setIsOpen] = useState(false);
   const { refs, floatingStyles } = useFloating({
     open: isOpen,
@@ -71,11 +72,6 @@ const DatePicker: React.FC<DatePickerProps> = ({
   const calendarId = `${uniqueId}-calendar`;
   const errorId = `${uniqueId}-error`;
 
-  if (!resolvedTheme) {
-    return null; // Don't render until theme is resolved
-  }
-
-  const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
   const hasError = !!error;
 
   // Close picker when clicking outside

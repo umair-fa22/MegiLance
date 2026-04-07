@@ -34,7 +34,7 @@ async function readDb(): Promise<Conversation[]> {
     if (process.env.NODE_ENV === 'development') {
       console.error('Failed to read or parse messages database:', error);
     }
-    throw new Error('Failed to read messages database.');
+    throw new Error('Failed to read messages database.', { cause: error });
   }
 }
 
@@ -74,7 +74,7 @@ async function writeDb(data: Conversation[]): Promise<void> {
     if (process.env.NODE_ENV === 'development') {
       console.error('Failed to write to messages database:', error);
     }
-    throw new Error('Failed to write to messages database.');
+    throw new Error('Failed to write to messages database.', { cause: error });
   }
 }
 

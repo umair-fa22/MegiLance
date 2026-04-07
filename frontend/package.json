@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "cross-env NEXT_TELEMETRY_DISABLED=1 TAILWIND_DISABLE_OPTIMISTIC=true TURBOPACK=0 next build",
     "start": "next start -p ${PORT:-3000}",
-    "lint": "eslint app --max-warnings 100",
+    "lint": "eslint app",
     "test": "jest --verbose",
     "test:unit": "jest --verbose --forceExit",
     "test:e2e": "npx playwright test",

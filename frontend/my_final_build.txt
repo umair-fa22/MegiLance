@@ -1,0 +1,27 @@
+
+> frontend@0.1.0 build
+> cross-env NEXT_TELEMETRY_DISABLED=1 TAILWIND_DISABLE_OPTIMISTIC=true TURBOPACK=0 next build
+
+▲ Next.js 16.2.1 (Turbopack)
+- Environments: .env.local, .env.production
+- Experiments (use with caution):
+  · optimizePackageImports
+  · serverActions
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.1min
+  Running TypeScript ...
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+Failed to type check.
+
+./app/components/molecules/DatePicker/DatePicker.tsx:309:53
+Type error: Cannot find name 'themeStyles'.
+
+  [90m307 |[0m
+  [90m308 |[0m     [36mreturn[0m (
+[31m[1m>[0m [90m309 |[0m       <div className={cn(commonStyles.timeSelector, themeStyles.timeSelector)}>
+  [90m    |[0m                                                     [31m[1m^[0m
+  [90m310 |[0m         <select
+  [90m311 |[0m           value={selectedTime.hours}
+  [90m312 |[0m           onChange={(e) => handleTimeChange(parseInt(e.target.value), selectedTime.minutes)}
+Next.js build worker exited with code: 1 and signal: null

@@ -10,7 +10,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel
 
-from app.core.security import get_current_active_user
+from app.core.security import get_current_active_user, require_admin
 from app.services.workflow_automation import (
     get_workflow_automation_service,
     TriggerType,
@@ -328,12 +328,9 @@ async def admin_get_all_workflows(
     user_id: Optional[int] = None,
     status_filter: Optional[WorkflowStatus] = None,
     limit: int = Query(100, le=500),
-    current_user = Depends(get_current_active_user)
+    current_user = Depends(require_admin)
 ):
     """Admin: Get all workflows."""
-    if current_user.get("role") != "admin":
-        raise HTTPException(status_code=403, detail="Admin access required")
-    
     return {
         "workflows": [],
         "total": 0,
@@ -344,12 +341,9 @@ async def admin_get_all_workflows(
 @router.get("/admin/stats")
 async def admin_get_global_stats(
     period_days: int = Query(30, ge=1, le=365),
-    current_user = Depends(get_current_active_user)
+    current_user = Depends(require_admin)
 ):
     """Admin: Get global workflow statistics."""
-    if current_user.get("role") != "admin":
-        raise HTTPException(status_code=403, detail="Admin access required")
-    
     return {
         "period_days": period_days,
         "total_workflows": 0,

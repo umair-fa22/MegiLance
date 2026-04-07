@@ -10,7 +10,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel
 
-from app.core.security import get_current_active_user
+from app.core.security import get_current_active_user, require_admin
 from app.services.user_feedback import (
     get_user_feedback_service,
     FeedbackType,
@@ -296,12 +296,9 @@ async def submit_quick_feedback(
 @router.get("/admin/analytics")
 async def get_feedback_analytics(
     period_days: int = Query(30, ge=7, le=365),
-    current_user = Depends(get_current_active_user)
+    current_user = Depends(require_admin)
 ):
     """Get feedback analytics (admin)."""
-    if current_user.get("role") != "admin":
-        raise HTTPException(status_code=403, detail="Admin access required")
-    
     service = get_user_feedback_service()
     analytics = await service.get_feedback_analytics(period_days)
     return {"analytics": analytics}
@@ -310,12 +307,9 @@ async def get_feedback_analytics(
 @router.get("/admin/sentiment")
 async def get_sentiment_analysis(
     period_days: int = Query(30, ge=7, le=365),
-    current_user = Depends(get_current_active_user)
+    current_user = Depends(require_admin)
 ):
     """Get feedback sentiment analysis (admin)."""
-    if current_user.get("role") != "admin":
-        raise HTTPException(status_code=403, detail="Admin access required")
-    
     service = get_user_feedback_service()
     sentiment = await service.get_sentiment_analysis(period_days)
     return sentiment
@@ -325,12 +319,9 @@ async def get_sentiment_analysis(
 async def admin_update_feedback(
     feedback_id: str,
     updates: Dict[str, Any],
-    current_user = Depends(get_current_active_user)
+    current_user = Depends(require_admin)
 ):
     """Update feedback status (admin)."""
-    if current_user.get("role") != "admin":
-        raise HTTPException(status_code=403, detail="Admin access required")
-    
     service = get_user_feedback_service()
     result = await service.update_feedback(feedback_id, updates)
     return result
@@ -339,12 +330,9 @@ async def admin_update_feedback(
 @router.post("/admin/surveys")
 async def admin_create_survey(
     request: CreateSurveyRequest,
-    current_user = Depends(get_current_active_user)
+    current_user = Depends(require_admin)
 ):
     """Create a new survey (admin)."""
-    if current_user.get("role") != "admin":
-        raise HTTPException(status_code=403, detail="Admin access required")
-    
     service = get_user_feedback_service()
     result = await service.create_survey(
         admin_id=current_user["id"],
@@ -360,12 +348,9 @@ async def admin_create_survey(
 @router.get("/admin/satisfaction-by-feature")
 async def get_satisfaction_by_feature(
     period_days: int = Query(30, ge=7, le=365),
-    current_user = Depends(get_current_active_user)
+    current_user = Depends(require_admin)
 ):
     """Get satisfaction breakdown by feature (admin)."""
-    if current_user.get("role") != "admin":
-        raise HTTPException(status_code=403, detail="Admin access required")
-    
     service = get_user_feedback_service()
     satisfaction = await service.get_satisfaction_by_feature(period_days)
     return satisfaction

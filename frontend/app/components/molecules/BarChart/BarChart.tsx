@@ -52,18 +52,20 @@ const BarChart: React.FC<BarChartProps> = ({ data, title, className, showValues 
           prevBar?.focus();
         }
         break;
-      case 'Home':
+      case 'Home': {
         e.preventDefault();
         setFocusedIndex(0);
         const firstBar = document.querySelector(`[data-bar-index="0"]`) as HTMLElement;
         firstBar?.focus();
         break;
-      case 'End':
+      }
+      case 'End': {
         e.preventDefault();
         setFocusedIndex(data.length - 1);
         const lastBar = document.querySelector(`[data-bar-index="${data.length - 1}"]`) as HTMLElement;
         lastBar?.focus();
         break;
+      }
       default:
         break;
     }

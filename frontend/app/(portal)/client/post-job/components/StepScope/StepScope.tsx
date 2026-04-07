@@ -5,7 +5,7 @@ import React, { useMemo, useState, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AlertCircle, CheckCircle, Lightbulb, Info } from 'lucide-react';
+import { AlertCircle, CheckCircle, Lightbulb, Info, Sparkles, Loader2 } from 'lucide-react';
 import Textarea from '@/app/components/atoms/Textarea/Textarea';
 import TagsInput from '@/app/components/atoms/TagsInput/TagsInput';
 import { PostJobData, PostJobErrors } from '../../PostJob.types';
@@ -38,6 +38,23 @@ const StepScope: React.FC<StepScopeProps> = ({ data, updateData, errors }) => {
   const { resolvedTheme } = useTheme();
   const themed = resolvedTheme === 'dark' ? dark : light;
   const [showTips, setShowTips] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+
+  const handleGenerateAI = async () => {
+    try {
+      setIsGenerating(true);
+      const { aiWritingApi } = await import('@/lib/api/ai');
+      const res = await aiWritingApi.generateProjectDescription({
+        project_type: data.title || data.category || 'General Freelance Project',
+        key_features: data.skills.length > 0 ? data.skills : ['Standard project deliverables'],
+      });
+      updateData({ description: res.content });
+    } catch (e) {
+      console.error('AI generation failed', e);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
 
   // Calculate description metrics
   const descriptionMetrics = useMemo(() => {
@@ -98,16 +115,29 @@ const StepScope: React.FC<StepScopeProps> = ({ data, updateData, errors }) => {
           <h2 className={cn(common.title, themed.title)}>Define the Scope</h2>
           <p className={cn(common.subtitle, themed.subtitle)}>Provide a detailed description and the skills required.</p>
         </div>
-        <button
-          type="button"
-          className={cn(common.tipButton, themed.tipButton)}
-          onClick={() => setShowTips(!showTips)}
-          aria-expanded={showTips}
-          aria-controls="scope-tips"
-        >
-          <Lightbulb size={18} />
-          <span>Tips</span>
-        </button>
+        <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <button
+            type="button"
+            className={cn(common.tipButton, themed.tipButton)}
+            onClick={handleGenerateAI}
+            disabled={isGenerating}
+            style={{ color: '#4573df', background: 'rgba(69, 115, 223, 0.1)' }}
+            aria-label="Generate Description using AI"
+          >
+            {isGenerating ? <Loader2 size={18} className="animate-spin" /> : <Sparkles size={18} />}
+            <span>{isGenerating ? 'Generating...' : 'Auto-Generate Details'}</span>
+          </button>
+          <button
+            type="button"
+            className={cn(common.tipButton, themed.tipButton)}
+            onClick={() => setShowTips(!showTips)}
+            aria-expanded={showTips}
+            aria-controls="scope-tips"
+          >
+            <Lightbulb size={18} />
+            <span>Tips</span>
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>

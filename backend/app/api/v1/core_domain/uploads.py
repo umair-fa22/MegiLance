@@ -3,7 +3,7 @@
 Handles uploading of user files (avatars, portfolio images, documents)
 Enhanced with path traversal protection and content validation
 """
-from fastapi import APIRouter, Depends, File, UploadFile, HTTPException, status
+from fastapi import APIRouter, Depends, File, UploadFile, HTTPException, status, Request
 from app.core.security import get_current_user
 from app.core.rate_limit import api_rate_limit
 from app.services.uploads_service import get_user_avatar_url, update_user_avatar, clear_user_avatar
@@ -192,8 +192,9 @@ def save_uploaded_file(file_content: bytes, original_filename: str, directory: P
 
 
 @router.post("/avatar", status_code=status.HTTP_201_CREATED)
-@api_rate_limit
+@api_rate_limit()
 async def upload_avatar(
+    request: Request,
     file: UploadFile = File(...),
     current_user = Depends(get_current_user)
 ):
@@ -233,8 +234,9 @@ async def upload_avatar(
 
 
 @router.post("/portfolio", status_code=status.HTTP_201_CREATED)
-@api_rate_limit
+@api_rate_limit()
 async def upload_portfolio_image(
+    request: Request,
     file: UploadFile = File(...),
     current_user = Depends(get_current_user)
 ):
@@ -259,8 +261,9 @@ async def upload_portfolio_image(
 
 
 @router.post("/document", status_code=status.HTTP_201_CREATED)
-@api_rate_limit
+@api_rate_limit()
 async def upload_document(
+    request: Request,
     file: UploadFile = File(...),
     current_user = Depends(get_current_user)
 ):
@@ -289,8 +292,9 @@ async def upload_document(
 
 
 @router.delete("/file")
-@api_rate_limit
+@api_rate_limit()
 async def delete_uploaded_file(
+    request: Request,
     file_path: str,
     current_user = Depends(get_current_user)
 ):

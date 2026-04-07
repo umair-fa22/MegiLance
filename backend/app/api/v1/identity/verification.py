@@ -14,7 +14,7 @@ from typing import Optional
 from pydantic import BaseModel, Field
 import logging
 
-from app.core.security import get_current_active_user
+from app.core.security import get_current_active_user, require_admin
 from app.models.user import User
 
 logger = logging.getLogger(__name__)
@@ -191,11 +191,9 @@ async def get_supported_documents():
 async def get_pending_document_reviews(
     document_type: Optional[str] = Query(None),
     limit: int = Query(20, ge=1, le=100),
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(require_admin)
 ):
     """Get documents pending admin review. Admin only."""
-    if current_user.role != "admin":
-        raise HTTPException(status_code=403, detail="Admin access required")
     return {"pending_reviews": [], "total": 0}
 
 
@@ -203,20 +201,16 @@ async def get_pending_document_reviews(
 async def review_document(
     document_id: str,
     request: DocumentReviewRequest,
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(require_admin)
 ):
     """Review and approve/reject a verification document. Admin only."""
-    if current_user.role != "admin":
-        raise HTTPException(status_code=403, detail="Admin access required")
     return {"message": "Document reviewed", "document_id": document_id, "approved": request.approved}
 
 
 @router.get("/admin/user/{user_id}")
 async def get_user_verification_admin(
     user_id: int,
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(require_admin)
 ):
     """Get verification status for any user. Admin only."""
-    if current_user.role != "admin":
-        raise HTTPException(status_code=403, detail="Admin access required")
     return {"verification": {"user_id": user_id, "tier": "unverified", "status": "not_started"}, "documents": []}

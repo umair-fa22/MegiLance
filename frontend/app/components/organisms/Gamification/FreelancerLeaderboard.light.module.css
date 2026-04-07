@@ -1,0 +1,18 @@
+.leaderboardContainer {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+}
+.userCard {
+  background-color: var(--bg-primary);
+  border-color: var(--border);
+}
+.rankNumber {
+  color: var(--text-primary);
+}
+.details h4 {
+  color: var(--text-primary);
+}
+.badge {
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+}

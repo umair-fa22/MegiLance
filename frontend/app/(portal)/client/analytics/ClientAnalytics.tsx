@@ -118,7 +118,7 @@ const ClientAnalytics: React.FC = () => {
       ];
     }
 
-    const total = projects.length;
+    const total = projects.length || 1; // Prevent division by zero
     const statusCounts: Record<string, number> = {};
     projects.forEach(p => {
       const status = p.status || 'Open';

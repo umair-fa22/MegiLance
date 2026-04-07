@@ -1,0 +1,47 @@
+/* @AI-HINT: VideoCall light theme colors */
+
+.container {
+  background-color: #1a1a1a;
+}
+
+.error {
+  background-color: #fff0f0;
+  color: #e81123;
+  border: 1px solid #e81123;
+}
+
+.videoGrid {
+  background-color: #000000;
+}
+
+.remoteVideo {
+  background-color: #000000;
+}
+
+.localVideo {
+  background-color: #1a1a1a;
+  border: 2px solid #ffffff;
+}
+
+.statusOverlay {
+  color: #ffffff;
+}
+
+.videoOff {
+  color: #ffffff;
+}
+
+.whiteboard {
+  background-color: #ffffff;
+  border: 2px solid #e0e0e0;
+}
+
+.controls {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.participants {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  backdrop-filter: blur(10px);
+}

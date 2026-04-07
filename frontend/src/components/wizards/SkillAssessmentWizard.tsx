@@ -97,7 +97,8 @@ export default function SkillAssessmentWizard({
         correct++;
       }
     });
-    const score = (correct / assessmentData.questions.length) * 100;
+    const questionCount = assessmentData.questions.length || 1;
+    const score = (correct / questionCount) * 100;
     const passed = score >= 70;
     return { score, passed };
   };

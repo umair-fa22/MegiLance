@@ -274,8 +274,8 @@ class KnowledgeBaseService:
                     try:
                         import json
                         row_dict["tags"] = json.loads(row_dict["tags"])
-                    except:
-                        pass
+                    except (json.JSONDecodeError, ValueError):
+                        pass  # Keep tags as string if JSON parsing fails
                 formatted_faqs.append(row_dict)
                 
             return formatted_faqs
@@ -360,8 +360,8 @@ class KnowledgeBaseService:
                     try:
                         import json
                         row_dict["tags"] = json.loads(row_dict["tags"])
-                    except:
-                        pass
+                    except (json.JSONDecodeError, ValueError):
+                        pass  # Keep tags as string if JSON parsing fails
                 formatted_articles.append(row_dict)
                 
             return formatted_articles
