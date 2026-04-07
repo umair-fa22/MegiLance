@@ -92,7 +92,7 @@
   will-change: transform, box-shadow, border-color;
   position: relative;
   z-index: 1;
-  min-height: 44px;
+  min-height: 48px; /* Ensures minimum 48px touch target */
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }

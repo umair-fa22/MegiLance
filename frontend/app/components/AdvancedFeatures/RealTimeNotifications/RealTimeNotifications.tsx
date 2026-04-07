@@ -231,6 +231,7 @@ export default function RealTimeNotifications({
   return (
     <div className={styles.container}>
       <button
+        type="button"
         ref={refs.setReference}
         {...getReferenceProps()}
         className={styles.bellButton}
@@ -253,7 +254,7 @@ export default function RealTimeNotifications({
           <div className={styles.header}>
             <h3 className={styles.headerTitle}>Notifications</h3>
             {unreadCount > 0 && (
-              <button onClick={handleMarkAllAsRead} className={styles.markAllButton}>
+              <button type="button" onClick={handleMarkAllAsRead} className={styles.markAllButton}>
                 <Check size={14} /> Mark all as read
               </button>
             )}
@@ -283,6 +284,7 @@ export default function RealTimeNotifications({
                       </div>
                     </div>
                     <button
+                      type="button"
                       className={styles.notificationActions}
                       onClick={(e) => handleDeleteNotification(notification.id, e)}
                       aria-label="Delete notification"

@@ -12,7 +12,7 @@
 .table {
   width: 100%;
   caption-side: bottom;
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   line-height: 1.5;
   font-family: var(--font-family-body);
   border-collapse: collapse;
@@ -21,7 +21,7 @@
 
 .footer {
   font-weight: 500;
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   letter-spacing: 0.01em;
   /* Border and background in theme files */
 }
@@ -32,26 +32,26 @@
 }
 
 .head {
-  height: 3rem; /* 48px */
-  padding: 0 1.25rem;
+  height: 48px; /* 48px min touch target */
+  padding: 0 var(--spacing-lg);
   text-align: left;
   vertical-align: middle;
   font-weight: 600;
   font-family: var(--font-family-heading);
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   /* Text color in theme files */
 }
 
 .cell {
-  padding: 1rem 1.25rem;
+  padding: var(--spacing-md) var(--spacing-lg);
   vertical-align: middle;
 }
 
 .caption {
-  margin-top: 1rem;
-  font-size: 13px;
+  margin-top: var(--spacing-md);
+  font-size: var(--font-size-sm);
   letter-spacing: 0.01em;
   opacity: 0.8;
   /* Text color in theme files */

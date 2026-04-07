@@ -259,6 +259,7 @@ export default function ActivityPage() {
                   </Button>
                 )}
                 <button
+                  type="button"
                   onClick={() => loadActivities()}
                   className={cn(commonStyles.refreshBtn, themeStyles.refreshBtn)}
                   aria-label="Refresh activities"
@@ -311,7 +312,7 @@ export default function ActivityPage() {
                   className={cn(commonStyles.searchInput, themeStyles.searchInput)}
                 />
                 {searchQuery && (
-                  <button onClick={() => setSearchQuery('')} className={commonStyles.searchClear} aria-label="Clear search">
+                  <button type="button" onClick={() => setSearchQuery('')} className={commonStyles.searchClear} aria-label="Clear search">
                     <X size={16} />
                   </button>
                 )}
@@ -319,6 +320,7 @@ export default function ActivityPage() {
               <div className={cn(commonStyles.timePeriod, themeStyles.timePeriod)}>
                 {TIME_FILTERS.map(tf => (
                   <button
+                    type="button"
                     key={tf.value}
                     onClick={() => setTimePeriod(tf.value)}
                     className={cn(
@@ -340,6 +342,7 @@ export default function ActivityPage() {
                 const Icon = filter.icon;
                 return (
                   <button
+                    type="button"
                     key={filter.type}
                     onClick={() => setActiveFilter(filter.type)}
                     className={cn(
@@ -447,13 +450,14 @@ export default function ActivityPage() {
                             {/* Action row */}
                             <div className={commonStyles.activityActions}>
                               {activity.related_type && (
-                                <button className={cn(commonStyles.viewLink, themeStyles.viewLink)}>
+                                <button type="button" className={cn(commonStyles.viewLink, themeStyles.viewLink)}>
                                   <Eye size={14} />
                                   View {activity.related_type}
                                 </button>
                               )}
                               {(activity.metadata && Object.keys(activity.metadata).length > 0) && (
                                 <button
+                                  type="button"
                                   onClick={() => setExpandedId(isExpanded ? null : activity.id)}
                                   className={cn(commonStyles.expandBtn, themeStyles.expandBtn)}
                                 >
@@ -463,6 +467,7 @@ export default function ActivityPage() {
                               )}
                               {!activity.read && (
                                 <button
+                                  type="button"
                                   onClick={() => markAsRead(activity.id)}
                                   className={cn(commonStyles.markReadBtn, themeStyles.markReadBtn)}
                                 >

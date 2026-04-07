@@ -47,7 +47,7 @@
 
 .notification {
   position: fixed;
-  z-index: 9999;
+  z-index: var(--z-index-toast);
   max-width: 24rem;
   min-width: 20rem;
   border-radius: 12px;

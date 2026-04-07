@@ -108,8 +108,8 @@ export default function ChatbotAgent() {
       const data = await res.json();
       setConversationId(data.conversation_id);
       
-      // Simulate typing delay for more natural feel
-      await new Promise(resolve => setTimeout(resolve, 800));
+      // Brief delay for natural feel (reduced from 800ms)
+      await new Promise(resolve => setTimeout(resolve, 150));
       
       setMessages([{ 
         id: 1, 
@@ -189,7 +189,7 @@ export default function ChatbotAgent() {
 
     // Handle offline mode with local responses
     if (isOfflineMode) {
-      await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 500));
+      await new Promise(resolve => setTimeout(resolve, 100 + Math.random() * 100));
       const offlineData = getOfflineResponse(userText);
       const botResponse: Message = {
         id: Date.now() + 1,
@@ -216,8 +216,8 @@ export default function ChatbotAgent() {
       
       const data = await res.json();
       
-      // Simulate natural typing delay
-      await new Promise(resolve => setTimeout(resolve, 600 + Math.random() * 800));
+      // Brief delay for natural feel (reduced from 600-1400ms)
+      await new Promise(resolve => setTimeout(resolve, 100 + Math.random() * 100));
       
       const botResponse: Message = {
         id: Date.now() + 1,
@@ -275,7 +275,12 @@ export default function ChatbotAgent() {
   return (
     <div className={commonStyles.chatbotContainer}>
       {isOpen && (
-        <div className={cn(commonStyles.chatbotAgent, themeStyles.chatbotAgent)}>
+        <div 
+          className={cn(commonStyles.chatbotAgent, themeStyles.chatbotAgent)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="MegiBot AI Chat"
+        >
           {/* Enhanced Header */}
           <div className={cn(commonStyles.chatbotAgentHeader, themeStyles.chatbotAgentHeader)}>
             <div className={commonStyles.headerLeft}>
@@ -303,7 +308,12 @@ export default function ChatbotAgent() {
           </div>
           
           {/* Messages Area */}
-          <div className={cn(commonStyles.chatbotAgentMessages, themeStyles.chatbotAgentMessages)}>
+          <div 
+            className={cn(commonStyles.chatbotAgentMessages, themeStyles.chatbotAgentMessages)}
+            role="log"
+            aria-live="polite"
+            aria-label="Chat messages"
+          >
             {messages.length === 0 && !isTyping && (
               <div className={commonStyles.suggestedActions}>
                 {SUGGESTED_ACTIONS.map((action, index) => (

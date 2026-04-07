@@ -315,7 +315,7 @@ export default function PortfolioShowcasePage() {
                 className={cn(commonStyles.searchInput, themeStyles.searchInput)}
               />
               {searchQuery && (
-                <button onClick={() => setSearchQuery('')} className={cn(commonStyles.clearSearch, themeStyles.clearSearch)}>
+                <button type="button" onClick={() => setSearchQuery('')} className={cn(commonStyles.clearSearch, themeStyles.clearSearch)}>
                   <X size={14} />
                 </button>
               )}
@@ -325,6 +325,7 @@ export default function PortfolioShowcasePage() {
               <div className={cn(commonStyles.categories, themeStyles.categories)}>
                 {categoryOptions.map(cat => (
                   <button
+                    type="button"
                     key={cat.value}
                     onClick={() => setActiveCategory(cat.value)}
                     className={cn(
@@ -342,6 +343,7 @@ export default function PortfolioShowcasePage() {
               <div className={commonStyles.layoutToggle}>
                 {LAYOUT_OPTIONS.map(opt => (
                   <button
+                    type="button"
                     key={opt.value}
                     onClick={() => setSettings(prev => prev ? { ...prev, layout: opt.value as typeof prev.layout } : prev)}
                     className={cn(
@@ -399,10 +401,10 @@ export default function PortfolioShowcasePage() {
                       <div className={commonStyles.cardImage}>
                         <img src={item.thumbnail || '/placeholder.jpg'} alt={item.title} />
                         <div className={commonStyles.cardOverlay}>
-                          <button onClick={() => editItem(item)} className={commonStyles.overlayBtn} aria-label={`Edit ${item.title}`}>
+                          <button type="button" onClick={() => editItem(item)} className={commonStyles.overlayBtn} aria-label={`Edit ${item.title}`}>
                             <Edit3 size={16} />
                           </button>
-                          <button onClick={() => setDeleteTargetId(item.id)} className={commonStyles.overlayBtn} aria-label={`Delete ${item.title}`}>
+                          <button type="button" onClick={() => setDeleteTargetId(item.id)} className={commonStyles.overlayBtn} aria-label={`Delete ${item.title}`}>
                             <Trash2 size={16} />
                           </button>
                         </div>
@@ -419,6 +421,7 @@ export default function PortfolioShowcasePage() {
                             <Eye size={13} /> {item.views}
                           </span>
                           <button
+                            type="button"
                             onClick={() => handleLike(item)}
                             className={cn(
                               commonStyles.likeBtn,
@@ -464,13 +467,13 @@ export default function PortfolioShowcasePage() {
                         </span>
                       )}
                       <div className={commonStyles.cardOverlay}>
-                        <button onClick={() => toggleFeatured(item)} className={commonStyles.overlayBtn} aria-label={item.featured ? `Unfeature ${item.title}` : `Feature ${item.title}`}>
+                        <button type="button" onClick={() => toggleFeatured(item)} className={commonStyles.overlayBtn} aria-label={item.featured ? `Unfeature ${item.title}` : `Feature ${item.title}`}>
                           <Star size={16} fill={item.featured ? 'currentColor' : 'none'} />
                         </button>
-                        <button onClick={() => editItem(item)} className={commonStyles.overlayBtn} aria-label={`Edit ${item.title}`}>
+                        <button type="button" onClick={() => editItem(item)} className={commonStyles.overlayBtn} aria-label={`Edit ${item.title}`}>
                           <Edit3 size={16} />
                         </button>
-                        <button onClick={() => setDeleteTargetId(item.id)} className={commonStyles.overlayBtn} aria-label={`Delete ${item.title}`}>
+                        <button type="button" onClick={() => setDeleteTargetId(item.id)} className={commonStyles.overlayBtn} aria-label={`Delete ${item.title}`}>
                           <Trash2 size={16} />
                         </button>
                       </div>
@@ -492,6 +495,7 @@ export default function PortfolioShowcasePage() {
                           <Eye size={13} /> {item.views}
                         </span>
                         <button
+                          type="button"
                           onClick={() => handleLike(item)}
                           className={cn(
                             commonStyles.likeBtn,
@@ -519,6 +523,7 @@ export default function PortfolioShowcasePage() {
                   {editingItem ? <><Edit3 size={18} /> Edit Project</> : <><Plus size={18} /> Add New Project</>}
                 </h2>
                 <button
+                  type="button"
                   onClick={() => setShowItemModal(false)}
                   className={cn(commonStyles.closeButton, themeStyles.closeButton)}
                   disabled={saving}
@@ -601,7 +606,7 @@ export default function PortfolioShowcasePage() {
                       {newItem.tags.map(tag => (
                         <span key={tag} className={cn(commonStyles.selectedTag, themeStyles.selectedTag)}>
                           {tag}
-                          <button onClick={() => setNewItem(prev => ({ ...prev, tags: prev.tags.filter(t => t !== tag) }))} aria-label={`Remove tag ${tag}`}>
+                          <button type="button" onClick={() => setNewItem(prev => ({ ...prev, tags: prev.tags.filter(t => t !== tag) }))} aria-label={`Remove tag ${tag}`}>
                             <X size={12} />
                           </button>
                         </span>
@@ -646,6 +651,7 @@ export default function PortfolioShowcasePage() {
                   <Settings size={18} /> Portfolio Settings
                 </h2>
                 <button
+                  type="button"
                   onClick={() => setShowSettingsModal(false)}
                   className={cn(commonStyles.closeButton, themeStyles.closeButton)}
                   aria-label="Close settings"

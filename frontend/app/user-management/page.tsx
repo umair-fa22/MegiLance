@@ -92,7 +92,7 @@ const UserManagementPage: React.FC = () => {
               <div className={cn(commonStyles.inviteCard, themeStyles.inviteCard)}>
                 <div className={commonStyles.inviteHeader}>
                   <h3 className={cn(commonStyles.inviteTitle, themeStyles.inviteTitle)}>Invite User</h3>
-                  <button onClick={() => setShowInviteForm(false)} className={cn(commonStyles.closeBtn, themeStyles.closeBtn)} aria-label="Close invite form">
+                  <button type="button" onClick={() => setShowInviteForm(false)} className={cn(commonStyles.closeBtn, themeStyles.closeBtn)} aria-label="Close invite form">
                     <X size={20} />
                   </button>
                 </div>

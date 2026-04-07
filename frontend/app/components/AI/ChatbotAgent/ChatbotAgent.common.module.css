@@ -52,7 +52,7 @@
   position: fixed; /* Fixed positioning to always be visible */
   bottom: 2rem;
   right: 2rem;
-  z-index: 9999; /* Very high z-index to stay above everything */
+  z-index: var(--z-index-chatbot, 900); /* Use design token for z-index */
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -157,6 +157,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
   transition: transform var(--duration-fast, 200ms) var(--ease-smooth),
     box-shadow var(--duration-fast, 200ms) var(--ease-smooth),
     border-color var(--duration-fast, 200ms) var(--ease-smooth),
@@ -182,7 +184,7 @@
 
 /* Message Bubbles */
 .message {
-  max-width: 85%;
+  max-width: min(85%, 400px);
   display: flex;
   flex-direction: column;
   gap: var(--space-1, 0.25rem);
@@ -503,7 +505,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 9999;
+    z-index: var(--z-index-chatbot, 900);
   }
 
   .toggleButton {

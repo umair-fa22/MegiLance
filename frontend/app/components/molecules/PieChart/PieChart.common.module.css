@@ -135,7 +135,7 @@
   align-items: center;
   gap: 0.5rem;
   pointer-events: none;
-  z-index: 1000;
+  z-index: var(--z-index-tooltip);
   min-width: 150px;
 }
 

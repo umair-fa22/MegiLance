@@ -337,7 +337,7 @@
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
-  z-index: 1000;
+  z-index: var(--z-index-modal);
   padding: 20px;
   animation: fadeIn 0.2s ease;
 }
@@ -777,7 +777,7 @@
   padding: 12px 24px;
   border-radius: 8px;
   color: #fff;
-  z-index: 9999;
+  z-index: var(--z-index-toast);
   font-size: 14px;
   display: flex;
   align-items: center;

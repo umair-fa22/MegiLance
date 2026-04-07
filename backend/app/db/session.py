@@ -73,8 +73,7 @@ def get_engine():
             db_url = base_url
         
         logger.info(f"[TURSO] Connecting to: {base_url.split('?')[0]}")
-        logger.info(f"[TURSO] Connecting to: {base_url.split('?')[0]}")
-        
+
         _engine = create_engine(
             db_url,
             connect_args={},
@@ -86,8 +85,7 @@ def get_engine():
         
         _engine_available = True
         logger.info("[TURSO] Database engine created successfully")
-        logger.info("[TURSO] Database engine created successfully")
-        
+
     except Exception as e:
         logger.warning(f"Failed to create Turso database engine: {e} - using HTTP API")
         logger.info(f"[INFO] Using Turso HTTP API (SQLAlchemy engine not available: {e})")

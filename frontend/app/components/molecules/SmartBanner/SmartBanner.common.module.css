@@ -1,6 +1,9 @@
 /* @AI-HINT: SmartBanner common layout */
 .banner {
-  position: sticky; top: 0; z-index: 60; width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: var(--z-index-sticky);
+  width: 100%;
   padding: 0.6rem 1rem;
 }
 .bannerInner {

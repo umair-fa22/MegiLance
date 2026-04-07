@@ -257,7 +257,50 @@
   --z-index-popover: 600;
   --z-index-tooltip: 700;
   --z-index-toast: 800;
+  --z-index-chatbot: 900;
+  --z-index-loader: 950;
   --z-index-max: 9999;
+
+  /* ============================================= */
+  /*   SURFACE & BACKGROUND TOKENS                */
+  /* ============================================= */
+  /* Semantic surface colors - use these instead of hardcoded hex */
+  --surface-primary: var(--neutral-50);
+  --surface-secondary: var(--neutral-100);
+  --surface-tertiary: var(--neutral-200);
+  --surface-elevated: #ffffff;
+  --surface-overlay: rgba(255, 255, 255, 0.95);
+  
+  /* Background tokens */
+  --bg-page: var(--neutral-50);
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --bg-hover: var(--neutral-100);
+  --bg-active: var(--neutral-200);
+  
+  /* Border tokens */
+  --border-default: var(--neutral-200);
+  --border-subtle: var(--neutral-100);
+  --border-strong: var(--neutral-300);
+  
+  /* Text tokens */
+  --text-heading: var(--neutral-900);
+  --text-body: var(--neutral-700);
+  --text-muted: var(--neutral-500);
+  --text-disabled: var(--neutral-400);
+
+  /* ============================================= */
+  /*   LEGACY VARIABLE ALIASES                    */
+  /* ============================================= */
+  /* These map old variable names to new semantic tokens */
+  --surface-f5f7fa: var(--surface-secondary);
+  --surface-alt-f4f6f8: var(--surface-tertiary);
+  --surface-272b32: var(--neutral-800);
+  --surface-alt: var(--surface-tertiary);
+  --background-ffffff: var(--bg-card);
+  --border-e0e0e0: var(--border-default);
+  --text-primary-23272f: var(--text-heading);
+  --primary-4573df: #4573df;
 }
 
 /* ------------------------- */

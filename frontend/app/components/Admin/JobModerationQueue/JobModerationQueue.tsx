@@ -116,7 +116,7 @@ const JobCard: React.FC<JobCardProps> = ({ job, onModerate, themeStyles, isExpan
       <div className={cn(commonStyles.description, isExpanded ? commonStyles.expanded : '')}>
         <p>{job.description || 'No description provided.'}</p>
       </div>
-      <button onClick={onToggleExpand} className={cn(commonStyles.expandButton, themeStyles.expandButton)}>
+      <button type="button" onClick={onToggleExpand} className={cn(commonStyles.expandButton, themeStyles.expandButton)}>
         {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         {isExpanded ? 'Show Less' : 'Show More'}
       </button>

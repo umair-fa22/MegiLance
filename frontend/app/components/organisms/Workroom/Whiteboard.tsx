@@ -81,8 +81,8 @@ export default function Whiteboard({ contractId }: WhiteboardProps) {
       <div className={commonStyles.header}>
         <h3>Interactive Whiteboard</h3>
         <div className={commonStyles.actions}>
-          <button onClick={handleClear} className={themeStyles.button}>Clear</button>
-          <button onClick={handleUndo} className={themeStyles.button}>Undo</button>
+          <button type="button" onClick={handleClear} className={themeStyles.button}>Clear</button>
+          <button type="button" onClick={handleUndo} className={themeStyles.button}>Undo</button>
         </div>
       </div>
       <div className={commonStyles.canvasWrapper}>

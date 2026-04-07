@@ -48,26 +48,26 @@
 
 /* Sizes */
 .button.default {
-  height: 44px;
-  padding: 0 20px;
-  font-size: var(--font-size-base);
+  height: 48px;
+  padding: 0 24px;
+  font-size: var(--font-size-md);
 }
 
 .button.sm {
-  height: 36px;
+  height: 44px;
   padding: 0 16px;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
 }
 
 .button.lg {
-  height: 52px;
-  padding: 0 28px;
+  height: 56px;
+  padding: 0 32px;
   font-size: var(--font-size-lg);
 }
 
 .button.icon {
-  height: 44px;
-  width: 44px;
+  height: 48px;
+  width: 48px;
   padding: 0;
 }
 

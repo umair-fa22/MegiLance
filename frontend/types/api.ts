@@ -623,3 +623,323 @@ export interface WorkflowAction {
   type: string;
   config: Record<string, unknown>;
 }
+
+// ============================================================================
+// Notification Types
+// ============================================================================
+
+export interface Notification {
+  id: number;
+  user_id: number;
+  type: 'message' | 'proposal' | 'contract' | 'payment' | 'review' | 'system';
+  title: string;
+  message: string;
+  data?: Record<string, unknown>;
+  read: boolean;
+  created_at: string;
+  read_at?: string;
+}
+
+export interface NotificationList {
+  notifications: Notification[];
+  total: number;
+  unread_count: number;
+  page: number;
+  page_size: number;
+}
+
+// ============================================================================
+// Message Types
+// ============================================================================
+
+export interface Message {
+  id: number;
+  conversation_id: number;
+  sender_id: number;
+  content: string;
+  attachments?: MessageAttachment[];
+  read: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface MessageAttachment {
+  id: number;
+  filename: string;
+  url: string;
+  type: string;
+  size: number;
+}
+
+export interface Conversation {
+  id: number;
+  participants: User[];
+  project_id?: number;
+  contract_id?: number;
+  subject?: string;
+  last_message?: Message;
+  unread_count: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ConversationList {
+  conversations: Conversation[];
+  total: number;
+  page: number;
+  page_size: number;
+}
+
+// ============================================================================
+// Milestone Types
+// ============================================================================
+
+export interface Milestone {
+  id: number;
+  contract_id: number;
+  title: string;
+  description?: string;
+  amount: number;
+  status: 'pending' | 'in_progress' | 'submitted' | 'approved' | 'paid' | 'cancelled';
+  due_date?: string;
+  completed_at?: string;
+  order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface MilestoneList {
+  milestones: Milestone[];
+  total: number;
+  total_amount: number;
+  paid_amount: number;
+}
+
+// ============================================================================
+// Gig Marketplace Types (Fiverr-style)
+// ============================================================================
+
+export interface Gig {
+  id: number;
+  seller_id: number;
+  seller?: User;
+  title: string;
+  description: string;
+  category_id: number;
+  category?: Category;
+  tags?: string[];
+  images: string[];
+  video_url?: string;
+  packages: GigPackage[];
+  faqs?: GigFAQ[];
+  requirements?: string[];
+  delivery_time_days: number;
+  revision_count: number;
+  status: 'draft' | 'active' | 'paused' | 'deleted';
+  rating_average?: number;
+  rating_count?: number;
+  order_count?: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface GigPackage {
+  id: number;
+  name: 'basic' | 'standard' | 'premium';
+  title: string;
+  description: string;
+  price: number;
+  delivery_days: number;
+  revision_count: number;
+  features: string[];
+}
+
+export interface GigFAQ {
+  question: string;
+  answer: string;
+}
+
+export interface GigOrder {
+  id: number;
+  gig_id: number;
+  gig?: Gig;
+  buyer_id: number;
+  buyer?: User;
+  package_name: 'basic' | 'standard' | 'premium';
+  requirements?: string;
+  amount: number;
+  status: 'pending' | 'in_progress' | 'delivered' | 'revision' | 'completed' | 'cancelled' | 'disputed';
+  due_date: string;
+  delivered_at?: string;
+  completed_at?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface GigList {
+  gigs: Gig[];
+  total: number;
+  page: number;
+  page_size: number;
+}
+
+// ============================================================================
+// Seller Stats Types (Upwork-style JSS algorithm)
+// ============================================================================
+
+export interface SellerStats {
+  user_id: number;
+  tier: 'bronze' | 'silver' | 'gold' | 'platinum';
+  job_success_score: number;
+  total_earnings: number;
+  total_jobs: number;
+  completed_jobs: number;
+  on_time_delivery_rate: number;
+  response_rate: number;
+  response_time_hours: number;
+  repeat_hire_rate: number;
+  rating_average: number;
+  rating_count: number;
+  badges?: string[];
+  top_rated: boolean;
+  rising_talent: boolean;
+  updated_at: string;
+}
+
+// ============================================================================
+// Analytics Types
+// ============================================================================
+
+export interface AnalyticsOverview {
+  period: string;
+  total_revenue: number;
+  total_projects: number;
+  active_contracts: number;
+  pending_proposals: number;
+  completion_rate: number;
+  average_rating: number;
+  revenue_trend: TrendData[];
+  projects_by_status: Record<string, number>;
+}
+
+export interface TrendData {
+  date: string;
+  value: number;
+}
+
+export interface AnalyticsReport {
+  start_date: string;
+  end_date: string;
+  metrics: Record<string, number>;
+  charts: Record<string, TrendData[]>;
+}
+
+// ============================================================================
+// Wallet & Payment Types
+// ============================================================================
+
+export interface Wallet {
+  user_id: number;
+  balance: number;
+  pending_balance: number;
+  available_for_withdrawal: number;
+  currency: string;
+  last_updated: string;
+}
+
+export interface Transaction {
+  id: number;
+  user_id: number;
+  type: 'credit' | 'debit' | 'hold' | 'release';
+  category: 'payment' | 'withdrawal' | 'refund' | 'bonus' | 'fee';
+  amount: number;
+  balance_after: number;
+  description: string;
+  reference_id?: string;
+  reference_type?: string;
+  status: 'pending' | 'completed' | 'failed' | 'cancelled';
+  created_at: string;
+}
+
+export interface TransactionList {
+  transactions: Transaction[];
+  total: number;
+  page: number;
+  page_size: number;
+}
+
+export interface PayoutMethod {
+  id: number;
+  user_id: number;
+  method_type: 'bank_transfer' | 'paypal' | 'wise' | 'payoneer' | 'crypto';
+  details: Record<string, string>;
+  is_default: boolean;
+  is_verified: boolean;
+  created_at: string;
+}
+
+// ============================================================================
+// Portfolio Types
+// ============================================================================
+
+export interface PortfolioItem {
+  id: number;
+  user_id: number;
+  title: string;
+  description: string;
+  images: string[];
+  video_url?: string;
+  project_url?: string;
+  github_url?: string;
+  skills: string[];
+  category?: string;
+  featured: boolean;
+  views: number;
+  likes: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PortfolioList {
+  items: PortfolioItem[];
+  total: number;
+  page: number;
+  page_size: number;
+}
+
+// ============================================================================
+// Two-Factor Authentication Types
+// ============================================================================
+
+export interface TwoFactorSetup {
+  secret: string;
+  qr_code: string;
+  backup_codes: string[];
+  provisioning_uri: string;
+}
+
+export interface TwoFactorStatus {
+  enabled: boolean;
+  has_backup_codes: boolean;
+  backup_codes_remaining?: number;
+}
+
+// ============================================================================
+// Auth Response Types
+// ============================================================================
+
+export interface AuthResponse {
+  access_token: string;
+  refresh_token: string;
+  token_type: string;
+  user: User;
+  requires_2fa?: boolean;
+  message?: string;
+}
+
+export interface TokenRefreshResponse {
+  access_token: string;
+  refresh_token: string;
+  token_type: string;
+}
+

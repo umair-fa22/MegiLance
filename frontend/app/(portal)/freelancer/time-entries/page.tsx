@@ -291,6 +291,7 @@ export default function TimeEntriesPage() {
                   <div className={commonStyles.timerActions}>
                     {activeTimer.status === 'running' ? (
                       <button
+                        type="button"
                         onClick={pauseTimer}
                         className={cn(commonStyles.timerBtn, commonStyles.pauseBtn, themeStyles.pauseBtn)}
                       >
@@ -298,6 +299,7 @@ export default function TimeEntriesPage() {
                       </button>
                     ) : (
                       <button
+                        type="button"
                         onClick={() => resumeTimer(activeTimer.id)}
                         className={cn(commonStyles.timerBtn, commonStyles.resumeBtn, themeStyles.resumeBtn)}
                       >
@@ -305,6 +307,7 @@ export default function TimeEntriesPage() {
                       </button>
                     )}
                     <button
+                      type="button"
                       onClick={stopTimer}
                       className={cn(commonStyles.timerBtn, commonStyles.stopBtn, themeStyles.stopBtn)}
                     >
@@ -422,6 +425,7 @@ export default function TimeEntriesPage() {
                         </span>
                       )}
                       <button
+                        type="button"
                         onClick={() => setDeleteTargetId(entry.id)}
                         className={cn(commonStyles.deleteBtn, themeStyles.deleteBtn)}
                         aria-label="Delete entry"
@@ -443,6 +447,7 @@ export default function TimeEntriesPage() {
               <div className={cn(commonStyles.modalHeader, themeStyles.modalHeader)}>
                 <h2 className={cn(commonStyles.modalTitle, themeStyles.modalTitle)}>Start Timer</h2>
                 <button
+                  type="button"
                   onClick={() => setShowTimer(false)}
                   className={cn(commonStyles.closeButton, themeStyles.closeButton)}
                 >
@@ -494,7 +499,7 @@ export default function TimeEntriesPage() {
                       {newEntry.tags.map(tag => (
                         <span key={tag} className={cn(commonStyles.selectedTag, themeStyles.selectedTag)}>
                           {tag}
-                          <button onClick={() => removeTag(tag)}>×</button>
+                          <button type="button" onClick={() => removeTag(tag)}>×</button>
                         </span>
                       ))}
                     </div>

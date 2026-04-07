@@ -143,9 +143,9 @@ app = FastAPI(
     title="MegiLance API",
     description="""
     MegiLance Backend API
-    
+
     AI-Powered Freelancing Platform connecting top talent with global opportunities.
-    
+
     Key Features:
     - AI-Powered Freelancer Matching
     - Blockchain-Based Escrow Payments
@@ -154,7 +154,7 @@ app = FastAPI(
     - Gig Marketplace & Seller Tiers
     - Multi-Currency Payment Support
     """,
-    version="1.0.0",
+    version="2.0.0",
     lifespan=lifespan,
     docs_url="/api/docs",
     redoc_url="/api/redoc",
@@ -173,12 +173,11 @@ _IDEMPOTENCY_TTL = 3600  # 1 hour
 _IDEMPOTENCY_MAX_SIZE = 5000
 _idempotency_cache: OrderedDict[str, tuple[int, dict, float]] = OrderedDict()
 _idempotency_lock = threading.Lock()
-_idempotency_evict_counter = 0  # Periodic eviction instead of per-request
+_idempotency_evict_counter = [0]  # Mutable container for thread-safe atomic increment
 
 
 class RequestIDMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request, call_next):
-        global _idempotency_evict_counter
         request_id = request.headers.get("X-Request-Id") or str(uuid.uuid4())
         start = time.time()
 
@@ -213,11 +212,11 @@ class RequestIDMiddleware(BaseHTTPMiddleware):
                 response.headers["X-Request-Id"] = request_id
                 response.headers["X-Response-Time"] = f"{duration_ms}ms"
 
-            # Periodic eviction: every 100 requests instead of every request
-            _idempotency_evict_counter += 1
-            if _idempotency_evict_counter >= 100:
-                _idempotency_evict_counter = 0
-                with _idempotency_lock:
+            # Periodic eviction (thread-safe): every 100 requests
+            with _idempotency_lock:
+                _idempotency_evict_counter[0] += 1
+                if _idempotency_evict_counter[0] >= 100:
+                    _idempotency_evict_counter[0] = 0
                     now = time.time()
                     # Remove expired from front (oldest first in OrderedDict)
                     while _idempotency_cache:
@@ -360,14 +359,14 @@ async def general_exception_handler(request, exc):
 
 @app.get("/")
 def root():
-    return {"message": "Welcome to the MegiLance API!", "version": "1.0.0"}
+    return {"message": "Welcome to the MegiLance API!", "version": "2.0.0"}
 
 
 @app.get("/api")
 def api_root():
     return {
         "message": "MegiLance API",
-        "version": "1.0.0",
+        "version": "2.0.0",
         "docs": "/api/docs",
         "redoc": "/api/redoc"
     }
@@ -381,7 +380,7 @@ def health_ready():
     engine = get_engine()
     uptime_seconds = int(time.time() - _APP_START_TIME)
     base_info = {
-        "version": "1.0.0",
+        "version": "2.0.0",
         "environment": settings.environment,
         "uptime_seconds": uptime_seconds,
         "python_version": sys.version.split()[0],
@@ -432,8 +431,6 @@ from fastapi.responses import FileResponse
 from pathlib import Path
 import os
 import mimetypes
-
-# ... existing imports ...
 
 app.include_router(api_router, prefix="/api")
 

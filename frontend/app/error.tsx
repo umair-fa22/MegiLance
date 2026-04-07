@@ -53,7 +53,7 @@ export default function Error({
         An unexpected error occurred. Please try again or return to the homepage.
       </p>
       <div className={styles.actions}>
-        <button onClick={reset} className={styles.primaryButton}>
+        <button type="button" onClick={reset} className={styles.primaryButton}>
           Try Again
         </button>
         <Link href="/" className={styles.secondaryButton}>

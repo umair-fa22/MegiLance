@@ -153,7 +153,8 @@ const Profile: React.FC = () => {
         <div className={cn(commonStyles.container, commonStyles.errorContainer, themeStyles.errorContainer)}>
           <span className={commonStyles.errorIcon}>⚠️</span>
           <p>{error}</p>
-          <button 
+          <button
+            type="button"
             className={cn(commonStyles.retryButton, themeStyles.retryButton)}
             onClick={() => router.push('/login')}
           >
@@ -255,18 +256,20 @@ const Profile: React.FC = () => {
             <div className={styles.shareModal} onClick={e => e.stopPropagation()}>
               <div className={styles.shareModalHeader}>
                 <h3>Share Profile</h3>
-                <button onClick={() => setShowShareModal(false)} className={styles.closeBtn} aria-label="Close"><X size={18} /></button>
+                <button type="button" onClick={() => setShowShareModal(false)} className={styles.closeBtn} aria-label="Close"><X size={18} /></button>
               </div>
 
               {/* Tab toggle */}
               <div className={styles.shareTabBar}>
                 <button
+                  type="button"
                   className={cn(styles.shareTabBtn, shareTab === 'links' && styles.shareTabBtnActive)}
                   onClick={() => setShareTab('links')}
                 >
                   Share Links
                 </button>
                 <button
+                  type="button"
                   className={cn(styles.shareTabBtn, shareTab === 'embed' && styles.shareTabBtnActive)}
                   onClick={() => setShareTab('embed')}
                 >
@@ -285,7 +288,7 @@ const Profile: React.FC = () => {
                       className={styles.shareLinkInput}
                       onClick={e => (e.target as HTMLInputElement).select()}
                     />
-                    <button onClick={copyProfileLink} className={styles.shareCopyBtn}>
+                    <button type="button" onClick={copyProfileLink} className={styles.shareCopyBtn}>
                       {linkCopied ? <Check size={16} /> : <Copy size={16} />}
                     </button>
                   </div>

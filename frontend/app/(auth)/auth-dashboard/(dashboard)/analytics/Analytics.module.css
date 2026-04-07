@@ -4,7 +4,7 @@
   font-family: var(--font-family-heading);
   font-size: 2rem;
   font-weight: 600;
-  color: var(--text-primary-23272f);
+  color: var(--text-heading);
   margin-bottom: 2rem;
 }
 
@@ -19,7 +19,7 @@
   font-family: var(--font-family-heading);
   font-size: 2.25rem;
   font-weight: 600;
-  color: var(--text-primary-23272f);
+  color: var(--text-heading);
   margin: 0 0 0.25rem 0;
   line-height: 1.2;
 }
@@ -27,7 +27,7 @@
 .statLabel {
   font-family: var(--font-family-body);
   font-size: 0.875rem;
-  color: var(--text-secondary-333333);
+  color: var(--text-body);
   margin: 0;
 }
 
@@ -42,7 +42,7 @@
   margin-bottom: 2rem;
   gap: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border-e0e0e0);
+  border-bottom: 1px solid var(--border-default);
 }
 
 .chartPlaceholder {
@@ -52,13 +52,13 @@
   min-height: 300px;
   width: 100%;
   border-radius: var(--radius-md);
-  background-color: var(--surface-f5f7fa);
-  border: 1px dashed var(--border-e0e0e0);
+  background-color: var(--surface-secondary);
+  border: 1px dashed var(--border-default);
 }
 
 .chartPlaceholder p {
   font-family: var(--font-family-body);
-  color: var(--text-secondary-333333);
+  color: var(--text-body);
   font-size: 1rem;
 }
 
@@ -98,28 +98,28 @@
   font-size: 0.875rem;
   padding: 0.4rem 0.75rem;
   border-radius: 9999px;
-  border: 1px solid var(--border-e0e0e0);
-  color: var(--text-secondary-333333);
-  background: var(--background-ffffff);
+  border: 1px solid var(--border-default);
+  color: var(--text-body);
+  background: var(--bg-card);
   transition: all 160ms ease;
 }
 
 .rangeButton:hover {
-  color: var(--text-primary-23272f);
-  border-color: var(--primary-4573df);
+  color: var(--text-heading);
+  border-color: var(--color-primary-default);
 }
 
 .rangeButtonActive {
-  color: var(--text-on-primary-ffffff);
-  background: var(--primary-4573df);
-  border-color: var(--primary-4573df);
+  color: #ffffff;
+  background: var(--color-primary-default);
+  border-color: var(--color-primary-default);
 }
 
 .chartSurface {
   width: 100%;
   min-height: 300px;
-  background: var(--surface-f5f7fa);
-  border: 1px solid var(--border-e0e0e0);
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
   padding: 0.75rem;
 }
@@ -133,21 +133,21 @@
 .axisLabel {
   font-family: var(--font-family-body);
   font-size: 10px;
-  fill: var(--text-secondary-333333);
+  fill: var(--text-body);
 }
 
 .linePath {
   fill: none;
-  stroke: var(--primary-4573df);
+  stroke: var(--color-primary-default);
   stroke-width: 2.25;
 }
 
 .areaFill {
-  fill: color-mix(in oklab, var(--primary-4573df) 18%, transparent);
+  fill: color-mix(in oklab, var(--color-primary-default) 18%, transparent);
 }
 
 .barRect {
-  fill: color-mix(in oklab, var(--accent-ff9800) 80%, transparent);
+  fill: color-mix(in oklab, var(--ml-orange) 80%, transparent);
 }
 
 .legend {
@@ -163,21 +163,21 @@
   gap: 0.375rem;
   font-family: var(--font-family-body);
   font-size: 0.75rem;
-  color: var(--text-secondary-333333);
+  color: var(--text-body);
 }
 
 .legendSwatchPrimary {
   width: 10px;
   height: 10px;
   border-radius: 2px;
-  background: var(--primary-4573df);
+  background: var(--color-primary-default);
 }
 
 .legendSwatchAccent {
   width: 10px;
   height: 10px;
   border-radius: 2px;
-  background: var(--accent-ff9800);
+  background: var(--ml-orange);
 }
 
 /* --- Utilities (inline-style replacements) --- */

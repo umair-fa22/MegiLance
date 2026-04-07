@@ -29,7 +29,7 @@
 }
 
 .statusDot {
-  background: #27AE60;
+  background: var(--color-success-default, var(--ml-green, #27AE60));
 }
 
 .closeButton {

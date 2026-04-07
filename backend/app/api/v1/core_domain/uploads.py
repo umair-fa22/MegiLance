@@ -5,7 +5,7 @@ Enhanced with path traversal protection and content validation
 """
 from fastapi import APIRouter, Depends, File, UploadFile, HTTPException, status
 from app.core.security import get_current_user
-from app.core.rate_limiter import api_rate_limit
+from app.core.rate_limit import api_rate_limit
 from app.services.uploads_service import get_user_avatar_url, update_user_avatar, clear_user_avatar
 import logging
 import os

@@ -1,40 +1,40 @@
 /* AI-HINT: Premium dark theme for the Activity Feed. Uses high-contrast colors and a glowing timeline effect for a modern, readable UI. */
 
 .activityFeedCard {
-  background: #1e293b;
-  border: 1px solid #334155;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  background: var(--neutral-800);
+  border: 1px solid var(--neutral-700);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .cardTitle {
-  color: #f8fafc;
+  color: var(--neutral-50);
 }
 
 .viewAllLink {
-  color: #6b8de6;
+  color: var(--ml-blue-light);
 }
 
 .viewAllLink:hover {
-  color: #93b0f0;
+  color: var(--color-primary-light);
 }
 
 .timeline {
-  background-color: #334155;
+  background-color: var(--neutral-700);
 }
 
 .activityIconContainer {
-  background-color: #0f172a;
-  border: 2px solid #1e293b;
+  background-color: var(--neutral-900);
+  border: 2px solid var(--neutral-800);
 }
 
 .activityIcon {
-  color: #6b8de6;
+  color: var(--ml-blue-light);
 }
 
 .activityContent p {
-  color: #f8fafc;
+  color: var(--neutral-50);
 }
 
 .activityTimestamp {
-  color: #94a3b8;
+  color: var(--neutral-400);
 }

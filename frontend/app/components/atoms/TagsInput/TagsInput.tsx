@@ -48,7 +48,7 @@ const TagsInput: React.FC<TagsInputProps> = ({ id, label, tags, onTagsChange, pl
         {tags.map(tag => (
           <span key={tag} className={cn(common.tag, themed.tag)}>
             {tag}
-            <button onClick={() => removeTag(tag)} className={cn(common.remove_button, themed.remove_button)} aria-label={`Remove ${tag}`}>
+            <button type="button" onClick={() => removeTag(tag)} className={cn(common.remove_button, themed.remove_button)} aria-label={`Remove ${tag}`}>
               <X size={14} />
             </button>
           </span>

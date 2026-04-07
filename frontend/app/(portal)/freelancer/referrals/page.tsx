@@ -252,6 +252,7 @@ export default function ReferralPage() {
                 <div className={cn(commonStyles.codeDisplay, themeStyles.codeDisplay)}>
                   <span className={cn(commonStyles.code, themeStyles.code)}>{code?.code || 'LOADING...'}</span>
                   <button
+                    type="button"
                     onClick={() => code?.code && copyToClipboard(code.code, 'code')}
                     className={cn(commonStyles.copyBtn, themeStyles.copyBtn)}
                     aria-label="Copy referral code"
@@ -366,6 +367,7 @@ export default function ReferralPage() {
                 />
               </div>
               <button
+                type="button"
                 onClick={() => shareLinks?.direct_link && copyToClipboard(shareLinks.direct_link, 'link')}
                 className={cn(commonStyles.copyLinkBtn, themeStyles.copyLinkBtn)}
               >
@@ -398,6 +400,7 @@ export default function ReferralPage() {
           <div className={cn(commonStyles.tabs, themeStyles.tabs)}>
             {TAB_ITEMS.map((tab) => (
               <button
+                type="button"
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={cn(commonStyles.tab, themeStyles.tab, activeTab === tab.id && commonStyles.tabActive, activeTab === tab.id && themeStyles.tabActive)}
@@ -459,6 +462,7 @@ export default function ReferralPage() {
                   <div className={cn(commonStyles.filterBtns)}>
                     {['all', 'pending', 'qualified', 'expired'].map((f) => (
                       <button
+                        type="button"
                         key={f}
                         onClick={() => setFilterStatus(f)}
                         className={cn(commonStyles.filterBtn, themeStyles.filterBtn, filterStatus === f && commonStyles.filterBtnActive, filterStatus === f && themeStyles.filterBtnActive)}
@@ -611,7 +615,7 @@ export default function ReferralPage() {
             <div className={cn(commonStyles.modal, themeStyles.modal)} onClick={(e) => e.stopPropagation()}>
               <div className={cn(commonStyles.modalHeader, themeStyles.modalHeader)}>
                 <h3><Mail size={20} /> Invite Friends</h3>
-                <button onClick={() => setShowInviteModal(false)} className={cn(commonStyles.modalClose, themeStyles.modalClose)} aria-label="Close modal">
+                <button type="button" onClick={() => setShowInviteModal(false)} className={cn(commonStyles.modalClose, themeStyles.modalClose)} aria-label="Close modal">
                   <X size={20} />
                 </button>
               </div>
@@ -629,14 +633,14 @@ export default function ReferralPage() {
                         placeholder="friend@example.com"
                       />
                       {inviteEmails.length > 1 && (
-                        <button onClick={() => removeEmailField(idx)} className={cn(commonStyles.removeEmailBtn, themeStyles.removeEmailBtn)} aria-label="Remove email">
+                        <button type="button" onClick={() => removeEmailField(idx)} className={cn(commonStyles.removeEmailBtn, themeStyles.removeEmailBtn)} aria-label="Remove email">
                           <X size={16} />
                         </button>
                       )}
                     </div>
                   ))}
                   {inviteEmails.length < 5 && (
-                    <button onClick={addEmailField} className={cn(commonStyles.addEmailBtn, themeStyles.addEmailBtn)}>
+                    <button type="button" onClick={addEmailField} className={cn(commonStyles.addEmailBtn, themeStyles.addEmailBtn)}>
                       <Plus size={14} /> Add another email
                     </button>
                   )}

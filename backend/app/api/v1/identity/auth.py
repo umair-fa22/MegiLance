@@ -929,14 +929,12 @@ def forgot_password(
         reset_token, expiry = password_reset_service.create_reset_token_turso(
             int(user_data.get("id", 0))
         )
-        settings = get_settings()
-        reset_url = f"{settings.FRONTEND_URL}/reset-password?token={reset_token}"
-        
+
         try:
             email_service.send_password_reset_email(
                 to_email=_safe_str(user_data.get("email")),
                 user_name=_safe_str(user_data.get("name")) or "User",
-                reset_url=reset_url
+                reset_token=reset_token
             )
         except Exception as e:
             logger.error("Failed to send password reset email for email=%s: %s", request_body.email, e, exc_info=True)
