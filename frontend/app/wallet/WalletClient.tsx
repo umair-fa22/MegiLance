@@ -97,20 +97,36 @@ export default function WalletClient() {
       });
 
       // Fetch transactions
-      const txData = await walletApi<any[]>('/transactions?limit=50');
-      const mappedTransactions: Transaction[] = txData.map((tx: any) => ({
+      interface RawTransaction {
+        id: string | number;
+        type: string;
+        amount: number;
+        description?: string;
+        status: string;
+        created_at?: string;
+        createdAt?: string;
+        reference_id?: string;
+        reference?: string;
+      }
+      const txData = await walletApi<RawTransaction[]>('/transactions?limit=50');
+      const mappedTransactions: Transaction[] = txData.map((tx: RawTransaction) => ({
         id: String(tx.id),
         type: mapTransactionType(tx.type),
         amount: tx.type === 'withdrawal' || tx.type === 'fee' ? -Math.abs(tx.amount) : tx.amount,
         description: tx.description || `${tx.type} transaction`,
         status: tx.status as Transaction['status'],
-        createdAt: tx.created_at || tx.createdAt,
+        createdAt: tx.created_at || tx.createdAt || new Date().toISOString(),
         reference: tx.reference_id || tx.reference,
       }));
       setTransactions(mappedTransactions);
 
       // Fetch payout schedule to see if configured
-      const payoutData = await walletApi<any>('/payout-schedule').catch((e: unknown) => { console.error('Payout schedule load failed:', e); return null; });
+      interface PayoutScheduleResponse {
+        is_configured?: boolean;
+        destination_type?: string;
+        destination_details?: string;
+      }
+      const payoutData = await walletApi<PayoutScheduleResponse>('/payout-schedule').catch((e: unknown) => { console.error('Payout schedule load failed:', e); return null; });
       if (payoutData?.is_configured && payoutData.destination_type) {
         setPayoutMethods([{
           id: 'default',
@@ -260,8 +276,9 @@ export default function WalletClient() {
         duration: 5000 
       });
       setActiveTab('transactions');
-    } catch (err: any) {
-      notify({ title: 'Withdrawal failed', description: err.message || 'Please try again later.', variant: 'error', duration: 4000 });
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Please try again later.';
+      notify({ title: 'Withdrawal failed', description: errorMessage, variant: 'error', duration: 4000 });
     } finally {
       setIsProcessing(false);
     }
@@ -278,9 +295,16 @@ export default function WalletClient() {
       return;
     }
 
+    interface DepositResponse {
+      reference_id?: string;
+      payment_details?: {
+        checkout_url?: string;
+      };
+    }
+
     setIsProcessing(true);
     try {
-      const response = await walletApi<any>('/deposit', {
+      const response = await walletApi<DepositResponse>('/deposit', {
         method: 'POST',
         body: JSON.stringify({
           amount,
@@ -321,8 +345,9 @@ export default function WalletClient() {
         });
       }
       setActiveTab('transactions');
-    } catch (err: any) {
-      notify({ title: 'Deposit failed', description: err.message || 'Please try again later.', variant: 'error', duration: 4000 });
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Please try again later.';
+      notify({ title: 'Deposit failed', description: errorMessage, variant: 'error', duration: 4000 });
     } finally {
       setIsProcessing(false);
     }

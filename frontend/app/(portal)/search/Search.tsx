@@ -69,14 +69,31 @@ const Search: React.FC = () => {
 
     setLoading(true);
     const allResults: Result[] = [];
+    
+    // Raw API response types
+    interface RawProject {
+      id: number | string;
+      title: string;
+      description?: string;
+      created_at?: string;
+    }
+    
+    interface RawFreelancer {
+      id: number | string;
+      full_name?: string;
+      bio?: string;
+      skills?: string[];
+      created_at?: string;
+    }
 
     try {
       // Search projects if type is All or Project
       if (searchType === 'All' || searchType === 'Project') {
         try {
-          const projectsData = await searchApi.projects(searchQuery, { page_size: 10 });
-          const projects = Array.isArray(projectsData) ? projectsData : (projectsData as any)?.projects || (projectsData as any)?.results || [];
-          allResults.push(...projects.map((p: any) => ({
+          type ProjectsResponse = RawProject[] | { projects?: RawProject[]; results?: RawProject[] };
+          const projectsData = await searchApi.projects(searchQuery, { page_size: 10 }) as ProjectsResponse;
+          const projects: RawProject[] = Array.isArray(projectsData) ? projectsData : (projectsData.projects || projectsData.results || []);
+          allResults.push(...projects.map((p: RawProject) => ({
             id: `project-${p.id}`,
             title: p.title,
             snippet: p.description?.substring(0, 100) + '...' || 'No description',
@@ -93,9 +110,10 @@ const Search: React.FC = () => {
       // Search freelancers if type is All or User
       if (searchType === 'All' || searchType === 'User') {
         try {
-          const usersData = await searchApi.freelancers(searchQuery, { page_size: 10 });
-          const users = Array.isArray(usersData) ? usersData : (usersData as any)?.freelancers || (usersData as any)?.results || [];
-          allResults.push(...users.map((u: any) => ({
+          type FreelancersResponse = RawFreelancer[] | { freelancers?: RawFreelancer[]; results?: RawFreelancer[] };
+          const usersData = await searchApi.freelancers(searchQuery, { page_size: 10 }) as FreelancersResponse;
+          const users: RawFreelancer[] = Array.isArray(usersData) ? usersData : (usersData.freelancers || usersData.results || []);
+          allResults.push(...users.map((u: RawFreelancer) => ({
             id: `user-${u.id}`,
             title: u.full_name || 'Unknown User',
             snippet: u.bio?.substring(0, 100) || u.skills?.join(', ') || 'Freelancer',

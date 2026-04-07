@@ -58,9 +58,9 @@ export default function AdminDisputesPage() {
   const fetchDisputes = useCallback(async () => {
     setLoading(true);
     try {
-      const filters: any = {};
+      const filters: { status?: string } = {};
       if (filterStatus !== 'all') filters.status = filterStatus;
-      const data = await api.disputes.list(filters) as any;
+      const data = await api.disputes.list(filters) as Dispute[] | { items?: Dispute[] };
       setDisputes(Array.isArray(data) ? data : data.items || []);
     } catch (err) {
       if (process.env.NODE_ENV === 'development') {

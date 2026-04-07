@@ -84,11 +84,12 @@ const TwoFactorAuth: React.FC = () => {
         qr_code_url: data.provisioning_uri || data.qr_uri || data.qr_code || '',
         backup_codes: data.backup_codes || [],
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Failed to setup 2FA';
       if (process.env.NODE_ENV === 'development') {
         console.error('Error setting up 2FA:', error);
       }
-      setError(error.message || 'Failed to setup 2FA');
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -108,11 +109,12 @@ const TwoFactorAuth: React.FC = () => {
       setIs2FAEnabled(true);
       setSetupData(null);
       setVerificationCode('');
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Invalid verification code';
       if (process.env.NODE_ENV === 'development') {
         console.error('Error enabling 2FA:', error);
       }
-      setError(error.message || 'Invalid verification code');
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -127,11 +129,12 @@ const TwoFactorAuth: React.FC = () => {
       await api.auth.disable2FA();
       setSuccess('Two-Factor Authentication has been disabled');
       setIs2FAEnabled(false);
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Failed to disable 2FA';
       if (process.env.NODE_ENV === 'development') {
         console.error('Error disabling 2FA:', error);
       }
-      setError(error.message || 'Failed to disable 2FA');
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }

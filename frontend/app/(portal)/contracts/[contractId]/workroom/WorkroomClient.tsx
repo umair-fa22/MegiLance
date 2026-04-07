@@ -43,6 +43,41 @@ interface Discussion {
   is_resolved: boolean;
 }
 
+// Raw API response types for transformation
+interface RawTaskData {
+  id: number;
+  title: string;
+  description?: string;
+  column_name?: string;
+  column?: string;
+  priority?: 'low' | 'medium' | 'high';
+  assignee_name?: string;
+  due_date?: string;
+  created_at: string;
+}
+
+interface RawFileData {
+  id: number;
+  original_name?: string;
+  filename?: string;
+  file_size?: number;
+  content_type?: string;
+  file_type?: string;
+  uploaded_by_name?: string;
+  uploader_name?: string;
+  created_at: string;
+}
+
+interface RawDiscussionData {
+  id: number;
+  title: string;
+  content: string;
+  author_name?: string;
+  reply_count?: number;
+  created_at: string;
+  is_resolved?: boolean;
+}
+
 interface WorkroomClientProps {
   contractId: string;
 }
@@ -78,13 +113,14 @@ export default function WorkroomClient({ contractId }: WorkroomClientProps) {
       ]);
 
       // Transform board data — API returns { columns: { todo: [...], in_progress: [...], ... } } or flat task list
-      const boardData = boardRes as any;
+      type BoardResponse = { columns?: Record<string, RawTaskData[]> } | RawTaskData[];
+      const boardData = boardRes as BoardResponse | null;
       if (boardData) {
         const allTasks: Task[] = [];
-        if (boardData.columns) {
+        if (!Array.isArray(boardData) && boardData.columns) {
           for (const [status, columnTasks] of Object.entries(boardData.columns)) {
             if (Array.isArray(columnTasks)) {
-              for (const t of columnTasks as any[]) {
+              for (const t of columnTasks) {
                 allTasks.push({
                   id: t.id,
                   title: t.title,
@@ -118,11 +154,14 @@ export default function WorkroomClient({ contractId }: WorkroomClientProps) {
       }
 
       // Transform files
-      const fileData = filesRes as any;
-      const fileList = fileData?.files || (Array.isArray(fileData) ? fileData : []);
-      setFiles(fileList.map((f: any) => ({
+      type FilesResponse = { files?: RawFileData[] } | RawFileData[];
+      const fileData = filesRes as FilesResponse | null;
+      const fileList: RawFileData[] = fileData 
+        ? (!Array.isArray(fileData) && fileData.files ? fileData.files : Array.isArray(fileData) ? fileData : [])
+        : [];
+      setFiles(fileList.map((f: RawFileData) => ({
         id: f.id,
-        filename: f.original_name || f.filename,
+        filename: f.original_name || f.filename || '',
         file_size: f.file_size || 0,
         file_type: f.content_type || f.file_type || '',
         uploaded_by_name: f.uploaded_by_name || f.uploader_name || 'Unknown',
@@ -130,9 +169,12 @@ export default function WorkroomClient({ contractId }: WorkroomClientProps) {
       })));
 
       // Transform discussions
-      const discData = discussionsRes as any;
-      const discList = discData?.discussions || (Array.isArray(discData) ? discData : []);
-      setDiscussions(discList.map((d: any) => ({
+      type DiscussionsResponse = { discussions?: RawDiscussionData[] } | RawDiscussionData[];
+      const discData = discussionsRes as DiscussionsResponse | null;
+      const discList: RawDiscussionData[] = discData
+        ? (!Array.isArray(discData) && discData.discussions ? discData.discussions : Array.isArray(discData) ? discData : [])
+        : [];
+      setDiscussions(discList.map((d: RawDiscussionData) => ({
         id: d.id,
         title: d.title,
         content: d.content,
@@ -141,8 +183,9 @@ export default function WorkroomClient({ contractId }: WorkroomClientProps) {
         created_at: d.created_at,
         is_resolved: d.is_resolved || false,
       })));
-    } catch (err: any) {
-      if (err?.name !== 'AbortError') {
+    } catch (err: unknown) {
+      const isAbortError = err instanceof Error && err.name === 'AbortError';
+      if (!isAbortError) {
         setError('Failed to load workroom data. Please try again.');
         if (process.env.NODE_ENV === 'development') {
           console.error('Workroom fetch error:', err);

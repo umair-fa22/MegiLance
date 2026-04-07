@@ -1,7 +1,7 @@
 // @AI-HINT: This is the Modal component for dialogs, confirmations, and overlays. All styles are per-component only. See Modal.common.css, Modal.light.css, and Modal.dark.css for theming.
 'use client';
 
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useCallback, useId } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { useTheme } from 'next-themes';
@@ -47,9 +47,10 @@ const Modal: React.FC<ModalProps> = ({
   const [isMounted, setIsMounted] = useState(false);
   const { resolvedTheme } = useTheme();
   
-  // Generate unique IDs for accessibility
-  const modalTitleId = useRef(`modal-title-${Math.random().toString(36).substr(2, 9)}`);
-  const modalDescId = useRef(`modal-desc-${Math.random().toString(36).substr(2, 9)}`);
+  // Generate unique IDs for accessibility using React's useId hook
+  const uniqueId = useId();
+  const modalTitleId = `modal-title-${uniqueId}`;
+  const modalDescId = `modal-desc-${uniqueId}`;
 
   useEffect(() => {
     setIsMounted(true);
@@ -162,8 +163,8 @@ const Modal: React.FC<ModalProps> = ({
             tabIndex={-1}
             role="dialog"
             aria-modal="true"
-            aria-labelledby={title ? modalTitleId.current : undefined}
-            aria-describedby={description ? modalDescId.current : undefined}
+            aria-labelledby={title ? modalTitleId : undefined}
+            aria-describedby={description ? modalDescId : undefined}
             initial={{ scale: 0.95, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 20 }}
@@ -177,7 +178,7 @@ const Modal: React.FC<ModalProps> = ({
             <div className={cn(commonStyles.modalHeader, themeStyles.modalHeader)}>
               {title && (
                 <h2 
-                  id={modalTitleId.current} 
+                  id={modalTitleId} 
                   className={cn(commonStyles.modalTitle, themeStyles.modalTitle)}
                 >
                   {title}
@@ -193,7 +194,7 @@ const Modal: React.FC<ModalProps> = ({
               </button>
             </div>
             {description && (
-              <p id={modalDescId.current} className="sr-only">
+              <p id={modalDescId} className="sr-only">
                 {description}
               </p>
             )}

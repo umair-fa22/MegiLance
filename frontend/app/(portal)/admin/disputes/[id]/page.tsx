@@ -20,6 +20,12 @@ import commonStyles from './DisputeDetails.common.module.css';
 import lightStyles from './DisputeDetails.light.module.css';
 import darkStyles from './DisputeDetails.dark.module.css';
 
+interface DisputeEvidence {
+  filename?: string;
+  url: string;
+  uploaded_at?: string;
+}
+
 interface Dispute {
   id: number;
   title: string;
@@ -32,7 +38,7 @@ interface Dispute {
   resolution?: string;
   resolved_at?: string;
   resolved_by_id?: number;
-  evidence?: any[]; // Assuming evidence is an array of objects or strings
+  evidence?: DisputeEvidence[];
 }
 
 const getStatusBadgeVariant = (status: string) => {
@@ -68,7 +74,7 @@ const DisputeDetailsPage: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      const data = await api.disputes.get(Number(params.id)) as any;
+      const data = await api.disputes.get(Number(params.id)) as Dispute;
       setDispute(data);
     } catch (err) {
       if (process.env.NODE_ENV === 'development') {
@@ -95,11 +101,12 @@ const DisputeDetailsPage: React.FC = () => {
       await api.disputes.resolve(dispute.id, resolutionNote, contractAction);
       toaster.notify({ title: 'Success', description: 'Dispute resolved successfully', variant: 'success' });
       fetchDispute(); // Refresh data
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to resolve dispute';
       if (process.env.NODE_ENV === 'development') {
         console.error('Failed to resolve dispute:', err);
       }
-      toaster.notify({ title: 'Error', description: err.message || 'Failed to resolve dispute', variant: 'error' });
+      toaster.notify({ title: 'Error', description: errorMessage, variant: 'error' });
     } finally {
       setSubmitting(false);
     }
@@ -171,7 +178,7 @@ const DisputeDetailsPage: React.FC = () => {
             <div className={styles.section}>
               <h2 className={styles.sectionTitle}>Evidence</h2>
               <div className={styles.evidenceList}>
-                {dispute.evidence.map((item: any, index: number) => (
+                {dispute.evidence.map((item: DisputeEvidence, index: number) => (
                   <div key={index} className={styles.evidenceItem}>
                     <FileText size={28} className={styles.evidenceIcon} />
                     <span className={styles.evidenceName}>{item.filename || `Evidence ${index + 1}`}</span>

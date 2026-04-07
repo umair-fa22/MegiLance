@@ -39,6 +39,18 @@ const Notifications: React.FC = () => {
   const [status, setStatus] = useState<string>('');
 
   // Fetch notifications from API
+  interface RawNotification {
+    id?: number | string;
+    title?: string;
+    type?: string;
+    message?: string;
+    content?: string;
+    body?: string;
+    created_at?: string;
+    is_read?: boolean;
+    unread?: boolean;
+  }
+  
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
@@ -46,8 +58,12 @@ const Notifications: React.FC = () => {
         const data = await notificationsApi.list();
         
         // Transform API data to NotificationItem format — handle paginated or direct array responses
-        const rawItems = Array.isArray(data) ? data : (data as any)?.notifications || (data as any)?.items || [];
-        const notifications: NotificationItem[] = rawItems.map((n: any, idx: number) => {
+        type NotificationsResponse = RawNotification[] | { notifications?: RawNotification[]; items?: RawNotification[] };
+        const typedData = data as NotificationsResponse;
+        const rawItems: RawNotification[] = Array.isArray(typedData) 
+          ? typedData 
+          : (typedData.notifications || typedData.items || []);
+        const notifications: NotificationItem[] = rawItems.map((n: RawNotification, idx: number) => {
           // Map notification type to category
           let category: NotificationItem['category'] = 'System';
           const type = (n.type || '').toLowerCase();

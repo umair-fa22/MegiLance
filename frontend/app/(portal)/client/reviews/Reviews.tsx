@@ -61,6 +61,36 @@ const REPLY_TEMPLATES = [
   { label: 'Professional Response', text: 'We appreciate your detailed feedback. Your points are valuable and we\'ll use them to enhance the quality of our future deliverables.' },
 ];
 
+// Raw review data from API
+interface RawReview {
+  id?: string | number;
+  project_title?: string;
+  projectTitle?: string;
+  project?: string;
+  reviewed_user_name?: string;
+  freelancerName?: string;
+  freelancer?: string;
+  avatarUrl?: string;
+  created_at?: string;
+  date?: string;
+  createdAt?: string;
+  created?: string;
+  rating?: number;
+  review_text?: string;
+  comment?: string;
+  text?: string;
+  response?: string;
+  reply?: string;
+  helpful_count?: number;
+  helpful?: number;
+  flagged?: boolean;
+  verified?: boolean;
+  status?: string;
+  detailedRatings?: { communication: number; quality: number; delivery: number; professionalism: number };
+  appealed?: boolean;
+  anonymous?: boolean;
+}
+
 const Reviews: React.FC = () => {
   const { resolvedTheme } = useTheme();
   const themed = resolvedTheme === 'dark' ? dark : light;
@@ -68,7 +98,7 @@ const Reviews: React.FC = () => {
 
   const rows: Review[] = useMemo(() => {
     if (!Array.isArray(reviews)) return [];
-    return (reviews as any[]).map((r, idx) => {
+    return (reviews as RawReview[]).map((r: RawReview, idx: number) => {
       const createdDate = new Date(r.created_at ?? r.date ?? r.createdAt ?? r.created ?? '');
       const daysAgo = Math.floor((new Date().getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24));
       const canEdit = daysAgo <= 7; // Can edit within 7 days
@@ -83,7 +113,7 @@ const Reviews: React.FC = () => {
         rating: Number(r.rating) || 0,
         text: r.review_text ?? r.comment ?? r.text ?? '',
         response: r.response ?? r.reply ?? '',
-        sentiment: Number(r.rating) >= 4 ? 'positive' : Number(r.rating) >= 3 ? 'neutral' : 'negative',
+        sentiment: Number(r.rating) >= 4 ? 'positive' : Number(r.rating) >= 3 ? 'neutral' : 'negative' as Review['sentiment'],
         helpful: r.helpful_count ?? r.helpful ?? 0,
         flagged: r.flagged ?? false,
         verified: r.verified ?? r.status === 'completed',

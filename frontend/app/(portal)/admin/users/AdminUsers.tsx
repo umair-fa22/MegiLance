@@ -68,11 +68,29 @@ const AdminUsers: React.FC = () => {
   }, [query]);
 
   // Fetch users from API
+  interface UsersFilters {
+    page: number;
+    page_size: number;
+    search?: string;
+    role?: string;
+  }
+  
+  interface RawUserData {
+    id: number | string;
+    name?: string;
+    email?: string;
+    user_type?: string;
+    is_active?: boolean;
+    joined_at?: string;
+    headline?: string;
+    availability_status?: string;
+  }
+  
   const fetchUsers = React.useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
-      const filters: any = {
+      const filters: UsersFilters = {
         page,
         page_size: pageSize,
       };
@@ -91,15 +109,15 @@ const AdminUsers: React.FC = () => {
       // So I will filter client-side for now, but that's imperfect for pagination.
       // However, for the sake of this task, I will proceed with server-side pagination for other fields.
       
-      const response = await api.admin.getUsers(filters) as any;
+      const response = await api.admin.getUsers(filters) as { users?: RawUserData[]; total?: number };
       
       if (response && response.users) {
-        const mappedUsers: UserRow[] = response.users.map((u: any) => ({
+        const mappedUsers: UserRow[] = response.users.map((u: RawUserData) => ({
           id: String(u.id),
           name: u.name || 'Unknown',
           email: u.email || '',
-          role: u.user_type || 'User',
-          status: u.is_active ? 'Active' : 'Suspended',
+          role: (u.user_type || 'User') as UserRow['role'],
+          status: u.is_active ? 'Active' : 'Suspended' as UserRow['status'],
           joined: u.joined_at || new Date().toISOString(),
           headline: u.headline || '',
           availabilityStatus: u.availability_status || '',

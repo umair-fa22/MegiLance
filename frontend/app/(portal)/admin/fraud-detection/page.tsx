@@ -83,22 +83,56 @@ export default function FraudDetectionPage() {
     setLoading(true);
     try {
       const api = await import('@/lib/api');
-      const fraudApi = (api as any).fraudDetectionApi;
+      const fraudApi = api.fraudDetectionApi;
       const adminApi = api.adminApi;
+      
+      // Raw API response types
+      interface RawAlert {
+        id: string | number;
+        type?: string;
+        severity?: string;
+        message?: string;
+        description?: string;
+        affected_users?: number;
+        created_at?: string;
+        timestamp?: string;
+        status?: string;
+      }
+      
+      interface RawPayment {
+        id: string | number;
+        type?: string;
+        amount?: number;
+        currency?: string;
+        user_id?: string | number;
+        user_name?: string;
+        user_email?: string;
+        user?: { name?: string; email?: string };
+        risk_score?: number;
+        risk_level?: string;
+        flags?: string[];
+        status?: string;
+        created_at?: string;
+        ip_address?: string;
+        location?: string;
+        device_info?: string;
+      }
 
       const [alertsRes, paymentsRes] = await Promise.allSettled([
         fraudApi?.getAlerts?.(),
-        adminApi.getPayments({ status: 'flagged', limit: 20 } as any),
+        adminApi.getPayments({ status: 'flagged', limit: 20 }),
       ]);
 
       // Alerts
-      const alertsArr = alertsRes.status === 'fulfilled' && alertsRes.value
-        ? (Array.isArray(alertsRes.value) ? alertsRes.value : (alertsRes.value as any)?.items || [])
+      type AlertsResponse = RawAlert[] | { items?: RawAlert[] };
+      const alertsValue = alertsRes.status === 'fulfilled' ? alertsRes.value as AlertsResponse : null;
+      const alertsArr: RawAlert[] = alertsValue
+        ? (Array.isArray(alertsValue) ? alertsValue : (alertsValue.items || []))
         : [];
-      setAlerts(alertsArr.map((a: any) => ({
+      setAlerts(alertsArr.map((a: RawAlert) => ({
         id: String(a.id),
         type: a.type || 'unknown',
-        severity: a.severity || 'medium',
+        severity: (a.severity || 'medium') as FraudAlert['severity'],
         message: a.message || a.description || '',
         affectedUsers: a.affected_users ?? 0,
         timestamp: a.created_at || a.timestamp || new Date().toISOString(),
@@ -106,10 +140,12 @@ export default function FraudDetectionPage() {
       })));
 
       // Transactions
-      const paymentsArr = paymentsRes.status === 'fulfilled' && paymentsRes.value
-        ? (Array.isArray(paymentsRes.value) ? paymentsRes.value : (paymentsRes.value as any)?.items || [])
+      type PaymentsResponse = RawPayment[] | { items?: RawPayment[] };
+      const paymentsValue = paymentsRes.status === 'fulfilled' ? paymentsRes.value as PaymentsResponse : null;
+      const paymentsArr: RawPayment[] = paymentsValue
+        ? (Array.isArray(paymentsValue) ? paymentsValue : (paymentsValue.items || []))
         : [];
-      const txData = paymentsArr.map((p: any) => ({
+      const txData: FlaggedTransaction[] = paymentsArr.map((p: RawPayment) => ({
         id: String(p.id),
         type: p.type || 'payment',
         amount: p.amount ?? 0,
@@ -118,7 +154,7 @@ export default function FraudDetectionPage() {
         userName: p.user_name || p.user?.name || '',
         userEmail: p.user_email || p.user?.email || '',
         riskScore: p.risk_score ?? 0,
-        riskLevel: p.risk_level || 'low' as const,
+        riskLevel: (p.risk_level || 'low') as FlaggedTransaction['riskLevel'],
         flags: p.flags || [],
         status: p.status || 'pending',
         timestamp: p.created_at || new Date().toISOString(),
@@ -131,10 +167,10 @@ export default function FraudDetectionPage() {
       // Stats derived from real data
       setStats({
         totalFlagged: txData.length,
-        criticalAlerts: alertsArr.filter((a: any) => a.severity === 'critical' || a.severity === 'high').length,
-        blockedTransactions: txData.filter((t: any) => t.status === 'blocked').length,
-        reviewedToday: txData.filter((t: any) => t.status === 'reviewed' || t.status === 'cleared').length,
-        avgRiskScore: txData.length > 0 ? Math.round(txData.reduce((s: number, t: any) => s + (t.riskScore || 0), 0) / txData.length) : 0,
+        criticalAlerts: alertsArr.filter((a: RawAlert) => a.severity === 'critical' || a.severity === 'high').length,
+        blockedTransactions: txData.filter((t: FlaggedTransaction) => t.status === 'blocked').length,
+        reviewedToday: txData.filter((t: FlaggedTransaction) => t.status === 'reviewed' || t.status === 'cleared').length,
+        avgRiskScore: txData.length > 0 ? Math.round(txData.reduce((s: number, t: FlaggedTransaction) => s + (t.riskScore || 0), 0) / txData.length) : 0,
       });
     } catch (error) {
       if (process.env.NODE_ENV === 'development') {

@@ -16,6 +16,12 @@ import commonStyles from './UserDisputeDetails.common.module.css';
 import lightStyles from './UserDisputeDetails.light.module.css';
 import darkStyles from './UserDisputeDetails.dark.module.css';
 
+interface DisputeEvidence {
+  filename?: string;
+  url: string;
+  uploaded_at?: string;
+}
+
 interface Dispute {
   id: number;
   title: string;
@@ -27,7 +33,7 @@ interface Dispute {
   updated_at: string;
   resolution?: string;
   resolved_at?: string;
-  evidence?: any[];
+  evidence?: DisputeEvidence[];
 }
 
 const getStatusBadgeVariant = (status: string) => {
@@ -85,11 +91,12 @@ const UserDisputeDetailsPage: React.FC = () => {
       await (api.disputes as any).uploadEvidence?.(dispute.id, file);
       toaster.notify({ title: 'Success', description: 'Evidence uploaded successfully', variant: 'success' });
       fetchDispute(); // Refresh data
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to upload evidence';
       if (process.env.NODE_ENV === 'development') {
         console.error('Failed to upload evidence:', err);
       }
-      toaster.notify({ title: 'Error', description: err.message || 'Failed to upload evidence', variant: 'error' });
+      toaster.notify({ title: 'Error', description: errorMessage, variant: 'error' });
     } finally {
       setUploading(false);
     }
@@ -191,7 +198,7 @@ const UserDisputeDetailsPage: React.FC = () => {
         
         {dispute.evidence && dispute.evidence.length > 0 ? (
           <div className={styles.evidenceList}>
-            {dispute.evidence.map((item: any, index: number) => (
+          {dispute.evidence.map((item: DisputeEvidence, index: number) => (
               <div key={index} className={styles.evidenceItem}>
                 <FileText className={styles.evidenceIcon} />
                 <span className={styles.evidenceName}>{item.filename || `Evidence ${index + 1}`}</span>

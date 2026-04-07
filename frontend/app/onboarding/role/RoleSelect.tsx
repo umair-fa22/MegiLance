@@ -17,6 +17,17 @@ import darkStyles from './RoleSelect.dark.module.css';
 
 type Role = 'client' | 'freelancer';
 
+interface RoleSelectResponse {
+  access_token?: string;
+  refresh_token?: string;
+  user?: {
+    id: string | number;
+    email: string;
+    name: string;
+    role: string;
+  };
+}
+
 const roles: { id: Role; name: string; description: string; icon: React.ElementType }[] = [
   {
     id: 'client',
@@ -48,7 +59,7 @@ const RoleSelect: React.FC = () => {
     setError('');
 
     try {
-      const response: any = await api.socialAuth.selectRole(selected);
+      const response = await api.socialAuth.selectRole(selected) as RoleSelectResponse;
 
       // Store fresh tokens with updated role
       if (response.access_token) {
@@ -70,8 +81,9 @@ const RoleSelect: React.FC = () => {
         // Clients go straight to dashboard
         router.push('/client/dashboard');
       }
-    } catch (err: any) {
-      setError(err.message || 'Failed to set role. Please try again.');
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to set role. Please try again.';
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }

@@ -6,9 +6,7 @@ import { useTheme } from 'next-themes';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import api, { proposalsApi as _proposalsApi, contractsApi as _contractsApi } from '@/lib/api';
-const proposalsApi: any = _proposalsApi;
-const contractsApi: any = _contractsApi;
+import api, { proposalsApi, contractsApi, fraudDetectionApi } from '@/lib/api';
 import Skeleton from '@/app/components/Animations/Skeleton/Skeleton';
 import { PageTransition, ScrollReveal } from '@/app/components/Animations';
 import Button from '@/app/components/atoms/Button/Button';
@@ -19,6 +17,23 @@ import { FraudAlertBanner } from '@/app/components/AI';
 import common from './ProjectDetail.common.module.css';
 import light from './ProjectDetail.light.module.css';
 import dark from './ProjectDetail.dark.module.css';
+
+interface ProjectData {
+  id: number;
+  title: string;
+  description: string;
+  category?: string;
+  budget_type?: string;
+  budget_min?: number;
+  budget_max?: number;
+  experience_level?: string;
+  estimated_duration?: string;
+  skills?: string[];
+  status: string;
+  client_id?: number;
+  created_at: string;
+  updated_at?: string;
+}
 
 interface Proposal {
   id: number;
@@ -32,6 +47,13 @@ interface Proposal {
   created_at: string;
 }
 
+interface FraudCheckResult {
+  risk_level: 'low' | 'medium' | 'high';
+  score: number;
+  flags?: string[];
+  recommendation?: string;
+}
+
 const ProjectDetail: React.FC = () => {
   const { resolvedTheme } = useTheme();
   const themed = resolvedTheme === 'dark' ? dark : light;
@@ -39,13 +61,13 @@ const ProjectDetail: React.FC = () => {
   const router = useRouter();
   const rawId = params?.id ?? '';
   
-  const [project, setProject] = useState<any>(null);
+  const [project, setProject] = useState<ProjectData | null>(null);
   const [proposals, setProposals] = useState<Proposal[]>([]);
   const [loading, setLoading] = useState(true);
   const [proposalsLoading, setProposalsLoading] = useState(true);
   const [error, setError] = useState('');
   const [actionLoading, setActionLoading] = useState<number | null>(null);
-  const [fraudCheckResults, setFraudCheckResults] = useState<Record<number, any>>({});
+  const [fraudCheckResults, setFraudCheckResults] = useState<Record<number, FraudCheckResult>>({});
   const [checkingFraud, setCheckingFraud] = useState<number | null>(null);
   const [acceptTarget, setAcceptTarget] = useState<number | null>(null);
   const [rejectTarget, setRejectTarget] = useState<number | null>(null);
@@ -65,7 +87,7 @@ const ProjectDetail: React.FC = () => {
   const loadProject = useCallback(async () => {
     if (!projectId) return;
     try {
-      const data = await (api.projects as any).get?.(projectId);
+      const data = await api.projects.get(projectId) as ProjectData;
       setProject(data);
     } catch (e) {
       if (process.env.NODE_ENV === 'development') {
@@ -80,7 +102,7 @@ const ProjectDetail: React.FC = () => {
   const loadProposals = useCallback(async () => {
     if (!projectId) return;
     try {
-      const response = await proposalsApi.list(0, 50, projectId);
+      const response = await proposalsApi.list({ project_id: projectId, page_size: 50 }) as { proposals?: Proposal[] } | Proposal[];
       const data = Array.isArray(response) ? response : (response.proposals || []);
       setProposals(data);
     } catch (e) {
@@ -157,18 +179,7 @@ const ProjectDetail: React.FC = () => {
   const handleCheckFraud = async (proposalId: number) => {
     setCheckingFraud(proposalId);
     try {
-      // Use the aiApi.fraudDetection (which we updated in api.ts)
-      // Note: api.ts exports fraudDetectionApi, but default export has it as api.fraudDetection
-      // We need to make sure we are using the right one.
-      // Let's use api.fraudDetection if available, or import fraudDetectionApi directly.
-      // Since we imported api, let's check if api.fraudDetection is available.
-      // Based on api.ts, it is available as api.fraudDetection.
-      
-      // However, we updated fraudDetectionApi in api.ts, but did we update the default export?
-      // Yes, the default export includes fraudDetection: fraudDetectionApi.
-      
-      const result: any = await (api as any).fraudDetection?.checkProposal?.(proposalId);
-      // The API returns { analysis: ... } wrapper
+      const result = await fraudDetectionApi.checkProposal(proposalId) as { analysis?: FraudCheckResult } & FraudCheckResult;
       setFraudCheckResults(prev => ({ ...prev, [proposalId]: result.analysis || result }));
     } catch (err) {
       if (process.env.NODE_ENV === 'development') {
