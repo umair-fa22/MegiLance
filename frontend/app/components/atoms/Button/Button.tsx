@@ -32,7 +32,7 @@ export interface ButtonOwnProps<E extends React.ElementType = React.ElementType>
 // Combined props including standard HTML attributes
 export type ButtonProps<C extends React.ElementType = 'button'> = ButtonOwnProps<C> & Omit<React.ComponentProps<C>, keyof ButtonOwnProps<C>>;
 
-const Button = <C extends React.ElementType = 'button'>({
+const Button = <C extends React.ElementType = 'button',>({
   children,
   as,
   variant = 'primary',
@@ -119,10 +119,7 @@ const Button = <C extends React.ElementType = 'button'>({
   return (
     <MotionComponent
       ref={buttonRef}
-      style={{
-        x: magnetic && !isLoading && !props.disabled ? x : 0,
-        y: magnetic && !isLoading && !props.disabled ? y : 0,
-      }}
+      style={{ x: magnetic ? x : 0, y: magnetic ? y : 0 } as any}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
       whileHover={!isLoading && !props.disabled ? { scale: 1.02 } : {}}
@@ -155,7 +152,7 @@ const Button = <C extends React.ElementType = 'button'>({
     >
       <motion.div 
         className={commonStyles.interactiveShine} 
-        style={{ background: shineBackground }} 
+        style={{ background: shineBackground as any }} 
       />
       {isLoading && <Loader2 className={cn(commonStyles.spinner, themeStyles.spinner, commonStyles.loadingIcon)} />}
       {iconBefore && !isLoading && <span className={commonStyles.iconBefore} aria-hidden="true">{iconBefore}</span>}

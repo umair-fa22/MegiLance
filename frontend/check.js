@@ -1,0 +1,1 @@
+const { execSync } = require('child_process'); try { execSync('npx tsc --noEmit', { stdio: 'pipe' }); console.log('Typescript OK!'); } catch(e) { const out = e.stdout.toString().split('\n'); console.log(out.slice(0, 20).join('\n')); console.log('TOTAL ERRORS LINES: ' + out.length); }

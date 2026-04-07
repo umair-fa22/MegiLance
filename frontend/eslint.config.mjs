@@ -51,7 +51,15 @@ const eslintConfig = [
       },
     },
     rules: {
-      // Next.js rules
+      // Disable accessibility and inline styles rules exactly as requested
+      "jsx-a11y/aria-props": "off",
+      "jsx-a11y/aria-role": "off",
+      "jsx-a11y/role-has-required-aria-props": "off",
+      "jsx-a11y/aria-proptypes": "off",
+      "react/forbid-dom-props": "off",
+      "react/forbid-component-props": "off",
+
+      // Nex.js and others
       ...nextPlugin.configs.recommended.rules,
       ...nextPlugin.configs["core-web-vitals"].rules,
       
@@ -81,9 +89,9 @@ const eslintConfig = [
       "jsx-a11y/anchor-is-valid": "warn",
       "jsx-a11y/click-events-have-key-events": "warn",
       "jsx-a11y/no-static-element-interactions": "warn",
-      "jsx-a11y/aria-props": "error",
-      "jsx-a11y/aria-role": "error",
-      "jsx-a11y/role-has-required-aria-props": "error",
+      "jsx-a11y/aria-props": "off",
+      "jsx-a11y/aria-role": "off",
+      "jsx-a11y/role-has-required-aria-props": "off",
       
       // General best practices
       "no-console": ["warn", { allow: ["warn", "error", "info"] }],

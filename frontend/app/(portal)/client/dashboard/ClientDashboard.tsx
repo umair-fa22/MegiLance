@@ -2,7 +2,8 @@
 // Production-ready: Uses real API data, no mock fallbacks.
 'use client';
 
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { motion } from "framer-motion";
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
@@ -46,6 +47,9 @@ import TalentCard from './components/TalentCard';
 import commonStyles from './ClientDashboard.common.module.css';
 import lightStyles from './ClientDashboard.light.module.css';
 import darkStyles from './ClientDashboard.dark.module.css';
+const containerVariants = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } } };
+const itemVariants = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 24 } } };
+
 
 const ClientDashboard: React.FC = () => {
   const { resolvedTheme } = useTheme();
@@ -226,8 +230,8 @@ const ClientDashboard: React.FC = () => {
 
         {/* Stats Grid — with sparklines */}
         <section aria-label="Key statistics">
-        <StaggerContainer className={commonStyles.statsGrid}>
-          <StaggerItem>
+        <motion.div variants={containerVariants} initial="hidden" animate="show" className={commonStyles.motionWrapper} >
+          <motion.div variants={itemVariants} className={commonStyles.cardHover} >
             <StatCard
               title="Total Spent"
               value={metrics.totalSpent}
@@ -236,8 +240,8 @@ const ClientDashboard: React.FC = () => {
               sparklineColor="primary"
               href="/client/payments"
             />
-          </StaggerItem>
-          <StaggerItem>
+          </motion.div>
+          <motion.div variants={itemVariants} className={commonStyles.cardHover} >
             <StatCard
               title="Active Projects"
               value={metrics.activeProjects.toString()}
@@ -245,40 +249,40 @@ const ClientDashboard: React.FC = () => {
               sparklineColor="success"
               href="/client/projects"
             />
-          </StaggerItem>
-          <StaggerItem>
+          </motion.div>
+          <motion.div variants={itemVariants} className={commonStyles.cardHover} >
             <StatCard
               title="Pending Proposals"
               value={metrics.pendingProposals.toString()}
               icon={Clock}
               href="/client/projects"
             />
-          </StaggerItem>
-          <StaggerItem>
+          </motion.div>
+          <motion.div variants={itemVariants} className={commonStyles.cardHover} >
             <StatCard
               title="Unread Messages"
               value={metrics.unreadMessages.toString()}
               icon={MessageSquare}
               href="/client/messages"
             />
-          </StaggerItem>
-          <StaggerItem>
+          </motion.div>
+          <motion.div variants={itemVariants} className={commonStyles.cardHover} >
             <StatCard
               title="Avg Project Value"
               value={`$${metrics.averageProjectValue.toLocaleString()}`}
               icon={TrendingUp}
               href="/client/analytics"
             />
-          </StaggerItem>
-          <StaggerItem>
+          </motion.div>
+          <motion.div variants={itemVariants} className={commonStyles.cardHover} >
             <StatCard
               title="On-Hold Projects"
               value={metrics.onHoldProjects.toString()}
               icon={Clock}
               href="/client/projects"
             />
-          </StaggerItem>
-        </StaggerContainer>
+          </motion.div>
+        </motion.div>
         </section>
 
       {error && (

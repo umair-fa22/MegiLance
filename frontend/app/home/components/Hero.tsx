@@ -65,7 +65,7 @@ export default function Hero() {
   
   if (!mounted) return <div className={commonStyles.preloadSpacer} />;
 
-  const Wrapper = HeroScene3D ? HeroScene3D : 'div';
+  const Wrapper = HeroScene3D || 'div';
 
   return (
     <Wrapper className={cn(commonStyles.heroContainer, themeStyles.heroContainer)}>
@@ -79,7 +79,7 @@ export default function Hero() {
         <motion.div 
           className={cn(commonStyles.mouseGlow, themeStyles.mouseGlow)}
           animate={{ x: mousePos.x - 400, y: mousePos.y - 400 }}
-          transition={{ type: "spring", bounce: 0.25, mass: 0.5 }}
+          transition={{ type: "spring" as const, bounce: 0.25, mass: 0.5 }}
         />
 
         {/* Ambient background depth elements */}
@@ -105,7 +105,7 @@ export default function Hero() {
                       initial={{ y: 80, opacity: 0, rotateZ: 5 }}
                       animate={{ y: 0, opacity: 1, rotateZ: 0 }}
                       transition={{ 
-                        type: "spring", 
+                        type: "spring" as const, 
                         stiffness: 100, 
                         damping: 15, 
                         delay: (i * 0.2) + (j * 0.1) 
@@ -185,3 +185,4 @@ export default function Hero() {
     </Wrapper>
   );
 }
+

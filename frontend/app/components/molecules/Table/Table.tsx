@@ -186,7 +186,7 @@ const Table: React.FC<TableProps> = ({
           </caption>
         )}
         <thead className={cn(commonStyles.tableThead, themeStyles.tableThead)}>
-          <tr>
+          <motion.tr initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ type: "spring" as const }}>
             {columns.map((col) => (
               <th 
                 key={col.key} 
@@ -219,21 +219,21 @@ const Table: React.FC<TableProps> = ({
                 </span>
               </th>
             ))}
-          </tr>
+          </motion.tr>
         </thead>
         <tbody className={cn(commonStyles.tableTbody, themeStyles.tableTbody)}>
           {sortedData.length === 0 ? (
-            <tr>
+            <motion.tr initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ type: "spring" as const }}>
               <td 
                 colSpan={columns.length} 
                 className={cn(commonStyles.emptyState, themeStyles.emptyState)}
               >
                 {emptyMessage}
               </td>
-            </tr>
+            </motion.tr>
           ) : (
             sortedData.map((row, rowIndex) => (
-              <tr 
+              <motion.tr initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ type: "spring" as const }} 
                 key={getRowKey(row, rowIndex)} 
                 className={cn(
                   commonStyles.tableTbodyTr, 
@@ -260,7 +260,7 @@ const Table: React.FC<TableProps> = ({
                     {col.render ? col.render(row, rowIndex) : String(row[col.key] ?? '')}
                   </td>
                 ))}
-              </tr>
+              </motion.tr>
             ))
           )}
         </tbody>

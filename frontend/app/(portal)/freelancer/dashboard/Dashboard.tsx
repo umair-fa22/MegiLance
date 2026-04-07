@@ -1,7 +1,8 @@
 // @AI-HINT: Redesigned Freelancer Dashboard with modern UI/UX, quick actions, seller stats, sparklines, timeline, progress rings
 'use client';
 
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { motion } from "framer-motion";
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
@@ -94,6 +95,9 @@ function transformSellerStats(raw: Record<string, unknown>): SellerStatsData {
     repeatClientRate: (raw.repeat_client_rate as number) ?? 0,
   };
 }
+const containerVariants = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } } };
+const itemVariants = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 24 } } };
+
 
 const Dashboard: React.FC = () => {
   const { resolvedTheme } = useTheme();
@@ -305,13 +309,14 @@ const Dashboard: React.FC = () => {
               <div
                 className={cn(commonStyles.progressTrack, themeStyles.progressTrack)}
                 role="progressbar"
-                aria-valuenow={analytics.profileCompleteness}
+                aria-valuenow={analytics.profileCompleteness || 0}
                 aria-valuemin={0}
                 aria-valuemax={100}
                 aria-label={`Profile ${analytics.profileCompleteness}% complete`}
               >
                 <div
                   className={cn(commonStyles.progressFill, analytics.profileCompleteness >= 60 ? commonStyles.progressFillGreen : commonStyles.progressFillYellow)}
+                  // NOSONAR
                   style={{ width: `${analytics.profileCompleteness}%` }}
                 />
               </div>

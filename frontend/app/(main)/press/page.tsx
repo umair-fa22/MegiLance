@@ -1,24 +1,14 @@
-// @AI-HINT: Next.js route for Press, delegates to Press component.
-import type { Metadata } from 'next';
-import { buildMeta, buildBreadcrumbJsonLd, jsonLdScriptProps } from '@/lib/seo';
-import Press from './Press';
-
-export async function generateMetadata(): Promise<Metadata> {
-  return buildMeta({
-    title: 'Press & Media',
-    description: 'MegiLance in the news. Press releases, media coverage, and brand assets for journalists and reporters.',
-    path: '/press',
-    keywords: ['MegiLance press', 'media coverage', 'freelance news', 'press releases'],
-  });
-}
+// @AI-HINT: Press directory
+import React from 'react';
+import commonStyles from './Press.common.module.css';
 
 export default function PressPage() {
   return (
-    <>
-      <script {...jsonLdScriptProps(
-        buildBreadcrumbJsonLd([{ name: 'Press', path: '/press' }])
-      )} />
-      <Press />
-    </>
+    <main className={commonStyles.container}>
+      <header className={commonStyles.header} style={{ textAlign: 'center', padding: '6rem 2rem', background: '#0f172a', color: 'white' }}>
+        <h1 className={commonStyles.title} style={{ fontSize: '3.5rem', marginBottom: '1.5rem' }}>Press & Media Kit</h1>
+        <p className={commonStyles.subtitle} style={{ fontSize: '1.25rem', color: '#94a3b8' }}>Download logos, read our latest announcements, and contact our PR team.</p>
+      </header>
+    </main>
   );
 }

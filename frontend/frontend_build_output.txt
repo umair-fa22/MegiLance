@@ -1,0 +1,322 @@
+
+> frontend@0.1.0 build
+> cross-env NEXT_TELEMETRY_DISABLED=1 TAILWIND_DISABLE_OPTIMISTIC=true TURBOPACK=0 next build
+
+ÔÜá Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of E:\MegiLance\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * E:\MegiLance\frontend\package-lock.json
+
+Warning: Custom Cache-Control headers detected for the following routes:
+  - /_next/static/:path*
+
+Setting a custom Cache-Control header can break Next.js development behavior.
+Ôû▓ Next.js 16.2.1 (Turbopack)
+- Environments: .env.local, .env.production
+- Experiments (use with caution):
+  ┬À optimizePackageImports
+  ┬À serverActions
+
+ÔÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+Ô£ô Compiled successfully in 48s
+  Running TypeScript ...
+  Finished TypeScript in 95s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/319) ...
+  Generating static pages using 7 workers (79/319) 
+  Generating static pages using 7 workers (159/319) 
+  Generating static pages using 7 workers (239/319) 
+Ô£ô Generating static pages using 7 workers (319/319) in 15.0s
+  Finalizing page optimization ...
+
+Route (app)                             Revalidate  Expire
+Ôöî Ôùï /
+Ôö£ Ôùï /_not-found
+Ôö£ Ôùï /~offline
+Ôö£ Ôùï /about
+Ôö£ Ôùï /admin
+Ôö£ Ôùï /admin/ai-monitoring
+Ôö£ Ôùï /admin/analytics
+Ôö£ Ôùï /admin/api-keys
+Ôö£ Ôùï /admin/audit
+Ôö£ Ôùï /admin/billing
+Ôö£ Ôùï /admin/blog
+Ôö£ ãÆ /admin/blog/[id]
+Ôö£ Ôùï /admin/blog/create
+Ôö£ Ôùï /admin/branding
+Ôö£ Ôùï /admin/calendar
+Ôö£ Ôùï /admin/categories
+Ôö£ Ôùï /admin/compliance
+Ôö£ Ôùï /admin/dashboard
+Ôö£ Ôùï /admin/disputes
+Ôö£ ãÆ /admin/disputes/[id]
+Ôö£ Ôùï /admin/email-templates
+Ôö£ Ôùï /admin/export
+Ôö£ Ôùï /admin/feature-flags
+Ôö£ Ôùï /admin/feedback
+Ôö£ Ôùï /admin/fraud-detection
+Ôö£ Ôùï /admin/health
+Ôö£ Ôùï /admin/help
+Ôö£ Ôùï /admin/integrations
+Ôö£ Ôùï /admin/messages
+Ôö£ Ôùï /admin/metrics
+Ôö£ Ôùï /admin/moderation
+Ôö£ Ôùï /admin/payments
+Ôö£ Ôùï /admin/payments/invoices
+Ôö£ Ôùï /admin/payments/multicurrency
+Ôö£ Ôùï /admin/payments/refunds
+Ôö£ Ôùï /admin/profile
+Ôö£ Ôùï /admin/projects
+Ôö£ Ôùï /admin/refunds
+Ôö£ Ôùï /admin/reports
+Ôö£ Ôùï /admin/search-analytics
+Ôö£ Ôùï /admin/security
+Ôö£ Ôùï /admin/settings
+Ôö£ Ôùï /admin/skills
+Ôö£ Ôùï /admin/support
+Ôö£ Ôùï /admin/tags
+Ôö£ Ôùï /admin/users
+Ôö£ Ôùï /admin/video-calls
+Ôö£ Ôùï /admin/webhooks
+Ôö£ Ôùï /ai
+Ôö£ Ôùï /ai-matching
+Ôö£ Ôùï /ai/chatbot
+Ôö£ Ôùï /ai/contract-builder
+Ôö£ Ôùï /ai/expense-calculator
+Ôö£ Ôùï /ai/fraud-check
+Ôö£ Ôùï /ai/income-calculator
+Ôö£ Ôùï /ai/invoice-generator
+Ôö£ Ôùï /ai/price-estimator
+Ôö£ Ôùï /ai/proposal-writer
+Ôö£ Ôùï /ai/rate-advisor
+Ôö£ Ôùï /ai/scope-planner
+Ôö£ Ôùï /ai/skill-analyzer
+Ôö£ Ôùï /analytics
+Ôö£ ãÆ /api/[...catchall]
+Ôö£ ãÆ /api/admin/ai-monitoring
+Ôö£ ãÆ /api/admin/dashboard
+Ôö£ ãÆ /api/admin/payments
+Ôö£ ãÆ /api/admin/projects
+Ôö£ ãÆ /api/admin/settings
+Ôö£ ãÆ /api/admin/support
+Ôö£ ãÆ /api/admin/users
+Ôö£ ãÆ /api/auth/[...path]
+Ôö£ ãÆ /api/client/jobs
+Ôö£ ãÆ /api/dashboard
+Ôö£ ãÆ /api/messages
+Ôö£ ãÆ /api/messages/[id]
+Ôö£ ãÆ /api/payments
+Ôö£ ãÆ /api/projects
+Ôö£ ãÆ /api/user
+Ôö£ Ôùï /audit-logs
+Ôö£ ãÆ /backend/[...path]
+Ôö£ Ôùï /blog
+Ôö£ ãÆ /blog/[slug]
+Ôö£ ãÆ /blog/feed.xml
+Ôö£ Ôùï /blog/search
+Ôö£ Ôùï /callback
+Ôö£ Ôùï /careers
+Ôö£ Ôùï /client
+Ôö£ Ôùï /client/analytics
+Ôö£ Ôùï /client/contracts
+Ôö£ ãÆ /client/contracts/[id]
+Ôö£ Ôùï /client/dashboard
+Ôö£ Ôùï /client/escrow
+Ôö£ Ôùï /client/freelancers
+Ôö£ Ôùï /client/help
+Ôö£ Ôùï /client/hire
+Ôö£ Ôùï /client/invoices
+Ôö£ Ôùï /client/messages
+Ôö£ Ôùï /client/notifications
+Ôö£ Ôùï /client/payments
+Ôö£ Ôùï /client/post-job
+Ôö£ Ôùï /client/profile
+Ôö£ Ôùï /client/projects
+Ôö£ ãÆ /client/projects/[id]
+Ôö£ Ôùï /client/projects/create
+Ôö£ Ôùï /client/reports
+Ôö£ Ôùï /client/reviews
+Ôö£ Ôùï /client/search
+Ôö£ Ôùï /client/security
+Ôö£ Ôùï /client/settings
+Ôö£ Ôùï /client/video-calls
+Ôö£ Ôùï /client/wallet
+Ôö£ Ôùï /clients
+Ôö£ ãÆ /clients/[id]
+Ôö£ Ôùï /community
+Ôö£ Ôùï /compare
+Ôö£ ÔùÅ /compare/[slug]
+Ôöé Ôö£ /compare/upwork
+Ôöé Ôö£ /compare/fiverr
+Ôöé Ôö£ /compare/toptal
+Ôöé Ôöö /compare/freelancer-com
+Ôö£ Ôùï /complete-profile
+Ôö£ Ôùï /contact
+Ôö£ Ôùï /contracts
+Ôö£ ãÆ /contracts/[contractId]/review
+Ôö£ ãÆ /contracts/[contractId]/workroom
+Ôö£ Ôùï /contracts/create
+Ôö£ Ôùï /cookies
+Ôö£ Ôùï /cost-calculator
+Ôö£ Ôùï /create-project
+Ôö£ Ôùï /dashboard
+Ôö£ Ôùï /dashboard/analytics
+Ôö£ Ôùï /dashboard/community
+Ôö£ Ôùï /dashboard/projects
+Ôö£ Ôùï /dashboard/wallet
+Ôö£ Ôùï /disputes
+Ôö£ ãÆ /disputes/[id]
+Ôö£ Ôùï /disputes/create
+Ôö£ Ôùï /enterprise
+Ôö£ Ôùï /explore
+Ôö£ Ôùï /external-projects
+Ôö£ Ôùï /faq
+Ôö£ Ôùï /favorites
+Ôö£ Ôùï /features
+Ôö£ Ôùï /forgot-password
+Ôö£ Ôùï /freelancer
+Ôö£ Ôùï /freelancer/activity
+Ôö£ Ôùï /freelancer/analytics
+Ôö£ Ôùï /freelancer/assessments
+Ôö£ Ôùï /freelancer/assessments/new
+Ôö£ Ôùï /freelancer/availability
+Ôö£ Ôùï /freelancer/calls
+Ôö£ Ôùï /freelancer/career
+Ôö£ Ôùï /freelancer/communication
+Ôö£ Ôùï /freelancer/contracts
+Ôö£ ãÆ /freelancer/contracts/[id]
+Ôö£ Ôùï /freelancer/dashboard
+Ôö£ Ôùï /freelancer/earnings
+Ôö£ Ôùï /freelancer/feedback
+Ôö£ Ôùï /freelancer/files
+Ôö£ Ôùï /freelancer/files/versions
+Ôö£ Ôùï /freelancer/gigs
+Ôö£ Ôùï /freelancer/gigs/create
+Ôö£ Ôùï /freelancer/help
+Ôö£ Ôùï /freelancer/integrations
+Ôö£ Ôùï /freelancer/invoices
+Ôö£ Ôùï /freelancer/job-alerts
+Ôö£ Ôùï /freelancer/jobs
+Ôö£ Ôùï /freelancer/jobs/saved-searches
+Ôö£ Ôùï /freelancer/legal
+Ôö£ Ôùï /freelancer/messages
+Ôö£ Ôùï /freelancer/my-jobs
+Ôö£ Ôùï /freelancer/notes
+Ôö£ Ôùï /freelancer/notifications
+Ôö£ Ôùï /freelancer/portfolio
+Ôö£ Ôùï /freelancer/profile
+Ôö£ Ôùï /freelancer/projects
+Ôö£ Ôùï /freelancer/proposals
+Ôö£ Ôùï /freelancer/rank
+Ôö£ Ôùï /freelancer/rate-cards
+Ôö£ Ôùï /freelancer/referrals
+Ôö£ Ôùï /freelancer/reviews
+Ôö£ Ôùï /freelancer/saved-jobs
+Ôö£ Ôùï /freelancer/security
+Ôö£ Ôùï /freelancer/settings
+Ôö£ Ôùï /freelancer/settings/currency
+Ôö£ Ôùï /freelancer/settings/notifications
+Ôö£ Ôùï /freelancer/settings/password
+Ôö£ Ôùï /freelancer/settings/security
+Ôö£ Ôùï /freelancer/skills
+Ôö£ Ôùï /freelancer/submit-proposal
+Ôö£ Ôùï /freelancer/subscription
+Ôö£ Ôùï /freelancer/support
+Ôö£ Ôùï /freelancer/support/knowledge-base
+Ôö£ Ôùï /freelancer/teams
+Ôö£ Ôùï /freelancer/templates
+Ôö£ Ôùï /freelancer/time-entries
+Ôö£ Ôùï /freelancer/verification
+Ôö£ Ôùï /freelancer/video-calls
+Ôö£ Ôùï /freelancer/wallet
+Ôö£ Ôùï /freelancer/withdraw
+Ôö£ Ôùï /freelancer/workflows
+Ôö£ Ôùï /freelancers
+Ôö£ ãÆ /freelancers/[id]
+Ôö£ Ôùï /gigs
+Ôö£ ãÆ /gigs/[slug]
+Ôö£ Ôùï /help
+Ôö£ Ôùï /hire
+Ôö£ ÔùÅ /hire/[skill]
+Ôöé Ôö£ /hire/react-developer
+Ôöé Ôö£ /hire/python-developer
+Ôöé Ôö£ /hire/nodejs-developer
+Ôöé Ôöö [+41 more paths]
+Ôö£ ÔùÅ /hire/[skill]/[industry]                    1h      1y
+Ôöé Ôö£ /hire/react-developer/healthcare            1h      1y
+Ôöé Ôö£ /hire/react-developer/fintech               1h      1y
+Ôöé Ôö£ /hire/react-developer/ecommerce             1h      1y
+Ôöé Ôöö [+22 more paths]
+Ôö£ Ôùï /home
+Ôö£ Ôùï /how-it-works
+Ôö£ Ôùï /icon.svg
+Ôö£ Ôùï /install
+Ôö£ Ôùï /invoices
+Ôö£ Ôùï /invoices/create
+Ôö£ Ôùï /jobs
+Ôö£ ãÆ /jobs/[id]
+Ôö£ Ôùï /legal/privacy
+Ôö£ Ôùï /legal/terms
+Ôö£ Ôùï /login
+Ôö£ Ôùï /logout
+Ôö£ Ôùï /messages
+Ôö£ Ôùï /messages/new
+Ôö£ Ôùï /notifications
+Ôö£ Ôùï /offline
+Ôö£ Ôùï /onboarding
+Ôö£ Ôùï /onboarding/role
+Ôö£ Ôùï /opengraph-image
+Ôö£ Ôùï /passwordless
+Ôö£ Ôùï /payments
+Ôö£ Ôùï /payments/add-funds
+Ôö£ Ôùï /portal
+Ôö£ Ôùï /post-project
+Ôö£ Ôùï /press
+Ôö£ Ôùï /pricing
+Ôö£ Ôùï /privacy
+Ôö£ Ôùï /profile
+Ôö£ Ôùï /projects
+Ôö£ ãÆ /projects/[id]
+Ôö£ Ôùï /proposals
+Ôö£ Ôùï /referral
+Ôö£ Ôùï /referrals
+Ôö£ Ôùï /refunds
+Ôö£ Ôùï /refunds/create
+Ôö£ Ôùï /reset-password
+Ôö£ Ôùï /robots.txt
+Ôö£ Ôùï /search
+Ôö£ Ôùï /security
+Ôö£ Ôùï /settings
+Ôö£ Ôùï /settings/notifications
+Ôö£ Ôùï /settings/payout-methods/add
+Ôö£ Ôùï /settings/security/2fa
+Ôö£ Ôùï /signup
+Ôö£ Ôùï /signup/client
+Ôö£ Ôùï /signup/freelancer
+Ôö£ Ôùï /sitemap.xml                                1h      1y
+Ôö£ Ôùï /status
+Ôö£ Ôùï /support
+Ôö£ Ôùï /support/new
+Ôö£ Ôùï /talent
+Ôö£ Ôùï /teams
+Ôö£ Ôùï /terms
+Ôö£ Ôùï /testimonials
+Ôö£ Ôùï /tools
+Ôö£ Ôùï /tools/contract-builder
+Ôö£ Ôùï /twitter-image
+Ôö£ Ôùï /user-management
+Ôö£ Ôùï /verify-email
+Ôö£ Ôùï /wallet
+Ôö£ Ôùï /why-hire
+Ôöö ãÆ /workroom/[contractId]
+
+
+ãÆ Proxy (Middleware)
+
+Ôùï  (Static)   prerendered as static content
+ÔùÅ  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ãÆ  (Dynamic)  server-rendered on demand
+

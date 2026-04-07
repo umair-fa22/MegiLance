@@ -112,7 +112,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className={cn(commonStyles.footer, styles.footer)}>
+    <motion.footer initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring' as const, stiffness: 300, damping: 30 }} className={cn(commonStyles.footer, styles.footer)}>
       <div className={cn(commonStyles.container)}>
         <div className={commonStyles.mainContent}>
           <div className={commonStyles.brandColumn}>
@@ -201,7 +201,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

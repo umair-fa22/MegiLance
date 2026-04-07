@@ -2,6 +2,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { ChevronUp, ChevronDown, ChevronsUpDown } from 'lucide-react';
@@ -53,7 +54,7 @@ export function DataTable<T>({ columns, data, keyExtractor, onRowClick }: DataTa
     <div className={cn(commonStyles.wrapper, themeStyles.wrapper)}>
       <table className={cn(commonStyles.table, themeStyles.table)}>
         <thead className={cn(commonStyles.thead, themeStyles.thead)}>
-          <tr>
+          <motion.tr initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ type: "spring" as const }}>
             {columns.map(col => (
               <th
                 key={col.key}
@@ -78,11 +79,11 @@ export function DataTable<T>({ columns, data, keyExtractor, onRowClick }: DataTa
                 </div>
               </th>
             ))}
-          </tr>
+          </motion.tr>
         </thead>
         <tbody>
           {sortedData.map(row => (
-            <tr
+            <motion.tr initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ type: "spring" as const }}
               key={keyExtractor(row)}
               onClick={() => onRowClick?.(row)}
               className={cn(
@@ -96,7 +97,7 @@ export function DataTable<T>({ columns, data, keyExtractor, onRowClick }: DataTa
                   {col.render ? col.render(row) : (row as any)[col.key]}
                 </td>
               ))}
-            </tr>
+            </motion.tr>
           ))}
         </tbody>
       </table>

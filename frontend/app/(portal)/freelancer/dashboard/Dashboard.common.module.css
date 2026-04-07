@@ -687,3 +687,22 @@
     font-size: 0.75rem;
   }
 }
+\n
+/* Added for 2026 motion aesthetics */
+.motionWrapper {
+  width: 100%;
+}
+.glassPanel {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+}
+.cardHover {
+  will-change: transform, box-shadow;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+.cardHover:hover {
+  transform: translateY(-4px) scale(1.01);
+  z-index: 10;
+}

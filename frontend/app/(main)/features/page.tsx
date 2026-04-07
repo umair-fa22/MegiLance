@@ -1,25 +1,14 @@
-// @AI-HINT: Dedicated Features showcase page with categorized feature grid, interactive UI
-import type { Metadata } from 'next';
-import { buildMeta, buildBreadcrumbJsonLd, jsonLdScriptProps } from '@/lib/seo';
-import Features from './Features';
-
-export async function generateMetadata(): Promise<Metadata> {
-  return buildMeta({
-    title: 'Platform Features - AI Matching, Payments, Collaboration | MegiLance',
-    description: 'Explore MegiLance features: AI-powered matching, blockchain payments, real-time collaboration, skill assessments, and more.',
-    path: '/features',
-    keywords: [
-      'freelance platform features', 'AI matching', 'secure payments',
-      'escrow', 'collaboration tools', 'freelancer tools', 'MegiLance features',
-    ],
-  });
-}
+// @AI-HINT: Features directory
+import React from 'react';
+import commonStyles from './Features.common.module.css';
 
 export default function FeaturesPage() {
   return (
-    <>
-      <script {...jsonLdScriptProps(buildBreadcrumbJsonLd([{ name: 'Features', path: '/features' }]))} />
-      <Features />
-    </>
+    <main className={commonStyles.container}>
+      <header className={commonStyles.header} style={{ textAlign: 'center', padding: '6rem 2rem' }}>
+        <h1 className={commonStyles.title} style={{ fontSize: '3.5rem', marginBottom: '1.5rem' }}>Platform Features</h1>
+        <p className={commonStyles.subtitle} style={{ fontSize: '1.25rem', color: '#64748b' }}>Secure escrow, zero-friction milestones, and intelligent AI matching.</p>
+      </header>
+    </main>
   );
 }

@@ -6,7 +6,7 @@ import React from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 
-import Hero from './components/Hero';
+import Hero from './components/Hero/Hero';
 import TrustIndicators from './components/TrustIndicators';
 import Features from './components/Features';
 import HowItWorks from './components/HowItWorks';
@@ -50,7 +50,7 @@ const Home: React.FC = () => {
           {/* How It Works */}
           <div className={commonStyles.homeSection}>
             <div className={commonStyles.sectionContainer}>
-              <ScrollReveal width="100%" direction="up">
+              <ScrollReveal width="100%" direction="left">
                 <HowItWorks />
               </ScrollReveal>
             </div>
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+    </div>
   );
 };
 

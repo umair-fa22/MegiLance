@@ -150,7 +150,7 @@ export default function Header() {
 
   return (
     <>
-      <header 
+      <motion.header initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring' as const, stiffness: 300, damping: 30 }} 
         className={cn(commonStyles.header, themeStyles.header)} 
         data-scrolled={isScrolled}
       >
@@ -245,7 +245,7 @@ export default function Header() {
             </button>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* Fullscreen Mobile Flyout Menu */}
       <div className={cn(commonStyles.mobileFlyout, themeStyles.mobileFlyout, mobileMenuOpen && commonStyles.mobileFlyoutOpen)}>

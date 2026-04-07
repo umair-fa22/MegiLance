@@ -4,6 +4,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
+import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { MoreHorizontal, Briefcase, MessageSquare, CreditCard } from 'lucide-react';
 import UserAvatar from '@/app/components/atoms/UserAvatar/UserAvatar';
@@ -42,6 +43,12 @@ const statusVariantMap: Record<ProjectCardProps['status'], NonNullable<BadgeProp
   'Cancelled': 'danger',
 };
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring' as const, stiffness: 350, damping: 25 } },
+  hover: { y: -8, scale: 1.02, boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.15)', transition: { type: 'spring' as const, stiffness: 400, damping: 20 } }
+};
+
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const { id, title, status, progress, budget, paid, freelancers, updatedAt } = props;
   const { resolvedTheme } = useTheme();
@@ -55,7 +62,15 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   ];
 
   return (
-    <article className={cn(common.card, themed.theme)} aria-label={`Project: ${title}`}>
+    <motion.article 
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="show"
+      whileHover="hover"
+      viewport={{ once: true, margin: '-50px' }}
+      className={cn(common.card, themed.theme)} 
+      aria-label={`Project: ${title}`}
+    >
       <div className={common.cardHeader}>
         <h3 className={cn(common.title, themed.title)}>
           <Link href={`/client/projects/${id}`} className={cn(common.titleLink, themed.titleLink)}>{title}</Link>
@@ -87,7 +102,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
         </div>
         <span className={cn(common.updatedAt, themed.updatedAt)}>Updated {updatedAt}</span>
       </div>
-    </article>
+    </motion.article>
   );
 };
 

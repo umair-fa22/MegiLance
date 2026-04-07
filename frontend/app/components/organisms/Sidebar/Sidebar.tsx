@@ -94,8 +94,8 @@ export default function Sidebar({ isCollapsed, toggleSidebar, userType, isMobile
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   return (
-    <aside
-      ref={sidebarRef}
+    <motion.aside
+ initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ type: 'spring' as const, stiffness: 200, damping: 20 }}       ref={sidebarRef}
       id={sidebarId}
       data-sidebar="true"
       data-mobile-open={isMobileOpen ? "true" : "false"}
@@ -110,7 +110,7 @@ export default function Sidebar({ isCollapsed, toggleSidebar, userType, isMobile
       onKeyDown={handleKeyDown}
       aria-label={`Main navigation sidebar${isCollapsed ? ' (collapsed)' : ''}`}
     >
-      <header className={cn(commonStyles.sidebarHeader, themeStyles.sidebarHeader)}>
+      <motion.header initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring' as const, stiffness: 300, damping: 30 }} className={cn(commonStyles.sidebarHeader, themeStyles.sidebarHeader)}>
         <div className={cn(commonStyles.logoContainer)}>
           <MegiLanceLogo className={cn(commonStyles.logoIcon, isHovered && commonStyles.logoIconHovered)} />
           <span
@@ -151,7 +151,7 @@ export default function Sidebar({ isCollapsed, toggleSidebar, userType, isMobile
             {isCollapsed ? <ChevronRight size={20} aria-hidden="true" /> : <ChevronLeft size={20} aria-hidden="true" />}
           </button>
         )}
-      </header>
+      </motion.header>
 
       <nav id={navId} className={cn(commonStyles.sidebarNavContainer, themeStyles.sidebarNavContainer)} role="navigation">
         <SidebarNav isCollapsed={isCollapsed && !isMobileOpen} userType={userType} />
@@ -159,7 +159,7 @@ export default function Sidebar({ isCollapsed, toggleSidebar, userType, isMobile
 
       <div className={commonStyles.divider} role="separator" aria-hidden="true"></div>
 
-      <footer className={cn(commonStyles.sidebarFooter, themeStyles.sidebarFooter)}>
+      <motion.footer initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring' as const, stiffness: 300, damping: 30 }} className={cn(commonStyles.sidebarFooter, themeStyles.sidebarFooter)}>
         <div className={cn(commonStyles.userInfo, themeStyles.userInfo)}>
           <div className={commonStyles.avatarWrapper}>
             <UserAvatar 
@@ -185,7 +185,7 @@ export default function Sidebar({ isCollapsed, toggleSidebar, userType, isMobile
             </span>
           </div>
         </div>
-      </footer>
-    </aside>
+      </motion.footer>
+    </motion.aside>
   );
 };

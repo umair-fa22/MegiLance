@@ -55,7 +55,7 @@ const itemVariants = {
     opacity: 1, 
     y: 0, 
     scale: 1,
-    transition: { type: 'spring', stiffness: 200, damping: 20 }
+      transition: { type: 'spring' as const, stiffness: 200, damping: 20 }
   },
 };
 
@@ -77,7 +77,7 @@ const HowItWorks: React.FC = () => {
           <span className={cn(commonStyles.tagline, themeStyles.tagline)}>The Process</span>
           <motion.div 
             whileHover={{ scale: 1.1, rotate: 5 }} 
-            transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            transition={{ type: "spring" as const, stiffness: 300, damping: 15 }}
           >
             <LottieAnimation
               animationData={workflowAnimation}
@@ -98,7 +98,7 @@ const HowItWorks: React.FC = () => {
             <motion.div 
               key={step.title}
               whileHover={{ scale: 1.03, y: -5 }}
-              transition={{ type: "spring", stiffness: 400, damping: 15 }}
+              transition={{ type: "spring" as const, stiffness: 400, damping: 15 }}
             >
               <StepCard
                 stepNumber={index + 1}
@@ -116,3 +116,4 @@ const HowItWorks: React.FC = () => {
 };
 
 export default HowItWorks;
+

@@ -87,3 +87,11 @@
 .alertTitle { color: #0f172a; }
 .alertMessage { color: #475569; }
 .alertAction { color: #4573df; }
+\n
+.glassPanel {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.cardHover:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}

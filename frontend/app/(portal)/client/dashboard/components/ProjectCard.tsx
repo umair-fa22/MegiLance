@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
+import { motion } from 'framer-motion';
 import { Calendar, Users, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import commonStyles from './ProjectCard.common.module.css';
@@ -10,6 +11,17 @@ import darkStyles from './ProjectCard.dark.module.css';
 interface ProjectCardProps {
   project: any;
 }
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { type: 'spring' as const, stiffness: 300, damping: 20 } },
+  hover: { 
+    y: -5, 
+    scale: 1.01,
+    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+    transition: { type: 'spring' as const, stiffness: 400, damping: 25 }
+  }
+};
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const { resolvedTheme } = useTheme();
@@ -33,7 +45,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const statusColor = getStatusColor(project.status);
 
   return (
-    <div className={cn(commonStyles.card, themeStyles.card)}>
+    <motion.div 
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="visible"
+      whileHover="hover"
+      viewport={{ once: true, amount: 0.1 }}
+      className={cn(commonStyles.card, themeStyles.card)}
+    >
       <div className={commonStyles.header}>
         <div className={commonStyles.titleWrapper}>
           <h3 className={cn(commonStyles.title, themeStyles.title)}>{project.title}</h3>
@@ -60,9 +79,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       <div className={commonStyles.footer}>
         <div className={commonStyles.progressWrapper}>
           <div className={cn(commonStyles.progressBar, themeStyles.progressBar)}>
-            <div 
+            <motion.div 
+              initial={{ width: 0 }}
+              whileInView={{ width: `${project.progress || 0}%` }}
+              transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
               className={commonStyles.progressFill} 
-              style={{ width: `${project.progress || 0}%` }}
             />
           </div>
           <span className={cn(commonStyles.progressText, themeStyles.progressText)}>{project.progress || 0}% Complete</span>
@@ -71,7 +92,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           Details <ArrowRight size={14} />
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

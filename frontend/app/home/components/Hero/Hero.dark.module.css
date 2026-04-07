@@ -1,0 +1,38 @@
+.hero {
+  background: #09090b;
+  color: #f8fafc;
+}
+
+.content {
+  color: inherit;
+}
+
+.title {
+  color: #f8fafc;
+}
+
+.highlight {
+  color: #4573df;
+}
+
+.subtitle {
+  color: #94a3b8;
+}
+
+.badge {
+  background: #1e293b;
+  color: #60a5fa;
+  border: 1px solid #334155;
+}
+
+.stats {
+  border-top: 1px solid #334155;
+}
+
+.statValue {
+  color: #f8fafc;
+}
+
+.statLabel {
+  color: #94a3b8;
+}

@@ -1,8 +1,1 @@
-/* @AI-HINT: Dark theme styles for FAQ. */
-.root { color: #e2e8f0; }
-.subtitle { color: #cbd5e1; }
-.item { background: #1e293b; border-color: #334155; }
-.q { color: #e2e8f0; }
-.q:hover { background: #253347; }
-.a { color: #cbd5e1; }
-.badge { background: rgba(69, 115, 223, 0.15); color: #93c5fd; }
+.faq { background: transparent; color: #f8fafc; }

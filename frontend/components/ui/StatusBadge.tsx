@@ -2,6 +2,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import commonStyles from './StatusBadge.common.module.css';
@@ -21,12 +22,12 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({ variant, children, ico
   const themeStyles = resolvedTheme === 'light' ? lightStyles : darkStyles;
 
   return (
-    <span
+    <motion.span whileHover={{ scale: 1.05 }} transition={{ type: "spring" as const }}
       className={cn(commonStyles.badge, themeStyles.badge)}
       data-variant={variant}
     >
-      {icon && <span className={commonStyles.icon}>{icon}</span>}
+      {icon && <motion.span whileHover={{ scale: 1.05 }} transition={{ type: "spring" as const }} className={commonStyles.icon}>{icon}</motion.span>}
       {children}
-    </span>
+    </motion.span>
   );
 };

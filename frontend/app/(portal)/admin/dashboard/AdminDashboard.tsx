@@ -1,7 +1,8 @@
 // @AI-HINT: Enterprise Admin Command Center — real-time KPIs, system health polling, revenue sparklines, geographic distribution, active sessions, fraud monitoring
 'use client';
 
-import React, { useMemo, useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { motion } from "framer-motion";
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
@@ -129,6 +130,9 @@ interface StatCardProps {
   subtitle?: string;
   sparkline?: number[];
 }
+const containerVariants = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } } };
+const itemVariants = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 24 } } };
+
 
 const StatCard: React.FC<StatCardProps> = ({ title, value, trend, icon: Icon, accent, themeStyles, subtitle, sparkline }) => {
   const isPositive = trend?.includes('+');
@@ -486,13 +490,13 @@ const AdminDashboard: React.FC = () => {
         <ScrollReveal delay={0.2}>
           {/* KPI Stats Grid */}
           <section aria-label="Key performance indicators">
-            <StaggerContainer className={commonStyles.statsGrid}>
+            <motion.div variants={containerVariants} initial="hidden" animate="show" className={commonStyles.motionWrapper} >
               {stats.map((stat, idx) => (
-                <StaggerItem key={idx}>
+                <motion.div variants={itemVariants} className={commonStyles.cardHover} >
                   <StatCard {...stat} themeStyles={themeStyles} />
-                </StaggerItem>
+                </motion.div>
               ))}
-            </StaggerContainer>
+            </motion.div>
           </section>
 
           {/* Revenue + Geographic Distribution Row */}
@@ -544,13 +548,13 @@ const AdminDashboard: React.FC = () => {
           {/* Quick Actions */}
           <section aria-label="Quick actions">
             <h2 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Quick Actions</h2>
-            <StaggerContainer className={commonStyles.quickActionsGrid}>
+            <motion.div variants={containerVariants} initial="hidden" animate="show" className={commonStyles.motionWrapper} >
               {quickActions.map((action, idx) => (
-                <StaggerItem key={action.href}>
+                <motion.div variants={itemVariants} className={commonStyles.cardHover} >
                   <QuickAction {...action} themeStyles={themeStyles} />
-                </StaggerItem>
+                </motion.div>
               ))}
-            </StaggerContainer>
+            </motion.div>
           </section>
 
           {/* Main Content — User Management + Activity */}

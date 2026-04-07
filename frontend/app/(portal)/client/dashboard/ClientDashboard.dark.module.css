@@ -87,3 +87,13 @@
 .insightTitle { color: #e2e8f0; }
 .insightValue { color: #f1f5f9; }
 .insightLabel { color: #64748b; }
+\n
+.glassPanel {
+  background: rgba(30, 30, 36, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+.cardHover:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.1);
+}

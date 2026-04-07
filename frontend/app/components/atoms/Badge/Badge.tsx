@@ -66,21 +66,21 @@ export default function Badge({
   const content = (
     <>
       {iconBefore && (
-        <span 
+        <motion.span whileHover={{ scale: 1.05 }} transition={{ type: "spring" as const }} 
           className={cn(commonStyles.badgeIcon, themeStyles.badgeIcon, commonStyles.badgeIconBefore)}
           aria-hidden="true"
         >
           {iconBefore}
-        </span>
+        </motion.span>
       )}
       {children}
       {iconAfter && (
-        <span 
+        <motion.span whileHover={{ scale: 1.05 }} transition={{ type: "spring" as const }} 
           className={cn(commonStyles.badgeIcon, themeStyles.badgeIcon, commonStyles.badgeIconAfter)}
           aria-hidden="true"
         >
           {iconAfter}
-        </span>
+        </motion.span>
       )}
     </>
   );
@@ -99,12 +99,12 @@ export default function Badge({
   }
 
   return (
-    <span
+    <motion.span whileHover={{ scale: 1.05 }} transition={{ type: "spring" as const }}
       className={badgeClasses}
       role={ariaLabel ? 'status' : undefined}
       aria-label={ariaLabel}
     >
       {content}
-    </span>
+    </motion.span>
   );
 };

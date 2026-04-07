@@ -2,6 +2,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
@@ -91,7 +92,7 @@ const PublicHeader = () => {
   // Prevent hydration mismatch by using a minimal skeleton on server
   if (!mounted) {
     return (
-      <header className={cn(commonStyles.header, lightStyles.header)}>
+      <motion.header initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring' as const, stiffness: 300, damping: 30 }} className={cn(commonStyles.header, lightStyles.header)}>
         <div className={commonStyles.container}>
           <div>
             <MegiLanceLogo />
@@ -104,7 +105,7 @@ const PublicHeader = () => {
             </ul>
           </nav>
         </div>
-      </header>
+      </motion.header>
     );
   }
 
@@ -145,7 +146,7 @@ const PublicHeader = () => {
 
   return (
     <>
-      <header className={cn(commonStyles.header, styles.header, isScrolled && commonStyles.scrolled, isScrolled && styles.scrolled)}>
+      <motion.header initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring' as const, stiffness: 300, damping: 30 }} className={cn(commonStyles.header, styles.header, isScrolled && commonStyles.scrolled, isScrolled && styles.scrolled)}>
         <div className={cn(commonStyles.container, styles.container)}>
           <div className={commonStyles.logoContainer}>
             <Link href="/" aria-label="MegiLance Home" onClick={closeMobileMenu}>
@@ -234,7 +235,7 @@ const PublicHeader = () => {
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-      </header>
+      </motion.header>
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (

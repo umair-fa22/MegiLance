@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useTheme } from 'next-themes';
+import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import Badge from '@/app/components/atoms/Badge/Badge';
 import Button from '@/app/components/atoms/Button/Button';
@@ -36,6 +37,17 @@ const statusVariantMap: { [key in Proposal['status']]: 'default' | 'success' | '
   Draft: 'secondary',
 };
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: { opacity: 1, y: 0, transition: { type: 'spring' as const, stiffness: 350, damping: 25 } },
+  hover: { 
+    y: -8, 
+    scale: 1.02, 
+    boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.15)',
+    transition: { type: 'spring' as const, stiffness: 400, damping: 20 }
+  }
+};
+
 const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onView, onEdit, onWithdraw }) => {
   const { resolvedTheme } = useTheme();
   const styles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
@@ -43,7 +55,14 @@ const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onView, onEdit, o
   const { id, jobTitle, clientName, status, dateSubmitted, bidAmount, matchScore, isClientVerified } = proposal;
 
   return (
-    <div className={cn(commonStyles.card, styles.card)}>
+    <motion.div 
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="visible"
+      whileHover="hover"
+      viewport={{ once: true, amount: 0.1 }}
+      className={cn(commonStyles.card, styles.card)}
+    >
       <div className={cn(commonStyles.cardHeader, styles.cardHeader)}>
         <div className={commonStyles.headerTop}>
           {matchScore && (
@@ -92,7 +111,7 @@ const ProposalCard: React.FC<ProposalCardProps> = ({ proposal, onView, onEdit, o
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

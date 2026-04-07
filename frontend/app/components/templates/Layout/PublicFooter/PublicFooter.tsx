@@ -2,6 +2,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
@@ -65,13 +66,13 @@ const PublicFooter = () => {
 
   // Don't render themed content until mounted to avoid hydration mismatch
   if (!mounted) {
-    return <footer className={commonStyles.footer} />;
+    return <motion.footer initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring' as const, stiffness: 300, damping: 30 }} className={commonStyles.footer} />;
   }
 
   const styles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
 
   return (
-    <footer className={cn(commonStyles.footer, styles.footer)}>
+    <motion.footer initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring' as const, stiffness: 300, damping: 30 }} className={cn(commonStyles.footer, styles.footer)}>
       <div className={commonStyles.topBorder} />
       <FooterGlobe />
       <div className={cn(commonStyles.container, styles.container)}>
@@ -106,9 +107,7 @@ const PublicFooter = () => {
                 <ul className={commonStyles.linksList}>
                   {links.map((link) => (
                     <li key={link.name}>
-                      <Link href={link.href} className={cn(commonStyles.linkItem, styles.linkItem)}>
-                        {link.name}
-                      </Link>
+                      <Link href={link.href} className={cn(commonStyles.linkItem, styles.linkItem)}><motion.span whileHover={{ y: -2, scale: 1.05 }} transition={{ type: "spring" as const, stiffness: 400, damping: 10 }}>{link.name}</motion.span></Link>
                     </li>
                   ))}
                 </ul>
@@ -129,7 +128,7 @@ const PublicFooter = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 
