@@ -15,7 +15,7 @@ Data-driven using Arc.dev 2025 survey, Upwork/Fiverr actual rates, and regional 
 
 import logging
 from typing import List, Optional, Dict, Any
-from datetime import datetime
+from datetime import datetime, timezone
 
 from app.services.market_data_2025 import (
     UPWORK_SERVICE_RATES,
@@ -204,7 +204,7 @@ def advise_rate(
             "target_platform": target_platform,
             "niche_premium_applied": niche_mult > 1.0,
             "data_version": DATA_VERSION,
-            "generated_at": datetime.utcnow().isoformat(),
+            "generated_at": datetime.now(timezone.utc).isoformat(),
         },
     }
 

@@ -14,7 +14,7 @@ Uses real data from market_data_2025 module (Arc.dev, Upwork, Fiverr datasets).
 
 import logging
 from typing import List, Optional, Dict, Any
-from datetime import datetime
+from datetime import datetime, timezone
 
 from app.services.market_data_2025 import (
     COUNTRY_DEVELOPER_RATES,
@@ -333,7 +333,7 @@ def analyze_skills(
             "country_code": country_code,
             "target_role": target_role,
             "data_version": DATA_VERSION,
-            "analyzed_at": datetime.utcnow().isoformat(),
+            "analyzed_at": datetime.now(timezone.utc).isoformat(),
         },
     }
 

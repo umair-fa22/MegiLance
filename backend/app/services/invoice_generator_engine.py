@@ -7,7 +7,7 @@ Supports multi-currency, tax calculation, custom line items, and PDF-ready outpu
 
 import logging
 from typing import List, Dict, Any
-from datetime import datetime, timedelta
+from datetime import datetime, timezone, timedelta
 import hashlib
 
 logger = logging.getLogger("megilance")
@@ -199,14 +199,14 @@ def generate_invoice(
 
     # Generate invoice number if not provided
     if not invoice_number:
-        ts = datetime.utcnow().strftime("%Y%m%d%H%M%S")
+        ts = datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S")
         hash_input = f"{sender_name}{ts}"
         short_hash = hashlib.md5(hash_input.encode()).hexdigest()[:6].upper()
         invoice_number = f"INV-{short_hash}"
 
     # Parse dates
     if not issue_date:
-        issue_date = datetime.utcnow().strftime("%Y-%m-%d")
+        issue_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     # Calculate due date
     term_info = PAYMENT_TERMS.get(payment_terms, PAYMENT_TERMS["net_30"])
@@ -341,7 +341,7 @@ def generate_invoice(
             "discount_savings": discount_amount,
         },
         "meta": {
-            "generated_at": datetime.utcnow().isoformat(),
+            "generated_at": datetime.now(timezone.utc).isoformat(),
             "generator": "MegiLance Invoice Generator",
             "version": "1.0",
         },

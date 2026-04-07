@@ -15,7 +15,7 @@ Enhanced with real-world data from:
 import math
 import logging
 from typing import List, Optional, Dict, Any
-from datetime import datetime
+from datetime import datetime, timezone
 
 from app.db.turso_http import execute_query
 from app.services.market_data_2025 import (
@@ -988,7 +988,7 @@ def estimate_price(
             "team_size": team_size,
             "client_country": client_country,
             "freelancer_country": freelancer_country,
-            "generated_at": datetime.utcnow().isoformat(),
+            "generated_at": datetime.now(timezone.utc).isoformat(),
             "data_version": DATA_VERSION,
             "data_sources": data_sources_used,
         }

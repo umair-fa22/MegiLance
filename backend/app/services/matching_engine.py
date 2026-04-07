@@ -7,7 +7,7 @@ historical success data, and multi-factor scoring with configurable weights.
 
 from typing import List, Dict, Any, Optional, Set
 from app.db.turso_http import execute_query, parse_rows
-from datetime import datetime
+from datetime import datetime, timezone
 import json
 import logging
 from collections import defaultdict
@@ -458,7 +458,7 @@ class MatchingEngine:
 
         try:
             last_activity = datetime.fromisoformat(str(last_activity_str).replace("Z", "+00:00"))
-            days_ago = (datetime.utcnow() - last_activity.replace(tzinfo=None)).days
+            days_ago = (datetime.now(timezone.utc).replace(tzinfo=None) - last_activity.replace(tzinfo=None)).days
         except (ValueError, TypeError):
             return 0.3
 

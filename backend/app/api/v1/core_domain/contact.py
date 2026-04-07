@@ -3,11 +3,12 @@
 Contact form endpoint for MegiLance.
 Stores inquiries in Turso database and sends notification emails.
 """
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Depends
 from pydantic import BaseModel, EmailStr
-from datetime import datetime
+from datetime import datetime, timezone
 import httpx
 from app.core.config import get_settings
+from app.core.security import require_admin
 settings = get_settings()
 import logging
 
@@ -78,7 +79,7 @@ async def submit_contact_form(submission: ContactSubmission):
                                 submission.email,
                                 submission.topic,
                                 submission.message,
-                                datetime.utcnow().isoformat(),
+                                datetime.now(timezone.utc).isoformat(),
                             ],
                         }
                     ]
@@ -114,9 +115,13 @@ async def submit_contact_form(submission: ContactSubmission):
 
 
 @router.get("/contact/inquiries")
-async def get_contact_inquiries(status_filter: str = None, limit: int = 50):
+async def get_contact_inquiries(
+    status_filter: str = None, 
+    limit: int = 50,
+    _: dict = Depends(require_admin)
+):
     """
-    Admin endpoint to retrieve contact form inquiries.
+    Admin endpoint to retrieve contact form inquiries. Admin only.
     """
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:
@@ -163,9 +168,13 @@ async def get_contact_inquiries(status_filter: str = None, limit: int = 50):
 
 
 @router.patch("/contact/inquiries/{inquiry_id}/status")
-async def update_inquiry_status(inquiry_id: int, new_status: str):
+async def update_inquiry_status(
+    inquiry_id: int, 
+    new_status: str,
+    _: dict = Depends(require_admin)
+):
     """
-    Update the status of a contact inquiry.
+    Update the status of a contact inquiry. Admin only.
     """
     valid_statuses = ["pending", "in_progress", "resolved", "spam"]
     if new_status not in valid_statuses:
@@ -176,7 +185,7 @@ async def update_inquiry_status(inquiry_id: int, new_status: str):
 
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:
-            responded_at = datetime.utcnow().isoformat() if new_status == "resolved" else None
+            responded_at = datetime.now(timezone.utc).isoformat() if new_status == "resolved" else None
             
             update_sql = """
                 UPDATE contact_inquiries 

@@ -7,7 +7,7 @@ Includes clause library, jurisdiction-aware terms, and professional templates.
 
 import logging
 from typing import List, Optional, Dict, Any
-from datetime import datetime
+from datetime import datetime, timezone
 import hashlib
 
 logger = logging.getLogger("megilance")
@@ -342,7 +342,7 @@ def build_contract(
         deliverables = []
 
     # Generate contract ID
-    ts = datetime.utcnow().strftime("%Y%m%d%H%M%S")
+    ts = datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S")
     hash_input = f"{party_a_name}{party_b_name}{ts}"
     short_hash = hashlib.md5(hash_input.encode()).hexdigest()[:8].upper()
     contract_id = f"CTR-{short_hash}"
@@ -403,7 +403,7 @@ def build_contract(
             "id": contract_id,
             "type": contract_type,
             "type_label": type_info["label"],
-            "created_at": datetime.utcnow().isoformat(),
+            "created_at": datetime.now(timezone.utc).isoformat(),
             "status": "draft",
         },
         "parties": {
@@ -421,7 +421,7 @@ def build_contract(
             },
         },
         "terms": {
-            "start_date": start_date or datetime.utcnow().strftime("%Y-%m-%d"),
+            "start_date": start_date or datetime.now(timezone.utc).strftime("%Y-%m-%d"),
             "end_date": end_date,
             "auto_renew": auto_renew,
             "jurisdiction": jurisdiction_info,
@@ -444,7 +444,7 @@ def build_contract(
         "risk_analysis": risk_analysis,
         "completeness": completeness,
         "meta": {
-            "generated_at": datetime.utcnow().isoformat(),
+            "generated_at": datetime.now(timezone.utc).isoformat(),
             "generator": "MegiLance Contract Builder",
             "version": "1.0",
         },

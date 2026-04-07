@@ -7,7 +7,7 @@ factors in taxes, expenses, retirement, and provides financial health insights.
 
 import logging
 from typing import List, Dict, Any
-from datetime import datetime
+from datetime import datetime, timezone
 
 logger = logging.getLogger("megilance")
 
@@ -395,7 +395,7 @@ def calculate_income(
         "meta": {
             "currency": currency,
             "country": country_data["label"],
-            "generated_at": datetime.utcnow().isoformat(),
+            "generated_at": datetime.now(timezone.utc).isoformat(),
             "generator": "MegiLance Income Calculator",
         },
     }

@@ -7,7 +7,7 @@ risk assessments, and budget estimates for freelance projects.
 
 import logging
 from typing import List, Optional, Dict, Any
-from datetime import datetime
+from datetime import datetime, timezone
 
 logger = logging.getLogger("megilance")
 
@@ -245,7 +245,7 @@ def plan_project(
         phases=phases,
         total_weeks=total_weeks,
         multiplier=multiplier,
-        start_date=start_date or datetime.utcnow().strftime("%Y-%m-%d"),
+        start_date=start_date or datetime.now(timezone.utc).strftime("%Y-%m-%d"),
     )
 
     # Budget estimation
@@ -281,7 +281,7 @@ def plan_project(
     timeline = {
         "total_weeks": total_adjusted,
         "total_months": round(total_adjusted / 4.33, 1),
-        "start_date": start_date or datetime.utcnow().strftime("%Y-%m-%d"),
+        "start_date": start_date or datetime.now(timezone.utc).strftime("%Y-%m-%d"),
         "phases": phase_plan,
     }
 
@@ -324,7 +324,7 @@ def plan_project(
         ),
         "meta": {
             "currency": currency,
-            "generated_at": datetime.utcnow().isoformat(),
+            "generated_at": datetime.now(timezone.utc).isoformat(),
             "generator": "MegiLance Scope Planner",
         },
     }

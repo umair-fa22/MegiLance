@@ -7,7 +7,7 @@ profit/loss, and provides tax-saving recommendations.
 
 import logging
 from typing import List, Optional, Dict, Any
-from datetime import datetime
+from datetime import datetime, timezone
 
 logger = logging.getLogger("megilance")
 
@@ -459,8 +459,8 @@ def calculate_taxes(
             "region": region_data["label"],
             "currency": currency,
             "filing_status": filing_status,
-            "tax_year": datetime.utcnow().year,
-            "generated_at": datetime.utcnow().isoformat(),
+            "tax_year": datetime.now(timezone.utc).year,
+            "generated_at": datetime.now(timezone.utc).isoformat(),
             "generator": "MegiLance Expense & Tax Calculator",
             "disclaimer": "This is an estimate for planning purposes only. Consult a qualified tax professional for actual tax filing.",
         },

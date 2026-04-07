@@ -15,7 +15,7 @@ This is a standalone public tool like scope_planner / price_estimator.
 
 import logging
 from typing import List, Optional, Dict, Any
-from datetime import datetime
+from datetime import datetime, timezone
 
 from app.services.market_data_2025 import (
     get_upwork_service_rate,
@@ -171,7 +171,7 @@ async def generate_proposal(
             "length": length,
             "experience_level": experience_level,
             "data_version": DATA_VERSION,
-            "generated_at": datetime.utcnow().isoformat(),
+            "generated_at": datetime.now(timezone.utc).isoformat(),
         },
     }
 
