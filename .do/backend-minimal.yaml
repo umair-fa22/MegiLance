@@ -1,32 +1,74 @@
+# MegiLance Backend - DigitalOcean App Platform Configuration
+# IMPORTANT: Set all environment variables in DigitalOcean dashboard, not here
 name: megilance-backend
+region: nyc
 services:
 - name: api
   dockerfile_path: backend/Dockerfile
-  source_dir: backend
+  source_dir: /
   github:
-    repo: Mwaqarulmulk/MegiLance
+    repo: ghulam-mujtaba5/MegiLance
     branch: main
     deploy_on_push: true
   health_check:
     http_path: /api/health/live
-    initial_delay_seconds: 180
+    initial_delay_seconds: 60
     period_seconds: 30
-    timeout_seconds: 20
+    timeout_seconds: 10
     success_threshold: 1
-    failure_threshold: 15
+    failure_threshold: 5
   http_port: 8000
   instance_count: 1
-  instance_size_slug: basic-xxs
+  instance_size_slug: basic-xs
+  routes:
+    - path: /api
   envs:
-  - key: DATABASE_URL
-    value: "sqlite:///:memory:"
+  # Database - Turso (set in DigitalOcean dashboard)
+  - key: TURSO_DATABASE_URL
     scope: RUN_TIME
+    type: SECRET
+  - key: TURSO_AUTH_TOKEN
+    scope: RUN_TIME
+    type: SECRET
+  # Security (set in DigitalOcean dashboard)
   - key: SECRET_KEY
-    value: "megilance_production_secret_key_change_in_production"
     scope: RUN_TIME
+    type: SECRET
+  - key: JWT_SECRET_KEY
+    scope: RUN_TIME
+    type: SECRET
+  # Configuration
   - key: ENVIRONMENT
     value: "production"
     scope: RUN_TIME
-  - key: CORS_ORIGINS
-    value: "*"
+  - key: DEBUG
+    value: "false"
     scope: RUN_TIME
+  - key: LOG_LEVEL
+    value: "WARNING"
+    scope: RUN_TIME
+  # CORS - restrict to your domains
+  - key: BACKEND_CORS_ORIGINS
+    value: '["https://megilance.site","https://www.megilance.site"]'
+    scope: RUN_TIME
+  - key: FRONTEND_URL
+    value: "https://megilance.site"
+    scope: RUN_TIME
+  # Email (set in DigitalOcean dashboard)
+  - key: RESEND_API_KEY
+    scope: RUN_TIME
+    type: SECRET
+  - key: FROM_EMAIL
+    value: "noreply@megilance.site"
+    scope: RUN_TIME
+  # Payments (set in DigitalOcean dashboard)
+  - key: STRIPE_SECRET_KEY
+    scope: RUN_TIME
+    type: SECRET
+  - key: STRIPE_WEBHOOK_SECRET
+    scope: RUN_TIME
+    type: SECRET
+  # Monitoring (set in DigitalOcean dashboard)
+  - key: SENTRY_DSN
+    scope: RUN_TIME
+    type: SECRET

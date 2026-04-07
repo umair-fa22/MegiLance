@@ -119,8 +119,12 @@ const nextConfig = {
   },
   
   turbopack: {
+    // Explicitly set root to silence multiple lockfiles warning
+    root: process.env.TURBOPACK_ROOT || __dirname,
     resolveAlias: {
       '@': '.',
+      // Shim Timer class for three-render-objects compatibility with newer three.js
+      'three/src/misc/Timer.js': require('path').resolve(__dirname, './lib/three-timer-shim.ts'),
     },
   },
   
@@ -128,6 +132,8 @@ const nextConfig = {
     config.resolve.alias = {
       ...config.resolve.alias,
       '@': require('path').resolve(__dirname, '.'),
+      // Shim Timer class for three-render-objects compatibility with newer three.js
+      'three/src/misc/Timer.js': require('path').resolve(__dirname, './lib/three-timer-shim.ts'),
     };
     
     // Bundle analyzer in analyze mode
@@ -196,12 +202,6 @@ const nextConfig = {
         headers: [
           { key: 'Cache-Control', value: 'no-store, no-cache, must-revalidate, private' },
           { key: 'Vary', value: 'RSC, Next-Router-State-Tree, Next-Router-Prefetch' },
-        ],
-      },
-      {
-        source: '/_next/static/:path*',
-        headers: [
-          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],
       },
       {

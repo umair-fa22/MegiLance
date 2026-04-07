@@ -131,6 +131,8 @@ Future upgrade: Add canary or blue/green via versioned compose profiles.
 | ADR-003 | Remove AI from minimal VM | Accepted | Memory constraint |
 | ADR-004 | Webhook CD instead of Actions | Accepted | Requirement constraint |
 | ADR-005 | Docker Compose (minimal) | Accepted | Simplicity & portability |
+| ADR-006 | Domain-Driven Design Backend | Accepted | Modular monolith allows safer team scaling & microservice preparation |
+| ADR-007 | AI Smart Fallbacks & Hash Embeddings | Accepted | Guarantees AI endpoints work on low-memory VMs without ML libraries |
 
 (Consider moving to /docs/adr/ with one file per ADR as system evolves.)
 

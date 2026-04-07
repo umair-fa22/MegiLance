@@ -3,6 +3,7 @@
 
 import React, { useState, useMemo, useCallback } from 'react';
 import { useTheme } from 'next-themes';
+import DOMPurify from 'dompurify';
 import { cn } from '@/lib/utils';
 import { Code, Copy, Check, Eye, Palette, ExternalLink } from 'lucide-react';
 import Button from '@/app/components/atoms/Button/Button';
@@ -231,7 +232,7 @@ export default function PostProjectCard({ data, showGenerator = true }: PostProj
       {/* Preview */}
       {activeTab === 'preview' && (
         <div className={cn(commonStyles.previewArea, themeStyles.previewArea)}>
-          <div dangerouslySetInnerHTML={{ __html: embedCode }} />
+          <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(embedCode) }} />
         </div>
       )}
 

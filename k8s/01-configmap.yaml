@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: megilance-config
+  namespace: megilance
+data:
+  ENVIRONMENT: "production"
+  NODE_ENV: "production"
+  NEXT_TELEMETRY_DISABLED: "1"
+  VITE_API_URL: "http://backend:8000/api/v1"
+  ETHEREUM_NETWORK: "mainnet"
+  POLYGON_NETWORK: "mainnet"

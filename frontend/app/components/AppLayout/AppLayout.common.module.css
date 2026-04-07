@@ -31,3 +31,16 @@
     padding-left: var(--sidebar-width, 260px);
   }
 }
+
+.portalShell {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.portalScrollable {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}

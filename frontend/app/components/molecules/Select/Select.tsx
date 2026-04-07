@@ -1,10 +1,10 @@
-// @AI-HINT: A reusable, theme-aware Select component for consistent form styling across the application.
+// @AI-HINT: A reusable, theme-aware Select component relying on native HTML selects for accessibility, wrapped defensively.
 'use client';
 
 import React, { useId, useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, ChevronDown } from 'lucide-react';
 import commonStyles from './Select.common.module.css';
 import lightStyles from './Select.light.module.css';
 import darkStyles from './Select.dark.module.css';
@@ -48,7 +48,6 @@ const Select: React.FC<SelectProps> = ({
     return resolvedTheme === 'dark' ? darkStyles : lightStyles;
   }, [resolvedTheme]);
 
-  // Don't render until theme is resolved to prevent flash
   if (!resolvedTheme) {
     return null;
   }
@@ -108,7 +107,9 @@ const Select: React.FC<SelectProps> = ({
             </option>
           ))}
         </select>
-        <span className={cn(commonStyles.chevron, themeStyles.chevron)} aria-hidden="true" />
+        <span className={cn(commonStyles.chevron, themeStyles.chevron)} aria-hidden="true">
+          <ChevronDown size={16} />
+        </span>
       </div>
       {hasError && (
         <p id={errorId} className={cn(commonStyles.errorMessage, themeStyles.errorMessage)} role="alert">

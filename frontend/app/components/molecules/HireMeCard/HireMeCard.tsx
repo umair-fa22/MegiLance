@@ -3,6 +3,7 @@
 
 import React, { useState, useMemo, useCallback } from 'react';
 import { useTheme } from 'next-themes';
+import DOMPurify from 'dompurify';
 import { cn } from '@/lib/utils';
 import { Code, Copy, Check, Eye, Palette, ExternalLink } from 'lucide-react';
 import Button from '@/app/components/atoms/Button/Button';
@@ -301,7 +302,7 @@ export default function HireMeCard({ data, showGenerator = true }: HireMeCardPro
       {/* Preview */}
       {activeTab === 'preview' && (
         <div className={cn(commonStyles.previewArea, themeStyles.previewArea)} role="tabpanel" id="panel-preview" aria-labelledby="tab-preview">
-          <div dangerouslySetInnerHTML={{ __html: previewHtml }} />
+          <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(previewHtml) }} />
         </div>
       )}
 

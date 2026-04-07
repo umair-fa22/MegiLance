@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { useTheme } from 'next-themes';
+import DOMPurify from 'dompurify';
 import { cn } from '@/lib/utils';
 import { emailTemplatesApi } from '@/lib/api';
 import Button from '@/app/components/atoms/Button/Button';
@@ -239,7 +240,7 @@ export default function EmailTemplatesPage() {
               <p style={{ fontSize: '0.875rem', opacity: 0.7 }}>Subject: {previewTemplate.subject}</p>
               <div
                 className={cn(commonStyles.previewBody, themeStyles.previewBody)}
-                dangerouslySetInnerHTML={{ __html: previewHtml }}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(previewHtml) }}
               />
             </div>
           </div>

@@ -165,7 +165,9 @@ class LocalFeatureFlagProvider implements FeatureFlagProvider {
 
   identify(userId: string, attributes?: Record<string, unknown>): void {
     this.userId = userId;
-    console.log('[FeatureFlags] Identified user:', userId, attributes);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('[FeatureFlags] Identified user:', userId, attributes);
+    }
   }
 
   private hashUserId(str: string): number {
@@ -203,7 +205,9 @@ class LaunchDarklyProvider implements FeatureFlagProvider {
       });
       
       await (this.client as { waitForInitialization: () => Promise<void> }).waitForInitialization();
-      console.log('[FeatureFlags] LaunchDarkly initialized');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('[FeatureFlags] LaunchDarkly initialized');
+      }
     } catch (error) {
       console.warn('[FeatureFlags] LaunchDarkly not available, using local flags');
     }

@@ -4,7 +4,10 @@ Authoritative, structured documentation set following modern software engineerin
 
 ## Core Overview
 - [Project Overview](ProjectOverview.md)
-- [Architecture](Architecture.md)
+- [System Architecture](architecture/Architecture.md)
+- [Frontend Atomic Design](architecture/atomic_design.md)
+- [Backend DDD Plan](architecture/backend_ddd_plan.md)
+- [Next-Gen AI Strategy](architecture/ai_integration_strategy.md)
 - [Data Model](DataModel.md)
 - [API Overview](api/API_Overview.md)
 - [Authentication & Authorization](api/Auth.md)
