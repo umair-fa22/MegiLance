@@ -17,11 +17,11 @@ ingress:
       path:
         prefix: /api
   - component:
-      name: backend
+      name: ai-service
       preserve_path_prefix: true
     match:
       path:
-        prefix: /backend
+        prefix: /ai-api
   - component:
       name: frontend
     match:
@@ -58,7 +58,7 @@ services:
   github:
     branch: main
     deploy_on_push: true
-    repo: Mwaqarulmulk/MegiLance
+    repo: ghulam-mujtaba5/MegiLance
   health_check:
     failure_threshold: 5
     http_path: /api/health/live
@@ -108,7 +108,7 @@ services:
   github:
     branch: main
     deploy_on_push: true
-    repo: Mwaqarulmulk/MegiLance
+    repo: ghulam-mujtaba5/MegiLance
   health_check:
     failure_threshold: 5
     http_path: /

@@ -67,7 +67,7 @@ services:
   github:
     branch: main
     deploy_on_push: true
-    repo: Mwaqarulmulk/MegiLance
+    repo: ghulam-mujtaba5/MegiLance
   health_check:
     failure_threshold: 5
     http_path: /api/health/live
@@ -90,7 +90,7 @@ services:
   github:
     branch: main
     deploy_on_push: true
-    repo: Mwaqarulmulk/MegiLance
+    repo: ghulam-mujtaba5/MegiLance
   health_check:
     failure_threshold: 5
     http_path: /health
@@ -149,7 +149,7 @@ services:
   github:
     branch: main
     deploy_on_push: true
-    repo: Mwaqarulmulk/MegiLance
+    repo: ghulam-mujtaba5/MegiLance
   health_check:
     failure_threshold: 5
     http_path: /

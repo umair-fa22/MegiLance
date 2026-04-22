@@ -3,7 +3,7 @@ services:
 - name: web
   dockerfile_path: frontend/Dockerfile
   github:
-    repo: Mwaqarulmulk/MegiLance
+    repo: ghulam-mujtaba5/MegiLance
     branch: main
     deploy_on_push: true
   health_check:

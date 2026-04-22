@@ -3,7 +3,7 @@ region: blr
 services:
   - name: megilance-frontend
     github:
-      repo: Mwaqarulmulk/MegiLance
+      repo: ghulam-mujtaba5/MegiLance
       branch: main
       deploy_on_push: true
     dockerfile_path: frontend/Dockerfile
