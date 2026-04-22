@@ -1,4 +1,16 @@
 {
+  "name": "megilance",
+  "version": "1.0.0",
+  "description": "AI-powered freelancing platform - Docker-based deployment",
+  "private": true,
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "echo 'Use docker compose for development'",
+    "build": "echo 'Using Docker builds - see Dockerfiles in frontend/, backend/, ai/'",
+    "start": "echo 'Use docker compose for production'"
+  },
   "dependencies": {
     "@floating-ui/react": "^0.27.19"
   }
