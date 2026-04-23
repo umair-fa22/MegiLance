@@ -34,7 +34,7 @@ requests==2.31.0  # Sync HTTP client
 slowapi==0.1.9
 
 # Payments
-stripe==11.5.0
+stripe==15.0.1
 
 # WebSocket & Real-time
 python-socketio==5.14.3
