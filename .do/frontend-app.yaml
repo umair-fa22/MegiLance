@@ -1,7 +1,8 @@
 name: megilance-frontend
 services:
 - name: web
-  dockerfile_path: frontend/Dockerfile
+  source_dir: frontend
+    build_command: npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 && npm run build
   github:
     repo: ghulam-mujtaba5/MegiLance
     branch: main

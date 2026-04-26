@@ -102,7 +102,6 @@ services:
   instance_count: 1
   instance_size_slug: basic-s
   name: ai-service
-- dockerfile_path: frontend/Dockerfile
   envs:
   - key: NODE_ENV
     scope: RUN_AND_BUILD_TIME

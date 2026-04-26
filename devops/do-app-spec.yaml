@@ -6,8 +6,8 @@ services:
       repo: ghulam-mujtaba5/MegiLance
       branch: main
       deploy_on_push: true
-    dockerfile_path: frontend/Dockerfile
     source_dir: frontend
+      build_command: npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 && npm run build
     instance_size_slug: apps-s-1vcpu-0.5gb
     instance_count: 1
     http_port: 3000

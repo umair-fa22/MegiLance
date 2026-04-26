@@ -102,7 +102,8 @@ services:
   instance_count: 1
   instance_size_slug: basic-s
   name: ai-service
-- dockerfile_path: frontend/Dockerfile
+- source_dir: frontend
+  build_command: npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 && npm run build
   envs:
   - key: NODE_ENV
     scope: RUN_AND_BUILD_TIME

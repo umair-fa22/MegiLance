@@ -70,7 +70,7 @@ services:
   instance_count: 1
   instance_size_slug: basic-s
   name: backend
-- dockerfile_path: frontend/Dockerfile
+- source_dir: frontend
   envs:
   - key: NODE_ENV
     scope: RUN_AND_BUILD_TIME
