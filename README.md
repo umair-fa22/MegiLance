@@ -14,7 +14,6 @@ description: High-level platform overview, quick start, architecture summary, an
 
 > **AI-Powered Freelancing Platform**
 
-[![Deploy Status](https://github.com/ghulam-mujtaba5/MegiLance/actions/workflows/deploy-backend.yml/badge.svg)](https://github.com/ghulam-mujtaba5/MegiLance/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform Version](https://img.shields.io/badge/version-2.0-brightgreen)](docs/IMPLEMENTATION_COMPLETE.md)
 

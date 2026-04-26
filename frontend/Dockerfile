@@ -8,7 +8,8 @@ WORKDIR /app
 
 # Install dependencies - copy from frontend subdirectory
 COPY frontend/package.json frontend/package-lock.json* ./
-RUN npm install --legacy-peer-deps
+RUN npm install --legacy-peer-deps \
+	&& npm install --no-save "lightningcss-linux-x64-musl@$(node -p \"require('./node_modules/lightningcss/package.json').version\")"
 
 # Rebuild the source code only when needed
 FROM base AS builder

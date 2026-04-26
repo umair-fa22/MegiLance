@@ -225,35 +225,3 @@ jobs:
         cd frontend
         npm audit || true
 
-  # Deploy (only on main branch)
-  deploy:
-    name: Deploy to Production
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    needs: [backend-tests, frontend-tests, migrations-check]
-    environment: production
-
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Deploy Backend to DigitalOcean
-      uses: digitalocean/app_action@v2
-      with:
-        app_name: megilance-backend
-        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-
-    - name: Deploy Frontend to Vercel
-      uses: amondnet/vercel-action@v25
-      with:
-        vercel-token: ${{ secrets.VERCEL_TOKEN }}
-        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-        vercel-args: '--prod'
-        working-directory: ./frontend
-
-    - name: Verify Deployment
-      run: |
-        sleep 30
-        curl -f https://api.megilance.site/api/health/ready || exit 1
-        curl -f https://megilance.site/ || exit 1
-        echo "Deployment successful!"

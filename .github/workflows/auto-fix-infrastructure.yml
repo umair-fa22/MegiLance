@@ -391,6 +391,5 @@ jobs:
           echo "   2. View CloudWatch logs:"
           echo "      aws logs tail /ecs/megilance-backend --follow --region ${{ env.AWS_REGION }}"
           echo ""
-          echo "   3. If successful, re-run the main deployment workflow:"
-          echo "      gh workflow run auto-deploy.yml"
+          echo "   3. If successful, trigger a fresh platform deploy by pushing to main or restarting the app in DigitalOcean App Platform"
           echo ""

@@ -3,11 +3,11 @@
 .SYNOPSIS
     Fully Automated GitHub Workflow Executor & Monitor
 .DESCRIPTION
-    Triggers workflows, monitors execution, detects errors, fixes them, and re-runs until success
+    Triggers CI workflows, monitors execution, detects errors, fixes them, and re-runs until success
 #>
 
 param(
-    [string]$WorkflowName = "auto-deploy.yml",
+    [string]$WorkflowName = "ci-cd.yml",
     [string]$Environment = "production",
     [int]$MaxRetries = 5,
     [int]$CheckInterval = 30
@@ -173,8 +173,8 @@ function Repair-WorkflowErrors {
             "HEREDOC_SYNTAX_ERROR" {
                 # Convert heredoc to one-liner
                 Write-Host "    → Converting heredoc syntax to one-liner" -ForegroundColor Yellow
-                $autoDeployPath = ".github/workflows/auto-deploy.yml"
-                $content = Get-Content $autoDeployPath -Raw
+                $workflowPath = ".github/workflows/$WorkflowName"
+                $content = Get-Content $workflowPath -Raw
                 
                 if ($content -match 'python - <<''PY''') {
                     # This should already be fixed, but just in case
