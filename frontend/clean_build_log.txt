@@ -1,0 +1,13 @@
+
+> frontend@0.1.0 build
+> cross-env NEXT_TELEMETRY_DISABLED=1 TAILWIND_DISABLE_OPTIMISTIC=true TURBOPACK=0 next build
+
+Ôû▓ Next.js 16.2.4 (Turbopack)
+- Environments: .env.local, .env.production
+- Experiments (use with caution):
+  ┬À optimizePackageImports
+  ┬À serverActions
+
+  Creating an optimized production build ...
+Ô£ô Compiled successfully in 61s
+  Running TypeScript ...
