@@ -32,7 +32,7 @@
         "branch": "main",
         "deploy_on_push": true
       },
-      "build_command": "npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 && npm run build",
+      "build_command": "npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 @tailwindcss/oxide-linux-x64-gnu@4.2.4 && npm run build",
       "envs": [
         {
           "key": "NODE_ENV",

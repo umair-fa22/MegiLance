@@ -2,7 +2,7 @@ name: megilance-frontend
 services:
 - name: web
   source_dir: frontend
-    build_command: npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 && npm run build
+    build_command: npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 @tailwindcss/oxide-linux-x64-gnu@4.2.4 && npm run build
   github:
     repo: ghulam-mujtaba5/MegiLance
     branch: main
