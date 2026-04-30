@@ -2,7 +2,7 @@ name: megilance-frontend
 services:
 - name: web
   source_dir: frontend
-    build_command: npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 @tailwindcss/oxide-linux-x64-gnu@4.2.4 && npm run build
+    build_command: npm install --legacy-peer-deps autoprefixer@10.4.21 && npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 @tailwindcss/oxide-linux-x64-gnu@4.2.4 && npm run build
   github:
     repo: ghulam-mujtaba5/MegiLance
     branch: main
@@ -23,4 +23,7 @@ services:
     scope: RUN_AND_BUILD_TIME
   - key: NODE_ENV
     value: "production"
+    scope: RUN_AND_BUILD_TIME
+  - key: NPM_CONFIG_PRODUCTION
+    value: "false"
     scope: RUN_AND_BUILD_TIME

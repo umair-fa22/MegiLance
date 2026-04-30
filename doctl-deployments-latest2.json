@@ -1,0 +1,4228 @@
+[
+  {
+    "id": "fb0ed594-acd8-4f6f-b93a-a19aaae7bd28",
+    "spec": {
+      "name": "megilance",
+      "services": [
+        {
+          "name": "backend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "backend/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8000
+        },
+        {
+          "name": "ai-service",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "ai/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8001
+        },
+        {
+          "name": "frontend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "build_command": "npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 @tailwindcss/oxide-linux-x64-gnu@4.2.4 \u0026\u0026 npm run build",
+          "source_dir": "frontend",
+          "envs": [
+            {
+              "key": "NODE_ENV",
+              "value": "production",
+              "scope": "RUN_AND_BUILD_TIME"
+            }
+          ],
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 3000
+        }
+      ],
+      "domains": [
+        {
+          "domain": "megilance.site",
+          "type": "PRIMARY",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "www.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "api.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        }
+      ],
+      "region": "blr",
+      "ingress": {
+        "rules": [
+          {
+            "match": {
+              "path": {
+                "prefix": "/api"
+              }
+            },
+            "component": {
+              "name": "backend",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/ai-api"
+              }
+            },
+            "component": {
+              "name": "ai-service",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/"
+              }
+            },
+            "component": {
+              "name": "frontend"
+            }
+          }
+        ]
+      },
+      "features": [
+        "buildpack-stack=ubuntu-22"
+      ]
+    },
+    "services": [
+      {
+        "name": "backend",
+        "source_commit_hash": "1ab70533d1be414befe989eb373793d425067f18"
+      },
+      {
+        "name": "ai-service",
+        "source_commit_hash": "1ab70533d1be414befe989eb373793d425067f18"
+      },
+      {
+        "name": "frontend",
+        "source_commit_hash": "1ab70533d1be414befe989eb373793d425067f18",
+        "buildpacks": [
+          {
+            "id": "heroku/nodejs",
+            "version": "0.341.5",
+            "latest": true,
+            "name": "Node.js",
+            "description": [
+              "Install dependencies using NPM, PNPM or Yarn"
+            ],
+            "docs_link": "https://docs.digitalocean.com/products/app-platform/languages-frameworks/nodejs/"
+          },
+          {
+            "id": "digitalocean/procfile",
+            "version": "0.1.0",
+            "latest": true,
+            "name": "Procfile",
+            "description": [
+              "Configure default run commands from the Procfile if one exists"
+            ]
+          },
+          {
+            "id": "digitalocean/custom",
+            "version": "0.2.0",
+            "latest": true,
+            "name": "Custom Build Command",
+            "description": [
+              "Run the provided custom build command"
+            ],
+            "docs_link": "https://docs.digitalocean.com/products/app-platform/how-to/build-run-commands/"
+          }
+        ]
+      }
+    ],
+    "phase_last_updated_at": "2026-04-26T09:26:13Z",
+    "created_at": "2026-04-26T09:22:32Z",
+    "updated_at": "2026-04-26T09:26:15Z",
+    "cause": "commit 1ab7053 pushed to github.com/umair-fa22/MegiLance/tree/main",
+    "progress": {
+      "pending_steps": 8,
+      "success_steps": 3,
+      "error_steps": 1,
+      "total_steps": 12,
+      "steps": [
+        {
+          "name": "build",
+          "status": "ERROR",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:22:38.052755276Z",
+              "ended_at": "2026-04-26T09:22:38.553350019Z"
+            },
+            {
+              "name": "components",
+              "status": "ERROR",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "ERROR",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "reason": {
+                    "code": "BuildJobExitNonZero",
+                    "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+                  },
+                  "component_name": "frontend",
+                  "message_base": "Building service"
+                }
+              ],
+              "started_at": "2026-04-26T09:22:38.553373122Z",
+              "ended_at": "2026-04-26T09:26:07.932754922Z",
+              "reason": {
+                "code": "BuildJobExitNonZero",
+                "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+              }
+            }
+          ],
+          "started_at": "2026-04-26T09:22:38.05268229Z",
+          "ended_at": "2026-04-26T09:26:11.682200978Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          }
+        },
+        {
+          "name": "deploy",
+          "status": "PENDING",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "components",
+              "status": "PENDING",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "frontend"
+                }
+              ],
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "finalize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            }
+          ],
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z"
+        }
+      ],
+      "summary_steps": [
+        {
+          "name": "build.components.frontend",
+          "status": "ERROR",
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          },
+          "component_name": "frontend",
+          "message_base": "Building service"
+        }
+      ]
+    },
+    "phase": "ERROR",
+    "tier_slug": "basic",
+    "previous_deployment_id": "d54c79f8-b694-40e6-b434-7357654bd649",
+    "cause_details": {
+      "git_push": {
+        "github": {
+          "repo": "umair-fa22/MegiLance",
+          "branch": "main"
+        },
+        "username": "ghulam-mujtaba5",
+        "commit_sha": "1ab70533d1be414befe989eb373793d425067f18",
+        "commit_message": "Refactor code structure for improved readability and maintainability"
+      },
+      "type": "DEPLOY_ON_PUSH"
+    },
+    "timing": {
+      "pending": "6.052755276s",
+      "build_total": "213.629445702s",
+      "build_billable": "326.664679833s",
+      "components": [
+        {
+          "name": "backend",
+          "build_billable": "100.058646816s"
+        },
+        {
+          "name": "ai-service",
+          "build_billable": "36.688081431s"
+        },
+        {
+          "name": "frontend",
+          "build_billable": "189.917951586s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "d54c79f8-b694-40e6-b434-7357654bd649",
+    "spec": {
+      "name": "megilance",
+      "services": [
+        {
+          "name": "backend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "backend/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8000
+        },
+        {
+          "name": "ai-service",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "ai/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8001
+        },
+        {
+          "name": "frontend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "build_command": "npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 @tailwindcss/oxide-linux-x64-gnu@4.2.4 \u0026\u0026 npm run build",
+          "source_dir": "frontend",
+          "envs": [
+            {
+              "key": "NODE_ENV",
+              "value": "production",
+              "scope": "RUN_AND_BUILD_TIME"
+            }
+          ],
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 3000
+        }
+      ],
+      "domains": [
+        {
+          "domain": "megilance.site",
+          "type": "PRIMARY",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "www.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "api.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        }
+      ],
+      "region": "blr",
+      "ingress": {
+        "rules": [
+          {
+            "match": {
+              "path": {
+                "prefix": "/api"
+              }
+            },
+            "component": {
+              "name": "backend",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/ai-api"
+              }
+            },
+            "component": {
+              "name": "ai-service",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/"
+              }
+            },
+            "component": {
+              "name": "frontend"
+            }
+          }
+        ]
+      },
+      "features": [
+        "buildpack-stack=ubuntu-22"
+      ]
+    },
+    "services": [
+      {
+        "name": "backend",
+        "source_commit_hash": "243b407281f324dee79cd90673e3c82689008b4e"
+      },
+      {
+        "name": "ai-service",
+        "source_commit_hash": "243b407281f324dee79cd90673e3c82689008b4e"
+      },
+      {
+        "name": "frontend",
+        "source_commit_hash": "243b407281f324dee79cd90673e3c82689008b4e"
+      }
+    ],
+    "phase_last_updated_at": "2026-04-26T09:22:38Z",
+    "created_at": "2026-04-26T09:22:05Z",
+    "updated_at": "2026-04-26T09:22:43Z",
+    "cause": "app spec updated",
+    "progress": {
+      "pending_steps": 9,
+      "running_steps": 2,
+      "success_steps": 1,
+      "total_steps": 12,
+      "steps": [
+        {
+          "name": "build",
+          "status": "ERROR",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:22:09.486739334Z",
+              "ended_at": "2026-04-26T09:22:10.110643899Z"
+            },
+            {
+              "name": "components",
+              "status": "ERROR",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "RUNNING",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "PENDING",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "reason": {
+                    "code": "BuildRateLimit",
+                    "message": "Your build job is being rate-limited due to concurrent build limits."
+                  },
+                  "component_name": "ai-service",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "RUNNING",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "frontend",
+                  "message_base": "Building service"
+                }
+              ],
+              "started_at": "2026-04-26T09:22:10.110674796Z",
+              "ended_at": "2026-04-26T09:22:35.846830433Z",
+              "reason": {
+                "code": "InternalError",
+                "message": "An internal error occurred. Contact support if this persists."
+              }
+            }
+          ],
+          "started_at": "2026-04-26T09:22:09.486668172Z",
+          "ended_at": "2026-04-26T09:22:35.846890034Z",
+          "reason": {
+            "code": "InternalError",
+            "message": "An internal error occurred. Contact support if this persists."
+          }
+        },
+        {
+          "name": "deploy",
+          "status": "PENDING",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "components",
+              "status": "PENDING",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "frontend"
+                }
+              ],
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "finalize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            }
+          ],
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z"
+        }
+      ],
+      "summary_steps": [
+        {
+          "name": "build.components.backend",
+          "status": "RUNNING",
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z",
+          "component_name": "backend",
+          "message_base": "Building service"
+        },
+        {
+          "name": "build.components.frontend",
+          "status": "RUNNING",
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z",
+          "component_name": "frontend",
+          "message_base": "Building service"
+        }
+      ]
+    },
+    "phase": "CANCELED",
+    "tier_slug": "basic",
+    "previous_deployment_id": "47f892f5-1c7a-43e6-8d92-0b018d1d6f9c",
+    "cause_details": {
+      "digitalocean_user_action": {
+        "user": {
+          "uuid": "026aaeac-385e-49b5-88c7-52aab76e04ab",
+          "email": "life1umair@gmail.com",
+          "full_name": "umair-fa22"
+        },
+        "name": "UPDATE_SPEC"
+      },
+      "type": "MANUAL"
+    },
+    "timing": {
+      "pending": "4.486739334s",
+      "build_total": "26.360150700s",
+      "build_billable": "0s",
+      "components": [
+        {
+          "name": "backend",
+          "build_billable": "0s"
+        },
+        {
+          "name": "frontend",
+          "build_billable": "0s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "47f892f5-1c7a-43e6-8d92-0b018d1d6f9c",
+    "spec": {
+      "name": "megilance",
+      "services": [
+        {
+          "name": "backend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "backend/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8000
+        },
+        {
+          "name": "ai-service",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "ai/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8001
+        },
+        {
+          "name": "frontend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "build_command": "npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 \u0026\u0026 npm run build",
+          "source_dir": "frontend",
+          "envs": [
+            {
+              "key": "NODE_ENV",
+              "value": "production",
+              "scope": "RUN_AND_BUILD_TIME"
+            }
+          ],
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 3000
+        }
+      ],
+      "domains": [
+        {
+          "domain": "megilance.site",
+          "type": "PRIMARY",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "www.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "api.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        }
+      ],
+      "region": "blr",
+      "ingress": {
+        "rules": [
+          {
+            "match": {
+              "path": {
+                "prefix": "/api"
+              }
+            },
+            "component": {
+              "name": "backend",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/ai-api"
+              }
+            },
+            "component": {
+              "name": "ai-service",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/"
+              }
+            },
+            "component": {
+              "name": "frontend"
+            }
+          }
+        ]
+      },
+      "features": [
+        "buildpack-stack=ubuntu-22"
+      ]
+    },
+    "services": [
+      {
+        "name": "backend",
+        "source_commit_hash": "243b407281f324dee79cd90673e3c82689008b4e"
+      },
+      {
+        "name": "ai-service",
+        "source_commit_hash": "243b407281f324dee79cd90673e3c82689008b4e"
+      },
+      {
+        "name": "frontend",
+        "source_commit_hash": "243b407281f324dee79cd90673e3c82689008b4e",
+        "buildpacks": [
+          {
+            "id": "heroku/nodejs",
+            "version": "0.341.5",
+            "latest": true,
+            "name": "Node.js",
+            "description": [
+              "Install dependencies using NPM, PNPM or Yarn"
+            ],
+            "docs_link": "https://docs.digitalocean.com/products/app-platform/languages-frameworks/nodejs/"
+          },
+          {
+            "id": "digitalocean/procfile",
+            "version": "0.1.0",
+            "latest": true,
+            "name": "Procfile",
+            "description": [
+              "Configure default run commands from the Procfile if one exists"
+            ]
+          },
+          {
+            "id": "digitalocean/custom",
+            "version": "0.2.0",
+            "latest": true,
+            "name": "Custom Build Command",
+            "description": [
+              "Run the provided custom build command"
+            ],
+            "docs_link": "https://docs.digitalocean.com/products/app-platform/how-to/build-run-commands/"
+          }
+        ]
+      }
+    ],
+    "phase_last_updated_at": "2026-04-26T09:19:17Z",
+    "created_at": "2026-04-26T09:15:32Z",
+    "updated_at": "2026-04-26T09:19:19Z",
+    "cause": "commit 243b407 pushed to github.com/umair-fa22/MegiLance/tree/main",
+    "progress": {
+      "pending_steps": 8,
+      "success_steps": 3,
+      "error_steps": 1,
+      "total_steps": 12,
+      "steps": [
+        {
+          "name": "build",
+          "status": "ERROR",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:15:36.973904298Z",
+              "ended_at": "2026-04-26T09:15:37.404193456Z"
+            },
+            {
+              "name": "components",
+              "status": "ERROR",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "ERROR",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "reason": {
+                    "code": "BuildJobExitNonZero",
+                    "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+                  },
+                  "component_name": "frontend",
+                  "message_base": "Building service"
+                }
+              ],
+              "started_at": "2026-04-26T09:15:37.404226367Z",
+              "ended_at": "2026-04-26T09:19:07.451042702Z",
+              "reason": {
+                "code": "BuildJobExitNonZero",
+                "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+              }
+            }
+          ],
+          "started_at": "2026-04-26T09:15:36.973762003Z",
+          "ended_at": "2026-04-26T09:19:15.060719287Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          }
+        },
+        {
+          "name": "deploy",
+          "status": "PENDING",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "components",
+              "status": "PENDING",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "frontend"
+                }
+              ],
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "finalize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            }
+          ],
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z"
+        }
+      ],
+      "summary_steps": [
+        {
+          "name": "build.components.frontend",
+          "status": "ERROR",
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          },
+          "component_name": "frontend",
+          "message_base": "Building service"
+        }
+      ]
+    },
+    "phase": "ERROR",
+    "tier_slug": "basic",
+    "previous_deployment_id": "56074ebb-114b-4a50-b3fc-ce1d781918a9",
+    "cause_details": {
+      "git_push": {
+        "github": {
+          "repo": "umair-fa22/MegiLance",
+          "branch": "main"
+        },
+        "username": "ghulam-mujtaba5",
+        "commit_sha": "243b407281f324dee79cd90673e3c82689008b4e",
+        "commit_message": "refactor: update deployment specifications to remove Dockerfile references and use source_dir for services"
+      },
+      "type": "DEPLOY_ON_PUSH"
+    },
+    "timing": {
+      "pending": "4.973904298s",
+      "build_total": "218.086814989s",
+      "build_billable": "322.709274204s",
+      "components": [
+        {
+          "name": "backend",
+          "build_billable": "96.172925388s"
+        },
+        {
+          "name": "ai-service",
+          "build_billable": "34.379443591s"
+        },
+        {
+          "name": "frontend",
+          "build_billable": "192.156905225s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "56074ebb-114b-4a50-b3fc-ce1d781918a9",
+    "spec": {
+      "name": "megilance",
+      "services": [
+        {
+          "name": "backend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "backend/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8000
+        },
+        {
+          "name": "ai-service",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "ai/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8001
+        },
+        {
+          "name": "frontend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "build_command": "npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 \u0026\u0026 npm run build",
+          "source_dir": "frontend",
+          "envs": [
+            {
+              "key": "NODE_ENV",
+              "value": "production",
+              "scope": "RUN_AND_BUILD_TIME"
+            }
+          ],
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 3000
+        }
+      ],
+      "domains": [
+        {
+          "domain": "megilance.site",
+          "type": "PRIMARY",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "www.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "api.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        }
+      ],
+      "region": "blr",
+      "ingress": {
+        "rules": [
+          {
+            "match": {
+              "path": {
+                "prefix": "/api"
+              }
+            },
+            "component": {
+              "name": "backend",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/ai-api"
+              }
+            },
+            "component": {
+              "name": "ai-service",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/"
+              }
+            },
+            "component": {
+              "name": "frontend"
+            }
+          }
+        ]
+      },
+      "features": [
+        "buildpack-stack=ubuntu-22"
+      ]
+    },
+    "services": [
+      {
+        "name": "backend",
+        "source_commit_hash": "801772b098e58f1fa31dbba2ddee4c38c51c44e7"
+      },
+      {
+        "name": "ai-service",
+        "source_commit_hash": "801772b098e58f1fa31dbba2ddee4c38c51c44e7"
+      },
+      {
+        "name": "frontend",
+        "source_commit_hash": "801772b098e58f1fa31dbba2ddee4c38c51c44e7"
+      }
+    ],
+    "phase_last_updated_at": "2026-04-26T09:15:37Z",
+    "created_at": "2026-04-26T09:14:59Z",
+    "updated_at": "2026-04-26T09:15:39Z",
+    "cause": "app spec updated",
+    "progress": {
+      "pending_steps": 9,
+      "running_steps": 2,
+      "success_steps": 1,
+      "total_steps": 12,
+      "steps": [
+        {
+          "name": "build",
+          "status": "ERROR",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:15:04.208337521Z",
+              "ended_at": "2026-04-26T09:15:04.802196729Z"
+            },
+            {
+              "name": "components",
+              "status": "ERROR",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "RUNNING",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "PENDING",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "reason": {
+                    "code": "BuildRateLimit",
+                    "message": "Your build job is being rate-limited due to concurrent build limits."
+                  },
+                  "component_name": "ai-service",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "RUNNING",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "frontend",
+                  "message_base": "Building service"
+                }
+              ],
+              "started_at": "2026-04-26T09:15:04.80222396Z",
+              "ended_at": "2026-04-26T09:15:34.636420987Z",
+              "reason": {
+                "code": "InternalError",
+                "message": "An internal error occurred. Contact support if this persists."
+              }
+            }
+          ],
+          "started_at": "2026-04-26T09:15:04.208279974Z",
+          "ended_at": "2026-04-26T09:15:34.636493051Z",
+          "reason": {
+            "code": "InternalError",
+            "message": "An internal error occurred. Contact support if this persists."
+          }
+        },
+        {
+          "name": "deploy",
+          "status": "PENDING",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "components",
+              "status": "PENDING",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "frontend"
+                }
+              ],
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "finalize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            }
+          ],
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z"
+        }
+      ],
+      "summary_steps": [
+        {
+          "name": "build.components.backend",
+          "status": "RUNNING",
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z",
+          "component_name": "backend",
+          "message_base": "Building service"
+        },
+        {
+          "name": "build.components.frontend",
+          "status": "RUNNING",
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z",
+          "component_name": "frontend",
+          "message_base": "Building service"
+        }
+      ]
+    },
+    "phase": "CANCELED",
+    "tier_slug": "basic",
+    "previous_deployment_id": "f0ce02e5-01d7-4823-bb84-2be660fe58a5",
+    "cause_details": {
+      "digitalocean_user_action": {
+        "user": {
+          "uuid": "026aaeac-385e-49b5-88c7-52aab76e04ab",
+          "email": "life1umair@gmail.com",
+          "full_name": "umair-fa22"
+        },
+        "name": "UPDATE_SPEC"
+      },
+      "type": "MANUAL"
+    },
+    "timing": {
+      "pending": "5.208337521s",
+      "build_total": "30.428155530s",
+      "build_billable": "0s",
+      "components": [
+        {
+          "name": "backend",
+          "build_billable": "0s"
+        },
+        {
+          "name": "frontend",
+          "build_billable": "0s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "f0ce02e5-01d7-4823-bb84-2be660fe58a5",
+    "spec": {
+      "name": "megilance",
+      "services": [
+        {
+          "name": "backend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "backend/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8000
+        },
+        {
+          "name": "ai-service",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "ai/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8001
+        },
+        {
+          "name": "frontend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "source_dir": "frontend",
+          "envs": [
+            {
+              "key": "NODE_ENV",
+              "value": "production",
+              "scope": "RUN_AND_BUILD_TIME"
+            }
+          ],
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 3000
+        }
+      ],
+      "domains": [
+        {
+          "domain": "megilance.site",
+          "type": "PRIMARY",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "www.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "api.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        }
+      ],
+      "region": "blr",
+      "ingress": {
+        "rules": [
+          {
+            "match": {
+              "path": {
+                "prefix": "/api"
+              }
+            },
+            "component": {
+              "name": "backend",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/ai-api"
+              }
+            },
+            "component": {
+              "name": "ai-service",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/"
+              }
+            },
+            "component": {
+              "name": "frontend"
+            }
+          }
+        ]
+      },
+      "features": [
+        "buildpack-stack=ubuntu-22"
+      ]
+    },
+    "services": [
+      {
+        "name": "backend",
+        "source_commit_hash": "801772b098e58f1fa31dbba2ddee4c38c51c44e7"
+      },
+      {
+        "name": "ai-service",
+        "source_commit_hash": "801772b098e58f1fa31dbba2ddee4c38c51c44e7"
+      },
+      {
+        "name": "frontend",
+        "source_commit_hash": "801772b098e58f1fa31dbba2ddee4c38c51c44e7",
+        "buildpacks": [
+          {
+            "id": "heroku/nodejs",
+            "version": "0.341.5",
+            "latest": true,
+            "name": "Node.js",
+            "description": [
+              "Install dependencies using NPM, PNPM or Yarn"
+            ],
+            "docs_link": "https://docs.digitalocean.com/products/app-platform/languages-frameworks/nodejs/"
+          },
+          {
+            "id": "digitalocean/procfile",
+            "version": "0.1.0",
+            "latest": true,
+            "name": "Procfile",
+            "description": [
+              "Configure default run commands from the Procfile if one exists"
+            ]
+          },
+          {
+            "id": "digitalocean/custom",
+            "version": "0.2.0",
+            "latest": true,
+            "name": "Custom Build Command",
+            "description": [
+              "Run the provided custom build command"
+            ],
+            "docs_link": "https://docs.digitalocean.com/products/app-platform/how-to/build-run-commands/"
+          }
+        ]
+      }
+    ],
+    "phase_last_updated_at": "2026-04-26T09:12:14Z",
+    "created_at": "2026-04-26T09:08:15Z",
+    "updated_at": "2026-04-26T09:12:17Z",
+    "cause": "app spec updated",
+    "progress": {
+      "pending_steps": 8,
+      "success_steps": 3,
+      "error_steps": 1,
+      "total_steps": 12,
+      "steps": [
+        {
+          "name": "build",
+          "status": "ERROR",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:08:20.209606786Z",
+              "ended_at": "2026-04-26T09:08:20.835075537Z"
+            },
+            {
+              "name": "components",
+              "status": "ERROR",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "ERROR",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "reason": {
+                    "code": "BuildJobExitNonZero",
+                    "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+                  },
+                  "component_name": "frontend",
+                  "message_base": "Building service"
+                }
+              ],
+              "started_at": "2026-04-26T09:08:20.835104101Z",
+              "ended_at": "2026-04-26T09:12:09.506640593Z",
+              "reason": {
+                "code": "BuildJobExitNonZero",
+                "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+              }
+            }
+          ],
+          "started_at": "2026-04-26T09:08:20.209540573Z",
+          "ended_at": "2026-04-26T09:12:13.445353888Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          }
+        },
+        {
+          "name": "deploy",
+          "status": "PENDING",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "components",
+              "status": "PENDING",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "frontend"
+                }
+              ],
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "finalize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            }
+          ],
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z"
+        }
+      ],
+      "summary_steps": [
+        {
+          "name": "build.components.frontend",
+          "status": "ERROR",
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          },
+          "component_name": "frontend",
+          "message_base": "Building service"
+        }
+      ]
+    },
+    "phase": "ERROR",
+    "tier_slug": "basic",
+    "previous_deployment_id": "f44bb344-c37d-438c-ad4b-5907104e5ba6",
+    "cause_details": {
+      "digitalocean_user_action": {
+        "user": {
+          "uuid": "026aaeac-385e-49b5-88c7-52aab76e04ab",
+          "email": "life1umair@gmail.com",
+          "full_name": "umair-fa22"
+        },
+        "name": "UPDATE_SPEC"
+      },
+      "type": "MANUAL"
+    },
+    "timing": {
+      "pending": "5.209606786s",
+      "build_total": "233.235747102s",
+      "build_billable": "280.609339659s",
+      "components": [
+        {
+          "name": "backend",
+          "build_billable": "98.960082915s"
+        },
+        {
+          "name": "ai-service",
+          "build_billable": "35.884000029s"
+        },
+        {
+          "name": "frontend",
+          "build_billable": "145.765256715s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "f44bb344-c37d-438c-ad4b-5907104e5ba6",
+    "spec": {
+      "name": "megilance",
+      "services": [
+        {
+          "name": "backend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "backend/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8000
+        },
+        {
+          "name": "ai-service",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "ai/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8001
+        },
+        {
+          "name": "frontend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "frontend/Dockerfile",
+          "envs": [
+            {
+              "key": "NODE_ENV",
+              "value": "production",
+              "scope": "RUN_AND_BUILD_TIME"
+            }
+          ],
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 3000
+        }
+      ],
+      "domains": [
+        {
+          "domain": "megilance.site",
+          "type": "PRIMARY",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "www.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "api.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        }
+      ],
+      "region": "blr",
+      "ingress": {
+        "rules": [
+          {
+            "match": {
+              "path": {
+                "prefix": "/api"
+              }
+            },
+            "component": {
+              "name": "backend",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/ai-api"
+              }
+            },
+            "component": {
+              "name": "ai-service",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/"
+              }
+            },
+            "component": {
+              "name": "frontend"
+            }
+          }
+        ]
+      },
+      "features": [
+        "buildpack-stack=ubuntu-22"
+      ]
+    },
+    "services": [
+      {
+        "name": "backend",
+        "source_commit_hash": "801772b098e58f1fa31dbba2ddee4c38c51c44e7"
+      },
+      {
+        "name": "ai-service",
+        "source_commit_hash": "801772b098e58f1fa31dbba2ddee4c38c51c44e7"
+      },
+      {
+        "name": "frontend",
+        "source_commit_hash": "801772b098e58f1fa31dbba2ddee4c38c51c44e7"
+      }
+    ],
+    "phase_last_updated_at": "2026-04-26T09:03:16Z",
+    "created_at": "2026-04-26T08:56:50Z",
+    "updated_at": "2026-04-26T09:03:19Z",
+    "cause": "commit 801772b pushed to github.com/umair-fa22/MegiLance/tree/main",
+    "progress": {
+      "pending_steps": 8,
+      "success_steps": 3,
+      "error_steps": 1,
+      "total_steps": 12,
+      "steps": [
+        {
+          "name": "build",
+          "status": "ERROR",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T08:56:53.225891526Z",
+              "ended_at": "2026-04-26T08:56:53.789635636Z"
+            },
+            {
+              "name": "components",
+              "status": "ERROR",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "ERROR",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "reason": {
+                    "code": "BuildJobExitNonZero",
+                    "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+                  },
+                  "component_name": "frontend",
+                  "message_base": "Building service"
+                }
+              ],
+              "started_at": "2026-04-26T08:56:53.789673577Z",
+              "ended_at": "2026-04-26T09:03:07.199510234Z",
+              "reason": {
+                "code": "BuildJobExitNonZero",
+                "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+              }
+            }
+          ],
+          "started_at": "2026-04-26T08:56:53.225816487Z",
+          "ended_at": "2026-04-26T09:03:14.543645318Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          }
+        },
+        {
+          "name": "deploy",
+          "status": "PENDING",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "components",
+              "status": "PENDING",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "frontend"
+                }
+              ],
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "finalize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            }
+          ],
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z"
+        }
+      ],
+      "summary_steps": [
+        {
+          "name": "build.components.frontend",
+          "status": "ERROR",
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          },
+          "component_name": "frontend",
+          "message_base": "Building service"
+        }
+      ]
+    },
+    "phase": "ERROR",
+    "tier_slug": "basic",
+    "previous_deployment_id": "0fcd11ef-205f-4984-8a71-37a50a65584d",
+    "cause_details": {
+      "git_push": {
+        "github": {
+          "repo": "umair-fa22/MegiLance",
+          "branch": "main"
+        },
+        "username": "ghulam-mujtaba5",
+        "commit_sha": "801772b098e58f1fa31dbba2ddee4c38c51c44e7",
+        "commit_message": "fix: correct npm install command in Dockerfile to ensure proper dependency installation"
+      },
+      "type": "DEPLOY_ON_PUSH"
+    },
+    "timing": {
+      "pending": "3.225891526s",
+      "build_total": "381.317753792s",
+      "build_billable": "479.604488148s",
+      "components": [
+        {
+          "name": "backend",
+          "build_billable": "97.743621600s"
+        },
+        {
+          "name": "ai-service",
+          "build_billable": "36.487738478s"
+        },
+        {
+          "name": "frontend",
+          "build_billable": "345.373128070s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "0fcd11ef-205f-4984-8a71-37a50a65584d",
+    "spec": {
+      "name": "megilance",
+      "services": [
+        {
+          "name": "backend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "backend/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8000
+        },
+        {
+          "name": "ai-service",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "ai/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8001
+        },
+        {
+          "name": "frontend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "frontend/Dockerfile",
+          "envs": [
+            {
+              "key": "NODE_ENV",
+              "value": "production",
+              "scope": "RUN_AND_BUILD_TIME"
+            }
+          ],
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 3000
+        }
+      ],
+      "domains": [
+        {
+          "domain": "megilance.site",
+          "type": "PRIMARY",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "www.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "api.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        }
+      ],
+      "region": "blr",
+      "ingress": {
+        "rules": [
+          {
+            "match": {
+              "path": {
+                "prefix": "/api"
+              }
+            },
+            "component": {
+              "name": "backend",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/ai-api"
+              }
+            },
+            "component": {
+              "name": "ai-service",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/"
+              }
+            },
+            "component": {
+              "name": "frontend"
+            }
+          }
+        ]
+      },
+      "features": [
+        "buildpack-stack=ubuntu-22"
+      ]
+    },
+    "services": [
+      {
+        "name": "backend",
+        "source_commit_hash": "0d1b870a9d6526bea1049abb409ff84a254e1083"
+      },
+      {
+        "name": "ai-service",
+        "source_commit_hash": "0d1b870a9d6526bea1049abb409ff84a254e1083"
+      },
+      {
+        "name": "frontend",
+        "source_commit_hash": "0d1b870a9d6526bea1049abb409ff84a254e1083"
+      }
+    ],
+    "phase_last_updated_at": "2026-04-26T08:53:18Z",
+    "created_at": "2026-04-26T08:51:57Z",
+    "updated_at": "2026-04-26T08:53:21Z",
+    "cause": "commit 0d1b870 pushed to github.com/umair-fa22/MegiLance/tree/main",
+    "progress": {
+      "pending_steps": 8,
+      "running_steps": 1,
+      "success_steps": 2,
+      "error_steps": 1,
+      "total_steps": 12,
+      "steps": [
+        {
+          "name": "build",
+          "status": "ERROR",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T08:52:01.566308618Z",
+              "ended_at": "2026-04-26T08:52:02.058743241Z"
+            },
+            {
+              "name": "components",
+              "status": "ERROR",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "RUNNING",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "ERROR",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "reason": {
+                    "code": "BuildJobExitNonZero",
+                    "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+                  },
+                  "component_name": "frontend",
+                  "message_base": "Building service"
+                }
+              ],
+              "started_at": "2026-04-26T08:52:02.058764821Z",
+              "ended_at": "2026-04-26T08:53:16.642075287Z",
+              "reason": {
+                "code": "BuildJobExitNonZero",
+                "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+              }
+            }
+          ],
+          "started_at": "2026-04-26T08:52:01.5658909Z",
+          "ended_at": "2026-04-26T08:53:17.132338183Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          }
+        },
+        {
+          "name": "deploy",
+          "status": "PENDING",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "components",
+              "status": "PENDING",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "frontend"
+                }
+              ],
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "finalize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            }
+          ],
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z"
+        }
+      ],
+      "summary_steps": [
+        {
+          "name": "build.components.backend",
+          "status": "RUNNING",
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z",
+          "component_name": "backend",
+          "message_base": "Building service"
+        },
+        {
+          "name": "build.components.frontend",
+          "status": "ERROR",
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          },
+          "component_name": "frontend",
+          "message_base": "Building service"
+        }
+      ]
+    },
+    "phase": "ERROR",
+    "tier_slug": "basic",
+    "previous_deployment_id": "66bf862b-4fce-49b3-9f35-13bc55cdc009",
+    "cause_details": {
+      "git_push": {
+        "github": {
+          "repo": "umair-fa22/MegiLance",
+          "branch": "main"
+        },
+        "username": "ghulam-mujtaba5",
+        "commit_sha": "0d1b870a9d6526bea1049abb409ff84a254e1083",
+        "commit_message": "fix: specify lightningcss version in Dockerfile to ensure consistent builds"
+      },
+      "type": "DEPLOY_ON_PUSH"
+    },
+    "timing": {
+      "pending": "4.566308618s",
+      "build_total": "75.566029565s",
+      "build_billable": "92.354087644s",
+      "components": [
+        {
+          "name": "backend",
+          "build_billable": "0s"
+        },
+        {
+          "name": "ai-service",
+          "build_billable": "41.840331748s"
+        },
+        {
+          "name": "frontend",
+          "build_billable": "50.513755896s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "66bf862b-4fce-49b3-9f35-13bc55cdc009",
+    "spec": {
+      "name": "megilance",
+      "services": [
+        {
+          "name": "backend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "backend/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8000
+        },
+        {
+          "name": "ai-service",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "ai/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8001
+        },
+        {
+          "name": "frontend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "frontend/Dockerfile",
+          "envs": [
+            {
+              "key": "NODE_ENV",
+              "value": "production",
+              "scope": "RUN_AND_BUILD_TIME"
+            }
+          ],
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 3000
+        }
+      ],
+      "domains": [
+        {
+          "domain": "megilance.site",
+          "type": "PRIMARY",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "www.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "api.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        }
+      ],
+      "region": "blr",
+      "ingress": {
+        "rules": [
+          {
+            "match": {
+              "path": {
+                "prefix": "/api"
+              }
+            },
+            "component": {
+              "name": "backend",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/ai-api"
+              }
+            },
+            "component": {
+              "name": "ai-service",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/"
+              }
+            },
+            "component": {
+              "name": "frontend"
+            }
+          }
+        ]
+      },
+      "features": [
+        "buildpack-stack=ubuntu-22"
+      ]
+    },
+    "services": [
+      {
+        "name": "backend",
+        "source_commit_hash": "cd2abd2dbac71d5c10b9936f11f2bf064e1e193a"
+      },
+      {
+        "name": "ai-service",
+        "source_commit_hash": "cd2abd2dbac71d5c10b9936f11f2bf064e1e193a"
+      },
+      {
+        "name": "frontend",
+        "source_commit_hash": "cd2abd2dbac71d5c10b9936f11f2bf064e1e193a"
+      }
+    ],
+    "phase_last_updated_at": "2026-04-26T08:50:10Z",
+    "created_at": "2026-04-26T08:49:33Z",
+    "updated_at": "2026-04-26T08:50:12Z",
+    "cause": "commit cd2abd2 pushed to github.com/umair-fa22/MegiLance/tree/main",
+    "progress": {
+      "pending_steps": 9,
+      "running_steps": 1,
+      "success_steps": 1,
+      "error_steps": 1,
+      "total_steps": 12,
+      "steps": [
+        {
+          "name": "build",
+          "status": "ERROR",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T08:49:35.581773613Z",
+              "ended_at": "2026-04-26T08:49:36.105140393Z"
+            },
+            {
+              "name": "components",
+              "status": "ERROR",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "RUNNING",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "PENDING",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "reason": {
+                    "code": "BuildRateLimit",
+                    "message": "Your build job is being rate-limited due to concurrent build limits."
+                  },
+                  "component_name": "ai-service",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "ERROR",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "reason": {
+                    "code": "BuildJobExitNonZero",
+                    "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+                  },
+                  "component_name": "frontend",
+                  "message_base": "Building service"
+                }
+              ],
+              "started_at": "2026-04-26T08:49:36.105164097Z",
+              "ended_at": "2026-04-26T08:50:08.730206383Z",
+              "reason": {
+                "code": "BuildJobExitNonZero",
+                "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+              }
+            }
+          ],
+          "started_at": "2026-04-26T08:49:35.581700257Z",
+          "ended_at": "2026-04-26T08:50:09.231542444Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          }
+        },
+        {
+          "name": "deploy",
+          "status": "PENDING",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "components",
+              "status": "PENDING",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "frontend"
+                }
+              ],
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "finalize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            }
+          ],
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z"
+        }
+      ],
+      "summary_steps": [
+        {
+          "name": "build.components.backend",
+          "status": "RUNNING",
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z",
+          "component_name": "backend",
+          "message_base": "Building service"
+        },
+        {
+          "name": "build.components.frontend",
+          "status": "ERROR",
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          },
+          "component_name": "frontend",
+          "message_base": "Building service"
+        }
+      ]
+    },
+    "phase": "ERROR",
+    "tier_slug": "basic",
+    "previous_deployment_id": "c65f9902-fe22-43b5-8b4e-2f99f995ee6a",
+    "cause_details": {
+      "git_push": {
+        "github": {
+          "repo": "umair-fa22/MegiLance",
+          "branch": "main"
+        },
+        "username": "ghulam-mujtaba5",
+        "commit_sha": "cd2abd2dbac71d5c10b9936f11f2bf064e1e193a",
+        "commit_message": "chore: add clean build log output for frontend build process"
+      },
+      "type": "DEPLOY_ON_PUSH"
+    },
+    "timing": {
+      "pending": "2.581773613s",
+      "build_total": "33.649768831s",
+      "build_billable": "14.544105145s",
+      "components": [
+        {
+          "name": "backend",
+          "build_billable": "0s"
+        },
+        {
+          "name": "frontend",
+          "build_billable": "14.544105145s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "c65f9902-fe22-43b5-8b4e-2f99f995ee6a",
+    "spec": {
+      "name": "megilance",
+      "services": [
+        {
+          "name": "backend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "backend/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8000
+        },
+        {
+          "name": "ai-service",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "ai/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8001
+        },
+        {
+          "name": "frontend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "frontend/Dockerfile",
+          "envs": [
+            {
+              "key": "NODE_ENV",
+              "value": "production",
+              "scope": "RUN_AND_BUILD_TIME"
+            }
+          ],
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 3000
+        }
+      ],
+      "domains": [
+        {
+          "domain": "megilance.site",
+          "type": "PRIMARY",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "www.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "api.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        }
+      ],
+      "region": "blr",
+      "ingress": {
+        "rules": [
+          {
+            "match": {
+              "path": {
+                "prefix": "/api"
+              }
+            },
+            "component": {
+              "name": "backend",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/ai-api"
+              }
+            },
+            "component": {
+              "name": "ai-service",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/"
+              }
+            },
+            "component": {
+              "name": "frontend"
+            }
+          }
+        ]
+      },
+      "features": [
+        "buildpack-stack=ubuntu-22"
+      ]
+    },
+    "services": [
+      {
+        "name": "backend",
+        "source_commit_hash": "e804ea40cb9e8ef6fba46b35ccbc76f675ebf25c"
+      },
+      {
+        "name": "ai-service",
+        "source_commit_hash": "e804ea40cb9e8ef6fba46b35ccbc76f675ebf25c"
+      },
+      {
+        "name": "frontend",
+        "source_commit_hash": "e804ea40cb9e8ef6fba46b35ccbc76f675ebf25c"
+      }
+    ],
+    "phase_last_updated_at": "2026-04-22T15:48:31Z",
+    "created_at": "2026-04-22T15:44:27Z",
+    "updated_at": "2026-04-22T15:48:35Z",
+    "cause": "commit e804ea4 pushed to github.com/umair-fa22/MegiLance/tree/main",
+    "progress": {
+      "pending_steps": 8,
+      "success_steps": 3,
+      "error_steps": 1,
+      "total_steps": 12,
+      "steps": [
+        {
+          "name": "build",
+          "status": "ERROR",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "SUCCESS",
+              "started_at": "2026-04-22T15:44:30.452473028Z",
+              "ended_at": "2026-04-22T15:44:31.068039992Z"
+            },
+            {
+              "name": "components",
+              "status": "ERROR",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "ERROR",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "reason": {
+                    "code": "BuildJobExitNonZero",
+                    "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+                  },
+                  "component_name": "frontend",
+                  "message_base": "Building service"
+                }
+              ],
+              "started_at": "2026-04-22T15:44:31.06807653Z",
+              "ended_at": "2026-04-22T15:48:24.285377878Z",
+              "reason": {
+                "code": "BuildJobExitNonZero",
+                "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+              }
+            }
+          ],
+          "started_at": "2026-04-22T15:44:30.452402347Z",
+          "ended_at": "2026-04-22T15:48:28.437472009Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          }
+        },
+        {
+          "name": "deploy",
+          "status": "PENDING",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "components",
+              "status": "PENDING",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "frontend"
+                }
+              ],
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "finalize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            }
+          ],
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z"
+        }
+      ],
+      "summary_steps": [
+        {
+          "name": "build.components.frontend",
+          "status": "ERROR",
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          },
+          "component_name": "frontend",
+          "message_base": "Building service"
+        }
+      ]
+    },
+    "phase": "ERROR",
+    "tier_slug": "basic",
+    "previous_deployment_id": "1b42ebf9-862b-4ce1-9bd8-104e1579b513",
+    "cause_details": {
+      "git_push": {
+        "github": {
+          "repo": "umair-fa22/MegiLance",
+          "branch": "main"
+        },
+        "username": "ghulam-mujtaba5",
+        "commit_sha": "e804ea40cb9e8ef6fba46b35ccbc76f675ebf25c",
+        "commit_message": "Update deployment specifications for MegiLance platform to include AI service and change repository references\n\n- Modified `current-do-spec-active.yaml` to add AI service routing and update GitHub repository.\n- Updated `do-app-spec-with-ai.yaml` to r..."
+      },
+      "type": "DEPLOY_ON_PUSH"
+    },
+    "timing": {
+      "pending": "3.452473028s",
+      "build_total": "237.984998981s",
+      "build_billable": "342.063403133s",
+      "components": [
+        {
+          "name": "backend",
+          "build_billable": "93.003101144s"
+        },
+        {
+          "name": "ai-service",
+          "build_billable": "36.530872659s"
+        },
+        {
+          "name": "frontend",
+          "build_billable": "212.529429330s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "1b42ebf9-862b-4ce1-9bd8-104e1579b513",
+    "spec": {
+      "name": "megilance",
+      "services": [
+        {
+          "name": "backend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "backend/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8000
+        },
+        {
+          "name": "ai-service",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "ai/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8001
+        },
+        {
+          "name": "frontend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "frontend/Dockerfile",
+          "envs": [
+            {
+              "key": "NODE_ENV",
+              "value": "production",
+              "scope": "RUN_AND_BUILD_TIME"
+            }
+          ],
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 3000
+        }
+      ],
+      "domains": [
+        {
+          "domain": "megilance.site",
+          "type": "PRIMARY",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "www.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "api.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        }
+      ],
+      "region": "blr",
+      "ingress": {
+        "rules": [
+          {
+            "match": {
+              "path": {
+                "prefix": "/api"
+              }
+            },
+            "component": {
+              "name": "backend",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/ai-api"
+              }
+            },
+            "component": {
+              "name": "ai-service",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/"
+              }
+            },
+            "component": {
+              "name": "frontend"
+            }
+          }
+        ]
+      },
+      "features": [
+        "buildpack-stack=ubuntu-22"
+      ]
+    },
+    "services": [
+      {
+        "name": "backend",
+        "source_commit_hash": "41e71e8056cad99d1b4d603d2b2c9a550278cbaa"
+      },
+      {
+        "name": "ai-service",
+        "source_commit_hash": "41e71e8056cad99d1b4d603d2b2c9a550278cbaa"
+      },
+      {
+        "name": "frontend",
+        "source_commit_hash": "41e71e8056cad99d1b4d603d2b2c9a550278cbaa"
+      }
+    ],
+    "phase_last_updated_at": "2026-04-22T15:05:41Z",
+    "created_at": "2026-04-22T14:59:16Z",
+    "updated_at": "2026-04-22T15:05:45Z",
+    "cause": "commit 41e71e8 pushed to github.com/umair-fa22/MegiLance/tree/main",
+    "progress": {
+      "pending_steps": 8,
+      "success_steps": 3,
+      "error_steps": 1,
+      "total_steps": 12,
+      "steps": [
+        {
+          "name": "build",
+          "status": "ERROR",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "SUCCESS",
+              "started_at": "2026-04-22T14:59:17.011889491Z",
+              "ended_at": "2026-04-22T14:59:17.834573312Z"
+            },
+            {
+              "name": "components",
+              "status": "ERROR",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "ERROR",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "reason": {
+                    "code": "BuildJobExitNonZero",
+                    "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+                  },
+                  "component_name": "frontend",
+                  "message_base": "Building service"
+                }
+              ],
+              "started_at": "2026-04-22T14:59:17.834611312Z",
+              "ended_at": "2026-04-22T15:05:33.586295745Z",
+              "reason": {
+                "code": "BuildJobExitNonZero",
+                "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+              }
+            }
+          ],
+          "started_at": "2026-04-22T14:59:17.011766312Z",
+          "ended_at": "2026-04-22T15:05:38.066467902Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          }
+        },
+        {
+          "name": "deploy",
+          "status": "PENDING",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "components",
+              "status": "PENDING",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "frontend"
+                }
+              ],
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "finalize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            }
+          ],
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z"
+        }
+      ],
+      "summary_steps": [
+        {
+          "name": "build.components.frontend",
+          "status": "ERROR",
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          },
+          "component_name": "frontend",
+          "message_base": "Building service"
+        }
+      ]
+    },
+    "phase": "ERROR",
+    "tier_slug": "basic",
+    "previous_deployment_id": "19f47cc5-dc14-4eec-aa48-f5b5500be2b2",
+    "cause_details": {
+      "git_push": {
+        "github": {
+          "repo": "umair-fa22/MegiLance",
+          "branch": "main"
+        },
+        "username": "ghulam-mujtaba5",
+        "commit_sha": "41e71e8056cad99d1b4d603d2b2c9a550278cbaa",
+        "commit_message": "feat(proxy): implement proxy middleware for security headers and authentication handling"
+      },
+      "type": "DEPLOY_ON_PUSH"
+    },
+    "timing": {
+      "pending": "1.011889491s",
+      "build_total": "381.054578411s",
+      "build_billable": "479.821133800s",
+      "components": [
+        {
+          "name": "backend",
+          "build_billable": "95.100430768s"
+        },
+        {
+          "name": "ai-service",
+          "build_billable": "36.762461027s"
+        },
+        {
+          "name": "frontend",
+          "build_billable": "347.958242005s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "19f47cc5-dc14-4eec-aa48-f5b5500be2b2",
+    "spec": {
+      "name": "megilance",
+      "services": [
+        {
+          "name": "backend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "backend/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8000
+        },
+        {
+          "name": "ai-service",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "ai/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8001
+        },
+        {
+          "name": "frontend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "frontend/Dockerfile",
+          "envs": [
+            {
+              "key": "NODE_ENV",
+              "value": "production",
+              "scope": "RUN_AND_BUILD_TIME"
+            }
+          ],
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 3000
+        }
+      ],
+      "domains": [
+        {
+          "domain": "megilance.site",
+          "type": "PRIMARY",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "www.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "api.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        }
+      ],
+      "region": "blr",
+      "ingress": {
+        "rules": [
+          {
+            "match": {
+              "path": {
+                "prefix": "/api"
+              }
+            },
+            "component": {
+              "name": "backend",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/ai-api"
+              }
+            },
+            "component": {
+              "name": "ai-service",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/"
+              }
+            },
+            "component": {
+              "name": "frontend"
+            }
+          }
+        ]
+      },
+      "features": [
+        "buildpack-stack=ubuntu-22"
+      ]
+    },
+    "services": [
+      {
+        "name": "backend",
+        "source_commit_hash": "3e3628da7c3365d56dc83cf6dbe58d0c0deeac67"
+      },
+      {
+        "name": "ai-service",
+        "source_commit_hash": "3e3628da7c3365d56dc83cf6dbe58d0c0deeac67"
+      },
+      {
+        "name": "frontend",
+        "source_commit_hash": "3e3628da7c3365d56dc83cf6dbe58d0c0deeac67"
+      }
+    ],
+    "phase_last_updated_at": "2026-04-22T14:15:32Z",
+    "created_at": "2026-04-22T14:09:42Z",
+    "updated_at": "2026-04-22T14:15:37Z",
+    "cause": "commit 3e3628d pushed to github.com/umair-fa22/MegiLance/tree/main",
+    "progress": {
+      "pending_steps": 8,
+      "success_steps": 3,
+      "error_steps": 1,
+      "total_steps": 12,
+      "steps": [
+        {
+          "name": "build",
+          "status": "ERROR",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "SUCCESS",
+              "started_at": "2026-04-22T14:09:47.739532004Z",
+              "ended_at": "2026-04-22T14:09:48.561289456Z"
+            },
+            {
+              "name": "components",
+              "status": "ERROR",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "ERROR",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "reason": {
+                    "code": "BuildJobExitNonZero",
+                    "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+                  },
+                  "component_name": "frontend",
+                  "message_base": "Building service"
+                }
+              ],
+              "started_at": "2026-04-22T14:09:48.561316757Z",
+              "ended_at": "2026-04-22T14:15:22.710903976Z",
+              "reason": {
+                "code": "BuildJobExitNonZero",
+                "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+              }
+            }
+          ],
+          "started_at": "2026-04-22T14:09:47.739468487Z",
+          "ended_at": "2026-04-22T14:15:26.97575018Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          }
+        },
+        {
+          "name": "deploy",
+          "status": "PENDING",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "components",
+              "status": "PENDING",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "frontend"
+                }
+              ],
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "finalize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            }
+          ],
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z"
+        }
+      ],
+      "summary_steps": [
+        {
+          "name": "build.components.frontend",
+          "status": "ERROR",
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          },
+          "component_name": "frontend",
+          "message_base": "Building service"
+        }
+      ]
+    },
+    "phase": "ERROR",
+    "tier_slug": "basic",
+    "previous_deployment_id": "968cdfd2-a444-440e-aa5b-6641acb92c4e",
+    "cause_details": {
+      "git_push": {
+        "github": {
+          "repo": "umair-fa22/MegiLance",
+          "branch": "main"
+        },
+        "username": "ghulam-mujtaba5",
+        "commit_sha": "3e3628da7c3365d56dc83cf6dbe58d0c0deeac67",
+        "commit_message": "chore: update subproject commit to indicate uncommitted changes and add clean build log"
+      },
+      "type": "DEPLOY_ON_PUSH"
+    },
+    "timing": {
+      "pending": "5.739532004s",
+      "build_total": "339.236218176s",
+      "build_billable": "432.899169518s",
+      "components": [
+        {
+          "name": "backend",
+          "build_billable": "94.877409649s"
+        },
+        {
+          "name": "ai-service",
+          "build_billable": "35.126253457s"
+        },
+        {
+          "name": "frontend",
+          "build_billable": "302.895506412s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "968cdfd2-a444-440e-aa5b-6641acb92c4e",
+    "spec": {
+      "name": "megilance",
+      "services": [
+        {
+          "name": "backend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "backend/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8000
+        },
+        {
+          "name": "ai-service",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "ai/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8001
+        },
+        {
+          "name": "frontend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "frontend/Dockerfile",
+          "envs": [
+            {
+              "key": "NODE_ENV",
+              "value": "production",
+              "scope": "RUN_AND_BUILD_TIME"
+            }
+          ],
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 3000
+        }
+      ],
+      "domains": [
+        {
+          "domain": "megilance.site",
+          "type": "PRIMARY",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "www.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "api.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        }
+      ],
+      "region": "blr",
+      "ingress": {
+        "rules": [
+          {
+            "match": {
+              "path": {
+                "prefix": "/api"
+              }
+            },
+            "component": {
+              "name": "backend",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/ai-api"
+              }
+            },
+            "component": {
+              "name": "ai-service",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/"
+              }
+            },
+            "component": {
+              "name": "frontend"
+            }
+          }
+        ]
+      },
+      "features": [
+        "buildpack-stack=ubuntu-22"
+      ]
+    },
+    "services": [
+      {
+        "name": "backend",
+        "source_commit_hash": "d64b3707763c2b8db5c0abe3281c624f6abe4518"
+      },
+      {
+        "name": "ai-service",
+        "source_commit_hash": "d64b3707763c2b8db5c0abe3281c624f6abe4518"
+      },
+      {
+        "name": "frontend",
+        "source_commit_hash": "d64b3707763c2b8db5c0abe3281c624f6abe4518"
+      }
+    ],
+    "phase_last_updated_at": "2026-04-22T14:06:06Z",
+    "created_at": "2026-04-22T14:00:59Z",
+    "updated_at": "2026-04-22T14:06:08Z",
+    "cause": "initial deployment",
+    "progress": {
+      "pending_steps": 8,
+      "success_steps": 3,
+      "error_steps": 1,
+      "total_steps": 12,
+      "steps": [
+        {
+          "name": "build",
+          "status": "ERROR",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "SUCCESS",
+              "started_at": "2026-04-22T14:01:05.858579169Z",
+              "ended_at": "2026-04-22T14:01:27.284558751Z"
+            },
+            {
+              "name": "components",
+              "status": "ERROR",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "ERROR",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "reason": {
+                    "code": "BuildJobExitNonZero",
+                    "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+                  },
+                  "component_name": "frontend",
+                  "message_base": "Building service"
+                }
+              ],
+              "started_at": "2026-04-22T14:01:27.284585751Z",
+              "ended_at": "2026-04-22T14:05:58.196995172Z",
+              "reason": {
+                "code": "BuildJobExitNonZero",
+                "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+              }
+            }
+          ],
+          "started_at": "2026-04-22T14:01:05.858521222Z",
+          "ended_at": "2026-04-22T14:06:02.029478016Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          }
+        },
+        {
+          "name": "deploy",
+          "status": "PENDING",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "components",
+              "status": "PENDING",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "PENDING",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "PENDING",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "frontend"
+                }
+              ],
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "finalize",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            }
+          ],
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z"
+        }
+      ],
+      "summary_steps": [
+        {
+          "name": "build.components.frontend",
+          "status": "ERROR",
+          "started_at": "0001-01-01T00:00:00Z",
+          "ended_at": "0001-01-01T00:00:00Z",
+          "reason": {
+            "code": "BuildJobExitNonZero",
+            "message": "Your build job failed because it returned a non-zero exit code. See the logs for details."
+          },
+          "component_name": "frontend",
+          "message_base": "Building service"
+        }
+      ]
+    },
+    "phase": "ERROR",
+    "tier_slug": "basic",
+    "cause_details": {
+      "digitalocean_user_action": {
+        "user": {
+          "uuid": "026aaeac-385e-49b5-88c7-52aab76e04ab",
+          "email": "life1umair@gmail.com",
+          "full_name": "umair-fa22"
+        },
+        "name": "CREATE_DEPLOYMENT"
+      },
+      "type": "MANUAL"
+    },
+    "timing": {
+      "pending": "6.858579169s",
+      "build_total": "296.170898847s",
+      "build_billable": "435.783919237s",
+      "components": [
+        {
+          "name": "backend",
+          "build_billable": "131.621808628s"
+        },
+        {
+          "name": "ai-service",
+          "build_billable": "50.989104419s"
+        },
+        {
+          "name": "frontend",
+          "build_billable": "253.173006190s"
+        }
+      ]
+    }
+  }
+]

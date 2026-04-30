@@ -1,0 +1,847 @@
+[
+  {
+    "id": "fbf18e5d-c3c7-428d-8628-93f2cd504727",
+    "owner_uuid": "f7980f52-c1ac-4595-a669-3ed60d7d1878",
+    "spec": {
+      "name": "megilance",
+      "services": [
+        {
+          "name": "backend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "backend/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8000
+        },
+        {
+          "name": "ai-service",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "ai/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8001
+        },
+        {
+          "name": "frontend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "build_command": "npm install --legacy-peer-deps autoprefixer@10.4.21 \u0026\u0026 npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 @tailwindcss/oxide-linux-x64-gnu@4.2.4 \u0026\u0026 npm run build",
+          "source_dir": "frontend",
+          "envs": [
+            {
+              "key": "NODE_ENV",
+              "value": "production",
+              "scope": "RUN_AND_BUILD_TIME"
+            },
+            {
+              "key": "NPM_CONFIG_PRODUCTION",
+              "value": "false",
+              "scope": "RUN_AND_BUILD_TIME"
+            }
+          ],
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 3000
+        }
+      ],
+      "domains": [
+        {
+          "domain": "megilance.site",
+          "type": "PRIMARY",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "www.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "api.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        }
+      ],
+      "region": "blr",
+      "ingress": {
+        "rules": [
+          {
+            "match": {
+              "path": {
+                "prefix": "/api"
+              }
+            },
+            "component": {
+              "name": "backend",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/ai-api"
+              }
+            },
+            "component": {
+              "name": "ai-service",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/"
+              }
+            },
+            "component": {
+              "name": "frontend"
+            }
+          }
+        ]
+      },
+      "features": [
+        "buildpack-stack=ubuntu-22"
+      ]
+    },
+    "last_deployment_active_at": "2026-04-26T09:52:34Z",
+    "default_ingress": "https://megilance-x5koi.ondigitalocean.app",
+    "created_at": "2026-04-22T14:00:59Z",
+    "updated_at": "2026-04-26T09:52:45Z",
+    "active_deployment": {
+      "id": "0959d9e9-6735-461e-ad08-d8cd15f9d5d8",
+      "spec": {
+        "name": "megilance",
+        "services": [
+          {
+            "name": "backend",
+            "github": {
+              "repo": "umair-fa22/MegiLance",
+              "branch": "main",
+              "deploy_on_push": true
+            },
+            "dockerfile_path": "backend/Dockerfile",
+            "instance_size_slug": "basic-s",
+            "instance_count": 1,
+            "http_port": 8000
+          },
+          {
+            "name": "ai-service",
+            "github": {
+              "repo": "umair-fa22/MegiLance",
+              "branch": "main",
+              "deploy_on_push": true
+            },
+            "dockerfile_path": "ai/Dockerfile",
+            "instance_size_slug": "basic-s",
+            "instance_count": 1,
+            "http_port": 8001
+          },
+          {
+            "name": "frontend",
+            "github": {
+              "repo": "umair-fa22/MegiLance",
+              "branch": "main",
+              "deploy_on_push": true
+            },
+            "build_command": "npm install --legacy-peer-deps autoprefixer@10.4.21 \u0026\u0026 npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 @tailwindcss/oxide-linux-x64-gnu@4.2.4 \u0026\u0026 npm run build",
+            "source_dir": "frontend",
+            "envs": [
+              {
+                "key": "NODE_ENV",
+                "value": "production",
+                "scope": "RUN_AND_BUILD_TIME"
+              },
+              {
+                "key": "NPM_CONFIG_PRODUCTION",
+                "value": "false",
+                "scope": "RUN_AND_BUILD_TIME"
+              }
+            ],
+            "instance_size_slug": "basic-s",
+            "instance_count": 1,
+            "http_port": 3000
+          }
+        ],
+        "domains": [
+          {
+            "domain": "megilance.site",
+            "type": "PRIMARY",
+            "zone": "megilance.site"
+          },
+          {
+            "domain": "www.megilance.site",
+            "type": "ALIAS",
+            "zone": "megilance.site"
+          },
+          {
+            "domain": "api.megilance.site",
+            "type": "ALIAS",
+            "zone": "megilance.site"
+          }
+        ],
+        "region": "blr",
+        "ingress": {
+          "rules": [
+            {
+              "match": {
+                "path": {
+                  "prefix": "/api"
+                }
+              },
+              "component": {
+                "name": "backend",
+                "preserve_path_prefix": true
+              }
+            },
+            {
+              "match": {
+                "path": {
+                  "prefix": "/ai-api"
+                }
+              },
+              "component": {
+                "name": "ai-service",
+                "preserve_path_prefix": true
+              }
+            },
+            {
+              "match": {
+                "path": {
+                  "prefix": "/"
+                }
+              },
+              "component": {
+                "name": "frontend"
+              }
+            }
+          ]
+        },
+        "features": [
+          "buildpack-stack=ubuntu-22"
+        ]
+      },
+      "services": [
+        {
+          "name": "backend",
+          "source_commit_hash": "1ab70533d1be414befe989eb373793d425067f18"
+        },
+        {
+          "name": "ai-service",
+          "source_commit_hash": "1ab70533d1be414befe989eb373793d425067f18"
+        },
+        {
+          "name": "frontend",
+          "source_commit_hash": "1ab70533d1be414befe989eb373793d425067f18",
+          "buildpacks": [
+            {
+              "id": "heroku/nodejs",
+              "version": "0.341.5",
+              "latest": true,
+              "name": "Node.js",
+              "description": [
+                "Install dependencies using NPM, PNPM or Yarn"
+              ],
+              "docs_link": "https://docs.digitalocean.com/products/app-platform/languages-frameworks/nodejs/"
+            },
+            {
+              "id": "digitalocean/procfile",
+              "version": "0.1.0",
+              "latest": true,
+              "name": "Procfile",
+              "description": [
+                "Configure default run commands from the Procfile if one exists"
+              ]
+            },
+            {
+              "id": "digitalocean/custom",
+              "version": "0.2.0",
+              "latest": true,
+              "name": "Custom Build Command",
+              "description": [
+                "Run the provided custom build command"
+              ],
+              "docs_link": "https://docs.digitalocean.com/products/app-platform/how-to/build-run-commands/"
+            }
+          ]
+        }
+      ],
+      "phase_last_updated_at": "2026-04-26T09:52:34Z",
+      "created_at": "2026-04-26T09:50:52Z",
+      "updated_at": "2026-04-26T09:52:34Z",
+      "cause": "manual",
+      "progress": {
+        "success_steps": 12,
+        "total_steps": 12,
+        "steps": [
+          {
+            "name": "build",
+            "status": "SUCCESS",
+            "steps": [
+              {
+                "name": "initialize",
+                "status": "SUCCESS",
+                "started_at": "2026-04-26T09:50:55.570026048Z",
+                "ended_at": "2026-04-26T09:50:55.763988673Z"
+              },
+              {
+                "name": "components",
+                "status": "SUCCESS",
+                "steps": [
+                  {
+                    "name": "backend",
+                    "status": "SUCCESS",
+                    "started_at": "0001-01-01T00:00:00Z",
+                    "ended_at": "0001-01-01T00:00:00Z",
+                    "reason": {
+                      "code": "PreviousBuildReused",
+                      "message": "Your previous build was reused."
+                    },
+                    "component_name": "backend",
+                    "message_base": "Building service"
+                  },
+                  {
+                    "name": "ai-service",
+                    "status": "SUCCESS",
+                    "started_at": "0001-01-01T00:00:00Z",
+                    "ended_at": "0001-01-01T00:00:00Z",
+                    "reason": {
+                      "code": "PreviousBuildReused",
+                      "message": "Your previous build was reused."
+                    },
+                    "component_name": "ai-service",
+                    "message_base": "Building service"
+                  },
+                  {
+                    "name": "frontend",
+                    "status": "SUCCESS",
+                    "started_at": "0001-01-01T00:00:00Z",
+                    "ended_at": "0001-01-01T00:00:00Z",
+                    "reason": {
+                      "code": "PreviousBuildReused",
+                      "message": "Your previous build was reused."
+                    },
+                    "component_name": "frontend",
+                    "message_base": "Building service"
+                  }
+                ],
+                "started_at": "2026-04-26T09:50:55.764008791Z",
+                "ended_at": "2026-04-26T09:50:55.764475911Z"
+              }
+            ],
+            "started_at": "2026-04-26T09:50:55.569962088Z",
+            "ended_at": "2026-04-26T09:50:55.764674932Z"
+          },
+          {
+            "name": "deploy",
+            "status": "SUCCESS",
+            "steps": [
+              {
+                "name": "initialize",
+                "status": "SUCCESS",
+                "started_at": "2026-04-26T09:50:57.824993983Z",
+                "ended_at": "2026-04-26T09:51:01.063081445Z"
+              },
+              {
+                "name": "components",
+                "status": "SUCCESS",
+                "steps": [
+                  {
+                    "name": "backend",
+                    "status": "SUCCESS",
+                    "steps": [
+                      {
+                        "name": "deploy",
+                        "status": "SUCCESS",
+                        "started_at": "0001-01-01T00:00:00Z",
+                        "ended_at": "0001-01-01T00:00:00Z",
+                        "component_name": "backend",
+                        "message_base": "Deploying service"
+                      },
+                      {
+                        "name": "wait",
+                        "status": "SUCCESS",
+                        "started_at": "0001-01-01T00:00:00Z",
+                        "ended_at": "0001-01-01T00:00:00Z",
+                        "component_name": "backend",
+                        "message_base": "Waiting for service"
+                      }
+                    ],
+                    "started_at": "0001-01-01T00:00:00Z",
+                    "ended_at": "0001-01-01T00:00:00Z",
+                    "component_name": "backend"
+                  },
+                  {
+                    "name": "ai-service",
+                    "status": "SUCCESS",
+                    "steps": [
+                      {
+                        "name": "deploy",
+                        "status": "SUCCESS",
+                        "started_at": "0001-01-01T00:00:00Z",
+                        "ended_at": "0001-01-01T00:00:00Z",
+                        "component_name": "ai-service",
+                        "message_base": "Deploying service"
+                      },
+                      {
+                        "name": "wait",
+                        "status": "SUCCESS",
+                        "started_at": "0001-01-01T00:00:00Z",
+                        "ended_at": "0001-01-01T00:00:00Z",
+                        "component_name": "ai-service",
+                        "message_base": "Waiting for service"
+                      }
+                    ],
+                    "started_at": "0001-01-01T00:00:00Z",
+                    "ended_at": "0001-01-01T00:00:00Z",
+                    "component_name": "ai-service"
+                  },
+                  {
+                    "name": "frontend",
+                    "status": "SUCCESS",
+                    "steps": [
+                      {
+                        "name": "deploy",
+                        "status": "SUCCESS",
+                        "started_at": "0001-01-01T00:00:00Z",
+                        "ended_at": "0001-01-01T00:00:00Z",
+                        "component_name": "frontend",
+                        "message_base": "Deploying service"
+                      },
+                      {
+                        "name": "wait",
+                        "status": "SUCCESS",
+                        "started_at": "0001-01-01T00:00:00Z",
+                        "ended_at": "0001-01-01T00:00:00Z",
+                        "component_name": "frontend",
+                        "message_base": "Waiting for service"
+                      }
+                    ],
+                    "started_at": "0001-01-01T00:00:00Z",
+                    "ended_at": "0001-01-01T00:00:00Z",
+                    "component_name": "frontend"
+                  }
+                ],
+                "started_at": "2026-04-26T09:51:01.063098577Z",
+                "ended_at": "2026-04-26T09:52:30.525533935Z"
+              },
+              {
+                "name": "finalize",
+                "status": "SUCCESS",
+                "started_at": "2026-04-26T09:52:31.432828631Z",
+                "ended_at": "2026-04-26T09:52:33.614458153Z"
+              }
+            ],
+            "started_at": "2026-04-26T09:50:57.824980488Z",
+            "ended_at": "2026-04-26T09:52:33.614532541Z"
+          }
+        ]
+      },
+      "phase": "ACTIVE",
+      "tier_slug": "basic",
+      "previous_deployment_id": "9fb55db2-c58b-4222-8ffa-1e3a8b30f398",
+      "cause_details": {
+        "digitalocean_user_action": {
+          "user": {
+            "uuid": "026aaeac-385e-49b5-88c7-52aab76e04ab",
+            "email": "life1umair@gmail.com",
+            "full_name": "umair-fa22"
+          },
+          "name": "CREATE_DEPLOYMENT"
+        },
+        "type": "MANUAL"
+      },
+      "timing": {
+        "pending": "3.570026048s",
+        "build_total": "0.194648884s",
+        "build_billable": "0s"
+      }
+    },
+    "last_deployment_created_at": "2026-04-26T09:50:52Z",
+    "live_url": "https://megilance.site",
+    "region": {
+      "slug": "blr",
+      "label": "Bangalore",
+      "flag": "india",
+      "continent": "Asia",
+      "data_centers": [
+        "blr1"
+      ]
+    },
+    "tier_slug": "basic",
+    "live_url_base": "https://megilance.site",
+    "live_domain": "megilance.site",
+    "domains": [
+      {
+        "id": "a15f3e05-777d-40d4-a232-5ce302063c78",
+        "spec": {
+          "domain": "megilance.site",
+          "type": "PRIMARY",
+          "zone": "megilance.site"
+        },
+        "phase": "CONFIGURING",
+        "progress": {
+          "steps": [
+            {
+              "name": "default-ingress-ready",
+              "status": "SUCCESS",
+              "started_at": "2026-04-22T14:01:12.356617883Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-zone",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:50:55.829650172Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-ns-records",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:50:55.839070348Z",
+              "ended_at": "2026-04-26T09:50:55.868145393Z"
+            },
+            {
+              "name": "verify-nameservers",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:50:55.868203341Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-record",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:50:55.985915533Z",
+              "ended_at": "2026-04-26T09:50:55.985931363Z"
+            },
+            {
+              "name": "ensure-alias-record",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:50:55.985956129Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-wildcard-record",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:00.533505332Z",
+              "ended_at": "2026-04-26T09:52:00.533523386Z"
+            },
+            {
+              "name": "verify-cname",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:00.53354197Z",
+              "ended_at": "2026-04-26T09:52:00.533549224Z"
+            },
+            {
+              "name": "ensure-ssl-txt-record-saved",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:00.533565244Z",
+              "ended_at": "2026-04-26T09:52:00.540476083Z"
+            },
+            {
+              "name": "ensure-ssl-txt-record",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:00.540525215Z",
+              "ended_at": "2026-04-26T09:52:00.540541255Z"
+            },
+            {
+              "name": "ensure-renewal-email",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:00.540564538Z",
+              "ended_at": "2026-04-26T09:52:00.540573725Z"
+            },
+            {
+              "name": "ensure-CA-authorization",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:00.540596418Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-certificate",
+              "status": "RUNNING",
+              "started_at": "2026-04-26T09:52:00.555299589Z",
+              "ended_at": "0001-01-01T00:00:00Z",
+              "reason": {
+                "code": "DomainCertPendingValidation",
+                "message": "Your domain is not yet active because we are validating domain ownership. If this persists for more than 1h, verify DNS records are configured correctly."
+              }
+            },
+            {
+              "name": "create-deployment",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "configuration-alert",
+              "status": "SUCCESS",
+              "started_at": "2026-04-22T14:01:12.356726223Z",
+              "ended_at": "2026-04-22T14:01:12.356738736Z"
+            }
+          ]
+        },
+        "validation": {},
+        "certificate_expires_at": "1970-01-01T00:00:00Z"
+      },
+      {
+        "id": "ae98b1c8-5c85-4d71-b065-3b3de1a76a62",
+        "spec": {
+          "domain": "www.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        },
+        "phase": "CONFIGURING",
+        "progress": {
+          "steps": [
+            {
+              "name": "default-ingress-ready",
+              "status": "SUCCESS",
+              "started_at": "2026-04-22T14:01:12.465881173Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-zone",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:50:56.520657888Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-ns-records",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:50:56.533364208Z",
+              "ended_at": "2026-04-26T09:50:56.550449178Z"
+            },
+            {
+              "name": "verify-nameservers",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:50:56.550510973Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-record",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:50:56.594663447Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-alias-record",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:02.237678229Z",
+              "ended_at": "2026-04-26T09:52:02.237694759Z"
+            },
+            {
+              "name": "ensure-wildcard-record",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:02.23772222Z",
+              "ended_at": "2026-04-26T09:52:02.237741196Z"
+            },
+            {
+              "name": "verify-cname",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:02.237765661Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-ssl-txt-record-saved",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:02.277163264Z",
+              "ended_at": "2026-04-26T09:52:02.28426005Z"
+            },
+            {
+              "name": "ensure-ssl-txt-record",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:02.284328567Z",
+              "ended_at": "2026-04-26T09:52:02.284352783Z"
+            },
+            {
+              "name": "ensure-renewal-email",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:02.284384552Z",
+              "ended_at": "2026-04-26T09:52:02.284396574Z"
+            },
+            {
+              "name": "ensure-CA-authorization",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:02.284420679Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-certificate",
+              "status": "RUNNING",
+              "started_at": "2026-04-26T09:52:02.298869587Z",
+              "ended_at": "0001-01-01T00:00:00Z",
+              "reason": {
+                "code": "DomainCertPendingValidation",
+                "message": "Your domain is not yet active because we are validating domain ownership. If this persists for more than 1h, verify DNS records are configured correctly."
+              }
+            },
+            {
+              "name": "create-deployment",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "configuration-alert",
+              "status": "SUCCESS",
+              "started_at": "2026-04-22T14:01:12.466026842Z",
+              "ended_at": "2026-04-22T14:01:12.466041149Z"
+            }
+          ]
+        },
+        "validation": {},
+        "certificate_expires_at": "1970-01-01T00:00:00Z"
+      },
+      {
+        "id": "6af56bf4-2596-4ea5-8268-a28f7a142fce",
+        "spec": {
+          "domain": "api.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        },
+        "phase": "CONFIGURING",
+        "progress": {
+          "steps": [
+            {
+              "name": "default-ingress-ready",
+              "status": "SUCCESS",
+              "started_at": "2026-04-22T14:01:12.517164405Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-zone",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:50:56.670075748Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-ns-records",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:50:56.683668119Z",
+              "ended_at": "2026-04-26T09:50:56.701727215Z"
+            },
+            {
+              "name": "verify-nameservers",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:50:56.701793749Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-record",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:50:56.782528719Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-alias-record",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:03.268715836Z",
+              "ended_at": "2026-04-26T09:52:03.268738117Z"
+            },
+            {
+              "name": "ensure-wildcard-record",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:03.268777491Z",
+              "ended_at": "2026-04-26T09:52:03.268796116Z"
+            },
+            {
+              "name": "verify-cname",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:03.268821343Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-ssl-txt-record-saved",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:03.297127375Z",
+              "ended_at": "2026-04-26T09:52:03.306349852Z"
+            },
+            {
+              "name": "ensure-ssl-txt-record",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:03.30641301Z",
+              "ended_at": "2026-04-26T09:52:03.306440471Z"
+            },
+            {
+              "name": "ensure-renewal-email",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:03.306470717Z",
+              "ended_at": "2026-04-26T09:52:03.306486497Z"
+            },
+            {
+              "name": "ensure-CA-authorization",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:03.306524197Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-certificate",
+              "status": "RUNNING",
+              "started_at": "2026-04-26T09:52:03.315623435Z",
+              "ended_at": "0001-01-01T00:00:00Z",
+              "reason": {
+                "code": "DomainCertPendingValidation",
+                "message": "Your domain is not yet active because we are validating domain ownership. If this persists for more than 1h, verify DNS records are configured correctly."
+              }
+            },
+            {
+              "name": "create-deployment",
+              "status": "PENDING",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "configuration-alert",
+              "status": "SUCCESS",
+              "started_at": "2026-04-22T14:01:12.517607945Z",
+              "ended_at": "2026-04-22T14:01:12.5176269Z"
+            }
+          ]
+        },
+        "validation": {},
+        "certificate_expires_at": "1970-01-01T00:00:00Z"
+      }
+    ],
+    "build_config": {
+      "cnb_versioning": {
+        "buildpacks": [
+          {
+            "id": "digitalocean/custom",
+            "latest": true,
+            "name": "Custom Build Command",
+            "description": [
+              "Run the provided custom build command"
+            ],
+            "docs_link": "https://docs.digitalocean.com/products/app-platform/how-to/build-run-commands/"
+          },
+          {
+            "id": "digitalocean/procfile",
+            "latest": true,
+            "name": "Procfile",
+            "description": [
+              "Configure default run commands from the Procfile if one exists"
+            ]
+          },
+          {
+            "id": "heroku/nodejs",
+            "latest": true,
+            "name": "Node.js",
+            "description": [
+              "Install dependencies using NPM, PNPM or Yarn"
+            ],
+            "docs_link": "https://docs.digitalocean.com/products/app-platform/languages-frameworks/nodejs/"
+          }
+        ],
+        "stack_id": "heroku-22"
+      }
+    },
+    "project_id": "0c6f8901-ae16-49ee-a161-d756527e79cb"
+  }
+]

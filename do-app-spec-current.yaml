@@ -103,11 +103,14 @@ services:
   instance_size_slug: basic-s
   name: ai-service
 - source_dir: frontend
-  build_command: npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 @tailwindcss/oxide-linux-x64-gnu@4.2.4 && npm run build
+  build_command: npm install --legacy-peer-deps autoprefixer@10.4.21 && npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 @tailwindcss/oxide-linux-x64-gnu@4.2.4 && npm run build
   envs:
   - key: NODE_ENV
     scope: RUN_AND_BUILD_TIME
     value: production
+  - key: NPM_CONFIG_PRODUCTION
+    scope: RUN_AND_BUILD_TIME
+    value: "false"
   - key: NEXT_TELEMETRY_DISABLED
     scope: RUN_AND_BUILD_TIME
     value: "1"

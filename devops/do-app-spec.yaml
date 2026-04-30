@@ -7,7 +7,7 @@ services:
       branch: main
       deploy_on_push: true
     source_dir: frontend
-      build_command: npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 @tailwindcss/oxide-linux-x64-gnu@4.2.4 && npm run build
+      build_command: npm install --legacy-peer-deps autoprefixer@10.4.21 && npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 @tailwindcss/oxide-linux-x64-gnu@4.2.4 && npm run build
     instance_size_slug: apps-s-1vcpu-0.5gb
     instance_count: 1
     http_port: 3000
@@ -16,5 +16,7 @@ services:
     envs:
       - key: NODE_ENV
         value: production
+      - key: NPM_CONFIG_PRODUCTION
+        value: "false"
       - key: NEXT_TELEMETRY_DISABLED
         value: "1"

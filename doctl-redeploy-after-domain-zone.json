@@ -1,0 +1,351 @@
+[
+  {
+    "id": "0959d9e9-6735-461e-ad08-d8cd15f9d5d8",
+    "spec": {
+      "name": "megilance",
+      "services": [
+        {
+          "name": "backend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "backend/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8000
+        },
+        {
+          "name": "ai-service",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "dockerfile_path": "ai/Dockerfile",
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 8001
+        },
+        {
+          "name": "frontend",
+          "github": {
+            "repo": "umair-fa22/MegiLance",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "build_command": "npm install --legacy-peer-deps autoprefixer@10.4.21 \u0026\u0026 npm install --legacy-peer-deps --no-save lightningcss-linux-x64-gnu@1.32.0 @tailwindcss/oxide-linux-x64-gnu@4.2.4 \u0026\u0026 npm run build",
+          "source_dir": "frontend",
+          "envs": [
+            {
+              "key": "NODE_ENV",
+              "value": "production",
+              "scope": "RUN_AND_BUILD_TIME"
+            },
+            {
+              "key": "NPM_CONFIG_PRODUCTION",
+              "value": "false",
+              "scope": "RUN_AND_BUILD_TIME"
+            }
+          ],
+          "instance_size_slug": "basic-s",
+          "instance_count": 1,
+          "http_port": 3000
+        }
+      ],
+      "domains": [
+        {
+          "domain": "megilance.site",
+          "type": "PRIMARY",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "www.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        },
+        {
+          "domain": "api.megilance.site",
+          "type": "ALIAS",
+          "zone": "megilance.site"
+        }
+      ],
+      "region": "blr",
+      "ingress": {
+        "rules": [
+          {
+            "match": {
+              "path": {
+                "prefix": "/api"
+              }
+            },
+            "component": {
+              "name": "backend",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/ai-api"
+              }
+            },
+            "component": {
+              "name": "ai-service",
+              "preserve_path_prefix": true
+            }
+          },
+          {
+            "match": {
+              "path": {
+                "prefix": "/"
+              }
+            },
+            "component": {
+              "name": "frontend"
+            }
+          }
+        ]
+      },
+      "features": [
+        "buildpack-stack=ubuntu-22"
+      ]
+    },
+    "services": [
+      {
+        "name": "backend",
+        "source_commit_hash": "1ab70533d1be414befe989eb373793d425067f18"
+      },
+      {
+        "name": "ai-service",
+        "source_commit_hash": "1ab70533d1be414befe989eb373793d425067f18"
+      },
+      {
+        "name": "frontend",
+        "source_commit_hash": "1ab70533d1be414befe989eb373793d425067f18",
+        "buildpacks": [
+          {
+            "id": "heroku/nodejs",
+            "version": "0.341.5",
+            "latest": true,
+            "name": "Node.js",
+            "description": [
+              "Install dependencies using NPM, PNPM or Yarn"
+            ],
+            "docs_link": "https://docs.digitalocean.com/products/app-platform/languages-frameworks/nodejs/"
+          },
+          {
+            "id": "digitalocean/procfile",
+            "version": "0.1.0",
+            "latest": true,
+            "name": "Procfile",
+            "description": [
+              "Configure default run commands from the Procfile if one exists"
+            ]
+          },
+          {
+            "id": "digitalocean/custom",
+            "version": "0.2.0",
+            "latest": true,
+            "name": "Custom Build Command",
+            "description": [
+              "Run the provided custom build command"
+            ],
+            "docs_link": "https://docs.digitalocean.com/products/app-platform/how-to/build-run-commands/"
+          }
+        ]
+      }
+    ],
+    "phase_last_updated_at": "2026-04-26T09:52:34Z",
+    "created_at": "2026-04-26T09:50:52Z",
+    "updated_at": "2026-04-26T09:52:34Z",
+    "cause": "manual",
+    "progress": {
+      "success_steps": 12,
+      "total_steps": 12,
+      "steps": [
+        {
+          "name": "build",
+          "status": "SUCCESS",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:50:55.570026048Z",
+              "ended_at": "2026-04-26T09:50:55.763988673Z"
+            },
+            {
+              "name": "components",
+              "status": "SUCCESS",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "reason": {
+                    "code": "PreviousBuildReused",
+                    "message": "Your previous build was reused."
+                  },
+                  "component_name": "backend",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "reason": {
+                    "code": "PreviousBuildReused",
+                    "message": "Your previous build was reused."
+                  },
+                  "component_name": "ai-service",
+                  "message_base": "Building service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "SUCCESS",
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "reason": {
+                    "code": "PreviousBuildReused",
+                    "message": "Your previous build was reused."
+                  },
+                  "component_name": "frontend",
+                  "message_base": "Building service"
+                }
+              ],
+              "started_at": "2026-04-26T09:50:55.764008791Z",
+              "ended_at": "2026-04-26T09:50:55.764475911Z"
+            }
+          ],
+          "started_at": "2026-04-26T09:50:55.569962088Z",
+          "ended_at": "2026-04-26T09:50:55.764674932Z"
+        },
+        {
+          "name": "deploy",
+          "status": "SUCCESS",
+          "steps": [
+            {
+              "name": "initialize",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:50:57.824993983Z",
+              "ended_at": "2026-04-26T09:51:01.063081445Z"
+            },
+            {
+              "name": "components",
+              "status": "SUCCESS",
+              "steps": [
+                {
+                  "name": "backend",
+                  "status": "SUCCESS",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "SUCCESS",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "SUCCESS",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "backend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "backend"
+                },
+                {
+                  "name": "ai-service",
+                  "status": "SUCCESS",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "SUCCESS",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "SUCCESS",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "ai-service",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "ai-service"
+                },
+                {
+                  "name": "frontend",
+                  "status": "SUCCESS",
+                  "steps": [
+                    {
+                      "name": "deploy",
+                      "status": "SUCCESS",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Deploying service"
+                    },
+                    {
+                      "name": "wait",
+                      "status": "SUCCESS",
+                      "started_at": "0001-01-01T00:00:00Z",
+                      "ended_at": "0001-01-01T00:00:00Z",
+                      "component_name": "frontend",
+                      "message_base": "Waiting for service"
+                    }
+                  ],
+                  "started_at": "0001-01-01T00:00:00Z",
+                  "ended_at": "0001-01-01T00:00:00Z",
+                  "component_name": "frontend"
+                }
+              ],
+              "started_at": "2026-04-26T09:51:01.063098577Z",
+              "ended_at": "2026-04-26T09:52:30.525533935Z"
+            },
+            {
+              "name": "finalize",
+              "status": "SUCCESS",
+              "started_at": "2026-04-26T09:52:31.432828631Z",
+              "ended_at": "2026-04-26T09:52:33.614458153Z"
+            }
+          ],
+          "started_at": "2026-04-26T09:50:57.824980488Z",
+          "ended_at": "2026-04-26T09:52:33.614532541Z"
+        }
+      ]
+    },
+    "phase": "ACTIVE",
+    "tier_slug": "basic",
+    "previous_deployment_id": "9fb55db2-c58b-4222-8ffa-1e3a8b30f398",
+    "cause_details": {
+      "digitalocean_user_action": {
+        "user": {
+          "uuid": "026aaeac-385e-49b5-88c7-52aab76e04ab",
+          "email": "life1umair@gmail.com",
+          "full_name": "umair-fa22"
+        },
+        "name": "CREATE_DEPLOYMENT"
+      },
+      "type": "MANUAL"
+    },
+    "timing": {
+      "pending": "3.570026048s",
+      "build_total": "0.194648884s",
+      "build_billable": "0s"
+    }
+  }
+]

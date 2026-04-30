@@ -1,4 +1,6 @@
-/* @AI-HINT: Enhanced AI Chatbot - Layout, structure, and animations */
+import os
+
+chatbot_css = """/* @AI-HINT: Enhanced AI Chatbot - Layout, structure, and animations */
 
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 @keyframes typing { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
@@ -99,3 +101,97 @@
 .notificationBadge { position: absolute; top: -4px; right: -4px; background: var(--color-error-500, #EF4444); color: white; min-width: 24px; height: 24px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; padding: 0 6px; box-shadow: 0 4px 8px rgba(239, 68, 68, 0.4); border: 2px solid white; }
 .particle { position: absolute; width: 6px; height: 6px; border-radius: 50%; pointer-events: none; }
 .flexCenter { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+"""
+
+modal_css = """/* @AI-HINT: Premium Modal component with glassmorphism, 3D effects, and micro-interactions */
+
+@keyframes overlayFadeIn { from { opacity: 0; backdrop-filter: blur(0); } to { opacity: 1; backdrop-filter: blur(20px); } }
+
+.modalOverlay {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  z-index: var(--z-index-modal, 9999);
+  padding: clamp(10px, 4vw, 32px);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  overflow-y: auto; /* allow scrolling naturally if modal is too tall */
+  -webkit-overflow-scrolling: touch;
+}
+
+.modalContent {
+  position: relative;
+  width: 100%;
+  margin: auto;
+  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  backdrop-filter: blur(40px) saturate(180%);
+  overflow: hidden; /* Hide internal scroll unless needed */
+}
+
+/* Make it responsive fluidly */
+.sizeSmall { max-width: 400px; }
+.sizeMedium { max-width: 560px; }
+.sizeLarge { max-width: 800px; }
+.sizeFullscreen { 
+  max-width: calc(100vw - 32px); 
+  height: calc(100dvh - 32px); 
+}
+
+.modalHeader {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.5rem;
+  flex-shrink: 0; position: relative; z-index: 10;
+}
+
+.modalTitle {
+  font-family: var(--font-heading, 'Poppins', sans-serif);
+  font-size: 1.25rem; font-weight: 600; margin: 0; line-height: 1.3;
+}
+
+.closeButton {
+  background: transparent; border: none; font-size: 18px; line-height: 1; cursor: pointer; padding: 0.5rem; border-radius: 0.75rem; display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s ease;
+}
+.closeButton:hover { transform: scale(1.05); }
+
+.modalBody {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  overflow-y: auto;
+  flex-grow: 1;
+  max-height: calc(100dvh - 180px); /* Leave room for header/padding/margins */
+  scrollbar-width: thin;
+}
+.modalBody::-webkit-scrollbar { width: 6px; }
+.modalBody::-webkit-scrollbar-track { background: transparent; }
+
+.modalFooter {
+  display: flex; justify-content: flex-end; gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  flex-shrink: 0; position: relative; z-index: 10;
+  border-top: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+@media (max-width: 480px) {
+  .modalOverlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+  .modalContent {
+    border-radius: 1.5rem 1.5rem 0 0;
+    max-height: 95dvh;
+    margin: auto auto 0 auto;
+  }
+  .sizeFullscreen {
+    height: 100dvh;
+    border-radius: 0;
+  }
+}
+"""
+
+with open("frontend/app/components/AI/ChatbotAgent/ChatbotAgent.common.module.css", "w") as f:
+    f.write(chatbot_css)
+
+with open("frontend/app/components/organisms/Modal/Modal.common.module.css", "w") as f:
+    f.write(modal_css)
