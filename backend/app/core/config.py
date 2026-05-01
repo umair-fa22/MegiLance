@@ -2,6 +2,7 @@
 from functools import lru_cache
 from typing import Optional
 
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -23,8 +24,8 @@ class Settings(BaseSettings):
     # Database - Turso (libSQL) Remote Database ONLY
     # REQUIRED: Must set TURSO_DATABASE_URL and TURSO_AUTH_TOKEN
     # No local SQLite - all environments use Turso cloud database
-    turso_database_url: str  # Required: Turso database URL (e.g., libsql://your-db.turso.io)
-    turso_auth_token: str  # Required: Turso authentication token
+    turso_database_url: str = Field(..., alias="TURSO_DATABASE_URL")
+    turso_auth_token: str = Field(..., alias="TURSO_AUTH_TOKEN")
     
     # Debug mode for verbose logging
     debug: bool = False
@@ -149,6 +150,7 @@ class Settings(BaseSettings):
         env_file=".env",
         env_file_encoding="utf-8",
         case_sensitive=False,
+        populate_by_name=True,
         extra="ignore",
     )
 
