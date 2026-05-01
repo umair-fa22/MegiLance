@@ -1,72 +1,72 @@
 /* @AI-HINT: Dark theme for enterprise Client Freelancers talent discovery page */
 
-.page { background-color: #0f172a; }
-.title { color: #f8fafc; }
-.subtitle { color: #94a3b8; }
+.page { background-color: var(--bg-primary-dark); }
+.title { color: var(--text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
 
 /* Quick Stats */
-.quickStats { background: #1e293b; border: 1px solid #334155; }
+.quickStats { background: var(--bg-secondary-dark); border: 1px solid var(--border-dark); }
 
 /* Controls */
-.controlsSection { background-color: rgba(30, 41, 59, 0.95); border: 1px solid #334155; }
-.filterToggle { color: #cbd5e1; border-color: #334155; }
-.filterToggle:hover { background: #334155; }
-.viewToggle { border-color: #334155; }
+.controlsSection { background-color: rgba(30, 41, 59, 0.95); border: 1px solid var(--border-dark); }
+.filterToggle { color: var(--text-secondary-dark); border-color: var(--border-dark); }
+.filterToggle:hover { background: var(--border-dark); }
+.viewToggle { border-color: var(--border-dark); }
 .viewBtn { color: #64748b; }
-.viewBtn:hover { color: #e2e8f0; background: #334155; }
-.viewBtnActive { background: #4573df !important; color: #fff !important; }
-.sortDirBtn { color: #cbd5e1; border-color: #334155; }
-.sortDirBtn:hover { background: #334155; }
-.resultText { color: #94a3b8; }
+.viewBtn:hover { color: #e2e8f0; background: var(--border-dark); }
+.viewBtnActive { background: var(--ml-blue) !important; color: #fff !important; }
+.sortDirBtn { color: var(--text-secondary-dark); border-color: var(--border-dark); }
+.sortDirBtn:hover { background: var(--border-dark); }
+.resultText { color: var(--text-tertiary-dark); }
 .clearBtn { color: #f87171; }
 .clearBtn:hover { background: rgba(248, 113, 113, 0.1); }
 
 /* Advanced Filters */
-.advancedFilters { background: #1e293b; border-color: #334155; }
-.filterLabel { color: #94a3b8; }
-.rateInput { border-color: #334155; background: #0f172a; color: #f8fafc; }
-.rateInput:focus { border-color: #4573df; outline: none; }
-.ratingBtn { border-color: #334155; color: #94a3b8; background: #0f172a; }
-.ratingBtn:hover { background: #334155; }
-.ratingBtnActive { background: #4573df !important; color: #fff !important; border-color: #4573df !important; }
-.shortlistToggle { border-color: #334155; color: #cbd5e1; }
-.shortlistToggle:hover { background: #334155; }
-.shortlistToggleActive { background: #4573df !important; color: #fff !important; border-color: #4573df !important; }
+.advancedFilters { background: var(--bg-secondary-dark); border-color: var(--border-dark); }
+.filterLabel { color: var(--text-tertiary-dark); }
+.rateInput { border-color: var(--border-dark); background: var(--bg-primary-dark); color: var(--text-primary-dark); }
+.rateInput:focus { border-color: var(--ml-blue); outline: none; }
+.ratingBtn { border-color: var(--border-dark); color: var(--text-tertiary-dark); background: var(--bg-primary-dark); }
+.ratingBtn:hover { background: var(--border-dark); }
+.ratingBtnActive { background: var(--ml-blue) !important; color: #fff !important; border-color: var(--ml-blue) !important; }
+.shortlistToggle { border-color: var(--border-dark); color: var(--text-secondary-dark); }
+.shortlistToggle:hover { background: var(--border-dark); }
+.shortlistToggleActive { background: var(--ml-blue) !important; color: #fff !important; border-color: var(--ml-blue) !important; }
 
 /* Compare */
 .compareBar { background: rgba(69, 115, 223, 0.1); }
-.comparePanel { background: #1e293b; border: 1px solid #334155; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3); }
-.comparePanelTitle { color: #f8fafc; }
-.closeBtn { color: #94a3b8; }
-.closeBtn:hover { background: #334155; }
-.compareLabelCell { background: #0f172a; color: #94a3b8; border-color: #334155; }
-.compareValueCell { border-color: #334155; color: #f8fafc; }
+.comparePanel { background: var(--bg-secondary-dark); border: 1px solid var(--border-dark); box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3); }
+.comparePanelTitle { color: var(--text-primary-dark); }
+.closeBtn { color: var(--text-tertiary-dark); }
+.closeBtn:hover { background: var(--border-dark); }
+.compareLabelCell { background: var(--bg-primary-dark); color: var(--text-tertiary-dark); border-color: var(--border-dark); }
+.compareValueCell { border-color: var(--border-dark); color: var(--text-primary-dark); }
 
 /* Cards */
 .cardWrapper { }
-.actionBtn { background: rgba(30, 41, 59, 0.95); color: #94a3b8; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
-.actionBtn:hover { color: #4573df; }
-.skeletonCard { background-color: #1e293b; border: 1px solid #334155; }
+.actionBtn { background: rgba(30, 41, 59, 0.95); color: var(--text-tertiary-dark); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
+.actionBtn:hover { color: var(--ml-blue); }
+.skeletonCard { background-color: var(--bg-secondary-dark); border: 1px solid var(--border-dark); }
 
 /* Empty */
-.emptyState { background-color: #1e293b; border: 1px dashed #334155; }
-.emptyState h3 { color: #f8fafc; }
-.emptyState p { color: #94a3b8; }
+.emptyState { background-color: var(--bg-secondary-dark); border: 1px dashed var(--border-dark); }
+.emptyState h3 { color: var(--text-primary-dark); }
+.emptyState p { color: var(--text-tertiary-dark); }
 .error { color: #f87171; }
 
 /* Pagination */
-.paginationInfo { color: #94a3b8; }
-.pageNum { color: #94a3b8; }
-.pageNum:hover { background: #334155; color: #f8fafc; }
-.pageNumActive { background: #4573df !important; color: #fff !important; }
+.paginationInfo { color: var(--text-tertiary-dark); }
+.pageNum { color: var(--text-tertiary-dark); }
+.pageNum:hover { background: var(--border-dark); color: var(--text-primary-dark); }
+.pageNumActive { background: var(--ml-blue) !important; color: #fff !important; }
 
 /* Quick Skill Chips */
-.quickChips { background: #1e293b; border: 1px solid #334155; }
-.quickChipsLabel { color: #94a3b8; }
-.quickChip { background: #0f172a; color: #cbd5e1; border-color: #334155; }
-.quickChip:hover { background: #334155; border-color: #475569; color: #f8fafc; }
-.quickChipActive { background: #4573df !important; color: #fff !important; border-color: #4573df !important; }
-.activeChipsBar { border-color: #334155; }
+.quickChips { background: var(--bg-secondary-dark); border: 1px solid var(--border-dark); }
+.quickChipsLabel { color: var(--text-tertiary-dark); }
+.quickChip { background: var(--bg-primary-dark); color: var(--text-secondary-dark); border-color: var(--border-dark); }
+.quickChip:hover { background: var(--border-dark); border-color: #475569; color: var(--text-primary-dark); }
+.quickChipActive { background: var(--ml-blue) !important; color: #fff !important; border-color: var(--ml-blue) !important; }
+.activeChipsBar { border-color: var(--border-dark); }
 .activeChipsCount { color: #5b8aef; }
 .clearChipsBtn { color: #f87171; }
 .clearChipsBtn:hover { background: rgba(248, 113, 113, 0.1); }

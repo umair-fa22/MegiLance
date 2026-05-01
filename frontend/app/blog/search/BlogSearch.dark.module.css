@@ -1,16 +1,16 @@
 /* BlogSearch.dark.module.css */
 .page {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .searchInput {
-  background: #1e293b;
-  border-color: #334155;
-  color: #f8fafc;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .searchInput:focus {
@@ -19,9 +19,9 @@
 }
 
 .searchIcon {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .emptyState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }

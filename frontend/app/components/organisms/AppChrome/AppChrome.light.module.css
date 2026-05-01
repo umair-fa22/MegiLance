@@ -1,8 +1,8 @@
 /* @AI-HINT: Light theme colors for AppChrome */
 
 .wrapper {
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: var(--bg-secondary-light);
+  color: var(--text-primary-light);
   /* Subtle warm-neutral grain for depth */
   background-image:
     radial-gradient(ellipse 80% 50% at 50% -20%, rgba(69, 115, 223, 0.03), transparent);

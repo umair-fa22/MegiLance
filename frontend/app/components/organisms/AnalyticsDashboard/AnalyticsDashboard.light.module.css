@@ -1,7 +1,7 @@
 /* @AI-HINT: Light theme for analytics dashboard */
 
 .container {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   color: #1a1a1a;
 }
 
@@ -10,13 +10,13 @@
 }
 
 .dateSelect {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #d0d0d0;
   color: #1a1a1a;
 }
 
 .dateSelect:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .metricCard {
@@ -33,7 +33,7 @@
 }
 
 .card {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #e5e5e5;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .chartBarFill {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 .listItem {
@@ -74,5 +74,5 @@
 
 .error {
   background: #fef3f3;
-  border-color: #e81123;
+  border-color: var(--ml-red);
 }

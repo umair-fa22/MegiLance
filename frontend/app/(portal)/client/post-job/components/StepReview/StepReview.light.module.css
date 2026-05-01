@@ -1,38 +1,38 @@
 /* AI-HINT: Light theme styles for the StepReview component. */
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .card {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .card_title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .item_label {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .item_value {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .section_divider {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .section_title {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .description {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }

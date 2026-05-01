@@ -1,41 +1,41 @@
 .container {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .stepIcon {
-  background-color: #ffffff;
-  border: 2px solid #e2e8f0;
-  color: #64748b;
+  background-color: var(--bg-primary-light);
+  border: 2px solid var(--border-light);
+  color: var(--color-text-secondary-light);
 }
 
 .stepLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .connector {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .completed .stepIcon {
-  background-color: #27AE60;
-  border-color: #27AE60;
+  background-color: var(--ml-green);
+  border-color: var(--ml-green);
   color: white;
 }
 
 .completedLabel {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .current .stepIcon {
-  background-color: #4573df;
-  border-color: #4573df;
+  background-color: var(--ml-blue);
+  border-color: var(--ml-blue);
   color: white;
 }
 
 .currentLabel {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .completedConnector {
-  background-color: #27AE60;
+  background-color: var(--ml-green);
 }

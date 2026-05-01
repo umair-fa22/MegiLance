@@ -1,26 +1,26 @@
 /* @AI-HINT: Freelancer Dashboard — dark theme colours */
 
 .dashboardContainer {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
-.welcomeText h1 { color: #f8fafc; }
-.welcomeText p   { color: #94a3b8; }
+.welcomeText h1 { color: var(--text-primary-dark); }
+.welcomeText p   { color: var(--text-tertiary-dark); }
 
 /* ── Availability & Progress ────────── */
 .availabilityBadge { background-color: rgba(39,174,96,0.2); color: #4ade80; }
 .progressTrack { background-color: rgba(128,128,128,0.3); }
-.progressLabel { color: #94a3b8; }
+.progressLabel { color: var(--text-tertiary-dark); }
 .progressLink { color: #60a5fa; }
 
 /* ── Section titles & links ─────────── */
-.sectionTitle { color: #f8fafc; }
+.sectionTitle { color: var(--text-primary-dark); }
 .viewAllLink  { color: #60a5fa; }
 
 /* ── Quick Actions ──────────────────── */
 .quickActionCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 2px rgba(0,0,0,0.15);
 }
 .quickActionCard:hover {
@@ -31,18 +31,18 @@
 
 /* ── Proposal cards ─────────────────── */
 .proposalCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 .proposalCard:hover {
   border-color: #475569;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
-.proposalTitle { color: #f8fafc; }
+.proposalTitle { color: var(--text-primary-dark); }
 .proposalDate  { color: #64748b; }
 .proposalStatus {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 /* ── Quick Action Description ───────── */
@@ -50,20 +50,20 @@
 
 /* ── Metrics Row ────────────────────── */
 .metricCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
-.metricStatValue { color: #f1f5f9; }
-.metricStatLabel { color: #94a3b8; }
+.metricStatValue { color: var(--color-text-primary-dark); }
+.metricStatLabel { color: var(--text-tertiary-dark); }
 .metricHint { color: #64748b; }
 
 /* ── Timeline Section ───────────────── */
-.timelineSection { border-color: #334155; }
+.timelineSection { border-color: var(--border-dark); }
 
 /* ── Alert Cards ────────────────────── */
 .alertCard {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .alertCard-warning {
@@ -84,8 +84,8 @@
   color: #60a5fa;
 }
 
-.alertTitle { color: #f8fafc; }
-.alertMessage { color: #cbd5e1; }
+.alertTitle { color: var(--text-primary-dark); }
+.alertMessage { color: var(--text-secondary-dark); }
 .alertAction { color: #60a5fa; }
 \n
 .glassPanel {

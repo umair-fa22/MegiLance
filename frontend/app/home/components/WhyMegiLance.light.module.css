@@ -1,7 +1,7 @@
 /* @AI-HINT: Light theme specific styles for WhyMegiLance component. Defines color palette, text colors, backgrounds, and visual elements for light mode. */
 
 .section {
-  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  background: linear-gradient(180deg, var(--bg-primary-light) 0%, var(--bg-secondary-light) 100%);
 }
 
 .bgBlob1 {
@@ -23,11 +23,11 @@
 }
 
 .badge {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .badgeDot {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
 }
 
 .badgeText {
@@ -54,7 +54,7 @@
 
 .valueCard:hover {
   background: rgba(255, 255, 255, 0.9);
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 
     0 20px 40px -5px rgba(69, 115, 223, 0.15),
     0 10px 20px -5px rgba(0, 0, 0, 0.05);
@@ -65,7 +65,7 @@
 }
 
 .cardSubtitle {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .cardDescription {
@@ -77,13 +77,13 @@
 }
 
 .cardCta {
-  color: #4573df;
-  border-color: #4573df;
+  color: var(--ml-blue);
+  border-color: var(--ml-blue);
 }
 
 .cardCta:hover {
-  background: #4573df;
-  color: #ffffff;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
   box-shadow: 0 10px 20px rgba(69, 115, 223, 0.2);
 }
 
@@ -103,8 +103,8 @@
 }
 
 .trustBadge:hover {
-  background: #ffffff;
-  border-color: #4573df;
+  background: var(--bg-primary-light);
+  border-color: var(--ml-blue);
   box-shadow: 0 10px 20px rgba(69, 115, 223, 0.1);
 }
 

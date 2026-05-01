@@ -1,35 +1,35 @@
 /* @AI-HINT: Currency Settings page - dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .loading {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Panels */
 .settingsPanel,
 .converterPanel {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .ratesPanel {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .sectionTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 /* Form */
@@ -39,21 +39,21 @@
 
 .select,
 .input {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .select:focus,
 .input:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2);
 }
 
 .selectSmall {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 /* Toggle */
@@ -62,20 +62,20 @@
 }
 
 .toggle input:checked + .toggleSlider {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
 }
 
 .toggleLabel {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .toggleHint {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Save Button */
 .saveButton {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -85,8 +85,8 @@
 
 /* Converter */
 .swapButton {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .swapButton:hover {
@@ -94,18 +94,18 @@
 }
 
 .rateInfo {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Rates */
 .searchInput {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .searchInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .searchInput::placeholder {
@@ -117,35 +117,35 @@
 }
 
 .tableHeader {
-  background-color: #0f172a;
-  color: #94a3b8;
+  background-color: var(--bg-primary-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .tableRow {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .tableRow:hover {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .currencySymbol {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .currencyCode {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .currencyName {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .rate {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .converted {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }

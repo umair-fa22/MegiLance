@@ -1,18 +1,18 @@
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .card {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .card:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .jobTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .matchScore {
@@ -21,10 +21,10 @@
 }
 
 .budget {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .skill {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }

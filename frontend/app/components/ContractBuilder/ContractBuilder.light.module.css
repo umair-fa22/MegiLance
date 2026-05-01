@@ -4,25 +4,25 @@
 }
 
 .panel {
-  background-color: var(--card, #ffffff);
+  background-color: var(--card, var(--bg-primary-light));
   border: 1px solid var(--border, #e4e4e7);
 }
 
 .input, .select, .textarea {
-  background-color: var(--background, #ffffff);
+  background-color: var(--background, var(--bg-primary-light));
   border-color: var(--border, #e4e4e7);
   color: var(--foreground, #09090b);
 }
 
 .input:focus, .select:focus, .textarea:focus {
-  border-color: var(--primary, #4573df);
+  border-color: var(--primary, var(--ml-blue));
   outline: none;
   box-shadow: 0 0 0 2px rgba(69, 115, 223, 0.2);
 }
 
 .button {
-  background-color: var(--primary, #4573df);
-  color: #ffffff;
+  background-color: var(--primary, var(--ml-blue));
+  color: var(--bg-primary-light);
 }
 
 .button:hover:not(:disabled) {
@@ -30,7 +30,7 @@
 }
 
 .preview {
-  background-color: #f8fafc; /* slate-50 */
+  background-color: var(--bg-secondary-light); /* slate-50 */
   border: 1px solid var(--border, #e4e4e7);
   color: #334155; /* slate-700 */
 }

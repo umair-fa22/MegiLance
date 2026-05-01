@@ -9,8 +9,8 @@
 }
 
 .searchInput {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
   color: #ffffff;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .searchInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .searchIcon {
@@ -27,16 +27,16 @@
 }
 
 .conversationList {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .conversationButton {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .conversationButton:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .emptyIcon {
@@ -44,7 +44,7 @@
 }
 
 .emptyTitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .emptySubtitle {
@@ -61,13 +61,13 @@
 }
 
 .timestamp {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .lastMessage {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .spinner {
-  color: #4573df;
+  color: var(--ml-blue);
 }

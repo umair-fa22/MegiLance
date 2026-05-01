@@ -1,7 +1,7 @@
 /* @AI-HINT: Referral page light theme colors */
 
 .container {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .title {
@@ -9,7 +9,7 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Tier Card */
@@ -19,7 +19,7 @@
 }
 
 .tierLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tierName {
@@ -31,7 +31,7 @@
 }
 
 .tierProgressLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tierProgressValue {
@@ -39,21 +39,21 @@
 }
 
 .tierProgressBar {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .tierProgressFill {
-  background: linear-gradient(90deg, #4573df, #3b82f6);
+  background: linear-gradient(90deg, var(--ml-blue), #3b82f6);
 }
 
 .tierPerk {
   background-color: #f0f4ff;
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Code Card */
 .codeCard {
-  background: linear-gradient(135deg, #4573df, #3b5fc7);
+  background: linear-gradient(135deg, var(--ml-blue), #3b5fc7);
   color: white;
 }
 
@@ -97,7 +97,7 @@
 }
 
 .statLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Funnel */
@@ -111,7 +111,7 @@
 }
 
 .funnelStepLabel {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .funnelStepValue {
@@ -119,11 +119,11 @@
 }
 
 .funnelBar {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .funnelBarFill {
-  background: linear-gradient(90deg, #4573df, #3b82f6);
+  background: linear-gradient(90deg, var(--ml-blue), #3b82f6);
 }
 
 /* Milestone */
@@ -137,12 +137,12 @@
 }
 
 .milestoneProgress span {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .milestoneItem {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .milestoneAchieved {
@@ -161,8 +161,8 @@
 }
 
 .shareLinkInput {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .shareInput {
@@ -170,7 +170,7 @@
 }
 
 .copyLinkBtn {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: white;
 }
 
@@ -200,21 +200,21 @@
 
 /* Tabs */
 .tabs {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .tab {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tab:hover {
   background-color: rgba(69, 115, 223, 0.06);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .tabActive {
   background-color: white;
-  color: #4573df;
+  color: var(--ml-blue);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
@@ -229,12 +229,12 @@
 }
 
 .stepNumber {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: white;
 }
 
 .stepIcon {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .step h4 {
@@ -242,12 +242,12 @@
 }
 
 .step p {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Tiers Overview */
 .tiersOverview {
-  border-top-color: #e2e8f0;
+  border-top-color: var(--border-light);
 }
 
 .tiersOverview h4 {
@@ -255,13 +255,13 @@
 }
 
 .tierItem {
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .tierItemActive {
   background-color: #f0f4ff;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 2px 8px rgba(69, 115, 223, 0.15);
 }
 
@@ -274,7 +274,7 @@
 }
 
 .tierItemReq {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Referrals Card */
@@ -288,29 +288,29 @@
 }
 
 .filterBtn {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .filterBtn:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .filterBtnActive {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: white;
 }
 
 .emptyState {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .referralItem {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .referralAvatar {
   background-color: #e8ecf4;
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .referralEmail {
@@ -318,7 +318,7 @@
 }
 
 .referralDate {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .rewardPaid {
@@ -336,12 +336,12 @@
 }
 
 .rewardBox {
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .rewardBox span {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .rewardTotal strong {
@@ -353,7 +353,7 @@
 }
 
 .rewardAvailable strong {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Reward History */
@@ -367,7 +367,7 @@
 }
 
 .rewardHistoryItem {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .rewardHistoryIcon {
@@ -380,7 +380,7 @@
 }
 
 .rewardHistoryDate {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .rewardHistoryAmount {
@@ -398,7 +398,7 @@
 }
 
 .leaderboardEntry {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .leaderboardEntryCurrent {
@@ -407,8 +407,8 @@
 }
 
 .leaderboardRank {
-  background-color: #e2e8f0;
-  color: #475569;
+  background-color: var(--border-light);
+  color: var(--text-secondary-light);
 }
 
 .leaderboardName {
@@ -416,12 +416,12 @@
 }
 
 .leaderboardStats {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .leaderboardNote {
-  background-color: #f1f5f9;
-  color: #64748b;
+  background-color: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 /* Modal */
@@ -431,25 +431,25 @@
 }
 
 .modalHeader {
-  border-bottom-color: #e2e8f0;
+  border-bottom-color: var(--border-light);
   color: #1a202c;
 }
 
 .modalClose {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .modalClose:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #1a202c;
 }
 
 .modalFooter {
-  border-top-color: #e2e8f0;
+  border-top-color: var(--border-light);
 }
 
 .formLabel {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .removeEmailBtn {
@@ -461,7 +461,7 @@
 }
 
 .addEmailBtn {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .addEmailBtn:hover {
@@ -470,12 +470,12 @@
 
 .messageTextarea {
   background-color: white;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #1a202c;
 }
 
 .messageTextarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .inviteForm {

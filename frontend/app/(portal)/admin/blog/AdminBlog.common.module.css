@@ -11,10 +11,10 @@
 .statCard { display: flex; align-items: center; gap: 1rem; padding: 1.25rem; border-radius: 14px; transition: transform 0.2s, box-shadow 0.2s; }
 .statCard:hover { transform: translateY(-2px); }
 .statIcon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.statIconTotal { background: rgba(69, 115, 223, 0.12); color: var(--color-primary, #4573df); }
-.statIconPublished { background: rgba(39, 174, 96, 0.12); color: var(--color-success, #27AE60); }
+.statIconTotal { background: rgba(69, 115, 223, 0.12); color: var(--color-primary, var(--ml-blue)); }
+.statIconPublished { background: rgba(39, 174, 96, 0.12); color: var(--color-success, var(--ml-green)); }
 .statIconDraft { background: rgba(242, 201, 76, 0.12); color: #d4a017; }
-.statIconTrending { background: rgba(255, 152, 0, 0.12); color: var(--color-accent, #ff9800); }
+.statIconTrending { background: rgba(255, 152, 0, 0.12); color: var(--color-accent, var(--ml-orange)); }
 .statContent { display: flex; flex-direction: column; }
 .statValue { font-size: 1.5rem; font-weight: 700; line-height: 1.2; }
 .statLabel { font-size: 0.82rem; opacity: 0.6; margin-top: 2px; }
@@ -24,7 +24,7 @@
 .searchWrapper { position: relative; flex: 1; min-width: 200px; }
 .searchIcon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: 0.4; pointer-events: none; }
 .searchInput { width: 100%; padding: 0.65rem 0.75rem 0.65rem 2.5rem; border-radius: 10px; border: 1.5px solid transparent; font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
-.searchInput:focus { border-color: var(--color-primary, #4573df); box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.12); }
+.searchInput:focus { border-color: var(--color-primary, var(--ml-blue)); box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.12); }
 .filterTabs { display: flex; gap: 0.25rem; background: rgba(0,0,0,0.04); border-radius: 10px; padding: 3px; }
 .filterTab { padding: 0.45rem 1rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.85rem; font-weight: 500; background: transparent; transition: transform 0.2s,
     box-shadow 0.2s,
@@ -33,7 +33,7 @@
     color 0.2s,
     opacity 0.2s; display: flex; align-items: center; gap: 0.4rem; }
 .filterTabActive { box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-.filterCount { font-size: 0.75rem; padding: 1px 6px; border-radius: 10px; background: rgba(69, 115, 223, 0.12); color: var(--color-primary, #4573df); font-weight: 600; }
+.filterCount { font-size: 0.75rem; padding: 1px 6px; border-radius: 10px; background: rgba(69, 115, 223, 0.12); color: var(--color-primary, var(--ml-blue)); font-weight: 600; }
 
 /* Post Cards */
 .postsList { display: flex; flex-direction: column; gap: 0.5rem; }
@@ -51,11 +51,11 @@
 
 /* Delete Modal */
 .deleteModalContent { text-align: center; padding: 1rem 0; }
-.deleteIcon { margin: 0 auto 1rem; color: var(--color-error, #e81123); opacity: 0.8; }
+.deleteIcon { margin: 0 auto 1rem; color: var(--color-error, var(--ml-red)); opacity: 0.8; }
 .confirmText { margin-bottom: 1.5rem; line-height: 1.6; text-align: center; }
 .modalActions { display: flex; justify-content: flex-end; gap: 0.75rem; }
 
 .searchInput:focus-visible {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
 }

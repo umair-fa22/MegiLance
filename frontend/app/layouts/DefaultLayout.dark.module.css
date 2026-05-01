@@ -1,6 +1,6 @@
 /* @AI-HINT: Dark theme colors for DefaultLayout */
 
 .layout {
-  background-color: #0f172a;
-  color: #f8fafc;
+  background-color: var(--bg-primary-dark);
+  color: var(--text-primary-dark);
 }

@@ -38,7 +38,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background-color: var(--color-success, #27AE60);
+  background-color: var(--color-success, var(--ml-green));
   flex-shrink: 0;
   box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.15), 0 0 8px rgba(39, 174, 96, 0.3);
   animation: statusPulse 3s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;

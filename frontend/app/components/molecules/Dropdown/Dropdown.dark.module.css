@@ -1,14 +1,14 @@
 .themeWrapper {
-  --dropdown-bg: #1e293b;
-  --dropdown-border-color: #334155;
+  --dropdown-bg: var(--bg-secondary-dark);
+  --dropdown-border-color: var(--border-dark);
   --dropdown-border-color-hover: #475569;
   --dropdown-shadow-focus: 0 6px 24px rgba(107, 147, 245, 0.3);
-  --dropdown-text-color: #f1f5f9;
-  --dropdown-caret-color: #6b93f5;
+  --dropdown-text-color: var(--color-text-primary-dark);
+  --dropdown-caret-color: var(--ml-blue-light);
   --dropdown-option-hover-bg: rgba(107, 147, 245, 0.12);
   --dropdown-option-focused-bg: rgba(107, 147, 245, 0.18);
   --dropdown-option-focused-text: #a5d6ff;
   --dropdown-option-selected-bg: rgba(107, 147, 245, 0.15);
-  --dropdown-disabled-bg: #0f172a;
+  --dropdown-disabled-bg: var(--bg-primary-dark);
   --dropdown-disabled-text: #64748b;
 }

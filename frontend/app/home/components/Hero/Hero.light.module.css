@@ -1,6 +1,6 @@
 .hero {
   background: white;
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .content {
@@ -8,31 +8,31 @@
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .highlight {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .badge {
-  background: #f1f5f9;
-  color: #4573df;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-tertiary-light);
+  color: var(--ml-blue);
+  border: 1px solid var(--border-light);
 }
 
 .stats {
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--border-light);
 }
 
 .statValue {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .statLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }

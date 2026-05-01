@@ -1,32 +1,32 @@
 /* @AI-HINT: Dark theme colors for enhanced price estimator */
 
 .container {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(135deg, var(--bg-primary-dark) 0%, var(--bg-secondary-dark) 100%);
 }
 
 /* Header */
 .headerIcon {
-  background: linear-gradient(135deg, #3b62c7 0%, #4573df 100%);
+  background: linear-gradient(135deg, #3b62c7 0%, var(--ml-blue) 100%);
   color: #ffffff;
   box-shadow: 0 4px 16px rgba(69, 115, 223, 0.4);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Form Card */
 .formCard {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .formHeader {
-  border-bottom-color: #334155;
+  border-bottom-color: var(--border-dark);
 }
 
 .formIconWrapper {
@@ -35,11 +35,11 @@
 }
 
 .formTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .formSubtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .label {
@@ -52,9 +52,9 @@
 }
 
 .textarea {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .textarea::placeholder {
@@ -62,7 +62,7 @@
 }
 
 .textarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2);
 }
 
@@ -89,11 +89,11 @@
 
 /* Submit Section */
 .submitSection {
-  border-top-color: #334155;
+  border-top-color: var(--border-dark);
 }
 
 .submitButton {
-  background: linear-gradient(135deg, #3b62c7 0%, #4573df 100%);
+  background: linear-gradient(135deg, #3b62c7 0%, var(--ml-blue) 100%);
   color: #ffffff;
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.4);
 }
@@ -103,12 +103,12 @@
 }
 
 .privacyNote {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Results Panel */
 .resultsPanel {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
 }
@@ -120,15 +120,15 @@
 }
 
 .emptyStateTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .emptyStateText {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .feature {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
   border: 1px solid #475569;
 }
@@ -139,20 +139,20 @@
 }
 
 .loadingOrbInner {
-  background: linear-gradient(135deg, #3b62c7 0%, #4573df 100%);
+  background: linear-gradient(135deg, #3b62c7 0%, var(--ml-blue) 100%);
   color: #ffffff;
 }
 
 .loadingTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .loadingText {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .loadingStep {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .loadingStep.completed {
@@ -169,7 +169,7 @@
 
 /* Price Header */
 .priceHeader {
-  background: linear-gradient(135deg, #3b62c7 0%, #4573df 100%);
+  background: linear-gradient(135deg, #3b62c7 0%, var(--ml-blue) 100%);
   color: #ffffff;
 }
 
@@ -199,16 +199,16 @@
 
 /* Breakdown Section */
 .breakdownSection {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .breakdownTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .breakdownItem {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .breakdownItemIcon {
@@ -221,35 +221,35 @@
 }
 
 .breakdownItemValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .progressBar {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #3b62c7 0%, #4573df 100%);
+  background: linear-gradient(90deg, #3b62c7 0%, var(--ml-blue) 100%);
 }
 
 /* Factors Section */
 .factorsSection {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .factorsTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .factorCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .factorImpact {
-  background-color: #334155;
-  color: #94a3b8;
+  background-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .factorPositive {
@@ -263,11 +263,11 @@
 }
 
 .factorValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .factorLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Actions */
@@ -276,7 +276,7 @@
 }
 
 .actionButton {
-  background: linear-gradient(135deg, #3b62c7 0%, #4573df 100%);
+  background: linear-gradient(135deg, #3b62c7 0%, var(--ml-blue) 100%);
   color: #ffffff;
   box-shadow: 0 2px 8px rgba(69, 115, 223, 0.35);
 }
@@ -286,7 +286,7 @@
 }
 
 .actionButton.secondary {
-  background: #334155;
+  background: var(--border-dark);
   color: #e2e8f0;
   box-shadow: none;
 }
@@ -298,7 +298,7 @@
 
 /* Disclaimer */
 .disclaimer {
-  background-color: #0f172a;
-  color: #94a3b8;
-  border: 1px solid #334155;
+  background-color: var(--bg-primary-dark);
+  color: var(--text-tertiary-dark);
+  border: 1px solid var(--border-dark);
 }

@@ -251,7 +251,7 @@
 .techRole {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 0.5rem;

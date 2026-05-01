@@ -1,24 +1,24 @@
 /* @AI-HINT: Workflow Automation page - light theme colors */
 
 .container {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .loading {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .title {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .createButton {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .createButton:hover {
@@ -27,41 +27,41 @@
 
 /* Tabs */
 .tabs {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .tab {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tab:hover {
-  background-color: #f1f5f9;
-  color: #1e293b;
+  background-color: var(--bg-tertiary-light);
+  color: var(--color-text-primary-light);
 }
 
 .tabActive {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 /* Empty State */
 .emptyState {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .emptyState h3 {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .emptyState p {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Workflow Card */
 .workflowCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .workflowCard:hover {
@@ -69,11 +69,11 @@
 }
 
 .workflowName {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .workflowDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Toggle */
@@ -82,7 +82,7 @@
 }
 
 .toggle input:checked + .toggleSlider {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
 }
 
 .trigger {
@@ -91,21 +91,21 @@
 }
 
 .actionCount {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .workflowStats {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .editButton {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .editButton:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .testButton {
@@ -128,20 +128,20 @@
 
 /* Template Card */
 .templateCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .templateCategory {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .templateName {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .templateDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .templateTrigger {
@@ -154,8 +154,8 @@
 }
 
 .useButton {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .useButton:hover {
@@ -164,88 +164,88 @@
 
 /* Logs */
 .logsPanel {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .logItem {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .logWorkflow {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .logTime {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .viewLogButton {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .viewLogButton:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 /* Modal */
 .modal {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .modalHeader {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .modalTitle {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .closeButton {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .closeButton:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .label {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .input,
 .select,
 .textarea {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
-  color: #1e293b;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--color-text-primary-light);
 }
 
 .input:focus,
 .select:focus,
 .textarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 .modalActions {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .cancelButton {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .cancelButton:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .saveButton {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .saveButton:hover:not(:disabled) {

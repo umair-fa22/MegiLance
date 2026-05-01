@@ -1,5 +1,5 @@
 .testimonials {
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  background: linear-gradient(180deg, var(--bg-secondary-light) 0%, var(--bg-primary-light) 100%);
 }
 
 .title {

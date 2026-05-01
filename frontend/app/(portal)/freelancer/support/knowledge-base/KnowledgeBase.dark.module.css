@@ -1,11 +1,11 @@
 /* @AI-HINT: Knowledge base dark theme */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .loading {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Hero */
@@ -23,9 +23,9 @@
 
 /* Search */
 .searchInput {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border-color: rgba(255, 255, 255, 0.2);
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .searchInput::placeholder {
@@ -38,7 +38,7 @@
 
 .searchButton {
   background-color: #60a5fa;
-  color: #0f172a;
+  color: var(--bg-primary-dark);
 }
 
 .searchButton:hover {
@@ -47,7 +47,7 @@
 
 /* Breadcrumb */
 .breadcrumb {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .breadcrumbLink {
@@ -63,7 +63,7 @@
 }
 
 .breadcrumbCurrent {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
   font-weight: 500;
 }
 
@@ -73,26 +73,26 @@
 
 /* Section Title */
 .sectionTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 /* Category Card */
 .categoryCard {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .categoryCard:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
   transform: translateY(-2px);
 }
 
 .categoryName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .categoryDescription {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .articleCount {
@@ -101,24 +101,24 @@
 
 /* Popular Item */
 .popularItem {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .popularItem:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .popularRank {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
 .popularTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .popularExcerpt {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .popularViews {
@@ -127,19 +127,19 @@
 
 /* Support Section */
 .supportSection {
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  background: linear-gradient(135deg, var(--bg-secondary-dark) 0%, var(--border-dark) 100%);
 }
 
 .supportSection h2 {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .supportSection p {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .supportButton {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
   border: none;
 }
@@ -160,19 +160,19 @@
 
 /* Article Card */
 .articleCard {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .articleCard:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .articleCardTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .articleCardExcerpt {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .articleCardMeta {
@@ -181,11 +181,11 @@
 
 /* No Results */
 .noResults {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .clearButton {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -195,7 +195,7 @@
 
 /* Article View */
 .backButton {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -204,20 +204,20 @@
 }
 
 .article {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .articleHeader {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .articleTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .articleMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .articleContent {
@@ -225,22 +225,22 @@
 }
 
 .articleFooter {
-  background-color: #0f172a;
-  border-color: #334155;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
 }
 
 .articleFooter p {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .feedbackButton {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border-color: #475569;
   color: #e2e8f0;
 }
 
 .feedbackButton:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
   border-color: #60a5fa;
   color: #60a5fa;
 }

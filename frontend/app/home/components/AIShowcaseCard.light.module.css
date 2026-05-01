@@ -10,12 +10,12 @@
 
 .iconWrapper {
   background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .card:hover .iconWrapper {
-  background: #4573df;
-  color: #ffffff;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .title {
@@ -28,7 +28,7 @@
 
 .stats {
   background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .learnMore {
@@ -37,6 +37,6 @@
 }
 
 .card:hover .learnMore {
-  background: #4573df;
-  color: #ffffff;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
 }

@@ -1,1 +1,1 @@
-/* Dark theme */ .container { background: #0f1419; } .title { color: #f1f5f9; } .subtitle { color: #94a3b8; } .overallStatus { } .serviceCard { background: #1a1f2e; border: 1px solid #1e293b; } .statValue { color: #f1f5f9; }
+/* Dark theme */ .container { background: #0f1419; } .title { color: var(--color-text-primary-dark); } .subtitle { color: var(--text-tertiary-dark); } .overallStatus { } .serviceCard { background: #1a1f2e; border: 1px solid var(--bg-secondary-dark); } .statValue { color: var(--color-text-primary-dark); }

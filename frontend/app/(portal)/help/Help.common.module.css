@@ -100,7 +100,7 @@
 }
 
 .searchInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
 }
 
@@ -334,7 +334,7 @@
 .textButton {
   background: none;
   border: none;
-  color: #4573df;
+  color: var(--ml-blue);
   cursor: pointer;
   text-decoration: underline;
   font-weight: 500;
@@ -425,7 +425,7 @@
 }
 
 .statusGreen {
-  color: #27AE60;
+  color: var(--ml-green);
 }
 
 .statusText {
@@ -526,7 +526,7 @@
 }
 
 .formInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
 }
 
@@ -543,7 +543,7 @@
 }
 
 .formTextarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
 }
 
@@ -696,12 +696,12 @@
 
 /* Accessible focus styles */
 .card:focus-visible {
-  outline: 2px solid var(--ml-blue, #4573df);
+  outline: 2px solid var(--ml-blue, var(--ml-blue));
   outline-offset: 3px;
 }
 
 .button:focus-visible {
-  outline: 2px solid var(--ml-blue, #4573df);
+  outline: 2px solid var(--ml-blue, var(--ml-blue));
   outline-offset: 2px;
 }
 

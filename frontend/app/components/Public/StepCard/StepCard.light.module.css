@@ -24,7 +24,7 @@
     rgba(69, 115, 223, 0.08) 0%,
     rgba(155, 89, 182, 0.05) 100%
   );
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .stepCardContainer:hover .iconWrapper {
@@ -36,7 +36,7 @@
 }
 
 .number {
-  color: #4573df;
+  color: var(--ml-blue);
   background: linear-gradient(
     135deg,
     rgba(69, 115, 223, 0.1) 0%,
@@ -46,9 +46,9 @@
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .description {
-  color: #475569;
+  color: var(--text-secondary-light);
 }

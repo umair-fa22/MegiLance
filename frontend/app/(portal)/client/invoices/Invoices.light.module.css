@@ -1,6 +1,6 @@
 /* @AI-HINT: Light theme colors for Client Invoices page */
 .container {
-  background: #f8fafc;
+  background: var(--bg-secondary-light);
 }
 
 .title {
@@ -8,12 +8,12 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .statCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .statValue {
@@ -21,34 +21,34 @@
 }
 
 .filters {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .searchInput {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #1a1a2e;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .filterSelect {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #1a1a2e;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .tableWrapper {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .tableRow:hover {
-  background: #f8fafc;
+  background: var(--bg-secondary-light);
 }
 
 .table th {
-  background: #f1f5f9;
-  color: #64748b;
+  background: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .table td {

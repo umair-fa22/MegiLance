@@ -1,11 +1,11 @@
 ﻿/* @AI-HINT: Dark theme styles for the FreelancerSidebarNav component. */
 .navLink {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .navLink:hover {
-  background-color: #1e293b;
-  color: #f8fafc;
+  background-color: var(--bg-secondary-dark);
+  color: var(--text-primary-dark);
 }
 
 .active {

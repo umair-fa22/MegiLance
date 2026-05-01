@@ -60,11 +60,11 @@
   flex-shrink: 0;
 }
 
-.iconBlue { background: rgba(69, 115, 223, 0.1); color: var(--color-primary, #4573df); }
-.iconGreen { background: rgba(39, 174, 96, 0.1); color: var(--color-success, #27AE60); }
-.iconOrange { background: rgba(255, 152, 0, 0.1); color: var(--color-accent, #ff9800); }
+.iconBlue { background: rgba(69, 115, 223, 0.1); color: var(--color-primary, var(--ml-blue)); }
+.iconGreen { background: rgba(39, 174, 96, 0.1); color: var(--color-success, var(--ml-green)); }
+.iconOrange { background: rgba(255, 152, 0, 0.1); color: var(--color-accent, var(--ml-orange)); }
 .iconPurple { background: rgba(147, 51, 234, 0.1); color: #9333ea; }
-.iconRed { background: rgba(232, 17, 35, 0.1); color: var(--color-error, #e81123); }
+.iconRed { background: rgba(232, 17, 35, 0.1); color: var(--color-error, var(--ml-red)); }
 
 .statInfo { display: flex; flex-direction: column; }
 .statValue { font-size: 1.35rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
@@ -252,7 +252,7 @@
   background: rgba(232, 17, 35, 0.08);
   border: 1px solid rgba(232, 17, 35, 0.2);
   border-radius: 10px;
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
 }

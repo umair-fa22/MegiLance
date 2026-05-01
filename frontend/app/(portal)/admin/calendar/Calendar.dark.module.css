@@ -5,11 +5,11 @@
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .calendar_container {
@@ -27,16 +27,16 @@
 }
 
 .month_year {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .weekday {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .day_cell {
   background: #1a1a2e;
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .day_cell:hover:not(.empty_cell) {
@@ -50,16 +50,16 @@
 .today {
   background: #4573df25;
   color: #6b9aff;
-  border: 2px solid #4573df;
+  border: 2px solid var(--ml-blue);
 }
 
 .selected {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #ffffff;
 }
 
 .selected.today {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -91,32 +91,32 @@
 }
 
 .panel_title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .no_events {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .event_icon {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .event_time {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .event_title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .event_description {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .event_type_badge {
   background: #2a2a4a;
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 /* Upcoming */
@@ -133,7 +133,7 @@
 }
 
 .upcoming_title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 /* Loading and Error States */

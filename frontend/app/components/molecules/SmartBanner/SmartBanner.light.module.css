@@ -1,5 +1,5 @@
 /* @AI-HINT: SmartBanner light */
-.banner { background: linear-gradient(90deg, #4573df, #6b5ce7); }
+.banner { background: linear-gradient(90deg, var(--ml-blue), #6b5ce7); }
 .bannerText { color: #fff; }
 .bannerCta { color: #fff; background: rgba(255,255,255,0.2); padding: 0.3rem 0.75rem; border-radius: 100px; }
 .bannerCta:hover { background: rgba(255,255,255,0.35); }

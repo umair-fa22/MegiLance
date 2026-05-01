@@ -1,11 +1,11 @@
 /* @AI-HINT: Light theme variables for the RankGauge component. */
 
 .fill {
-  background-color: #4573df; /* brand-primary */
+  background-color: var(--ml-blue); /* brand-primary */
 }
 
 .cover {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 
 .score {

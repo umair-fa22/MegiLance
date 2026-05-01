@@ -556,7 +556,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   flex-shrink: 0;
 }
 
@@ -593,11 +593,11 @@
 }
 
 .priority_low {
-  border-left-color: #94a3b8;
+  border-left-color: var(--text-tertiary-light);
 }
 
 .priority_normal {
-  border-left-color: #4573df;
+  border-left-color: var(--ml-blue);
 }
 
 .priority_high {

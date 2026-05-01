@@ -1,11 +1,11 @@
 ﻿/* @AI-HINT: Dark theme styles for the DatePicker component with enhanced visual effects. */
 
 .datePickerWrapper {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .label {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .required {
@@ -14,7 +14,7 @@
 
 .inputContainer {
   border-color: rgba(55, 65, 81, 0.7);
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .inputContainer:hover:not(.disabled) {
@@ -22,15 +22,15 @@
 }
 
 .inputIcon {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .inputText {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .clearIcon:hover {
@@ -38,7 +38,7 @@
 }
 
 .calendarContainer {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border: 1px solid rgba(55, 65, 81, 0.7);
 }
 
@@ -48,7 +48,7 @@
 
 .presetButton {
   border-color: rgba(55, 65, 81, 0.7);
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .presetButton:hover {
@@ -65,7 +65,7 @@
 }
 
 .monthYear {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .dayNames {
@@ -73,11 +73,11 @@
 }
 
 .dayName {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .calendarDay {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .today::after {
@@ -85,7 +85,7 @@
 }
 
 .otherMonth {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .calendarFooter {
@@ -94,7 +94,7 @@
 
 .clearButton {
   border-color: rgba(55, 65, 81, 0.7);
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .clearButton:hover {
@@ -103,8 +103,8 @@
 
 .timeSelect {
   border-color: rgba(55, 65, 81, 0.7);
-  color: #f8fafc;
-  background-color: #1e293b;
+  color: var(--text-primary-dark);
+  background-color: var(--bg-secondary-dark);
 }
 
 .timeSelect:focus {

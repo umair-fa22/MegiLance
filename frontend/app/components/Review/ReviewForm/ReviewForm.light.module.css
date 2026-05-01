@@ -1,7 +1,7 @@
 /* Review Form - Light Theme */
 
 .container {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   color: #2d3748;
 }
 
@@ -15,7 +15,7 @@
 
 .section {
   background: #f7fafc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .sectionTitle {
@@ -23,7 +23,7 @@
 }
 
 .textarea {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #cbd5e0;
   color: #2d3748;
 }

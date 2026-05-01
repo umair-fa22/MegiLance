@@ -1,29 +1,29 @@
 /* @AI-HINT: Dark theme for Teams page. */
 
-.themeWrapper { background: linear-gradient(170deg, #0f172a 0%, #0f172a 40%, #0f1225 100%); color: #f8fafc; }
-.title { color: #f8fafc; }
-.subtitle { color: #94a3b8; }
+.themeWrapper { background: linear-gradient(170deg, var(--bg-primary-dark) 0%, var(--bg-primary-dark) 40%, #0f1225 100%); color: var(--text-primary-dark); }
+.title { color: var(--text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
 .badge { background: rgba(69,115,223,0.15); color: #6b8de6; }
 
-.statItem { color: #f8fafc; }
-.sectionTitle { color: #f8fafc; }
-.sectionDesc { color: #94a3b8; }
+.statItem { color: var(--text-primary-dark); }
+.sectionTitle { color: var(--text-primary-dark); }
+.sectionDesc { color: var(--text-tertiary-dark); }
 
 .modelCard { background: rgba(30,41,59,0.5); backdrop-filter: blur(10px); border-color: rgba(51,65,85,0.5); }
 .modelCard:hover { box-shadow: 0 8px 24px rgba(69,115,223,0.15); }
-.modelTitle { color: #f8fafc; }
-.modelDesc { color: #94a3b8; }
+.modelTitle { color: var(--text-primary-dark); }
+.modelDesc { color: var(--text-tertiary-dark); }
 
 .stepCard { background: rgba(30,41,59,0.5); backdrop-filter: blur(10px); border-color: rgba(51,65,85,0.5); }
 .stepNum { color: #6b8de6; }
-.stepTitle { color: #f8fafc; }
-.stepDesc { color: #94a3b8; }
+.stepTitle { color: var(--text-primary-dark); }
+.stepDesc { color: var(--text-tertiary-dark); }
 
-.capChip { background: rgba(30,41,59,0.5); border-color: rgba(51,65,85,0.5); color: #cbd5e1; }
+.capChip { background: rgba(30,41,59,0.5); border-color: rgba(51,65,85,0.5); color: var(--text-secondary-dark); }
 .capChip:hover { background: rgba(69,115,223,0.15); border-color: #6b8de6; color: #6b8de6; }
 
-.ctaBox { background: linear-gradient(135deg, #4573df 0%, #2563eb 100%); border-color: transparent; color: #fff; }
-.button { background: #fff; color: #4573df; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+.ctaBox { background: linear-gradient(135deg, var(--ml-blue) 0%, #2563eb 100%); border-color: transparent; color: #fff; }
+.button { background: #fff; color: var(--ml-blue); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
 .button:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
 .buttonSecondary { background: transparent; color: #fff; border-color: rgba(255,255,255,0.3); }
 .buttonSecondary:hover { background: rgba(255,255,255,0.1); }

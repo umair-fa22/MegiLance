@@ -10,17 +10,17 @@
 }
 
 .headerSubtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .createButton {
-  background: linear-gradient(135deg, #4573df 0%, #5a8dee 100%);
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #5a8dee 100%);
   color: #ffffff;
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.3);
 }
 
 .createButton:hover {
-  background: linear-gradient(135deg, #5a8dee 0%, #4573df 100%);
+  background: linear-gradient(135deg, #5a8dee 0%, var(--ml-blue) 100%);
   box-shadow: 0 6px 16px rgba(69, 115, 223, 0.4);
 }
 
@@ -31,7 +31,7 @@
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statValue {
@@ -67,7 +67,7 @@
 
 .gigsTable th {
   background-color: rgba(255, 255, 255, 0.05);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -84,7 +84,7 @@
 }
 
 .gigCategory {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Status Badges */
@@ -108,11 +108,11 @@
 
 .statusDraft {
   background-color: rgba(107, 114, 128, 0.2);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statusDraft .statusDot {
-  background-color: #94a3b8;
+  background-color: var(--text-tertiary-dark);
 }
 
 .statusPending {
@@ -135,13 +135,13 @@
 
 /* Stats Cell */
 .statItem {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 /* Actions */
 .actionButton {
   background-color: rgba(255, 255, 255, 0.05);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .actionButton:hover {
@@ -172,7 +172,7 @@
 
 .emptyIcon {
   background-color: rgba(255, 255, 255, 0.05);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .emptyTitle {
@@ -180,7 +180,7 @@
 }
 
 .emptyText {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Cards */
@@ -198,14 +198,14 @@
 }
 
 .gigCardStatLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Pagination */
 .paginationButton {
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .paginationButton:hover:not(:disabled) {
@@ -216,7 +216,7 @@
 .pageButton {
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .pageButton:hover {
@@ -224,7 +224,7 @@
 }
 
 .pageButtonActive {
-  background: linear-gradient(135deg, #4573df 0%, #5a8dee 100%);
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #5a8dee 100%);
   color: #ffffff;
   border-color: transparent;
 }

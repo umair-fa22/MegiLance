@@ -1,34 +1,34 @@
 ﻿/* @AI-HINT: AI Match Card - Dark theme colors */
 
 .card {
-  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
-  border: 1px solid #334155;
+  background: linear-gradient(145deg, var(--bg-secondary-dark) 0%, var(--bg-primary-dark) 100%);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
 }
 
 .card:hover {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(69, 115, 223, 0.15);
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .aiBadge {
-  background: linear-gradient(135deg, #9b59b6, #4573df);
+  background: linear-gradient(135deg, #9b59b6, var(--ml-blue));
   color: #ffffff;
   box-shadow: 0 2px 12px rgba(155, 89, 182, 0.4);
 }
 
 .avatar {
-  background: linear-gradient(135deg, #334155, #1e293b);
-  color: #cbd5e1;
+  background: linear-gradient(135deg, var(--border-dark), var(--bg-secondary-dark));
+  color: var(--text-secondary-dark);
   border: 2px solid #475569;
 }
 
 .name {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .title {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .meta {
@@ -41,7 +41,7 @@
 }
 
 .scoreCircleTrack {
-  stroke: #334155;
+  stroke: var(--border-dark);
 }
 
 .scoreCircleProgress {
@@ -49,19 +49,19 @@
 }
 
 .scoreCircleProgressExcellent {
-  stroke: #27AE60;
+  stroke: var(--ml-green);
 }
 
 .scoreCircleProgressGood {
-  stroke: #6b93f5;
+  stroke: var(--ml-blue-light);
 }
 
 .scoreCircleProgressFair {
-  stroke: #ff9800;
+  stroke: var(--ml-orange);
 }
 
 .scoreValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .qualityBadge {
@@ -70,44 +70,44 @@
 
 .fitReason {
   background: rgba(69, 115, 223, 0.1);
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .scoreLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .scoreConfidence {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .confidenceBar {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 .confidenceFill {
-  background: linear-gradient(90deg, #6b93f5, #bb6bd9);
+  background: linear-gradient(90deg, var(--ml-blue-light), #bb6bd9);
 }
 
 .sectionTitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .skill {
-  background: #1e293b;
-  color: #cbd5e1;
+  background: var(--bg-secondary-dark);
+  color: var(--text-secondary-dark);
   border: 1px solid #475569;
 }
 
 .skill:hover {
-  background: #334155;
+  background: var(--border-dark);
   border-color: #64748b;
 }
 
 .skillMatched {
   background: linear-gradient(135deg, rgba(39, 174, 96, 0.2) 0%, rgba(39, 174, 96, 0.3) 100%);
   color: #4cdc8a;
-  border-color: #27AE60;
+  border-color: var(--ml-green);
 }
 
 .insightsSection {
@@ -116,7 +116,7 @@
 }
 
 .insightItem {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .insightIcon {
@@ -124,11 +124,11 @@
 }
 
 .actions {
-  border-top-color: #334155;
+  border-top-color: var(--border-dark);
 }
 
 .primaryBtn {
-  background: linear-gradient(135deg, #4573df 0%, #9b59b6 100%);
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #9b59b6 100%);
   color: #ffffff;
   box-shadow: 0 10px 40px -10px rgba(69, 115, 223, 0.5);
 }
@@ -138,12 +138,12 @@
 }
 
 .secondaryBtn {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   color: #e2e8f0;
   border: 1px solid #475569;
 }
 
 .secondaryBtn:hover {
-  background: #334155;
+  background: var(--border-dark);
   border-color: #64748b;
 }

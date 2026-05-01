@@ -1,26 +1,26 @@
 /* AI-HINT: Dark theme styles for the AdminPolicyEditor. */
 
 .editorLayout {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .sidebar {
-  background-color: #1e293b;
-  border-right: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border-right: 1px solid var(--border-dark);
 }
 
 .sidebarTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .navItem {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .navItem:hover {
   background-color: rgba(255,255,255,0.04);
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .navItemActive {
@@ -29,15 +29,15 @@
 }
 
 .mainContent {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .editorHeader {
-  border-bottom: 1px solid #334155;
+  border-bottom: 1px solid var(--border-dark);
 }
 
 .editorTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .saveConfirmation {
@@ -45,5 +45,5 @@
 }
 
 .editorTextarea {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }

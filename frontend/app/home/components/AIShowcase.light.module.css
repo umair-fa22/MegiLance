@@ -1,24 +1,24 @@
 /* @AI-HINT: Light theme styles for AIShowcase. */
 
 .aiShowcase {
-  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  background: linear-gradient(180deg, var(--bg-secondary-light) 0%, var(--bg-tertiary-light) 100%);
 }
 
 .badge {
   background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
   border-color: rgba(69, 115, 223, 0.2);
 }
 
 .title {
-  background: linear-gradient(135deg, #1a1a1a 0%, #4573df 100%);
+  background: linear-gradient(135deg, #1a1a1a 0%, var(--ml-blue) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .subtitle {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .techStack {
@@ -36,8 +36,8 @@
 }
 
 .techLogo:hover {
-  background: #ffffff;
-  color: #4573df;
+  background: var(--bg-primary-light);
+  color: var(--ml-blue);
 }
 
 .techLogoName {

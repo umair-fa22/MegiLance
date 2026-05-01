@@ -1,15 +1,15 @@
 ﻿/* @AI-HINT: Admin billing page - dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statIcon {
@@ -18,30 +18,30 @@
 
 /* Stats */
 .statCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 /* Charts */
 .chartCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .cardTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .chartBar {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
 }
 
 .chartLabels {
@@ -49,7 +49,7 @@
 }
 
 .planName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .planCount {
@@ -57,86 +57,86 @@
 }
 
 .planBarTrack {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .planBarFill {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
 }
 
 /* Panel */
 .panel {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 /* Table */
 .tableHeader {
-  background-color: #0f172a;
-  color: #94a3b8;
+  background-color: var(--bg-primary-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .tableRow {
-  border-bottom: 1px solid #334155;
+  border-bottom: 1px solid var(--border-dark);
 }
 
 .tableRow:hover {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .userName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .userEmail {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .amount {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .date {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Plans */
 .planCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .planTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .priceAmount {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .planPrice {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .pricePeriod {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .subscribers {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .feature {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 /* Empty */
 .emptyState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .emptyState h3 {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 /* Toast */

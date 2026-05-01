@@ -1,16 +1,16 @@
 /* @AI-HINT: Search analytics dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statIcon {
@@ -19,8 +19,8 @@
 
 /* Stats */
 .statCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -29,21 +29,21 @@
 }
 
 .statInfo span {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Cards */
 .card {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .card h3 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .termItem {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
 }
 
 .rank {
@@ -52,45 +52,45 @@
 }
 
 .termText {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .count {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Table */
 .tableCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .table th {
-  background: #0f172a;
-  color: #94a3b8;
-  border-bottom: 1px solid #334155;
+  background: var(--bg-primary-dark);
+  color: var(--text-tertiary-dark);
+  border-bottom: 1px solid var(--border-dark);
 }
 
 .table td {
-  border-bottom: 1px solid #334155;
+  border-bottom: 1px solid var(--border-dark);
 }
 
 .table tbody tr:hover {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
 }
 
 /* Trend Cards */
 .trendCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .trendCard h3 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .trendRank {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .trendStats strong {
@@ -98,7 +98,7 @@
 }
 
 .trendStats span {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Alert */

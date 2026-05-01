@@ -1,50 +1,50 @@
 /* AI-HINT: Dark theme overrides for Admin AI Monitoring page. */
 
 .themeWrapper {
-  background: #0f172a;
-  color: #f8fafc;
+  background: var(--bg-primary-dark);
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .input,
 .select {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #334155;
-  color: #f8fafc;
+  border: 1px solid var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .button {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .button.secondary {
   background: rgba(255, 255, 255, 0.06);
-  color: #cbd5e1;
-  border: 1px solid #334155;
+  color: var(--text-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .card,
 .panel {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .cardTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .metric {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .list .item {
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid #334155;
+  border: 1px solid var(--border-dark);
 }
 
 .item:hover {
@@ -52,7 +52,7 @@
 }
 
 .meta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .chipActive {
@@ -62,12 +62,12 @@
 }
 
 .th {
-  border-bottom-color: #334155;
-  color: #94a3b8;
+  border-bottom-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .tr {
-  border-bottom-color: #334155;
+  border-bottom-color: var(--border-dark);
 }
 
 .tr:hover {
@@ -75,5 +75,5 @@
 }
 
 .accuracyFill {
-  background: linear-gradient(90deg, #6b8de6, #27AE60);
+  background: linear-gradient(90deg, #6b8de6, var(--ml-green));
 }

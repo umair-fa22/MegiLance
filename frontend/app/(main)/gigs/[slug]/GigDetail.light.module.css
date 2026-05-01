@@ -1,20 +1,20 @@
 /* @AI-HINT: Light theme styles for gig detail page */
 
 .themeWrapper {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
   color: #1a1a2e;
 }
 
 .breadcrumbLink {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .breadcrumbSeparator {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .breadcrumbCurrent {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .gigTitle {
@@ -23,8 +23,8 @@
 
 /* Seller */
 .sellerAvatarFallback {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .sellerName {
@@ -32,13 +32,13 @@
 }
 
 .levelBadge {
-  background-color: #f1f5f9;
-  color: #64748b;
+  background-color: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .levelBadge.bronze {
   background: linear-gradient(135deg, #cd7f32 0%, #8b4513 100%);
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .levelBadge.silver {
@@ -52,14 +52,14 @@
 }
 
 .levelBadge.platinum {
-  background: linear-gradient(135deg, #e5e5e5 0%, #ffffff 50%, #e5e5e5 100%);
+  background: linear-gradient(135deg, #e5e5e5 0%, var(--bg-primary-light) 50%, #e5e5e5 100%);
   color: #1a1a2e;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .proBadge {
-  background: linear-gradient(135deg, #4573df 0%, #6b9eff 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #6b9eff 100%);
+  color: var(--bg-primary-light);
 }
 
 .rating {
@@ -67,20 +67,20 @@
 }
 
 .reviewCount {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .ordersCount {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Gallery */
 .gallery {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .thumbnail {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 /* Section */
@@ -89,18 +89,18 @@
 }
 
 .description {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .tag {
-  background-color: #e2e8f0;
-  color: #475569;
+  background-color: var(--border-light);
+  color: var(--text-secondary-light);
 }
 
 /* About Seller */
 .aboutSeller {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .aboutName {
@@ -108,7 +108,7 @@
 }
 
 .aboutTitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .aboutStatValue {
@@ -116,21 +116,21 @@
 }
 
 .aboutStatLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .aboutBio {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .contactButton {
-  background-color: #f1f5f9;
-  color: #475569;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .contactButton:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 /* Reviews */
@@ -139,12 +139,12 @@
 }
 
 .reviewsCount {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .reviewCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .reviewerName {
@@ -152,41 +152,41 @@
 }
 
 .reviewDate {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .reviewText {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .showMoreReviews {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .showMoreReviews:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 /* Package Tabs */
 .packageTab {
-  background-color: #e2e8f0;
-  color: #64748b;
+  background-color: var(--border-light);
+  color: var(--color-text-secondary-light);
 }
 
 .packageTab:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .packageTab.active {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   color: #1a1a2e;
 }
 
 /* Package Card */
 .packageCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
@@ -195,32 +195,32 @@
 }
 
 .packagePrice {
-  color: #27ae60;
+  color: var(--ml-green);
 }
 
 .packageDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .packageMetaItem {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .packageFeature {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .packageFeatureIcon.included {
-  color: #27ae60;
+  color: var(--ml-green);
 }
 
 .packageFeatureIcon.excluded {
-  color: #e81123;
+  color: var(--ml-red);
 }
 
 .orderButton {
-  background: linear-gradient(135deg, #27ae60 0%, #1f9250 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-green) 0%, #1f9250 100%);
+  color: var(--bg-primary-light);
   border: none;
 }
 
@@ -230,23 +230,23 @@
 
 /* Quick Actions */
 .quickAction {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
-  color: #475569;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
+  color: var(--text-secondary-light);
 }
 
 .quickAction:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .compareLink {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* FAQ */
 .faqItem {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .faqQuestion {
@@ -254,16 +254,16 @@
 }
 
 .faqQuestion:hover {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .faqAnswer {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Loading */
 .skeleton {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 /* Error */
@@ -272,12 +272,12 @@
 }
 
 .errorText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .errorButton {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .errorButton:hover {

@@ -1,60 +1,60 @@
 /* Light Theme - Freelancer Earnings Enterprise */
-.container { background: #ffffff; }
-.header { border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; }
+.container { background: var(--bg-primary-light); }
+.header { border-bottom: 1px solid var(--border-light); padding-bottom: 1.5rem; }
 .title { color: #1a1a2e; }
-.subtitle { color: #64748b; }
+.subtitle { color: var(--color-text-secondary-light); }
 .errorBanner { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
-.statCard { background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-.statLabel { color: #64748b; }
+.statCard { background: var(--bg-primary-light); border: 1px solid var(--border-light); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.statLabel { color: var(--color-text-secondary-light); }
 .statValue { color: #1a1a2e; }
-.statMeta { color: #94a3b8; }
-.miniProgress { background: #e2e8f0; }
-.tabBar { background: #f1f5f9; }
-.tabBtn { background: transparent; color: #64748b; }
-.tabBtn:hover { background: #e2e8f0; color: #374151; }
-.tabBtnActive { background: #ffffff !important; color: #4573df !important; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-.chartSection { background: #ffffff; border: 1px solid #e2e8f0; }
+.statMeta { color: var(--text-tertiary-light); }
+.miniProgress { background: var(--border-light); }
+.tabBar { background: var(--bg-tertiary-light); }
+.tabBtn { background: transparent; color: var(--color-text-secondary-light); }
+.tabBtn:hover { background: var(--border-light); color: #374151; }
+.tabBtnActive { background: var(--bg-primary-light) !important; color: var(--ml-blue) !important; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.chartSection { background: var(--bg-primary-light); border: 1px solid var(--border-light); }
 .sectionTitle { color: #1a1a2e; }
-.chartAmount { color: #64748b; }
-.chartLabel { color: #64748b; }
+.chartAmount { color: var(--color-text-secondary-light); }
+.chartLabel { color: var(--color-text-secondary-light); }
 .sourceItem { }
 .sourceName { color: #374151; }
 .sourcePercent { color: #1a1a2e; }
-.sourceBar { background: #e2e8f0; }
-.sourceAmount { color: #64748b; }
-.recentSection { background: #ffffff; border: 1px solid #e2e8f0; }
-.txRow { border-bottom-color: #f1f5f9; }
+.sourceBar { background: var(--border-light); }
+.sourceAmount { color: var(--color-text-secondary-light); }
+.recentSection { background: var(--bg-primary-light); border: 1px solid var(--border-light); }
+.txRow { border-bottom-color: var(--bg-tertiary-light); }
 .txRow:hover { background: #f9fafb; }
-.txIcon { background: #f1f5f9; color: #64748b; }
+.txIcon { background: var(--bg-tertiary-light); color: var(--color-text-secondary-light); }
 .txDesc { color: #1a1a2e; }
-.txDate { color: #94a3b8; }
+.txDate { color: var(--text-tertiary-light); }
 .txAmount { color: #1a1a2e; }
-.emptyText { color: #94a3b8; }
-.txPanel { background: #ffffff; border: 1px solid #e2e8f0; }
-.sortHeader { border-bottom-color: #e2e8f0; }
-.sortCol { color: #64748b; }
-.sortColActive { color: #4573df; }
-.pageInfo { color: #64748b; }
-.pageNum { background: #f1f5f9; color: #374151; }
-.pageNum:hover { background: #e2e8f0; }
-.pageNumActive { background: #4573df !important; color: #fff !important; }
-.goalCard { background: #ffffff; border: 1px solid #e2e8f0; }
-.goalDesc { color: #64748b; }
+.emptyText { color: var(--text-tertiary-light); }
+.txPanel { background: var(--bg-primary-light); border: 1px solid var(--border-light); }
+.sortHeader { border-bottom-color: var(--border-light); }
+.sortCol { color: var(--color-text-secondary-light); }
+.sortColActive { color: var(--ml-blue); }
+.pageInfo { color: var(--color-text-secondary-light); }
+.pageNum { background: var(--bg-tertiary-light); color: #374151; }
+.pageNum:hover { background: var(--border-light); }
+.pageNumActive { background: var(--ml-blue) !important; color: #fff !important; }
+.goalCard { background: var(--bg-primary-light); border: 1px solid var(--border-light); }
+.goalDesc { color: var(--color-text-secondary-light); }
 .goalCurrent { color: #1a1a2e; }
-.goalTarget { color: #94a3b8; }
-.goalBar { background: #e2e8f0; }
-.goalRemaining { color: #64748b; }
-.goalPercent { color: #4573df; }
-.projectionItem { background: #f9fafb; border: 1px solid #e2e8f0; }
-.projLabel { color: #64748b; }
+.goalTarget { color: var(--text-tertiary-light); }
+.goalBar { background: var(--border-light); }
+.goalRemaining { color: var(--color-text-secondary-light); }
+.goalPercent { color: var(--ml-blue); }
+.projectionItem { background: #f9fafb; border: 1px solid var(--border-light); }
+.projLabel { color: var(--color-text-secondary-light); }
 .projValue { color: #1a1a2e; }
-.taxCard { background: #ffffff; border: 1px solid #e2e8f0; }
-.taxDisclaimer { color: #94a3b8; }
+.taxCard { background: var(--bg-primary-light); border: 1px solid var(--border-light); }
+.taxDisclaimer { color: var(--text-tertiary-light); }
 .taxLabel { color: #374151; }
-.taxItem { background: #f9fafb; border: 1px solid #e2e8f0; }
-.taxItemLabel { color: #64748b; }
+.taxItem { background: #f9fafb; border: 1px solid var(--border-light); }
+.taxItemLabel { color: var(--color-text-secondary-light); }
 .taxItemValue { color: #1a1a2e; }
-.docItem { background: #f9fafb; border: 1px solid #e2e8f0; }
-.docItem:hover { background: #f1f5f9; }
+.docItem { background: #f9fafb; border: 1px solid var(--border-light); }
+.docItem:hover { background: var(--bg-tertiary-light); }
 .docName { color: #1a1a2e; }
-.docMeta { color: #94a3b8; }
+.docMeta { color: var(--text-tertiary-light); }

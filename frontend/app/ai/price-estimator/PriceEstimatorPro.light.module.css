@@ -7,13 +7,13 @@
 }
 
 .loadingContainer {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Header */
 .headerBadge {
   background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .title {
@@ -21,63 +21,63 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Stepper */
 .stepDot {
-  background: #e2e8f0;
-  color: #94a3b8;
+  background: var(--border-light);
+  color: var(--text-tertiary-light);
 }
 
 .stepDotActive {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #fff;
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.3);
 }
 
 .stepDotCompleted {
-  background: #27ae60;
+  background: var(--ml-green);
   color: #fff;
 }
 
 .stepLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .stepLabelActive {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .stepLine {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .stepLineActive {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 /* Category Card */
 .categoryCard {
   background: #fff;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .categoryCard:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 4px 16px rgba(69, 115, 223, 0.12);
 }
 
 .categoryCardSelected {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background: linear-gradient(135deg, #f5f8ff 0%, #f0f4ff 100%);
   box-shadow: 0 4px 16px rgba(69, 115, 223, 0.15);
 }
 
 .categoryIconBox {
   background: rgba(69, 115, 223, 0.08);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .categoryName {
@@ -85,26 +85,26 @@
 }
 
 .categoryDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .categoryServiceCount {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Service Card */
 .serviceCard {
   background: #fff;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .serviceCard:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .serviceCardSelected {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background: rgba(69, 115, 223, 0.06);
 }
 
@@ -113,12 +113,12 @@
 }
 
 .serviceRate {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .serviceDemandHigh {
   background: rgba(39, 174, 96, 0.1);
-  color: #27ae60;
+  color: var(--ml-green);
 }
 
 .serviceDemandMedium {
@@ -128,17 +128,17 @@
 
 .serviceDemandLow {
   background: rgba(148, 163, 184, 0.15);
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .backLink {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Form Card */
 .formCard {
   background: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
@@ -147,76 +147,76 @@
 }
 
 .labelHint {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .textarea {
   background: #fafbfc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #1a1f36;
 }
 
 .textarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
 
 .textarea::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .select {
   background: #fafbfc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #1a1f36;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
 }
 
 .select:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
 
 .numberInput {
   background: #fafbfc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #1a1f36;
 }
 
 .numberInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
 
 .numberInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .featureTag {
   background: rgba(69, 115, 223, 0.08);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .featureTagRemove {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .addFeatureInput {
   background: #fafbfc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #1a1f36;
 }
 
 .addFeatureInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .addFeatureInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .addFeatureBtn {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #fff;
 }
 
@@ -226,16 +226,16 @@
 
 /* Navigation */
 .navButtonBack {
-  background: #f1f5f9;
-  color: #64748b;
+  background: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .navButtonBack:hover:not(:disabled) {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .navButtonNext {
-  background: linear-gradient(135deg, #4573df, #5b88f0);
+  background: linear-gradient(135deg, var(--ml-blue), #5b88f0);
   color: #fff;
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.25);
 }
@@ -254,35 +254,35 @@
 }
 
 .processingOrbInner {
-  background: linear-gradient(135deg, #4573df, #7c3aed);
+  background: linear-gradient(135deg, var(--ml-blue), #7c3aed);
   color: #fff;
 }
 
 .processingSubtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .processingStep {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .processingStepCircle {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 /* Results */
 .priceHero {
   background: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
   box-shadow: 0 8px 32px rgba(69, 115, 223, 0.08);
 }
 
 .priceHeroGlow {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 .priceHeroLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .priceHeroValue {
@@ -290,23 +290,23 @@
 }
 
 .priceHeroDivider {
-  color: #e2e8f0;
+  color: var(--border-light);
 }
 
 .priceHeroMetaItem {
   background: rgba(69, 115, 223, 0.06);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .resultCard {
   background: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .resultCardIcon {
   background: rgba(69, 115, 223, 0.08);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .resultCardTitle {
@@ -323,15 +323,15 @@
 }
 
 .breakdownItemHours {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .progressBar {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #4573df, #5b88f0);
+  background: linear-gradient(90deg, var(--ml-blue), #5b88f0);
 }
 
 /* Market */
@@ -344,11 +344,11 @@
 }
 
 .marketTierBar {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .marketTierFill {
-  background: linear-gradient(90deg, #4573df, #5b88f0);
+  background: linear-gradient(90deg, var(--ml-blue), #5b88f0);
 }
 
 .marketTierValue {
@@ -362,7 +362,7 @@
 
 .marketPosition {
   background: rgba(69, 115, 223, 0.06);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Factors */
@@ -371,7 +371,7 @@
 }
 
 .factorName {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .factorVal {
@@ -379,11 +379,11 @@
 }
 
 .factorUp {
-  background: #27ae60;
+  background: var(--ml-green);
 }
 
 .factorNeutral {
-  background: #94a3b8;
+  background: var(--text-tertiary-light);
 }
 
 .factorDown {
@@ -396,11 +396,11 @@
 }
 
 .timelineStatLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .timelineDivider {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 /* ROI */
@@ -410,7 +410,7 @@
 
 .roiItemIcon {
   background: rgba(39, 174, 96, 0.1);
-  color: #27ae60;
+  color: var(--ml-green);
 }
 
 .roiItemTitle {
@@ -418,49 +418,49 @@
 }
 
 .roiItemMessage {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Actions */
 .actionBtnPrimary {
-  background: linear-gradient(135deg, #4573df, #5b88f0);
+  background: linear-gradient(135deg, var(--ml-blue), #5b88f0);
   color: #fff;
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.25);
 }
 
 .actionBtnSecondary {
-  background: #f1f5f9;
-  color: #4573df;
+  background: var(--bg-tertiary-light);
+  color: var(--ml-blue);
 }
 
 .actionBtnSecondary:hover {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 /* Country Selector */
 .countrySearchInput {
   background: #fafbfc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #1a1f36;
 }
 
 .countrySearchInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
 
 .countrySearchInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .countryDropdown {
   background: #fff;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .countryRegionLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
   background: #fafbfc;
 }
 
@@ -474,31 +474,31 @@
 
 .countryOptionSelected {
   background: rgba(69, 115, 223, 0.08);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .countryMult {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .selectedCountryBadge {
   background: rgba(69, 115, 223, 0.08);
-  color: #4573df;
+  color: var(--ml-blue);
   border: 1px solid rgba(69, 115, 223, 0.2);
 }
 
 .selectedCountryRemove {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Regional Analysis */
 .regionCompareItem {
   background: #fafbfc;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .regionCompareName {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .regionCompareRate {
@@ -514,7 +514,7 @@
 }
 
 .regionalContextMsg {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .pppContext {
@@ -524,12 +524,12 @@
 }
 
 .pppLabel {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Field Hint */
 .fieldHint {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Guidance Tip */
@@ -540,7 +540,7 @@
 
 .guidanceTipIcon {
   background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .guidanceTipTitle {
@@ -548,25 +548,25 @@
 }
 
 .guidanceTipText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Option Impact */
 .optionImpact {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .optionImpactBadge {
   background: rgba(69, 115, 223, 0.08);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Hours Wizard */
 .hoursWizardToggle {
   background: rgba(69, 115, 223, 0.04);
   border-color: rgba(69, 115, 223, 0.2);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .hoursWizardToggle:hover {
@@ -576,12 +576,12 @@
 
 .hoursWizard {
   background: #fafbfc;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
   border-top: none;
 }
 
 .hoursWizardIntro {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .wizardQuestionLabel {
@@ -590,7 +590,7 @@
 
 .wizardOption {
   background: #fff;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #1a1f36;
 }
 
@@ -600,16 +600,16 @@
 
 .wizardOptionSelected {
   background: rgba(69, 115, 223, 0.06);
-  border-color: #4573df;
-  color: #4573df;
+  border-color: var(--ml-blue);
+  color: var(--ml-blue);
 }
 
 .wizardOptionHours {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .wizardCalcBtn {
-  background: linear-gradient(135deg, #4573df, #5b88f0);
+  background: linear-gradient(135deg, var(--ml-blue), #5b88f0);
   color: #fff;
 }
 
@@ -623,16 +623,16 @@
 }
 
 .hoursResultValue {
-  color: #27ae60;
+  color: var(--ml-green);
 }
 
 .hoursResultRange {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .confidenceHigh {
   background: rgba(39, 174, 96, 0.1);
-  color: #27ae60;
+  color: var(--ml-green);
 }
 
 .confidenceMedium {
@@ -642,20 +642,20 @@
 
 .confidenceLow {
   background: rgba(148, 163, 184, 0.15);
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .hoursBreakdownItem {
   color: #4b5563;
-  border-bottom-color: #f1f5f9;
+  border-bottom-color: var(--bg-tertiary-light);
 }
 
 .hoursBreakdownHours {
-  color: #27ae60;
+  color: var(--ml-green);
 }
 
 .hoursApplyBtn {
-  background: #27ae60;
+  background: var(--ml-green);
   color: #fff;
 }
 
@@ -672,7 +672,7 @@
 
 .guideSection {
   background: #fafbfc;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .guideSectionTitle {
@@ -689,6 +689,6 @@
 
 /* Disclaimer */
 .disclaimer {
-  background: #f8fafc;
-  color: #94a3b8;
+  background: var(--bg-secondary-light);
+  color: var(--text-tertiary-light);
 }

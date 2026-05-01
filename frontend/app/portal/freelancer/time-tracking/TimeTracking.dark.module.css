@@ -1,11 +1,11 @@
 /* Dark theme colors for Time Tracking */
 
 .container {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .error {
@@ -18,9 +18,9 @@
 .input,
 .inputSmall,
 .filterSelect {
-  background-color: #1e293b;
-  border-color: #334155;
-  color: #f8fafc;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .select:focus,
@@ -28,17 +28,17 @@
 .inputSmall:focus,
 .filterSelect:focus {
   outline: none;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2);
 }
 
 .summaryCard {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .summaryCard:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
@@ -48,45 +48,45 @@
 }
 
 .summaryLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .summaryValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .timerSection {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .activeTimer {
   background-color: #1e3a8a;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .timerTime {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .table {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .tableElement th {
-  background-color: #0f172a;
-  color: #cbd5e1;
-  border-color: #334155;
+  background-color: var(--bg-primary-dark);
+  color: var(--text-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .tableElement td {
-  color: #f8fafc;
-  border-color: #334155;
+  color: var(--text-primary-dark);
+  border-color: var(--border-dark);
 }
 
 .tableElement tbody tr:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .badge {
@@ -110,13 +110,13 @@
 }
 
 .iconBtn {
-  border-color: #334155;
-  color: #cbd5e1;
+  border-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .iconBtn:hover {
-  background-color: #334155;
-  border-color: #4573df;
+  background-color: var(--border-dark);
+  border-color: var(--ml-blue);
   color: #60a5fa;
 }
 
@@ -139,21 +139,21 @@
 }
 
 .iconBtn[data-action="delete"] {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
   border-color: #475569;
 }
 
 .iconBtn[data-action="delete"]:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #f87171;
   border-color: #dc2626;
 }
 
 .loading,
 .empty {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .checkbox input {
-  accent-color: #4573df;
+  accent-color: var(--ml-blue);
 }

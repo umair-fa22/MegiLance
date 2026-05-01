@@ -172,7 +172,7 @@
 }
 
 .required {
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
 }
 
 .disabled {
@@ -181,7 +181,7 @@
 }
 
 .hasError {
-  border-color: var(--color-error, #e81123) !important;
+  border-color: var(--color-error, var(--ml-red)) !important;
 }
 
 @keyframes fadeInUp {

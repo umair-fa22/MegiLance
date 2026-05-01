@@ -1,12 +1,12 @@
 .container {
-  --bg-card: #ffffff;
+  --bg-card: var(--bg-primary-light);
   --bg-secondary: #f8f9fa;
   --bg-hover: #f1f3f5;
-  --border-color: #e2e8f0;
+  --border-color: var(--border-light);
   --text-primary: #1a202c;
   --text-secondary: #718096;
-  --primary-color: #4573df;
-  --success-color: #27ae60;
-  --error-color: #e81123;
-  --warning-color: #f2c94c;
+  --primary-color: var(--ml-blue);
+  --success-color: var(--ml-green);
+  --error-color: var(--ml-red);
+  --warning-color: var(--ml-yellow);
 }

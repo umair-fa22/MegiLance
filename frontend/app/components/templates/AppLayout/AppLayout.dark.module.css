@@ -1,11 +1,11 @@
 /* @AI-HINT: AppLayout dark theme styles */
 
 .appLayout {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .pageContent {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   /* Subtle top-glow for visual continuity */
   background-image:
     linear-gradient(180deg, rgba(59, 130, 246, 0.02) 0%, transparent 120px);

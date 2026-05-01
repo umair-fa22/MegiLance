@@ -10,13 +10,13 @@
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .description {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .stepNumber {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }

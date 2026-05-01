@@ -1,1 +1,1 @@
-.container { background-color: var(--theme-bg, #0f172a); color: var(--theme-text, #f8fafc); }
+.container { background-color: var(--theme-bg, var(--bg-primary-dark)); color: var(--theme-text, var(--text-primary-dark)); }

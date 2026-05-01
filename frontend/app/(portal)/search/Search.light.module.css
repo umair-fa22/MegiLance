@@ -1,24 +1,24 @@
 /* AI-HINT: Light theme overrides for portal Search page. */
 
 .themeWrapper {
-  background: #f8fafc;
-  color: #0f172a;
+  background: var(--bg-secondary-light);
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .input,
 .select {
-  background: #ffffff;
-  border: 1.5px solid #e2e8f0;
-  color: #0f172a;
+  background: var(--bg-primary-light);
+  border: 1.5px solid var(--border-light);
+  color: var(--text-primary-light);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .input::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .input:hover,
@@ -28,31 +28,31 @@
 
 .input:focus,
 .select:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.12);
 }
 
 .chip {
-  background: #ffffff;
-  border: 1.5px solid #e2e8f0;
-  color: #475569;
+  background: var(--bg-primary-light);
+  border: 1.5px solid var(--border-light);
+  color: var(--text-secondary-light);
 }
 
 .chip:hover {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   border-color: #cbd5e1;
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .chip[aria-pressed="true"] {
   background: rgba(69, 115, 223, 0.08);
-  border-color: #4573df;
-  color: #4573df;
+  border-color: var(--ml-blue);
+  color: var(--ml-blue);
 }
 
 .card {
-  background: #ffffff;
-  border: 1.5px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1.5px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
@@ -62,18 +62,18 @@
 }
 
 .cardTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .cardMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .loadingState {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .spinner {
-  border-color: #e2e8f0;
-  border-top-color: #4573df;
+  border-color: var(--border-light);
+  border-top-color: var(--ml-blue);
 }

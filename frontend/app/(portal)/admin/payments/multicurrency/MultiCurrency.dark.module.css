@@ -1,18 +1,18 @@
 /* @AI-HINT: Multi-Currency page dark theme colors */
 
 .card {
-  border-color: #334155;
-  background-color: #1e293b;
+  border-color: var(--border-dark);
+  background-color: var(--bg-secondary-dark);
 }
 
 .select {
-  border-color: #334155;
-  background-color: #0f172a;
-  color: #f1f5f9;
+  border-color: var(--border-dark);
+  background-color: var(--bg-primary-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .currencyRow {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .badgeEnabled {

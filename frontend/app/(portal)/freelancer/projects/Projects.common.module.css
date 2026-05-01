@@ -55,15 +55,15 @@
 }
 
 .statIconActive {
-  color: var(--color-success, #27AE60);
+  color: var(--color-success, var(--ml-green));
 }
 
 .statIconCompleted {
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
 }
 
 .statIconBudget {
-  color: var(--color-warning, #F2C94C);
+  color: var(--color-warning, var(--ml-yellow));
 }
 
 .statValue {
@@ -173,12 +173,12 @@
 
 .statussuccess {
   background: rgba(39, 174, 96, 0.1);
-  color: var(--color-success, #27AE60);
+  color: var(--color-success, var(--ml-green));
 }
 
 .statusprimary {
   background: rgba(69, 115, 223, 0.1);
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
 }
 
 .statuswarning {
@@ -188,7 +188,7 @@
 
 .statusdanger {
   background: rgba(232, 17, 35, 0.1);
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
 }
 
 .clientName {
@@ -323,12 +323,12 @@
 }
 
 .searchInput:focus-visible {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
 }
 
 .filterSelect:focus-visible {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
 }
 

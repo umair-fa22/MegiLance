@@ -73,7 +73,7 @@
 }
 
 .titleAccent {
-  background: linear-gradient(135deg, var(--color-primary, #4573df), #7c3aed, #f59e0b);
+  background: linear-gradient(135deg, var(--color-primary, var(--ml-blue)), #7c3aed, #f59e0b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -382,7 +382,7 @@
 }
 
 .textarea:focus {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: -2px;
 }
 
@@ -412,7 +412,7 @@
 }
 
 .select:focus {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: -2px;
 }
 
@@ -434,7 +434,7 @@
 }
 
 .numberInput:focus {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: -2px;
 }
 
@@ -494,7 +494,7 @@
 }
 
 .addFeatureInput:focus {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: -2px;
 }
 
@@ -1047,7 +1047,7 @@
 }
 
 .countrySearchInput:focus {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: -2px;
 }
 

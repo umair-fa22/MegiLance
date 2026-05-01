@@ -11,7 +11,7 @@
 }
 
 .quote {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .quoteMark {
@@ -23,11 +23,11 @@
 }
 
 .name {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .role {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .location {

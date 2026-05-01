@@ -1,13 +1,13 @@
 /* @AI-HINT: Light theme colors for enhanced price estimator */
 
 .container {
-  background: linear-gradient(135deg, #f8fafc 0%, #f0f4f8 100%);
+  background: linear-gradient(135deg, var(--bg-secondary-light) 0%, #f0f4f8 100%);
 }
 
 /* Header */
 .headerIcon {
-  background: linear-gradient(135deg, #4573df 0%, #5b85f0 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #5b85f0 100%);
+  color: var(--bg-primary-light);
   box-shadow: 0 4px 16px rgba(69, 115, 223, 0.3);
 }
 
@@ -16,22 +16,22 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Form Card */
 .formCard {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .formHeader {
-  border-bottom-color: #f1f5f9;
+  border-bottom-color: var(--bg-tertiary-light);
 }
 
 .formIconWrapper {
   background: linear-gradient(135deg, #e5edfc 0%, #dce6fa 100%);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .formTitle {
@@ -39,7 +39,7 @@
 }
 
 .formSubtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .label {
@@ -48,21 +48,21 @@
 
 .labelOptional,
 .charCount {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .textarea {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   color: #1f2937;
 }
 
 .textarea::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .textarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
 }
 
@@ -89,12 +89,12 @@
 
 /* Submit Section */
 .submitSection {
-  border-top-color: #f1f5f9;
+  border-top-color: var(--bg-tertiary-light);
 }
 
 .submitButton {
-  background: linear-gradient(135deg, #4573df 0%, #5b85f0 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #5b85f0 100%);
+  color: var(--bg-primary-light);
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.3);
 }
 
@@ -103,12 +103,12 @@
 }
 
 .privacyNote {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Results Panel */
 .resultsPanel {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
 }
@@ -116,7 +116,7 @@
 /* Empty State */
 .emptyStateIcon {
   background: linear-gradient(135deg, #e5edfc 0%, #dce6fa 100%);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .emptyStateTitle {
@@ -124,13 +124,13 @@
 }
 
 .emptyStateText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .feature {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
   color: #4b5563;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 /* Loading State */
@@ -139,8 +139,8 @@
 }
 
 .loadingOrbInner {
-  background: linear-gradient(135deg, #4573df 0%, #5b85f0 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #5b85f0 100%);
+  color: var(--bg-primary-light);
 }
 
 .loadingTitle {
@@ -148,11 +148,11 @@
 }
 
 .loadingText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .loadingStep {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .loadingStep.completed {
@@ -160,7 +160,7 @@
 }
 
 .loadingStep.active {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .loadingStepCheck {
@@ -169,8 +169,8 @@
 
 /* Price Header */
 .priceHeader {
-  background: linear-gradient(135deg, #4573df 0%, #5b85f0 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #5b85f0 100%);
+  color: var(--bg-primary-light);
 }
 
 .priceLabel {
@@ -178,7 +178,7 @@
 }
 
 .priceValue {
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .priceDivider {
@@ -187,7 +187,7 @@
 
 .priceConfidence {
   background-color: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 /* Recommendation Banner */
@@ -199,7 +199,7 @@
 
 /* Breakdown Section */
 .breakdownSection {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .breakdownTitle {
@@ -212,7 +212,7 @@
 
 .breakdownItemIcon {
   background-color: #e5edfc;
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .breakdownItemLabel {
@@ -224,16 +224,16 @@
 }
 
 .progressBar {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #4573df 0%, #5b85f0 100%);
+  background: linear-gradient(90deg, var(--ml-blue) 0%, #5b85f0 100%);
 }
 
 /* Factors Section */
 .factorsSection {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .factorsTitle {
@@ -241,13 +241,13 @@
 }
 
 .factorCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .factorImpact {
-  background-color: #f1f5f9;
-  color: #64748b;
+  background-color: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .factorPositive {
@@ -265,7 +265,7 @@
 }
 
 .factorLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Actions */
@@ -274,8 +274,8 @@
 }
 
 .actionButton {
-  background: linear-gradient(135deg, #4573df 0%, #5b85f0 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #5b85f0 100%);
+  color: var(--bg-primary-light);
   box-shadow: 0 2px 8px rgba(69, 115, 223, 0.25);
 }
 
@@ -284,19 +284,19 @@
 }
 
 .actionButton.secondary {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #374151;
   box-shadow: none;
 }
 
 .actionButton.secondary:hover {
-  background: #e2e8f0;
+  background: var(--border-light);
   box-shadow: none;
 }
 
 /* Disclaimer */
 .disclaimer {
-  background-color: #f8fafc;
-  color: #64748b;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  color: var(--color-text-secondary-light);
+  border: 1px solid var(--border-light);
 }

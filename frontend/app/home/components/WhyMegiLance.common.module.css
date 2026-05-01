@@ -114,7 +114,7 @@
 }
 
 .highlightText {
-  background: linear-gradient(135deg, var(--color-primary, #4573df) 0%, var(--color-accent, #ff9800) 100%);
+  background: linear-gradient(135deg, var(--color-primary, var(--ml-blue)) 0%, var(--color-accent, var(--ml-orange)) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -179,20 +179,20 @@
 
 /* Card Variants */
 .variantPrimary {
-  --accent-color: var(--color-primary, #4573df);
-  --gradient: linear-gradient(135deg, var(--color-primary, #4573df) 0%, #667eea 100%);
+  --accent-color: var(--color-primary, var(--ml-blue));
+  --gradient: linear-gradient(135deg, var(--color-primary, var(--ml-blue)) 0%, #667eea 100%);
   --accent-light: rgba(69, 115, 223, 0.1);
 }
 
 .variantSuccess {
-  --accent-color: var(--color-success, #27ae60);
-  --gradient: linear-gradient(135deg, var(--color-success, #27ae60) 0%, #48d597 100%);
+  --accent-color: var(--color-success, var(--ml-green));
+  --gradient: linear-gradient(135deg, var(--color-success, var(--ml-green)) 0%, #48d597 100%);
   --accent-light: rgba(39, 174, 96, 0.1);
 }
 
 .variantOrange {
-  --accent-color: var(--color-accent, #ff9800);
-  --gradient: linear-gradient(135deg, var(--color-accent, #ff9800) 0%, #ffb84d 100%);
+  --accent-color: var(--color-accent, var(--ml-orange));
+  --gradient: linear-gradient(135deg, var(--color-accent, var(--ml-orange)) 0%, #ffb84d 100%);
   --accent-light: rgba(255, 152, 0, 0.1);
 }
 

@@ -1,76 +1,76 @@
 /* @AI-HINT: Freelancer file management light theme colors */
 
 .container {
-  background-color: #f8fafc;
-  color: #1e293b;
+  background-color: var(--bg-secondary-light);
+  color: var(--color-text-primary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Stats */
 .statCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .statIcon {
   background: #eff6ff;
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .statLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .statValue {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 /* Filter */
 .searchInput {
-  background: #ffffff;
-  border-color: #e2e8f0;
-  color: #0f172a;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .searchInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 .filterSelect {
-  background: #ffffff;
-  border-color: #e2e8f0;
-  color: #0f172a;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .viewToggle {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .viewBtn {
-  background: #ffffff;
-  color: #64748b;
+  background: var(--bg-primary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .viewBtn:hover {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .viewBtnActive {
-  background: #4573df;
-  color: #ffffff;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 /* Breadcrumb */
 .breadcrumbBtn {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .breadcrumbBtn:hover {
@@ -78,42 +78,42 @@
 }
 
 .breadcrumbSep {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .breadcrumbCurrent {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 /* Table */
 .fileTable th {
-  color: #64748b;
-  background: #f8fafc;
-  border-color: #e2e8f0;
+  color: var(--color-text-secondary-light);
+  background: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .fileTable td {
-  border-color: #f1f5f9;
-  color: #475569;
+  border-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .fileTable tr:hover {
-  background: #f8fafc;
+  background: var(--bg-secondary-light);
 }
 
 .fileName {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .actionBtn:hover {
-  background: #f1f5f9;
-  color: #4573df;
+  background: var(--bg-tertiary-light);
+  color: var(--ml-blue);
 }
 
 /* Card */
 .fileCardWrapper {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
@@ -123,28 +123,28 @@
 }
 
 .fileCardPreview {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .fileCardName {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .fileCardMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .fileCardActions {
-  border-color: #f1f5f9;
+  border-color: var(--bg-tertiary-light);
 }
 
 /* Empty State */
 .emptyState {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .emptyTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 /* Modal */
@@ -153,74 +153,74 @@
 }
 
 .modalContent {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .modalHeader {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .modalHeader h2 {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .closeBtn {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .closeBtn:hover {
-  background: #f1f5f9;
-  color: #0f172a;
+  background: var(--bg-tertiary-light);
+  color: var(--text-primary-light);
 }
 
 .modalFooter {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 /* Dropzone */
 .dropzone {
   border-color: #cbd5e1;
-  background: #f8fafc;
+  background: var(--bg-secondary-light);
 }
 
 .dropzone:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background: #eff6ff;
 }
 
 .dropzoneActive {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background: #eff6ff;
 }
 
 .dropzoneText {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .dropzoneHint {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Upload Item */
 .uploadItem {
-  background: #f8fafc;
+  background: var(--bg-secondary-light);
 }
 
 .uploadItemName {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .uploadItemSize {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .progressBar {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .progressFill {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 .uploadItemRemove {
@@ -238,14 +238,14 @@
 
 .input,
 .textarea {
-  background: #ffffff;
-  border-color: #e2e8f0;
-  color: #0f172a;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .input:focus,
 .textarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
@@ -256,15 +256,15 @@
 
 /* Context Menu */
 .contextMenu {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .contextMenuItem {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .contextMenuItem:hover {
-  background: #f1f5f9;
-  color: #0f172a;
+  background: var(--bg-tertiary-light);
+  color: var(--text-primary-light);
 }

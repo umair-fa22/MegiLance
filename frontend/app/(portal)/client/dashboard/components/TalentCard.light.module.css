@@ -1,6 +1,6 @@
 .card {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .card:hover {
@@ -9,11 +9,11 @@
 }
 
 .actionButton {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .actionButton:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #111827;
 }
 
@@ -22,14 +22,14 @@
 }
 
 .role {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .metaItem {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .rate {
   color: #374151;
-  border-top-color: #f1f5f9;
+  border-top-color: var(--bg-tertiary-light);
 }

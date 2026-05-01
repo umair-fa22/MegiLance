@@ -12,7 +12,7 @@
 }
 
 .section {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border: 1px solid #e0e0e0;
 }
 
@@ -35,7 +35,7 @@
 
 .textarea:focus,
 .select:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 

@@ -1,12 +1,12 @@
 /* Advanced Search - Dark Theme */
 
 .container {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
 .searchInput {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   border-color: #475569;
   color: #e2e8f0;
 }
@@ -16,54 +16,54 @@
 }
 
 .filterToggle {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   border-color: #475569;
   color: #e2e8f0;
 }
 
 .filterToggle:hover {
-  background: #334155;
-  border-color: #4573df;
+  background: var(--border-dark);
+  border-color: var(--ml-blue);
 }
 
 .filtersPanel {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   border-color: #475569;
 }
 
 .suggestionsDropdown {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   border-color: #475569;
 }
 
 .suggestionItem {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   color: #e2e8f0;
   border-color: #475569;
 }
 
 .suggestionItem:hover {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 .recentSearches {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   color: #e2e8f0;
 }
 
 .savedSearches {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   border-color: #475569;
 }
 
 .savedSearchItem {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
   border-color: #475569;
   color: #e2e8f0;
 }
 
 .savedSearchItem:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .searchIcon {
@@ -71,40 +71,40 @@
 }
 
 .filterCountBadge {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #ffffff;
 }
 
 .filterInput,
 .filterInputFull {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   border-color: #475569;
   color: #e2e8f0;
 }
 
 .filterInput:focus,
 .filterInputFull:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 .dialogInner {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
 }
 
 .dialogInput {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
   border-color: #475569;
   color: #e2e8f0;
 }
 
 .dialogInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 .trendingSection {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   border-color: #475569;
 }
 
@@ -113,7 +113,7 @@
 }
 
 .trendingColumnTitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .trendingItem {
@@ -122,8 +122,8 @@
 }
 
 .trendingItem:hover {
-  background: #334155;
-  border-color: #4573df;
+  background: var(--border-dark);
+  border-color: var(--ml-blue);
 }
 
 .trendingBadge {

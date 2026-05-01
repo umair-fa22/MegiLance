@@ -1,12 +1,12 @@
 /* @AI-HINT: Overhauled dark theme for SidebarNav - modern, refined, with tooltip */
 
 .navLinkInactive {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
   background-color: transparent;
 }
 
 .navLinkInactive:hover {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   color: #e2e8f0;
 }
 
@@ -22,8 +22,8 @@
 }
 
 .badge {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .navLinkActive .badge {
@@ -33,12 +33,12 @@
 
 .sidebarNavSubLink {
   background-color: transparent;
-  border-left-color: #334155;
-  color: #94a3b8;
+  border-left-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .sidebarNavSubLink:hover {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   color: #e2e8f0;
 }
 
@@ -53,13 +53,13 @@
 }
 
 .sidebarNavSectionDivider {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 /* Tooltip for collapsed state */
 .tooltip {
   background-color: #e2e8f0;
-  color: #0f172a;
+  color: var(--bg-primary-dark);
 }
 
 .tooltip::before {

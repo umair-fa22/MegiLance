@@ -1,13 +1,13 @@
 /* @AI-HINT: Dark theme styles for the ThemeSwitcher button. */
 
 .themeToggle {
-  background-color: #1e293b; /* Gray 800 */
+  background-color: var(--bg-secondary-dark); /* Gray 800 */
 }
 
 .themeToggle:hover {
-  background-color: #334155; /* Gray 700 */
+  background-color: var(--border-dark); /* Gray 700 */
 }
 
 .icon {
-  color: #f8fafc; /* Gray 50 */
+  color: var(--text-primary-dark); /* Gray 50 */
 }

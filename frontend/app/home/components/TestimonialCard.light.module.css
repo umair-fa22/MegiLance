@@ -1,12 +1,12 @@
 .testimonialCard {
-  background: #ffffff;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 .testimonialCard:hover {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border-color: #27AE60;
+  border-color: var(--ml-green);
 }
 
 .quoteIcon {

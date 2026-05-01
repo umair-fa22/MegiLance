@@ -1,28 +1,28 @@
 /* @AI-HINT: Modern 2026 Light theme Input component — glassmorphism, glow effects, refined gradients */
 
 .inputWrapper {
-  --input-bg: #ffffff;
-  --input-bg-hover: #f8fafc;
-  --input-bg-focus: #ffffff;
-  --input-bg-disabled: #f1f5f9;
-  --input-border: #e2e8f0;
+  --input-bg: var(--bg-primary-light);
+  --input-bg-hover: var(--bg-secondary-light);
+  --input-bg-focus: var(--bg-primary-light);
+  --input-bg-disabled: var(--bg-tertiary-light);
+  --input-border: var(--border-light);
   --input-border-hover: #cbd5e1;
-  --input-border-focus: #4573df;
-  --input-border-error: #e81123;
-  --input-border-error-focus: #e81123;
-  --input-border-disabled: #e2e8f0;
-  --input-text: #0f172a;
-  --input-text-error: #e81123;
-  --input-text-disabled: #94a3b8;
-  --input-placeholder-text: #94a3b8;
-  --input-icon: #64748b;
+  --input-border-focus: var(--ml-blue);
+  --input-border-error: var(--ml-red);
+  --input-border-error-focus: var(--ml-red);
+  --input-border-disabled: var(--border-light);
+  --input-text: var(--text-primary-light);
+  --input-text-error: var(--ml-red);
+  --input-text-disabled: var(--text-tertiary-light);
+  --input-placeholder-text: var(--text-tertiary-light);
+  --input-icon: var(--color-text-secondary-light);
   --input-label-text: #334155;
   --input-icon-hover-bg: rgba(0, 0, 0, 0.05);
 }
 
 .inputField {
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--border-light);
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.9) 0%,
@@ -35,22 +35,22 @@
 .inputField:hover:not(:disabled) {
   box-shadow: 0 8px 24px rgba(69, 115, 223, 0.12);
   border: 2px solid #cbd5e1;
-  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  background: linear-gradient(135deg, var(--bg-secondary-light) 0%, var(--bg-primary-light) 100%);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
 
 .inputField:focus {
   box-shadow: 0 0 0 4px rgba(69, 115, 223, 0.2), 0 8px 24px rgba(69, 115, 223, 0.1);
-  border: 2px solid #4573df;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 2px solid var(--ml-blue);
+  background: linear-gradient(135deg, var(--bg-primary-light) 0%, var(--bg-secondary-light) 100%);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
 .inputWrapperError .inputField {
   box-shadow: 0 0 0 4px rgba(232, 17, 35, 0.15);
-  border: 2px solid #e81123;
+  border: 2px solid var(--ml-red);
 }
 
 .inputWrapperError .inputField:focus {
@@ -59,7 +59,7 @@
 }
 
 .inputIcon {
-  color: #4573df;
+  color: var(--ml-blue);
   filter: drop-shadow(0 2px 6px rgba(69, 115, 223, 0.15));
 }
 
@@ -69,15 +69,15 @@
     rgba(241, 245, 249, 0.9) 0%,
     rgba(226, 232, 240, 0.7) 100%
   );
-  color: #94a3b8;
-  border-color: #e2e8f0;
+  color: var(--text-tertiary-light);
+  border-color: var(--border-light);
   backdrop-filter: blur(4px);
 }
 
 .inputGroupAddon {
-  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-  border: 2px solid #e2e8f0;
-  color: #64748b;
+  background: linear-gradient(135deg, var(--bg-tertiary-light) 0%, var(--border-light) 100%);
+  border: 2px solid var(--border-light);
+  color: var(--color-text-secondary-light);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.04);

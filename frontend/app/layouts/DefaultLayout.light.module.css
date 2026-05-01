@@ -1,6 +1,6 @@
 /* @AI-HINT: Light theme colors for DefaultLayout */
 
 .layout {
-  background-color: #ffffff;
-  color: #1e293b;
+  background-color: var(--bg-primary-light);
+  color: var(--color-text-primary-light);
 }

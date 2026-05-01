@@ -1,7 +1,7 @@
 /* Wizard Container - Dark Theme */
 
 .container {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .progressBar {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
 }
 
 .stepsIndicator::before {
@@ -22,14 +22,14 @@
 }
 
 .stepCircle {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   border-color: #475569;
   color: #a0aec0;
 }
 
 .stepItemCompleted .stepCircle {
-  background: #27AE60;
-  border-color: #27AE60;
+  background: var(--ml-green);
+  border-color: var(--ml-green);
   color: #ffffff;
 }
 
@@ -43,7 +43,7 @@
 }
 
 .contentArea {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   border-color: #475569;
 }
 

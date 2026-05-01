@@ -10,7 +10,7 @@
 
 .fundBtn {
   background-color: #10b981;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .fundBtn:hover {
@@ -24,9 +24,9 @@
 }
 
 .balanceCard {
-  background: linear-gradient(135deg, #4573df 0%, #3461d1 100%);
-  border-color: #4573df;
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #3461d1 100%);
+  border-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .balanceDetails {
@@ -40,19 +40,19 @@
 
 .balanceItemValue,
 .balanceAmount {
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .formCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .select,
 .input,
 .textarea {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   color: #111827;
 }
 
@@ -60,22 +60,22 @@
 .input:focus,
 .textarea:focus {
   outline: none;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
 
 .cancelBtn {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #374151;
 }
 
 .cancelBtn:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .submitBtn {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .submitBtn:hover {
@@ -84,12 +84,12 @@
 
 .loading,
 .empty {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .emptyBtn {
   background-color: #10b981;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .emptyBtn:hover {
@@ -97,20 +97,20 @@
 }
 
 .transactionCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .transactionCard:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .transactionMeta {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .badge {
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .badge[data-status="held"] {
@@ -126,7 +126,7 @@
 }
 
 .amountValue {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .description {
@@ -135,12 +135,12 @@
 }
 
 .transactionActions {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .releaseBtn {
   background-color: #10b981;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .releaseBtn:hover {
@@ -148,12 +148,12 @@
 }
 
 .refundBtn {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #374151;
 }
 
 .refundBtn:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .modal {
@@ -161,11 +161,11 @@
 }
 
 .modalContent {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 
 .modalSubtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .availableAmount {

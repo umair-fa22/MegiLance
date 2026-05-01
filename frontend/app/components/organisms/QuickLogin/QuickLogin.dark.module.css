@@ -7,16 +7,16 @@
 }
 
 .footer {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .toggleButtonOpen {
-  background-color: #334155;
-  color: #94a3b8;
+  background-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .toggleButtonClosed {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -57,9 +57,9 @@
 }
 
 .toastSuccess {
-  background-color: #27AE60;
+  background-color: var(--ml-green);
 }
 
 .toastError {
-  background-color: #e81123;
+  background-color: var(--ml-red);
 }

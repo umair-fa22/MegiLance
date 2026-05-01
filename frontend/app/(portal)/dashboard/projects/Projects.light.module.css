@@ -1,57 +1,57 @@
 /* AI-HINT: Light theme overrides for Portal Projects page. */
 
 .themeWrapper {
-  background: #f8fafc;
-  color: #0f172a;
+  background: var(--bg-secondary-light);
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .input,
 .select {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  color: #0f172a;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .button {
-  background: #4573df;
-  color: #ffffff;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
   border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .button.secondary {
-  background: #ffffff;
-  color: #475569;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  color: var(--text-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .progressWrap {
-  background: #f1f5f9;
-  border-color: #e2e8f0;
+  background: var(--bg-tertiary-light);
+  border-color: var(--border-light);
 }
 
 .progressBar {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 .chip {
   background: rgba(69, 115, 223, 0.08);
-  border: 1px solid #e2e8f0;
-  color: #475569;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary-light);
 }
 
 /* Loading and Error States */
 .loadingState {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .errorBanner {

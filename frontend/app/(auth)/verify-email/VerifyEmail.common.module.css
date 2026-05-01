@@ -24,16 +24,16 @@
 }
 
 .spinIcon {
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
   animation: spin 1s linear infinite;
 }
 
 .successIcon {
-  color: var(--color-success, #27AE60);
+  color: var(--color-success, var(--ml-green));
 }
 
 .errorIcon {
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
 }
 
 @keyframes spin {

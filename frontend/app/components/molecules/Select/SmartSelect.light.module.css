@@ -5,12 +5,12 @@
 }
 
 .placeholder {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .trigger {
-  background: #ffffff;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
   color: #1a1a2e;
 }
 
@@ -21,12 +21,12 @@
 
 .trigger:focus-visible,
 .triggerOpen {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
 }
 
 .triggerError {
-  border-color: #e81123 !important;
+  border-color: var(--ml-red) !important;
 }
 
 .triggerError:focus-visible {
@@ -35,50 +35,50 @@
 
 /* Tags */
 .tag {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #374151;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .tagMore {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Clear Button */
 .clearButton {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .clearButton:hover {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #374151;
 }
 
 /* Chevron */
 .chevron {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Loader */
 .loader {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Dropdown */
 .dropdown {
-  background: #ffffff;
-  border: 2px solid #4573df;
-  border-top: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 2px solid var(--ml-blue);
+  border-top: 1px solid var(--border-light);
 }
 
 /* Search */
 .searchContainer {
   background: #fafafa;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .searchIcon {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .searchInput {
@@ -86,15 +86,15 @@
 }
 
 .searchInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .searchClear {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .searchClear:hover {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #374151;
 }
 
@@ -108,7 +108,7 @@
 }
 
 .option:hover {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .optionHighlighted {
@@ -125,8 +125,8 @@
 }
 
 .optionIcon {
-  background: #f1f5f9;
-  color: #64748b;
+  background: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .optionLabel {
@@ -134,28 +134,28 @@
 }
 
 .optionDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .checkIcon {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Groups */
 .groupLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* No Options */
 .noOptions {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Helper Text */
 .helperText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .errorText {
-  color: #e81123;
+  color: var(--ml-red);
 }

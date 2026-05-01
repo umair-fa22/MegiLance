@@ -1,7 +1,7 @@
 /* @AI-HINT: Dark theme colors for premium AI Chatbot - Production-ready quality */
 
 .container {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  background: linear-gradient(135deg, var(--bg-primary-dark) 0%, var(--bg-secondary-dark) 50%, var(--bg-primary-dark) 100%);
 }
 
 .chatContainer {
@@ -20,15 +20,15 @@
 }
 
 .headerInfo h2 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .headerTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .headerSubtext {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statusDot {
@@ -41,18 +41,18 @@
 }
 
 .aiAvatar {
-  background: linear-gradient(135deg, #4573df, #8b5cf6);
+  background: linear-gradient(135deg, var(--ml-blue), #8b5cf6);
   color: #ffffff;
 }
 
 .iconButton {
   background: rgba(255, 255, 255, 0.05);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .iconButton:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 /* Messages */
@@ -65,7 +65,7 @@
 }
 
 .messageAvatar {
-  background: linear-gradient(135deg, #4573df, #8b5cf6);
+  background: linear-gradient(135deg, var(--ml-blue), #8b5cf6);
   color: #ffffff;
 }
 
@@ -77,7 +77,7 @@
 
 .messageBubbleBot {
   background: rgba(51, 65, 85, 0.8);
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
   border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
@@ -115,7 +115,7 @@
 .input {
   background: rgba(51, 65, 85, 0.6);
   border-color: transparent;
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .input::placeholder {
@@ -149,7 +149,7 @@
 }
 
 .sendButton:disabled {
-  background: #334155;
+  background: var(--border-dark);
   color: #64748b;
   box-shadow: none;
 }
@@ -161,18 +161,18 @@
 }
 
 .emptyTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .emptyDescription {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Model Selector */
 .modelSelector {
   background: rgba(51, 65, 85, 0.5);
   border-color: rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .modelSelector:hover {

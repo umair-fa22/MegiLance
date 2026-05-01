@@ -2,45 +2,45 @@
 .container,
 .header,
 .item {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .container {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 
 .title,
 .userName {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .item:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .active {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .timestamp,
 .lastMessage {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Ensure text in active item is still readable and has emphasis */
 .active .userName,
 .active .lastMessage,
 .active .timestamp {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 /* Loading, Error, and Empty States */
 .loadingState,
 .errorState,
 .emptyState {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .errorState {
-  color: #e81123;
+  color: var(--ml-red);
 }

@@ -2,8 +2,8 @@
 .star { color: #cbd5e1; }
 
 .filled {
-  fill: #F2C94C;
-  color: #F2C94C;
+  fill: var(--ml-yellow);
+  color: var(--ml-yellow);
   filter: drop-shadow(0 0 2px rgba(242, 201, 76, 0.5));
 }
 
@@ -12,9 +12,9 @@
 }
 
 .ratingValue {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .reviewCount {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }

@@ -53,10 +53,10 @@
   --opacity-disabled: 0.5;
 
   /* Semantic Color Aliases */
-  --color-danger-default: #e81123;
-  --color-success-default: #27AE60;
-  --color-warning-default: #F2C94C;
-  --color-primary-default: #4573df;
+  --color-danger-default: var(--ml-red);
+  --color-success-default: var(--ml-green);
+  --color-warning-default: var(--ml-yellow);
+  --color-primary-default: var(--ml-blue);
 
   /* Line Heights */
   --line-height-none: 1;
@@ -206,10 +206,10 @@
   /* ============================================= */
   /*   GRADIENTS - Brand Gradient System          */
   /* ============================================= */
-  --gradient-primary: linear-gradient(135deg, #4573df 0%, #6366f1 100%);
+  --gradient-primary: linear-gradient(135deg, var(--ml-blue) 0%, #6366f1 100%);
   --gradient-primary-hover: linear-gradient(135deg, #3b65d4 0%, #5558e6 100%);
-  --gradient-accent: linear-gradient(135deg, #ff9800 0%, #f59e0b 100%);
-  --gradient-success: linear-gradient(135deg, #27AE60 0%, #10b981 100%);
+  --gradient-accent: linear-gradient(135deg, var(--ml-orange) 0%, #f59e0b 100%);
+  --gradient-success: linear-gradient(135deg, var(--ml-green) 0%, #10b981 100%);
   --gradient-premium: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --gradient-hero: linear-gradient(135deg, rgba(69, 115, 223, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
   --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 100%);
@@ -268,13 +268,13 @@
   --surface-primary: var(--neutral-50);
   --surface-secondary: var(--neutral-100);
   --surface-tertiary: var(--neutral-200);
-  --surface-elevated: #ffffff;
+  --surface-elevated: var(--bg-primary-light);
   --surface-overlay: rgba(255, 255, 255, 0.95);
   
   /* Background tokens */
   --bg-page: var(--neutral-50);
-  --bg-card: #ffffff;
-  --bg-input: #ffffff;
+  --bg-card: var(--bg-primary-light);
+  --bg-input: var(--bg-primary-light);
   --bg-hover: var(--neutral-100);
   --bg-active: var(--neutral-200);
   
@@ -300,7 +300,7 @@
   --background-ffffff: var(--bg-card);
   --border-e0e0e0: var(--border-default);
   --text-primary-23272f: var(--text-heading);
-  --primary-4573df: #4573df;
+  --primary-4573df: var(--ml-blue);
 }
 
 /* ------------------------- */

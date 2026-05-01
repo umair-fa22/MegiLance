@@ -1,7 +1,7 @@
 /* @AI-HINT: Dark theme colors for premium Fraud Check - Production-ready quality */
 
 .container {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  background: linear-gradient(135deg, var(--bg-primary-dark) 0%, var(--bg-secondary-dark) 50%, var(--bg-primary-dark) 100%);
 }
 
 .headerIcon {
@@ -10,15 +10,15 @@
 }
 
 .title {
-  color: #f8fafc;
-  background: linear-gradient(135deg, #f8fafc, #94a3b8);
+  color: var(--text-primary-dark);
+  background: linear-gradient(135deg, var(--text-primary-dark), var(--text-tertiary-dark));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .form {
@@ -30,13 +30,13 @@
 }
 
 .formLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .textarea {
   background: rgba(51, 65, 85, 0.6);
   border-color: transparent;
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .textarea::placeholder {
@@ -52,7 +52,7 @@
 .sampleButton {
   background: transparent;
   border-color: rgba(255, 255, 255, 0.1);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .sampleButton:hover {
@@ -68,11 +68,11 @@
 }
 
 .loadingText {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .loadingSubtext {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Result Card */
@@ -94,11 +94,11 @@
 }
 
 .resultTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .resultSubtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Score Ring */
@@ -107,11 +107,11 @@
 }
 
 .scoreLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .riskDescription {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 /* Risk Level Colors */

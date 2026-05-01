@@ -1,14 +1,14 @@
 ﻿/* @AI-HINT: Light theme styles for Withdraw page */
 
 .container {
-  background-color: #f8fafc;
-  color: #1e293b;
+  background-color: var(--bg-secondary-light);
+  color: var(--color-text-primary-light);
 }
 
 .title {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }

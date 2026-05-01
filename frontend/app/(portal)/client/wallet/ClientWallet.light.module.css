@@ -6,7 +6,7 @@
 .subtitle { color: #6b7280; }
 .errorBanner { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
 
-.depositPanel { background: #fff; border-color: #4573df; }
+.depositPanel { background: #fff; border-color: var(--ml-blue); }
 .depositTitle { color: #1a1a2e; }
 .quickAmount { background: #f3f4f6; border-color: #e5e7eb; color: #374151; }
 .quickAmount:hover { background: #e8ecff; }
@@ -20,11 +20,11 @@
 .tabBar { border-color: #e5e7eb; }
 .tabBtn { color: #6b7280; }
 .tabBtn:hover { color: #374151; background: #f3f4f6; }
-.tabBtnActive { color: #4573df; }
+.tabBtnActive { color: var(--ml-blue); }
 
 .chartSection { background: #fff; border: 1px solid #e5e7eb; }
 .sectionTitle { color: #1a1a2e; }
-.chartBar { background: #4573df; }
+.chartBar { background: var(--ml-blue); }
 .chartAmount { color: #374151; }
 .chartLabel { color: #9ca3af; }
 
@@ -45,17 +45,17 @@
 .transactionsPanel { background: #fff; border: 1px solid #e5e7eb; }
 .sortHeader { background: #f9fafb; }
 .sortCol { color: #6b7280; }
-.sortColActive { color: #4573df; }
+.sortColActive { color: var(--ml-blue); }
 .pageInfo { color: #9ca3af; }
 .pageNum { color: #6b7280; }
 .pageNum:hover { background: #f3f4f6; }
-.pageNumActive { color: #4573df; background: #e8ecff; border-color: #4573df; }
+.pageNumActive { color: var(--ml-blue); background: #e8ecff; border-color: var(--ml-blue); }
 
 .budgetSettingCard { background: #fff; border: 1px solid #e5e7eb; }
 .budgetDesc { color: #9ca3af; }
 .budgetSpent { color: #1a1a2e; }
 .budgetOf { color: #6b7280; }
-.budgetRemaining { color: #27AE60; }
+.budgetRemaining { color: var(--ml-green); }
 
 .categoryBudgets { background: #fff; border: 1px solid #e5e7eb; }
 .categoryBudgetItem { }
@@ -70,15 +70,15 @@
 .methodsPanel { background: #fff; border: 1px solid #e5e7eb; }
 .methodCard { background: #fff; border-color: #e5e7eb; }
 .methodCard:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-.methodIcon { background: #f3f4f6; color: #4573df; }
+.methodIcon { background: #f3f4f6; color: var(--ml-blue); }
 .methodName { color: #1a1a2e; }
 .methodExp { color: #9ca3af; }
 .addMethodCard { border-color: #d1d5db; color: #9ca3af; }
-.addMethodCard:hover { border-color: #4573df; color: #4573df; }
+.addMethodCard:hover { border-color: var(--ml-blue); color: var(--ml-blue); }
 
 .securityInfo { background: #f0fdf4; color: #15803d; }
 
-.feePreview { background: #f8fafc; border-color: #e5e7eb; color: #374151; }
+.feePreview { background: var(--bg-secondary-light); border-color: #e5e7eb; color: #374151; }
 .feePreviewDivider { background: #e5e7eb; }
 .securityTitle { color: #166534; }
 .securityText { color: #4ade80; }

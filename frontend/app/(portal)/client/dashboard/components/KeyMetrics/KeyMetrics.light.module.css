@@ -1,5 +1,5 @@
 /* @AI-HINT: Light theme styles for the KeyMetrics skeleton loader. */
 .widgetSkeleton {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border: 1px solid #eef2f7;
 }

@@ -8,7 +8,7 @@
 }
 
 .dropdown {
-  background-color: var(--card, #ffffff);
+  background-color: var(--card, var(--bg-primary-light));
   border: 1px solid var(--border, #e4e4e7);
 }
 

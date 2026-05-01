@@ -1,51 +1,51 @@
 /* @AI-HINT: Security settings light theme */
 
 .container {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .loading {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Tabs */
 .tabs {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .tab {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tab:hover {
-  color: #0f172a;
-  background-color: #f1f5f9;
+  color: var(--text-primary-light);
+  background-color: var(--bg-tertiary-light);
 }
 
 .activeTab {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Card */
 .card {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .cardTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .cardDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Status Badge */
@@ -61,8 +61,8 @@
 
 /* Buttons */
 .primaryButton {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .primaryButton:hover:not(:disabled) {
@@ -70,13 +70,13 @@
 }
 
 .secondaryButton {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #374151;
   background-color: transparent;
 }
 
 .secondaryButton:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .dangerButton {
@@ -107,36 +107,36 @@
 
 /* Step Number */
 .stepNumber {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 /* QR Container */
 .qrContainer {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .qrPlaceholder {
-  border-color: #e2e8f0;
-  color: #94a3b8;
+  border-color: var(--border-light);
+  color: var(--text-tertiary-light);
 }
 
 /* Secret Code */
 .secretCode {
-  background-color: #f1f5f9;
-  color: #0f172a;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-primary-light);
 }
 
 /* Code Input */
 .codeInput {
-  border-color: #e2e8f0;
-  background-color: #ffffff;
-  color: #0f172a;
+  border-color: var(--border-light);
+  background-color: var(--bg-primary-light);
+  color: var(--text-primary-light);
 }
 
 .codeInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
@@ -146,40 +146,40 @@
 }
 
 .modalContent {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .backupCode {
-  background-color: #f1f5f9;
-  color: #0f172a;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-primary-light);
 }
 
 /* Session Item */
 .sessionItem {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .sessionItem:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .currentSession {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background-color: #eff6ff;
 }
 
 .currentBadge {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .sessionMeta {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .sessionTime {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .endSessionButton {
@@ -193,7 +193,7 @@
 
 /* Alert Item */
 .alertItem {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 /* Toggle */
@@ -202,11 +202,11 @@
 }
 
 .toggle input:checked + .toggleSlider {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
 }
 
 .mutedText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Toast */

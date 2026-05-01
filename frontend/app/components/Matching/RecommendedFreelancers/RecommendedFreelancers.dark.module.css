@@ -1,7 +1,7 @@
 ﻿/* @AI-HINT: Premium RecommendedFreelancers - Dark theme */
 
 .aiIcon {
-  background: linear-gradient(135deg, #4573df, #9b59b6);
+  background: linear-gradient(135deg, var(--ml-blue), #9b59b6);
   color: #ffffff;
   box-shadow: 0 8px 24px -8px rgba(69, 115, 223, 0.5);
 }
@@ -11,7 +11,7 @@
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
@@ -35,7 +35,7 @@
 }
 
 .card::before {
-  background: linear-gradient(90deg, #4573df, #9b59b6);
+  background: linear-gradient(90deg, var(--ml-blue), #9b59b6);
 }
 
 .card:hover {
@@ -59,12 +59,12 @@
 }
 
 .onlineIndicator {
-  background: #27AE60;
+  background: var(--ml-green);
   border-color: #1a1a2e;
 }
 
 .name {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .titleRole {
@@ -96,7 +96,7 @@
 }
 
 .statValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .skill {
@@ -124,7 +124,7 @@
 }
 
 .primaryAction {
-  background: linear-gradient(135deg, #4573df, #9b59b6);
+  background: linear-gradient(135deg, var(--ml-blue), #9b59b6);
   color: #ffffff;
   box-shadow: 0 8px 24px -8px rgba(69, 115, 223, 0.5);
 }
@@ -144,11 +144,11 @@
 
 .loadingSpinner {
   border-color: rgba(255, 255, 255, 0.1);
-  border-top-color: #4573df;
+  border-top-color: var(--ml-blue);
 }
 
 .loadingText {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .loadingSubtext {
@@ -161,7 +161,7 @@
 }
 
 .emptyTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .emptyDescription {

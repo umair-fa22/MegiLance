@@ -1,22 +1,22 @@
 /* @AI-HINT: Availability calendar dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Stats */
 .statCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -25,20 +25,20 @@
 }
 
 .statInfo span {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Week Grid */
 .weekGrid {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   border-radius: 12px;
   padding: 1rem;
 }
 
 .dayColumn {
-  background: #0f172a;
-  border: 1px solid #334155;
+  background: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .dayHeader {
@@ -51,60 +51,60 @@
 }
 
 .slotItem {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .slotTime {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 /* Bookings */
 .emptyCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .emptyCard h3 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .emptyCard p {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .bookingCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .bookingHeader h3 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .projectTitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .bookingNotes {
-  background: #0f172a;
-  color: #cbd5e1;
+  background: var(--bg-primary-dark);
+  color: var(--text-secondary-dark);
 }
 
 /* Settings */
 .settingsCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .settingsCard h3 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .input {
-  background: #0f172a;
-  border-color: #334155;
-  color: #f8fafc;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .input:focus {
@@ -114,10 +114,10 @@
 
 /* Modal */
 .modal {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .modal h2 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }

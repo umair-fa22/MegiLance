@@ -1,36 +1,36 @@
 /* @AI-HINT: Light theme for OAuth callback page */
 
 .container {
-  background: #f8fafc;
+  background: var(--bg-secondary-light);
 }
 
 .card {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .iconWrapSuccess {
   background: rgba(39, 174, 96, 0.1);
-  color: #27ae60;
+  color: var(--ml-green);
 }
 
 .iconWrapError {
   background: rgba(232, 17, 35, 0.1);
-  color: #e81123;
+  color: var(--ml-red);
 }
 
 .spinner {
   border-color: rgba(69, 115, 223, 0.15);
-  border-top-color: #4573df;
+  border-top-color: var(--ml-blue);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .message {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .messageError {

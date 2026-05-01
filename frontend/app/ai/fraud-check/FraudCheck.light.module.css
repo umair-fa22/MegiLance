@@ -1,7 +1,7 @@
 /* @AI-HINT: Light theme colors for premium Fraud Check - Production-ready quality */
 
 .container {
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+  background: linear-gradient(135deg, var(--bg-secondary-light) 0%, var(--bg-tertiary-light) 50%, var(--border-light) 100%);
 }
 
 .headerIcon {
@@ -10,15 +10,15 @@
 }
 
 .title {
-  color: #0f172a;
-  background: linear-gradient(135deg, #0f172a, #334155);
+  color: var(--text-primary-light);
+  background: linear-gradient(135deg, var(--text-primary-light), #334155);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .form {
@@ -30,49 +30,49 @@
 }
 
 .formLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .textarea {
   background: rgba(241, 245, 249, 0.8);
   border-color: transparent;
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .textarea::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .textarea:focus {
-  background: #ffffff;
-  border-color: #4573df;
+  background: var(--bg-primary-light);
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 4px rgba(69, 115, 223, 0.12);
 }
 
 .sampleButton {
   background: transparent;
   border-color: rgba(0, 0, 0, 0.1);
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .sampleButton:hover {
   background: rgba(0, 0, 0, 0.04);
-  border-color: #4573df;
-  color: #4573df;
+  border-color: var(--ml-blue);
+  color: var(--ml-blue);
 }
 
 /* Loading State */
 .loadingSpinner {
   border-color: rgba(69, 115, 223, 0.2);
-  border-top-color: #4573df;
+  border-top-color: var(--ml-blue);
 }
 
 .loadingText {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .loadingSubtext {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Result Card */
@@ -90,15 +90,15 @@
 
 .resultIcon {
   background: linear-gradient(135deg, rgba(69, 115, 223, 0.1), rgba(99, 102, 241, 0.1));
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .resultTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .resultSubtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Score Ring */
@@ -107,11 +107,11 @@
 }
 
 .scoreLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .riskDescription {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 /* Risk Level Colors */
@@ -143,7 +143,7 @@
 
 .warningItem {
   background: rgba(255, 255, 255, 0.8);
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .warningIcon {

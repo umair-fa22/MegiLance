@@ -11,7 +11,6 @@ import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
 import {
   Send,
-  Sparkles,
   Trash2,
   MoreVertical,
   Settings,
@@ -25,6 +24,8 @@ import {
   Zap,
   MessageSquare,
   Info,
+  Mic,
+  Volume2,
 } from 'lucide-react';
 
 import commonStyles from './ChatbotEnhanced.common.module.css';
@@ -80,10 +81,50 @@ const ChatbotEnhanced: React.FC = () => {
   });
 
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [recognitionAvailable, setRecognitionAvailable] = useState(false);
+  const recognitionRef = useRef<any>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+    if (SpeechRecognition) setRecognitionAvailable(true);
+  }, []);
+
+  const speakText = (text: string) => {
+    if (!('speechSynthesis' in window)) return;
+    try {
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'en-US';
+      utter.onstart = () => setIsSpeaking(true);
+      utter.onend = () => setIsSpeaking(false);
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utter);
+    } catch (e) {
+      console.warn('speech error', e);
+    }
+  };
+
+  const startRecognition = () => {
+    const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+    if (!SpeechRecognition) return;
+    const recog = new SpeechRecognition();
+    recog.lang = 'en-US';
+    recog.interimResults = false;
+    recog.maxAlternatives = 1;
+    recog.onresult = (ev: any) => {
+      const transcript = ev.results[0][0].transcript;
+      // send via useAIChat
+      sendMessage(transcript);
+    };
+    recog.onerror = (e: any) => console.warn('recog error', e);
+    recog.onend = () => { recognitionRef.current = null; };
+    recognitionRef.current = recog;
+    recog.start();
+  };
 
   // Scroll to bottom on new messages
   useEffect(() => {
@@ -129,7 +170,7 @@ const ChatbotEnhanced: React.FC = () => {
     return (
       <div className={cn(commonStyles.container, lightStyles.container)}>
         <div className={commonStyles.loadingState}>
-          <Sparkles className={commonStyles.loadingIcon} />
+          <img src="/assets/chatbot/chatbot-icon.png" alt="Loading" className={commonStyles.loadingIcon} />
           <span>Loading AI Chat...</span>
         </div>
       </div>
@@ -144,8 +185,8 @@ const ChatbotEnhanced: React.FC = () => {
             {/* Header */}
             <header className={cn(commonStyles.header, themeStyles.header)}>
               <div className={commonStyles.headerLeft}>
-                <div className={cn(commonStyles.aiAvatar, themeStyles.aiAvatar)}>
-                  <Bot size={24} />
+                <div className={cn(commonStyles.aiAvatar, themeStyles.aiAvatar, isSpeaking && commonStyles.speaking)}>
+                  <img src="/assets/chatbot/chatbot-icon.png" alt="MegiBot" className={commonStyles.avatarImage} />
                   <div className={cn(commonStyles.avatarPulse, themeStyles.avatarPulse)} />
                 </div>
                 <div className={commonStyles.headerInfo}>
@@ -169,6 +210,33 @@ const ChatbotEnhanced: React.FC = () => {
                   aria-label="Clear chat history"
                 >
                   <Trash2 size={18} />
+                </button>
+                <button
+                  className={cn(commonStyles.iconButton, themeStyles.iconButton)}
+                  onClick={clearMessages}
+                  title="Clear chat"
+                  aria-label="Clear chat history"
+                >
+                  <Trash2 size={18} />
+                </button>
+                {recognitionAvailable && (
+                  <button
+                    className={cn(commonStyles.iconButton, themeStyles.iconButton)}
+                    title="Start voice input"
+                    onClick={() => startRecognition()}
+                  >
+                    <Mic size={18} />
+                  </button>
+                )}
+                <button
+                  className={cn(commonStyles.iconButton, themeStyles.iconButton)}
+                  title="Speak latest response"
+                  onClick={() => {
+                    const last = [...messages].reverse().find(m => m.role === 'assistant');
+                    if (last) speakText(last.content);
+                  }}
+                >
+                  <Volume2 size={18} />
                 </button>
                 <button
                   className={cn(commonStyles.iconButton, themeStyles.iconButton)}
@@ -229,8 +297,8 @@ const ChatbotEnhanced: React.FC = () => {
                   >
                     {/* Avatar */}
                     {msg.role === 'assistant' && (
-                      <div className={cn(commonStyles.messageAvatar, themeStyles.messageAvatar)}>
-                        <Sparkles size={16} />
+                      <div className={cn(commonStyles.messageAvatar, themeStyles.messageAvatar, isSpeaking && commonStyles.speaking)}>
+                        <img src="/assets/chatbot/chatbot-icon.png" alt="AI" className={commonStyles.avatarImageSmall} />
                       </div>
                     )}
 
@@ -329,8 +397,8 @@ const ChatbotEnhanced: React.FC = () => {
                     exit={{ opacity: 0, y: -10 }}
                     className={cn(commonStyles.messageWrapper, commonStyles.messageBot)}
                   >
-                    <div className={cn(commonStyles.messageAvatar, themeStyles.messageAvatar)}>
-                      <Sparkles size={16} />
+                    <div className={cn(commonStyles.messageAvatar, themeStyles.messageAvatar, isSpeaking && commonStyles.speaking)}>
+                      <img src="/assets/chatbot/chatbot-icon.png" alt="AI" className={commonStyles.avatarImageSmall} />
                     </div>
                     <div className={cn(commonStyles.typingIndicator, themeStyles.typingIndicator)}>
                       <div className={commonStyles.typingDots}>

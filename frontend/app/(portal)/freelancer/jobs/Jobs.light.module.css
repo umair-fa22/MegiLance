@@ -12,8 +12,8 @@
 }
 
 .searchBar {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .searchInput {
@@ -21,8 +21,8 @@
 }
 
 .filters {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
 }
 
@@ -35,7 +35,7 @@
 }
 
 .tabs {
-  border-bottom-color: #e2e8f0;
+  border-bottom-color: var(--border-light);
 }
 
 .tab {
@@ -58,8 +58,8 @@
 
 /* Skeleton theme */
 .skeletonCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .skeletonTitle,
@@ -68,7 +68,7 @@
 .skeletonChip,
 .skeletonBudget,
 .skeletonDate {
-  background: linear-gradient(90deg, #e2e8f0 0%, #f7fafc 50%, #e2e8f0 100%);
+  background: linear-gradient(90deg, var(--border-light) 0%, #f7fafc 50%, var(--border-light) 100%);
   background-size: 200% 100%;
   animation: skeleton-shine 1.5s ease-in-out infinite;
 }
@@ -97,24 +97,24 @@
 }
 
 .quickChipsLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .quickChip {
-  background: #f1f5f9;
-  color: #475569;
-  border-color: #e2e8f0;
+  background: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
+  border-color: var(--border-light);
 }
 
 .quickChip:hover {
-  background: #e2e8f0;
-  color: #1e293b;
+  background: var(--border-light);
+  color: var(--color-text-primary-light);
 }
 
 .quickChipActive {
-  background: #4573df;
-  color: #ffffff;
-  border-color: #4573df;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
+  border-color: var(--ml-blue);
 }
 
 /* Active filters */
@@ -127,7 +127,7 @@
 }
 
 .filterTag {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   color: #92400e;
   border: 1px solid #fcd34d;
 }
@@ -137,7 +137,7 @@
 }
 
 .clearAllBtn {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .clearAllBtn:hover {

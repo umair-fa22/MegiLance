@@ -22,7 +22,7 @@
 }
 
 .badge {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
   color: #374151;
 }
 
@@ -44,12 +44,12 @@
 
 .sidebarNavSubLink.navLinkActive {
   background-color: #eef3ff;
-  border-left-color: #4573df;
+  border-left-color: var(--ml-blue);
   color: #2d5bd0;
 }
 
 .sectionLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .sidebarNavSectionDivider {
@@ -59,7 +59,7 @@
 /* Tooltip for collapsed state */
 .tooltip {
   background-color: #1f2937;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .tooltip::before {

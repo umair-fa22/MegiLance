@@ -48,8 +48,8 @@
 
 .messageOwn {
   align-self: flex-end;
-  background: var(--color-primary, #4573df);
-  color: #ffffff;
+  background: var(--color-primary, var(--ml-blue));
+  color: var(--bg-primary-light);
 }
 
 .messageOther {

@@ -1,47 +1,47 @@
 /* @AI-HINT: Dark theme colors for HireMeCard */
 
 .wrapper {
-  background: #0f172a;
-  border-color: #334155;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
 }
 
 .header {
-  border-bottom-color: #334155;
+  border-bottom-color: var(--border-dark);
 }
 
 .headerTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .headerSub {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .controls {
   background: #1a2744;
-  border-bottom-color: #334155;
+  border-bottom-color: var(--border-dark);
 }
 
 .controlLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .toggleGroup {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .toggleBtn {
-  color: #94a3b8;
-  border-right-color: #334155;
+  color: var(--text-tertiary-dark);
+  border-right-color: var(--border-dark);
 }
 
 .toggleBtn:hover {
-  background: #1e293b;
-  color: #f8fafc;
+  background: var(--bg-secondary-dark);
+  color: var(--text-primary-dark);
 }
 
 .toggleBtnActive {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -51,15 +51,15 @@
 }
 
 .tabBar {
-  border-bottom-color: #334155;
+  border-bottom-color: var(--border-dark);
 }
 
 .tab {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tab:hover {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .tabActive {
@@ -73,16 +73,16 @@
 
 .codeToolbar {
   background: #162032;
-  border-bottom-color: #334155;
+  border-bottom-color: var(--border-dark);
 }
 
 .codeLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .copyBtn {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
   color: #5b8aef;
 }
 
@@ -92,12 +92,12 @@
 
 .codeBlock {
   background: #0c1524;
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .quickActions {
   background: #1a2744;
-  border-top-color: #334155;
+  border-top-color: var(--border-dark);
 }
 
 .toggleBtn:focus-visible,

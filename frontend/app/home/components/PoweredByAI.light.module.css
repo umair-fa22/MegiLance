@@ -1,21 +1,21 @@
 /* @AI-HINT: Light theme styles for PoweredByAI. */
 
 .section {
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  background: linear-gradient(180deg, var(--bg-secondary-light) 0%, var(--bg-primary-light) 100%);
 }
 
 .badge {
   background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
   border-color: rgba(69, 115, 223, 0.2);
 }
 
 .heading {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .featureCard {
@@ -28,11 +28,11 @@
 }
 
 .cardTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .cardDescription {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .techStackSection {
@@ -53,7 +53,7 @@
 }
 
 .techItem:hover {
-  background: #ffffff;
+  background: var(--bg-primary-light);
 }
 
 .techName {
@@ -78,7 +78,7 @@
 }
 
 .capabilityItem:hover {
-  background: #ffffff;
+  background: var(--bg-primary-light);
 }
 
 .capabilityText {

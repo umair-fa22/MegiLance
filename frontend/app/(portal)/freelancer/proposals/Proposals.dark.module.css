@@ -3,46 +3,46 @@
 /* @AI-HINT: Dark theme styles for the Proposals page. */
 
 .container {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .toolbarContainer {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
 }
 
-.input { background: #0b1220; border-color: #1e293b; color: #e2e8f0; }
-.select { background: #0b1220; border-color: #1e293b; color: #e2e8f0; }
-.button { background: #4573df; color: #ffffff; }
+.input { background: #0b1220; border-color: var(--bg-secondary-dark); color: #e2e8f0; }
+.select { background: #0b1220; border-color: var(--bg-secondary-dark); color: #e2e8f0; }
+.button { background: var(--ml-blue); color: #ffffff; }
 .button:hover { filter: brightness(1.05); }
 
 .tableWrap { background: #0b1220; box-shadow: 0 1px 2px rgba(0,0,0,0.35), 0 8px 24px rgba(0,0,0,0.25); }
-.table thead th { background: #0f172a; color: #e2e8f0; border-bottom: 1px solid #1e293b; }
-.table tbody tr + tr td { border-top: 1px solid #0f172a; }
+.table thead th { background: var(--bg-primary-dark); color: #e2e8f0; border-bottom: 1px solid var(--bg-secondary-dark); }
+.table tbody tr + tr td { border-top: 1px solid var(--bg-primary-dark); }
 
 .emptyState {
-  background-color: #0f172a;
-  border: 1px dashed #334155;
+  background-color: var(--bg-primary-dark);
+  border: 1px dashed var(--border-dark);
 }
 
 .emptyTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .emptyText {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .modalText {
-    color: #94a3b8;
+    color: var(--text-tertiary-dark);
 }
 
-.status { background: #1e293b; color: #c7d2fe; }
+.status { background: var(--bg-secondary-dark); color: #c7d2fe; }

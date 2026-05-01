@@ -1,21 +1,21 @@
 /* @AI-HINT: Dark theme colors for Wallet page */
 
 .page {
-  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(180deg, var(--bg-primary-dark) 0%, var(--bg-secondary-dark) 100%);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Balance Cards */
 .balanceCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -26,11 +26,11 @@
 }
 
 .balanceLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .balanceAmount {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .balanceSubtext {
@@ -39,16 +39,16 @@
 
 /* Tabs */
 .tabsContainer {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .tab {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tab:hover {
-  background: #334155;
-  color: #f1f5f9;
+  background: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .tabActive {
@@ -58,31 +58,31 @@
 
 /* Content */
 .content {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .sectionTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 /* Action Buttons */
 .actionButton {
-  background: #0f172a;
-  border-color: #334155;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
   color: #e2e8f0;
 }
 
 .actionButton:hover {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   border-color: #6b8de6;
   color: #6b8de6;
 }
 
 /* Transactions */
 .transactionItem {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
 }
 
 .transactionItem:hover {
@@ -90,7 +90,7 @@
 }
 
 .transactionDesc {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .transactionDate {
@@ -131,8 +131,8 @@
 
 /* Filter Select */
 .filterSelect {
-  background: #0f172a;
-  border-color: #334155;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -143,7 +143,7 @@
 
 /* Form Styles */
 .formSubtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .formLabel {
@@ -151,20 +151,20 @@
 }
 
 .formInput {
-  background: #0f172a;
-  border-color: #334155;
-  color: #f1f5f9;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .formInput:focus {
   border-color: #6b8de6;
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
 }
 
 /* Quick Amount Buttons */
 .quickAmountBtn {
-  background: #0f172a;
-  border-color: #334155;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -176,8 +176,8 @@
 
 /* Payout Methods */
 .payoutMethod {
-  background: #0f172a;
-  border-color: #334155;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
 }
 
 .payoutMethod:hover {
@@ -190,11 +190,11 @@
 }
 
 .payoutName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .payoutLast4 {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Submit Button */
@@ -210,12 +210,12 @@
 
 /* Payment Info */
 .paymentInfo {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
 .changeButton {
-  background: #334155;
+  background: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -225,8 +225,8 @@
 
 /* Settings */
 .payoutMethodCard {
-  background: #0f172a;
-  border: 1px solid #334155;
+  background: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .actionLink {
@@ -239,7 +239,7 @@
 
 .addMethodButton {
   border-color: #475569;
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .addMethodButton:hover {
@@ -249,15 +249,15 @@
 }
 
 .settingsSection {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .settingsSubtitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .settingRow {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
 }
 
 .settingLabel {

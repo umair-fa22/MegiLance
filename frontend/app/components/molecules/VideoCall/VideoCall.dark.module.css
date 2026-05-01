@@ -7,7 +7,7 @@
 .error {
   background-color: #450a0a;
   color: #ff6b7a;
-  border: 1px solid #e81123;
+  border: 1px solid var(--ml-red);
 }
 
 .videoGrid {
@@ -19,7 +19,7 @@
 }
 
 .localVideo {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border: 2px solid #475569;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .whiteboard {
-  background-color: #334155;
+  background-color: var(--border-dark);
   border: 2px solid #475569;
 }
 

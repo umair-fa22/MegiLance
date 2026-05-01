@@ -1,34 +1,34 @@
 /* @AI-HINT: Verification Center light theme colors */
 
 .container {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Loading */
 .loadingState {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Progress Card */
 .progressCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .progressTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .progressSubtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tierBadge {
@@ -36,29 +36,29 @@
 }
 
 .progressBar {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #4573df, #60a5fa);
+  background: linear-gradient(90deg, var(--ml-blue), #60a5fa);
 }
 
 .progressPercent {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .nextTierHint {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Tiers */
 .sectionTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .tierCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .tierCard:hover {
@@ -66,22 +66,22 @@
 }
 
 .tierAchieved {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 2px 8px rgba(69, 115, 223, 0.15);
 }
 
 .tierName {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .tierBenefit {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Verification Items */
 .verificationCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .verificationCard:hover {
@@ -91,11 +91,11 @@
 
 .verificationIcon {
   background-color: #eff6ff;
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .verificationName {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .requiredBadge {
@@ -116,7 +116,7 @@
 }
 
 .verificationDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .verifiedDate {
@@ -130,43 +130,43 @@
 
 /* Modal */
 .modal {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .modalHeader {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .modalTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .closeButton {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .closeButton:hover {
-  background-color: #f1f5f9;
-  color: #0f172a;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-primary-light);
 }
 
 .modalDesc {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .uploadArea {
   border-color: #cbd5e1;
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .uploadArea:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background-color: #eff6ff;
 }
 
 .uploadIcon {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .uploadText {
@@ -174,7 +174,7 @@
 }
 
 .uploadHint {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .securityNote {
@@ -183,16 +183,16 @@
 }
 
 .modalActions {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 /* Toast */
 .toast {
-  background-color: #0f172a;
-  color: #f1f5f9;
+  background-color: var(--text-primary-light);
+  color: var(--bg-tertiary-light);
 }
 
 .toastError {
   background-color: #dc2626;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }

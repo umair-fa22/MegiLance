@@ -1,22 +1,22 @@
 /* @AI-HINT: Rate cards dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Stats */
 .statCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -25,27 +25,27 @@
 }
 
 .statInfo span {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Empty */
 .emptyCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .emptyCard h3 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .emptyCard p {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Rate Cards */
 .rateCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -60,15 +60,15 @@
 
 .featuredBadge {
   background: #fbbf24;
-  color: #1e293b;
+  color: var(--bg-secondary-dark);
 }
 
 .cardHeader h3 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .rateType {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .rateAmount {
@@ -76,31 +76,31 @@
 }
 
 .cardDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .featuresList h4 {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .cardActions {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 /* Modal */
 .modal {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .modal h2 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .input {
-  background: #0f172a;
-  border-color: #334155;
-  color: #f8fafc;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .input:focus {

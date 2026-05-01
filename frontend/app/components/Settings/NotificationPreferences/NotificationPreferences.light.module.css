@@ -1,7 +1,7 @@
 /* Notification Preferences - Light Theme */
 
 .container {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   color: #2d3748;
 }
 
@@ -15,7 +15,7 @@
 
 .section {
   background: #f7fafc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .sectionTitle {
@@ -29,7 +29,7 @@
 }
 
 .tableRow {
-  background: #ffffff;
+  background: var(--bg-primary-light);
 }
 
 .tableRow:hover {
@@ -45,13 +45,13 @@
 }
 
 .timeInput {
-  border-color: #e2e8f0;
-  background: #ffffff;
+  border-color: var(--border-light);
+  background: var(--bg-primary-light);
   color: #2d3748;
 }
 
 .timeInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 

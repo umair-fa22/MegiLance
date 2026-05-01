@@ -1,6 +1,6 @@
 .card {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -10,7 +10,7 @@
 }
 
 .title {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .iconWrapper {
@@ -19,7 +19,7 @@
 }
 
 .value {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .trendLabel {

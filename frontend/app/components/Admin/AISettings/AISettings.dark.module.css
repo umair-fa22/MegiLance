@@ -1,10 +1,10 @@
 .settingsCard {
-  background-color: #0f172a;
-  border: 1px solid #1e293b;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--bg-secondary-dark);
 }
 
 .cardHeader {
-  border-bottom-color: #1e293b;
+  border-bottom-color: var(--bg-secondary-dark);
 }
 
 .cardTitle {
@@ -16,7 +16,7 @@
 }
 
 .settingRow {
-  border-bottom-color: #1e293b;
+  border-bottom-color: var(--bg-secondary-dark);
 }
 
 .settingInfo label {
@@ -32,6 +32,6 @@
 }
 
 .cardFooter {
-  background-color: #1e293b; /* Slightly different dark for footer */
-  border-top-color: #1e293b;
+  background-color: var(--bg-secondary-dark); /* Slightly different dark for footer */
+  border-top-color: var(--bg-secondary-dark);
 }

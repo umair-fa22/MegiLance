@@ -1,10 +1,10 @@
 /* @AI-HINT: Portal Dashboard redirect — light theme */
 
 .redirectSpinner {
-  border-color: #e2e8f0;
-  border-top-color: #4573df;
+  border-color: var(--border-light);
+  border-top-color: var(--ml-blue);
 }
 
 .redirectText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }

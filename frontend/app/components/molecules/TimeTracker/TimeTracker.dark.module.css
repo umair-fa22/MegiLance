@@ -1,6 +1,6 @@
 .container {
-  background-color: #0f172a;
-  border-color: #1e293b;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--bg-secondary-dark);
   box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
@@ -9,13 +9,13 @@
 }
 
 .descriptionInput {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border-color: #475569;
   color: #e2e8f0;
 }
 
 .descriptionInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 

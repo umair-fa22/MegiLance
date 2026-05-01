@@ -3,7 +3,7 @@
 .ringValue { color: #1a1a2e; }
 .ringLabel { color: #666; }
 
-.ringPrimary { stroke: #4573df; }
-.ringSuccess { stroke: #27AE60; }
+.ringPrimary { stroke: var(--ml-blue); }
+.ringSuccess { stroke: var(--ml-green); }
 .ringWarning { stroke: #d4a017; }
-.ringDanger { stroke: #e81123; }
+.ringDanger { stroke: var(--ml-red); }

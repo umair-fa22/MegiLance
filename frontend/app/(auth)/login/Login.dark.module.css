@@ -6,7 +6,7 @@
 
 .loginPage {
   /* Branding Panel */
-  --branding-panel-bg: linear-gradient(135deg, #1a2035 0%, #0f172a 100%);
+  --branding-panel-bg: linear-gradient(135deg, #1a2035 0%, var(--bg-primary-dark) 100%);
   --brand-icon-color: #ffffff;
   --brand-title-color: #ffffff;
   --brand-text-color: #a0aec0; /* Cool gray */
@@ -15,13 +15,13 @@
   --form-bg-color: rgba(17, 24, 39, 0.85);
   --form-container-bg: rgba(30, 35, 43, 0.7);
   --form-container-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
+  --text-primary: var(--text-primary-dark);
+  --text-secondary: var(--text-secondary-dark);
   --text-tertiary: #6b7280;
-  --border-color: #334155;
+  --border-color: var(--border-dark);
   
   /* Interactive Elements */
-  --color-primary: #4573df;
+  --color-primary: var(--ml-blue);
   --color-primary-hover: #608cfb;
   --role-button-hover-bg: rgba(69, 115, 223, 0.1);
   --role-button-selected-bg: rgba(69, 115, 223, 0.25);

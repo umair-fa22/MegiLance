@@ -1,20 +1,20 @@
 /* @AI-HINT: Knowledge base light theme */
 
 .container {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .loading {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Hero */
 .hero {
-  background: linear-gradient(135deg, #4573df 0%, #3b5fc9 100%);
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #3b5fc9 100%);
 }
 
 .heroTitle {
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .heroSubtitle {
@@ -23,35 +23,35 @@
 
 /* Search */
 .searchInput {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border-color: rgba(255, 255, 255, 0.3);
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .searchInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .searchInput:focus {
-  border-color: #ffffff;
+  border-color: var(--bg-primary-light);
 }
 
 .searchButton {
-  background-color: #ffffff;
-  color: #4573df;
+  background-color: var(--bg-primary-light);
+  color: var(--ml-blue);
 }
 
 .searchButton:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 /* Breadcrumb */
 .breadcrumb {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .breadcrumbLink {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .breadcrumbLink:hover {
@@ -63,22 +63,22 @@
 }
 
 .breadcrumbCurrent {
-  color: #0f172a;
+  color: var(--text-primary-light);
   font-weight: 500;
 }
 
 .breadcrumbActive {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Section Title */
 .sectionTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 /* Category Card */
 .categoryCard {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -88,42 +88,42 @@
 }
 
 .categoryName {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .categoryDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .articleCount {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Popular Item */
 .popularItem {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .popularItem:hover {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .popularRank {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .popularTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .popularExcerpt {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .popularViews {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Support Section */
@@ -132,16 +132,16 @@
 }
 
 .supportSection h2 {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .supportSection p {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .supportButton {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
   border: none;
 }
 
@@ -150,9 +150,9 @@
 }
 
 .supportButtonSecondary {
-  background-color: #ffffff;
-  color: #4573df;
-  border: 2px solid #4573df;
+  background-color: var(--bg-primary-light);
+  color: var(--ml-blue);
+  border: 2px solid var(--ml-blue);
 }
 
 .supportButtonSecondary:hover {
@@ -161,35 +161,35 @@
 
 /* Article Card */
 .articleCard {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .articleCard:hover {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .articleCardTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .articleCardExcerpt {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .articleCardMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* No Results */
 .noResults {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .clearButton {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .clearButton:hover {
@@ -198,29 +198,29 @@
 
 /* Article View */
 .backButton {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .backButton:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .article {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .articleHeader {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .articleTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .articleMeta {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .articleContent {
@@ -228,26 +228,26 @@
 }
 
 .articleFooter {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .articleFooter p {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .feedbackButton {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
-  color: #475569;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--text-secondary-light);
 }
 
 .feedbackButton:hover {
-  background-color: #f1f5f9;
-  border-color: #4573df;
-  color: #4573df;
+  background-color: var(--bg-tertiary-light);
+  border-color: var(--ml-blue);
+  color: var(--ml-blue);
 }
 
 .helpfulCount {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }

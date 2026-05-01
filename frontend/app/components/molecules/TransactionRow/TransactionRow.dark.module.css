@@ -1,24 +1,24 @@
 ﻿/* @AI-HINT: Dark theme styles for the TransactionRow component. */
 .row {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .row:hover {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   border-color: #6a8fe5;
 }
 
 .date {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .description {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .amount {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .positive {

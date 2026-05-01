@@ -1,11 +1,11 @@
 ﻿/* @AI-HINT: Dark theme styles for the PieChart component with enhanced visual effects. */
 
 .pieChartWrapper {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .legendItem:hover {
@@ -13,22 +13,22 @@
 }
 
 .legendLabel {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .legendValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .tooltip {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border: 1px solid rgba(55, 65, 81, 0.7);
 }
 
 .tooltipLabel {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .tooltipValue {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }

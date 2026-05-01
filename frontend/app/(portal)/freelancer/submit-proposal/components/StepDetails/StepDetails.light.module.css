@@ -1,22 +1,22 @@
 ﻿.container {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .description {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .labelRow {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .tipButton {
-  background-color: #f8fafc;
-  color: #64748b;
+  background-color: var(--bg-secondary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .tipButton:hover {
@@ -25,8 +25,8 @@
 }
 
 .tipsCard {
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .tipsTitle {
@@ -34,38 +34,38 @@
 }
 
 .tipsList {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .templatesCard {
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .templatesTitle {
-  color: #ff9800;
+  color: var(--ml-orange);
 }
 
 .templateItem {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .templateItem:hover {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border-color: rgba(69,115,223,0.3);
 }
 
 .templateName {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .templatePreview {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .charProgress {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .charProgressFill {
@@ -73,39 +73,39 @@
 }
 
 .charCount {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .pricingSection {
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .sectionTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .estimatedCard {
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .estimatedRow {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .estimatedTotal {
-  color: #27AE60;
+  color: var(--ml-green);
 }
 
 .estimatedBreakdown {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .hint {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .error {
-  color: #e81123;
+  color: var(--ml-red);
 }

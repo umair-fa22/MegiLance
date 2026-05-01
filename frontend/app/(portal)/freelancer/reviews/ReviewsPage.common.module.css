@@ -97,7 +97,7 @@
 .distBarFill {
   height: 100%;
   border-radius: 4px;
-  background: #F2C94C;
+  background: var(--ml-yellow);
   transition: width 0.4s ease;
   min-width: 2px;
 }
@@ -124,7 +124,7 @@
 .subRatingBarFill {
   height: 100%;
   border-radius: 3px;
-  background: linear-gradient(90deg, #4573df, #6b8de6);
+  background: linear-gradient(90deg, var(--ml-blue), #6b8de6);
   transition: width 0.4s ease;
 }
 
@@ -324,7 +324,7 @@
   width: 40px;
   height: 40px;
   border: 3px solid transparent;
-  border-top-color: #4573df;
+  border-top-color: var(--ml-blue);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }

@@ -69,7 +69,7 @@
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 .searchBar:focus-within {
-  border-color: var(--color-primary, #4573df);
+  border-color: var(--color-primary, var(--ml-blue));
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.12);
 }
 .searchIcon { position: absolute; left: 12px; opacity: 0.45; pointer-events: none; }
@@ -111,7 +111,7 @@
   transition: background 0.12s, border-color 0.12s;
 }
 .catPillActive {
-  box-shadow: 0 0 0 2px var(--color-primary, #4573df);
+  box-shadow: 0 0 0 2px var(--color-primary, var(--ml-blue));
 }
 
 /* Grid */
@@ -200,6 +200,6 @@
 }
 
 .searchInput:focus-visible {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
 }

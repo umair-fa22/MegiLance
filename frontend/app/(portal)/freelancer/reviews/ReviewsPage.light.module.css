@@ -1,50 +1,50 @@
 ﻿/* @AI-HINT: Light theme for enhanced Reviews page */
-.pageWrapper { background: #f8fafc; }
-.header { border-bottom-color: #e2e8f0; }
-.headerTitle { color: #0f172a; }
-.headerSubtitle { color: #64748b; }
+.pageWrapper { background: var(--bg-secondary-light); }
+.header { border-bottom-color: var(--border-light); }
+.headerTitle { color: var(--text-primary-light); }
+.headerSubtitle { color: var(--color-text-secondary-light); }
 
-.summaryCard { background: #fff; border-color: #e2e8f0; }
-.summaryLabel { color: #64748b; }
-.summaryScore { color: #4573df; }
-.summaryCount { color: #94a3b8; }
+.summaryCard { background: #fff; border-color: var(--border-light); }
+.summaryLabel { color: var(--color-text-secondary-light); }
+.summaryScore { color: var(--ml-blue); }
+.summaryCount { color: var(--text-tertiary-light); }
 
-.distributionCard, .subRatingsCard { background: #fff; border-color: #e2e8f0; }
-.distributionTitle { color: #0f172a; }
-.distRow { color: #0f172a; }
-.distLabel { color: #64748b; }
-.distBarBg { background: #e2e8f0; }
-.distCount { color: #64748b; }
+.distributionCard, .subRatingsCard { background: #fff; border-color: var(--border-light); }
+.distributionTitle { color: var(--text-primary-light); }
+.distRow { color: var(--text-primary-light); }
+.distLabel { color: var(--color-text-secondary-light); }
+.distBarBg { background: var(--border-light); }
+.distCount { color: var(--color-text-secondary-light); }
 
-.subRatingLabel { color: #64748b; }
-.subRatingBarBg { background: #e2e8f0; }
-.subRatingValue { color: #0f172a; }
+.subRatingLabel { color: var(--color-text-secondary-light); }
+.subRatingBarBg { background: var(--border-light); }
+.subRatingValue { color: var(--text-primary-light); }
 
 .toolbar { background: transparent; }
 .searchWrap { background: transparent; }
-.searchInput { background: #fff; border-color: #e2e8f0; color: #0f172a; }
-.searchInput:focus { border-color: #4573df; }
-.sortSelect { background: #fff; border-color: #e2e8f0; color: #0f172a; }
-.clearFilter { border-color: #e2e8f0; color: #64748b; }
-.resultCount { color: #94a3b8; }
+.searchInput { background: #fff; border-color: var(--border-light); color: var(--text-primary-light); }
+.searchInput:focus { border-color: var(--ml-blue); }
+.sortSelect { background: #fff; border-color: var(--border-light); color: var(--text-primary-light); }
+.clearFilter { border-color: var(--border-light); color: var(--color-text-secondary-light); }
+.resultCount { color: var(--text-tertiary-light); }
 
-.reviewItem { background: #fff; border-color: #e2e8f0; }
-.reviewItem:hover { border-color: #4573df; }
-.clientName { color: #0f172a; }
-.projectName { color: #64748b; }
-.date { color: #94a3b8; }
-.reviewItemComment { color: #475569; }
+.reviewItem { background: #fff; border-color: var(--border-light); }
+.reviewItem:hover { border-color: var(--ml-blue); }
+.clientName { color: var(--text-primary-light); }
+.projectName { color: var(--color-text-secondary-light); }
+.date { color: var(--text-tertiary-light); }
+.reviewItemComment { color: var(--text-secondary-light); }
 
-.star { color: #F2C94C; }
+.star { color: var(--ml-yellow); }
 
-.expandBtn { color: #4573df; }
-.replyBtn { color: #4573df; }
-.replyTextarea { background: #fff; border-color: #e2e8f0; color: #0f172a; }
+.expandBtn { color: var(--ml-blue); }
+.replyBtn { color: var(--ml-blue); }
+.replyTextarea { background: #fff; border-color: var(--border-light); color: var(--text-primary-light); }
 
-.responseBlock { background: #f1f5f9; }
-.responseLabel { color: #4573df; }
-.responseText { color: #475569; }
+.responseBlock { background: var(--bg-tertiary-light); }
+.responseLabel { color: var(--ml-blue); }
+.responseText { color: var(--text-secondary-light); }
 
-.loadingState { color: #64748b; }
-.errorState { border-color: #e2e8f0; color: #475569; }
-.emptyState { border-color: #e2e8f0; color: #475569; }
+.loadingState { color: var(--color-text-secondary-light); }
+.errorState { border-color: var(--border-light); color: var(--text-secondary-light); }
+.emptyState { border-color: var(--border-light); color: var(--text-secondary-light); }

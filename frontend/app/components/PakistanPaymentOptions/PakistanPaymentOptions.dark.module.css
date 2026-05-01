@@ -1,7 +1,7 @@
 /* @AI-HINT: Dark theme colors for Pakistan payment options */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 /* Testnet Banner - Purple theme for development mode */
@@ -16,16 +16,16 @@
 }
 
 .header h3 {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .header p {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .providerCard {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .providerCard:hover {
@@ -34,7 +34,7 @@
 }
 
 .providerCard.selected {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background-color: #1e3a5f;
 }
 
@@ -44,24 +44,24 @@
 }
 
 .providerIcon {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .providerName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .detailsSection {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .feeRow {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .feeRow.total {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
   border-color: #475569;
 }
 
@@ -72,7 +72,7 @@
 
 .connectButton {
   background-color: #f59e0b;
-  color: #0f172a;
+  color: var(--bg-primary-dark);
 }
 
 .connectButton:hover {
@@ -85,13 +85,13 @@
 }
 
 .addressBox {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   color: #e2e8f0;
-  border: 1px solid #334155;
+  border: 1px solid var(--border-dark);
 }
 
 .copyButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .networkWarning {
@@ -105,7 +105,7 @@
 }
 
 .payButton {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -114,7 +114,7 @@
 }
 
 .continueButton {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 

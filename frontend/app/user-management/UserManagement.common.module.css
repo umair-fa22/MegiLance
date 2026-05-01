@@ -144,7 +144,7 @@
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
 }
 
 .statusDot {
@@ -156,11 +156,11 @@
 }
 
 .statusActive {
-  background: var(--color-success, #27AE60);
+  background: var(--color-success, var(--ml-green));
 }
 
 .statusInactive {
-  background: var(--color-error, #e81123);
+  background: var(--color-error, var(--ml-red));
 }
 
 .buttonPrimary {

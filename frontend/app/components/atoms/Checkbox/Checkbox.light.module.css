@@ -1,20 +1,20 @@
 /* @AI-HINT: Light theme styles for the Checkbox component with enhanced visual effects aligned with 2025 design trends. */
 
 .checkboxWrapper {
-  --checkbox-bg: #ffffff;
+  --checkbox-bg: var(--bg-primary-light);
   --checkbox-border-color: #cbd5e1;
-  --checkbox-border-hover-color: #64748b;
-  --checkbox-checked-bg: linear-gradient(135deg, #4573df 0%, #3a66c7 100%);
-  --checkbox-checked-border-color: #4573df;
-  --checkbox-checkmark-color: #ffffff;
+  --checkbox-border-hover-color: var(--color-text-secondary-light);
+  --checkbox-checked-bg: linear-gradient(135deg, var(--ml-blue) 0%, #3a66c7 100%);
+  --checkbox-checked-border-color: var(--ml-blue);
+  --checkbox-checkmark-color: var(--bg-primary-light);
   --checkbox-text-color: #374151;
   --checkbox-text-hover-color: #111827;
-  --checkbox-error-color: #e81123;
-  --checkbox-focus-ring-color: #4573df;
-  --checkbox-link-color: #4573df;
+  --checkbox-error-color: var(--ml-red);
+  --checkbox-focus-ring-color: var(--ml-blue);
+  --checkbox-link-color: var(--ml-blue);
   --checkbox-link-hover-bg: #eff6ff;
   --checkbox-disabled-bg: #f9fafb;
-  --checkbox-disabled-border-color: #e2e8f0;
+  --checkbox-disabled-border-color: var(--border-light);
   --checkbox-glass-bg: rgba(255, 255, 255, 0.7);
   --checkbox-glass-border: rgba(209, 213, 219, 0.5);
   --checkbox-glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
@@ -25,7 +25,7 @@
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.08),
               0 2px 4px rgba(0, 0, 0, 0.08),
               0 4px 8px rgba(0, 0, 0, 0.04);
-  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+  background: linear-gradient(135deg, var(--bg-primary-light) 0%, #f9fafb 100%);
   border: 2px solid #cbd5e1;
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
@@ -36,15 +36,15 @@
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1),
               0 6px 16px rgba(0, 0, 0, 0.12),
               0 2px 4px rgba(0, 0, 0, 0.08);
-  border: 2px solid #94a3b8;
-  background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+  border: 2px solid var(--text-tertiary-light);
+  background: linear-gradient(135deg, #f9fafb 0%, var(--bg-primary-light) 100%);
   transform: translateY(-1px) scale(1.02);
   filter: brightness(1.02);
 }
 
 .checkboxInput:checked ~ .checkboxCustom {
-  background: linear-gradient(135deg, #4573df 0%, #5583e6 100%);
-  border: 2px solid #4573df;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #5583e6 100%);
+  border: 2px solid var(--ml-blue);
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.15),
               0 6px 16px rgba(69, 115, 223, 0.35),
               0 2px 4px rgba(0, 0, 0, 0.1);
@@ -71,16 +71,16 @@
 
 /* Enhanced indeterminate state */
 .checkboxCustom.indeterminate {
-  background: linear-gradient(135deg, #4573df 0%, #5583e6 100%);
-  border: 2px solid #4573df;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #5583e6 100%);
+  border: 2px solid var(--ml-blue);
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.15),
               0 4px 12px rgba(69, 115, 223, 0.25);
 }
 
 /* Enhanced disabled state */
 .checkboxInput:disabled ~ .checkboxCustom {
-  background: linear-gradient(135deg, #f9fafb 0%, #f1f5f9 100%);
-  border: 2px solid #e2e8f0;
+  background: linear-gradient(135deg, #f9fafb 0%, var(--bg-tertiary-light) 100%);
+  border: 2px solid var(--border-light);
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.04),
               0 2px 4px rgba(0, 0, 0, 0.04);
   opacity: 0.7;
@@ -88,7 +88,7 @@
 
 /* Enhanced error state */
 .checkboxWrapperError .checkboxCustom {
-  border: 2px solid #e81123;
+  border: 2px solid var(--ml-red);
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.08),
               0 0 0 4px rgba(232, 17, 35, 0.1),
               0 2px 4px rgba(0, 0, 0, 0.08);
@@ -102,7 +102,7 @@
 
 /* Enhanced focus states */
 .checkboxInput:focus ~ .checkboxCustom {
-  border-color: #94a3b8;
+  border-color: var(--text-tertiary-light);
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.08),
               0 4px 12px rgba(69, 115, 223, 0.2);
 }

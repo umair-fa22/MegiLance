@@ -1,15 +1,15 @@
 /* @AI-HINT: Dark theme styles for PublicLayout. */
-.root { background: #0f172a; color: #f8fafc; }
+.root { background: var(--bg-primary-dark); color: var(--text-primary-dark); }
 .skipLink { background: #6b8de6; color: #fff; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
-.header { background: rgba(15, 23, 42, 0.85); border-bottom: 1px solid #334155; }
-.nav { color: #f8fafc; }
-.navBrand { color: #f8fafc; }
-.navLink { color: #94a3b8; }
+.header { background: rgba(15, 23, 42, 0.85); border-bottom: 1px solid var(--border-dark); }
+.nav { color: var(--text-primary-dark); }
+.navBrand { color: var(--text-primary-dark); }
+.navLink { color: var(--text-tertiary-dark); }
 .navLink:hover { color: #6b8de6; }
 .navLinkActive { color: #6b8de6; }
-.mobileToggle { color: #94a3b8; }
-.mobileNav { background: rgba(15, 23, 42, 0.92); border-bottom: 1px solid #334155; }
-.main { background: #0f172a; }
-.footer { background: #0f172a; color: #94a3b8; border-top-color: #334155; }
-.footerMeta .navLink { color: #94a3b8; }
+.mobileToggle { color: var(--text-tertiary-dark); }
+.mobileNav { background: rgba(15, 23, 42, 0.92); border-bottom: 1px solid var(--border-dark); }
+.main { background: var(--bg-primary-dark); }
+.footer { background: var(--bg-primary-dark); color: var(--text-tertiary-dark); border-top-color: var(--border-dark); }
+.footerMeta .navLink { color: var(--text-tertiary-dark); }
 .footerMeta .navLink:hover { color: #6b8de6; }

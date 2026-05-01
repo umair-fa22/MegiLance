@@ -35,7 +35,7 @@
   height: min(600px, 80vw);
   top: -200px;
   left: -100px;
-  background: radial-gradient(circle, var(--color-primary, #4573df), transparent);
+  background: radial-gradient(circle, var(--color-primary, var(--ml-blue)), transparent);
   animation-delay: 0s;
 }
 
@@ -44,7 +44,7 @@
   height: min(500px, 70vw);
   bottom: -100px;
   right: 5%;
-  background: radial-gradient(circle, var(--color-accent, #ff9800), transparent);
+  background: radial-gradient(circle, var(--color-accent, var(--ml-orange)), transparent);
   animation-delay: 7s;
 }
 
@@ -115,7 +115,7 @@
 }
 
 .highlightText {
-  background: linear-gradient(135deg, var(--color-primary, #4573df) 0%, #667eea 50%, var(--color-accent, #ff9800) 100%);
+  background: linear-gradient(135deg, var(--color-primary, var(--ml-blue)) 0%, #667eea 50%, var(--color-accent, var(--ml-orange)) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -214,19 +214,19 @@
 
 .statusLive {
   background: rgba(39, 174, 96, 0.2);
-  color: var(--color-success, #27AE60);
+  color: var(--color-success, var(--ml-green));
   border: 1px solid rgba(39, 174, 96, 0.4);
 }
 
 .statusBeta {
   background: rgba(69, 115, 223, 0.2);
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
   border: 1px solid rgba(69, 115, 223, 0.4);
 }
 
 .statusSmart {
   background: rgba(255, 152, 0, 0.2);
-  color: var(--color-accent, #ff9800);
+  color: var(--color-accent, var(--ml-orange));
   border: 1px solid rgba(255, 152, 0, 0.4);
 }
 
@@ -307,17 +307,17 @@
 
 /* Variant Colors */
 .variantBlue {
-  --accent-color-1: var(--color-primary, #4573df);
+  --accent-color-1: var(--color-primary, var(--ml-blue));
   --accent-color-2: #667eea;
 }
 
 .variantGreen {
-  --accent-color-1: var(--color-success, #27ae60);
+  --accent-color-1: var(--color-success, var(--ml-green));
   --accent-color-2: #48d597;
 }
 
 .variantOrange {
-  --accent-color-1: var(--color-accent, #ff9800);
+  --accent-color-1: var(--color-accent, var(--ml-orange));
   --accent-color-2: #ffb84d;
 }
 
@@ -327,7 +327,7 @@
 }
 
 .variantRed {
-  --accent-color-1: var(--color-error, #e81123);
+  --accent-color-1: var(--color-error, var(--ml-red));
   --accent-color-2: #ff4444;
 }
 
@@ -524,7 +524,7 @@
   align-items: center;
   justify-content: center;
   background: rgba(69, 115, 223, 0.1);
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
   flex-shrink: 0;
   transition: transform 0.4s ease,
     box-shadow 0.4s ease,
@@ -535,7 +535,7 @@
 }
 
 .techItem:hover .techIcon {
-  background: var(--color-primary, #4573df);
+  background: var(--color-primary, var(--ml-blue));
   color: white;
   transform: rotate(10deg);
 }

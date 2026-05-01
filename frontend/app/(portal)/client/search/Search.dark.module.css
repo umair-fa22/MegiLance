@@ -1,27 +1,27 @@
 /* @AI-HINT: Dark theme for Client Search page */
 .container { background: #0f1419; }
-.title { color: #f1f5f9; }
-.subtitle { color: #94a3b8; }
-.searchSection { background: #1a1f2e; border: 1px solid #1e293b; }
-.searchInput { background: #0f1419; color: #f1f5f9; border-color: #1e293b; }
+.title { color: var(--color-text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
+.searchSection { background: #1a1f2e; border: 1px solid var(--bg-secondary-dark); }
+.searchInput { background: #0f1419; color: var(--color-text-primary-dark); border-color: var(--bg-secondary-dark); }
 .searchInput:focus { border-color: #6b8de6; }
-.filterInput { background: #0f1419; color: #f1f5f9; border-color: #1e293b; }
-.filterLabel { color: #94a3b8; }
-.filterToggle { color: #94a3b8; border-color: #334155; }
-.filterToggle:hover { background: #1e293b; }
+.filterInput { background: #0f1419; color: var(--color-text-primary-dark); border-color: var(--bg-secondary-dark); }
+.filterLabel { color: var(--text-tertiary-dark); }
+.filterToggle { color: var(--text-tertiary-dark); border-color: var(--border-dark); }
+.filterToggle:hover { background: var(--bg-secondary-dark); }
 .clearFilters { color: #f87171; }
-.availabilityToggle { color: #94a3b8; border-color: #334155; }
-.availabilityToggle:hover { background: #1e293b; }
-.resultsBar { background: #1a1f2e; border: 1px solid #1e293b; }
-.resultCount { color: #f1f5f9; }
-.sortSelect { color: #f1f5f9; border-color: #334155; }
-.freelancerCard { background: #1a1f2e; border: 1px solid #1e293b; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+.availabilityToggle { color: var(--text-tertiary-dark); border-color: var(--border-dark); }
+.availabilityToggle:hover { background: var(--bg-secondary-dark); }
+.resultsBar { background: #1a1f2e; border: 1px solid var(--bg-secondary-dark); }
+.resultCount { color: var(--color-text-primary-dark); }
+.sortSelect { color: var(--color-text-primary-dark); border-color: var(--border-dark); }
+.freelancerCard { background: #1a1f2e; border: 1px solid var(--bg-secondary-dark); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
 .freelancerCard:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
-.name { color: #f1f5f9; }
-.titleText { color: #94a3b8; }
-.jobCount { color: #94a3b8; }
+.name { color: var(--color-text-primary-dark); }
+.titleText { color: var(--text-tertiary-dark); }
+.jobCount { color: var(--text-tertiary-dark); }
 .skillTag { background: rgba(69, 115, 223, 0.2); color: #6b8cff; }
 .moreSkills { color: #64748b; }
-.pageBtn { color: #94a3b8; border-color: #334155; }
-.pageBtn:hover:not(:disabled) { background: #1e293b; border-color: #475569; }
-.pageBtnActive { background: #4573df; color: white; border-color: #4573df; }
+.pageBtn { color: var(--text-tertiary-dark); border-color: var(--border-dark); }
+.pageBtn:hover:not(:disabled) { background: var(--bg-secondary-dark); border-color: #475569; }
+.pageBtnActive { background: var(--ml-blue); color: white; border-color: var(--ml-blue); }

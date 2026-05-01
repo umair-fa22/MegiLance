@@ -1,7 +1,7 @@
 ﻿/* @AI-HINT: Dark theme colors for GigCard component */
 .theme {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -27,26 +27,26 @@
 
 .levelBadge.silver {
   background-color: #c0c0c0;
-  color: #1e293b;
+  color: var(--bg-secondary-dark);
 }
 
 .levelBadge.gold {
   background-color: #ffd700;
-  color: #1e293b;
+  color: var(--bg-secondary-dark);
 }
 
 .levelBadge.platinum {
   background-color: #e5e4e2;
-  color: #1e293b;
+  color: var(--bg-secondary-dark);
 }
 
 .favoriteButton {
   background-color: rgba(30, 30, 30, 0.95);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .favoriteButton:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #ef4444;
 }
 
@@ -59,11 +59,11 @@
 }
 
 .sellerName:hover {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .sellerLevel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .sellerLevel.topRated {
@@ -75,7 +75,7 @@
 }
 
 .title:hover {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .ratingRow {
@@ -87,15 +87,15 @@
 }
 
 .ratingCount {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .footer {
-  border-top: 1px solid #334155;
+  border-top: 1px solid var(--border-dark);
 }
 
 .priceLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .priceValue {
@@ -103,8 +103,8 @@
 }
 
 .tag {
-  background-color: #334155;
-  color: #94a3b8;
+  background-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .quickActions {
@@ -112,17 +112,17 @@
 }
 
 .quickActionBtn {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
 .quickActionBtn.secondary {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #f3f4f6;
   border: 1px solid #475569;
 }
 
 .sellerAvatarFallback {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }

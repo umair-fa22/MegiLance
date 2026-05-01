@@ -13,7 +13,7 @@
 }
 
 .timelineTarget {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .timelineTime {
@@ -22,7 +22,7 @@
 
 .timelineBadge {
   background: linear-gradient(135deg, rgba(69, 115, 223, 0.1) 0%, rgba(69, 115, 223, 0.03) 100%);
-  color: #4573df;
+  color: var(--ml-blue);
   border: 1px solid rgba(69, 115, 223, 0.2);
   box-shadow: 0 1px 3px rgba(69, 115, 223, 0.08);
 }

@@ -1,15 +1,15 @@
 /* @AI-HINT: Light theme styles for PublicLayout. */
-.root { background: #f8fafc; color: #0f172a; }
-.skipLink { background: #4573df; color: #fff; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
-.header { background: rgba(255, 255, 255, 0.92); border-bottom: 1px solid #e2e8f0; }
-.nav { color: #0f172a; }
-.navBrand { color: #0f172a; }
-.navLink { color: #64748b; }
-.navLink:hover { color: #4573df; }
-.navLinkActive { color: #4573df; }
-.mobileToggle { color: #64748b; }
-.mobileNav { background: rgba(255, 255, 255, 0.97); border-bottom: 1px solid #e2e8f0; }
-.main { background: #f8fafc; }
-.footer { background: #ffffff; color: #64748b; }
-.footerMeta .navLink { color: #64748b; }
-.footerMeta .navLink:hover { color: #4573df; }
+.root { background: var(--bg-secondary-light); color: var(--text-primary-light); }
+.skipLink { background: var(--ml-blue); color: #fff; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
+.header { background: rgba(255, 255, 255, 0.92); border-bottom: 1px solid var(--border-light); }
+.nav { color: var(--text-primary-light); }
+.navBrand { color: var(--text-primary-light); }
+.navLink { color: var(--color-text-secondary-light); }
+.navLink:hover { color: var(--ml-blue); }
+.navLinkActive { color: var(--ml-blue); }
+.mobileToggle { color: var(--color-text-secondary-light); }
+.mobileNav { background: rgba(255, 255, 255, 0.97); border-bottom: 1px solid var(--border-light); }
+.main { background: var(--bg-secondary-light); }
+.footer { background: var(--bg-primary-light); color: var(--color-text-secondary-light); }
+.footerMeta .navLink { color: var(--color-text-secondary-light); }
+.footerMeta .navLink:hover { color: var(--ml-blue); }

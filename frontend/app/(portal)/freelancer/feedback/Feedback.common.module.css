@@ -183,7 +183,7 @@
   border-radius: 6px;
   font-size: 0.6875rem;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--bg-primary-light);
   text-transform: uppercase;
 }
 

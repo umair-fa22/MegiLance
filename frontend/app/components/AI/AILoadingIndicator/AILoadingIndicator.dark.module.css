@@ -10,7 +10,7 @@
 }
 
 .aiBrainGlow {
-  background: linear-gradient(135deg, #4573df, #9b59b6);
+  background: linear-gradient(135deg, var(--ml-blue), #9b59b6);
 }
 
 .dot {
@@ -22,11 +22,11 @@
 }
 
 .progressBarIndeterminate::after {
-  background: linear-gradient(90deg, #4573df, #9b59b6);
+  background: linear-gradient(90deg, var(--ml-blue), #9b59b6);
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #4573df, #9b59b6);
+  background: linear-gradient(90deg, var(--ml-blue), #9b59b6);
 }
 
 .label {
@@ -46,7 +46,7 @@
 }
 
 .statusSuccess .successCheck {
-  background: #27AE60;
+  background: var(--ml-green);
   color: #ffffff;
 }
 
@@ -55,11 +55,11 @@
 }
 
 .statusWarning .spinnerRing {
-  border-top-color: #F2C94C;
+  border-top-color: var(--ml-yellow);
 }
 
 .statusWarning .label {
-  color: #F2C94C;
+  color: var(--ml-yellow);
 }
 
 .statusError .label {
@@ -71,7 +71,7 @@
 }
 
 .confidenceValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .confidenceBar {
@@ -79,7 +79,7 @@
 }
 
 .confidenceFill {
-  background: linear-gradient(90deg, #4573df, #9b59b6);
+  background: linear-gradient(90deg, var(--ml-blue), #9b59b6);
 }
 
 .confidenceFillLow {
@@ -87,7 +87,7 @@
 }
 
 .confidenceFillMedium {
-  background: #F2C94C;
+  background: var(--ml-yellow);
 }
 
 .confidenceFillHigh {

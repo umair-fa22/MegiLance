@@ -1,32 +1,32 @@
 /* @AI-HINT: Client Dashboard — light theme colours */
 
 .dashboardContainer {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
-.welcomeText h1 { color: #0f172a; }
-.welcomeText p   { color: #64748b; }
+.welcomeText h1 { color: var(--text-primary-light); }
+.welcomeText p   { color: var(--color-text-secondary-light); }
 
 /* ── Section titles & links ─────────── */
-.sectionTitle { color: #0f172a; }
-.viewAllLink  { color: #4573df; }
+.sectionTitle { color: var(--text-primary-light); }
+.viewAllLink  { color: var(--ml-blue); }
 
 /* ── Stat cards ─────────────────────── */
 .statCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 .statCard:hover {
   box-shadow: 0 6px 16px rgba(0,0,0,0.06);
 }
-.statHeader { color: #64748b; }
-.statValue  { color: #0f172a; }
+.statHeader { color: var(--color-text-secondary-light); }
+.statValue  { color: var(--text-primary-light); }
 
 /* ── Quick Actions ──────────────────── */
 .quickActionCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 2px rgba(0,0,0,0.03);
 }
 .quickActionCard:hover {
@@ -37,55 +37,55 @@
 
 /* ── Project cards ──────────────────── */
 .projectCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   box-shadow: 0 1px 2px rgba(0,0,0,0.04);
 }
 .projectCard:hover {
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   border-color: #cbd5e1;
 }
-.projectInfo h3 { color: #0f172a; }
-.projectMeta    { color: #64748b; }
+.projectInfo h3 { color: var(--text-primary-light); }
+.projectMeta    { color: var(--color-text-secondary-light); }
 
 /* ── Talent cards ───────────────────── */
 .talentCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
-.talentCard:hover { background-color: #f1f5f9; }
-.talentInfo h4    { color: #0f172a; }
-.talentRole       { color: #64748b; }
-.actionButton     { color: #64748b; }
+.talentCard:hover { background-color: var(--bg-tertiary-light); }
+.talentInfo h4    { color: var(--text-primary-light); }
+.talentRole       { color: var(--color-text-secondary-light); }
+.actionButton     { color: var(--color-text-secondary-light); }
 .actionButton:hover {
-  background-color: #f1f5f9;
-  color: #0f172a;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-primary-light);
 }
 
 /* ── Quick Action Description ───────── */
-.quickActionDesc { color: #94a3b8; }
+.quickActionDesc { color: var(--text-tertiary-light); }
 
 /* ── Metrics Row ────────────────────── */
 .metricCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
-.metricStatValue { color: #0f172a; }
-.metricStatLabel { color: #64748b; }
-.metricHint { color: #94a3b8; }
+.metricStatValue { color: var(--text-primary-light); }
+.metricStatLabel { color: var(--color-text-secondary-light); }
+.metricHint { color: var(--text-tertiary-light); }
 
 /* ── Timeline Section ───────────────── */
-.timelineSection { border-color: #e2e8f0; }
+.timelineSection { border-color: var(--border-light); }
 
 /* ── Insight Card ───────────────────── */
 .insightCard {
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
 }
 .insightTitle { color: #334155; }
-.insightValue { color: #0f172a; }
-.insightLabel { color: #94a3b8; }
+.insightValue { color: var(--text-primary-light); }
+.insightLabel { color: var(--text-tertiary-light); }
 \n
 .glassPanel {
   background: rgba(255, 255, 255, 0.75);

@@ -1,41 +1,41 @@
 ﻿/* @AI-HINT: Dark theme styles for the enhanced MyJobs page. */
-.container { background-color: #0f172a; }
+.container { background-color: var(--bg-primary-dark); }
 .header { border-bottom: none; }
-.title { color: #f1f5f9; }
-.subtitle { color: #94a3b8; }
+.title { color: var(--color-text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
 
 /* KPI */
-.kpiCard { background: #1e293b; border-color: #334155; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+.kpiCard { background: var(--bg-secondary-dark); border-color: var(--border-dark); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
 .kpiCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-.kpiValue { color: #f1f5f9; }
+.kpiValue { color: var(--color-text-primary-dark); }
 .kpiLabel { color: #64748b; }
 
 /* Filters */
-.filterBar { background: #1e293b; border-color: #334155; }
-.filterBtn { color: #94a3b8; }
-.filterBtn:hover { background: #334155; color: #f1f5f9; }
-.filterBtnActive { background: #4573df; color: #ffffff; }
+.filterBar { background: var(--bg-secondary-dark); border-color: var(--border-dark); }
+.filterBtn { color: var(--text-tertiary-dark); }
+.filterBtn:hover { background: var(--border-dark); color: var(--color-text-primary-dark); }
+.filterBtnActive { background: var(--ml-blue); color: #ffffff; }
 
 /* Tabs */
-.tab { color: #94a3b8; }
-.tab:hover { color: #f1f5f9; }
+.tab { color: var(--text-tertiary-dark); }
+.tab:hover { color: var(--color-text-primary-dark); }
 .tabActive { color: #60a5fa; }
 
 /* Grids */
-.gridsContainer { color: #f1f5f9; }
+.gridsContainer { color: var(--color-text-primary-dark); }
 
 /* Quick Actions */
-.quickActions { background: #1e293b; border-color: #334155; }
-.quickAction { color: #cbd5e1; background: #0f172a; }
-.quickAction:hover { background: #334155; color: #f1f5f9; }
+.quickActions { background: var(--bg-secondary-dark); border-color: var(--border-dark); }
+.quickAction { color: var(--text-secondary-dark); background: var(--bg-primary-dark); }
+.quickAction:hover { background: var(--border-dark); color: var(--color-text-primary-dark); }
 
 /* Drawer */
-.drawer { background: #1e293b; box-shadow: -4px 0 24px rgba(0,0,0,0.4); }
+.drawer { background: var(--bg-secondary-dark); box-shadow: -4px 0 24px rgba(0,0,0,0.4); }
 .statusBadge { background: rgba(69, 115, 223, 0.2); color: #60a5fa; }
 .progressBar { background: #60a5fa; }
-.milestoneItem { border-color: #334155; background: #0f172a; }
+.milestoneItem { border-color: var(--border-dark); background: var(--bg-primary-dark); }
 
 /* Empty / Loading */
-.emptyState { border-color: #334155; color: #94a3b8; }
-.loadingState { color: #94a3b8; }
+.emptyState { border-color: var(--border-dark); color: var(--text-tertiary-dark); }
+.loadingState { color: var(--text-tertiary-dark); }
 .spinner { border-top-color: #60a5fa; }

@@ -1,7 +1,7 @@
 /* @AI-HINT: Light theme colors for fraud alerts dashboard */
 
 .container {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   color: #1a1a1a;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .searchBox {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #d0d0d0;
   color: #1a1a1a;
 }
@@ -34,17 +34,17 @@
 }
 
 .select {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #d0d0d0;
   color: #1a1a1a;
 }
 
 .select:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .alertCard {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #e5e5e5;
 }
 
@@ -107,15 +107,15 @@
 
 .error {
   background: #fef3f3;
-  border-color: #e81123;
+  border-color: var(--ml-red);
 }
 
 .modalContent {
-  background: #ffffff;
+  background: var(--bg-primary-light);
 }
 
 .modalHeader {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-bottom-color: #e5e5e5;
   color: #1a1a1a;
 }
@@ -129,7 +129,7 @@
 }
 
 .modalBody {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   color: #1a1a1a;
   border-bottom-color: #e5e5e5;
 }
@@ -141,13 +141,13 @@
 }
 
 .textarea {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #d0d0d0;
   color: #1a1a1a;
 }
 
 .textarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 

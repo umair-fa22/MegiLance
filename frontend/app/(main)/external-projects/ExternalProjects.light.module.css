@@ -1,16 +1,16 @@
 /* @AI-HINT: External Projects page - light theme colors */
 
 .page {
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: var(--bg-secondary-light);
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .scrapeBtn {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: white;
 }
 
@@ -20,7 +20,7 @@
 
 /* Stats */
 .statCard {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
@@ -34,49 +34,49 @@
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Toolbar */
 .toolbar {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .searchIcon {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .searchInput {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   color: #111827;
 }
 
 .searchInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .filterSelect {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   color: #111827;
 }
 
 /* Category Tabs */
 .categoryTab {
-  background-color: #f1f5f9;
-  color: #64748b;
+  background-color: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .categoryTab:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
   color: #374151;
 }
 
 .categoryTabActive {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .categoryCount {
@@ -86,21 +86,21 @@
 
 /* Source badges */
 .sourceLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .sourceBadge {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #374151;
 }
 
 .sourceBadge:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .sourceBadgeActive {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .sourceDotRemoteok {
@@ -117,8 +117,8 @@
 
 /* Project Card */
 .projectCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .projectCard:hover {
@@ -135,7 +135,7 @@
 }
 
 .companyName {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .trustBadgeHigh {
@@ -154,24 +154,24 @@
 }
 
 .projectDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tag {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #4b5563;
 }
 
 .moreTags {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .cardFooter {
-  border-top-color: #f1f5f9;
+  border-top-color: var(--bg-tertiary-light);
 }
 
 .metaItem {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .budget {
@@ -179,8 +179,8 @@
 }
 
 .applyBtn {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .applyBtn:hover {
@@ -194,32 +194,32 @@
 
 /* Pagination */
 .pageBtn {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   color: #374151;
 }
 
 .pageBtn:hover:not(:disabled) {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   border-color: #cbd5e1;
 }
 
 .pageInfo {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Loading */
 .spinner {
-  border-top-color: #4573df;
+  border-top-color: var(--ml-blue);
 }
 
 .loadingText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Empty */
 .emptyState {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 
 .emptyIcon {
@@ -227,21 +227,21 @@
 }
 
 .emptyText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Last Updated */
 .lastUpdated {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Scrape Result */
 .scrapeResult {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   color: #111827;
 }
 
 .scrapeResultDetails {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }

@@ -1,12 +1,12 @@
 .story {
-  background: #ffffff;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 .story:hover {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border-color: #27AE60;
+  border-color: var(--ml-green);
 }
 
 .quote {
@@ -14,11 +14,11 @@
 }
 
 .quoteMark {
-  color: #27AE60;
+  color: var(--ml-green);
 }
 
 .avatar {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .name {
@@ -30,14 +30,14 @@
 }
 
 .location {
-  color: #27AE60;
+  color: var(--ml-green);
 }
 
 .achievement {
   background: rgba(39, 174, 96, 0.1);
-  color: #27AE60;
+  color: var(--ml-green);
 }
 
 .achievementIcon {
-  fill: #27AE60;
+  fill: var(--ml-green);
 }

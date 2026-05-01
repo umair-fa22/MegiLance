@@ -1,8 +1,8 @@
 /* @AI-HINT: Dark theme styles for the Error page */
 
 .container {
-  background-color: #0f172a;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .errorCode {
@@ -10,15 +10,15 @@
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .description {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .primaryButton {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -33,6 +33,6 @@
 }
 
 .secondaryButton:hover {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border-color: #64748b;
 }

@@ -570,7 +570,7 @@
 .xpItemFill {
   height: 100%;
   border-radius: 4px;
-  background: linear-gradient(90deg, #4573df, #6b8de6);
+  background: linear-gradient(90deg, var(--ml-blue), #6b8de6);
   transition: width 0.6s ease;
 }
 
@@ -727,7 +727,7 @@
 
 /* Leaderboard icons */
 .goldIcon { color: #f59e0b; }
-.silverIcon { color: #94a3b8; }
+.silverIcon { color: var(--text-tertiary-light); }
 .bronzeIcon { color: #cd7f32; }
 .positionNumber { font-weight: 700; font-size: 0.85rem; }
 

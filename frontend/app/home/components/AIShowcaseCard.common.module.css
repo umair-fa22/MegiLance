@@ -27,19 +27,19 @@
 
 .statusLive {
   background: rgba(39, 174, 96, 0.2);
-  color: var(--color-success, #27AE60);
+  color: var(--color-success, var(--ml-green));
   border: 1px solid rgba(39, 174, 96, 0.4);
 }
 
 .statusBeta {
   background: rgba(69, 115, 223, 0.2);
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
   border: 1px solid rgba(69, 115, 223, 0.4);
 }
 
 .statusSmart {
   background: rgba(255, 152, 0, 0.2);
-  color: var(--color-accent, #ff9800);
+  color: var(--color-accent, var(--ml-orange));
   border: 1px solid rgba(255, 152, 0, 0.4);
 }
 

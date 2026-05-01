@@ -15,19 +15,19 @@
 
 .card { border: 1.5px solid transparent; border-radius: 16px; padding: 1.5rem; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04); }
 .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08); }
-.card:focus-visible { outline: 2px solid var(--color-primary, #4573df); outline-offset: 2px; }
+.card:focus-visible { outline: 2px solid var(--color-primary, var(--ml-blue)); outline-offset: 2px; }
 .cardTitle { font-weight: 600; margin-bottom: var(--spacing-2); font-size: 16px; letter-spacing: -0.01em; }
 .cardDesc { line-height: 1.7; font-size: 14px; letter-spacing: 0.01em; }
 
 .list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 .link { text-decoration: none; font-weight: 600; border-radius: 8px; padding: 6px 8px; display: inline-block; font-size: 14px; transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease, background 0.2s ease; }
 .link:hover { transform: translateX(2px); }
-.link:focus-visible { outline: 2px solid var(--color-primary, #4573df); outline-offset: 2px; }
+.link:focus-visible { outline: 2px solid var(--color-primary, var(--ml-blue)); outline-offset: 2px; }
 
 .cta { display: flex; gap: var(--spacing-4); justify-content: center; }
 .button { padding: 12px 18px; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 14px; letter-spacing: 0.01em; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), background 0.25s ease; }
 .button:hover { transform: translateY(-2px); }
-.button:focus-visible { outline: 2px solid var(--color-primary, #4573df); outline-offset: 2px; }
+.button:focus-visible { outline: 2px solid var(--color-primary, var(--ml-blue)); outline-offset: 2px; }
 .buttonSecondary { background: transparent; border: 1.5px solid transparent; }
 
 .sectionHeader { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-4); }

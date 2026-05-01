@@ -1,29 +1,29 @@
 /* @AI-HINT: Fraud Detection Dashboard - dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Stats */
 .statCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .statValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statIcon {
@@ -32,8 +32,8 @@
 
 /* Transaction Card */
 .transactionCard {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .transactionCard:hover {
@@ -41,15 +41,15 @@
 }
 
 .transactionType {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .transactionAmount {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .transactionUser {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .flag {
@@ -63,20 +63,20 @@
 
 /* Alerts */
 .alertCard {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .alertType {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .alertMessage {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .alertMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .detailLabel {
@@ -84,7 +84,7 @@
 }
 
 .detailValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .flagLarge {

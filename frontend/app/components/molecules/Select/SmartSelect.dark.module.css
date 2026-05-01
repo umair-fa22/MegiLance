@@ -5,12 +5,12 @@
 }
 
 .placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .trigger {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
   color: #f3f4f6;
 }
 
@@ -35,28 +35,28 @@
 
 /* Tags */
 .tag {
-  background: #334155;
+  background: var(--border-dark);
   color: #e2e8f0;
   border: 1px solid #475569;
 }
 
 .tagMore {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Clear Button */
 .clearButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .clearButton:hover {
-  background: #334155;
+  background: var(--border-dark);
   color: #e2e8f0;
 }
 
 /* Chevron */
 .chevron {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Loader */
@@ -66,15 +66,15 @@
 
 /* Dropdown */
 .dropdown {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   border: 2px solid #6366f1;
-  border-top: 1px solid #334155;
+  border-top: 1px solid var(--border-dark);
 }
 
 /* Search */
 .searchContainer {
-  background: #0f172a;
-  border-color: #334155;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
 }
 
 .searchIcon {
@@ -90,11 +90,11 @@
 }
 
 .searchClear {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .searchClear:hover {
-  background: #334155;
+  background: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -108,7 +108,7 @@
 }
 
 .option:hover {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 .optionHighlighted {
@@ -125,8 +125,8 @@
 }
 
 .optionIcon {
-  background: #334155;
-  color: #94a3b8;
+  background: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .optionLabel {
@@ -134,7 +134,7 @@
 }
 
 .optionDescription {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .checkIcon {
@@ -143,17 +143,17 @@
 
 /* Groups */
 .groupLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* No Options */
 .noOptions {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Helper Text */
 .helperText {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .errorText {

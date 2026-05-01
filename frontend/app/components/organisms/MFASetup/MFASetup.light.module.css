@@ -1,7 +1,7 @@
 /* @AI-HINT: MFASetup light theme colors */
 
 .container {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 
 .header {
@@ -19,13 +19,13 @@
 }
 
 .methodCard:hover {
-  background-color: #ffffff;
-  border-color: #4573df;
+  background-color: var(--bg-primary-light);
+  border-color: var(--ml-blue);
 }
 
 .methodCard.selected {
   background-color: #eef3ff;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .setupContainer,
@@ -41,19 +41,19 @@
 
 .backupCodes {
   background-color: #fff9e6;
-  border-color: #f2c94c;
+  border-color: var(--ml-yellow);
 }
 
 .backupCode {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   color: #1a1a1a;
   border: 1px solid #e0e0e0;
 }
 
 .error {
   background-color: #fff0f0;
-  color: #e81123;
-  border: 1px solid #e81123;
+  color: var(--ml-red);
+  border: 1px solid var(--ml-red);
 }
 
 .phoneSection,

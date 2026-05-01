@@ -1,82 +1,82 @@
 /* AI-HINT: Light theme overrides for Client Projects page. */
 
 .theme .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .themeWrapper {
-  background: #f8fafc;
-  color: #0f172a;
+  background: var(--bg-secondary-light);
+  color: var(--text-primary-light);
 }
 
 .input,
 .select {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  color: #0f172a;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .button {
-  background: #4573df;
-  color: #ffffff;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
   border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .button.secondary {
-  background: #ffffff;
-  color: #475569;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  color: var(--text-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .cardTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .meta {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .badge {
-  background: #f8fafc;
-  border-color: #e2e8f0;
-  color: #475569;
+  background: var(--bg-secondary-light);
+  border-color: var(--border-light);
+  color: var(--text-secondary-light);
 }
 
 .skeletonCard {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .kpiStrip {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .kpiValue {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .kpiLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .kpiDivider {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .resultsCount {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .footer {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .paginationInfo {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }

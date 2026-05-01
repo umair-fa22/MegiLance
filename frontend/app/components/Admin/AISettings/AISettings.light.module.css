@@ -1,5 +1,5 @@
 .settingsCard {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border: 1px solid #e9eef2;
 }
 
@@ -28,10 +28,10 @@
 }
 
 .settingControl span {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .cardFooter {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
   border-top-color: #e9eef2;
 }

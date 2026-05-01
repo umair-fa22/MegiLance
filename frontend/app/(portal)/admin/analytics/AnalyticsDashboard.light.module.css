@@ -9,28 +9,28 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tab {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
   border-bottom: 2px solid transparent;
 }
 
 .tab:hover {
-  color: #4573df;
+  color: var(--ml-blue);
   background: rgba(69, 115, 223, 0.05);
 }
 
 .tabActive {
-  color: #4573df;
-  border-bottom-color: #4573df;
+  color: var(--ml-blue);
+  border-bottom-color: var(--ml-blue);
   background: rgba(69, 115, 223, 0.05);
 }
 
 .metricCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .metricValue {
@@ -38,12 +38,12 @@
 }
 
 .metricLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .chartCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .chartTitle {
@@ -51,12 +51,12 @@
 }
 
 .healthGauge {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .gaugeTrack {
-  stroke: #e2e8f0;
+  stroke: var(--border-light);
 }
 
 .gaugeNumber {
@@ -64,7 +64,7 @@
 }
 
 .gaugeLabel {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .healthMetaValue {
@@ -72,16 +72,16 @@
 }
 
 .healthMetaLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .growthCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .growthCardTitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .growthCardValue {
@@ -89,8 +89,8 @@
 }
 
 .funnelContainer {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .funnelTitle {
@@ -102,7 +102,7 @@
 }
 
 .funnelBarOuter {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .funnelCount {
@@ -110,12 +110,12 @@
 }
 
 .funnelPct {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .engagementCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .engagementValue {
@@ -123,7 +123,7 @@
 }
 
 .engagementLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .sectionTitle {
@@ -131,5 +131,5 @@
 }
 
 .loadingState {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }

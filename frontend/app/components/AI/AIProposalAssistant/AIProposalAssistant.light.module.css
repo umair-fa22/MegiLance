@@ -1,8 +1,8 @@
 /* @AI-HINT: Light theme for AI Proposal Assistant */
 
 .container {
-  background: #ffffff;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
@@ -11,23 +11,23 @@
 }
 
 .title {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .controlButton {
-  background: #f1f5f9;
-  color: #475569;
-  border-color: #e2e8f0;
+  background: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
+  border-color: var(--border-light);
 }
 
 .controlButton:hover {
-  background: #e2e8f0;
-  color: #1e293b;
+  background: var(--border-light);
+  color: var(--color-text-primary-light);
 }
 
 .primaryControl {
   background: #8b5cf6;
-  color: #ffffff;
+  color: var(--bg-primary-light);
   border-color: #8b5cf6;
 }
 
@@ -37,8 +37,8 @@
 }
 
 .resultArea {
-  background: #f8fafc;
-  border-color: #e2e8f0;
+  background: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .resultText {
@@ -46,24 +46,24 @@
 }
 
 .resultActions {
-  border-top-color: #e2e8f0;
+  border-top-color: var(--border-light);
 }
 
 .actionButton {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #cbd5e1;
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .actionButton:hover {
-  background: #f1f5f9;
-  color: #1e293b;
+  background: var(--bg-tertiary-light);
+  color: var(--color-text-primary-light);
 }
 
 .primaryAction {
   background: #8b5cf6;
   border-color: #8b5cf6;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .primaryAction:hover {

@@ -1,10 +1,10 @@
-﻿.header { border-bottom-color: #e2e8f0; }
-.header h1 { color: #0f172a; }
-.header p { color: #64748b; }
+﻿.header { border-bottom-color: var(--border-light); }
+.header h1 { color: var(--text-primary-light); }
+.header p { color: var(--color-text-secondary-light); }
 
 .quickLink {
-  background: #ffffff;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -12,33 +12,33 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.quickLinkLabel { color: #0f172a; }
-.quickLinkDesc { color: #64748b; }
+.quickLinkLabel { color: var(--text-primary-light); }
+.quickLinkDesc { color: var(--color-text-secondary-light); }
 
 .card {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
-.cardTitle { color: #0f172a; }
+.cardTitle { color: var(--text-primary-light); }
 
-.priorityLabel { color: #0f172a; }
+.priorityLabel { color: var(--text-primary-light); }
 
 .faqSearchInput {
-  background: #ffffff;
-  color: #0f172a;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  color: var(--text-primary-light);
+  border-color: var(--border-light);
 }
 
 .faqSearchInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
 
 .ticketItem {
-  background: #ffffff;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
-.ticketSubject { color: #0f172a; }
-.ticketDate { color: #64748b; }
+.ticketSubject { color: var(--text-primary-light); }
+.ticketDate { color: var(--color-text-secondary-light); }

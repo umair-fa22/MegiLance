@@ -1,7 +1,7 @@
 ﻿/* @AI-HINT: Dark theme styles for the ProjectCard component, using CSS variables for consistency. */
 .theme {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .theme:hover {
@@ -10,19 +10,19 @@
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .titleLink {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .titleLink:hover {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .financials {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .paid {
@@ -31,19 +31,19 @@
 }
 
 .budget {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .avatarStack > * {
-  border-color: #1e293b !important;
+  border-color: var(--bg-secondary-dark) !important;
 }
 
 .moreAvatars {
-  background-color: #1e293b;
-  color: #cbd5e1;
-  border-color: #334155 !important;
+  background-color: var(--bg-secondary-dark);
+  color: var(--text-secondary-dark);
+  border-color: var(--border-dark) !important;
 }
 
 .updatedAt {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }

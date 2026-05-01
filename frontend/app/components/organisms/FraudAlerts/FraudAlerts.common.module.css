@@ -62,7 +62,7 @@
 }
 
 .statTotal {
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
 }
 
 .statPending {
@@ -70,11 +70,11 @@
 }
 
 .statCritical {
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
 }
 
 .statResolved {
-  color: var(--color-success, #27ae60);
+  color: var(--color-success, var(--ml-green));
 }
 
 .filters {
@@ -149,7 +149,7 @@
 }
 
 .severityCritical {
-  border-left: 4px solid var(--color-error, #e81123);
+  border-left: 4px solid var(--color-error, var(--ml-red));
 }
 
 .severityHigh {
@@ -220,7 +220,7 @@
 }
 
 .riskHigh {
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
 }
 
 .alertBody {
@@ -323,8 +323,8 @@
 
 .error {
   background: rgba(232, 17, 35, 0.05);
-  color: var(--color-error, #e81123);
-  border-color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
+  border-color: var(--color-error, var(--ml-red));
   font-size: 14px;
 }
 
@@ -521,10 +521,10 @@
   gap: 8px;
 }
 
-.statIconTotal { color: var(--color-primary, #4573df); }
+.statIconTotal { color: var(--color-primary, var(--ml-blue)); }
 .statIconPending { color: #f2a93e; }
-.statIconCritical { color: var(--color-error, #e81123); }
-.statIconResolved { color: var(--color-success, #27ae60); }
+.statIconCritical { color: var(--color-error, var(--ml-red)); }
+.statIconResolved { color: var(--color-success, var(--ml-green)); }
 
 /* Title with icon */
 .title {
@@ -548,7 +548,7 @@
 
 .sevcritical {
   background: rgba(232, 17, 35, 0.12);
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
 }
 
 .sevhigh {
@@ -584,12 +584,12 @@
 
 .statusInvestigating {
   background: rgba(69, 115, 223, 0.12);
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
 }
 
 .statusResolved {
   background: rgba(39, 174, 96, 0.12);
-  color: var(--color-success, #27ae60);
+  color: var(--color-success, var(--ml-green));
 }
 
 .statusFalsePositive {
@@ -766,7 +766,7 @@
 .recIcon {
   flex-shrink: 0;
   margin-top: 2px;
-  color: var(--color-success, #27ae60);
+  color: var(--color-success, var(--ml-green));
 }
 
 /* Toast */
@@ -786,11 +786,11 @@
 }
 
 .toastSuccess {
-  background-color: var(--color-success, #27ae60);
+  background-color: var(--color-success, var(--ml-green));
 }
 
 .toastError {
-  background-color: var(--color-error, #e81123);
+  background-color: var(--color-error, var(--ml-red));
 }
 
 @keyframes slideUp {
@@ -811,6 +811,6 @@
 }
 
 .searchInput:focus-visible {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
 }

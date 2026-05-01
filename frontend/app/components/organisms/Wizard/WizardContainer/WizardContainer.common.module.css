@@ -38,7 +38,7 @@
 
 .progressFill {
   height: 100%;
-  background: linear-gradient(90deg, var(--color-primary, #4573df), #6b8ef9);
+  background: linear-gradient(90deg, var(--color-primary, var(--ml-blue)), #6b8ef9);
   transition: width 0.3s ease;
 }
 
@@ -88,17 +88,17 @@
 }
 
 .stepCircleActive {
-  background: var(--color-primary, #4573df);
-  border-color: var(--color-primary, #4573df);
-  color: #ffffff;
+  background: var(--color-primary, var(--ml-blue));
+  border-color: var(--color-primary, var(--ml-blue));
+  color: var(--bg-primary-light);
   transform: scale(1.1);
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.3);
 }
 
 .stepCircleCompleted {
-  background: var(--color-success, #27AE60);
-  border-color: var(--color-success, #27AE60);
-  color: #ffffff;
+  background: var(--color-success, var(--ml-green));
+  border-color: var(--color-success, var(--ml-green));
+  color: var(--bg-primary-light);
 }
 
 .stepLabel {

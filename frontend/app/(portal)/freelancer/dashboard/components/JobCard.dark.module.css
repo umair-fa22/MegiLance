@@ -1,8 +1,8 @@
 /* @AI-HINT: Freelancer JobCard — dark theme */
 
 .card {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
@@ -11,17 +11,17 @@
   border-color: #475569;
 }
 
-.title  { color: #f8fafc; }
-.client { color: #94a3b8; }
-.budget { color: #f8fafc; }
+.title  { color: var(--text-primary-dark); }
+.client { color: var(--text-tertiary-dark); }
+.budget { color: var(--text-primary-dark); }
 
 .tag {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .footer {
-  border-top-color: #334155;
+  border-top-color: var(--border-dark);
 }
 
-.meta { color: #94a3b8; }
+.meta { color: var(--text-tertiary-dark); }

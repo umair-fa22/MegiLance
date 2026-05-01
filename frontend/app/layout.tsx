@@ -175,6 +175,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         
         {/* Theme initialization - prevent flash */}
         <script
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `
               (function() {

@@ -1,35 +1,35 @@
 .flaggedReviewsContainer {
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .flaggedReviewsTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .flaggedReviewsItem {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .flaggedReviewsItemHeader strong {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .flaggedReviewsRating {
-  color: #4573df; /* updated to brand primary */
+  color: var(--ml-blue); /* updated to brand primary */
 }
 
 .flaggedReviewsContent {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .flaggedReviewsActions small {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .flaggedReviewsEmpty {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   border: 2px dashed #cbd5e1;
-  color: #475569;
+  color: var(--text-secondary-light);
 }

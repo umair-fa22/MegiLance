@@ -1,27 +1,27 @@
 /* @AI-HINT: Teams dark theme - colors only */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
 .loadingState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Header */
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Stats */
 .statCard {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -30,11 +30,11 @@
 }
 
 .statValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statIconBlue {
@@ -59,8 +59,8 @@
 
 /* Toolbar */
 .toolbar {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .searchIcon {
@@ -68,9 +68,9 @@
 }
 
 .searchInput {
-  color: #f1f5f9;
-  border-color: #334155;
-  background-color: #0f172a;
+  color: var(--color-text-primary-dark);
+  border-color: var(--border-dark);
+  background-color: var(--bg-primary-dark);
 }
 
 .searchInput::placeholder {
@@ -78,7 +78,7 @@
 }
 
 .searchInput:focus {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .clearSearch {
@@ -86,44 +86,44 @@
 }
 
 .clearSearch:hover {
-  background-color: #334155;
-  color: #94a3b8;
+  background-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .filterChip {
-  color: #94a3b8;
-  background-color: #0f172a;
-  border-color: #334155;
+  color: var(--text-tertiary-dark);
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
 }
 
 .filterChip:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 
 .filterChipActive {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 /* Tabs */
 .tabs {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .tab {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tab:hover {
-  color: #f1f5f9;
-  background-color: #334155;
+  color: var(--color-text-primary-dark);
+  background-color: var(--border-dark);
 }
 
 .activeTab {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -144,8 +144,8 @@
 
 /* Member Card */
 .memberCard {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .memberCard:hover {
@@ -153,16 +153,16 @@
 }
 
 .avatar {
-  background-color: #334155;
-  color: #94a3b8;
+  background-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .memberName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .memberEmail {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .memberMetaRow {
@@ -171,12 +171,12 @@
 
 /* Expanded Details */
 .expandedDetails {
-  border-top-color: #334155;
+  border-top-color: var(--border-dark);
   background-color: #162032;
 }
 
 .detailTitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .permTag {
@@ -185,13 +185,13 @@
 }
 
 .detailItem {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 /* Invite Card */
 .inviteCard {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .inviteCard:hover {
@@ -204,7 +204,7 @@
 }
 
 .inviteEmail {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .inviteMeta {
@@ -213,15 +213,15 @@
 
 /* Empty State */
 .emptyState {
-  background-color: #1e293b;
-  border: 1px dashed #334155;
-  color: #94a3b8;
+  background-color: var(--bg-secondary-dark);
+  border: 1px dashed var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 /* Roles Tab */
 .roleCard {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .roleCard:hover {
@@ -245,11 +245,11 @@
 
 .roleIcon_viewer {
   background-color: rgba(148, 163, 184, 0.2);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .roleCardName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .roleCardCount {
@@ -257,32 +257,32 @@
 }
 
 .roleCardDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .rolePermItem {
-  background-color: #0f172a;
-  color: #94a3b8;
+  background-color: var(--bg-primary-dark);
+  color: var(--text-tertiary-dark);
 }
 
 /* Permissions Matrix */
 .matrixSection {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .matrixTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .matrixHeaderCell {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
   background-color: #162032;
-  border-bottom: 2px solid #334155;
+  border-bottom: 2px solid var(--border-dark);
 }
 
 .matrixRow {
-  border-bottom: 1px solid #1e293b;
+  border-bottom: 1px solid var(--bg-secondary-dark);
 }
 
 .matrixRow:hover {
@@ -295,7 +295,7 @@
 
 /* Modal */
 .modal {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
@@ -304,7 +304,7 @@
 }
 
 .modalTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .modalClose {
@@ -312,16 +312,16 @@
 }
 
 .modalClose:hover {
-  background-color: #334155;
-  color: #94a3b8;
+  background-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .modalHeader {
-  border-bottom-color: #334155;
+  border-bottom-color: var(--border-dark);
 }
 
 .modalFooter {
-  border-top-color: #334155;
+  border-top-color: var(--border-dark);
   background-color: #162032;
 }
 
@@ -331,7 +331,7 @@
 }
 
 .removeEmailBtn {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #64748b;
 }
 
@@ -345,31 +345,31 @@
 }
 
 .addEmailBtn:hover {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Role Options */
 .roleOption {
-  background-color: #0f172a;
-  border-color: #334155;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
 }
 
 .roleOption:hover {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border-color: #475569;
 }
 
 .selectedRole {
   background-color: rgba(69, 115, 223, 0.12);
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .roleName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .roleDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .roleEditInfo {
@@ -383,11 +383,11 @@
 
 /* Toast */
 .toast {
-  background: #27ae60;
+  background: var(--ml-green);
   color: #ffffff;
 }
 
 .toastError {
-  background: #e81123;
+  background: var(--ml-red);
   color: #ffffff;
 }

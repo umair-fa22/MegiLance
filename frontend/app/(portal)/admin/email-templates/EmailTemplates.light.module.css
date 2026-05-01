@@ -1,20 +1,20 @@
 /* @AI-HINT: Admin Email Templates - light theme */
 .container { background: #f8f9fa; }
 .title { color: #1a1a2e; }
-.subtitle { color: #64748b; }
+.subtitle { color: var(--color-text-secondary-light); }
 .searchInput { background: #fff; border-color: #e0e0e0; color: #1a1a2e; }
-.searchInput::placeholder { color: #94a3b8; }
-.filterBtn { border-color: #e0e0e0; color: #64748b; background: #fff; }
-.filterBtn:hover { background: #f1f5f9; }
-.filterBtnActive { background: #4573df; color: #fff; border-color: #4573df; }
+.searchInput::placeholder { color: var(--text-tertiary-light); }
+.filterBtn { border-color: #e0e0e0; color: var(--color-text-secondary-light); background: #fff; }
+.filterBtn:hover { background: var(--bg-tertiary-light); }
+.filterBtnActive { background: var(--ml-blue); color: #fff; border-color: var(--ml-blue); }
 .templateCard { background: #fff; border-color: #e0e0e0; }
 .templateCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 .cardTitle { color: #1a1a2e; }
-.cardType { background: #e8f0fe; color: #4573df; }
+.cardType { background: #e8f0fe; color: var(--ml-blue); }
 .cardSubject { color: #374151; }
-.cardMeta { color: #94a3b8; }
+.cardMeta { color: var(--text-tertiary-light); }
 .previewContent { background: #fff; }
 .previewTitle { color: #1a1a2e; }
 .previewBody { border-color: #e0e0e0; background: #fafafa; color: #374151; }
 .emptyTitle { color: #1a1a2e; }
-.emptyDesc { color: #64748b; }
+.emptyDesc { color: var(--color-text-secondary-light); }

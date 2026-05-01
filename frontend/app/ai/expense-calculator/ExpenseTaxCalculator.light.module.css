@@ -1,65 +1,65 @@
 /* @AI-HINT: Expense & Tax Calculator – light theme colors */
 
-.container { background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%); color: #1a1f36; }
-.headerBadge { background: rgba(69,115,223,0.1); color: #4573df; }
+.container { background: linear-gradient(135deg, var(--bg-secondary-light) 0%, #eef2ff 100%); color: #1a1f36; }
+.headerBadge { background: rgba(69,115,223,0.1); color: var(--ml-blue); }
 .title { color: #1a1f36; }
-.subtitle { color: #64748b; }
+.subtitle { color: var(--color-text-secondary-light); }
 
-.stepDot { background: #e2e8f0; color: #94a3b8; }
-.stepDotActive { background: #4573df; color: #fff; box-shadow: 0 0 0 4px rgba(69,115,223,0.15); }
-.stepDotCompleted { background: #27ae60; color: #fff; }
-.stepLabel { color: #94a3b8; }
-.stepLabelActive { color: #4573df; }
-.stepLine { background: #e2e8f0; }
-.stepLineActive { background: #27ae60; }
+.stepDot { background: var(--border-light); color: var(--text-tertiary-light); }
+.stepDotActive { background: var(--ml-blue); color: #fff; box-shadow: 0 0 0 4px rgba(69,115,223,0.15); }
+.stepDotCompleted { background: var(--ml-green); color: #fff; }
+.stepLabel { color: var(--text-tertiary-light); }
+.stepLabelActive { color: var(--ml-blue); }
+.stepLine { background: var(--border-light); }
+.stepLineActive { background: var(--ml-green); }
 
-.formCard { background: #fff; border-color: #e2e8f0; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+.formCard { background: #fff; border-color: var(--border-light); box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
 .formTitle { color: #1a1f36; }
 .label { color: #374151; }
-.labelHint { color: #94a3b8; }
-.formHint { color: #64748b; }
-.numberInput { background: #fafbfc; border-color: #e2e8f0; color: #1a1f36; }
-.numberInput:focus { border-color: #4573df; box-shadow: 0 0 0 3px rgba(69,115,223,0.1); }
-.select { background: #fafbfc; border-color: #e2e8f0; color: #1a1f36; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); }
-.select:focus { border-color: #4573df; box-shadow: 0 0 0 3px rgba(69,115,223,0.1); }
+.labelHint { color: var(--text-tertiary-light); }
+.formHint { color: var(--color-text-secondary-light); }
+.numberInput { background: #fafbfc; border-color: var(--border-light); color: #1a1f36; }
+.numberInput:focus { border-color: var(--ml-blue); box-shadow: 0 0 0 3px rgba(69,115,223,0.1); }
+.select { background: #fafbfc; border-color: var(--border-light); color: #1a1f36; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); }
+.select:focus { border-color: var(--ml-blue); box-shadow: 0 0 0 3px rgba(69,115,223,0.1); }
 
 .processingContainer { color: #1a1f36; }
-.processingOrbInner { background: linear-gradient(135deg, #4573df, #7ba0f7); color: #fff; }
-.processingSubtitle { color: #64748b; }
-.processingStepCircle { background: rgba(69,115,223,0.1); color: #4573df; }
+.processingOrbInner { background: linear-gradient(135deg, var(--ml-blue), #7ba0f7); color: #fff; }
+.processingSubtitle { color: var(--color-text-secondary-light); }
+.processingStepCircle { background: rgba(69,115,223,0.1); color: var(--ml-blue); }
 
-.priceHero { background: linear-gradient(135deg, #4573df 0%, #6b91e8 100%); color: #fff; }
+.priceHero { background: linear-gradient(135deg, var(--ml-blue) 0%, #6b91e8 100%); color: #fff; }
 .priceHeroLabel { color: rgba(255,255,255,0.85); }
 .priceHeroValue { color: #fff; }
 .priceHeroMetaItem { color: rgba(255,255,255,0.8); }
 
-.resultCard { background: #fff; border-color: #e2e8f0; }
-.resultCardIcon { background: rgba(69,115,223,0.1); color: #4573df; }
+.resultCard { background: #fff; border-color: var(--border-light); }
+.resultCardIcon { background: rgba(69,115,223,0.1); color: var(--ml-blue); }
 .resultCardTitle { color: #1a1f36; }
-.bigStat { color: #4573df; }
-.calcRow { color: #374151; border-color: #f1f5f9; }
+.bigStat { color: var(--ml-blue); }
+.calcRow { color: #374151; border-color: var(--bg-tertiary-light); }
 
-.yoyBox { background: #f8fafc; color: #374151; }
-.yoyUp { background: rgba(39,174,96,0.08); color: #27ae60; }
-.yoyDown { background: rgba(232,17,35,0.08); color: #e81123; }
+.yoyBox { background: var(--bg-secondary-light); color: #374151; }
+.yoyUp { background: rgba(39,174,96,0.08); color: var(--ml-green); }
+.yoyDown { background: rgba(232,17,35,0.08); color: var(--ml-red); }
 
-.recItem { background: #f8fafc; }
+.recItem { background: var(--bg-secondary-light); }
 .recTitle { color: #1a1f36; }
-.recMsg { color: #64748b; }
-.rec_deduction { border-left-color: #27ae60; }
-.rec_savings { border-left-color: #4573df; }
+.recMsg { color: var(--color-text-secondary-light); }
+.rec_deduction { border-left-color: var(--ml-green); }
+.rec_savings { border-left-color: var(--ml-blue); }
 .rec_warning { border-left-color: #f39c12; }
-.rec_optimization { border-left-color: #27ae60; }
-.rec_tax_strategy { border-left-color: #4573df; }
-.rec_info { border-left-color: #4573df; }
+.rec_optimization { border-left-color: var(--ml-green); }
+.rec_tax_strategy { border-left-color: var(--ml-blue); }
+.rec_info { border-left-color: var(--ml-blue); }
 
-.navButtonBack { background: #f1f5f9; color: #374151; }
-.navButtonBack:hover { background: #e2e8f0; }
-.navButtonNext { background: #4573df; color: #fff; }
+.navButtonBack { background: var(--bg-tertiary-light); color: #374151; }
+.navButtonBack:hover { background: var(--border-light); }
+.navButtonNext { background: var(--ml-blue); color: #fff; }
 .navButtonNext:hover { background: #3b63c7; }
-.actionBtnPrimary { background: #4573df; color: #fff; }
+.actionBtnPrimary { background: var(--ml-blue); color: #fff; }
 .actionBtnPrimary:hover { background: #3b63c7; }
-.actionBtnSecondary { background: #f1f5f9; color: #374151; }
-.actionBtnSecondary:hover { background: #e2e8f0; }
+.actionBtnSecondary { background: var(--bg-tertiary-light); color: #374151; }
+.actionBtnSecondary:hover { background: var(--border-light); }
 
-.disclaimer { color: #94a3b8; border-color: #e2e8f0; }
+.disclaimer { color: var(--text-tertiary-light); border-color: var(--border-light); }

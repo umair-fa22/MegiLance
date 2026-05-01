@@ -1,8 +1,8 @@
 /* @AI-HINT: Defines light theme variables for the Notification component. These are applied to the .notification class. */
 .notification {
-  --notification-title-color: #0f172a;
-  --notification-message-color: #64748b;
-  --notification-close-bg-hover: #f1f5f9;
+  --notification-title-color: var(--text-primary-light);
+  --notification-message-color: var(--color-text-secondary-light);
+  --notification-close-bg-hover: var(--bg-tertiary-light);
   --notification-focus-ring: rgba(69,115,223,0.25);
 }
 

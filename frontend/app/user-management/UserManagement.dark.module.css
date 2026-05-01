@@ -1,14 +1,14 @@
 /* UserManagement.dark.module.css */
 .page {
-  background: linear-gradient(170deg, #0f172a 0%, #0f172a 40%, #0f1225 100%);
+  background: linear-gradient(170deg, var(--bg-primary-dark) 0%, var(--bg-primary-dark) 40%, #0f1225 100%);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Invite Card */
@@ -31,7 +31,7 @@
 }
 
 .fieldLabel {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .roleSelect {
@@ -41,7 +41,7 @@
 }
 
 .roleSelect:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
@@ -73,11 +73,11 @@
 }
 
 .tdSecondary {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .tdMuted {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
   font-size: 0.85rem;
 }
 

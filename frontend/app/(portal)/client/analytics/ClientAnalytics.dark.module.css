@@ -5,21 +5,21 @@
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .date_select {
   background: #1a1a2e;
   border-color: #2a2a4a;
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .date_select:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .metric_card {
@@ -33,11 +33,11 @@
 }
 
 .metric_title {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .metric_value {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .trend_up {
@@ -54,31 +54,31 @@
 }
 
 .chart_title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .chart_subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .bar {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 .bar_value {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .bar_label {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .stat_label {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .stat_count {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .stat_bar_bg {
@@ -91,11 +91,11 @@
 }
 
 .section_title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .section_subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .freelancer_card {
@@ -108,24 +108,24 @@
 }
 
 .freelancer_avatar {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #ffffff;
 }
 
 .freelancer_name {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .freelancer_role {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .stat_value_sm {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .stat_label_sm {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Loading and Error States */
@@ -134,7 +134,7 @@
 }
 
 .loadingText {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .errorBanner {

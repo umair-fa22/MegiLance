@@ -1,7 +1,7 @@
 /* Notification Preferences - Dark Theme */
 
 .container {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .section {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   border-color: #475569;
 }
 
@@ -23,17 +23,17 @@
 }
 
 .tableHeader {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
   border-color: #475569;
   color: #e2e8f0;
 }
 
 .tableRow {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
 }
 
 .tableRow:hover {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 .categoryCell strong {
@@ -46,12 +46,12 @@
 
 .timeInput {
   border-color: #475569;
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   color: #e2e8f0;
 }
 
 .timeInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 

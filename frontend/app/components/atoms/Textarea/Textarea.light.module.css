@@ -1,21 +1,21 @@
 /* @AI-HINT: Modern 2026 Light theme Textarea — glassmorphism, glow effects, refined gradients */
 
 .textareaWrapper {
-  --input-bg: #ffffff;
-  --input-bg-hover: #f8fafc;
-  --input-bg-focus: #ffffff;
-  --input-bg-disabled: #f1f5f9;
-  --input-border: #e2e8f0;
+  --input-bg: var(--bg-primary-light);
+  --input-bg-hover: var(--bg-secondary-light);
+  --input-bg-focus: var(--bg-primary-light);
+  --input-bg-disabled: var(--bg-tertiary-light);
+  --input-border: var(--border-light);
   --input-border-hover: #cbd5e1;
-  --input-border-focus: #4573df;
-  --input-border-error: #e81123;
-  --input-border-error-focus: #e81123;
-  --input-border-disabled: #e2e8f0;
-  --input-text: #0f172a;
-  --input-text-error: #e81123;
-  --input-text-disabled: #94a3b8;
-  --input-placeholder-text: #94a3b8;
-  --input-icon: #64748b;
+  --input-border-focus: var(--ml-blue);
+  --input-border-error: var(--ml-red);
+  --input-border-error-focus: var(--ml-red);
+  --input-border-disabled: var(--border-light);
+  --input-text: var(--text-primary-light);
+  --input-text-error: var(--ml-red);
+  --input-text-disabled: var(--text-tertiary-light);
+  --input-placeholder-text: var(--text-tertiary-light);
+  --input-icon: var(--color-text-secondary-light);
   --input-label-text: #334155;
 }
 
@@ -23,7 +23,7 @@
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.08),
               0 2px 4px rgba(0, 0, 0, 0.08),
               0 4px 12px rgba(0, 0, 0, 0.06);
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--border-light);
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.8) 100%);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -35,7 +35,7 @@
               0 6px 16px rgba(69, 115, 223, 0.12),
               0 2px 4px rgba(0, 0, 0, 0.08);
   border: 2px solid #cbd5e1;
-  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  background: linear-gradient(135deg, var(--bg-secondary-light) 0%, var(--bg-primary-light) 100%);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   filter: brightness(1.02);
@@ -45,8 +45,8 @@
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.08),
               0 6px 20px rgba(69, 115, 223, 0.2),
               0 0 0 4px rgba(69, 115, 223, 0.15);
-  border: 2px solid #4573df;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 2px solid var(--ml-blue);
+  background: linear-gradient(135deg, var(--bg-primary-light) 0%, var(--bg-secondary-light) 100%);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -55,7 +55,7 @@
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.08),
               0 0 0 4px rgba(232, 17, 35, 0.15),
               0 2px 4px rgba(0, 0, 0, 0.08);
-  border: 2px solid #e81123;
+  border: 2px solid var(--ml-red);
 }
 
 .textareaWrapperError .textareaField:focus {
@@ -69,7 +69,7 @@
   position: absolute;
   right: 1rem;
   top: 1rem;
-  color: #4573df;
+  color: var(--ml-blue);
   filter: drop-shadow(0 2px 6px rgba(69, 115, 223, 0.15));
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
               filter 0.3s ease;
@@ -82,7 +82,7 @@
 
 .suggestionsList {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--border-light);
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.08),
               0 8px 24px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(8px);
@@ -90,13 +90,13 @@
 }
 
 .suggestionItem {
-  color: #0f172a;
+  color: var(--text-primary-light);
   transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .suggestionItem:hover,
 .suggestionItem.selected {
   background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
   transform: translateX(4px);
 }

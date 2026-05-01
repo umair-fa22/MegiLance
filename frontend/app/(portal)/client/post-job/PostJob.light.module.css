@@ -1,77 +1,77 @@
 /* AI-HINT: Light theme overrides for Client Post Job page. */
 
 .themeWrapper {
-  background: #f8fafc;
-  color: #0f172a;
+  background: var(--bg-secondary-light);
+  color: var(--text-primary-light);
 }
 
 .section {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .sectionTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .input,
 .select,
 .textarea {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  color: #0f172a;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .help {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .button.primary {
-  background: #4573df;
-  color: #ffffff;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
   border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .button.secondary {
-  background: #ffffff;
-  color: #475569;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  color: var(--text-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .main {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .footer {
-  border-top-color: #e2e8f0;
+  border-top-color: var(--border-light);
   background-color: rgba(249, 250, 251, 0.7);
 }
 
 /* Result Card */
 .centered_container {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .result_card {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .result_title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .result_message {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .success_icon {
@@ -83,13 +83,13 @@
 }
 
 .progressLabel {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .savedIndicator {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #4573df 0%, #60a5fa 100%);
+  background: linear-gradient(90deg, var(--ml-blue) 0%, #60a5fa 100%);
 }

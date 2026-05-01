@@ -1,60 +1,60 @@
 /* @AI-HINT: Dark theme colors for Freelancer Projects page */
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statCard {
   background: #1a1f2e;
-  border: 1px solid #1e293b;
+  border: 1px solid var(--bg-secondary-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .statValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .filters {
   background: #1a1f2e;
-  border: 1px solid #1e293b;
+  border: 1px solid var(--bg-secondary-dark);
 }
 
 .searchInput {
   background: #0f1419;
-  color: #f1f5f9;
-  border-color: #1e293b;
+  color: var(--color-text-primary-dark);
+  border-color: var(--bg-secondary-dark);
 }
 
 .searchInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2);
 }
 
 .filterSelect {
   background: #0f1419;
-  color: #f1f5f9;
-  border-color: #1e293b;
+  color: var(--color-text-primary-dark);
+  border-color: var(--bg-secondary-dark);
 }
 
 .resultsBar {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .resultCount {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .projectCard {
   background: #1a1f2e;
-  border: 1px solid #1e293b;
+  border: 1px solid var(--bg-secondary-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -63,29 +63,29 @@
 }
 
 .projectTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .clientName {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #4573df, #6b8cff);
+  background: linear-gradient(90deg, var(--ml-blue), #6b8cff);
 }
 
 .pageBtn {
   background: #0f1419;
-  color: #f1f5f9;
-  border-color: #1e293b;
+  color: var(--color-text-primary-dark);
+  border-color: var(--bg-secondary-dark);
 }
 
 .pageBtn:hover:not(:disabled) {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
 }
 
 .pageBtnActive {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #ffffff;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }

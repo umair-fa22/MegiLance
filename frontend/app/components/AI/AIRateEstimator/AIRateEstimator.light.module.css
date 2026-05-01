@@ -7,7 +7,7 @@
 
 .iconWrapper {
   background: #3b82f6;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .title {
@@ -24,7 +24,7 @@
 
 .actionButton {
   background: #2563eb;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .actionButton:hover {

@@ -147,7 +147,7 @@
 }
 
 .searchInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
 }
 
@@ -316,11 +316,11 @@
 }
 
 .online {
-  background-color: #27AE60;
+  background-color: var(--ml-green);
 }
 
 .offline {
-  background-color: #94a3b8;
+  background-color: var(--text-tertiary-light);
 }
 
 .memberDetails {
@@ -445,11 +445,11 @@
 }
 
 .statusActive {
-  color: #27AE60;
+  color: var(--ml-green);
 }
 
 .statusInactive {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Invites */
@@ -696,11 +696,11 @@
 }
 
 .permGranted {
-  color: #27AE60;
+  color: var(--ml-green);
 }
 
 .permDenied {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
   opacity: 0.5;
 }
 
@@ -928,7 +928,7 @@
 }
 
 .toastError {
-  background: #e81123 !important;
+  background: var(--ml-red) !important;
 }
 
 @keyframes slideUp {

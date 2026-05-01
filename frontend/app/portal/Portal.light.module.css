@@ -1,14 +1,14 @@
 ﻿/* @AI-HINT: Portal redirect page â€“ light theme */
 
 .loadingWrapper {
-  background: #f8fafc;
+  background: var(--bg-secondary-light);
 }
 
 .loadingSpinner {
-  border-color: #e2e8f0;
-  border-top-color: #4573df;
+  border-color: var(--border-light);
+  border-top-color: var(--ml-blue);
 }
 
 .loadingText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }

@@ -1,7 +1,7 @@
 /* Review Form - Dark Theme */
 
 .container {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .section {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   border-color: #475569;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .textarea {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
   border-color: #475569;
   color: #e2e8f0;
 }
@@ -33,7 +33,7 @@
 }
 
 .successMessage {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   border-color: #38a169;
   color: #c6f6d5;
 }

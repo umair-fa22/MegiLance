@@ -8,7 +8,7 @@
 }
 
 .item {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border: 1px solid #e0f2fe;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .itemDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .iconRocket {
@@ -29,7 +29,7 @@
 }
 
 .loadingState {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .addButton {

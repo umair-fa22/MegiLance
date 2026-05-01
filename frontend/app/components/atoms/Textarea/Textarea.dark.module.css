@@ -1,29 +1,29 @@
 /* @AI-HINT: Modern 2026 Dark theme Textarea — luminous effects, glow, enhanced depth */
 
 .textareaWrapper {
-  --input-bg: #1e293b;
-  --input-bg-hover: #334155;
-  --input-bg-focus: #1e293b;
-  --input-bg-disabled: #0f172a;
-  --input-border: #334155;
+  --input-bg: var(--bg-secondary-dark);
+  --input-bg-hover: var(--border-dark);
+  --input-bg-focus: var(--bg-secondary-dark);
+  --input-bg-disabled: var(--bg-primary-dark);
+  --input-border: var(--border-dark);
   --input-border-hover: #475569;
-  --input-border-focus: #4573df;
-  --input-border-error: #e81123;
-  --input-border-error-focus: #e81123;
-  --input-border-disabled: #334155;
-  --input-text: #f1f5f9;
+  --input-border-focus: var(--ml-blue);
+  --input-border-error: var(--ml-red);
+  --input-border-error-focus: var(--ml-red);
+  --input-border-disabled: var(--border-dark);
+  --input-text: var(--color-text-primary-dark);
   --input-text-error: #fecaca;
   --input-text-disabled: #64748b;
-  --input-placeholder-text: #cbd5e1;
-  --input-icon: #cbd5e1;
-  --input-label-text: #cbd5e1;
+  --input-placeholder-text: var(--text-secondary-dark);
+  --input-icon: var(--text-secondary-dark);
+  --input-label-text: var(--text-secondary-dark);
 }
 
 .textareaField {
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.08),
               0 2px 4px rgba(0, 0, 0, 0.3),
               0 4px 12px rgba(0, 0, 0, 0.2);
-  border: 2px solid #334155;
+  border: 2px solid var(--border-dark);
   background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.8) 100%);
   backdrop-filter: blur(8px) saturate(130%);
   -webkit-backdrop-filter: blur(8px) saturate(130%);
@@ -35,7 +35,7 @@
               0 6px 20px rgba(107, 147, 245, 0.25),
               0 2px 4px rgba(0, 0, 0, 0.3);
   border: 2px solid #475569;
-  background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+  background: linear-gradient(135deg, var(--border-dark) 0%, var(--bg-secondary-dark) 100%);
   backdrop-filter: blur(10px) saturate(140%);
   -webkit-backdrop-filter: blur(10px) saturate(140%);
   filter: brightness(1.08);
@@ -46,7 +46,7 @@
               0 6px 24px rgba(107, 147, 245, 0.3),
               0 0 0 4px rgba(107, 147, 245, 0.2);
   border: 2px solid #6b8de6;
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  background: linear-gradient(135deg, var(--bg-secondary-dark) 0%, var(--border-dark) 100%);
   backdrop-filter: blur(12px) saturate(150%);
   -webkit-backdrop-filter: blur(12px) saturate(150%);
 }
@@ -82,7 +82,7 @@
 
 .suggestionsList {
   background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.9) 100%);
-  border: 2px solid #334155;
+  border: 2px solid var(--border-dark);
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.08),
               0 8px 24px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px) saturate(140%);
@@ -90,7 +90,7 @@
 }
 
 .suggestionItem {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
   transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 

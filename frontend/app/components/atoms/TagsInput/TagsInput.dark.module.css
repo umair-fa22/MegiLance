@@ -1,12 +1,12 @@
 ﻿/* AI-HINT: Dark theme styles for the TagsInput component. */
 
 .label {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .input_wrapper {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .input_wrapper:focus-within {
@@ -32,7 +32,7 @@
 }
 
 .input {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .input::placeholder {

@@ -2,7 +2,7 @@
 
 .header {
   background-color: rgba(255, 255, 255, 0.8);
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .header.scrolled {
@@ -11,24 +11,24 @@
 }
 
 .navLink {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .navLink:hover {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .signInButton {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .signInButton:hover {
-  background-color: #f1f5f9;
-  color: #0f172a;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-primary-light);
 }
 
 .mobileMenuButton {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .mobileMenuButton:hover {
@@ -36,71 +36,71 @@
 }
 
 .mobileMenu {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 
 .mobileNavLink {
-  color: #0f172a;
-  border-bottom-color: #e2e8f0;
+  color: var(--text-primary-light);
+  border-bottom-color: var(--border-light);
 }
 
 .mobileNavLink:hover {
-  color: #4573df;
-  background-color: #f1f5f9;
+  color: var(--ml-blue);
+  background-color: var(--bg-tertiary-light);
 }
 
 /* Dropdown Styles */
 .dropdown {
   background-color: rgba(255, 255, 255, 0.95);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .dropdownItem {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .dropdownItem:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .dropdownItemIcon {
   background-color: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .dropdownItemTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .dropdownItemDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .mobileNavCategory {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .mobileNavLinkDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .exploreLink {
-  background: linear-gradient(135deg, #4573df 0%, #6b8ceb 100%);
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #6b8ceb 100%);
   color: #fff;
 }
 
 .exploreLink:hover {
-  background: linear-gradient(135deg, #3a62c4 0%, #4573df 100%);
+  background: linear-gradient(135deg, #3a62c4 0%, var(--ml-blue) 100%);
   box-shadow: 0 4px 20px rgba(69, 115, 223, 0.4);
 }
 
 .mobileExploreLink {
-  background: linear-gradient(135deg, #4573df 0%, #6b8ceb 100%);
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #6b8ceb 100%);
   color: #fff;
 }
 
 .mobileExploreLink:hover {
-  background: linear-gradient(135deg, #3a62c4 0%, #4573df 100%);
+  background: linear-gradient(135deg, #3a62c4 0%, var(--ml-blue) 100%);
 }
 /* Light glass 2026 */
 .header, .sidebar, .footer { background: rgba(255,255,255,0.7); border-color: rgba(0,0,0,0.05); backdrop-filter: blur(12px); }

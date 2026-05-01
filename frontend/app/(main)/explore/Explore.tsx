@@ -570,7 +570,7 @@ const Explore: React.FC = () => {
                                 <DollarSign size={14} />${f.hourlyRate}/hr
                               </span>
                               <span className={cn(common.rating, themed.rating)}>
-                                <Star size={14} fill="#facc15" color="#facc15" />
+                                <Star size={14} fill="var(--ml-yellow)" color="var(--ml-yellow)" />
                                 {f.rating.toFixed(1)}
                               </span>
                               <span className={cn(common.location, themed.location)}>

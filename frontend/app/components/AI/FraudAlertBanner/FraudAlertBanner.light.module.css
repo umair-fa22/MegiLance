@@ -1,7 +1,7 @@
 /* @AI-HINT: Premium Fraud Alert Banner - Light theme */
 
 .container {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
@@ -67,7 +67,7 @@
 }
 
 .actionButton {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: currentColor;
   color: inherit;
 }

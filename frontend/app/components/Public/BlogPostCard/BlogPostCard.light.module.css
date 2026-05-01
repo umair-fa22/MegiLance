@@ -24,7 +24,7 @@
 }
 
 .blogPostCardLink:hover .title {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .excerpt {
@@ -41,7 +41,7 @@
 
 .avatar {
   background: rgba(69,115,223,0.1);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .viewCount {

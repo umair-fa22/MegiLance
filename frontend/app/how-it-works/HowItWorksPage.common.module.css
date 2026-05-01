@@ -58,7 +58,7 @@
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, var(--color-primary, #4573df), var(--color-accent, #ff9800));
+  background: linear-gradient(90deg, var(--color-primary, var(--ml-blue)), var(--color-accent, var(--ml-orange)));
   border-radius: 2px;
 }
 
@@ -104,13 +104,13 @@
   display: flex;
   justify-content: center;
   margin-bottom: 0.75rem;
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
 }
 
 .statValue {
   font-size: 2.5rem;
   font-weight: 800;
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
   margin-bottom: 0.25rem;
   font-family: var(--font-family-heading);
 }
@@ -147,7 +147,7 @@
 
 .featureIcon {
   margin-bottom: 1rem;
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
 }
 
 .featureTitle {
@@ -191,7 +191,7 @@
 
 .archArrow {
   font-size: 1.5rem;
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
   margin: 0.5rem 0;
 }
 
@@ -247,7 +247,7 @@
 }
 
 .ctaPrimary {
-  background: linear-gradient(135deg, var(--color-primary, #4573df), #6b8cff);
+  background: linear-gradient(135deg, var(--color-primary, var(--ml-blue)), #6b8cff);
   color: white;
 }
 
@@ -257,8 +257,8 @@
 }
 
 .ctaSecondary {
-  border: 2px solid var(--color-primary, #4573df);
-  color: var(--color-primary, #4573df);
+  border: 2px solid var(--color-primary, var(--ml-blue));
+  color: var(--color-primary, var(--ml-blue));
   background: transparent;
 }
 

@@ -1,18 +1,18 @@
 .container {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .scoreLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .scoreValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .flagItem {
@@ -20,7 +20,7 @@
 }
 
 .recommendations {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .headerIcon {
@@ -28,15 +28,15 @@
 }
 
 .emptyText {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .scoreCard {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
 }
 
 .scoreCardLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .scoreCardValueHigh {
@@ -60,7 +60,7 @@
 }
 
 .recList {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .recIcon {

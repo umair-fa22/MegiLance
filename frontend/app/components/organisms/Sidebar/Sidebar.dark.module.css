@@ -1,18 +1,18 @@
 /* @AI-HINT: Overhauled dark theme for Sidebar - modern, clean, polished design */
 
 .sidebar {
-  background: linear-gradient(135deg, #0f172a 0%, #1a1f2e 100%);
-  border-right-color: #1e293b;
+  background: linear-gradient(135deg, var(--bg-primary-dark) 0%, #1a1f2e 100%);
+  border-right-color: var(--bg-secondary-dark);
   box-shadow: 1px 0 8px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(107, 147, 245, 0.08);
 }
 
 .sidebarHeader {
-  background: linear-gradient(135deg, #0f172a 0%, #1a1f2e 100%);
-  border-bottom-color: #1e293b;
+  background: linear-gradient(135deg, var(--bg-primary-dark) 0%, #1a1f2e 100%);
+  border-bottom-color: var(--bg-secondary-dark);
 }
 
 .logoText {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
   background: linear-gradient(135deg, #ffffff 0%, #a5a5a5 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -20,23 +20,23 @@
 }
 
 .toggleButton {
-  color: #94a3b8;
-  background: linear-gradient(135deg, #1e293b 0%, #0f1825 100%);
+  color: var(--text-tertiary-dark);
+  background: linear-gradient(135deg, var(--bg-secondary-dark) 0%, #0f1825 100%);
   border-color: rgba(107, 147, 245, 0.12);
 }
 
 .toggleButton:hover {
-  background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+  background: linear-gradient(135deg, var(--border-dark) 0%, var(--bg-secondary-dark) 100%);
   color: #60a5fa;
   box-shadow: 0 2px 12px rgba(59, 130, 246, 0.15);
 }
 
 .sidebarNavContainer {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .sidebarNavContainer::-webkit-scrollbar-thumb {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .sidebarNavContainer::-webkit-scrollbar-thumb:hover {
@@ -48,12 +48,12 @@
 }
 
 .sidebarFooter {
-  background: linear-gradient(135deg, #0f172a 0%, #1a1f2e 100%);
-  border-top-color: #1e293b;
+  background: linear-gradient(135deg, var(--bg-primary-dark) 0%, #1a1f2e 100%);
+  border-top-color: var(--bg-secondary-dark);
 }
 
 .userInfo {
-  background: linear-gradient(135deg, #1e293b 0%, #1a253a 100%);
+  background: linear-gradient(135deg, var(--bg-secondary-dark) 0%, #1a253a 100%);
   border: 1px solid rgba(107, 147, 245, 0.15);
 }
 
@@ -64,20 +64,20 @@
 }
 
 .avatar {
-  border-color: #334155;
+  border-color: var(--border-dark);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
 }
 
 .onlineDot {
-  border-color: #0f172a;
+  border-color: var(--bg-primary-dark);
 }
 
 .userName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .userRole {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 /* Deep gradient 2026 */
-.header, .sidebar, .footer { background: linear-gradient(180deg, #0f172a 0%, #020617 100%); border-color: rgba(255,255,255,0.1); backdrop-filter: blur(12px); }
+.header, .sidebar, .footer { background: linear-gradient(180deg, var(--bg-primary-dark) 0%, #020617 100%); border-color: rgba(255,255,255,0.1); backdrop-filter: blur(12px); }

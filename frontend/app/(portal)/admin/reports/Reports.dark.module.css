@@ -1,24 +1,24 @@
 /* Dark Theme - Admin Reports */
-.container { background: #0f172a; }
-.title { color: #f8fafc; }
-.subtitle { color: #94a3b8; }
-.statCard { background: #1e293b; border: 1px solid #334155; }
-.statValue { color: #f8fafc; }
-.statLabel { color: #94a3b8; }
-.tab { background: #334155; color: #cbd5e1; }
-.tab:hover { background: #334155; }
-.tabActive { background: #4573df !important; color: #fff !important; }
-.reportCard { background: #1e293b; border: 1px solid #334155; }
+.container { background: var(--bg-primary-dark); }
+.title { color: var(--text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
+.statCard { background: var(--bg-secondary-dark); border: 1px solid var(--border-dark); }
+.statValue { color: var(--text-primary-dark); }
+.statLabel { color: var(--text-tertiary-dark); }
+.tab { background: var(--border-dark); color: var(--text-secondary-dark); }
+.tab:hover { background: var(--border-dark); }
+.tabActive { background: var(--ml-blue) !important; color: #fff !important; }
+.reportCard { background: var(--bg-secondary-dark); border: 1px solid var(--border-dark); }
 .reportCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-.reportCardTitle { color: #f8fafc; }
-.reportCardDesc { color: #94a3b8; }
+.reportCardTitle { color: var(--text-primary-dark); }
+.reportCardDesc { color: var(--text-tertiary-dark); }
 .reportCardMeta { color: #6b7280; }
-.chartSection { background: #1e293b; border: 1px solid #334155; }
-.chartTitle { color: #f8fafc; }
-.chartBar { background: #4573df; }
+.chartSection { background: var(--bg-secondary-dark); border: 1px solid var(--border-dark); }
+.chartTitle { color: var(--text-primary-dark); }
+.chartBar { background: var(--ml-blue); }
 .chartLabel { color: #6b7280; }
-.tableContainer { background: #1e293b; border: 1px solid #334155; }
-.th { background: #1e293b; color: #94a3b8; border-bottom: 1px solid #334155; }
-.td { color: #cbd5e1; border-bottom: 1px solid #334155; }
-.tr:hover { background: #1e293b; }
-.emptyState { background: #1e293b; color: #94a3b8; }
+.tableContainer { background: var(--bg-secondary-dark); border: 1px solid var(--border-dark); }
+.th { background: var(--bg-secondary-dark); color: var(--text-tertiary-dark); border-bottom: 1px solid var(--border-dark); }
+.td { color: var(--text-secondary-dark); border-bottom: 1px solid var(--border-dark); }
+.tr:hover { background: var(--bg-secondary-dark); }
+.emptyState { background: var(--bg-secondary-dark); color: var(--text-tertiary-dark); }

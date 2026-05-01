@@ -35,8 +35,8 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   white-space: nowrap;
-  background: linear-gradient(135deg, var(--color-primary, #4573df) 0%, #667eea 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--color-primary, var(--ml-blue)) 0%, #667eea 100%);
+  color: var(--bg-primary-light);
   border: none;
   box-shadow: 0 4px 15px rgba(69, 115, 223, 0.4);
   z-index: 10;

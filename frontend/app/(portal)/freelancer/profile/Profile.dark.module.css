@@ -5,7 +5,7 @@
 }
 
 .loadingState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .header, .actions {
@@ -13,7 +13,7 @@
 }
 
 .name {
-  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #94a3b8 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, var(--text-tertiary-dark) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -24,7 +24,7 @@
 }
 
 .tagline {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .rank {
@@ -36,13 +36,13 @@
 
 .metaBadge {
   background: rgba(255, 255, 255, 0.06);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Section Nav */
 .navBtn {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .navBtn:hover {
@@ -68,7 +68,7 @@
 }
 
 .sectionDescription {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .fieldLabel {
@@ -76,7 +76,7 @@
 }
 
 .skillsInfo {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Array cards */
@@ -96,7 +96,7 @@
 .emptyArrayState {
   background: rgba(255, 255, 255, 0.02);
   border-color: rgba(255, 255, 255, 0.1);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Media cards */
@@ -120,7 +120,7 @@
 }
 
 .settingRow p {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .toggleSwitch {
@@ -142,7 +142,7 @@
 }
 
 .shareDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .shareUrlInput {
@@ -153,7 +153,7 @@
 
 .shareHints {
   background: rgba(255, 255, 255, 0.04);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Modal */
@@ -169,15 +169,15 @@
 }
 
 .shareTabBar {
-  border-bottom-color: #334155;
+  border-bottom-color: var(--border-dark);
 }
 
 .shareTabBtn {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .shareTabBtn:hover {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .shareTabBtnActive {
@@ -194,7 +194,7 @@
 }
 
 .closeBtn {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .closeBtn:hover {

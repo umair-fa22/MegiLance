@@ -1,23 +1,23 @@
 /* @AI-HINT: Admin feedback page - dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .loading {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .exportButton {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -27,43 +27,43 @@
 
 /* Stats */
 .statCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .statValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Tabs */
 .tab {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tab:hover {
-  background-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .tabActive {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
 .select {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 /* Feedback Card */
 .feedbackCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .feedbackCard:hover {
@@ -71,20 +71,20 @@
 }
 
 .typeBadge {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .feedbackSubject {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .feedbackMessage {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .userName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .userType {
@@ -97,38 +97,38 @@
 
 /* Modal */
 .modal {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .modalHeader {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .modalTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .closeButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .closeButton:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .detailLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .detailValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .messageBox {
-  background-color: #0f172a;
-  border: 1px solid #334155;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .responseBox {
@@ -137,18 +137,18 @@
 }
 
 .textarea {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .textarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 .respondButton {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 

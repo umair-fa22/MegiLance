@@ -6,7 +6,7 @@
 .headline { color: #f0f0f0; }
 .subtext { color: #9a9ab0; }
 .input { background: #0d1120; border-color: #1c2040; color: #e0e0e0; }
-.input:focus { border-color: #4573df; box-shadow: 0 0 0 3px rgba(69,115,223,0.15); }
+.input:focus { border-color: var(--ml-blue); box-shadow: 0 0 0 3px rgba(69,115,223,0.15); }
 .inputGroup { background: transparent; }
 .error { color: #ef5350; }
 .privacy { color: #666; }

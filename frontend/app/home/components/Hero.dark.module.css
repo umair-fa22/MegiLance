@@ -1,6 +1,6 @@
 /* @AI-HINT: Premium Hero Dark Theme - Deep OLED blacks, cinematic neon bloom, stark high-contrast typography */
 .heroContainer {
-  background: linear-gradient(to bottom, #020617 0%, #0f172a 100%);
+  background: linear-gradient(to bottom, #020617 0%, var(--bg-primary-dark) 100%);
 }
 
 .mouseGlow {
@@ -16,11 +16,11 @@
 }
 
 .mainHeadline {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .heroSubtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .searchForm {
@@ -44,7 +44,7 @@
 }
 
 .searchInput {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 .searchInput::placeholder {
   color: #475569;
@@ -56,20 +56,20 @@
 
 .tagPill {
   background: rgba(30, 41, 59, 0.5);
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
   border-color: rgba(255, 255, 255, 0.05);
 }
 
 .tagPill:hover {
   background: rgba(30, 41, 59, 0.9);
-  color: #f8fafc;
+  color: var(--text-primary-dark);
   border-color: rgba(96, 165, 250, 0.4);
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
 }
 
 .metricText {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 .metricIcon {
   color: #60a5fa;

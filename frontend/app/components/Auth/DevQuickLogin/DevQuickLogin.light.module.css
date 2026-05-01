@@ -18,20 +18,20 @@
 }
 
 .roleButton {
-  background: #ffffff;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
   color: #1f2937;
 }
 
 .roleButton:hover {
   background: #f9fafb;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .roleIcon {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .roleEmail {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }

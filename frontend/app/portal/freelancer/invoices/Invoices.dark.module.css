@@ -1,15 +1,15 @@
 /* Dark theme colors for Invoices */
 
 .container {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .createBtn {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -24,17 +24,17 @@
 }
 
 .formCard {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .closeBtn {
-  border-color: #334155;
-  color: #cbd5e1;
+  border-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .closeBtn:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
   border-color: #ef4444;
   color: #f87171;
 }
@@ -43,9 +43,9 @@
 .input,
 .textarea,
 .filterSelect {
-  background-color: #1e293b;
-  border-color: #334155;
-  color: #f8fafc;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .select:focus,
@@ -53,12 +53,12 @@
 .textarea:focus,
 .filterSelect:focus {
   outline: none;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2);
 }
 
 .addItemBtn {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   color: #60a5fa;
 }
 
@@ -69,17 +69,17 @@
 .lineItemDesc,
 .lineItemQty,
 .lineItemPrice {
-  background-color: #1e293b;
-  border-color: #334155;
-  color: #f8fafc;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .lineItemAmount {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .removeItemBtn {
-  border-color: #334155;
+  border-color: var(--border-dark);
   color: #f87171;
 }
 
@@ -88,7 +88,7 @@
 }
 
 .totalRow {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .totalAmount {
@@ -96,8 +96,8 @@
 }
 
 .cancelBtn {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .cancelBtn:hover {
@@ -105,7 +105,7 @@
 }
 
 .submitBtn {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -115,11 +115,11 @@
 
 .loading,
 .empty {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .emptyBtn {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -128,23 +128,23 @@
 }
 
 .table {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .tableElement th {
-  background-color: #0f172a;
-  color: #cbd5e1;
-  border-color: #334155;
+  background-color: var(--bg-primary-dark);
+  color: var(--text-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .tableElement td {
-  color: #f8fafc;
-  border-color: #334155;
+  color: var(--text-primary-dark);
+  border-color: var(--border-dark);
 }
 
 .tableElement tbody tr:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .invoiceNumber {
@@ -152,7 +152,7 @@
 }
 
 .amount {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .badge {
@@ -180,13 +180,13 @@
 }
 
 .iconBtn {
-  border-color: #334155;
-  color: #cbd5e1;
+  border-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .iconBtn:hover {
-  background-color: #334155;
-  border-color: #4573df;
+  background-color: var(--border-dark);
+  border-color: var(--ml-blue);
   color: #60a5fa;
 }
 
@@ -209,7 +209,7 @@
 }
 
 .iconBtn[data-action="delete"] {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
   border-color: #475569;
 }
 
@@ -224,27 +224,27 @@
 }
 
 .modalContent {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .detailRow {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .detailLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .detailLineItem {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .lineItemMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .lineItemTotal {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .invoiceTotal {
@@ -253,9 +253,9 @@
 }
 
 .notesSection {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .notes {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }

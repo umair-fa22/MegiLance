@@ -2,7 +2,7 @@
 
 .navbar {
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 41, 59, 0.88) 100%);
-  border-bottom: 1px solid #1e293b;
+  border-bottom: 1px solid var(--bg-secondary-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
@@ -20,48 +20,48 @@
 }
 
 .breadcrumbCurrent {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .pageTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .actionButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .actionButton:hover {
-  background: linear-gradient(135deg, #1e293b 0%, rgba(51, 65, 85, 0.8) 100%);
-  color: #f8fafc;
+  background: linear-gradient(135deg, var(--bg-secondary-dark) 0%, rgba(51, 65, 85, 0.8) 100%);
+  color: var(--text-primary-dark);
   box-shadow: 0 2px 12px rgba(122, 165, 245, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .menuButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .menuButton:hover {
-  background: linear-gradient(135deg, #1e293b 0%, rgba(51, 65, 85, 0.8) 100%);
-  color: #f8fafc;
+  background: linear-gradient(135deg, var(--bg-secondary-dark) 0%, rgba(51, 65, 85, 0.8) 100%);
+  color: var(--text-primary-dark);
   box-shadow: 0 2px 12px rgba(122, 165, 245, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .searchContainer {
-  background: linear-gradient(135deg, #0f172a 0%, rgba(15, 23, 42, 0.8) 100%);
-  border: 1px solid #1e293b;
+  background: linear-gradient(135deg, var(--bg-primary-dark) 0%, rgba(15, 23, 42, 0.8) 100%);
+  border: 1px solid var(--bg-secondary-dark);
   border-radius: 8px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .searchContainer:focus-within {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 0 3px rgba(122, 165, 245, 0.2), 0 2px 12px rgba(122, 165, 245, 0.15);
-  background: linear-gradient(135deg, #1e293b 0%, rgba(30, 41, 59, 0.8) 100%);
+  background: linear-gradient(135deg, var(--bg-secondary-dark) 0%, rgba(30, 41, 59, 0.8) 100%);
 }
 
 .searchInput {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
   background: transparent;
 }
 
@@ -71,13 +71,13 @@
 
 /* Dropdown Theme Colors */
 .searchDropdown {
-  background: linear-gradient(135deg, #1e293b 0%, rgba(30, 41, 59, 0.95) 100%);
-  border: 1px solid #334155;
+  background: linear-gradient(135deg, var(--bg-secondary-dark) 0%, rgba(30, 41, 59, 0.95) 100%);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .searchItem {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .searchItem:hover {
@@ -85,13 +85,13 @@
 }
 
 .notificationDropdown {
-  background: linear-gradient(135deg, #1e293b 0%, rgba(30, 41, 59, 0.95) 100%);
-  border: 1px solid #334155;
+  background: linear-gradient(135deg, var(--bg-secondary-dark) 0%, rgba(30, 41, 59, 0.95) 100%);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .notificationItem {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .notificationItem:hover {
@@ -99,21 +99,21 @@
 }
 
 .notificationItemTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .notificationDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .helpDropdown {
-  background: linear-gradient(135deg, #1e293b 0%, rgba(30, 41, 59, 0.95) 100%);
-  border: 1px solid #334155;
+  background: linear-gradient(135deg, var(--bg-secondary-dark) 0%, rgba(30, 41, 59, 0.95) 100%);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .helpItem {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .helpItem:hover {
@@ -121,7 +121,7 @@
 }
 
 .helpItemLabel {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .helpItemDesc {

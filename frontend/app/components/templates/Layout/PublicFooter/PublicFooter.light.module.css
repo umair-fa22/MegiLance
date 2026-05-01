@@ -13,22 +13,22 @@
 }
 
 .newsletterInput {
-  background: #ffffff;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
   color: #111827;
 }
 
 .newsletterInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .newsletterInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .newsletterButton {
-  background: #4573df;
-  color: #ffffff;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .newsletterButton:hover {
@@ -36,7 +36,7 @@
 }
 
 .linksTitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .linkItem {
@@ -44,24 +44,24 @@
 }
 
 .linkItem:hover {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .bottomBar {
-  border-top-color: #e2e8f0;
+  border-top-color: var(--border-light);
 }
 
 .copyright {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .socialLink {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
   background: transparent;
 }
 
 .socialLink:hover {
-  color: #4573df;
+  color: var(--ml-blue);
   background: rgba(69, 115, 223, 0.08);
 }
 /* Light glass 2026 */

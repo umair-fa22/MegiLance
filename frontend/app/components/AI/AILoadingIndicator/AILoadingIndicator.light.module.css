@@ -1,32 +1,32 @@
 ﻿/* @AI-HINT: AI Loading Indicator - Light theme */
 
 .spinnerRing {
-  border-color: #e2e8f0;
-  border-top-color: #4573df;
+  border-color: var(--border-light);
+  border-top-color: var(--ml-blue);
 }
 
 .aiBrainIcon {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .aiBrainGlow {
-  background: linear-gradient(135deg, #4573df, #9b59b6);
+  background: linear-gradient(135deg, var(--ml-blue), #9b59b6);
 }
 
 .dot {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 .progressBar {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .progressBarIndeterminate::after {
-  background: linear-gradient(90deg, #4573df, #9b59b6);
+  background: linear-gradient(90deg, var(--ml-blue), #9b59b6);
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #4573df, #9b59b6);
+  background: linear-gradient(90deg, var(--ml-blue), #9b59b6);
 }
 
 .label {
@@ -34,20 +34,20 @@
 }
 
 .sublabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .statusProcessing .spinnerRing {
-  border-top-color: #4573df;
+  border-top-color: var(--ml-blue);
 }
 
 .statusProcessing .label {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .statusSuccess .successCheck {
-  background: #27AE60;
-  color: #ffffff;
+  background: var(--ml-green);
+  color: var(--bg-primary-light);
 }
 
 .statusSuccess .label {
@@ -55,7 +55,7 @@
 }
 
 .statusWarning .spinnerRing {
-  border-top-color: #F2C94C;
+  border-top-color: var(--ml-yellow);
 }
 
 .statusWarning .label {
@@ -63,37 +63,37 @@
 }
 
 .statusError .label {
-  color: #e81123;
+  color: var(--ml-red);
 }
 
 .confidenceLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .confidenceValue {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .confidenceBar {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .confidenceFill {
-  background: linear-gradient(90deg, #4573df, #9b59b6);
+  background: linear-gradient(90deg, var(--ml-blue), #9b59b6);
 }
 
 .confidenceFillLow {
-  background: #e81123;
+  background: var(--ml-red);
 }
 
 .confidenceFillMedium {
-  background: #F2C94C;
+  background: var(--ml-yellow);
 }
 
 .confidenceFillHigh {
-  background: #27AE60;
+  background: var(--ml-green);
 }
 
 .skeleton {
-  background: #e2e8f0;
+  background: var(--border-light);
 }

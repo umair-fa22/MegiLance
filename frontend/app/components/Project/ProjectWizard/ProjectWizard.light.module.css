@@ -1,7 +1,7 @@
 /* Light theme for ProjectWizard */
 
 .container {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 
 .title {
@@ -9,90 +9,90 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .progressBar {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #4573df 0%, #5b8aef 100%);
+  background: linear-gradient(90deg, var(--ml-blue) 0%, #5b8aef 100%);
 }
 
 .step {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .stepIcon {
-  background-color: #f1f5f9;
-  color: #94a3b8;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-tertiary-light);
 }
 
 .stepActive .stepIcon {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.3);
 }
 
 .stepCompleted .stepIcon {
-  background-color: #27ae60;
-  color: #ffffff;
+  background-color: var(--ml-green);
+  color: var(--bg-primary-light);
 }
 
 .stepActive .stepTitle {
-  color: #4573df;
+  color: var(--ml-blue);
   font-weight: 700;
 }
 
 .stepCompleted .stepTitle {
-  color: #27ae60;
+  color: var(--ml-green);
 }
 
 .content {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 
 .budgetOption {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
   border-color: #cbd5e0;
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .budgetOption:hover {
-  border-color: #4573df;
-  background-color: #f1f5f9;
+  border-color: var(--ml-blue);
+  background-color: var(--bg-tertiary-light);
 }
 
 .budgetOptionActive {
-  background-color: #4573df;
-  border-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  border-color: var(--ml-blue);
+  color: var(--bg-primary-light);
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.3);
 }
 
 .reviewSection {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .reviewItem {
-  border-bottom-color: #e2e8f0;
+  border-bottom-color: var(--border-light);
 }
 
 .reviewLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .reviewValue {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .actions {
-  border-top-color: #e2e8f0;
-  background-color: #ffffff;
+  border-top-color: var(--border-light);
+  background-color: var(--bg-primary-light);
 }
 
 .errorMessage {
-  color: #e81123;
+  color: var(--ml-red);
 }

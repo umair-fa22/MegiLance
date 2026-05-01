@@ -1,20 +1,20 @@
 /* @AI-HINT: Saved searches page - dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
 .loading {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .createButton {
@@ -28,16 +28,16 @@
 
 /* Stats */
 .statCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .statValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Empty State */
@@ -46,17 +46,17 @@
 }
 
 .emptyState h2 {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .emptyState p {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Search Card */
 .searchCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .searchCard:hover {
@@ -64,7 +64,7 @@
 }
 
 .searchName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .newBadge {
@@ -73,7 +73,7 @@
 }
 
 .searchQuery {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .runButton {
@@ -86,8 +86,8 @@
 }
 
 .editButton {
-  background-color: #334155;
-  color: #94a3b8;
+  background-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .editButton:hover {
@@ -105,8 +105,8 @@
 
 /* Filter Tags */
 .filterTag {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .skillTag {
@@ -116,7 +116,7 @@
 
 /* Footer */
 .searchFooter {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .metaItem {
@@ -124,15 +124,15 @@
 }
 
 .toggleLabel {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .toggle {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .toggleKnob {
-  background-color: #94a3b8;
+  background-color: var(--text-tertiary-dark);
 }
 
 .toggleActive {
@@ -149,22 +149,22 @@
 }
 
 .modal {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
 }
 
 .modalTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .label {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .input,
 .select {
-  background-color: #0f172a;
-  border-color: #334155;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -179,16 +179,16 @@
 }
 
 .checkboxLabel {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .modalActions {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .cancelButton {
-  background-color: #334155;
-  color: #94a3b8;
+  background-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .cancelButton:hover {

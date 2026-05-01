@@ -1,7 +1,7 @@
 /* @AI-HINT: Light theme colors for premium AI Chatbot - Production-ready quality */
 
 .container {
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+  background: linear-gradient(135deg, var(--bg-secondary-light) 0%, var(--bg-tertiary-light) 50%, var(--border-light) 100%);
 }
 
 .chatContainer {
@@ -20,15 +20,15 @@
 }
 
 .headerInfo h2 {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .headerTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .headerSubtext {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .statusDot {
@@ -41,18 +41,18 @@
 }
 
 .aiAvatar {
-  background: linear-gradient(135deg, #4573df, #6366f1);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue), #6366f1);
+  color: var(--bg-primary-light);
 }
 
 .iconButton {
   background: rgba(0, 0, 0, 0.04);
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .iconButton:hover {
   background: rgba(0, 0, 0, 0.08);
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 /* Messages */
@@ -65,24 +65,24 @@
 }
 
 .messageAvatar {
-  background: linear-gradient(135deg, #4573df, #6366f1);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue), #6366f1);
+  color: var(--bg-primary-light);
 }
 
 .messageBubbleUser {
-  background: linear-gradient(135deg, #4573df 0%, #6366f1 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #6366f1 100%);
+  color: var(--bg-primary-light);
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.25);
 }
 
 .messageBubbleBot {
   background: rgba(241, 245, 249, 0.9);
-  color: #1e293b;
+  color: var(--color-text-primary-light);
   border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .messageTime {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Typing Indicator */
@@ -92,13 +92,13 @@
 }
 
 .typingDot {
-  background: #94a3b8;
+  background: var(--text-tertiary-light);
 }
 
 /* Suggestions */
 .suggestionChip {
   background: rgba(69, 115, 223, 0.08);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .suggestionChip:hover {
@@ -115,32 +115,32 @@
 .input {
   background: rgba(241, 245, 249, 0.8);
   border-color: transparent;
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .input::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .input:focus {
-  background: #ffffff;
-  border-color: #4573df;
+  background: var(--bg-primary-light);
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 4px rgba(69, 115, 223, 0.12);
 }
 
 .attachButton {
   background: transparent;
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .attachButton:hover {
   background: rgba(0, 0, 0, 0.04);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .sendButton {
-  background: linear-gradient(135deg, #4573df 0%, #6366f1 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #6366f1 100%);
+  color: var(--bg-primary-light);
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.3);
 }
 
@@ -149,37 +149,37 @@
 }
 
 .sendButton:disabled {
-  background: #e2e8f0;
-  color: #94a3b8;
+  background: var(--border-light);
+  color: var(--text-tertiary-light);
   box-shadow: none;
 }
 
 /* Empty State */
 .emptyIcon {
   background: linear-gradient(135deg, rgba(69, 115, 223, 0.1), rgba(99, 102, 241, 0.1));
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .emptyTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .emptyDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Model Selector */
 .modelSelector {
   background: rgba(255, 255, 255, 0.8);
   border-color: rgba(0, 0, 0, 0.08);
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .modelSelector:hover {
-  border-color: #4573df;
-  color: #4573df;
+  border-color: var(--ml-blue);
+  color: var(--ml-blue);
 }
 
 .modelIcon {
-  background: linear-gradient(135deg, #4573df, #6366f1);
+  background: linear-gradient(135deg, var(--ml-blue), #6366f1);
 }

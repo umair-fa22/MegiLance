@@ -1,18 +1,18 @@
 /* AI-HINT: Light theme styles for the StepFreelancer component. */
 
 .section {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .helpText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }

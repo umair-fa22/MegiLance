@@ -17,7 +17,7 @@
 }
 
 .lineChartSvg:focus {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -33,7 +33,7 @@
 }
 
 .line {
-  stroke: var(--line-chart-stroke-color, #4573df);
+  stroke: var(--line-chart-stroke-color, var(--ml-blue));
   stroke-width: 2;
   fill: none;
 }
@@ -43,7 +43,7 @@
 }
 
 .dataPoint {
-  fill: var(--line-chart-point-color, #4573df);
+  fill: var(--line-chart-point-color, var(--ml-blue));
   stroke: #fff;
   stroke-width: 2;
   cursor: pointer;
@@ -74,13 +74,13 @@
 
 .labelText {
   text-anchor: middle;
-  fill: var(--line-chart-label-color, #64748b);
+  fill: var(--line-chart-label-color, var(--color-text-secondary-light));
 }
 
 .axisLabel {
   font-size: 11px;
   font-weight: 500;
-  fill: var(--line-chart-label-color, #64748b);
+  fill: var(--line-chart-label-color, var(--color-text-secondary-light));
 }
 
 /* Screen reader only content */

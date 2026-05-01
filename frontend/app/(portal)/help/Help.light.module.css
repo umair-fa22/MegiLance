@@ -1,23 +1,23 @@
 /* AI-HINT: Light theme overrides for portal Help page — search, categories, FAQ, tutorials, status, contact, ticket form. */
 
 .themeWrapper {
-  background: linear-gradient(170deg, #f0f4ff 0%, #f8fafc 40%, #faf8ff 100%);
-  color: #0f172a;
+  background: linear-gradient(170deg, #f0f4ff 0%, var(--bg-secondary-light) 40%, #faf8ff 100%);
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .searchInput {
   background: rgba(255, 255, 255, 0.9);
   border-color: rgba(226, 232, 240, 0.8);
-  color: #0f172a;
+  color: var(--text-primary-light);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
 .searchInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .quickLink {
@@ -28,7 +28,7 @@
 
 .quickLink:hover {
   background: rgba(69, 115, 223, 0.08);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .card {
@@ -46,37 +46,37 @@
 
 .cardIcon {
   background: rgba(69, 115, 223, 0.08);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .cardTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .cardDesc {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .cardMeta {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* FAQ */
 .faqFilter {
   background: rgba(241, 245, 249, 0.7);
-  color: #475569;
+  color: var(--text-secondary-light);
   border-color: rgba(226, 232, 240, 0.5);
 }
 
 .faqFilter:hover {
   background: rgba(69, 115, 223, 0.06);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .faqFilterActive {
-  background: #4573df;
-  color: #ffffff;
-  border-color: #4573df;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
+  border-color: var(--ml-blue);
 }
 
 .faqItem {
@@ -90,12 +90,12 @@
 }
 
 .faqAnswer {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .emptyResult {
   background: rgba(241, 245, 249, 0.5);
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 /* Tutorials */
@@ -110,11 +110,11 @@
 
 .tutorialThumb {
   background: linear-gradient(135deg, rgba(69, 115, 223, 0.08) 0%, rgba(147, 51, 234, 0.06) 100%);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .tutorialViews {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Status */
@@ -124,7 +124,7 @@
 }
 
 .statusMeta {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 /* Contact */
@@ -151,25 +151,25 @@
 .formInput {
   background: rgba(248, 250, 252, 0.8);
   border-color: rgba(226, 232, 240, 0.8);
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .formInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .formTextarea {
   background: rgba(248, 250, 252, 0.8);
   border-color: rgba(226, 232, 240, 0.8);
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .formTextarea::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .ticketSuccess {
-  color: #27AE60;
+  color: var(--ml-green);
 }
 
 /* Legacy */
@@ -186,8 +186,8 @@
 }
 
 .button {
-  background: linear-gradient(135deg, #4573df 0%, #2563eb 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #2563eb 100%);
+  color: var(--bg-primary-light);
   box-shadow: 0 4px 14px rgba(69, 115, 223, 0.3);
 }
 
@@ -202,12 +202,12 @@
 }
 
 .buttonSecondary {
-  color: #0f172a;
-  border-color: #e2e8f0;
+  color: var(--text-primary-light);
+  border-color: var(--border-light);
   background: rgba(255, 255, 255, 0.5);
 }
 
 .buttonSecondary:hover {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   border-color: #cbd5e1;
 }

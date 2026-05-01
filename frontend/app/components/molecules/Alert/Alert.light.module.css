@@ -1,20 +1,20 @@
 /* AI-HINT: Light theme styles for the Alert component. 2026 glassmorphic design with gradient backgrounds. */
 
 .alert {
-  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
-  color: #64748b;
-  border-color: #e2e8f0;
+  background: linear-gradient(135deg, var(--bg-primary-light) 0%, #f9fafb 100%);
+  color: var(--color-text-secondary-light);
+  border-color: var(--border-light);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06),
               0 1px 2px rgba(0, 0, 0, 0.03),
               inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .alertDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .alertCloseButton {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .alertCloseButton:hover {
@@ -26,25 +26,25 @@
 .info {
   background: linear-gradient(135deg, rgba(69, 115, 223, 0.06) 0%, rgba(69, 115, 223, 0.02) 100%);
   border-color: rgba(69, 115, 223, 0.3);
-  color: #4573df;
+  color: var(--ml-blue);
   box-shadow: 0 2px 8px rgba(69, 115, 223, 0.1),
               0 1px 2px rgba(0, 0, 0, 0.03),
               inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
-.info .alertTitle { color: #0f172a; }
-.info .alertDescription { color: #4573df; opacity: 0.85; }
+.info .alertTitle { color: var(--text-primary-light); }
+.info .alertDescription { color: var(--ml-blue); opacity: 0.85; }
 .info .alertCloseButton:hover { background-color: rgba(69, 115, 223, 0.08); }
 
 .success {
   background: linear-gradient(135deg, rgba(39, 174, 96, 0.06) 0%, rgba(39, 174, 96, 0.02) 100%);
   border-color: rgba(39, 174, 96, 0.3);
-  color: #27AE60;
+  color: var(--ml-green);
   box-shadow: 0 2px 8px rgba(39, 174, 96, 0.1),
               0 1px 2px rgba(0, 0, 0, 0.03),
               inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
-.success .alertTitle { color: #0f172a; }
-.success .alertDescription { color: #27AE60; opacity: 0.85; }
+.success .alertTitle { color: var(--text-primary-light); }
+.success .alertDescription { color: var(--ml-green); opacity: 0.85; }
 .success .alertCloseButton:hover { background-color: rgba(39, 174, 96, 0.08); }
 
 .warning {
@@ -55,18 +55,18 @@
               0 1px 2px rgba(0, 0, 0, 0.03),
               inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
-.warning .alertTitle { color: #0f172a; }
+.warning .alertTitle { color: var(--text-primary-light); }
 .warning .alertDescription { color: #c79a2a; opacity: 0.85; }
 .warning .alertCloseButton:hover { background-color: rgba(242, 201, 76, 0.1); }
 
 .danger {
   background: linear-gradient(135deg, rgba(232, 17, 35, 0.06) 0%, rgba(232, 17, 35, 0.02) 100%);
   border-color: rgba(232, 17, 35, 0.3);
-  color: #e81123;
+  color: var(--ml-red);
   box-shadow: 0 2px 8px rgba(232, 17, 35, 0.1),
               0 1px 2px rgba(0, 0, 0, 0.03),
               inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
-.danger .alertTitle { color: #0f172a; }
-.danger .alertDescription { color: #e81123; opacity: 0.85; }
+.danger .alertTitle { color: var(--text-primary-light); }
+.danger .alertDescription { color: var(--ml-red); opacity: 0.85; }
 .danger .alertCloseButton:hover { background-color: rgba(232, 17, 35, 0.08); }

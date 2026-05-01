@@ -3,6 +3,6 @@
 }
 
 .mainContent {
-  background-color: #1e293b;
-  border-left: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border-left: 1px solid var(--border-dark);
 }

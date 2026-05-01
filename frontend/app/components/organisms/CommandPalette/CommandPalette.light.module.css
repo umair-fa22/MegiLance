@@ -6,7 +6,7 @@
 }
 
 .palette {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -34,7 +34,7 @@
 
 .resultIcon {
   background: rgba(69, 115, 223, 0.08);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .resultLabel {

@@ -1,20 +1,20 @@
 /* AI-HINT: Dark theme styles for the UserSearchTable component. */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .userCard {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
@@ -24,7 +24,7 @@
 }
 
 .userName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .userEmail {
@@ -32,26 +32,26 @@
 }
 
 .infoRow {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .infoIcon {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .emptyState {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .emptyIcon {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .emptyTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .emptyText {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }

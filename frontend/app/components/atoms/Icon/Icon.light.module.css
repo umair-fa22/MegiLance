@@ -4,4 +4,4 @@
 .color-error { color: var(--color-error, #dc2626); }
 .color-success { color: var(--color-success, #16a34a); }
 .color-warning { color: var(--color-warning, #d97706); }
-.color-inverse { color: var(--color-text-inverse, #ffffff); }
+.color-inverse { color: var(--color-text-inverse, var(--bg-primary-light)); }

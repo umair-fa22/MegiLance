@@ -28,22 +28,22 @@
 
 /* Color variants for decorative orb - more vibrant in dark mode */
 .success::before {
-  background: #27AE60;
+  background: var(--ml-green);
   opacity: 0.3;
 }
 
 .primary::before {
-  background: #4573df;
+  background: var(--ml-blue);
   opacity: 0.3;
 }
 
 .accent::before {
-  background: #ff9800;
+  background: var(--ml-orange);
   opacity: 0.25;
 }
 
 .warning::before {
-  background: #F2C94C;
+  background: var(--ml-yellow);
   opacity: 0.25;
 }
 
@@ -83,7 +83,7 @@
 }
 
 .value {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .trend {

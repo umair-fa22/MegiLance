@@ -2,16 +2,16 @@
 .container,
 .header,
 .item {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .container {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .title,
 .userName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .item:hover {
@@ -24,21 +24,21 @@
 
 .timestamp,
 .lastMessage {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Ensure text in active item is still readable and has emphasis */
 .active .userName,
 .active .lastMessage,
 .active .timestamp {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 /* Loading, Error, and Empty States */
 .loadingState,
 .errorState,
 .emptyState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .errorState {

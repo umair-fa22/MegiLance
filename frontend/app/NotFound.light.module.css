@@ -1,5 +1,5 @@
 /* 404 Page Light Theme */
 .themeWrapper {
-  background: #f8fafc;
-  color: #0f172a;
+  background: var(--bg-secondary-light);
+  color: var(--text-primary-light);
 } 

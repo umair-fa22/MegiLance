@@ -10,29 +10,29 @@
 }
 
 .headerSubtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .createButton {
-  background: linear-gradient(135deg, #4573df 0%, #3b5998 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #3b5998 100%);
+  color: var(--bg-primary-light);
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.25);
 }
 
 .createButton:hover {
-  background: linear-gradient(135deg, #3b5998 0%, #4573df 100%);
+  background: linear-gradient(135deg, #3b5998 0%, var(--ml-blue) 100%);
   box-shadow: 0 6px 16px rgba(69, 115, 223, 0.35);
 }
 
 /* Stats */
 .statCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .statLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .statValue {
@@ -41,8 +41,8 @@
 
 /* Search and Filters */
 .searchBox {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .searchInput {
@@ -50,30 +50,30 @@
 }
 
 .searchInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .filterSelect {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   color: #1a1a2e;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
 }
 
 /* Table */
 .gigsTable {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .gigsTable th {
   background-color: #f9fafb;
-  color: #64748b;
-  border-bottom: 1px solid #e2e8f0;
+  color: var(--color-text-secondary-light);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .gigsTable td {
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--bg-tertiary-light);
 }
 
 .gigsTable tbody tr:hover {
@@ -85,17 +85,17 @@
 }
 
 .gigCategory {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Status Badges */
 .statusActive {
   background-color: rgba(39, 174, 96, 0.1);
-  color: #27ae60;
+  color: var(--ml-green);
 }
 
 .statusActive .statusDot {
-  background-color: #27ae60;
+  background-color: var(--ml-green);
 }
 
 .statusPaused {
@@ -109,29 +109,29 @@
 
 .statusDraft {
   background-color: rgba(107, 114, 128, 0.1);
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .statusDraft .statusDot {
-  background-color: #64748b;
+  background-color: var(--color-text-secondary-light);
 }
 
 .statusPending {
   background-color: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .statusPending .statusDot {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
 }
 
 .statusRejected {
   background-color: rgba(232, 17, 35, 0.1);
-  color: #e81123;
+  color: var(--ml-red);
 }
 
 .statusRejected .statusDot {
-  background-color: #e81123;
+  background-color: var(--ml-red);
 }
 
 /* Stats Cell */
@@ -141,39 +141,39 @@
 
 /* Actions */
 .actionButton {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #4b5563;
 }
 
 .actionButton:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
   color: #1a1a2e;
 }
 
 .actionEdit:hover {
   background-color: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .actionView:hover {
   background-color: rgba(39, 174, 96, 0.1);
-  color: #27ae60;
+  color: var(--ml-green);
 }
 
 .actionDelete:hover {
   background-color: rgba(232, 17, 35, 0.1);
-  color: #e81123;
+  color: var(--ml-red);
 }
 
 /* Empty State */
 .emptyState {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .emptyIcon {
-  background-color: #f1f5f9;
-  color: #64748b;
+  background-color: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .emptyTitle {
@@ -181,13 +181,13 @@
 }
 
 .emptyText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Cards */
 .gigCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -200,33 +200,33 @@
 }
 
 .gigCardStatLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Pagination */
 .paginationButton {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   color: #4b5563;
 }
 
 .paginationButton:hover:not(:disabled) {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #1a1a2e;
 }
 
 .pageButton {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   color: #4b5563;
 }
 
 .pageButton:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .pageButtonActive {
-  background: linear-gradient(135deg, #4573df 0%, #3b5998 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #3b5998 100%);
+  color: var(--bg-primary-light);
   border-color: transparent;
 }

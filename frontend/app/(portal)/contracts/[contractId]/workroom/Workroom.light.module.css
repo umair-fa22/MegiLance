@@ -2,14 +2,14 @@
 
 /* ============ PAGE ============ */
 .page {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
   color: #1a1a2e;
 }
 
 /* ============ HEADER ============ */
 .header {
-  background-color: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .pageTitle {
@@ -20,40 +20,40 @@
 }
 
 .contractId {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
   font-size: 0.875rem;
 }
 
 /* ============ TABS ============ */
 .tabs {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .tab {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
   background-color: transparent;
 }
 
 .tab:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #1a1a2e;
 }
 
 .activeTab {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .activeTab:hover {
   background-color: #3b5ec9;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 /* ============ KANBAN ============ */
 .kanbanColumn {
-  background-color: #f1f5f9;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-tertiary-light);
+  border: 1px solid var(--border-light);
 }
 
 .columnTitle {
@@ -64,16 +64,16 @@
 }
 
 .columnCount {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
   font-size: 0.75rem;
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
   padding: 0.125rem 0.5rem;
   border-radius: 10px;
 }
 
 .taskCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -89,25 +89,25 @@
 }
 
 .taskDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
   font-size: 0.8125rem;
   margin: 0;
   line-height: 1.4;
 }
 
 .assignee {
-  color: #4573df;
+  color: var(--ml-blue);
   font-weight: 500;
 }
 
 .dueDate {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* ============ FILES ============ */
 .fileCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .fileName {
@@ -118,15 +118,15 @@
 }
 
 .fileMeta {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
   font-size: 0.8125rem;
   margin: 0;
 }
 
 /* ============ DISCUSSIONS ============ */
 .discussionCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .resolvedBadge {
@@ -135,7 +135,7 @@
 }
 
 .replyCount {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .discussionTitle {
@@ -143,13 +143,13 @@
 }
 
 .discussionContent {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
   font-size: 0.9375rem;
   line-height: 1.5;
   margin: 0;
 }
 
 .discussionAuthor {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
   font-size: 0.8125rem;
 }

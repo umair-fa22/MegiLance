@@ -2,7 +2,7 @@
 .sparklinePath { stroke: #7ba3f7; }
 .sparklineArea { fill: #7ba3f7; }
 .sparklineDot { fill: #7ba3f7; }
-.sparklineLabel { color: #94a3b8; }
+.sparklineLabel { color: var(--text-tertiary-dark); }
 
 .sparklinePathSuccess { stroke: #34d399; }
 .sparklineAreaSuccess { fill: #34d399; }

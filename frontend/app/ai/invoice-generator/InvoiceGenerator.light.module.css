@@ -9,7 +9,7 @@
 /* Header */
 .headerBadge {
   background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .title {
@@ -17,46 +17,46 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Stepper */
 .stepDot {
-  background: #e2e8f0;
-  color: #94a3b8;
+  background: var(--border-light);
+  color: var(--text-tertiary-light);
 }
 
 .stepDotActive {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #fff;
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.3);
 }
 
 .stepDotCompleted {
-  background: #27ae60;
+  background: var(--ml-green);
   color: #fff;
 }
 
 .stepLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .stepLabelActive {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .stepLine {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .stepLineActive {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 /* Form Card */
 .formCard {
   background: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
@@ -69,79 +69,79 @@
 }
 
 .labelHint {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .textInput {
   background: #fafbfc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #1a1f36;
 }
 
 .textInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
 
 .textInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .textarea {
   background: #fafbfc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #1a1f36;
 }
 
 .textarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
 
 .textarea::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .select {
   background: #fafbfc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #1a1f36;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
 }
 
 .select:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
 
 .numberInput {
   background: #fafbfc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #1a1f36;
 }
 
 .numberInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
 
 .numberInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Line Items */
 .itemRow {
   background: #fafbfc;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .itemIndex {
   background: rgba(69, 115, 223, 0.08);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .itemFieldLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .itemTotal {
@@ -159,13 +159,13 @@
 }
 
 .addItemBtn {
-  color: #4573df;
+  color: var(--ml-blue);
   border-color: rgba(69, 115, 223, 0.3);
 }
 
 .addItemBtn:hover {
   background: rgba(69, 115, 223, 0.06);
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .subtotalDisplay {
@@ -175,15 +175,15 @@
 /* Template */
 .templateCard {
   background: #fff;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .templateCard:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .templateCardSelected {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background: rgba(69, 115, 223, 0.06);
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.12);
 }
@@ -194,16 +194,16 @@
 
 /* Navigation */
 .navButtonBack {
-  background: #f1f5f9;
-  color: #64748b;
+  background: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .navButtonBack:hover:not(:disabled) {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .navButtonNext {
-  background: linear-gradient(135deg, #4573df, #5b88f0);
+  background: linear-gradient(135deg, var(--ml-blue), #5b88f0);
   color: #fff;
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.25);
 }
@@ -222,31 +222,31 @@
 }
 
 .processingOrbInner {
-  background: linear-gradient(135deg, #4573df, #7c3aed);
+  background: linear-gradient(135deg, var(--ml-blue), #7c3aed);
   color: #fff;
 }
 
 .processingSubtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .processingStepCircle {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 /* Results */
 .priceHero {
   background: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
   box-shadow: 0 8px 32px rgba(69, 115, 223, 0.08);
 }
 
 .priceHeroGlow {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 .priceHeroLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .priceHeroValue {
@@ -255,30 +255,30 @@
 
 .priceHeroMetaItem {
   background: rgba(69, 115, 223, 0.06);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .invoiceHeroDate {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .invoiceHeroTemplate {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .invoiceHeroWords {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .resultCard {
   background: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .resultCardIcon {
   background: rgba(69, 115, 223, 0.08);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .resultCardTitle {
@@ -291,7 +291,7 @@
 }
 
 .partyLabel {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .partyName {
@@ -299,7 +299,7 @@
 }
 
 .partyDetail {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Breakdown */
@@ -312,21 +312,21 @@
 }
 
 .breakdownItemHours {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .progressBar {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #4573df, #5b88f0);
+  background: linear-gradient(90deg, var(--ml-blue), #5b88f0);
 }
 
 /* Calculations */
 .calcRow {
   color: #4b5563;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--bg-tertiary-light);
 }
 
 /* Timeline */
@@ -335,31 +335,31 @@
 }
 
 .timelineStatLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .timelineDivider {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 /* Actions */
 .actionBtnPrimary {
-  background: linear-gradient(135deg, #4573df, #5b88f0);
+  background: linear-gradient(135deg, var(--ml-blue), #5b88f0);
   color: #fff;
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.25);
 }
 
 .actionBtnSecondary {
-  background: #f1f5f9;
-  color: #4573df;
+  background: var(--bg-tertiary-light);
+  color: var(--ml-blue);
 }
 
 .actionBtnSecondary:hover {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 /* Disclaimer */
 .disclaimer {
-  background: #f8fafc;
-  color: #94a3b8;
+  background: var(--bg-secondary-light);
+  color: var(--text-tertiary-light);
 }

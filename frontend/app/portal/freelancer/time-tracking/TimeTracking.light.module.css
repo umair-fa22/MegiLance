@@ -18,8 +18,8 @@
 .input,
 .inputSmall,
 .filterSelect {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   color: #111827;
 }
 
@@ -28,27 +28,27 @@
 .inputSmall:focus,
 .filterSelect:focus {
   outline: none;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
 
 .summaryCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .summaryCard:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .summaryIcon {
   background-color: #eff6ff;
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .summaryLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .summaryValue {
@@ -56,33 +56,33 @@
 }
 
 .timerSection {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .activeTimer {
   background-color: #f0f9ff;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .timerTime {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .table {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .tableElement th {
   background-color: #f9fafb;
   color: #374151;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .tableElement td {
   color: #111827;
-  border-color: #f1f5f9;
+  border-color: var(--bg-tertiary-light);
 }
 
 .tableElement tbody tr:hover {
@@ -90,11 +90,11 @@
 }
 
 .badge {
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .badge[data-status="draft"] {
-  background-color: #94a3b8;
+  background-color: var(--text-tertiary-light);
 }
 
 .badge[data-status="submitted"] {
@@ -110,14 +110,14 @@
 }
 
 .iconBtn {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #4b5563;
 }
 
 .iconBtn:hover {
   background-color: #f9fafb;
-  border-color: #4573df;
-  color: #4573df;
+  border-color: var(--ml-blue);
+  color: var(--ml-blue);
 }
 
 .iconBtn[data-action="approve"] {
@@ -139,7 +139,7 @@
 }
 
 .iconBtn[data-action="delete"] {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
   border-color: #cbd5e1;
 }
 
@@ -151,9 +151,9 @@
 
 .loading,
 .empty {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .checkbox input {
-  accent-color: #4573df;
+  accent-color: var(--ml-blue);
 }

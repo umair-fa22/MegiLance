@@ -1,135 +1,135 @@
 /* @AI-HINT: Dark theme for analytics dashboard */
 
 .container {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tab {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
   border-bottom: 2px solid transparent;
 }
 
 .tab:hover {
-  color: #6b93f5;
+  color: var(--ml-blue-light);
   background: rgba(107, 147, 245, 0.08);
 }
 
 .tabActive {
-  color: #6b93f5;
-  border-bottom-color: #6b93f5;
+  color: var(--ml-blue-light);
+  border-bottom-color: var(--ml-blue-light);
   background: rgba(107, 147, 245, 0.08);
 }
 
 .metricCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .metricValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .metricLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .chartCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .chartTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .healthGauge {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .gaugeTrack {
-  stroke: #334155;
+  stroke: var(--border-dark);
 }
 
 .gaugeNumber {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .gaugeLabel {
-  color: #6b93f5;
+  color: var(--ml-blue-light);
 }
 
 .healthMetaValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .healthMetaLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .growthCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .growthCardTitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .growthCardValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .funnelContainer {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .funnelTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .funnelLabel {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .funnelBarOuter {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
 }
 
 .funnelCount {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .funnelPct {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .engagementCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .engagementValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .engagementLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .sectionTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .loadingState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }

@@ -19,8 +19,8 @@
 .cardLabel { font-size: var(--font-size-xs); font-weight: var(--font-weight-medium); opacity: 0.7; text-transform: uppercase; letter-spacing: 0.03em; }
 .metric { font-size: 1.4rem; font-weight: var(--font-weight-bold); }
 .trend { font-size: var(--font-size-xs); font-weight: var(--font-weight-medium); }
-.trendUp { color: var(--success, #27AE60); }
-.trendDown { color: var(--error, #e81123); }
+.trendUp { color: var(--success, var(--ml-green)); }
+.trendDown { color: var(--error, var(--ml-red)); }
 .trendFlat { opacity: 0.5; }
 
 .panelHeader { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-2); flex-wrap: wrap; }
@@ -40,9 +40,9 @@
 .emptyState { padding: var(--spacing-4); text-align: center; opacity: 0.6; }
 
 .badge { display: inline-flex; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: var(--font-weight-bold); letter-spacing: 0.04em; text-transform: uppercase; }
-.badgeError { background: rgba(232, 17, 35, 0.12); color: var(--error, #e81123); }
+.badgeError { background: rgba(232, 17, 35, 0.12); color: var(--error, var(--ml-red)); }
 .badgeWarn { background: rgba(242, 201, 76, 0.15); color: var(--warning, #c99a00); }
-.badgeInfo { background: rgba(69, 115, 223, 0.1); color: var(--primary, #4573df); }
+.badgeInfo { background: rgba(69, 115, 223, 0.1); color: var(--primary, var(--ml-blue)); }
 
 /* ── Table ── */
 .tableWrap { overflow-x: auto; }
@@ -50,7 +50,7 @@
 .th { text-align: left; padding: 8px 12px; font-weight: var(--font-weight-semibold); border-bottom: 2px solid transparent; white-space: nowrap; }
 .tr { border-bottom: 1px solid transparent; }
 .td { padding: 8px 12px; }
-.textError { color: var(--error, #e81123); font-weight: var(--font-weight-semibold); }
+.textError { color: var(--error, var(--ml-red)); font-weight: var(--font-weight-semibold); }
 
 .accuracyBar { position: relative; height: 20px; background: rgba(128,128,128,0.1); border-radius: 10px; overflow: hidden; min-width: 100px; }
 .accuracyFill { position: absolute; top: 0; left: 0; height: 100%; border-radius: 10px; transition: width 0.5s ease; }
@@ -58,7 +58,7 @@
 
 .skeletonRow { height: 60px; border-radius: var(--border-radius-md); animation: pulse 1.5s ease infinite; }
 @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.8; } }
-.error { color: var(--error, #e81123); padding: var(--spacing-2); }
+.error { color: var(--error, var(--ml-red)); padding: var(--spacing-2); }
 
 .isNotVisible { opacity: 0; transform: translateY(16px); }
 .isVisible { opacity: 1; transform: translateY(0); transition: opacity .6s ease-out, transform .6s ease-out; }

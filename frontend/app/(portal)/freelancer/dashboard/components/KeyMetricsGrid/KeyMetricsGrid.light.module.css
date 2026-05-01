@@ -5,7 +5,7 @@
 }
 
 .card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  background: linear-gradient(135deg, var(--bg-primary-light) 0%, var(--bg-secondary-light) 100%);
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 
     0 1px 3px rgba(0, 0, 0, 0.04),
@@ -20,40 +20,40 @@
 
 /* Color variants for decorative orb */
 .success::before {
-  background: #27AE60;
+  background: var(--ml-green);
 }
 
 .primary::before {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 .accent::before {
-  background: #ff9800;
+  background: var(--ml-orange);
 }
 
 .warning::before {
-  background: #F2C94C;
+  background: var(--ml-yellow);
 }
 
 /* Icon wrapper colors */
 .iconWrapper {
   background: rgba(0, 0, 0, 0.04);
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .successIcon {
   background: rgba(39, 174, 96, 0.12);
-  color: #27AE60;
+  color: var(--ml-green);
 }
 
 .primaryIcon {
   background: rgba(69, 115, 223, 0.12);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .accentIcon {
   background: rgba(255, 152, 0, 0.12);
-  color: #ff9800;
+  color: var(--ml-orange);
 }
 
 .warningIcon {
@@ -63,11 +63,11 @@
 
 /* Text colors */
 .label {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .value {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .trend {

@@ -1,11 +1,11 @@
 /* @AI-HINT: Light theme styles for the How It Works section. */
 
 .howItWorks {
-  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  background: linear-gradient(180deg, var(--bg-primary-light) 0%, var(--bg-secondary-light) 100%);
 }
 
 .tagline {
-  color: #4573df;
+  color: var(--ml-blue);
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(69, 115, 223, 0.2);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -20,7 +20,7 @@
 }
 
 .timeline::after {
-  background: linear-gradient(to bottom, #4573df, #ff9800);
+  background: linear-gradient(to bottom, var(--ml-blue), var(--ml-orange));
 }
 
 .timelineContent {
@@ -34,14 +34,14 @@
 
 .timelineContent:hover {
   background: rgba(255, 255, 255, 0.9);
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 
     0 20px 40px -5px rgba(69, 115, 223, 0.15),
     0 10px 20px -5px rgba(0, 0, 0, 0.05);
 }
 
 .stepNumber {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .stepTitle {

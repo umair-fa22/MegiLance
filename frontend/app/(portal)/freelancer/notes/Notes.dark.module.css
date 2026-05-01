@@ -1,52 +1,52 @@
 /* @AI-HINT: Notes and tags dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Filter */
 .searchInput {
-  background: #1e293b;
-  border-color: #334155;
-  color: #f8fafc;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .searchInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 .checkbox {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 /* Tags Filter */
 .tagsFilter {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .filterLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tagButton {
-  background: #0f172a;
-  border-color: #334155;
-  color: #cbd5e1;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .tagButton:hover {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 .tagSelected {
@@ -59,7 +59,7 @@
 
 /* Notes */
 .sectionTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .noteCard {
@@ -89,7 +89,7 @@
 
 /* Empty State */
 .emptyState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Modal */
@@ -98,76 +98,76 @@
 }
 
 .modalContent {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .modalHeader {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .modalHeader h2 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .closeBtn {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .closeBtn:hover {
-  background: #334155;
-  color: #f8fafc;
+  background: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .formGroup label {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .textarea,
 .input {
-  background: #0f172a;
-  border-color: #334155;
-  color: #f8fafc;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .textarea:focus,
 .input:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 /* Tags */
 .tagOption {
-  background: #0f172a;
-  border-color: #334155;
-  color: #cbd5e1;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .tagOption:hover {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 .tagOptionSelected {
   background: rgba(69, 115, 223, 0.2);
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   color: #60a5fa;
 }
 
 .privateCheck {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .modalFooter {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 /* Tag Manager */
 .tagManagerItem {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
 }
 
 .tagName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .tagCount {

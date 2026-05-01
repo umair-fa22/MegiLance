@@ -1,19 +1,19 @@
 /* AI-HINT: Dark theme overrides for portal Search page. */
 
 .themeWrapper {
-  background: #0f172a;
-  color: #f8fafc;
+  background: var(--bg-primary-dark);
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .input,
 .select {
   background: rgba(255, 255, 255, 0.05);
-  border: 1.5px solid #334155;
-  color: #f8fafc;
+  border: 1.5px solid var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .input::placeholder {
@@ -33,14 +33,14 @@
 
 .chip {
   background: rgba(255, 255, 255, 0.06);
-  border: 1.5px solid #334155;
-  color: #cbd5e1;
+  border: 1.5px solid var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .chip:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: #475569;
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .chip[aria-pressed="true"] {
@@ -50,8 +50,8 @@
 }
 
 .card {
-  background: #1e293b;
-  border: 1.5px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1.5px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.12);
 }
 
@@ -61,11 +61,11 @@
 }
 
 .cardTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .cardMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .loadingState {
@@ -73,6 +73,6 @@
 }
 
 .spinner {
-  border-color: #334155;
+  border-color: var(--border-dark);
   border-top-color: #6b8de6;
 }

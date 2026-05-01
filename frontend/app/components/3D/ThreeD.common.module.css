@@ -4,7 +4,7 @@
    PREMIUM CSS VARIABLES
    ========================================== */
 :root {
-  --3d-primary: #4573df;
+  --3d-primary: var(--ml-blue);
   --3d-secondary: #8b5cf6;
   --3d-accent: #f59e0b;
   --3d-success: #10b981;
@@ -86,7 +86,7 @@
 }
 .left { 
   transform: rotateY(-90deg) translateZ(var(--cube-size, 30px)); 
-  background: linear-gradient(135deg, #4573df 0%, #6b93f5 50%, #818cf8 100%); 
+  background: linear-gradient(135deg, var(--ml-blue) 0%, var(--ml-blue-light) 50%, #818cf8 100%); 
   box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.2);
 }
 .top { 
@@ -359,7 +359,7 @@
 .particle:nth-child(3) { top: 40%; left: 30%; animation-delay: -2s; }
 .particle:nth-child(4) { top: 60%; left: 70%; animation-delay: -3s; background: linear-gradient(135deg, #f093fb, #f5576c); }
 .particle:nth-child(5) { top: 80%; left: 20%; animation-delay: -4s; }
-.particle:nth-child(6) { top: 30%; left: 90%; animation-delay: -5s; background: linear-gradient(135deg, #27AE60, #4cdc8a); }
+.particle:nth-child(6) { top: 30%; left: 90%; animation-delay: -5s; background: linear-gradient(135deg, var(--ml-green), #4cdc8a); }
 .particle:nth-child(7) { top: 70%; left: 50%; animation-delay: -6s; }
 .particle:nth-child(8) { top: 90%; left: 85%; animation-delay: -7s; background: linear-gradient(135deg, #fa709a, #fee140); }
 .particle:nth-child(9) { top: 15%; left: 55%; animation-delay: -8s; }
@@ -386,7 +386,7 @@
   position: absolute;
   width: 12px;
   height: 12px;
-  background: linear-gradient(135deg, #4573df, #8b5cf6);
+  background: linear-gradient(135deg, var(--ml-blue), #8b5cf6);
   border-radius: 50%;
   animation: orbitElement 8s linear infinite;
   box-shadow: 0 0 15px rgba(69, 115, 223, 0.6);
@@ -643,7 +643,7 @@
 }
 
 .badgeSuccess {
-  background: linear-gradient(135deg, #27AE60, #4cdc8a);
+  background: linear-gradient(135deg, var(--ml-green), #4cdc8a);
   color: white;
 }
 
@@ -787,7 +787,7 @@
 }
 
 .btnSuccess {
-  background: linear-gradient(135deg, #27AE60, #4cdc8a);
+  background: linear-gradient(135deg, var(--ml-green), #4cdc8a);
   color: white;
   box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
 }
@@ -908,7 +908,7 @@
 }
 
 .statsTrend.positive {
-  color: #27AE60;
+  color: var(--ml-green);
 }
 
 .statsTrend.negative {
@@ -1156,7 +1156,7 @@
 }
 
 .glowPrimary {
-  background: linear-gradient(135deg, #4573df, #6366f1);
+  background: linear-gradient(135deg, var(--ml-blue), #6366f1);
   color: white;
   box-shadow: 
     0 8px 32px rgba(69, 115, 223, 0.4),

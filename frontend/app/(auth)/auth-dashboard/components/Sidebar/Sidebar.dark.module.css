@@ -1,5 +1,5 @@
 ﻿.sidebar {
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  background: linear-gradient(135deg, var(--bg-secondary-dark) 0%, var(--bg-primary-dark) 100%);
   border-right: 1px solid rgba(58, 65, 74, 0.7);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -19,11 +19,11 @@
 }
 
 .userName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .userEmail {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .userProfile {
@@ -42,7 +42,7 @@
 }
 
 .navItem {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
   background: rgba(15, 23, 42, 0.7);
   border: 1px solid rgba(55, 65, 81, 0.7);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -64,12 +64,12 @@
 }
 
 .navBadge {
-  background: linear-gradient(135deg, #ff9800, #e68900);
+  background: linear-gradient(135deg, var(--ml-orange), #e68900);
   box-shadow: 0 2px 4px rgba(255, 152, 0, 0.3);
 }
 
 .logoutButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
   background: rgba(15, 23, 42, 0.7);
   border: 1px solid rgba(55, 65, 81, 0.7);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -87,7 +87,7 @@
 
 .themeToggle {
   background: rgba(30, 41, 59, 0.7);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
   border: 1px solid rgba(55, 65, 81, 0.7);
 }
 

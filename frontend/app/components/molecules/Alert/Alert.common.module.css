@@ -129,7 +129,7 @@
 }
 
 .alertCloseButton:focus-visible {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: -2px;
   box-shadow: inset 0 0 0 2px rgba(69, 115, 223, 0.2),
               0 0 0 4px rgba(69, 115, 223, 0.15);

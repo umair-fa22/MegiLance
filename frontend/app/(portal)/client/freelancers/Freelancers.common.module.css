@@ -66,7 +66,7 @@
 }
 
 .shortlistStat {
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
 }
 
 /* --- Controls Section --- */
@@ -111,7 +111,7 @@
 }
 
 .filterBadge {
-  background: var(--color-primary, #4573df);
+  background: var(--color-primary, var(--ml-blue));
   color: #fff;
   font-size: 0.65rem;
   width: 18px;
@@ -287,7 +287,7 @@
   align-items: center;
   padding: var(--spacing-3) var(--spacing-4);
   border-radius: var(--border-radius-lg);
-  border: 2px solid var(--color-primary, #4573df);
+  border: 2px solid var(--color-primary, var(--ml-blue));
 }
 
 .compareInfo {
@@ -389,7 +389,7 @@
 .matchScoreFill {
   height: 100%;
   border-radius: 4px;
-  background: var(--color-primary, #4573df);
+  background: var(--color-primary, var(--ml-blue));
   transition: width 0.5s ease;
 }
 
@@ -447,7 +447,7 @@
 }
 
 .actionBtnActive {
-  color: var(--color-primary, #4573df) !important;
+  color: var(--color-primary, var(--ml-blue)) !important;
 }
 
 .actionBtn:disabled {

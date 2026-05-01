@@ -1,24 +1,24 @@
 /* @AI-HINT: Admin feedback page - light theme colors */
 
 .container {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .loading {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .title {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .exportButton {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .exportButton:hover {
@@ -27,43 +27,43 @@
 
 /* Stats */
 .statCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .statValue {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .statLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Tabs */
 .tab {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tab:hover {
-  background-color: #f1f5f9;
-  color: #1e293b;
+  background-color: var(--bg-tertiary-light);
+  color: var(--color-text-primary-light);
 }
 
 .tabActive {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .select {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
-  color: #1e293b;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--color-text-primary-light);
 }
 
 /* Feedback Card */
 .feedbackCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .feedbackCard:hover {
@@ -71,64 +71,64 @@
 }
 
 .typeBadge {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .feedbackSubject {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .feedbackMessage {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .userName {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .userType {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .feedbackDate {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Modal */
 .modal {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .modalHeader {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .modalTitle {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .closeButton {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .closeButton:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .detailLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .detailValue {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .messageBox {
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
-  color: #1e293b;
+  background-color: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
+  color: var(--color-text-primary-light);
 }
 
 .responseBox {
@@ -137,19 +137,19 @@
 }
 
 .textarea {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
-  color: #1e293b;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--color-text-primary-light);
 }
 
 .textarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 .respondButton {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .respondButton:hover:not(:disabled) {

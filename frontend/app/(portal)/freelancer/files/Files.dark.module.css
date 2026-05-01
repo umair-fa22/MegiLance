@@ -1,22 +1,22 @@
 /* @AI-HINT: Freelancer file management dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Stats */
 .statCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .statIcon {
@@ -25,46 +25,46 @@
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 /* Filter */
 .searchInput {
-  background: #1e293b;
-  border-color: #334155;
-  color: #f8fafc;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .searchInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 .filterSelect {
-  background: #1e293b;
-  border-color: #334155;
-  color: #f8fafc;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .viewToggle {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .viewBtn {
-  background: #1e293b;
-  color: #94a3b8;
+  background: var(--bg-secondary-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .viewBtn:hover {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 .viewBtnActive {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -82,38 +82,38 @@
 }
 
 .breadcrumbCurrent {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 /* Table */
 .fileTable th {
-  color: #94a3b8;
-  background: #0f172a;
-  border-color: #334155;
+  color: var(--text-tertiary-dark);
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
 }
 
 .fileTable td {
-  border-color: #1e293b;
-  color: #cbd5e1;
+  border-color: var(--bg-secondary-dark);
+  color: var(--text-secondary-dark);
 }
 
 .fileTable tr:hover {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
 }
 
 .fileName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .actionBtn:hover {
-  background: #334155;
+  background: var(--border-dark);
   color: #60a5fa;
 }
 
 /* Card */
 .fileCardWrapper {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -123,11 +123,11 @@
 }
 
 .fileCardPreview {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
 }
 
 .fileCardName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .fileCardMeta {
@@ -135,16 +135,16 @@
 }
 
 .fileCardActions {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 /* Empty State */
 .emptyState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .emptyTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 /* Modal */
@@ -153,35 +153,35 @@
 }
 
 .modalContent {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .modalHeader {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .modalHeader h2 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .closeBtn {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .closeBtn:hover {
-  background: #334155;
-  color: #f8fafc;
+  background: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .modalFooter {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 /* Dropzone */
 .dropzone {
   border-color: #475569;
-  background: #0f172a;
+  background: var(--bg-primary-dark);
 }
 
 .dropzone:hover {
@@ -195,7 +195,7 @@
 }
 
 .dropzoneText {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .dropzoneHint {
@@ -204,11 +204,11 @@
 
 /* Upload Item */
 .uploadItem {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
 }
 
 .uploadItemName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .uploadItemSize {
@@ -216,11 +216,11 @@
 }
 
 .progressBar {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 .progressFill {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 .uploadItemRemove {
@@ -233,19 +233,19 @@
 
 /* Form */
 .formGroup label {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .input,
 .textarea {
-  background: #0f172a;
-  border-color: #334155;
-  color: #f8fafc;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .input:focus,
 .textarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
@@ -256,15 +256,15 @@
 
 /* Context Menu */
 .contextMenu {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .contextMenuItem {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .contextMenuItem:hover {
-  background: #334155;
-  color: #f8fafc;
+  background: var(--border-dark);
+  color: var(--text-primary-dark);
 }

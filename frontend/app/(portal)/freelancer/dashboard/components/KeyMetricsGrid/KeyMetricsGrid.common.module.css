@@ -108,12 +108,12 @@
 }
 
 .positive {
-  color: var(--color-success, #27AE60);
+  color: var(--color-success, var(--ml-green));
   background: rgba(39, 174, 96, 0.1);
 }
 
 .negative {
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
   background: rgba(232, 17, 35, 0.1);
 }
 

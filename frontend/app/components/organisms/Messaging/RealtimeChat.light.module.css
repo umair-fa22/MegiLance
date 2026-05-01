@@ -1,13 +1,13 @@
 /* @AI-HINT: Light theme for realtime chat */
 
 .container {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .header {
   background: #f8f9fa;
-  border-bottom-color: #e2e8f0;
+  border-bottom-color: var(--border-light);
 }
 
 .title {
@@ -15,19 +15,19 @@
 }
 
 .status {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .messagesContainer {
-  background: #ffffff;
+  background: var(--bg-primary-light);
 }
 
 .messageOther {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #1a1a1a;
 }
 
 .inputContainer {
   background: #f8f9fa;
-  border-top-color: #e2e8f0;
+  border-top-color: var(--border-light);
 }

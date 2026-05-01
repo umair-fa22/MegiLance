@@ -1,10 +1,10 @@
 .container {
-  --bg-card: #1e293b;
-  --bg-secondary: #0f172a;
-  --bg-hover: #334155;
-  --border-color: #334155;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
+  --bg-card: var(--bg-secondary-dark);
+  --bg-secondary: var(--bg-primary-dark);
+  --bg-hover: var(--border-dark);
+  --border-color: var(--border-dark);
+  --text-primary: var(--text-primary-dark);
+  --text-secondary: var(--text-tertiary-dark);
   --primary-color: #60a5fa;
   --success-color: #4ade80;
   --error-color: #ef4444;

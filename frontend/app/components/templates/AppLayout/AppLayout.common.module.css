@@ -41,7 +41,7 @@
 
 .skipLink:focus {
   top: 0;
-  outline: 2px solid var(--focus-ring-color, #4573df);
+  outline: 2px solid var(--focus-ring-color, var(--ml-blue));
   outline-offset: 2px;
 }
 

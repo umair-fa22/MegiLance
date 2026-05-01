@@ -1,16 +1,16 @@
 ﻿/* @AI-HINT: Dark theme styles for the PaginatedJobGrid component. */
 .section {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .sectionTitle {
-  color: #f8fafc;
-  border-bottom-color: #334155;
+  color: var(--text-primary-dark);
+  border-bottom-color: var(--border-dark);
 }
 
 .emptyState {
-  background-color: #1e293b;
-  color: #94a3b8;
-  border: 1px dashed #334155;
+  background-color: var(--bg-secondary-dark);
+  color: var(--text-tertiary-dark);
+  border: 1px dashed var(--border-dark);
 }

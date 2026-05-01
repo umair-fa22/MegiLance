@@ -1,39 +1,39 @@
 /* @AI-HINT: Public talent directory - light theme */
 
-.main { background: linear-gradient(170deg, #f0f4ff 0%, #ffffff 40%, #faf8ff 100%); }
-.title { color: #1e293b; }
-.subtitle { color: #64748b; }
+.main { background: linear-gradient(170deg, #f0f4ff 0%, var(--bg-primary-light) 40%, #faf8ff 100%); }
+.title { color: var(--color-text-primary-light); }
+.subtitle { color: var(--color-text-secondary-light); }
 
 /* Badge */
 .badge { background: #e0e7ff; color: #3b52b5; }
 
 /* Stats */
-.statItem { color: #0f172a; }
+.statItem { color: var(--text-primary-light); }
 
 /* Search */
-.searchBar { background: #ffffff; border-color: #e2e8f0; }
-.searchInput { background: transparent; color: #1e293b; }
-.searchInput::placeholder { color: #94a3b8; }
+.searchBar { background: var(--bg-primary-light); border-color: var(--border-light); }
+.searchInput { background: transparent; color: var(--color-text-primary-light); }
+.searchInput::placeholder { color: var(--text-tertiary-light); }
 
 /* Category pills */
-.catPill { background: #ffffff; border-color: #e2e8f0; color: #475569; }
-.catPill:hover { background: #f8fafc; }
-.catPillActive { background: #e0e7ff; color: #3b52b5; border-color: #4573df; }
+.catPill { background: var(--bg-primary-light); border-color: var(--border-light); color: var(--text-secondary-light); }
+.catPill:hover { background: var(--bg-secondary-light); }
+.catPillActive { background: #e0e7ff; color: #3b52b5; border-color: var(--ml-blue); }
 
 /* Cards */
 .card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-color: rgba(226,232,240,0.5); }
 .card:hover { box-shadow: 0 8px 24px rgba(69,115,223,0.12); }
-.name { color: #1e293b; }
-.role { color: #64748b; }
-.rankBadge { background: linear-gradient(135deg, #4573df, #6b8ef9); color: #ffffff; }
-.skillTag { background-color: #ffffff; border-color: #e2e8f0; color: #475569; }
-.viewProfileBtn { color: #4573df; }
-.emptyState { color: #64748b; }
+.name { color: var(--color-text-primary-light); }
+.role { color: var(--color-text-secondary-light); }
+.rankBadge { background: linear-gradient(135deg, var(--ml-blue), #6b8ef9); color: var(--bg-primary-light); }
+.skillTag { background-color: var(--bg-primary-light); border-color: var(--border-light); color: var(--text-secondary-light); }
+.viewProfileBtn { color: var(--ml-blue); }
+.emptyState { color: var(--color-text-secondary-light); }
 
 /* CTA box */
 .ctaBox { background: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 100%); }
-.ctaTitle { color: #0f172a; }
+.ctaTitle { color: var(--text-primary-light); }
 .ctaDesc { color: #334155; }
-.ctaBtn { background: #4573df; color: #fff; }
-.ctaBtnOutline { border-color: #cbd5e1; color: #0f172a; }
-.ctaBtnOutline:hover { background: #f1f5f9; }
+.ctaBtn { background: var(--ml-blue); color: #fff; }
+.ctaBtnOutline { border-color: #cbd5e1; color: var(--text-primary-light); }
+.ctaBtnOutline:hover { background: var(--bg-tertiary-light); }

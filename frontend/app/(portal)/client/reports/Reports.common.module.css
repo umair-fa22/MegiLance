@@ -65,12 +65,12 @@
 
 .statIconPrimary {
   background: rgba(69, 115, 223, 0.1);
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
 }
 
 .statIconSuccess {
   background: rgba(39, 174, 96, 0.1);
-  color: var(--color-success, #27AE60);
+  color: var(--color-success, var(--ml-green));
 }
 
 .statIconInfo {
@@ -244,7 +244,7 @@
   height: 48px;
   border-radius: 10px;
   background: rgba(69, 115, 223, 0.1);
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
 }
 
 .reportInfo {

@@ -1,21 +1,21 @@
 /* @AI-HINT: Invoice management light theme colors */
 
 .container {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Stats */
 .statCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
@@ -44,11 +44,11 @@
 }
 
 .statLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .statValue {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .statValuePaid {
@@ -65,72 +65,72 @@
 
 /* Search */
 .searchBar {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .searchBar:focus-within {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .searchIcon {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .searchInput {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .searchInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .clearSearch {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .clearSearch:hover {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 /* Filters */
 .filters {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .filterButton {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .filterButton:hover {
-  background-color: #e2e8f0;
-  color: #0f172a;
+  background-color: var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .filterActive {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .filterActive:hover {
   background-color: #3b5fc9;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 /* Loading & Empty */
 .loadingState {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .emptyState {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Invoice Card */
 .invoiceCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .invoiceCard:hover {
@@ -139,11 +139,11 @@
 }
 
 .invoiceNumber {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .invoiceAmount {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .clientName {
@@ -151,11 +151,11 @@
 }
 
 .projectTitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .invoiceDates {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Status badges */
@@ -175,31 +175,31 @@
 }
 
 .statusDraft {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .statusCancelled {
-  background-color: #f1f5f9;
-  color: #94a3b8;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-tertiary-light);
 }
 
 /* Action Buttons */
 .actionButton {
-  background-color: #f1f5f9;
-  color: #475569;
-  border-color: #e2e8f0;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
+  border-color: var(--border-light);
 }
 
 .actionButton:hover {
-  background-color: #e2e8f0;
-  color: #0f172a;
+  background-color: var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .actionButtonPrimary {
-  background-color: #4573df;
-  color: #ffffff;
-  border-color: #4573df;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
+  border-color: var(--ml-blue);
 }
 
 .actionButtonPrimary:hover {
@@ -218,21 +218,21 @@
 
 /* Modal */
 .modal {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .modalTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .modalClose {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .modalClose:hover {
-  background-color: #f1f5f9;
-  color: #0f172a;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-primary-light);
 }
 
 /* Form */
@@ -241,31 +241,31 @@
 }
 
 .input {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
-  color: #0f172a;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .input:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .input::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Items */
 .itemsTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .itemsHeader {
-  color: #64748b;
-  border-color: #e2e8f0;
+  color: var(--color-text-secondary-light);
+  border-color: var(--border-light);
 }
 
 .itemAmount {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .removeButton {
@@ -278,37 +278,37 @@
 
 .addItemButton {
   border-color: #cbd5e1;
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .addItemButton:hover {
-  border-color: #4573df;
-  color: #4573df;
+  border-color: var(--ml-blue);
+  color: var(--ml-blue);
   background-color: #eff6ff;
 }
 
 .totalSection {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #374151;
 }
 
 /* Detail */
 .detailClientName {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .detailClientEmail {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .detailMeta {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
   border-radius: 8px;
   padding: 0.75rem;
 }
 
 .metaLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .detailItems {
@@ -316,21 +316,21 @@
 }
 
 .detailNotes {
-  border-color: #e2e8f0;
-  color: #475569;
+  border-color: var(--border-light);
+  color: var(--text-secondary-light);
 }
 
 .confirmText {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 /* Toast */
 .toast {
-  background-color: #0f172a;
-  color: #f1f5f9;
+  background-color: var(--text-primary-light);
+  color: var(--bg-tertiary-light);
 }
 
 .toastError {
   background-color: #dc2626;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }

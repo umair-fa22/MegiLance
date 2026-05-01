@@ -7,7 +7,7 @@
 }
 
 .tagline {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Newsletter */
@@ -38,7 +38,7 @@
 }
 
 .newsletterButton {
-  background: linear-gradient(135deg, #4573df 0%, #5a8dee 100%);
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #5a8dee 100%);
   color: #ffffff;
   box-shadow: 0 2px 8px rgba(69, 115, 223, 0.3);
 }
@@ -62,7 +62,7 @@
 }
 
 .linkItem {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .linkItem:hover {
@@ -79,7 +79,7 @@
 }
 
 .socialLink {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
   background-color: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.05);
 }
@@ -92,4 +92,4 @@
 }
 
 /* Deep gradient 2026 */
-.header, .sidebar, .footer { background: linear-gradient(180deg, #0f172a 0%, #020617 100%); border-color: rgba(255,255,255,0.1); backdrop-filter: blur(12px); }
+.header, .sidebar, .footer { background: linear-gradient(180deg, var(--bg-primary-dark) 0%, #020617 100%); border-color: rgba(255,255,255,0.1); backdrop-filter: blur(12px); }

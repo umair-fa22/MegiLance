@@ -1,10 +1,10 @@
 .globalImpact {
-  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  background: linear-gradient(180deg, var(--bg-primary-light) 0%, var(--bg-secondary-light) 100%);
 }
 
 .badge {
   background: rgba(39, 174, 96, 0.1);
-  color: #27AE60;
+  color: var(--ml-green);
   border-color: rgba(39, 174, 96, 0.2);
 }
 
@@ -13,7 +13,7 @@
 }
 
 .highlight {
-  background: linear-gradient(120deg, #27AE60 0%, #2ECC71 100%);
+  background: linear-gradient(120deg, var(--ml-green) 0%, #2ECC71 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

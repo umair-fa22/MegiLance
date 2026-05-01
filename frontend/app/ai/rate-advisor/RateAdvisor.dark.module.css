@@ -1,70 +1,70 @@
 /* @AI-HINT: Rate Advisor – dark theme colors */
 
-.container { background: linear-gradient(135deg, #0c0f1a 0%, #0a1a12 100%); color: #f1f5f9; }
+.container { background: linear-gradient(135deg, #0c0f1a 0%, #0a1a12 100%); color: var(--color-text-primary-dark); }
 .headerBadge { background: rgba(39,174,96,0.15); color: #2ecc71; }
-.title { color: #f1f5f9; }
-.subtitle { color: #94a3b8; }
+.title { color: var(--color-text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
 
 .stepDot { background: rgba(51,65,85,0.6); color: #64748b; }
-.stepDotActive { background: #27ae60; color: #fff; box-shadow: 0 0 0 4px rgba(39,174,96,0.2); }
-.stepDotCompleted { background: #27ae60; color: #fff; }
+.stepDotActive { background: var(--ml-green); color: #fff; box-shadow: 0 0 0 4px rgba(39,174,96,0.2); }
+.stepDotCompleted { background: var(--ml-green); color: #fff; }
 .stepLabel { color: #64748b; }
 .stepLabelActive { color: #2ecc71; }
 .stepLine { background: rgba(51,65,85,0.5); }
-.stepLineActive { background: #27ae60; }
+.stepLineActive { background: var(--ml-green); }
 
 .formCard { background: rgba(30,41,59,0.6); border-color: rgba(51,65,85,0.6); }
-.formTitle { color: #f1f5f9; }
+.formTitle { color: var(--color-text-primary-dark); }
 .label { color: #e2e8f0; }
 .labelHint { color: #64748b; }
-.textInput, .numberInput { background: rgba(15,23,42,0.6); border-color: rgba(51,65,85,0.6); color: #f1f5f9; }
-.textInput:focus, .numberInput:focus { border-color: #27ae60; box-shadow: 0 0 0 3px rgba(39,174,96,0.15); }
+.textInput, .numberInput { background: rgba(15,23,42,0.6); border-color: rgba(51,65,85,0.6); color: var(--color-text-primary-dark); }
+.textInput:focus, .numberInput:focus { border-color: var(--ml-green); box-shadow: 0 0 0 3px rgba(39,174,96,0.15); }
 
-.typeCard { background: rgba(15,23,42,0.5); border-color: rgba(51,65,85,0.5); color: #cbd5e1; }
-.typeCard:hover { border-color: #27ae60; background: rgba(39,174,96,0.08); }
+.typeCard { background: rgba(15,23,42,0.5); border-color: rgba(51,65,85,0.5); color: var(--text-secondary-dark); }
+.typeCard:hover { border-color: var(--ml-green); background: rgba(39,174,96,0.08); }
 .typeCardSelected { background: rgba(39,174,96,0.12); border-color: #2ecc71; color: #2ecc71; }
 
-.expCard { background: rgba(15,23,42,0.5); border-color: rgba(51,65,85,0.5); color: #cbd5e1; }
-.expCard:hover { border-color: #27ae60; }
+.expCard { background: rgba(15,23,42,0.5); border-color: rgba(51,65,85,0.5); color: var(--text-secondary-dark); }
+.expCard:hover { border-color: var(--ml-green); }
 .expCardSelected { background: rgba(39,174,96,0.12); border-color: #2ecc71; color: #2ecc71; }
-.expDesc { color: #94a3b8; }
+.expDesc { color: var(--text-tertiary-dark); }
 
-.platformCard { background: rgba(15,23,42,0.5); border-color: rgba(51,65,85,0.5); color: #cbd5e1; }
-.platformCard:hover { border-color: #27ae60; }
+.platformCard { background: rgba(15,23,42,0.5); border-color: rgba(51,65,85,0.5); color: var(--text-secondary-dark); }
+.platformCard:hover { border-color: var(--ml-green); }
 .platformCardSelected { background: rgba(39,174,96,0.12); border-color: #2ecc71; color: #2ecc71; }
-.platformFee { color: #94a3b8; }
+.platformFee { color: var(--text-tertiary-dark); }
 
-.processingContainer { color: #f1f5f9; }
-.processingOrbInner { background: linear-gradient(135deg, #27ae60, #2ecc71); color: #fff; }
-.processingSubtitle { color: #94a3b8; }
+.processingContainer { color: var(--color-text-primary-dark); }
+.processingOrbInner { background: linear-gradient(135deg, var(--ml-green), #2ecc71); color: #fff; }
+.processingSubtitle { color: var(--text-tertiary-dark); }
 .processingStepCircle { background: rgba(39,174,96,0.15); color: #2ecc71; }
 
 .priceHero { background: linear-gradient(135deg, rgba(39,174,96,0.25) 0%, rgba(46,204,113,0.15) 100%); }
 .priceHeroLabel { color: #2ecc71; }
-.priceHeroValue { color: #f1f5f9; }
-.priceHeroMetaItem { color: #cbd5e1; }
+.priceHeroValue { color: var(--color-text-primary-dark); }
+.priceHeroMetaItem { color: var(--text-secondary-dark); }
 
 .resultCard { background: rgba(30,41,59,0.6); border-color: rgba(51,65,85,0.6); }
 .resultCardIcon { background: rgba(39,174,96,0.12); color: #2ecc71; }
-.resultCardTitle { color: #f1f5f9; }
-.calcRow { color: #cbd5e1; border-color: rgba(51,65,85,0.4); }
+.resultCardTitle { color: var(--color-text-primary-dark); }
+.calcRow { color: var(--text-secondary-dark); border-color: rgba(51,65,85,0.4); }
 .calcRowHighlight { background: rgba(39,174,96,0.06); }
 
 /* Income */
 .incomeRow { background: rgba(15,23,42,0.4); }
 .incomeLabel { color: #e2e8f0; }
-.incomeUtil { color: #94a3b8; }
-.incomeFigure { color: #cbd5e1; }
+.incomeUtil { color: var(--text-tertiary-dark); }
+.incomeFigure { color: var(--text-secondary-dark); }
 
 /* Market */
 .marketBarRange { background: rgba(39,174,96,0.25); }
 .marketBarYou { background: #2ecc71; }
-.marketLegendItem { color: #94a3b8; }
+.marketLegendItem { color: var(--text-tertiary-dark); }
 
 /* Recommendations */
 .recItem { background: rgba(15,23,42,0.4); }
 .recTitle { color: #e2e8f0; }
-.recMsg { color: #94a3b8; }
+.recMsg { color: var(--text-tertiary-dark); }
 .rec_increase { border-left-color: #2ecc71; }
 .rec_positioning { border-left-color: #7ba0f7; }
 .rec_platform { border-left-color: #f39c12; }
@@ -72,13 +72,13 @@
 .rec_value_add { border-left-color: #2dd4bf; }
 .rec_caution { border-left-color: #ff6b7a; }
 
-.navButtonBack { background: rgba(51,65,85,0.5); color: #cbd5e1; }
+.navButtonBack { background: rgba(51,65,85,0.5); color: var(--text-secondary-dark); }
 .navButtonBack:hover { background: rgba(51,65,85,0.7); }
-.navButtonNext { background: #27ae60; color: #fff; }
+.navButtonNext { background: var(--ml-green); color: #fff; }
 .navButtonNext:hover { background: #2ecc71; }
-.actionBtnPrimary { background: #27ae60; color: #fff; }
+.actionBtnPrimary { background: var(--ml-green); color: #fff; }
 .actionBtnPrimary:hover { background: #2ecc71; }
-.actionBtnSecondary { background: rgba(51,65,85,0.5); color: #cbd5e1; }
+.actionBtnSecondary { background: rgba(51,65,85,0.5); color: var(--text-secondary-dark); }
 .actionBtnSecondary:hover { background: rgba(51,65,85,0.7); }
 
 .disclaimer { color: #64748b; border-color: rgba(51,65,85,0.4); }

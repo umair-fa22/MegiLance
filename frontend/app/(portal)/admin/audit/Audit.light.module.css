@@ -1,117 +1,117 @@
 /* @AI-HINT: Admin audit trail light theme colors */
 
 .container {
-  background-color: #f8fafc;
-  color: #1e293b;
+  background-color: var(--bg-secondary-light);
+  color: var(--color-text-primary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Stats */
 .statCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .statInfo strong {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .statInfo span {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Filters */
 .filtersCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .filterGroup label {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .input {
-  background: #ffffff;
-  border-color: #e2e8f0;
-  color: #0f172a;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .input:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 /* Logs Table */
 .logsCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .logsTable th {
-  background: #f8fafc;
-  color: #64748b;
-  border-bottom: 1px solid #e2e8f0;
+  background: var(--bg-secondary-light);
+  color: var(--color-text-secondary-light);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .logRow {
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--bg-tertiary-light);
 }
 
 .logRow:hover {
-  background: #f8fafc;
+  background: var(--bg-secondary-light);
 }
 
 .userRole {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .resourceBadge {
-  background: #f1f5f9;
-  color: #475569;
+  background: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .resourceId {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .ipCell {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Modal */
 .modal {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .modal h2 {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .detailSection h3 {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .detailGrid label {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .detailGrid span {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .jsonBlock {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  color: #0f172a;
+  background: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .toast {

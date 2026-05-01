@@ -339,9 +339,6 @@ const Login: React.FC = () => {
             <Button variant="social" provider="google" onClick={() => handleSocialLogin('google')} disabled={loading}>
               Continue with Google
             </Button>
-            <Button variant="social" provider="github" onClick={() => handleSocialLogin('github')} disabled={loading}>
-              Continue with GitHub
-            </Button>
           </StaggerItem>
 
           {isPreviewMode() && (

@@ -1,67 +1,67 @@
 /* @AI-HINT: Portfolio Showcase page - dark theme */
 
-.container { background: #0f172a; }
-.title { color: #f1f5f9; }
-.subtitle { color: #94a3b8; }
+.container { background: var(--bg-primary-dark); }
+.title { color: var(--color-text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
 
 /* Stats */
-.statChip { background: #1e293b; color: #cbd5e1; }
+.statChip { background: var(--bg-secondary-dark); color: var(--text-secondary-dark); }
 
 /* Public URL */
-.publicUrl { background: #1e293b; color: #cbd5e1; }
+.publicUrl { background: var(--bg-secondary-dark); color: var(--text-secondary-dark); }
 .publicUrl a { color: #60a5fa; }
 
 /* Search */
-.searchBar { background: #1e293b; border: 1px solid #334155; }
+.searchBar { background: var(--bg-secondary-dark); border: 1px solid var(--border-dark); }
 .searchIcon { color: #64748b; }
-.searchInput { color: #f1f5f9; }
+.searchInput { color: var(--color-text-primary-dark); }
 .searchInput::placeholder { color: #64748b; }
 .clearSearch { color: #64748b; }
-.clearSearch:hover { background: #334155; color: #cbd5e1; }
+.clearSearch:hover { background: var(--border-dark); color: var(--text-secondary-dark); }
 
 /* Categories */
-.categoryBtn { background: #1e293b; color: #94a3b8; }
-.categoryBtn:hover { background: #334155; }
-.categoryActive { background: #4573df; color: #fff; }
+.categoryBtn { background: var(--bg-secondary-dark); color: var(--text-tertiary-dark); }
+.categoryBtn:hover { background: var(--border-dark); }
+.categoryActive { background: var(--ml-blue); color: #fff; }
 
 /* Layout Toggle */
-.layoutBtn { background: transparent; color: #94a3b8; }
-.layoutBtn:hover, .layoutActive { background: #334155; color: #f1f5f9; }
+.layoutBtn { background: transparent; color: var(--text-tertiary-dark); }
+.layoutBtn:hover, .layoutActive { background: var(--border-dark); color: var(--color-text-primary-dark); }
 
 /* Loading */
-.loading { color: #94a3b8; }
+.loading { color: var(--text-tertiary-dark); }
 
 /* Empty State */
-.emptyState { background: #1e293b; }
-.emptyTitle { color: #f1f5f9; }
-.emptyDesc { color: #94a3b8; }
+.emptyState { background: var(--bg-secondary-dark); }
+.emptyTitle { color: var(--color-text-primary-dark); }
+.emptyDesc { color: var(--text-tertiary-dark); }
 
 /* Section Title */
-.sectionTitle { color: #f1f5f9; }
+.sectionTitle { color: var(--color-text-primary-dark); }
 
 /* Cards */
-.featuredCard, .portfolioCard { background: #1e293b; border: 1px solid #334155; }
+.featuredCard, .portfolioCard { background: var(--bg-secondary-dark); border: 1px solid var(--border-dark); }
 .featuredCard:hover, .portfolioCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
 .featuredBadge { background: #78350f; color: #fde68a; }
 .cardCategory { color: #60a5fa; }
-.cardTitle { color: #f1f5f9; }
-.cardDesc { color: #94a3b8; }
-.tag { background: #334155; color: #cbd5e1; }
-.stat { color: #94a3b8; }
-.likeBtn { color: #94a3b8; }
+.cardTitle { color: var(--color-text-primary-dark); }
+.cardDesc { color: var(--text-tertiary-dark); }
+.tag { background: var(--border-dark); color: var(--text-secondary-dark); }
+.stat { color: var(--text-tertiary-dark); }
+.likeBtn { color: var(--text-tertiary-dark); }
 .liked { color: #ef4444; }
 
 /* Modal */
-.modal { background: #1e293b; border: 1px solid #334155; }
-.modalHeader { border-color: #334155; }
-.modalTitle { color: #f1f5f9; }
-.closeButton { color: #94a3b8; }
-.closeButton:hover { background: #334155; }
-.label { color: #cbd5e1; }
+.modal { background: var(--bg-secondary-dark); border: 1px solid var(--border-dark); }
+.modalHeader { border-color: var(--border-dark); }
+.modalTitle { color: var(--color-text-primary-dark); }
+.closeButton { color: var(--text-tertiary-dark); }
+.closeButton:hover { background: var(--border-dark); }
+.label { color: var(--text-secondary-dark); }
 .selectedTag { background: #312e81; color: #c7d2fe; }
-.checkboxText { color: #cbd5e1; }
-.modalFooter { border-color: #334155; }
-.confirmText { color: #94a3b8; }
+.checkboxText { color: var(--text-secondary-dark); }
+.modalFooter { border-color: var(--border-dark); }
+.confirmText { color: var(--text-tertiary-dark); }
 
 /* Toast */
 .toast { background: #065f46; color: #fff; }

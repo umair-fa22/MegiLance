@@ -161,22 +161,22 @@
   width: 100%;
   padding: 0.625rem 1rem 0.625rem 2.5rem;
   border-radius: 0.5rem;
-  border: 1px solid var(--border-primary, #e2e8f0);
+  border: 1px solid var(--border-primary, var(--border-light));
   font-size: 0.875rem;
   transition: border-color 0.2s;
   background: transparent;
 }
 
 .searchInput:focus {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
-  border-color: var(--color-primary, #4573df);
+  border-color: var(--color-primary, var(--ml-blue));
 }
 
 .filterSelect {
   padding: 0.625rem 0.75rem;
   border-radius: 0.5rem;
-  border: 1px solid var(--border-primary, #e2e8f0);
+  border: 1px solid var(--border-primary, var(--border-light));
   font-size: 0.875rem;
   background: transparent;
   cursor: pointer;
@@ -184,9 +184,9 @@
 }
 
 .filterSelect:focus {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
-  border-color: var(--color-primary, #4573df);
+  border-color: var(--color-primary, var(--ml-blue));
 }
 
 /* Category Tabs */
@@ -288,7 +288,7 @@
 .projectCard {
   padding: 1.25rem;
   border-radius: 0.75rem;
-  border: 1px solid var(--border-primary, #e2e8f0);
+  border: 1px solid var(--border-primary, var(--border-light));
   transition: transform 0.25s ease,
     box-shadow 0.25s ease,
     border-color 0.25s ease,
@@ -412,7 +412,7 @@
   justify-content: space-between;
   gap: 0.5rem;
   padding-top: 0.75rem;
-  border-top: 1px solid var(--border-primary, #e2e8f0);
+  border-top: 1px solid var(--border-primary, var(--border-light));
   flex-wrap: wrap;
 }
 

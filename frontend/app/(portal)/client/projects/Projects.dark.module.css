@@ -1,80 +1,80 @@
 /* AI-HINT: Dark theme overrides for Client Projects page. */
 
 .theme .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .themeWrapper {
-  background: #0f172a;
-  color: #f8fafc;
+  background: var(--bg-primary-dark);
+  color: var(--text-primary-dark);
 }
 
 .input,
 .select {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #334155;
-  color: #f8fafc;
+  border: 1px solid var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .button {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .button.secondary {
   background: rgba(255, 255, 255, 0.06);
-  color: #cbd5e1;
-  border: 1px solid #334155;
+  color: var(--text-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .card {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .cardTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .meta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .badge {
-  background: #0f172a;
-  border-color: #334155;
-  color: #cbd5e1;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .skeletonCard {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .kpiStrip {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .kpiValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .kpiLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .kpiDivider {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .resultsCount {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .footer {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .paginationInfo {

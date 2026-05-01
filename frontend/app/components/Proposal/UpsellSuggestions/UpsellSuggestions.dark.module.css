@@ -17,7 +17,7 @@
 }
 
 .itemDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .iconRocket {
@@ -29,7 +29,7 @@
 }
 
 .loadingState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .addButton {

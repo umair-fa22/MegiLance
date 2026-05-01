@@ -1,13 +1,13 @@
 /* @AI-HINT: Light theme colors for UserProfile component */
 
 .container {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   color: #2d3748;
 }
 
 .header {
   background: linear-gradient(135deg, #f7fafc, #edf2f7);
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .title {
@@ -25,7 +25,7 @@
 
 .verifiedBadge {
   background-color: #22c55e;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .metaItem {
@@ -42,7 +42,7 @@
 }
 
 .emptyText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .sectionTitle {
@@ -52,7 +52,7 @@
 
 .section {
   background: #f7fafc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .aboutText {
@@ -60,19 +60,19 @@
 }
 
 .skillTag {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #cbd5e0;
   color: #2d3748;
 }
 
 .skillTag:hover {
-  background: #4573df;
-  color: #ffffff;
-  border-color: #4573df;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
+  border-color: var(--ml-blue);
 }
 
 .portfolioCard {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #cbd5e0;
 }
 
@@ -85,13 +85,13 @@
 }
 
 .portfolioTag {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #4b5563;
 }
 
 .reviewCard {
-  background: #ffffff;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .reviewerName {
@@ -99,7 +99,7 @@
 }
 
 .reviewProject {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .criteriaLabel {
@@ -111,7 +111,7 @@
 }
 
 .reviewDate {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .contactItem {
@@ -119,13 +119,13 @@
 }
 
 .socialLink {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #cbd5e0;
   color: #2d3748;
 }
 
 .socialLink:hover {
-  background: #4573df;
-  color: #ffffff;
-  border-color: #4573df;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
+  border-color: var(--ml-blue);
 }

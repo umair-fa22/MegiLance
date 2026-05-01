@@ -1,11 +1,11 @@
 ﻿/* @AI-HINT: Light theme styles for the enhanced Profile page with sections, arrays, social, share modal. */
 
 .profileContainer {
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  background: linear-gradient(135deg, var(--bg-secondary-light) 0%, var(--bg-tertiary-light) 100%);
 }
 
 .loadingState {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .header, .actions {
@@ -14,51 +14,51 @@
 
 .name {
   color: #1f2937;
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  background: linear-gradient(135deg, var(--color-text-primary-light) 0%, #334155 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .title {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .tagline {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .rank {
   background: linear-gradient(135deg, rgba(69, 115, 223, 0.1), rgba(69, 115, 223, 0.05));
-  color: #4573df;
+  color: var(--ml-blue);
   border-color: rgba(69, 115, 223, 0.2);
 }
 
 .metaBadge {
   background: rgba(0, 0, 0, 0.04);
-  color: #64748b;
+  color: var(--color-text-secondary-light);
   border-color: rgba(0, 0, 0, 0.08);
 }
 
 /* Section Nav */
 .navBtn {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .navBtn:hover {
   background: rgba(69, 115, 223, 0.06);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .navBtnActive {
   background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
   border-color: rgba(69, 115, 223, 0.2);
 }
 
 .status {
   background: rgba(69, 115, 223, 0.08);
-  color: #4573df;
+  color: var(--ml-blue);
   border: 1px solid rgba(69, 115, 223, 0.15);
 }
 
@@ -67,7 +67,7 @@
 }
 
 .sectionDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .fieldLabel {
@@ -75,7 +75,7 @@
 }
 
 .skillsInfo {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Array cards */
@@ -85,7 +85,7 @@
 }
 
 .arrayCardTitle {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .removeBtn {
@@ -95,7 +95,7 @@
 .emptyArrayState {
   background: rgba(0, 0, 0, 0.02);
   border-color: rgba(0, 0, 0, 0.12);
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Media cards */
@@ -119,7 +119,7 @@
 }
 
 .settingRow p {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .toggleSwitch {
@@ -127,7 +127,7 @@
 }
 
 .toggleInput:checked + .toggleSwitch {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 /* Share */
@@ -141,7 +141,7 @@
 }
 
 .shareDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .shareUrlInput {
@@ -152,7 +152,7 @@
 
 .shareHints {
   background: rgba(0, 0, 0, 0.03);
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Modal */
@@ -162,26 +162,26 @@
 }
 
 .shareModal {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
 .shareTabBar {
-  border-bottom-color: #e2e8f0;
+  border-bottom-color: var(--border-light);
 }
 
 .shareTabBtn {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .shareTabBtn:hover {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .shareTabBtnActive {
-  color: #4573df;
-  border-bottom-color: #4573df;
+  color: var(--ml-blue);
+  border-bottom-color: var(--ml-blue);
 }
 
 .shareModalHeader {
@@ -193,7 +193,7 @@
 }
 
 .closeBtn {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .closeBtn:hover {

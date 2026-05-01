@@ -1,51 +1,51 @@
 /* @AI-HINT: Rate cards light theme colors */
 
 .container {
-  background-color: #f8fafc;
-  color: #1e293b;
+  background-color: var(--bg-secondary-light);
+  color: var(--color-text-primary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Stats */
 .statCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .statInfo strong {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .statInfo span {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Empty */
 .emptyCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .emptyCard h3 {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .emptyCard p {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Rate Cards */
 .rateCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -60,51 +60,51 @@
 
 .featuredBadge {
   background: #f59e0b;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .cardHeader h3 {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .rateType {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .rateAmount {
-  color: #27ae60;
+  color: var(--ml-green);
 }
 
 .cardDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .featuresList h4 {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .cardActions {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 /* Modal */
 .modal {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .modal h2 {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .input {
-  background: #ffffff;
-  border-color: #e2e8f0;
-  color: #0f172a;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .input:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 

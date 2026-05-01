@@ -1,23 +1,23 @@
 /* @AI-HINT: Workflow Automation page - dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .loading {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .createButton {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -27,41 +27,41 @@
 
 /* Tabs */
 .tabs {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .tab {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tab:hover {
-  background-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .tabActive {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
 /* Empty State */
 .emptyState {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .emptyState h3 {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .emptyState p {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Workflow Card */
 .workflowCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .workflowCard:hover {
@@ -69,11 +69,11 @@
 }
 
 .workflowName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .workflowDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Toggle */
@@ -82,7 +82,7 @@
 }
 
 .toggle input:checked + .toggleSlider {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
 }
 
 .trigger {
@@ -91,8 +91,8 @@
 }
 
 .actionCount {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .workflowStats {
@@ -100,8 +100,8 @@
 }
 
 .editButton {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .editButton:hover {
@@ -128,8 +128,8 @@
 
 /* Template Card */
 .templateCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .templateCategory {
@@ -137,11 +137,11 @@
 }
 
 .templateName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .templateDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .templateTrigger {
@@ -154,7 +154,7 @@
 }
 
 .useButton {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -164,16 +164,16 @@
 
 /* Logs */
 .logsPanel {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .logItem {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .logWorkflow {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .logTime {
@@ -181,8 +181,8 @@
 }
 
 .viewLogButton {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .viewLogButton:hover {
@@ -191,52 +191,52 @@
 
 /* Modal */
 .modal {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .modalHeader {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .modalTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .closeButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .closeButton:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .label {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .input,
 .select,
 .textarea {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .input:focus,
 .select:focus,
 .textarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 .modalActions {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .cancelButton {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .cancelButton:hover {
@@ -244,7 +244,7 @@
 }
 
 .saveButton {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 

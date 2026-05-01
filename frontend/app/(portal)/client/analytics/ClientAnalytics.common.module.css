@@ -103,11 +103,11 @@
 }
 
 .trend_up {
-  color: var(--color-success, #27AE60);
+  color: var(--color-success, var(--ml-green));
 }
 
 .trend_down {
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
 }
 
 /* Charts Grid */
@@ -212,19 +212,19 @@
 
 /* Status-specific dot colors */
 .stat_dot_completed {
-  background-color: var(--color-success, #27AE60);
+  background-color: var(--color-success, var(--ml-green));
 }
 
 .stat_dot_in_progress {
-  background-color: var(--color-primary, #4573df);
+  background-color: var(--color-primary, var(--ml-blue));
 }
 
 .stat_dot_pending_review {
-  background-color: var(--color-accent, #ff9800);
+  background-color: var(--color-accent, var(--ml-orange));
 }
 
 .stat_dot_cancelled {
-  background-color: var(--color-error, #e81123);
+  background-color: var(--color-error, var(--ml-red));
 }
 
 .stat_label {
@@ -251,22 +251,22 @@
 
 /* Status-specific bar colors and widths */
 .stat_bar_completed {
-  background-color: var(--color-success, #27AE60);
+  background-color: var(--color-success, var(--ml-green));
   width: 48%;
 }
 
 .stat_bar_in_progress {
-  background-color: var(--color-primary, #4573df);
+  background-color: var(--color-primary, var(--ml-blue));
   width: 32%;
 }
 
 .stat_bar_pending_review {
-  background-color: var(--color-accent, #ff9800);
+  background-color: var(--color-accent, var(--ml-orange));
   width: 12%;
 }
 
 .stat_bar_cancelled {
-  background-color: var(--color-error, #e81123);
+  background-color: var(--color-error, var(--ml-red));
   width: 8%;
 }
 

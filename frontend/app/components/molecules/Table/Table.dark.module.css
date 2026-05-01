@@ -1,44 +1,44 @@
 ﻿/* @AI-HINT: Dark theme styles for the Table component using brand tokens with 2026 luminous design. */
 
 .tableContainer {
-  border: 1px solid #334155;
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid var(--border-dark);
+  background: linear-gradient(135deg, var(--bg-secondary-dark) 0%, var(--bg-primary-dark) 100%);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(107, 147, 245, 0.08);
 }
 
 .caption {
-  background: linear-gradient(135deg, #0f172a 0%, #1a1f2e 100%);
-  color: #f8fafc;
+  background: linear-gradient(135deg, var(--bg-primary-dark) 0%, #1a1f2e 100%);
+  color: var(--text-primary-dark);
 }
 
 .tableThead {
-  background: linear-gradient(135deg, #0f172a 0%, #1a1f2e 100%);
-  border-bottom: 1px solid #334155;
+  background: linear-gradient(135deg, var(--bg-primary-dark) 0%, #1a1f2e 100%);
+  border-bottom: 1px solid var(--border-dark);
 }
 
 .tableTh {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tableTbodyTr {
-  background-color: #1e293b;
-  border-bottom: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border-bottom: 1px solid var(--border-dark);
 }
 
 .tableTbodyTr:hover {
-  background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+  background: linear-gradient(135deg, #1e3a5f 0%, var(--bg-primary-dark) 100%);
 }
 
 /* Zebra striping */
 .tableTbodyTr:nth-child(odd) {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 .tableTbodyTr:nth-child(even) {
-  background: linear-gradient(135deg, #1a253a 0%, #1e293b 100%);
+  background: linear-gradient(135deg, #1a253a 0%, var(--bg-secondary-dark) 100%);
 }
 
 .tableTd {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Sticky header option */
@@ -46,5 +46,5 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  background: linear-gradient(135deg, #0f172a 0%, #1a1f2e 100%);
+  background: linear-gradient(135deg, var(--bg-primary-dark) 0%, #1a1f2e 100%);
 }

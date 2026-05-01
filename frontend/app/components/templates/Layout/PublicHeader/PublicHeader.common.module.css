@@ -72,7 +72,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--color-primary, #4573df), var(--color-accent, #ff9800));
+  background: linear-gradient(90deg, var(--color-primary, var(--ml-blue)), var(--color-accent, var(--ml-orange)));
   transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing */
   border-radius: 2px 2px 0 0;
 }

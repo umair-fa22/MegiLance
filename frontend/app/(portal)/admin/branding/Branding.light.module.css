@@ -1,8 +1,8 @@
 /* @AI-HINT: Admin branding light theme - Premium 2025 Glassmorphism & Gradients */
 
 .container {
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
-  color: #1e293b;
+  background: linear-gradient(135deg, var(--bg-secondary-light) 0%, var(--border-light) 50%, var(--bg-tertiary-light) 100%);
+  color: var(--color-text-primary-light);
 }
 
 .title {
@@ -10,7 +10,7 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Preview Card - Light Glass */
@@ -36,12 +36,12 @@
 }
 
 .previewHeader h3 {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .previewContent {
-  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-  color: #1e293b;
+  background: linear-gradient(180deg, var(--bg-primary-light) 0%, var(--bg-secondary-light) 100%);
+  color: var(--color-text-primary-light);
 }
 
 /* Settings Card - Light Glass */
@@ -60,8 +60,8 @@
 }
 
 .settingsCard h3 {
-  color: #0f172a;
-  background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+  color: var(--text-primary-light);
+  background: linear-gradient(135deg, var(--text-primary-light) 0%, #334155 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -79,28 +79,28 @@
 .input {
   background: rgba(255, 255, 255, 0.9);
   border: 2px solid rgba(226, 232, 240, 0.8);
-  color: #0f172a;
+  color: var(--text-primary-light);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .input:focus {
-  border-color: #4573df;
-  background: #ffffff;
+  border-color: var(--ml-blue);
+  background: var(--bg-primary-light);
   box-shadow: 
     0 0 0 4px rgba(69, 115, 223, 0.1),
     0 4px 20px rgba(69, 115, 223, 0.1);
 }
 
 .input::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .hint {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .colorHint {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Color Group - Light */
@@ -116,28 +116,28 @@
 
 /* Logo Preview - Light */
 .logoPreview {
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background: linear-gradient(135deg, var(--bg-secondary-light) 0%, var(--border-light) 100%);
   border-color: rgba(226, 232, 240, 0.6);
 }
 
 .logoPreview:hover {
-  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-  border-color: #4573df;
+  background: linear-gradient(135deg, var(--bg-primary-light) 0%, var(--bg-tertiary-light) 100%);
+  border-color: var(--ml-blue);
   box-shadow: 0 4px 20px rgba(69, 115, 223, 0.1);
 }
 
 /* Font Preview - Light */
 .fontPreview {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  background: linear-gradient(135deg, var(--bg-primary-light) 0%, var(--bg-secondary-light) 100%);
   border-color: rgba(226, 232, 240, 0.5);
 }
 
 .fontPreview h3 {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .fontPreview p {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Unsaved Banner - Light Glass */
@@ -159,7 +159,7 @@
 
 /* Tab Buttons - Light */
 .tabBtn {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tabBtn:hover {
@@ -169,7 +169,7 @@
 
 .tabBtnActive {
   background: rgba(69, 115, 223, 0.12);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Toast - Light */
@@ -186,10 +186,10 @@
 
 /* Confirm Text - Light */
 .confirmText {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 /* Loading State */
 .loading {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }

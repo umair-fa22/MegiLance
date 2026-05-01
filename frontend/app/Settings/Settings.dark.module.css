@@ -10,22 +10,22 @@
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .searchBox {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border-radius: 10px;
 }
 
 .searchInput {
   background: transparent;
-  color: #f8fafc;
-  border-color: #334155;
+  color: var(--text-primary-dark);
+  border-color: var(--border-dark);
 }
 
 .searchInput::placeholder {
@@ -37,8 +37,8 @@
 }
 
 .card {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .card:hover {
@@ -52,11 +52,11 @@
 }
 
 .cardTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .cardDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .cardArrow {

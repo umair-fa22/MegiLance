@@ -7,8 +7,8 @@
 
 .select {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.8) 100%);
-  border-color: #e2e8f0;
-  color: #0f172a;
+  border-color: var(--border-light);
+  color: var(--text-primary-light);
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.08),
               0 2px 4px rgba(0, 0, 0, 0.08),
               0 4px 12px rgba(0, 0, 0, 0.06);
@@ -17,7 +17,7 @@
 }
 
 .select:hover:not(:disabled) {
-  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  background: linear-gradient(135deg, var(--bg-secondary-light) 0%, var(--bg-primary-light) 100%);
   border-color: #cbd5e1;
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1),
               0 6px 16px rgba(69, 115, 223, 0.12),
@@ -28,8 +28,8 @@
 }
 
 .select:focus {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  border-color: #4573df;
+  background: linear-gradient(135deg, var(--bg-primary-light) 0%, var(--bg-secondary-light) 100%);
+  border-color: var(--ml-blue);
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.08),
               0 6px 20px rgba(69, 115, 223, 0.2),
               0 0 0 4px rgba(69, 115, 223, 0.15);
@@ -38,6 +38,6 @@
 }
 
 .chevron {
-  color: #4573df;
+  color: var(--ml-blue);
   filter: drop-shadow(0 2px 4px rgba(69, 115, 223, 0.15));
 }

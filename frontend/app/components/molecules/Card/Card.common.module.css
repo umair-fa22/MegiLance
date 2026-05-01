@@ -144,7 +144,7 @@
 /* Accessible focus ring */
 .card:focus-visible,
 .card:focus-within {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
   box-shadow: 
     0 0 0 3px rgba(69, 115, 223, 0.3), 
@@ -329,7 +329,7 @@
 }
 
 .variant-outline:hover {
-  border-color: var(--primary, #4573df);
+  border-color: var(--primary, var(--ml-blue));
   box-shadow: 
     0 8px 24px rgba(0,0,0,0.06), 
     0 0 20px rgba(69, 115, 223, 0.1);
@@ -426,9 +426,9 @@
 
 /* Selected/Active state */
 .card.selected {
-  border-color: var(--primary, #4573df);
+  border-color: var(--primary, var(--ml-blue));
   box-shadow: 
-    0 0 0 2px var(--primary, #4573df),
+    0 0 0 2px var(--primary, var(--ml-blue)),
     0 8px 24px rgba(69, 115, 223, 0.2);
 }
 

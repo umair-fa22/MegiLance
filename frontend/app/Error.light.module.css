@@ -6,7 +6,7 @@
 }
 
 .errorCode {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .title {
@@ -18,8 +18,8 @@
 }
 
 .primaryButton {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .primaryButton:hover {

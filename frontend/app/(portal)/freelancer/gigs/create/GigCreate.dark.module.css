@@ -23,7 +23,7 @@
 }
 
 .progressLineFill {
-  background: linear-gradient(90deg, #4573df 0%, #22c55e 100%);
+  background: linear-gradient(90deg, var(--ml-blue) 0%, #22c55e 100%);
 }
 
 .stepCircle {
@@ -32,7 +32,7 @@
 }
 
 .stepCircle.active {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -91,7 +91,7 @@
 }
 
 .tag {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -111,7 +111,7 @@
 
 .imageUpload:hover {
   background-color: rgba(255, 255, 255, 0.05);
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .uploadText {
@@ -215,7 +215,7 @@
 
 .addFaq:hover {
   background-color: rgba(255, 255, 255, 0.05);
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 /* Preview */
@@ -238,7 +238,7 @@
 }
 
 .navButtonPrimary {
-  background: linear-gradient(135deg, #4573df 0%, #5a85ed 100%);
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #5a85ed 100%);
   color: #ffffff;
   border: none;
 }

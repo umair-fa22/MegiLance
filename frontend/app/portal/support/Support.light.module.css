@@ -1,23 +1,23 @@
 /* Light - Support */
 .container { color: #111827; }
 .subtitle { color: #4b5563; }
-.createBtn { background-color: #4573df; color: #ffffff; }
+.createBtn { background-color: var(--ml-blue); color: var(--bg-primary-light); }
 .createBtn:hover { background-color: #3461d1; }
 .error { background-color: #fef2f2; border-color: #ef4444; color: #991b1b; }
-.formCard, .ticketDetail { background-color: #ffffff; border-color: #e2e8f0; }
-.select, .input, .textarea, .filterSelect, .replyInput { background-color: #ffffff; border-color: #e2e8f0; color: #111827; }
-.select:focus, .input:focus, .textarea:focus, .replyInput:focus { outline: none; border-color: #4573df; box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1); }
-.cancelBtn { background-color: #f1f5f9; color: #374151; }
-.cancelBtn:hover { background-color: #e2e8f0; }
-.submitBtn, .sendBtn { background-color: #4573df; color: #ffffff; }
+.formCard, .ticketDetail { background-color: var(--bg-primary-light); border-color: var(--border-light); }
+.select, .input, .textarea, .filterSelect, .replyInput { background-color: var(--bg-primary-light); border-color: var(--border-light); color: #111827; }
+.select:focus, .input:focus, .textarea:focus, .replyInput:focus { outline: none; border-color: var(--ml-blue); box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1); }
+.cancelBtn { background-color: var(--bg-tertiary-light); color: #374151; }
+.cancelBtn:hover { background-color: var(--border-light); }
+.submitBtn, .sendBtn { background-color: var(--ml-blue); color: var(--bg-primary-light); }
 .submitBtn:hover, .sendBtn:hover { background-color: #3461d1; }
-.loading, .empty { color: #64748b; }
-.ticketCard { background-color: #ffffff; border-color: #e2e8f0; }
-.ticketCard:hover { border-color: #4573df; }
-.ticketCard.selected { border-color: #4573df; background-color: #eff6ff; }
-.badge[data-status="open"] { background-color: #3b82f6; color: #ffffff; }
-.badge[data-status="in_progress"] { background-color: #f59e0b; color: #ffffff; }
-.badge[data-status="resolved"] { background-color: #10b981; color: #ffffff; }
-.badge[data-status="closed"] { background-color: #64748b; color: #ffffff; }
-.detailHeader { border-color: #e2e8f0; }
+.loading, .empty { color: var(--color-text-secondary-light); }
+.ticketCard { background-color: var(--bg-primary-light); border-color: var(--border-light); }
+.ticketCard:hover { border-color: var(--ml-blue); }
+.ticketCard.selected { border-color: var(--ml-blue); background-color: #eff6ff; }
+.badge[data-status="open"] { background-color: #3b82f6; color: var(--bg-primary-light); }
+.badge[data-status="in_progress"] { background-color: #f59e0b; color: var(--bg-primary-light); }
+.badge[data-status="resolved"] { background-color: #10b981; color: var(--bg-primary-light); }
+.badge[data-status="closed"] { background-color: var(--color-text-secondary-light); color: var(--bg-primary-light); }
+.detailHeader { border-color: var(--border-light); }
 .message { background-color: #f9fafb; }

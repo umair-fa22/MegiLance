@@ -1,17 +1,17 @@
 /* @AI-HINT: Dark theme colors for enhanced chatbot */
 
 .container {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(135deg, var(--bg-primary-dark) 0%, var(--bg-secondary-dark) 100%);
 }
 
 .chatContainer {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* Header */
 .header {
-  background: linear-gradient(135deg, #3b62c7 0%, #4573df 100%);
+  background: linear-gradient(135deg, #3b62c7 0%, var(--ml-blue) 100%);
   border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -39,22 +39,22 @@
 
 /* Quick Actions */
 .quickActionsBar {
-  background-color: #0f172a;
-  border-bottom-color: #334155;
+  background-color: var(--bg-primary-dark);
+  border-bottom-color: var(--border-dark);
 }
 
 .quickActionsLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .quickAction {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .quickAction:hover {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.4);
 }
@@ -69,7 +69,7 @@
 }
 
 .messageAvatar {
-  background: linear-gradient(135deg, #4573df 0%, #5b85f0 100%);
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #5b85f0 100%);
   color: #ffffff;
   box-shadow: 0 2px 8px rgba(69, 115, 223, 0.4);
 }
@@ -80,26 +80,26 @@
 }
 
 .messageBubbleBot {
-  background: linear-gradient(135deg, #334155 0%, #3d4f6a 100%);
-  color: #f1f5f9;
+  background: linear-gradient(135deg, var(--border-dark) 0%, #3d4f6a 100%);
+  color: var(--color-text-primary-dark);
   border-bottom-left-radius: 4px;
 }
 
 .messageBubbleUser {
-  background: linear-gradient(135deg, #3b62c7 0%, #4573df 100%);
+  background: linear-gradient(135deg, #3b62c7 0%, var(--ml-blue) 100%);
   color: #ffffff;
   border-bottom-right-radius: 4px;
 }
 
 .sentimentBadge {
-  background: #334155;
+  background: var(--border-dark);
   padding: 2px;
   border-radius: 50%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .messageMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .messageAction {
@@ -108,8 +108,8 @@
 }
 
 .messageAction:hover {
-  background: #334155;
-  color: #4573df;
+  background: var(--border-dark);
+  color: var(--ml-blue);
 }
 
 /* Suggestions */
@@ -119,39 +119,39 @@
 }
 
 .suggestionChip:hover {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
   box-shadow: 0 2px 8px rgba(69, 115, 223, 0.35);
 }
 
 /* Typing Indicator */
 .typingIndicator {
-  background: linear-gradient(135deg, #334155 0%, #3d4f6a 100%);
-  color: #94a3b8;
+  background: linear-gradient(135deg, var(--border-dark) 0%, #3d4f6a 100%);
+  color: var(--text-tertiary-dark);
 }
 
 .typingDot {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
 }
 
 /* Input Form */
 .inputForm {
-  background-color: #1e293b;
-  border-top-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-top-color: var(--border-dark);
 }
 
 .inputWrapper {
-  background-color: #0f172a;
-  border-color: #334155;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
 }
 
 .inputWrapper:focus-within {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2);
 }
 
 .input {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .input::placeholder {
@@ -159,7 +159,7 @@
 }
 
 .sendButton {
-  background: linear-gradient(135deg, #3b62c7 0%, #4573df 100%);
+  background: linear-gradient(135deg, #3b62c7 0%, var(--ml-blue) 100%);
   color: #ffffff;
   box-shadow: 0 2px 8px rgba(69, 115, 223, 0.4);
 }

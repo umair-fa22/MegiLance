@@ -8,11 +8,11 @@
 /* Stepper */
 .stepDot { background: #e8e8e8; color: #999; }
 .stepDotActive { background: #e67e22; color: #fff; box-shadow: 0 0 0 4px rgba(230,126,34,0.15); }
-.stepDotCompleted { background: #27ae60; color: #fff; }
+.stepDotCompleted { background: var(--ml-green); color: #fff; }
 .stepLabel { color: #888; }
 .stepLabelActive { color: #e67e22; }
 .stepLine { background: #e0e0e0; }
-.stepLineActive { background: #27ae60; }
+.stepLineActive { background: var(--ml-green); }
 
 /* Form Card */
 .formCard { background: #fff; border-color: #e8e8e8; }
@@ -77,7 +77,7 @@
 .scoreBarFill { background: #e67e22; }
 .scoreBarTrack { background: #eee; }
 .miniTitle { color: #444; }
-.tagMatch { background: #e8f5e9; color: #27ae60; }
+.tagMatch { background: #e8f5e9; color: var(--ml-green); }
 .tagMissing { background: #fbe9e7; color: #c62828; }
 .rateLabel { color: #555; }
 .rateValue { color: #e67e22; }

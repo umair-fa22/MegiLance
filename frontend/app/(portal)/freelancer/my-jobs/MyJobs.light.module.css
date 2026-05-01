@@ -1,41 +1,41 @@
 ﻿/* @AI-HINT: Light theme styles for the enhanced MyJobs page. */
-.container { background-color: #f8fafc; }
+.container { background-color: var(--bg-secondary-light); }
 .header { border-bottom: none; }
-.title { color: #0f172a; }
-.subtitle { color: #64748b; }
+.title { color: var(--text-primary-light); }
+.subtitle { color: var(--color-text-secondary-light); }
 
 /* KPI */
-.kpiCard { background: #ffffff; border-color: #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.kpiCard { background: var(--bg-primary-light); border-color: var(--border-light); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
 .kpiCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-.kpiValue { color: #0f172a; }
-.kpiLabel { color: #94a3b8; }
+.kpiValue { color: var(--text-primary-light); }
+.kpiLabel { color: var(--text-tertiary-light); }
 
 /* Filters */
-.filterBar { background: #ffffff; border-color: #e2e8f0; }
-.filterBtn { color: #64748b; }
-.filterBtn:hover { background: #f1f5f9; color: #0f172a; }
-.filterBtnActive { background: #4573df; color: #ffffff; }
+.filterBar { background: var(--bg-primary-light); border-color: var(--border-light); }
+.filterBtn { color: var(--color-text-secondary-light); }
+.filterBtn:hover { background: var(--bg-tertiary-light); color: var(--text-primary-light); }
+.filterBtnActive { background: var(--ml-blue); color: var(--bg-primary-light); }
 
 /* Tabs */
-.tab { color: #64748b; }
-.tab:hover { color: #0f172a; }
-.tabActive { color: #4573df; }
+.tab { color: var(--color-text-secondary-light); }
+.tab:hover { color: var(--text-primary-light); }
+.tabActive { color: var(--ml-blue); }
 
 /* Grids */
-.gridsContainer { color: #0f172a; }
+.gridsContainer { color: var(--text-primary-light); }
 
 /* Quick Actions */
-.quickActions { background: #ffffff; border-color: #e2e8f0; }
-.quickAction { color: #475569; background: #f8fafc; }
-.quickAction:hover { background: #e2e8f0; color: #0f172a; }
+.quickActions { background: var(--bg-primary-light); border-color: var(--border-light); }
+.quickAction { color: var(--text-secondary-light); background: var(--bg-secondary-light); }
+.quickAction:hover { background: var(--border-light); color: var(--text-primary-light); }
 
 /* Drawer */
-.drawer { background: #ffffff; box-shadow: -4px 0 24px rgba(0,0,0,0.12); }
+.drawer { background: var(--bg-primary-light); box-shadow: -4px 0 24px rgba(0,0,0,0.12); }
 .statusBadge { background: #e0f2fe; color: #0369a1; }
-.progressBar { background: #4573df; }
-.milestoneItem { border-color: #e2e8f0; background: #fafafa; }
+.progressBar { background: var(--ml-blue); }
+.milestoneItem { border-color: var(--border-light); background: #fafafa; }
 
 /* Empty / Loading */
-.emptyState { border-color: #cbd5e1; color: #64748b; }
-.loadingState { color: #64748b; }
-.spinner { border-top-color: #4573df; }
+.emptyState { border-color: #cbd5e1; color: var(--color-text-secondary-light); }
+.loadingState { color: var(--color-text-secondary-light); }
+.spinner { border-top-color: var(--ml-blue); }

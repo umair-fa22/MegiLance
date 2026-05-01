@@ -1,29 +1,29 @@
 /* @AI-HINT: Admin Dashboard light theme — enterprise command center colours */
 
-.dashboardContainer { color: #0f172a; }
-.headerTitle { color: #0f172a; }
-.headerSubtitle { color: #64748b; }
+.dashboardContainer { color: var(--text-primary-light); }
+.headerTitle { color: var(--text-primary-light); }
+.headerSubtitle { color: var(--color-text-secondary-light); }
 
 /* Environment Badge */
 .envBadge { background: #dbeafe; color: #1d4ed8; }
-.lastRefresh { color: #94a3b8; }
+.lastRefresh { color: var(--text-tertiary-light); }
 
 /* Tabs */
-.tabNav { background: #f1f5f9; }
-.tab { color: #64748b; }
+.tabNav { background: var(--bg-tertiary-light); }
+.tab { color: var(--color-text-secondary-light); }
 .tab:hover { background: rgba(0,0,0,0.04); color: #334155; }
-.tabActive { background: #ffffff; color: #0f172a; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.tabActive { background: var(--bg-primary-light); color: var(--text-primary-light); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
 
 /* Stats */
 .statCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 .statCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
-.statLabel { color: #64748b; }
-.statValue { color: #0f172a; }
-.statSub { color: #94a3b8; }
+.statLabel { color: var(--color-text-secondary-light); }
+.statValue { color: var(--text-primary-light); }
+.statSub { color: var(--text-tertiary-light); }
 
 .accent_blue   { background: rgba(59,130,246,0.1);  color: #2563eb; }
 .accent_green  { background: rgba(22,163,74,0.1);   color: #16a34a; }
@@ -34,82 +34,82 @@
 
 /* Analytics Cards */
 .analyticsCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
-.analyticsCardTitle { color: #0f172a; }
-.analyticsPeriod { color: #94a3b8; }
-.analyticsTotal { color: #0f172a; }
-.analyticsTx { color: #94a3b8; }
-.analyticsFooter { border-color: #e2e8f0; }
-.miniBar { background: #4573df; }
-.miniBarLabel { color: #94a3b8; }
+.analyticsCardTitle { color: var(--text-primary-light); }
+.analyticsPeriod { color: var(--text-tertiary-light); }
+.analyticsTotal { color: var(--text-primary-light); }
+.analyticsTx { color: var(--text-tertiary-light); }
+.analyticsFooter { border-color: var(--border-light); }
+.miniBar { background: var(--ml-blue); }
+.miniBarLabel { color: var(--text-tertiary-light); }
 
 /* Geo */
 .geoCountry { color: #334155; }
-.geoIcon { color: #94a3b8; }
-.geoBar { background: #f1f5f9; }
-.geoBarFill { background: linear-gradient(90deg, #4573df, #6366f1); }
+.geoIcon { color: var(--text-tertiary-light); }
+.geoBar { background: var(--bg-tertiary-light); }
+.geoBarFill { background: linear-gradient(90deg, var(--ml-blue), #6366f1); }
 .geoPercent { color: #334155; }
 
 /* Quick Actions */
 .quickAction {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 2px rgba(0,0,0,0.03);
 }
 .quickAction:hover {
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   border-color: #cbd5e1;
 }
-.quickActionIcon { background-color: #f1f5f9; color: #4573df; }
-.quickActionLabel { color: #0f172a; }
-.quickActionDesc { color: #94a3b8; }
+.quickActionIcon { background-color: var(--bg-tertiary-light); color: var(--ml-blue); }
+.quickActionLabel { color: var(--text-primary-light); }
+.quickActionDesc { color: var(--text-tertiary-light); }
 .quickActionBadge { background: #fef3c7; color: #92400e; }
 
 /* Health Panel */
-.healthPanel { background-color: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-.healthPanelTitle { color: #0f172a; }
-.healthTimestamp { color: #94a3b8; }
-.statusDotRow { background: #f8fafc; }
+.healthPanel { background-color: var(--bg-primary-light); border: 1px solid var(--border-light); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.healthPanelTitle { color: var(--text-primary-light); }
+.healthTimestamp { color: var(--text-tertiary-light); }
+.statusDotRow { background: var(--bg-secondary-light); }
 .statusDotLabel { color: #334155; }
-.statusDotValue { color: #0f172a; }
-.metricCard { background: #f8fafc; border: 1px solid #e2e8f0; }
-.metricValue { color: #0f172a; }
-.metricLabel { color: #64748b; }
+.statusDotValue { color: var(--text-primary-light); }
+.metricCard { background: var(--bg-secondary-light); border: 1px solid var(--border-light); }
+.metricValue { color: var(--text-primary-light); }
+.metricLabel { color: var(--color-text-secondary-light); }
 
 /* Health Row */
 .healthCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
-.healthStatValue { color: #0f172a; }
-.healthStatLabel { color: #64748b; }
+.healthStatValue { color: var(--text-primary-light); }
+.healthStatLabel { color: var(--color-text-secondary-light); }
 
 /* Security */
-.securityCard { background-color: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-.securityCardTitle { color: #0f172a; }
+.securityCard { background-color: var(--bg-primary-light); border: 1px solid var(--border-light); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.securityCardTitle { color: var(--text-primary-light); }
 .securityCheck { color: #334155; }
-.alertItem { background: #f8fafc; border: 1px solid #e2e8f0; }
-.alertMsg { color: #0f172a; }
-.alertTime { color: #94a3b8; }
+.alertItem { background: var(--bg-secondary-light); border: 1px solid var(--border-light); }
+.alertMsg { color: var(--text-primary-light); }
+.alertTime { color: var(--text-tertiary-light); }
 .alertActionBtn { background: #eff6ff; color: #2563eb; }
 .alertActionBtn:hover { background: #dbeafe; }
 
 /* Sections */
-.sectionTitle { color: #0f172a; }
-.viewAllLink { color: #4573df; }
-.tableWrapper { background-color: #ffffff; border: 1px solid #e2e8f0; }
+.sectionTitle { color: var(--text-primary-light); }
+.viewAllLink { color: var(--ml-blue); }
+.tableWrapper { background-color: var(--bg-primary-light); border: 1px solid var(--border-light); }
 
 /* Activity */
-.activityItem { background-color: #ffffff; border: 1px solid #e2e8f0; }
+.activityItem { background-color: var(--bg-primary-light); border: 1px solid var(--border-light); }
 .activityIcon { background-color: #eff6ff; color: #3b82f6; }
-.activityName { color: #0f172a; }
-.activityDesc { color: #64748b; }
+.activityName { color: var(--text-primary-light); }
+.activityDesc { color: var(--color-text-secondary-light); }
 
-.emptyState { color: #94a3b8; }
+.emptyState { color: var(--text-tertiary-light); }
 \n
 .glassPanel {
   background: rgba(255, 255, 255, 0.75);

@@ -1,10 +1,10 @@
 /* EarningsChart.dark.module.css */
 .tooltip {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   border: 1px solid #333;
   color: #fff;
 }
 
 .tooltipValue {
-  color: #27AE60;
+  color: var(--ml-green);
 }

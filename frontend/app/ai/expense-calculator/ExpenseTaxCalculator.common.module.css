@@ -64,14 +64,14 @@
   font-size: 0.9rem; width: 100%;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
-.numberInput:focus-visible { outline: 2px solid var(--color-primary, #4573df); outline-offset: -2px; }
+.numberInput:focus-visible { outline: 2px solid var(--color-primary, var(--ml-blue)); outline-offset: -2px; }
 .select {
   padding: 10px 12px; border-radius: 8px; border: 1px solid transparent;
   font-size: 0.9rem; width: 100%; cursor: pointer;
   transition: border-color 0.2s; appearance: none;
   background-repeat: no-repeat; background-position: right 12px center; background-size: 14px;
 }
-.select:focus-visible { outline: 2px solid var(--color-primary, #4573df); outline-offset: -2px; }
+.select:focus-visible { outline: 2px solid var(--color-primary, var(--ml-blue)); outline-offset: -2px; }
 
 /* Processing */
 .processingContainer { display: flex; flex-direction: column; align-items: center; padding: 3rem 0; }

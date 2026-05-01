@@ -93,11 +93,11 @@
 }
 
 .changeUp {
-  color: var(--color-success, #27ae60);
+  color: var(--color-success, var(--ml-green));
 }
 
 .changeDown {
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
 }
 
 .metricLabel {
@@ -275,8 +275,8 @@
 
 .error {
   background: rgba(232, 17, 35, 0.05);
-  border-color: var(--color-error, #e81123);
-  color: var(--color-error, #e81123);
+  border-color: var(--color-error, var(--ml-red));
+  color: var(--color-error, var(--ml-red));
 }
 
 /* Responsive */

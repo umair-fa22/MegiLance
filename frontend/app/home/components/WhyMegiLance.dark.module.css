@@ -1,7 +1,7 @@
 /* @AI-HINT: Dark theme specific styles for WhyMegiLance component. Defines color palette, text colors, backgrounds, and visual elements for dark mode. */
 
 .section {
-  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(180deg, var(--bg-primary-dark) 0%, var(--bg-secondary-dark) 100%);
 }
 
 .bgBlob1 {
@@ -35,11 +35,11 @@
 }
 
 .heading {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Value Card Styles - Dark Theme */
@@ -54,14 +54,14 @@
 
 .valueCard:hover {
   background: rgba(30, 41, 59, 0.6);
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 
     0 20px 40px -5px rgba(69, 115, 223, 0.2),
     0 10px 20px -5px rgba(0, 0, 0, 0.2);
 }
 
 .cardTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .cardSubtitle {
@@ -69,11 +69,11 @@
 }
 
 .cardDescription {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .benefitText {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .cardCta {
@@ -82,10 +82,10 @@
 }
 
 .cardCta:hover {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #ffffff;
   box-shadow: 0 10px 20px rgba(69, 115, 223, 0.3);
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 /* Trust Section - Dark Theme */
@@ -94,7 +94,7 @@
 }
 
 .trustLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .trustBadge {
@@ -105,7 +105,7 @@
 
 .trustBadge:hover {
   background: rgba(30, 41, 59, 0.8);
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 10px 20px rgba(69, 115, 223, 0.2);
 }
 

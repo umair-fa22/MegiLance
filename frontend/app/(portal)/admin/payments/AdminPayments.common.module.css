@@ -58,15 +58,15 @@
 .pageIndicator { padding: 8px 12px; font-size: 14px; }
 .actionBtnGroup { display: flex; gap: 6px; }
 .actionBtn { background: none; border: none; cursor: pointer; padding: 0; }
-.iconPrimary { color: #4573df; }
-.approveBtn { color: #27AE60; }
-.rejectBtn { color: #e81123; }
+.iconPrimary { color: var(--ml-blue); }
+.approveBtn { color: var(--ml-green); }
+.rejectBtn { color: var(--ml-red); }
 
 /* Status-specific badge colors */
-.badgePending { border-color: #F2C94C !important; color: #F2C94C !important; }
-.badgePaid { border-color: #27AE60 !important; color: #27AE60 !important; }
-.badgeApproved { border-color: #27AE60 !important; color: #27AE60 !important; }
-.badgeOverdue { border-color: #e81123 !important; color: #e81123 !important; }
-.badgeRejected { border-color: #e81123 !important; color: #e81123 !important; }
+.badgePending { border-color: var(--ml-yellow) !important; color: var(--ml-yellow) !important; }
+.badgePaid { border-color: var(--ml-green) !important; color: var(--ml-green) !important; }
+.badgeApproved { border-color: var(--ml-green) !important; color: var(--ml-green) !important; }
+.badgeOverdue { border-color: var(--ml-red) !important; color: var(--ml-red) !important; }
+.badgeRejected { border-color: var(--ml-red) !important; color: var(--ml-red) !important; }
 .badgeCancelled { border-color: #888 !important; color: #888 !important; }
-.badgeProcessed { border-color: #4573df !important; color: #4573df !important; }
+.badgeProcessed { border-color: var(--ml-blue) !important; color: var(--ml-blue) !important; }

@@ -10,12 +10,12 @@
 }
 
 .dropzone:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background-color: #edf2f7;
 }
 
 .dropzoneDragging {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background-color: #e6f2ff;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .progressBar {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .success {
@@ -41,5 +41,5 @@
 }
 
 .error {
-  color: #e81123;
+  color: var(--ml-red);
 }

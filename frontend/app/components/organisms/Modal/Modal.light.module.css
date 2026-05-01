@@ -57,19 +57,19 @@
 }
 
 .modalTitle {
-  background: linear-gradient(135deg, #111827 0%, #4573df 100%);
+  background: linear-gradient(135deg, #111827 0%, var(--ml-blue) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .closeButton {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .closeButton:hover {
   background: linear-gradient(135deg, rgba(69, 115, 223, 0.1), rgba(69, 115, 223, 0.05));
-  color: #4573df;
+  color: var(--ml-blue);
   box-shadow: 0 0 20px rgba(69, 115, 223, 0.2);
 }
 

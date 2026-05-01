@@ -1,22 +1,22 @@
 /* @AI-HINT: Light theme for Admin Categories */
-.container { background: #f8fafc; }
+.container { background: var(--bg-secondary-light); }
 .title { color: #1a1a2e; }
-.subtitle { color: #64748b; }
-.statCard { background: #ffffff; border: 1px solid #e8ecf1; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.subtitle { color: var(--color-text-secondary-light); }
+.statCard { background: var(--bg-primary-light); border: 1px solid #e8ecf1; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
 .statCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 .statValue { color: #1a1a2e; }
-.statLabel { color: #64748b; }
-.searchWrapper { background: #ffffff; border: 1px solid #e8ecf1; }
-.searchInput { background: #ffffff; color: #1a1a2e; }
-.searchInput::placeholder { color: #94a3b8; }
-.searchIcon { color: #94a3b8; }
-.categoriesList { background: #ffffff; border: 1px solid #e2e8f0; }
-.categoryRow:hover { background: #f8fafc; }
-.expandBtn:hover { background: #f1f5f9; }
-.expandBtn { color: #64748b; }
+.statLabel { color: var(--color-text-secondary-light); }
+.searchWrapper { background: var(--bg-primary-light); border: 1px solid #e8ecf1; }
+.searchInput { background: var(--bg-primary-light); color: #1a1a2e; }
+.searchInput::placeholder { color: var(--text-tertiary-light); }
+.searchIcon { color: var(--text-tertiary-light); }
+.categoriesList { background: var(--bg-primary-light); border: 1px solid var(--border-light); }
+.categoryRow:hover { background: var(--bg-secondary-light); }
+.expandBtn:hover { background: var(--bg-tertiary-light); }
+.expandBtn { color: var(--color-text-secondary-light); }
 .folderIcon { color: #f59e0b; }
 .categoryName { color: #1a1a2e; }
-.projectCount { color: #94a3b8; }
+.projectCount { color: var(--text-tertiary-light); }
 .label { color: #374151; }
-.textarea { background: #f1f5f9; color: #1a1a2e; border-color: #e2e8f0; }
-.textarea:focus { border-color: #4573df; }
+.textarea { background: var(--bg-tertiary-light); color: #1a1a2e; border-color: var(--border-light); }
+.textarea:focus { border-color: var(--ml-blue); }

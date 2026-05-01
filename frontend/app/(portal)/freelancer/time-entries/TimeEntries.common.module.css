@@ -261,7 +261,7 @@
   border-radius: 4px;
   font-size: 0.625rem;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--bg-primary-light);
   text-transform: uppercase;
 }
 

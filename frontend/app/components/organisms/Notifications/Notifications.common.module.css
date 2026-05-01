@@ -97,7 +97,7 @@
 }
 
 .unread {
-  border-left: 3px solid var(--color-primary, #4573df);
+  border-left: 3px solid var(--color-primary, var(--ml-blue));
 }
 
 .unreadDot {
@@ -107,7 +107,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--color-primary, #4573df);
+  background: var(--color-primary, var(--ml-blue));
 }
 
 /* Icon */

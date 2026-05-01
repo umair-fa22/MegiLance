@@ -1,45 +1,45 @@
 /* @AI-HINT: Webhooks page - dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .loading {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Stats */
 .statCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .statValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Empty State */
 .emptyState {
-  background-color: #1e293b;
-  color: #94a3b8;
+  background-color: var(--bg-secondary-dark);
+  color: var(--text-tertiary-dark);
 }
 
 /* Webhook Card */
 .webhookCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .webhookCard:hover {
@@ -48,12 +48,12 @@
 }
 
 .webhookName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .webhookUrl {
-  color: #94a3b8;
-  background-color: #0f172a;
+  color: var(--text-tertiary-dark);
+  background-color: var(--bg-primary-dark);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
 }
@@ -66,7 +66,7 @@
 
 .statusInactive {
   background-color: rgba(100, 116, 139, 0.2);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statusFailing {
@@ -76,7 +76,7 @@
 
 /* Events */
 .eventsLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .event {
@@ -85,12 +85,12 @@
 }
 
 .webhookMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Buttons */
 .primaryButton {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -99,7 +99,7 @@
 }
 
 .secondaryButton {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -117,7 +117,7 @@
 }
 
 .actionButton {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -131,32 +131,32 @@
 }
 
 .modalContent {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .modalHeader {
-  border-bottom-color: #334155;
-  color: #f1f5f9;
+  border-bottom-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .modalFooter {
-  border-top-color: #334155;
+  border-top-color: var(--border-dark);
 }
 
 .closeButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Form */
 .input {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .input:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2);
 }
 
@@ -170,16 +170,16 @@
 
 /* Events Grid */
 .categoryTitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .eventOption {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
 .eventOption:hover {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .eventSelected {
@@ -188,11 +188,11 @@
 
 /* Logs */
 .noLogs {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .logEntry {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .logSuccess {
@@ -206,11 +206,11 @@
 }
 
 .logEvent {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .logTime {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .toast {
@@ -225,5 +225,5 @@
 }
 
 .confirmText {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }

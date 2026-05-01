@@ -4,9 +4,9 @@
 
 /* Primary Variant - Dynamic Gradient with Enhanced Glow */
 .variant-primary {
-  background: linear-gradient(135deg, #4573df 0%, #5a7fff 40%, #6b93f5 70%, #5d7ce5 100%);
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #5a7fff 40%, var(--ml-blue-light) 70%, #5d7ce5 100%);
   background-size: 300% 300%;
-  color: #ffffff;
+  color: var(--bg-primary-light);
   box-shadow: 0 8px 24px rgba(69, 115, 223, 0.35),
               0 0 40px rgba(69, 115, 223, 0.12),
               inset 0 1px 2px rgba(255, 255, 255, 0.3),
@@ -49,7 +49,7 @@
 /* Secondary Variant - Glassmorphic Design */
 .variant-secondary {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.8) 100%);
-  color: #4573df;
+  color: var(--ml-blue);
   border: 2px solid rgba(69, 115, 223, 0.25);
   box-shadow: 0 8px 20px rgba(69, 115, 223, 0.08),
               inset 0 1px 0 rgba(255, 255, 255, 0.9),
@@ -119,7 +119,7 @@
 }
 
 .variant-outline:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background: linear-gradient(135deg, rgba(69, 115, 223, 0.08) 0%, rgba(107, 147, 245, 0.05) 100%);
   color: #2d3748;
   box-shadow: 0 8px 20px rgba(69, 115, 223, 0.12),
@@ -130,9 +130,9 @@
 
 /* Danger Variant - Action Red */
 .variant-danger {
-  background: linear-gradient(135deg, #e81123 0%, #f24f3d 50%, #f07060 100%);
+  background: linear-gradient(135deg, var(--ml-red) 0%, #f24f3d 50%, #f07060 100%);
   background-size: 300% 300%;
-  color: #ffffff;
+  color: var(--bg-primary-light);
   box-shadow: 0 8px 24px rgba(232, 17, 35, 0.35),
               0 0 40px rgba(232, 17, 35, 0.12),
               inset 0 1px 2px rgba(255, 255, 255, 0.2);
@@ -150,27 +150,27 @@
 
 /* Social Variant - Neutral & Friendly */
 .variant-social {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   color: #1a202c;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--border-light);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
   font-weight: 600;
 }
 
 .variant-social:hover {
-  background: #f8fafc;
+  background: var(--bg-secondary-light);
   border-color: #cbd5e1;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 /* Success Variant - Green Gradient */
 .variant-success {
-  background: linear-gradient(135deg, #27AE60 0%, #2ecc71 50%, #39d77a 100%);
+  background: linear-gradient(135deg, var(--ml-green) 0%, #2ecc71 50%, #39d77a 100%);
   background-size: 300% 300%;
-  color: #ffffff;
+  color: var(--bg-primary-light);
   box-shadow: 0 8px 24px rgba(39, 174, 96, 0.35),
               0 0 40px rgba(39, 174, 96, 0.12),
               inset 0 1px 2px rgba(255, 255, 255, 0.2);
@@ -188,7 +188,7 @@
 
 /* Warning Variant - Amber Gradient */
 .variant-warning {
-  background: linear-gradient(135deg, #F2C94C 0%, #f5d76e 50%, #f9e79f 100%);
+  background: linear-gradient(135deg, var(--ml-yellow) 0%, #f5d76e 50%, #f9e79f 100%);
   background-size: 300% 300%;
   color: #1a202c;
   box-shadow: 0 8px 24px rgba(242, 201, 76, 0.35),
@@ -209,7 +209,7 @@
 /* Link Variant - Minimal & Elegant */
 .variant-link {
   background: transparent;
-  color: #4573df;
+  color: var(--ml-blue);
   padding: 0;
   height: auto;
   position: relative;
@@ -226,7 +226,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #4573df, #6b93f5);
+  background: linear-gradient(90deg, var(--ml-blue), var(--ml-blue-light));
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

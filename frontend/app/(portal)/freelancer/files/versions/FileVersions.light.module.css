@@ -1,12 +1,12 @@
 /* @AI-HINT: File Versions page - light theme colors */
 
 .container {
-  background-color: #f8fafc;
-  color: #1e293b;
+  background-color: var(--bg-secondary-light);
+  color: var(--color-text-primary-light);
 }
 
 .loading {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .backButton {
@@ -19,15 +19,15 @@
 
 /* Empty State */
 .emptyIcon {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .emptyState h2 {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .emptyState p {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .browseButton {
@@ -42,7 +42,7 @@
 /* File Info Card */
 .fileInfoCard {
   background-color: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -51,15 +51,15 @@
 }
 
 .fileName {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .projectName {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .fileMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Compare Bar */
@@ -70,12 +70,12 @@
 }
 
 .clearButton {
-  background-color: #f1f5f9;
-  color: #64748b;
+  background-color: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .clearButton:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .compareButton {
@@ -90,7 +90,7 @@
 /* Version Timeline */
 .versionDot {
   background-color: #fff;
-  border-color: #94a3b8;
+  border-color: var(--text-tertiary-light);
 }
 
 .dotCurrent {
@@ -99,12 +99,12 @@
 }
 
 .versionLine {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .versionContent {
   background-color: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .currentVersion .versionContent {
@@ -118,11 +118,11 @@
 }
 
 .versionNumber {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .versionDate {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .checkmark {
@@ -137,20 +137,20 @@
 }
 
 .changeNote {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .versionMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .downloadButton {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .downloadButton:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .restoreButton {

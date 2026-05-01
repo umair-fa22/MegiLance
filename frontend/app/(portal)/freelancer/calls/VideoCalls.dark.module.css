@@ -1,40 +1,40 @@
 /* @AI-HINT: Video calls page - dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .loading {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Quick Actions */
 .quickAction {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
   color: #e2e8f0;
 }
 
 .quickAction:hover {
-  background-color: #334155;
-  border-color: #4573df;
+  background-color: var(--border-dark);
+  border-color: var(--ml-blue);
 }
 
 /* Tabs */
 .tabs {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .tab {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tab:hover {
@@ -42,20 +42,20 @@
 }
 
 .activeTab {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #60a5fa;
 }
 
 /* Empty State */
 .emptyState {
-  background-color: #1e293b;
-  color: #94a3b8;
+  background-color: var(--bg-secondary-dark);
+  color: var(--text-tertiary-dark);
 }
 
 /* Call Card */
 .callCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .callCard:hover {
@@ -64,7 +64,7 @@
 }
 
 .callTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .roomCode {
@@ -90,26 +90,26 @@
 
 .statusCancelled {
   background-color: rgba(100, 116, 139, 0.2);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Participants */
 .participantsLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .participant {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 
 .callMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Buttons */
 .primaryButton {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -118,7 +118,7 @@
 }
 
 .secondaryButton {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -145,7 +145,7 @@
 }
 
 .actionButton {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -159,31 +159,31 @@
 }
 
 .modalContent {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .modalHeader {
-  border-bottom-color: #334155;
+  border-bottom-color: var(--border-dark);
 }
 
 .modalFooter {
-  border-top-color: #334155;
+  border-top-color: var(--border-dark);
 }
 
 .closeButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Form */
 .input {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .input:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2);
 }
 

@@ -1,16 +1,16 @@
 /* @AI-HINT: Time Entries page - dark theme colors */
 
 .container {
-  background-color: #0f172a;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .startButton {
@@ -28,16 +28,16 @@
 }
 
 .summaryCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .summaryLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .summaryValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 /* Active Timer */
@@ -83,41 +83,41 @@
 
 /* Filters */
 .filterSelect {
-  background-color: #1e293b;
-  border: 1px solid #334155;
-  color: #f1f5f9;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .loading {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Empty State */
 .emptyState {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .emptyTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .emptyDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Entries */
 .dateHeader {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .dateDuration {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .entryCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .entryCard:hover {
@@ -126,11 +126,11 @@
 }
 
 .timeRange {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .duration {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .projectName {
@@ -138,12 +138,12 @@
 }
 
 .taskDesc {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .tag {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .billable {
@@ -151,41 +151,41 @@
 }
 
 .deleteBtn {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Modal */
 .modal {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .modalHeader {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .modalTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .closeButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .closeButton:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .label {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .input,
 .select,
 .textarea {
-  background-color: #0f172a;
-  border: 1px solid #334155;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .input:focus,
@@ -202,7 +202,7 @@
 }
 
 .addTagBtn {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -216,15 +216,15 @@
 }
 
 .checkboxText {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .modalFooter {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .cancelBtn {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -241,4 +241,4 @@
   background-color: #16a34a;
 }
 
-.confirmText { color: #94a3b8; }
+.confirmText { color: var(--text-tertiary-dark); }

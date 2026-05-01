@@ -1,30 +1,30 @@
 ﻿.title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .description {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .sectionTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .reviewItem {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .reviewValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .attachmentsList {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .termsSection {
-  border-top-color: #334155;
+  border-top-color: var(--border-dark);
 }
 
 .termsIcon {
@@ -33,5 +33,5 @@
 }
 
 .termsText {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }

@@ -2,27 +2,27 @@
 
 .bottomNav {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(249, 250, 251, 0.92) 100%);
-  border-top-color: #e2e8f0;
+  border-top-color: var(--border-light);
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .tabItem {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .tabItemActive {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .tabLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .tabLabelActive {
-  color: #4573df;
+  color: var(--ml-blue);
   font-weight: 600;
 }
 
 .activeIndicator {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
 }

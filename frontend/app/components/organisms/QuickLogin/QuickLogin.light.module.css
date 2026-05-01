@@ -7,17 +7,17 @@
 }
 
 .footer {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .toggleButtonOpen {
-  background-color: #f1f5f9;
-  color: #64748b;
+  background-color: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .toggleButtonClosed {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .adminButton {
@@ -57,9 +57,9 @@
 }
 
 .toastSuccess {
-  background-color: #27AE60;
+  background-color: var(--ml-green);
 }
 
 .toastError {
-  background-color: #e81123;
+  background-color: var(--ml-red);
 }

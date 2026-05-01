@@ -9,7 +9,7 @@
 }
 
 .timeRangeTrigger {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border-color: #cbd5e1;
   color: #374151;
 }
@@ -17,12 +17,12 @@
 .metricCard,
 .chartCard,
 .reviewsCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .cardTitle {
-  color: #64748b; /* Muted gray for titles */
+  color: var(--color-text-secondary-light); /* Muted gray for titles */
 }
 
 .cardMetric {
@@ -30,20 +30,20 @@
 }
 
 .cardMetricPositive {
-  color: #27AE60;
+  color: var(--ml-green);
 }
 
 .cardDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .reviewItem {
   background-color: #f9fafb;
-  border: 1px solid #f1f5f9;
+  border: 1px solid var(--bg-tertiary-light);
 }
 
 .reviewItem:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .reviewUser {

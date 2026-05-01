@@ -1,10 +1,10 @@
 /* @AI-HINT: Light theme styles for gigs page loading spinner */
 
 .loadingWrapper {
-  background: #f8fafc;
+  background: var(--bg-secondary-light);
 }
 
 .loadingSpinner {
-  border-color: #e2e8f0;
-  border-top-color: #4573df;
+  border-color: var(--border-light);
+  border-top-color: var(--ml-blue);
 }

@@ -110,7 +110,7 @@
 }
 
 .rangeButtonActive {
-  color: #ffffff;
+  color: var(--bg-primary-light);
   background: var(--color-primary-default);
   border-color: var(--color-primary-default);
 }

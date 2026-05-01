@@ -1,105 +1,105 @@
 /* @AI-HINT: Skill Analyzer – light theme colors */
 
-.container { background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%); color: #1a1f36; }
-.headerBadge { background: rgba(69,115,223,0.1); color: #4573df; }
+.container { background: linear-gradient(135deg, var(--bg-secondary-light) 0%, #eef2ff 100%); color: #1a1f36; }
+.headerBadge { background: rgba(69,115,223,0.1); color: var(--ml-blue); }
 .title { color: #1a1f36; }
-.subtitle { color: #64748b; }
+.subtitle { color: var(--color-text-secondary-light); }
 
-.stepDot { background: #e2e8f0; color: #94a3b8; }
-.stepDotActive { background: #4573df; color: #fff; box-shadow: 0 0 0 4px rgba(69,115,223,0.15); }
-.stepDotCompleted { background: #27ae60; color: #fff; }
-.stepLabel { color: #94a3b8; }
-.stepLabelActive { color: #4573df; }
-.stepLine { background: #e2e8f0; }
-.stepLineActive { background: #27ae60; }
+.stepDot { background: var(--border-light); color: var(--text-tertiary-light); }
+.stepDotActive { background: var(--ml-blue); color: #fff; box-shadow: 0 0 0 4px rgba(69,115,223,0.15); }
+.stepDotCompleted { background: var(--ml-green); color: #fff; }
+.stepLabel { color: var(--text-tertiary-light); }
+.stepLabelActive { color: var(--ml-blue); }
+.stepLine { background: var(--border-light); }
+.stepLineActive { background: var(--ml-green); }
 
-.formCard { background: #fff; border-color: #e2e8f0; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+.formCard { background: #fff; border-color: var(--border-light); box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
 .formTitle { color: #1a1f36; }
-.formHint { color: #64748b; }
+.formHint { color: var(--color-text-secondary-light); }
 .label { color: #374151; }
-.labelHint { color: #94a3b8; }
-.textInput { background: #fafbfc; border-color: #e2e8f0; color: #1a1f36; }
-.textInput:focus { border-color: #4573df; box-shadow: 0 0 0 3px rgba(69,115,223,0.1); }
+.labelHint { color: var(--text-tertiary-light); }
+.textInput { background: #fafbfc; border-color: var(--border-light); color: #1a1f36; }
+.textInput:focus { border-color: var(--ml-blue); box-shadow: 0 0 0 3px rgba(69,115,223,0.1); }
 
-.searchIcon { color: #94a3b8; }
-.searchInput { background: #fafbfc; border-color: #e2e8f0; color: #1a1f36; }
-.searchInput:focus { border-color: #4573df; box-shadow: 0 0 0 3px rgba(69,115,223,0.1); }
+.searchIcon { color: var(--text-tertiary-light); }
+.searchInput { background: #fafbfc; border-color: var(--border-light); color: #1a1f36; }
+.searchInput:focus { border-color: var(--ml-blue); box-shadow: 0 0 0 3px rgba(69,115,223,0.1); }
 
-.categoryLabel { color: #64748b; }
-.skillChip { background: #f8fafc; border-color: #e2e8f0; color: #374151; }
-.skillChip:hover { border-color: #4573df; background: rgba(69,115,223,0.04); }
-.skillChipSelected { background: rgba(69,115,223,0.08); border-color: #4573df; color: #4573df; }
+.categoryLabel { color: var(--color-text-secondary-light); }
+.skillChip { background: var(--bg-secondary-light); border-color: var(--border-light); color: #374151; }
+.skillChip:hover { border-color: var(--ml-blue); background: rgba(69,115,223,0.04); }
+.skillChipSelected { background: rgba(69,115,223,0.08); border-color: var(--ml-blue); color: var(--ml-blue); }
 
-.expCard { background: #f8fafc; border-color: #e2e8f0; color: #374151; }
-.expCard:hover { border-color: #4573df; }
-.expCardSelected { background: rgba(69,115,223,0.08); border-color: #4573df; color: #4573df; }
-.expDesc { color: #64748b; }
+.expCard { background: var(--bg-secondary-light); border-color: var(--border-light); color: #374151; }
+.expCard:hover { border-color: var(--ml-blue); }
+.expCardSelected { background: rgba(69,115,223,0.08); border-color: var(--ml-blue); color: var(--ml-blue); }
+.expDesc { color: var(--color-text-secondary-light); }
 
-.tag { background: rgba(69,115,223,0.08); color: #4573df; }
+.tag { background: rgba(69,115,223,0.08); color: var(--ml-blue); }
 
 .processingContainer { color: #1a1f36; }
-.processingOrbInner { background: linear-gradient(135deg, #4573df, #7ba0f7); color: #fff; }
-.processingSubtitle { color: #64748b; }
-.processingStepCircle { background: rgba(69,115,223,0.1); color: #4573df; }
+.processingOrbInner { background: linear-gradient(135deg, var(--ml-blue), #7ba0f7); color: #fff; }
+.processingSubtitle { color: var(--color-text-secondary-light); }
+.processingStepCircle { background: rgba(69,115,223,0.1); color: var(--ml-blue); }
 
-.priceHero { background: linear-gradient(135deg, #4573df 0%, #6b91e8 100%); color: #fff; }
+.priceHero { background: linear-gradient(135deg, var(--ml-blue) 0%, #6b91e8 100%); color: #fff; }
 .priceHeroLabel { color: rgba(255,255,255,0.85); }
 .priceHeroValue { color: #fff; }
 .priceHeroMetaItem { color: rgba(255,255,255,0.8); }
 
-.resultCard { background: #fff; border-color: #e2e8f0; }
-.resultCardIcon { background: rgba(69,115,223,0.1); color: #4573df; }
+.resultCard { background: #fff; border-color: var(--border-light); }
+.resultCardIcon { background: rgba(69,115,223,0.1); color: var(--ml-blue); }
 .resultCardTitle { color: #1a1f36; }
 .miniTitle { color: #374151; }
-.calcRow { color: #374151; border-color: #f1f5f9; }
+.calcRow { color: #374151; border-color: var(--bg-tertiary-light); }
 
 /* Skill demand */
 .skillName { color: #1a1f36; }
-.demandBadge { background: rgba(128,128,128,0.1); color: #64748b; }
-.demand_hot { background: rgba(39,174,96,0.12); color: #27ae60; }
-.demand_high { background: rgba(69,115,223,0.12); color: #4573df; }
+.demandBadge { background: rgba(128,128,128,0.1); color: var(--color-text-secondary-light); }
+.demand_hot { background: rgba(39,174,96,0.12); color: var(--ml-green); }
+.demand_high { background: rgba(69,115,223,0.12); color: var(--ml-blue); }
 .demand_moderate { background: rgba(242,201,76,0.15); color: #c89d1b; }
-.demand_low { background: rgba(232,17,35,0.1); color: #e81123; }
-.skillBarFill { background: #4573df; }
-.skillMetaItem { color: #64748b; }
+.demand_low { background: rgba(232,17,35,0.1); color: var(--ml-red); }
+.skillBarFill { background: var(--ml-blue); }
+.skillMetaItem { color: var(--color-text-secondary-light); }
 
 /* Synergies */
-.synergyItem { background: #f8fafc; }
+.synergyItem { background: var(--bg-secondary-light); }
 .synergyName { color: #1a1f36; }
-.synergySkill { background: rgba(69,115,223,0.08); color: #4573df; }
-.synergyPlus { color: #94a3b8; }
-.synergyBonus { color: #27ae60; }
-.emptyMsg { color: #94a3b8; }
+.synergySkill { background: rgba(69,115,223,0.08); color: var(--ml-blue); }
+.synergyPlus { color: var(--text-tertiary-light); }
+.synergyBonus { color: var(--ml-green); }
+.emptyMsg { color: var(--text-tertiary-light); }
 
 /* Gaps */
-.gapItem { background: #f8fafc; border-left-color: #4573df; }
+.gapItem { background: var(--bg-secondary-light); border-left-color: var(--ml-blue); }
 .gapName { color: #1a1f36; }
-.gapRoi { background: rgba(39,174,96,0.1); color: #27ae60; }
-.gapReason { color: #64748b; }
-.gapMetaItem { color: #94a3b8; }
+.gapRoi { background: rgba(39,174,96,0.1); color: var(--ml-green); }
+.gapReason { color: var(--color-text-secondary-light); }
+.gapMetaItem { color: var(--text-tertiary-light); }
 
 /* Recommendations */
-.recItem { background: #f8fafc; }
+.recItem { background: var(--bg-secondary-light); }
 .recTitle { color: #1a1f36; }
-.recMsg { color: #64748b; }
-.recPriority { background: rgba(128,128,128,0.1); color: #64748b; }
-.priority_high { background: rgba(232,17,35,0.1); color: #e81123; }
+.recMsg { color: var(--color-text-secondary-light); }
+.recPriority { background: rgba(128,128,128,0.1); color: var(--color-text-secondary-light); }
+.priority_high { background: rgba(232,17,35,0.1); color: var(--ml-red); }
 .priority_medium { background: rgba(242,201,76,0.15); color: #c89d1b; }
-.priority_low { background: rgba(39,174,96,0.1); color: #27ae60; }
-.rec_synergy_completion { border-left-color: #4573df; }
-.rec_highest_roi { border-left-color: #27ae60; }
+.priority_low { background: rgba(39,174,96,0.1); color: var(--ml-green); }
+.rec_synergy_completion { border-left-color: var(--ml-blue); }
+.rec_highest_roi { border-left-color: var(--ml-green); }
 .rec_surging_leverage { border-left-color: #f39c12; }
-.rec_declining_warning { border-left-color: #e81123; }
+.rec_declining_warning { border-left-color: var(--ml-red); }
 .rec_career_growth { border-left-color: #9b59b6; }
 .rec_regional_opportunity { border-left-color: #1abc9c; }
 
-.navButtonBack { background: #f1f5f9; color: #374151; }
-.navButtonBack:hover { background: #e2e8f0; }
-.navButtonNext { background: #4573df; color: #fff; }
+.navButtonBack { background: var(--bg-tertiary-light); color: #374151; }
+.navButtonBack:hover { background: var(--border-light); }
+.navButtonNext { background: var(--ml-blue); color: #fff; }
 .navButtonNext:hover { background: #3b63c7; }
-.actionBtnPrimary { background: #4573df; color: #fff; }
+.actionBtnPrimary { background: var(--ml-blue); color: #fff; }
 .actionBtnPrimary:hover { background: #3b63c7; }
-.actionBtnSecondary { background: #f1f5f9; color: #374151; }
-.actionBtnSecondary:hover { background: #e2e8f0; }
+.actionBtnSecondary { background: var(--bg-tertiary-light); color: #374151; }
+.actionBtnSecondary:hover { background: var(--border-light); }
 
-.disclaimer { color: #94a3b8; border-color: #e2e8f0; }
+.disclaimer { color: var(--text-tertiary-light); border-color: var(--border-light); }

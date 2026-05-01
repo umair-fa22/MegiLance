@@ -1,19 +1,19 @@
 /* @AI-HINT: API Keys page - light theme colors */
 
 .container {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .loading {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .title {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Warning Banner */
@@ -25,28 +25,28 @@
 
 /* Stats */
 .statCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .statValue {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .statLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Empty State */
 .emptyState {
-  background-color: #f1f5f9;
-  color: #64748b;
+  background-color: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 /* Key Card */
 .keyCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -56,12 +56,12 @@
 }
 
 .keyName {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .keyPreview {
-  color: #64748b;
-  background-color: #f1f5f9;
+  color: var(--color-text-secondary-light);
+  background-color: var(--bg-tertiary-light);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
 }
@@ -78,13 +78,13 @@
 }
 
 .statusRevoked {
-  background-color: #f1f5f9;
-  color: #64748b;
+  background-color: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 /* Permissions */
 .permissionsLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .permission {
@@ -93,13 +93,13 @@
 }
 
 .keyMeta {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Buttons */
 .primaryButton {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .primaryButton:hover {
@@ -107,12 +107,12 @@
 }
 
 .secondaryButton {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #334155;
 }
 
 .secondaryButton:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .dangerButton {
@@ -125,21 +125,21 @@
 }
 
 .actionButton {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #334155;
 }
 
 .actionButton:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .copyButton {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #334155;
 }
 
 .copyButton:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 /* Modal */
@@ -148,21 +148,21 @@
 }
 
 .modalContent {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .modalHeader {
-  border-bottom-color: #e2e8f0;
-  color: #1e293b;
+  border-bottom-color: var(--border-light);
+  color: var(--color-text-primary-light);
 }
 
 .modalFooter {
-  border-top-color: #e2e8f0;
+  border-top-color: var(--border-light);
 }
 
 .closeButton {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Success Banner */
@@ -174,47 +174,47 @@
 
 /* Full Key Display */
 .fullKey {
-  background-color: #1e293b;
+  background-color: var(--color-text-primary-light);
   color: #22c55e;
 }
 
 /* Form */
 .input,
 .select {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
-  color: #1e293b;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--color-text-primary-light);
 }
 
 .input:focus,
 .select:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
 
 .input::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Permissions Grid */
 .permissionOption {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
   color: #334155;
 }
 
 .permissionOption:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .permissionSelected {
   background-color: #dbeafe;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .permDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
-.confirmText { color: #475569; }
+.confirmText { color: var(--text-secondary-light); }
 .toast { background: rgba(255,255,255,0.95); border: 1px solid rgba(39,174,96,0.3); color: #166534; }
 .toastError { border-color: rgba(232,17,35,0.3); color: #991b1b; }

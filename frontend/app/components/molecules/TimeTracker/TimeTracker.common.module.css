@@ -41,7 +41,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: var(--color-success, #27AE60);
+  background-color: var(--color-success, var(--ml-green));
   animation: pulse 2s infinite;
 }
 

@@ -1,6 +1,6 @@
 /* @AI-HINT: Light theme colors for Install component */
 .container {
-  background: linear-gradient(170deg, #f0f4ff 0%, #f1f5f9 40%, #faf8ff 100%);
+  background: linear-gradient(170deg, #f0f4ff 0%, var(--bg-tertiary-light) 40%, #faf8ff 100%);
 }
 
 .title {
@@ -8,7 +8,7 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .feature {
@@ -30,5 +30,5 @@
 }
 
 .featureDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }

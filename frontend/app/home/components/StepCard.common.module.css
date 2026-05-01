@@ -52,7 +52,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--color-primary, #4573df), var(--color-accent, #ff9800));
+  background: linear-gradient(135deg, var(--color-primary, var(--ml-blue)), var(--color-accent, var(--ml-orange)));
   box-shadow: 0 0 0 4px rgba(69, 115, 223, 0.2);
   transition: transform 0.3s ease,
     box-shadow 0.3s ease,
@@ -98,15 +98,15 @@
     color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
     opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   background: rgba(69, 115, 223, 0.1);
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
   position: relative;
   z-index: 3;
 }
 
 .stepCard:hover .iconWrapper {
   transform: scale(1.1) rotate(10deg);
-  background: var(--color-primary, #4573df);
-  color: #ffffff;
+  background: var(--color-primary, var(--ml-blue));
+  color: var(--bg-primary-light);
   box-shadow: 0 10px 20px rgba(69, 115, 223, 0.3);
 }
 

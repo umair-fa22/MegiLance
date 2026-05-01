@@ -1,12 +1,12 @@
 /* Advanced Search - Light Theme */
 
 .container {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   color: #2d3748;
 }
 
 .searchInput {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #cbd5e0;
   color: #2d3748;
 }
@@ -16,30 +16,30 @@
 }
 
 .filterToggle {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #cbd5e0;
   color: #2d3748;
 }
 
 .filterToggle:hover {
   background: #f7fafc;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .filtersPanel {
   background: #f7fafc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .suggestionsDropdown {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #cbd5e0;
 }
 
 .suggestionItem {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   color: #2d3748;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .suggestionItem:hover {
@@ -53,59 +53,59 @@
 
 .savedSearches {
   background: #f7fafc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .savedSearchItem {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #cbd5e0;
   color: #2d3748;
 }
 
 .savedSearchItem:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .searchIcon {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .filterCountBadge {
-  background: #4573df;
-  color: #ffffff;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .filterInput,
 .filterInputFull {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #cbd5e0;
   color: #2d3748;
 }
 
 .filterInput:focus,
 .filterInputFull:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 .dialogInner {
-  background: #ffffff;
+  background: var(--bg-primary-light);
 }
 
 .dialogInput {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #cbd5e0;
   color: #2d3748;
 }
 
 .dialogInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 .trendingSection {
   background: #f7fafc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .trendingSectionTitle {
@@ -113,20 +113,20 @@
 }
 
 .trendingColumnTitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .trendingItem {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #2d3748;
 }
 
 .trendingItem:hover {
-  background: #ffffff;
-  border-color: #4573df;
+  background: var(--bg-primary-light);
+  border-color: var(--ml-blue);
 }
 
 .trendingBadge {
   background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
 }

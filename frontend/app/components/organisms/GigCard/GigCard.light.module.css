@@ -1,7 +1,7 @@
 ﻿/* @AI-HINT: Light theme colors for GigCard component */
 .theme {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -12,7 +12,7 @@
 
 .proLabel {
   background-color: #1dbf73;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .levelBadge {
@@ -22,7 +22,7 @@
 
 .levelBadge.bronze {
   background-color: #cd7f32;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .levelBadge.silver {
@@ -42,11 +42,11 @@
 
 .favoriteButton {
   background-color: rgba(255, 255, 255, 0.95);
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .favoriteButton:hover {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   color: #ef4444;
 }
 
@@ -59,11 +59,11 @@
 }
 
 .sellerName:hover {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .sellerLevel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .sellerLevel.topRated {
@@ -75,7 +75,7 @@
 }
 
 .title:hover {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .ratingRow {
@@ -87,15 +87,15 @@
 }
 
 .ratingCount {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .footer {
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--border-light);
 }
 
 .priceLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .priceValue {
@@ -103,7 +103,7 @@
 }
 
 .tag {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #4b5563;
 }
 
@@ -112,17 +112,17 @@
 }
 
 .quickActionBtn {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .quickActionBtn.secondary {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   color: #1f2937;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .sellerAvatarFallback {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }

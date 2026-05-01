@@ -1,22 +1,22 @@
 ﻿.container {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .description {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .labelRow {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .tipButton {
-  background-color: #1e293b;
-  color: #94a3b8;
+  background-color: var(--bg-secondary-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .tipButton:hover {
@@ -25,8 +25,8 @@
 }
 
 .tipsCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .tipsTitle {
@@ -34,38 +34,38 @@
 }
 
 .tipsList {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .templatesCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .templatesTitle {
-  color: #ff9800;
+  color: var(--ml-orange);
 }
 
 .templateItem {
-  background-color: #0f172a;
-  border-color: #334155;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
 }
 
 .templateItem:hover {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border-color: #6b8de6;
 }
 
 .templateName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .templatePreview {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .charProgress {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .charProgressFill {
@@ -73,25 +73,25 @@
 }
 
 .charCount {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .pricingSection {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .sectionTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .estimatedCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .estimatedRow {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .estimatedTotal {
@@ -99,11 +99,11 @@
 }
 
 .estimatedBreakdown {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .hint {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .error {

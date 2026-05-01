@@ -1,13 +1,13 @@
 ﻿/* @AI-HINT: Light theme styles for enterprise PortalFooter */
 
 .footer {
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--border-light);
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(249, 250, 251, 0.3) 100%);
   box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.02);
 }
 
 .statusText {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .copyright {
@@ -15,25 +15,25 @@
 }
 
 .versionBadge {
-  background: linear-gradient(135deg, #f1f5f9 0%, #e8eef8 100%);
-  color: #64748b;
+  background: linear-gradient(135deg, var(--bg-tertiary-light) 0%, #e8eef8 100%);
+  color: var(--color-text-secondary-light);
   box-shadow: 0 1px 3px rgba(69, 115, 223, 0.1);
   border: 1px solid rgba(69, 115, 223, 0.1);
 }
 
 .shortcutHint {
-  background: linear-gradient(135deg, #f1f5f9 0%, #e8eef8 100%);
-  color: #64748b;
+  background: linear-gradient(135deg, var(--bg-tertiary-light) 0%, #e8eef8 100%);
+  color: var(--color-text-secondary-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .link {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .link:hover {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .separator {

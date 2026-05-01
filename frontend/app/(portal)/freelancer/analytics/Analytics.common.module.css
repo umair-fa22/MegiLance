@@ -101,10 +101,10 @@
   flex-shrink: 0;
 }
 
-.kpiIcon_blue { background: rgba(69,115,223,0.12); color: #4573df; }
+.kpiIcon_blue { background: rgba(69,115,223,0.12); color: var(--ml-blue); }
 .kpiIcon_purple { background: rgba(139,92,246,0.12); color: #8b5cf6; }
-.kpiIcon_green { background: rgba(39,174,96,0.12); color: #27ae60; }
-.kpiIcon_orange { background: rgba(255,152,0,0.12); color: #ff9800; }
+.kpiIcon_green { background: rgba(39,174,96,0.12); color: var(--ml-green); }
+.kpiIcon_orange { background: rgba(255,152,0,0.12); color: var(--ml-orange); }
 .kpiIcon_teal { background: rgba(20,184,166,0.12); color: #14b8a6; }
 .kpiIcon_amber { background: rgba(245,158,11,0.12); color: #f59e0b; }
 
@@ -145,7 +145,7 @@
 
 .trendUp { color: #16a34a; background: rgba(22,163,74,0.1); }
 .trendDown { color: #dc2626; background: rgba(220,38,38,0.1); }
-.trendNeutral { color: #94a3b8; background: rgba(148,163,184,0.1); }
+.trendNeutral { color: var(--text-tertiary-light); background: rgba(148,163,184,0.1); }
 
 /* ── Performance Row ── */
 .perfRow {
@@ -164,8 +164,8 @@
   border: 1.5px solid;
 }
 
-.perfIconGreen { color: #27ae60; }
-.perfIconBlue { color: #4573df; }
+.perfIconGreen { color: var(--ml-green); }
+.perfIconBlue { color: var(--ml-blue); }
 .perfIconPurple { color: #8b5cf6; }
 
 .perfValue {
@@ -262,8 +262,8 @@
   transition: width 0.6s ease;
 }
 
-.goalBarProgress { background: #4573df; }
-.goalBarComplete { background: #27ae60; }
+.goalBarProgress { background: var(--ml-blue); }
+.goalBarComplete { background: var(--ml-green); }
 
 .goalMeta {
   font-size: 12px;
@@ -304,7 +304,7 @@
 .skillBar {
   height: 100%;
   border-radius: 3px;
-  background: linear-gradient(90deg, #4573df, #8b5cf6);
+  background: linear-gradient(90deg, var(--ml-blue), #8b5cf6);
   transition: width 0.5s ease;
 }
 

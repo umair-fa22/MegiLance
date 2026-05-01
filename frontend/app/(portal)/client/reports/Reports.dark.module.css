@@ -1,13 +1,13 @@
 /* @AI-HINT: Dark theme for Client Reports page */
 .container { background: #0f1419; }
-.title { color: #f1f5f9; }
-.subtitle { color: #94a3b8; }
-.dateSelect { background: #1a1f2e; color: #f1f5f9; border-color: #1e293b; }
-.statCard { background: #1a1f2e; border: 1px solid #1e293b; }
-.statValue { color: #f1f5f9; }
-.chartCard { background: #1a1f2e; border: 1px solid #1e293b; }
-.chartTitle { color: #f1f5f9; }
-.bar { background: linear-gradient(180deg, #4573df, #6b8cff); }
-.reportsSection { background: #1a1f2e; border: 1px solid #1e293b; }
-.sectionTitle { color: #f1f5f9; }
+.title { color: var(--color-text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
+.dateSelect { background: #1a1f2e; color: var(--color-text-primary-dark); border-color: var(--bg-secondary-dark); }
+.statCard { background: #1a1f2e; border: 1px solid var(--bg-secondary-dark); }
+.statValue { color: var(--color-text-primary-dark); }
+.chartCard { background: #1a1f2e; border: 1px solid var(--bg-secondary-dark); }
+.chartTitle { color: var(--color-text-primary-dark); }
+.bar { background: linear-gradient(180deg, var(--ml-blue), #6b8cff); }
+.reportsSection { background: #1a1f2e; border: 1px solid var(--bg-secondary-dark); }
+.sectionTitle { color: var(--color-text-primary-dark); }
 .reportCard { background: #141922; }

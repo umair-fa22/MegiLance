@@ -1,7 +1,7 @@
 /* Wizard Container - Light Theme */
 
 .container {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   color: #2d3748;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .progressBar {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .stepsIndicator::before {
@@ -22,15 +22,15 @@
 }
 
 .stepCircle {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #cbd5e0;
   color: #4a5568;
 }
 
 .stepItemCompleted .stepCircle {
-  background: #27AE60;
-  border-color: #27AE60;
-  color: #ffffff;
+  background: var(--ml-green);
+  border-color: var(--ml-green);
+  color: var(--bg-primary-light);
 }
 
 .stepLabel {
@@ -38,15 +38,15 @@
 }
 
 .stepItemActive .stepLabel {
-  color: #4573df;
+  color: var(--ml-blue);
   font-weight: 600;
 }
 
 .contentArea {
   background: #f7fafc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .navigation {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }

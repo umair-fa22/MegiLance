@@ -79,7 +79,7 @@
 }
 
 .toastClose:focus-visible {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
   /* Fallback */
   box-shadow: 0 0 0 3px rgba(69,115,223,0.28);

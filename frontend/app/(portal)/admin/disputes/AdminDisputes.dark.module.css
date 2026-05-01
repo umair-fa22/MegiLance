@@ -1,32 +1,32 @@
 /* @AI-HINT: Dark theme for Admin Disputes */
 
 .container { background: transparent; }
-.title { color: #f8fafc; }
-.subtitle { color: #94a3b8; }
+.title { color: var(--text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
 
 /* Stats */
-.statCard { background: #0f172a; border: 1px solid #2a2d3e; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+.statCard { background: var(--bg-primary-dark); border: 1px solid #2a2d3e; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
 .statCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-.statValue { color: #f8fafc; }
-.statLabel { color: #94a3b8; }
+.statValue { color: var(--text-primary-dark); }
+.statLabel { color: var(--text-tertiary-dark); }
 
 /* Toolbar */
-.toolbar { background: #0f172a; border: 1px solid #2a2d3e; }
-.searchInput { background: #0f1117; color: #f8fafc; border-color: #2a2d3e; }
+.toolbar { background: var(--bg-primary-dark); border: 1px solid #2a2d3e; }
+.searchInput { background: #0f1117; color: var(--text-primary-dark); border-color: #2a2d3e; }
 .searchIcon { color: #6b7280; }
-.filterTab { background: transparent; color: #94a3b8; }
-.filterTab:hover { background: #2a2d3e; color: #cbd5e1; }
-.filterTabActive { background: #4573df !important; color: #fff !important; }
+.filterTab { background: transparent; color: var(--text-tertiary-dark); }
+.filterTab:hover { background: #2a2d3e; color: var(--text-secondary-dark); }
+.filterTabActive { background: var(--ml-blue) !important; color: #fff !important; }
 
 /* Dispute Cards */
-.disputeCard { background: #0f172a; border: 1px solid #2a2d3e; }
+.disputeCard { background: var(--bg-primary-dark); border: 1px solid #2a2d3e; }
 .disputeCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
 .disputeId { color: #6b8de6; }
-.disputeName { color: #f8fafc; }
-.disputeDesc { color: #94a3b8; }
+.disputeName { color: var(--text-primary-dark); }
+.disputeDesc { color: var(--text-tertiary-dark); }
 .metaItem { color: #6b7280; }
 
 /* Detail */
-.detailLabel { color: #94a3b8; }
-.detailValue { color: #f8fafc; }
-.detailText { color: #cbd5e1; }
+.detailLabel { color: var(--text-tertiary-dark); }
+.detailValue { color: var(--text-primary-dark); }
+.detailText { color: var(--text-secondary-dark); }

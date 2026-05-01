@@ -1,77 +1,77 @@
 /* AI-HINT: Dark theme overrides for Client Post Job page. */
 
 .themeWrapper {
-  background: #0f172a;
-  color: #f8fafc;
+  background: var(--bg-primary-dark);
+  color: var(--text-primary-dark);
 }
 
 .section {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .sectionTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .input,
 .select,
 .textarea {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #334155;
-  color: #f8fafc;
+  border: 1px solid var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .help {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .button.primary {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .button.secondary {
   background: rgba(255, 255, 255, 0.06);
-  color: #cbd5e1;
-  border: 1px solid #334155;
+  color: var(--text-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .main {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .footer {
-  border-top-color: #334155;
+  border-top-color: var(--border-dark);
   background-color: rgba(17, 24, 39, 0.7);
 }
 
 /* Result Card */
 .centered_container {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .result_card {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .result_title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .result_message {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .success_icon {
@@ -83,13 +83,13 @@
 }
 
 .progressLabel {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .savedIndicator {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #4573df 0%, #3b82f6 100%);
+  background: linear-gradient(90deg, var(--ml-blue) 0%, #3b82f6 100%);
 }

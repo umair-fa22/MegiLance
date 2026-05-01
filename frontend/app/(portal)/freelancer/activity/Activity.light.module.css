@@ -1,26 +1,26 @@
 /* @AI-HINT: Activity Feed - light theme colors */
 
 .container {
-  background: linear-gradient(170deg, #f0f4ff 0%, #ffffff 40%, #faf8ff 100%);
-  color: #0f172a;
+  background: linear-gradient(170deg, #f0f4ff 0%, var(--bg-primary-light) 40%, #faf8ff 100%);
+  color: var(--text-primary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .refreshBtn {
-  background-color: #f1f5f9;
-  color: #64748b;
+  background-color: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .refreshBtn:hover {
-  background-color: #e2e8f0;
-  color: #0f172a;
+  background-color: var(--border-light);
+  color: var(--text-primary-light);
 }
 
 /* Stats Bar */
@@ -47,50 +47,50 @@
 }
 
 .statValue {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Search */
 .searchBox {
   background: rgba(255, 255, 255, 0.8);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .searchBox:focus-within {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
 
 .searchInput {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .searchInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Time Period */
 .timePeriod {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .timeBtn {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
   background-color: transparent;
 }
 
 .timeBtn:hover {
-  color: #0f172a;
-  background-color: #e2e8f0;
+  color: var(--text-primary-light);
+  background-color: var(--border-light);
 }
 
 .timeBtnActive {
-  background-color: #ffffff;
-  color: #0f172a;
+  background-color: var(--bg-primary-light);
+  color: var(--text-primary-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
@@ -104,26 +104,26 @@
 
 .filterButton {
   background-color: transparent;
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .filterButton:hover {
-  background-color: #f1f5f9;
-  color: #0f172a;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-primary-light);
 }
 
 .filterActive {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .filterActive:hover {
   background-color: #3b62c4;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .loading {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Empty State */
@@ -131,25 +131,25 @@
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .emptyTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .emptyDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Timeline */
 .dateHeader {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .dateCount {
-  background-color: #f1f5f9;
-  color: #64748b;
+  background-color: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 /* Activity Card */
@@ -171,42 +171,42 @@
 }
 
 .connector {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .activityIcon {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .typeBadge {
-  background-color: #f8fafc;
-  color: #475569;
+  background-color: var(--bg-secondary-light);
+  color: var(--text-secondary-light);
 }
 
 .activityTime {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .activityTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .activityDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Metadata */
 .metadata {
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .metaKey {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .metaValue {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 /* Actions */
@@ -219,11 +219,11 @@
 }
 
 .expandBtn {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .expandBtn:hover {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .markReadBtn {
@@ -239,16 +239,16 @@
 }
 
 .showingCount {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Toast */
 .toast {
-  background-color: #1e293b;
-  color: #ffffff;
+  background-color: var(--color-text-primary-light);
+  color: var(--bg-primary-light);
 }
 
 .toastError {
   background-color: #dc2626;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }

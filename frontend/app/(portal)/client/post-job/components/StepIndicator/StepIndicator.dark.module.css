@@ -1,8 +1,8 @@
 /* AI-HINT: Dark theme styles for the StepIndicator component. */
 
 .indicator {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .indicator.completed {
@@ -27,15 +27,15 @@
 }
 
 .stepName {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .stepNameActive {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .progressBarContainer {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .progressBar {

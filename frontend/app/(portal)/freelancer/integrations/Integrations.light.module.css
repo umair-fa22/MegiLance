@@ -1,51 +1,51 @@
 /* @AI-HINT: Integrations page - light theme colors */
 
 .container {
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: var(--bg-secondary-light);
+  color: var(--text-primary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .categories {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .categoryBtn {
   background-color: transparent;
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .categoryBtn:hover {
-  background-color: #f1f5f9;
-  color: #0f172a;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-primary-light);
 }
 
 .categoryActive {
   background-color: #3b82f6;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .categoryActive:hover {
   background-color: #2563eb;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .loading {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Card */
 .integrationCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .integrationCard:hover {
@@ -58,16 +58,16 @@
 }
 
 .integrationName {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .integrationDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .scope {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .syncInfo {
@@ -84,7 +84,7 @@
 
 .connectBtn {
   background-color: #3b82f6;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .connectBtn:hover {
@@ -92,21 +92,21 @@
 }
 
 .syncBtn {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .syncBtn:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .settingsBtn {
-  background-color: #f1f5f9;
-  color: #64748b;
+  background-color: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .settingsBtn:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .disconnectBtn {
@@ -120,33 +120,33 @@
 
 /* Modal */
 .modal {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .modalHeader {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .modalTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .closeButton {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .closeButton:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .sectionTitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .permissionItem {
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: var(--bg-secondary-light);
+  color: var(--text-primary-light);
 }
 
 .infoGrid {
@@ -154,28 +154,28 @@
 }
 
 .infoItem {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .infoLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .infoValue {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .modalFooter {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .closeBtn {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .closeBtn:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .toast {

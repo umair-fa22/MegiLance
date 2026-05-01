@@ -5,11 +5,11 @@
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .pendingBadge {
@@ -23,7 +23,7 @@
 
 .tab {
   background: transparent;
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tab:hover {
@@ -32,7 +32,7 @@
 
 .tabActive {
   background: rgba(255, 255, 255, 0.1);
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .filterBar {
@@ -42,27 +42,27 @@
 .searchInput {
   background: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.1);
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .searchInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2);
 }
 
 .select {
   background: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.1);
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .checkbox {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .emptyState {
   background: rgba(255, 255, 255, 0.03);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .skillCard {
@@ -76,7 +76,7 @@
 }
 
 .skillName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .featuredBadge {
@@ -85,7 +85,7 @@
 }
 
 .skillDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .skillMeta {
@@ -94,7 +94,7 @@
 
 .iconBtn {
   background: rgba(255, 255, 255, 0.05);
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .iconBtn:hover {
@@ -111,11 +111,11 @@
 }
 
 .categoryName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .categoryDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .categoryMeta {
@@ -133,12 +133,12 @@
 
 .modalHeader {
   border-color: rgba(255, 255, 255, 0.05);
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .closeBtn {
   background: rgba(255, 255, 255, 0.05);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .closeBtn:hover {
@@ -149,12 +149,12 @@
 .textarea {
   background: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.1);
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .input:focus,
 .textarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2);
 }
 
@@ -167,7 +167,7 @@
 }
 
 .confirmText {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .toast {

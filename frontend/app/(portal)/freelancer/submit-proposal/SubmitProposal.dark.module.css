@@ -1,25 +1,25 @@
 ﻿.main {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .progressBar {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #6b8de6, #ff9800);
+  background: linear-gradient(90deg, #6b8de6, var(--ml-orange));
 }
 
 .headerTop {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .savedIndicator {
@@ -28,35 +28,35 @@
 }
 
 .estimatedTotal {
-  background-color: #0f172a;
-  border: 1px solid #334155;
-  color: #f8fafc;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .footer {
-  border-top-color: #334155;
+  border-top-color: var(--border-dark);
 }
 
 .footerLeft,
 .footerRight {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .result_card {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .result_title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .result_message {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .result_actions {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .success_icon {

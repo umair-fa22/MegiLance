@@ -3,14 +3,14 @@
 }
 
 .sliderRange {
-  background-color: #4573df; /* MegiLance Blue */
+  background-color: var(--ml-blue); /* MegiLance Blue */
 }
 
 .sliderThumb {
-  background-color: #ffffff;
-  border: 2px solid #4573df; /* MegiLance Blue */
+  background-color: var(--bg-primary-light);
+  border: 2px solid var(--ml-blue); /* MegiLance Blue */
 }
 
 .sliderThumb:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }

@@ -4,7 +4,7 @@
 }
 
 .statValue {
-  color: #27AE60;
+  color: var(--ml-green);
 }
 
 .statLabel {

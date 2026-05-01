@@ -1,33 +1,33 @@
 /* @AI-HINT: Dark theme for Admin Refunds */
 
 .container { background: transparent; }
-.title { color: #f8fafc; }
-.subtitle { color: #94a3b8; }
+.title { color: var(--text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
 
 /* Stats */
-.statCard { background: #0f172a; border: 1px solid #2a2d3e; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+.statCard { background: var(--bg-primary-dark); border: 1px solid #2a2d3e; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
 .statCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-.statValue { color: #f8fafc; }
-.statLabel { color: #94a3b8; }
+.statValue { color: var(--text-primary-dark); }
+.statLabel { color: var(--text-tertiary-dark); }
 
 /* Toolbar */
-.toolbar { background: #0f172a; border: 1px solid #2a2d3e; }
-.searchInput { background: #0f1117; color: #f8fafc; border-color: #2a2d3e; }
+.toolbar { background: var(--bg-primary-dark); border: 1px solid #2a2d3e; }
+.searchInput { background: #0f1117; color: var(--text-primary-dark); border-color: #2a2d3e; }
 .searchIcon { color: #6b7280; }
-.filterTab { background: transparent; color: #94a3b8; }
-.filterTab:hover { background: #2a2d3e; color: #cbd5e1; }
-.filterTabActive { background: #4573df !important; color: #fff !important; }
+.filterTab { background: transparent; color: var(--text-tertiary-dark); }
+.filterTab:hover { background: #2a2d3e; color: var(--text-secondary-dark); }
+.filterTabActive { background: var(--ml-blue) !important; color: #fff !important; }
 
 /* Refund Cards */
-.refundCard { background: #0f172a; border: 1px solid #2a2d3e; }
+.refundCard { background: var(--bg-primary-dark); border: 1px solid #2a2d3e; }
 .refundCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
 .userAvatar { background: rgba(69, 115, 223, 0.15); color: #6b8de6; }
-.userName { color: #f8fafc; }
+.userName { color: var(--text-primary-dark); }
 .refundDate { color: #6b7280; }
-.amountValue { color: #f8fafc; }
-.refundReason { color: #94a3b8; }
-.contractRef { background: #2a2d3e; color: #94a3b8; }
+.amountValue { color: var(--text-primary-dark); }
+.refundReason { color: var(--text-tertiary-dark); }
+.contractRef { background: #2a2d3e; color: var(--text-tertiary-dark); }
 
 /* Detail Modal */
-.detailLabel { color: #94a3b8; }
-.detailValue { color: #f8fafc; }
+.detailLabel { color: var(--text-tertiary-dark); }
+.detailValue { color: var(--text-primary-dark); }

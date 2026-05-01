@@ -1,51 +1,51 @@
 /* @AI-HINT: Proposal templates light theme colors */
 
 .container {
-  background-color: #f8fafc;
-  color: #1e293b;
+  background-color: var(--bg-secondary-light);
+  color: var(--color-text-primary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Stats */
 .statCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .statInfo strong {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .statInfo span {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Empty */
 .emptyCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .emptyCard h3 {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .emptyCard p {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Template Cards */
 .templateCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -55,82 +55,82 @@
 
 .defaultBadge {
   background: #f59e0b;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .cardHeader h3 {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .useCount {
-  background: #f1f5f9;
-  color: #64748b;
+  background: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .cardDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .coverPreview {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .coverPreview h4 {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .coverPreview p {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .tag {
   background: #f0f4ff;
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .cardActions {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 /* Modal */
 .modal {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .modal h2 {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .input {
-  background: #ffffff;
-  border-color: #e2e8f0;
-  color: #0f172a;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .input:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 /* Preview */
 .previewContent {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  color: #1e293b;
+  background: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
+  color: var(--color-text-primary-light);
 }
 
 .previewMilestone {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .previewMilestone strong {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .previewMilestone span {
-  color: #4573df;
+  color: var(--ml-blue);
   font-weight: 600;
 }
 

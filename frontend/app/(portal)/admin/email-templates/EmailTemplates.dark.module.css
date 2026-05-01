@@ -1,20 +1,20 @@
 /* @AI-HINT: Admin Email Templates - dark theme */
-.container { background: #0f172a; }
+.container { background: var(--bg-primary-dark); }
 .title { color: #f0f0f0; }
-.subtitle { color: #94a3b8; }
-.searchInput { background: #1e293b; border-color: #334155; color: #f0f0f0; }
+.subtitle { color: var(--text-tertiary-dark); }
+.searchInput { background: var(--bg-secondary-dark); border-color: var(--border-dark); color: #f0f0f0; }
 .searchInput::placeholder { color: #6b7280; }
-.filterBtn { border-color: #334155; color: #94a3b8; background: #1e293b; }
-.filterBtn:hover { background: #1e293b; }
-.filterBtnActive { background: #4573df; color: #fff; border-color: #4573df; }
-.templateCard { background: #1e293b; border-color: #334155; }
+.filterBtn { border-color: var(--border-dark); color: var(--text-tertiary-dark); background: var(--bg-secondary-dark); }
+.filterBtn:hover { background: var(--bg-secondary-dark); }
+.filterBtnActive { background: var(--ml-blue); color: #fff; border-color: var(--ml-blue); }
+.templateCard { background: var(--bg-secondary-dark); border-color: var(--border-dark); }
 .templateCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
 .cardTitle { color: #f0f0f0; }
 .cardType { background: rgba(69,115,223,0.15); color: #6b9aef; }
-.cardSubject { color: #cbd5e1; }
+.cardSubject { color: var(--text-secondary-dark); }
 .cardMeta { color: #6b7280; }
-.previewContent { background: #1e293b; }
+.previewContent { background: var(--bg-secondary-dark); }
 .previewTitle { color: #f0f0f0; }
-.previewBody { border-color: #334155; background: #111; color: #cbd5e1; }
+.previewBody { border-color: var(--border-dark); background: #111; color: var(--text-secondary-dark); }
 .emptyTitle { color: #f0f0f0; }
-.emptyDesc { color: #94a3b8; }
+.emptyDesc { color: var(--text-tertiary-dark); }

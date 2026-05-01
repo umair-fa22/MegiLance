@@ -1,7 +1,7 @@
 /* @AI-HINT: Dark theme styles for the main settings layout. */
 
 .container {
-  background: linear-gradient(170deg, #0f172a 0%, #0f172a 40%, #0f1225 100%);
+  background: linear-gradient(170deg, var(--bg-primary-dark) 0%, var(--bg-primary-dark) 40%, #0f1225 100%);
 }
 
 .header {
@@ -9,11 +9,11 @@
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .sidebar {

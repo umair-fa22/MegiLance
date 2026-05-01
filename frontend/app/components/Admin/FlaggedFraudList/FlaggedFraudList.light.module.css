@@ -7,17 +7,17 @@
 }
 
 .description {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .filterToolbar {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .itemCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
@@ -31,7 +31,7 @@
 }
 
 .identifier svg {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .reason {
@@ -39,20 +39,20 @@
 }
 
 .cardFooter {
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid var(--bg-tertiary-light);
 }
 
 .date {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .emptyState {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border: 1px dashed #cbd5e1;
 }
 
 .emptyState svg {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .emptyState h3 {
@@ -60,14 +60,14 @@
 }
 
 .emptyState p {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Loading and Error States */
 .loadingState {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .errorState {
-  color: #e81123;
+  color: var(--ml-red);
 }

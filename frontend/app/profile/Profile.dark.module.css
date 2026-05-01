@@ -7,7 +7,7 @@
 .loadingContainer {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .errorContainer {
@@ -17,7 +17,7 @@
 }
 
 .retryButton {
-  background: #4573df;
+  background: var(--ml-blue);
   color: white;
 }
 
@@ -37,18 +37,18 @@
 }
 
 .name {
-  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #94a3b8 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, var(--text-tertiary-dark) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .headline {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .bio {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .role {
@@ -58,7 +58,7 @@
 }
 
 .locationBadge {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .socialLink {
@@ -72,7 +72,7 @@
 .emptyState {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .emptyState h3 {
@@ -81,44 +81,44 @@
 
 /* Share Modal Dark Theme */
 .shareModal {
-  background: #0f172a;
-  border: 1px solid #1e293b;
+  background: var(--bg-primary-dark);
+  border: 1px solid var(--bg-secondary-dark);
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
 }
 
 .shareModalHeader {
-  border-bottom: 1px solid #1e293b;
+  border-bottom: 1px solid var(--bg-secondary-dark);
 }
 
 .shareModalHeader h3 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .closeBtn {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .closeBtn:hover {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
 }
 
 .shareTabBtn {
-  background: #1e293b;
-  color: #94a3b8;
+  background: var(--bg-secondary-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .shareTabBtn:hover {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 .shareTabBtnActive {
-  background: #4573df !important;
+  background: var(--ml-blue) !important;
   color: #fff !important;
 }
 
 .shareLinkRow {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .shareLinkInput {
@@ -134,15 +134,15 @@
 }
 
 .shareAction {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   color: #e2e8f0;
-  border: 1px solid #334155;
+  border: 1px solid var(--border-dark);
 }
 
 .shareAction:hover {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 .shareHint {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }

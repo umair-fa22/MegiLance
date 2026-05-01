@@ -5,7 +5,7 @@
 .heroOverlay {
   background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.55) 100%);
 }
-.backLink { color: #4573df; }
+.backLink { color: var(--ml-blue); }
 
 /* Meta bar */
 .metaBar {
@@ -15,7 +15,7 @@
 }
 .metaAvatar {
   background: rgba(69,115,223,0.1);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Share */
@@ -23,13 +23,13 @@
   background: rgba(0,0,0,0.04);
   color: #555;
 }
-.shareBtn:hover { background: rgba(69,115,223,0.1); color: #4573df; }
+.shareBtn:hover { background: rgba(69,115,223,0.1); color: var(--ml-blue); }
 
 /* Content */
 .content { color: #1a1a2e; }
 .content h2, .content h3, .content h4 { color: #1a1a2e; }
 .content p { color: #444; }
-.content a { color: #4573df; }
+.content a { color: var(--ml-blue); }
 .content a:hover { color: #3558b0; }
 .content blockquote { background: rgba(69,115,223,0.04); color: #444; }
 .content pre { background: #f6f8fa; color: #24292e; }
@@ -38,7 +38,7 @@
 
 /* Tags */
 .tagsFooter { border-top-color: rgba(0,0,0,0.06); border-bottom-color: rgba(0,0,0,0.06); color: #555; }
-.footerTag { background: rgba(69,115,223,0.08); color: #4573df; }
+.footerTag { background: rgba(69,115,223,0.08); color: var(--ml-blue); }
 
 /* Author bio */
 .authorBio {

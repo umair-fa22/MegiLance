@@ -8,12 +8,12 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .statCard {
   background: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .statValue {
@@ -21,27 +21,27 @@
 }
 
 .statLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .filterBtn {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #374151;
 }
 
 .filterBtn:hover {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .filterBtnActive {
-  background: #4573df !important;
+  background: var(--ml-blue) !important;
   color: #fff !important;
 }
 
 .loadingState,
 .emptyState {
   background: #f9fafb;
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .emptyState h3 {
@@ -50,18 +50,18 @@
 
 .tableWrapper {
   background: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .th {
   background: #f9fafb;
-  color: #64748b;
-  border-bottom: 1px solid #e2e8f0;
+  color: var(--color-text-secondary-light);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .td {
   color: #374151;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--bg-tertiary-light);
 }
 
 .tr:hover {

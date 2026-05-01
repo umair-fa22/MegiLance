@@ -1,13 +1,13 @@
 ﻿/* AI-HINT: Dark theme styles for the PricingCard component. Defines colors for the card background, border, text, and icons in dark mode. */
 
 .card {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .card:hover {
   box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
-  border-color: #0f172a;
+  border-color: var(--bg-primary-dark);
 }
 
 .popularBadge {
@@ -18,7 +18,7 @@
 
 .card.popular {
   border-color: #6b8de6;
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 0 40px rgba(69, 115, 223, 0.2);
 }
 
@@ -27,14 +27,14 @@
   box-shadow: 0 0 50px rgba(69, 115, 223, 0.3);
 }
 
-.cardTier { color: #f8fafc; }
-.cardDescription { color: #94a3b8; }
-.priceAmount { color: #f8fafc; }
-.pricePeriod { color: #94a3b8; }
+.cardTier { color: var(--text-primary-dark); }
+.cardDescription { color: var(--text-tertiary-dark); }
+.priceAmount { color: var(--text-primary-dark); }
+.pricePeriod { color: var(--text-tertiary-dark); }
 
 .features {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
-.featureItem { color: #94a3b8; }
+.featureItem { color: var(--text-tertiary-dark); }
 .featureIcon { color: #5881e2; }

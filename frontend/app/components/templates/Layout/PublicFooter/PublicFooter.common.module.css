@@ -9,7 +9,7 @@
 
 .topBorder {
   height: 3px;
-  background: linear-gradient(90deg, transparent 0%, var(--ml-blue, #4573df) 30%, var(--ml-orange, #ff9800) 70%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, var(--ml-blue, var(--ml-blue)) 30%, var(--ml-orange, var(--ml-orange)) 70%, transparent 100%);
   opacity: 0.5;
 }
 
@@ -187,7 +187,7 @@
 }
 
 .newsletterInput:focus-visible {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
 }
 

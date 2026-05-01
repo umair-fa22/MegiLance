@@ -1,19 +1,19 @@
 /* @AI-HINT: Legal Documents page - dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .loading {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Alert */
@@ -25,25 +25,25 @@
 
 /* Stats */
 .statCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .statValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Tabs */
 .tabs {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .tab {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tab:hover {
@@ -51,20 +51,20 @@
 }
 
 .activeTab {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #60a5fa;
 }
 
 /* Empty State */
 .emptyState {
-  background-color: #1e293b;
-  color: #94a3b8;
+  background-color: var(--bg-secondary-dark);
+  color: var(--text-tertiary-dark);
 }
 
 /* Document Card */
 .docCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .docCard:hover {
@@ -73,11 +73,11 @@
 }
 
 .docTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .docMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Status badges */
@@ -98,11 +98,11 @@
 
 .statusNotrequired {
   background-color: rgba(100, 116, 139, 0.2);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .docPreview {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .expiresAt {
@@ -111,7 +111,7 @@
 
 /* Buttons */
 .primaryButton {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -120,7 +120,7 @@
 }
 
 .secondaryButton {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -138,7 +138,7 @@
 }
 
 .actionButton {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -152,31 +152,31 @@
 }
 
 .modalContent {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .modalHeader {
-  border-bottom-color: #334155;
-  color: #f1f5f9;
+  border-bottom-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .modalMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .modalFooter {
-  border-top-color: #334155;
+  border-top-color: var(--border-dark);
 }
 
 .closeButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Document Content */
 .docContent {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
   color: #e2e8f0;
 }
 

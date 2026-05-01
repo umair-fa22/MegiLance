@@ -1,59 +1,59 @@
 /* @AI-HINT: Light theme colors for the Payments page. */
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .headerIcon {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .balanceCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .balanceLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .balanceValue {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .transactionsCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .transactionsHeader {
-  border-bottom-color: #e2e8f0;
+  border-bottom-color: var(--border-light);
 }
 
 .transactionsIcon {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .transactionsTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .emptyState {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .txDesc {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .txDate {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .transactionRow + .transactionRow {
-  border-top-color: #e2e8f0;
+  border-top-color: var(--border-light);
 }
 
 .transactionRow:hover {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }

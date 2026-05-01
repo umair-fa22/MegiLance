@@ -1,18 +1,18 @@
 .input {
-  background: #ffffff;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
   color: #1a202c;
 }
 
 .input:focus {
-  border-color: #27AE60;
+  border-color: var(--ml-green);
 }
 
 .button {
-  background: #27AE60;
-  color: #ffffff;
+  background: var(--ml-green);
+  color: var(--bg-primary-light);
 }
 
 .successMessage {
-  color: #27AE60;
+  color: var(--ml-green);
 }

@@ -1,26 +1,26 @@
 /* @AI-HINT: Freelancer Dashboard — light theme colours */
 
 .dashboardContainer {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
-.welcomeText h1 { color: #0f172a; }
-.welcomeText p   { color: #64748b; }
+.welcomeText h1 { color: var(--text-primary-light); }
+.welcomeText p   { color: var(--color-text-secondary-light); }
 
 /* ── Availability & Progress ────────── */
-.availabilityBadge { background-color: rgba(39,174,96,0.15); color: #27AE60; }
+.availabilityBadge { background-color: rgba(39,174,96,0.15); color: var(--ml-green); }
 .progressTrack { background-color: rgba(128,128,128,0.2); }
-.progressLabel { color: #64748b; }
-.progressLink { color: #4573df; }
+.progressLabel { color: var(--color-text-secondary-light); }
+.progressLink { color: var(--ml-blue); }
 
 /* ── Section titles & links ─────────── */
-.sectionTitle { color: #0f172a; }
-.viewAllLink  { color: #4573df; }
+.sectionTitle { color: var(--text-primary-light); }
+.viewAllLink  { color: var(--ml-blue); }
 
 /* ── Quick Actions ──────────────────── */
 .quickActionCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 2px rgba(0,0,0,0.03);
 }
 .quickActionCard:hover {
@@ -31,39 +31,39 @@
 
 /* ── Proposal cards ─────────────────── */
 .proposalCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 .proposalCard:hover {
   border-color: #cbd5e1;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
-.proposalTitle { color: #0f172a; }
-.proposalDate  { color: #94a3b8; }
+.proposalTitle { color: var(--text-primary-light); }
+.proposalDate  { color: var(--text-tertiary-light); }
 .proposalStatus {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 /* ── Quick Action Description ───────── */
-.quickActionDesc { color: #94a3b8; }
+.quickActionDesc { color: var(--text-tertiary-light); }
 
 /* ── Metrics Row ────────────────────── */
 .metricCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
-.metricStatValue { color: #0f172a; }
-.metricStatLabel { color: #64748b; }
-.metricHint { color: #94a3b8; }
+.metricStatValue { color: var(--text-primary-light); }
+.metricStatLabel { color: var(--color-text-secondary-light); }
+.metricHint { color: var(--text-tertiary-light); }
 
 /* ── Timeline Section ───────────────── */
-.timelineSection { border-color: #e2e8f0; }
+.timelineSection { border-color: var(--border-light); }
 
 /* ── Alert Cards ────────────────────── */
 .alertCard {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 
 .alertCard-warning {
@@ -84,9 +84,9 @@
   color: #3b82f6;
 }
 
-.alertTitle { color: #0f172a; }
-.alertMessage { color: #475569; }
-.alertAction { color: #4573df; }
+.alertTitle { color: var(--text-primary-light); }
+.alertMessage { color: var(--text-secondary-light); }
+.alertAction { color: var(--ml-blue); }
 \n
 .glassPanel {
   background: rgba(255, 255, 255, 0.75);

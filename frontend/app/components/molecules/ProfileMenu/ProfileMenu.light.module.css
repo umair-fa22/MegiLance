@@ -1,17 +1,17 @@
 /* @AI-HINT: Light theme variables for the ProfileMenu component. */
 .trigger:focus-visible {
-  outline: 2px solid #4573df;
+  outline: 2px solid var(--ml-blue);
   outline-offset: 2px;
 }
 
 .dropdown {
-  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
-  border: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, var(--bg-primary-light) 0%, #f9fafb 100%);
+  border: 1px solid var(--border-light);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .header {
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .userName {
@@ -19,7 +19,7 @@
 }
 
 .userEmail {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .item {
@@ -28,10 +28,10 @@
 
 .item:hover,
 .item:focus-visible {
-  background: linear-gradient(135deg, #f1f5f9 0%, #e8eef8 100%);
+  background: linear-gradient(135deg, var(--bg-tertiary-light) 0%, #e8eef8 100%);
   color: #1f2937;
 }
 
 .itemIcon {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }

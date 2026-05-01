@@ -1,26 +1,26 @@
 /* @AI-HINT: Dark theme colors for fraud alerts dashboard */
 
 .container {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   color: #e5e5e5;
 }
 
 .header {
-  border-bottom-color: #334155;
+  border-bottom-color: var(--border-dark);
 }
 
 .statCard {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .filters {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .searchBox {
-  background: #334155;
+  background: var(--border-dark);
   border-color: #3a3a3a;
   color: #e5e5e5;
 }
@@ -34,7 +34,7 @@
 }
 
 .select {
-  background: #334155;
+  background: var(--border-dark);
   border-color: #3a3a3a;
   color: #e5e5e5;
 }
@@ -44,12 +44,12 @@
 }
 
 .alertCard {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .alertCard:hover {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 .severity {
@@ -85,14 +85,14 @@
 .evidenceText {
   background: rgba(255, 255, 255, 0.05);
   color: #cccccc;
-  border: 1px solid #334155;
+  border: 1px solid var(--border-dark);
 }
 
 .empty,
 .error,
 .loading {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
   color: #e5e5e5;
 }
 
@@ -112,12 +112,12 @@
 }
 
 .modalContent {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
 }
 
 .modalHeader {
-  background: #1e293b;
-  border-bottom-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-bottom-color: var(--border-dark);
   color: #e5e5e5;
 }
 
@@ -130,19 +130,19 @@
 }
 
 .modalBody {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   color: #e5e5e5;
-  border-bottom-color: #334155;
+  border-bottom-color: var(--border-dark);
 }
 
 .detailText {
   background: rgba(255, 255, 255, 0.05);
   color: #cccccc;
-  border: 1px solid #334155;
+  border: 1px solid var(--border-dark);
 }
 
 .textarea {
-  background: #334155;
+  background: var(--border-dark);
   border-color: #3a3a3a;
   color: #e5e5e5;
 }
@@ -157,8 +157,8 @@
 }
 
 .modalFooter {
-  background: #1e293b;
-  border-top-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-top-color: var(--border-dark);
 }
 
 /* Flags */
@@ -182,7 +182,7 @@
 /* Signal breakdown */
 .signalBreakdown {
   background: rgba(255, 255, 255, 0.03);
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .signalProgress {
@@ -204,5 +204,5 @@
 .detailText {
   background: rgba(255, 255, 255, 0.05);
   color: #ccc;
-  border: 1px solid #334155;
+  border: 1px solid var(--border-dark);
 }

@@ -6,7 +6,7 @@
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-primary, #4573df), #6b93e8, var(--color-accent, #ff9800));
+  background: linear-gradient(90deg, var(--color-primary, var(--ml-blue)), #6b93e8, var(--color-accent, var(--ml-orange)));
   z-index: var(--z-index-fixed);
   transition: width 0.1s linear;
   border-radius: 0 2px 2px 0;
@@ -191,7 +191,7 @@
   position: relative;
   margin: var(--spacing-8) 0;
   padding: var(--spacing-6) var(--spacing-8);
-  border-left: 4px solid var(--color-primary, #4573df);
+  border-left: 4px solid var(--color-primary, var(--ml-blue));
   border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
   font-style: italic;
   font-size: var(--font-size-lg);
@@ -312,7 +312,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .relatedCard:hover { transform: translateY(-4px); }
-.relatedCard:focus-visible { outline: 2px solid var(--color-primary, #4573df); outline-offset: 2px; }
+.relatedCard:focus-visible { outline: 2px solid var(--color-primary, var(--ml-blue)); outline-offset: 2px; }
 .relatedImageWrap {
   position: relative;
   width: 100%;
@@ -338,7 +338,7 @@
 .spinner {
   width: 40px; height: 40px;
   border: 3px solid rgba(69,115,223,0.15);
-  border-top-color: var(--color-primary, #4573df);
+  border-top-color: var(--color-primary, var(--ml-blue));
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }

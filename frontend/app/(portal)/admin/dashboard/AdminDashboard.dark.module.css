@@ -1,28 +1,28 @@
 /* @AI-HINT: Admin Dashboard dark theme — enterprise command center colours */
 
-.dashboardContainer { color: #f8fafc; }
-.headerTitle { color: #f8fafc; }
-.headerSubtitle { color: #94a3b8; }
+.dashboardContainer { color: var(--text-primary-dark); }
+.headerTitle { color: var(--text-primary-dark); }
+.headerSubtitle { color: var(--text-tertiary-dark); }
 
 /* Environment Badge */
 .envBadge { background: #1e3a8a; color: #93c5fd; }
 .lastRefresh { color: #64748b; }
 
 /* Tabs */
-.tabNav { background: #1e293b; }
-.tab { color: #94a3b8; }
-.tab:hover { background: rgba(255,255,255,0.05); color: #cbd5e1; }
-.tabActive { background: #334155; color: #f8fafc; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+.tabNav { background: var(--bg-secondary-dark); }
+.tab { color: var(--text-tertiary-dark); }
+.tab:hover { background: rgba(255,255,255,0.05); color: var(--text-secondary-dark); }
+.tabActive { background: var(--border-dark); color: var(--text-primary-dark); box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
 
 /* Stats */
 .statCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 .statCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.3); border-color: #475569; }
-.statLabel { color: #94a3b8; }
-.statValue { color: #f8fafc; }
+.statLabel { color: var(--text-tertiary-dark); }
+.statValue { color: var(--text-primary-dark); }
 .statSub { color: #64748b; }
 
 .accent_blue   { background: rgba(59,130,246,0.15);  color: #60a5fa; }
@@ -34,77 +34,77 @@
 
 /* Analytics Cards */
 .analyticsCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
-.analyticsCardTitle { color: #f8fafc; }
+.analyticsCardTitle { color: var(--text-primary-dark); }
 .analyticsPeriod { color: #64748b; }
-.analyticsTotal { color: #f8fafc; }
+.analyticsTotal { color: var(--text-primary-dark); }
 .analyticsTx { color: #64748b; }
-.analyticsFooter { border-color: #334155; }
+.analyticsFooter { border-color: var(--border-dark); }
 .miniBar { background: #60a5fa; }
 .miniBarLabel { color: #64748b; }
 
 /* Geo */
 .geoCountry { color: #e2e8f0; }
 .geoIcon { color: #64748b; }
-.geoBar { background: #334155; }
+.geoBar { background: var(--border-dark); }
 .geoBarFill { background: linear-gradient(90deg, #60a5fa, #818cf8); }
 .geoPercent { color: #e2e8f0; }
 
 /* Quick Actions */
 .quickAction {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 2px rgba(0,0,0,0.15);
 }
 .quickAction:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.25); border-color: #475569; }
-.quickActionIcon { background-color: #334155; color: #60a5fa; }
-.quickActionLabel { color: #f8fafc; }
+.quickActionIcon { background-color: var(--border-dark); color: #60a5fa; }
+.quickActionLabel { color: var(--text-primary-dark); }
 .quickActionDesc { color: #64748b; }
 .quickActionBadge { background: rgba(251,191,36,0.15); color: #fbbf24; }
 
 /* Health Panel */
-.healthPanel { background-color: #1e293b; border: 1px solid #334155; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
-.healthPanelTitle { color: #f8fafc; }
+.healthPanel { background-color: var(--bg-secondary-dark); border: 1px solid var(--border-dark); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+.healthPanelTitle { color: var(--text-primary-dark); }
 .healthTimestamp { color: #64748b; }
-.statusDotRow { background: #0f172a; }
+.statusDotRow { background: var(--bg-primary-dark); }
 .statusDotLabel { color: #e2e8f0; }
-.statusDotValue { color: #f8fafc; }
-.metricCard { background: #0f172a; border: 1px solid #334155; }
-.metricValue { color: #f8fafc; }
-.metricLabel { color: #94a3b8; }
+.statusDotValue { color: var(--text-primary-dark); }
+.metricCard { background: var(--bg-primary-dark); border: 1px solid var(--border-dark); }
+.metricValue { color: var(--text-primary-dark); }
+.metricLabel { color: var(--text-tertiary-dark); }
 
 /* Health Row */
 .healthCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
-.healthStatValue { color: #f8fafc; }
-.healthStatLabel { color: #94a3b8; }
+.healthStatValue { color: var(--text-primary-dark); }
+.healthStatLabel { color: var(--text-tertiary-dark); }
 
 /* Security */
-.securityCard { background-color: #1e293b; border: 1px solid #334155; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
-.securityCardTitle { color: #f8fafc; }
+.securityCard { background-color: var(--bg-secondary-dark); border: 1px solid var(--border-dark); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+.securityCardTitle { color: var(--text-primary-dark); }
 .securityCheck { color: #e2e8f0; }
-.alertItem { background: #0f172a; border: 1px solid #334155; }
-.alertMsg { color: #f8fafc; }
+.alertItem { background: var(--bg-primary-dark); border: 1px solid var(--border-dark); }
+.alertMsg { color: var(--text-primary-dark); }
 .alertTime { color: #64748b; }
 .alertActionBtn { background: rgba(59,130,246,0.15); color: #60a5fa; }
 .alertActionBtn:hover { background: rgba(59,130,246,0.25); }
 
 /* Sections */
-.sectionTitle { color: #f8fafc; }
+.sectionTitle { color: var(--text-primary-dark); }
 .viewAllLink { color: #60a5fa; }
-.tableWrapper { background-color: #1e293b; border: 1px solid #334155; }
+.tableWrapper { background-color: var(--bg-secondary-dark); border: 1px solid var(--border-dark); }
 
 /* Activity */
-.activityItem { background-color: #1e293b; border: 1px solid #334155; }
+.activityItem { background-color: var(--bg-secondary-dark); border: 1px solid var(--border-dark); }
 .activityIcon { background-color: #1e3a8a; color: #60a5fa; }
-.activityName { color: #f8fafc; }
-.activityDesc { color: #94a3b8; }
+.activityName { color: var(--text-primary-dark); }
+.activityDesc { color: var(--text-tertiary-dark); }
 
 .emptyState { color: #64748b; }
 \n

@@ -192,7 +192,7 @@
 }
 
 .searchInput:focus {
-  border-color: var(--color-primary, #4573df);
+  border-color: var(--color-primary, var(--ml-blue));
   box-shadow: 0 0 0 2px rgba(69, 115, 223, 0.12);
 }
 
@@ -314,7 +314,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-error, #e81123);
+  background: var(--color-error, var(--ml-red));
   color: white;
   animation: badgeAppear 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -376,7 +376,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
   padding: 4px 8px;
   border-radius: 6px;
   transition: background 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -434,10 +434,10 @@
   background: rgba(128, 128, 128, 0.1);
 }
 
-.notifIconMessage { color: var(--color-primary, #4573df); }
-.notifIconProject { color: var(--color-success, #27AE60); }
-.notifIconPayment { color: var(--color-accent, #ff9800); }
-.notifIconAlert { color: var(--color-error, #e81123); }
+.notifIconMessage { color: var(--color-primary, var(--ml-blue)); }
+.notifIconProject { color: var(--color-success, var(--ml-green)); }
+.notifIconPayment { color: var(--color-accent, var(--ml-orange)); }
+.notifIconAlert { color: var(--color-error, var(--ml-red)); }
 .notifIconSystem { color: #888; }
 
 .notificationContent {
@@ -514,7 +514,7 @@
   font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
   border-top: 1px solid rgba(128, 128, 128, 0.1);
   transition: background 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -578,7 +578,7 @@
   align-items: center;
   justify-content: center;
   background: rgba(69, 115, 223, 0.1);
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
 }
 
 .helpItemContent {
@@ -729,7 +729,7 @@
 }
 
 .searchInput:focus-visible {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
 }
 

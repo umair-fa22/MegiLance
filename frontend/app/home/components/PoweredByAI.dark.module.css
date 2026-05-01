@@ -1,7 +1,7 @@
 /* @AI-HINT: Dark theme styles for PoweredByAI. */
 
 .section {
-  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  background: linear-gradient(180deg, var(--bg-secondary-dark) 0%, var(--bg-primary-dark) 100%);
 }
 
 .badge {
@@ -11,11 +11,11 @@
 }
 
 .heading {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .featureCard {
@@ -28,11 +28,11 @@
 }
 
 .cardTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .cardDescription {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .techStackSection {
@@ -40,11 +40,11 @@
 }
 
 .techStackTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .techStackSubtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .techItem {
@@ -57,11 +57,11 @@
 }
 
 .techName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .techType {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .capabilitiesSection {
@@ -69,7 +69,7 @@
 }
 
 .capabilitiesTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .capabilityItem {
@@ -82,5 +82,5 @@
 }
 
 .capabilityText {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }

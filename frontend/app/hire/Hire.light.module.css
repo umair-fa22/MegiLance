@@ -1,7 +1,7 @@
 /* @AI-HINT: Hire directory page - light theme colors */
 
 .page {
-  background: linear-gradient(170deg, #f0f4ff 0%, #ffffff 40%, #faf8ff 100%);
+  background: linear-gradient(170deg, #f0f4ff 0%, var(--bg-primary-light) 40%, #faf8ff 100%);
 }
 
 .hero {
@@ -80,8 +80,8 @@
 }
 
 .ctaButton {
-  background: linear-gradient(135deg, #4573df 0%, #2563eb 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #2563eb 100%);
+  color: var(--bg-primary-light);
   box-shadow: 0 4px 14px rgba(69, 115, 223, 0.3);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }

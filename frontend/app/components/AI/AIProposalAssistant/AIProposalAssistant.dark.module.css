@@ -1,8 +1,8 @@
 /* @AI-HINT: Dark theme for AI Proposal Assistant */
 
 .container {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
 }
 
@@ -11,18 +11,18 @@
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .controlButton {
   background: rgba(30, 41, 59, 0.5);
-  color: #cbd5e1;
-  border-color: #334155;
+  color: var(--text-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .controlButton:hover {
   background: rgba(51, 65, 85, 0.5);
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .primaryControl {
@@ -38,7 +38,7 @@
 
 .resultArea {
   background: rgba(15, 23, 42, 0.5);
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .resultText {
@@ -46,18 +46,18 @@
 }
 
 .resultActions {
-  border-top-color: #334155;
+  border-top-color: var(--border-dark);
 }
 
 .actionButton {
   background: rgba(30, 41, 59, 0.5);
   border-color: #475569;
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .actionButton:hover {
   background: rgba(51, 65, 85, 0.5);
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .primaryAction {

@@ -8,24 +8,24 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .loadingState {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .rankCard {
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-  border: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, var(--bg-secondary-light) 0%, var(--bg-tertiary-light) 100%);
+  border: 1px solid var(--border-light);
 }
 
 .rankPoints {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .progressLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .progressValue {
@@ -34,12 +34,12 @@
 }
 
 .progressBar {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .section {
   background: #f9fafb;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .sectionTitle {
@@ -48,11 +48,11 @@
 
 .tierCard {
   background: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .tierCurrent {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 2px rgba(69, 115, 223, 0.2);
 }
 
@@ -61,7 +61,7 @@
 }
 
 .tierPoints {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tierUnlocked {
@@ -70,7 +70,7 @@
 
 .statCard {
   background: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .statCard:hover {
@@ -79,7 +79,7 @@
 
 .statIconWrapper {
   background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .statValue {
@@ -87,12 +87,12 @@
 }
 
 .statLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .badgeCard {
   background: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .badgeName {
@@ -100,7 +100,7 @@
 }
 
 .badgeDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .badge_epic {
@@ -116,7 +116,7 @@
 .headerStats { }
 .headerStat {
   background: rgba(69, 115, 223, 0.08);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Benefits */
@@ -128,11 +128,11 @@
 
 /* Section tabs */
 .sectionTabs {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .sectionTab {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .sectionTabActive {
@@ -143,21 +143,21 @@
 
 /* Section desc */
 .sectionDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Empty states */
 .emptyBadges {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .emptyLeaderboard {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Badge footer */
 .badgeDate {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Leaderboard */
@@ -166,22 +166,22 @@
 }
 
 .leaderboardEntry:hover {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .leaderboardEntryCurrent {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background: rgba(69, 115, 223, 0.05);
 }
 
 .leaderboardPosition {
-  background: #f1f5f9;
-  color: #64748b;
+  background: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .leaderboardAvatar {
-  background: #e2e8f0;
-  color: #475569;
+  background: var(--border-light);
+  color: var(--text-secondary-light);
 }
 
 .leaderboardName {
@@ -189,20 +189,20 @@
 }
 
 .leaderboardRank {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .leaderboardPoints {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Period toggle */
 .periodToggle {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .periodBtn {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .periodBtn:hover {
@@ -225,15 +225,15 @@
 }
 
 .xpItemPoints {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .xpItemBar {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .xpItemPercent {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Recent XP */
@@ -257,17 +257,17 @@
 }
 
 .recentXPDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .recentXPTime {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Earn cards */
 .earnCard {
   background: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .earnCard:hover {
@@ -279,11 +279,11 @@
 }
 
 .earnPoints {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .earnArrow {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Tips card */
@@ -297,13 +297,13 @@
 }
 
 .tipsList {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 /* Tier benefits */
 .tierBenefits { }
 .tierBenefit {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Badge modal */
@@ -313,12 +313,12 @@
 }
 
 .modalClose {
-  background: #f1f5f9;
-  color: #475569;
+  background: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .modalClose:hover {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .badgeModalName {
@@ -326,14 +326,14 @@
 }
 
 .badgeModalDesc {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .badgeModalCondition {
-  background: #f1f5f9;
-  color: #475569;
+  background: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .badgeModalDate {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }

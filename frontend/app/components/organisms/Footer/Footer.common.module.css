@@ -76,7 +76,7 @@
 
 .newsletterInput:focus {
   outline: none;
-  border-color: var(--color-primary, #4573df);
+  border-color: var(--color-primary, var(--ml-blue));
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
 }
 
@@ -166,7 +166,7 @@
 }
 
 .linkItem:focus-visible {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
   border-radius: 0.25rem;
 }
@@ -198,20 +198,20 @@
 
 .statusComplete {
   background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-  color: #ffffff;
+  color: var(--bg-primary-light);
   box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
 }
 
 .statusAdvanced {
-  background: linear-gradient(135deg, var(--color-primary, #4573df) 0%, #64b5f6 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--color-primary, var(--ml-blue)) 0%, #64b5f6 100%);
+  color: var(--bg-primary-light);
   box-shadow: 0 2px 6px rgba(69, 115, 223, 0.3);
   animation: pulseFooter 2s infinite;
 }
 
 .statusWorking {
   background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
-  color: #ffffff;
+  color: var(--bg-primary-light);
   box-shadow: 0 2px 6px rgba(139, 92, 246, 0.3);
 }
 
@@ -276,7 +276,7 @@
 }
 
 .socialLink:focus-visible {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
 }
 

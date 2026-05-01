@@ -1,6 +1,6 @@
 .homePage {
-  background: #0f172a;
-  color: #f8fafc;
+  background: var(--bg-primary-dark);
+  color: var(--text-primary-dark);
 }
 
 .gradientOrb {

@@ -1,7 +1,7 @@
 /* @AI-HINT: Admin branding dark theme - Premium 2025 Glassmorphism & Gradients */
 
 .container {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  background: linear-gradient(135deg, var(--bg-primary-dark) 0%, var(--bg-secondary-dark) 50%, var(--bg-primary-dark) 100%);
   color: #e2e8f0;
 }
 
@@ -10,7 +10,7 @@
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Preview Card - Dark Glass */
@@ -37,11 +37,11 @@
 }
 
 .previewHeader h3 {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .previewContent {
-  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  background: linear-gradient(180deg, var(--bg-secondary-dark) 0%, var(--bg-primary-dark) 100%);
   color: #e2e8f0;
 }
 
@@ -62,8 +62,8 @@
 }
 
 .settingsCard h3 {
-  color: #f8fafc;
-  background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%);
+  color: var(--text-primary-dark);
+  background: linear-gradient(135deg, var(--text-primary-dark) 0%, var(--text-secondary-dark) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -74,19 +74,19 @@
 }
 
 .formGroup label {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 /* Inputs - Dark Premium */
 .input {
   background: rgba(15, 23, 42, 0.8);
   border: 2px solid rgba(255, 255, 255, 0.08);
-  color: #f8fafc;
+  color: var(--text-primary-dark);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .input:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background: rgba(15, 23, 42, 0.95);
   box-shadow: 
     0 0 0 4px rgba(69, 115, 223, 0.2),
@@ -98,11 +98,11 @@
 }
 
 .hint {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .colorHint {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Color Group - Dark */
@@ -120,28 +120,28 @@
 
 /* Logo Preview - Dark */
 .logoPreview {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(135deg, var(--bg-primary-dark) 0%, var(--bg-secondary-dark) 100%);
   border-color: rgba(255, 255, 255, 0.08);
 }
 
 .logoPreview:hover {
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-  border-color: #4573df;
+  background: linear-gradient(135deg, var(--bg-secondary-dark) 0%, var(--border-dark) 100%);
+  border-color: var(--ml-blue);
   box-shadow: 0 4px 20px rgba(69, 115, 223, 0.15);
 }
 
 /* Font Preview - Dark */
 .fontPreview {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(135deg, var(--bg-primary-dark) 0%, var(--bg-secondary-dark) 100%);
   border-color: rgba(255, 255, 255, 0.05);
 }
 
 .fontPreview h3 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .fontPreview p {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Unsaved Banner - Dark Glass */
@@ -164,7 +164,7 @@
 
 /* Tab Buttons - Dark */
 .tabBtn {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tabBtn:hover {
@@ -191,10 +191,10 @@
 
 /* Confirm Text - Dark */
 .confirmText {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 /* Loading State */
 .loading {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }

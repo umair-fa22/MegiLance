@@ -1,19 +1,19 @@
 /* @AI-HINT: API Keys page - dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .loading {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Warning Banner */
@@ -25,28 +25,28 @@
 
 /* Stats */
 .statCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .statValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Empty State */
 .emptyState {
-  background-color: #1e293b;
-  color: #94a3b8;
+  background-color: var(--bg-secondary-dark);
+  color: var(--text-tertiary-dark);
 }
 
 /* Key Card */
 .keyCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .keyCard:hover {
@@ -55,12 +55,12 @@
 }
 
 .keyName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .keyPreview {
-  color: #94a3b8;
-  background-color: #0f172a;
+  color: var(--text-tertiary-dark);
+  background-color: var(--bg-primary-dark);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
 }
@@ -78,12 +78,12 @@
 
 .statusRevoked {
   background-color: rgba(100, 116, 139, 0.2);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Permissions */
 .permissionsLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .permission {
@@ -92,12 +92,12 @@
 }
 
 .keyMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Buttons */
 .primaryButton {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -106,7 +106,7 @@
 }
 
 .secondaryButton {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -124,7 +124,7 @@
 }
 
 .actionButton {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -133,7 +133,7 @@
 }
 
 .copyButton {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -147,21 +147,21 @@
 }
 
 .modalContent {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .modalHeader {
-  border-bottom-color: #334155;
-  color: #f1f5f9;
+  border-bottom-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .modalFooter {
-  border-top-color: #334155;
+  border-top-color: var(--border-dark);
 }
 
 .closeButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Success Banner */
@@ -173,21 +173,21 @@
 
 /* Full Key Display */
 .fullKey {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   color: #4ade80;
 }
 
 /* Form */
 .input,
 .select {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .input:focus,
 .select:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2);
 }
 
@@ -197,23 +197,23 @@
 
 /* Permissions Grid */
 .permissionOption {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
 .permissionOption:hover {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .permissionSelected {
   background-color: rgba(69, 115, 223, 0.2);
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .permDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
-.confirmText { color: #cbd5e1; }
+.confirmText { color: var(--text-secondary-dark); }
 .toast { background: rgba(30,41,59,0.95); border: 1px solid rgba(39,174,96,0.4); color: #4ade80; }
 .toastError { border-color: rgba(232,17,35,0.4); color: #f87171; }

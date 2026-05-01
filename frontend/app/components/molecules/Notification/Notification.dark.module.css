@@ -1,7 +1,7 @@
 /* @AI-HINT: Defines dark theme variables for the Notification component. These are applied to the .notification class. */
 .notification {
-  --notification-title-color: #f8fafc;
-  --notification-message-color: #94a3b8;
+  --notification-title-color: var(--text-primary-dark);
+  --notification-message-color: var(--text-tertiary-dark);
   --notification-close-bg-hover: rgba(255,255,255,0.06);
   --notification-focus-ring: rgba(107,141,230,0.3);
 }

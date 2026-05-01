@@ -1,16 +1,16 @@
 /* @AI-HINT: Dark theme for analytics dashboard */
 
 .container {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   color: #e5e5e5;
 }
 
 .header {
-  border-bottom-color: #334155;
+  border-bottom-color: var(--border-dark);
 }
 
 .dateSelect {
-  background: #334155;
+  background: var(--border-dark);
   border-color: #3a3a3a;
   color: #e5e5e5;
 }
@@ -20,12 +20,12 @@
 }
 
 .metricCard {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .metricCard:hover {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 .metricLabel {
@@ -33,8 +33,8 @@
 }
 
 .card {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .chartBarContainer {
@@ -63,8 +63,8 @@
 
 .loading,
 .error {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
   color: #e5e5e5;
 }
 

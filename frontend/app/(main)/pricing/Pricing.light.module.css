@@ -1,1 +1,1 @@
-.pricing { background: #ffffff; color: #0f172a; }
+.pricing { background: var(--bg-primary-light); color: var(--text-primary-light); }

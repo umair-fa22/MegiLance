@@ -1,12 +1,12 @@
 /* @AI-HINT: File Versions page - dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
 .loading {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .backButton {
@@ -23,11 +23,11 @@
 }
 
 .emptyState h2 {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .emptyState p {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .browseButton {
@@ -41,8 +41,8 @@
 
 /* File Info Card */
 .fileInfoCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -51,11 +51,11 @@
 }
 
 .fileName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .projectName {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .fileMeta {
@@ -70,8 +70,8 @@
 }
 
 .clearButton {
-  background-color: #334155;
-  color: #94a3b8;
+  background-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .clearButton:hover {
@@ -89,7 +89,7 @@
 
 /* Version Timeline */
 .versionDot {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border-color: #64748b;
 }
 
@@ -99,12 +99,12 @@
 }
 
 .versionLine {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .versionContent {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .currentVersion .versionContent {
@@ -118,16 +118,16 @@
 }
 
 .versionNumber {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .versionDate {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .checkmark {
   border-color: #475569;
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .checkbox input:checked ~ .checkmark {
@@ -137,7 +137,7 @@
 }
 
 .changeNote {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .versionMeta {
@@ -145,8 +145,8 @@
 }
 
 .downloadButton {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .downloadButton:hover {

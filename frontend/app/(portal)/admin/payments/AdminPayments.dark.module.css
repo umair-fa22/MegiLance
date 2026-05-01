@@ -1,20 +1,20 @@
 /* AI-HINT: Dark theme overrides for Admin Payments page. */
 
-.themeWrapper { background: #1e293b; color: #f8fafc; }
-.subtitle { color: #94a3b8; }
+.themeWrapper { background: var(--bg-secondary-dark); color: var(--text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
 
-.input, .select { background: #0f172a; border: 1px solid #334155; color: #f8fafc; }
+.input, .select { background: var(--bg-primary-dark); border: 1px solid var(--border-dark); color: var(--text-primary-dark); }
 .button { background: #6b8de6; color: white; border: 1px solid rgba(0,0,0,0.2); }
-.button.secondary { background: #0f172a; color: #f8fafc; border: 1px solid #334155; }
+.button.secondary { background: var(--bg-primary-dark); color: var(--text-primary-dark); border: 1px solid var(--border-dark); }
 
-.card { background: #0f172a; border: 1px solid #334155; }
-.cardTitle { color: #f8fafc; }
-.metric { color: #f8fafc; }
+.card { background: var(--bg-primary-dark); border: 1px solid var(--border-dark); }
+.cardTitle { color: var(--text-primary-dark); }
+.metric { color: var(--text-primary-dark); }
 
-.table { background: #0f172a; }
-.th { color: #94a3b8; border-bottom-color: #334155; }
-.td { color: #f8fafc; border-bottom-color: #334155; }
+.table { background: var(--bg-primary-dark); }
+.th { color: var(--text-tertiary-dark); border-bottom-color: var(--border-dark); }
+.td { color: var(--text-primary-dark); border-bottom-color: var(--border-dark); }
 
-.badge { background: #1e293b; border-color: #334155; color: #f8fafc; }
+.badge { background: var(--bg-secondary-dark); border-color: var(--border-dark); color: var(--text-primary-dark); }
 
 .pageIndicator { color: #ccc; }

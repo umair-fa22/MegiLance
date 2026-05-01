@@ -1,22 +1,22 @@
 /* @AI-HINT: Admin audit trail dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Stats */
 .statCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -25,23 +25,23 @@
 }
 
 .statInfo span {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Filters */
 .filtersCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .filterGroup label {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .input {
-  background: #0f172a;
-  border-color: #334155;
-  color: #f8fafc;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .input:focus {
@@ -51,57 +51,57 @@
 
 /* Logs Table */
 .logsCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .logsTable th {
-  background: #0f172a;
-  color: #94a3b8;
-  border-bottom: 1px solid #334155;
+  background: var(--bg-primary-dark);
+  color: var(--text-tertiary-dark);
+  border-bottom: 1px solid var(--border-dark);
 }
 
 .logRow {
-  border-bottom: 1px solid #334155;
+  border-bottom: 1px solid var(--border-dark);
 }
 
 .logRow:hover {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
 }
 
 .userRole {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .resourceBadge {
-  background: #334155;
-  color: #cbd5e1;
+  background: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .resourceId {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .ipCell {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Modal */
 .modal {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .modal h2 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .detailSection h3 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .detailGrid label {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .detailGrid span {
@@ -109,8 +109,8 @@
 }
 
 .jsonBlock {
-  background: #0f172a;
-  border: 1px solid #334155;
+  background: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
   color: #e2e8f0;
 }
 

@@ -1,7 +1,7 @@
 /* Light theme for ProposalBuilder */
 
 .container {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 
 .title {
@@ -9,17 +9,17 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .templateCard {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .templateCard:hover {
-  background-color: #f1f5f9;
-  border-color: #4573df;
+  background-color: var(--bg-tertiary-light);
+  border-color: var(--ml-blue);
 }
 
 .tip {
@@ -29,10 +29,10 @@
 }
 
 .formSection {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .sectionTitle {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }

@@ -2,11 +2,11 @@
 
 .brandingPanel {
   /* On blue background, use white text for proper contrast */
-  --branding-panel-bg: #4573df;
-  --brand-icon-color: #ffffff;
-  --brand-title-color: #ffffff;
+  --branding-panel-bg: var(--ml-blue);
+  --brand-icon-color: var(--bg-primary-light);
+  --brand-title-color: var(--bg-primary-light);
   --brand-text-color: rgba(255, 255, 255, 0.9);
-  background-color: #4573df;
+  background-color: var(--ml-blue);
 }
 
 .brandingIconWrapper {
@@ -16,11 +16,11 @@
 }
 
 .brandingIcon {
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .brandingTitle {
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .brandingText {

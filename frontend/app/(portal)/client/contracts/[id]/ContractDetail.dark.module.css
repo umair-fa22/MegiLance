@@ -5,7 +5,7 @@
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .sectionTitle {
@@ -14,7 +14,7 @@
 
 /* Breadcrumb */
 .breadcrumb {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .breadcrumbLink {
@@ -27,8 +27,8 @@
 
 /* Overview Cards */
 .overviewCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -37,11 +37,11 @@
 }
 
 .overviewLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .overviewValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .overviewSub {
@@ -50,8 +50,8 @@
 
 /* Progress */
 .progressSection {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .progressTitle {
@@ -63,11 +63,11 @@
 }
 
 .progressBarLarge {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 .progressFillLarge {
-  background: linear-gradient(90deg, #4573df, #6366f1);
+  background: linear-gradient(90deg, var(--ml-blue), #6366f1);
 }
 
 .progressInfo {
@@ -76,19 +76,19 @@
 
 /* Sections */
 .section {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Milestones */
 .milestoneItem {
-  background: #0f172a;
-  border-color: #334155;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
 }
 
 .milestoneItem:hover {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   border-color: #475569;
 }
 
@@ -103,7 +103,7 @@
 
 /* Freelancer Card */
 .freelancerCard {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
 }
 
 .freelancerAvatar {
@@ -135,7 +135,7 @@
 }
 
 .errorTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .errorText {

@@ -1,5 +1,5 @@
 .homePage {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   color: #1a202c;
 }
 

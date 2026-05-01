@@ -3,30 +3,30 @@
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .section {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .sectionTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .label {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .input {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .input:focus {
@@ -45,20 +45,20 @@
 }
 
 .row {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .rowTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .rowDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .historyItem {
-  background-color: #0f172a;
-  color: #cbd5e1;
+  background-color: var(--bg-primary-dark);
+  color: var(--text-secondary-dark);
 }
 
 .badgeSuccess {

@@ -1,12 +1,12 @@
 /* @AI-HINT: Light theme styles for gig creation wizard page */
 
 .themeWrapper {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
   color: #1a1a2e;
 }
 
 .backLink {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .title {
@@ -14,46 +14,46 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Progress */
 .progressLine {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .progressLineFill {
-  background: linear-gradient(90deg, #4573df 0%, #27ae60 100%);
+  background: linear-gradient(90deg, var(--ml-blue) 0%, var(--ml-green) 100%);
 }
 
 .stepCircle {
-  background-color: #e2e8f0;
-  color: #64748b;
+  background-color: var(--border-light);
+  color: var(--color-text-secondary-light);
 }
 
 .stepCircle.active {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .stepCircle.completed {
-  background-color: #27ae60;
-  color: #ffffff;
+  background-color: var(--ml-green);
+  color: var(--bg-primary-light);
 }
 
 .stepLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .stepLabel.active {
-  color: #4573df;
+  color: var(--ml-blue);
   font-weight: 600;
 }
 
 /* Form Card */
 .formCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -62,7 +62,7 @@
 }
 
 .stepDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .label {
@@ -70,30 +70,30 @@
 }
 
 .input {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
   color: #1a1a2e;
 }
 
 .input::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .select {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
   color: #1a1a2e;
 }
 
 /* Tags */
 .tagsInput {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .tag {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .tagInputField {
@@ -101,18 +101,18 @@
 }
 
 .tagInputField::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Image Upload */
 .imageUpload {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
   border-color: #cbd5e1;
 }
 
 .imageUpload:hover {
-  background-color: #f1f5f9;
-  border-color: #4573df;
+  background-color: var(--bg-tertiary-light);
+  border-color: var(--ml-blue);
 }
 
 .uploadText {
@@ -120,18 +120,18 @@
 }
 
 .uploadHint {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .removeImage {
-  background-color: #e81123;
-  color: #ffffff;
+  background-color: var(--ml-red);
+  color: var(--bg-primary-light);
 }
 
 /* Packages */
 .packageCard {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .packageCard:hover {
@@ -143,8 +143,8 @@
 }
 
 .packageBadge {
-  background-color: #e2e8f0;
-  color: #64748b;
+  background-color: var(--border-light);
+  color: var(--color-text-secondary-light);
 }
 
 .packageBadge.basic {
@@ -163,60 +163,60 @@
 }
 
 .packageLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .packageInput {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   color: #1a1a2e;
 }
 
 .priceCurrency {
-  background-color: #e2e8f0;
-  color: #475569;
+  background-color: var(--border-light);
+  color: var(--text-secondary-light);
 }
 
 /* Features */
 .featureCheckbox {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .featureLabel {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .addFeature {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* FAQ */
 .faqItem {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .faqInput {
   color: #1a1a2e;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .faqInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .faqRemove {
-  color: #e81123;
+  color: var(--ml-red);
 }
 
 .addFaq {
   border-color: #cbd5e1;
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .addFaq:hover {
-  background-color: #f1f5f9;
-  border-color: #4573df;
+  background-color: var(--bg-tertiary-light);
+  border-color: var(--ml-blue);
 }
 
 /* Preview */
@@ -235,12 +235,12 @@
 
 /* Navigation */
 .navigation {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .navButtonPrimary {
-  background: linear-gradient(135deg, #4573df 0%, #3b63c9 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #3b63c9 100%);
+  color: var(--bg-primary-light);
   border: none;
 }
 
@@ -249,32 +249,32 @@
 }
 
 .navButtonSecondary {
-  background-color: #f8fafc;
-  color: #475569;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  color: var(--text-secondary-light);
+  border-color: var(--border-light);
 }
 
 .navButtonSecondary:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .navButtonSuccess {
-  background: linear-gradient(135deg, #27ae60 0%, #1f9250 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-green) 0%, #1f9250 100%);
+  color: var(--bg-primary-light);
 }
 
 /* Publish Options */
 .publishOption {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .publishOption:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .publishRadio {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .publishTitle {
@@ -282,13 +282,13 @@
 }
 
 .publishDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Success */
 .successIcon {
   background-color: #dcfce7;
-  color: #27ae60;
+  color: var(--ml-green);
 }
 
 .successTitle {
@@ -296,7 +296,7 @@
 }
 
 .successText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Error */

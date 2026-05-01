@@ -1,66 +1,66 @@
-.page { background-color: #0f172a; color: #e2e8f0; }
-.header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
-.title { color: #f1f5f9; }
-.subtitle { color: #94a3b8; }
+.page { background-color: var(--bg-primary-dark); color: #e2e8f0; }
+.header { background: linear-gradient(135deg, var(--bg-primary-dark) 0%, var(--bg-secondary-dark) 100%); }
+.title { color: var(--color-text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
 
-.searchBar { background: #1e293b; border-color: #334155; }
-.searchBar:focus-within { border-color: #4573df; }
+.searchBar { background: var(--bg-secondary-dark); border-color: var(--border-dark); }
+.searchBar:focus-within { border-color: var(--ml-blue); }
 .searchInput { color: #e2e8f0; }
-.mobileFilterBtn { border-color: #334155; color: #cbd5e1; background: #1e293b; }
-.filterBadge { background: #4573df; color: #fff; }
+.mobileFilterBtn { border-color: var(--border-dark); color: var(--text-secondary-dark); background: var(--bg-secondary-dark); }
+.filterBadge { background: var(--ml-blue); color: #fff; }
 
-.categoryPill { background: #1e293b; border-color: #334155; color: #94a3b8; }
-.categoryPill:hover { border-color: #4573df; color: #93b4ff; }
-.categoryPillActive { background: #4573df; border-color: #4573df; color: #fff; }
+.categoryPill { background: var(--bg-secondary-dark); border-color: var(--border-dark); color: var(--text-tertiary-dark); }
+.categoryPill:hover { border-color: var(--ml-blue); color: #93b4ff; }
+.categoryPillActive { background: var(--ml-blue); border-color: var(--ml-blue); color: #fff; }
 
 .sidebar { }
-.sidebarCard { background: #1e293b; border: 1px solid #334155; }
-.sidebarTitle { color: #f1f5f9; }
-.filterLabel { color: #94a3b8; }
-.filterOption { color: #cbd5e1; }
-.filterOption:hover { color: #f1f5f9; }
+.sidebarCard { background: var(--bg-secondary-dark); border: 1px solid var(--border-dark); }
+.sidebarTitle { color: var(--color-text-primary-dark); }
+.filterLabel { color: var(--text-tertiary-dark); }
+.filterOption { color: var(--text-secondary-dark); }
+.filterOption:hover { color: var(--color-text-primary-dark); }
 .filterRadioCustom { border-color: #475569; }
-.filterRadioActive, .filterRadioCustomActive { border-color: #4573df; }
-.filterChip { border-color: #334155; color: #94a3b8; }
-.filterChip:hover { border-color: #4573df; color: #93b4ff; }
-.filterChipActive { background: #4573df; border-color: #4573df; color: #fff; }
+.filterRadioActive, .filterRadioCustomActive { border-color: var(--ml-blue); }
+.filterChip { border-color: var(--border-dark); color: var(--text-tertiary-dark); }
+.filterChip:hover { border-color: var(--ml-blue); color: #93b4ff; }
+.filterChipActive { background: var(--ml-blue); border-color: var(--ml-blue); color: #fff; }
 .clearFilters { color: #f87171; }
 
 .toolbar { }
-.resultCount { color: #94a3b8; }
-.sortSelect { border-color: #334155; color: #cbd5e1; background: #1e293b; }
-.viewToggle { border-color: #334155; }
+.resultCount { color: var(--text-tertiary-dark); }
+.sortSelect { border-color: var(--border-dark); color: var(--text-secondary-dark); background: var(--bg-secondary-dark); }
+.viewToggle { border-color: var(--border-dark); }
 .viewBtn { color: #64748b; }
-.viewBtnActive { background: #334155; color: #f1f5f9; }
+.viewBtnActive { background: var(--border-dark); color: var(--color-text-primary-dark); }
 
 .activeTag { background: rgba(69,115,223,0.15); color: #93b4ff; }
 .clearAllBtn { color: #93b4ff; }
 
-.card { background: #1e293b; border-color: #334155; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
-.card:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.3); border-color: #4573df; }
-.jobTitle { color: #f1f5f9; }
-.metaItem { color: #94a3b8; }
+.card { background: var(--bg-secondary-dark); border-color: var(--border-dark); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+.card:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.3); border-color: var(--ml-blue); }
+.jobTitle { color: var(--color-text-primary-dark); }
+.metaItem { color: var(--text-tertiary-dark); }
 .experienceBadge { background: rgba(69,115,223,0.15); color: #93b4ff; }
 .budget { color: #34d399; }
-.description { color: #94a3b8; }
-.tag { background: #334155; color: #cbd5e1; }
+.description { color: var(--text-tertiary-dark); }
+.tag { background: var(--border-dark); color: var(--text-secondary-dark); }
 .tagMore { background: transparent; color: #64748b; }
-.cardFooter { border-top: 1px solid #334155; }
-.footerItem { color: #94a3b8; }
+.cardFooter { border-top: 1px solid var(--border-dark); }
+.footerItem { color: var(--text-tertiary-dark); }
 
-.skeletonCard { background: #1e293b; border: 1px solid #334155; }
-.skeletonLine { background: linear-gradient(90deg, #334155 25%, #475569 50%, #334155 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
-.skeletonTag { background: #334155; }
+.skeletonCard { background: var(--bg-secondary-dark); border: 1px solid var(--border-dark); }
+.skeletonLine { background: linear-gradient(90deg, var(--border-dark) 25%, #475569 50%, var(--border-dark) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
+.skeletonTag { background: var(--border-dark); }
 
-.emptyState { color: #94a3b8; }
+.emptyState { color: var(--text-tertiary-dark); }
 
 .pagination { }
-.pageBtn { color: #94a3b8; }
-.pageBtn:hover:not(:disabled) { background: #334155; }
-.pageBtnActive { background: #4573df; color: #fff; border-color: #4573df; }
+.pageBtn { color: var(--text-tertiary-dark); }
+.pageBtn:hover:not(:disabled) { background: var(--border-dark); }
+.pageBtnActive { background: var(--ml-blue); color: #fff; border-color: var(--ml-blue); }
 
-.mobilePanel { background: #1e293b; }
-.mobilePanelHeader { border-color: #334155; }
-.mobilePanelFooter { border-color: #334155; background: #0f172a; }
+.mobilePanel { background: var(--bg-secondary-dark); }
+.mobilePanelHeader { border-color: var(--border-dark); }
+.mobilePanelFooter { border-color: var(--border-dark); background: var(--bg-primary-dark); }
 
 @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }

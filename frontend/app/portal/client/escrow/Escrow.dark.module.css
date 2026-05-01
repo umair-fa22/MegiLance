@@ -1,11 +1,11 @@
 /* Dark theme colors for Escrow */
 
 .container {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .fundBtn {
@@ -25,7 +25,7 @@
 
 .balanceCard {
   background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -44,29 +44,29 @@
 }
 
 .formCard {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .select,
 .input,
 .textarea {
-  background-color: #1e293b;
-  border-color: #334155;
-  color: #f8fafc;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .select:focus,
 .input:focus,
 .textarea:focus {
   outline: none;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.2);
 }
 
 .cancelBtn {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .cancelBtn:hover {
@@ -74,7 +74,7 @@
 }
 
 .submitBtn {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -84,7 +84,7 @@
 
 .loading,
 .empty {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .emptyBtn {
@@ -97,16 +97,16 @@
 }
 
 .transactionCard {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .transactionCard:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .transactionMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .badge {
@@ -130,12 +130,12 @@
 }
 
 .description {
-  background-color: #0f172a;
-  color: #cbd5e1;
+  background-color: var(--bg-primary-dark);
+  color: var(--text-secondary-dark);
 }
 
 .transactionActions {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .releaseBtn {
@@ -148,8 +148,8 @@
 }
 
 .refundBtn {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .refundBtn:hover {
@@ -161,11 +161,11 @@
 }
 
 .modalContent {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .modalSubtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .availableAmount {

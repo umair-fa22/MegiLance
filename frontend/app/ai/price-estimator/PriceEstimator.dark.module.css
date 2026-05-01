@@ -2,7 +2,7 @@
 
 /* ===== Page Background ===== */
 .container {
-  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  background: linear-gradient(135deg, var(--bg-primary-dark) 0%, #1e1b4b 50%, var(--bg-primary-dark) 100%);
 }
 
 /* ===== Header ===== */
@@ -18,14 +18,14 @@
 }
 
 .title {
-  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+  background: linear-gradient(135deg, var(--color-text-primary-dark), #e2e8f0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* ===== Form Card ===== */
@@ -50,11 +50,11 @@
 }
 
 .formTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .formSubtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .label {
@@ -62,19 +62,19 @@
 }
 
 .label svg {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .labelOptional {
   background: rgba(99, 102, 241, 0.1);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* ===== Form Inputs ===== */
 .textarea {
   background: rgba(15, 23, 42, 0.6);
   border-color: rgba(99, 102, 241, 0.2);
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .textarea:focus {
@@ -91,7 +91,7 @@
 .select {
   background: rgba(15, 23, 42, 0.6);
   border-color: rgba(99, 102, 241, 0.2);
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2394a3b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
 }
 
@@ -116,13 +116,13 @@
 }
 
 .submitButton:disabled {
-  background: #334155;
+  background: var(--border-dark);
   color: #64748b;
   box-shadow: none;
 }
 
 .privacyNote {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .privacyNote svg {
@@ -156,7 +156,7 @@
 }
 
 .emptyStateText {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* ===== Loading State ===== */
@@ -171,7 +171,7 @@
 }
 
 .loadingOrbInner {
-  background: linear-gradient(135deg, #1e293b, #0f172a);
+  background: linear-gradient(135deg, var(--bg-secondary-dark), var(--bg-primary-dark));
   box-shadow: 
     0 4px 12px rgba(139, 92, 246, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -182,16 +182,16 @@
 }
 
 .loadingTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .loadingText {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .loadingStep {
   background: rgba(15, 23, 42, 0.6);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .loadingStep.active {
@@ -214,7 +214,7 @@
 }
 
 .priceLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .priceValue {
@@ -263,11 +263,11 @@
 }
 
 .breakdownItemLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .breakdownItemValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 /* ===== Factors ===== */
@@ -290,11 +290,11 @@
 }
 
 .factorValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .factorLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* ===== Actions ===== */

@@ -4,7 +4,7 @@
   --badge-paid-bg: rgba(34,197,94,0.10);
   --badge-paid-text: #22c55e;
   --badge-pending-bg: rgba(242,201,76,0.10);
-  --badge-pending-text: #F2C94C;
+  --badge-pending-text: var(--ml-yellow);
   --badge-failed-bg: rgba(248,113,113,0.10);
   --badge-failed-text: #f87171;
 }

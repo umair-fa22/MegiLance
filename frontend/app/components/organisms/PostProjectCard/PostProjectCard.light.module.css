@@ -2,50 +2,50 @@
 
 .wrapper {
   background: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .header {
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--bg-tertiary-light);
 }
 
-.headerTitle { color: #0f172a; }
-.headerSub { color: #64748b; }
+.headerTitle { color: var(--text-primary-light); }
+.headerSub { color: var(--color-text-secondary-light); }
 
 .controls {
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--bg-tertiary-light);
   padding-bottom: 1rem;
 }
 
-.controlLabel { color: #64748b; }
+.controlLabel { color: var(--color-text-secondary-light); }
 
 .toggleBtn {
-  background: #f1f5f9;
-  color: #64748b;
+  background: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
-.toggleBtn:hover { background: #e2e8f0; }
+.toggleBtn:hover { background: var(--border-light); }
 .toggleBtnActive {
-  background: #4573df !important;
+  background: var(--ml-blue) !important;
   color: #fff !important;
 }
 
-.tabBar { border-bottom-color: #e2e8f0; }
-.tab { color: #64748b; }
-.tab:hover { color: #0f172a; }
+.tabBar { border-bottom-color: var(--border-light); }
+.tab { color: var(--color-text-secondary-light); }
+.tab:hover { color: var(--text-primary-light); }
 .tabActive {
-  color: #4573df !important;
-  border-bottom-color: #4573df !important;
+  color: var(--ml-blue) !important;
+  border-bottom-color: var(--ml-blue) !important;
 }
 
 .previewArea {
-  background: repeating-conic-gradient(#f8fafc 0% 25%, #fff 0% 50%) 50% / 20px 20px;
+  background: repeating-conic-gradient(var(--bg-secondary-light) 0% 25%, #fff 0% 50%) 50% / 20px 20px;
 }
 
-.codeArea { border: 1px solid #e2e8f0; }
-.codeToolbar { background: #f8fafc; border-bottom: 1px solid #e2e8f0; }
-.codeLabel { color: #64748b; }
-.copyBtn { color: #4573df; }
+.codeArea { border: 1px solid var(--border-light); }
+.codeToolbar { background: var(--bg-secondary-light); border-bottom: 1px solid var(--border-light); }
+.codeLabel { color: var(--color-text-secondary-light); }
+.copyBtn { color: var(--ml-blue); }
 .copyBtn:hover { background: rgba(69, 115, 223, 0.08); }
 .codeBlock { background: #fff; color: #334155; }
 
-.quickActions { border-top-color: #e2e8f0; }
+.quickActions { border-top-color: var(--border-light); }

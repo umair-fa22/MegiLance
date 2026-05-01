@@ -1,9 +1,9 @@
 ﻿/* @AI-HINT: Light theme styles for the StatusFilter component. */
 
 .filterButton {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
-  color: #64748b;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--color-text-secondary-light);
 }
 
 .filterButton:hover {
@@ -14,5 +14,5 @@
 .selected {
   background-color: #3b63c4;
   border-color: #3b63c4;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }

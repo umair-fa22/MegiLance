@@ -142,8 +142,8 @@
 }
 
 .priorityLow {
-  border-color: #27AE60;
-  color: #27AE60;
+  border-color: var(--ml-green);
+  color: var(--ml-green);
 }
 
 .priorityLow.priorityActive {
@@ -151,8 +151,8 @@
 }
 
 .priorityMedium {
-  border-color: #4573df;
-  color: #4573df;
+  border-color: var(--ml-blue);
+  color: var(--ml-blue);
 }
 
 .priorityMedium.priorityActive {
@@ -160,7 +160,7 @@
 }
 
 .priorityHigh {
-  border-color: #F2C94C;
+  border-color: var(--ml-yellow);
   color: #c9a000;
 }
 
@@ -169,8 +169,8 @@
 }
 
 .priorityUrgent {
-  border-color: #e81123;
-  color: #e81123;
+  border-color: var(--ml-red);
+  color: var(--ml-red);
 }
 
 .priorityUrgent.priorityActive {
@@ -202,7 +202,7 @@
 }
 
 .faqSearchInput:focus-visible {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
 }
 

@@ -131,7 +131,7 @@
   top: 0.5rem;
   right: 0.5rem;
   font-size: 1rem;
-  color: var(--color-success, #27ae60);
+  color: var(--color-success, var(--ml-green));
 }
 
 /* Details Section */
@@ -219,7 +219,7 @@
 }
 
 .walletConnected svg {
-  color: var(--color-success, #27ae60);
+  color: var(--color-success, var(--ml-green));
 }
 
 .paymentAddress {

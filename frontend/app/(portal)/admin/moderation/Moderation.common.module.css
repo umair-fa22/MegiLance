@@ -7,9 +7,9 @@
 .statCard { display: flex; align-items: center; gap: 1rem; padding: 1.25rem; border-radius: 12px; }
 .statValue { display: block; font-size: 1.5rem; font-weight: 700; }
 .statLabel { display: block; font-size: 0.85rem; opacity: 0.7; }
-.statIconWarning { color: var(--color-warning, #F2C94C); }
-.statIconSuccess { color: var(--color-success, #27AE60); }
-.statIconDanger { color: var(--color-error, #e81123); }
+.statIconWarning { color: var(--color-warning, var(--ml-yellow)); }
+.statIconSuccess { color: var(--color-success, var(--ml-green)); }
+.statIconDanger { color: var(--color-error, var(--ml-red)); }
 .filters { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
 .filterBtn { padding: 0.5rem 1rem; border-radius: 20px; border: none; cursor: pointer; font-size: 0.9rem; transition: transform 0.2s,
     box-shadow 0.2s,
@@ -24,8 +24,8 @@
 .itemType { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; text-transform: capitalize; }
 .statusBadge { padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 500; text-transform: capitalize; }
 .statuspending { background: rgba(242, 201, 76, 0.15); color: #c9a000; }
-.statusapproved { background: rgba(39, 174, 96, 0.1); color: var(--color-success, #27AE60); }
-.statusrejected { background: rgba(232, 17, 35, 0.1); color: var(--color-error, #e81123); }
+.statusapproved { background: rgba(39, 174, 96, 0.1); color: var(--color-success, var(--ml-green)); }
+.statusrejected { background: rgba(232, 17, 35, 0.1); color: var(--color-error, var(--ml-red)); }
 .itemContent { margin: 0 0 0.75rem 0; line-height: 1.5; }
 .itemMeta { display: flex; gap: 1.5rem; font-size: 0.85rem; opacity: 0.7; margin-bottom: 1rem; }
 .itemActions { display: flex; gap: 0.5rem; }

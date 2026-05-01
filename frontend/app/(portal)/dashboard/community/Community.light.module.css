@@ -1,73 +1,73 @@
 /* AI-HINT: Light theme overrides for Portal Community page. */
 
 .themeWrapper { background: #fff; color: #1a1a1a; }
-.subtitle { color: #64748b; }
+.subtitle { color: var(--color-text-secondary-light); }
 
-.input, .textarea, .composerInput { background: #f9fafb; border-color: #e2e8f0; color: #1a1a1a; }
+.input, .textarea, .composerInput { background: #f9fafb; border-color: var(--border-light); color: #1a1a1a; }
 .searchWrap { background: #f9fafb; border-radius: 8px; }
 
 /* Stats Banner */
-.statsBanner { background: #f9fafb; border: 1px solid #e2e8f0; }
+.statsBanner { background: #f9fafb; border: 1px solid var(--border-light); }
 .statValue { color: #1a1a1a; }
-.statLabel { color: #94a3b8; }
+.statLabel { color: var(--text-tertiary-light); }
 
 /* Side Cards */
-.sideCard { background: #fff; border-color: #e2e8f0; }
+.sideCard { background: #fff; border-color: var(--border-light); }
 .sideCardTitle { color: #1a1a1a; }
 
 /* Categories */
-.categoryBtn { color: #64748b; }
-.categoryBtn:hover { background: #f1f5f9; color: #1a1a1a; }
-.categoryActive { background: #eff6ff !important; color: #4573df !important; }
-.categoryCount { background: #f1f5f9; color: #64748b; }
+.categoryBtn { color: var(--color-text-secondary-light); }
+.categoryBtn:hover { background: var(--bg-tertiary-light); color: #1a1a1a; }
+.categoryActive { background: #eff6ff !important; color: var(--ml-blue) !important; }
+.categoryCount { background: var(--bg-tertiary-light); color: var(--color-text-secondary-light); }
 
 /* Trending Tags */
-.trendTag { background: #f1f5f9; color: #64748b; border-color: #e2e8f0; }
-.trendTag:hover { background: #e2e8f0; color: #1a1a1a; }
+.trendTag { background: var(--bg-tertiary-light); color: var(--color-text-secondary-light); border-color: var(--border-light); }
+.trendTag:hover { background: var(--border-light); color: #1a1a1a; }
 
 /* Sort */
-.sortBtn { color: #64748b; }
-.sortBtn:hover { background: #f1f5f9; }
-.sortBtnActive { background: #eff6ff; color: #4573df; font-weight: 600; }
+.sortBtn { color: var(--color-text-secondary-light); }
+.sortBtn:hover { background: var(--bg-tertiary-light); }
+.sortBtnActive { background: #eff6ff; color: var(--ml-blue); font-weight: 600; }
 
 /* Composer */
-.composerCard { background: #fff; border-color: #e2e8f0; }
+.composerCard { background: #fff; border-color: var(--border-light); }
 .composerTitle { color: #1a1a1a; }
 
 /* Threads */
-.thread { background: #fff; border-color: #e2e8f0; }
+.thread { background: #fff; border-color: var(--border-light); }
 .thread:hover { background: #f9fafb; }
 .pinned { background: #f8faff; border-color: #d1ddfb; }
 
 /* Badges */
-.badgePinned { background: #eff6ff; color: #4573df; }
+.badgePinned { background: #eff6ff; color: var(--ml-blue); }
 .badgeHot { background: #fef2f2; color: #ef4444; }
 
 /* Avatar */
-.avatar { background: #e2e8f0; color: #374151; }
+.avatar { background: var(--border-light); color: #374151; }
 
 /* Author */
 .authorName { color: #1a1a1a; }
-.threadTime { color: #94a3b8; }
+.threadTime { color: var(--text-tertiary-light); }
 
 /* Level badges */
 .levelExpert { background: #fef3c7; color: #92400e; }
 .levelPro { background: #ede9fe; color: #5b21b6; }
 .levelContributor { background: #ecfdf5; color: #064e3b; }
-.levelNew { background: #f1f5f9; color: #64748b; }
+.levelNew { background: var(--bg-tertiary-light); color: var(--color-text-secondary-light); }
 
 /* Thread content */
 .threadTitle { color: #1a1a1a; }
-.threadPreview { color: #64748b; }
+.threadPreview { color: var(--color-text-secondary-light); }
 
 /* Tags */
-.tag { background: #f1f5f9; border-color: #e2e8f0; color: #374151; }
+.tag { background: var(--bg-tertiary-light); border-color: var(--border-light); color: #374151; }
 
 /* Thread actions */
-.threadAction { color: #94a3b8; }
-.threadAction:hover { background: #f1f5f9; color: #374151; }
-.threadActionActive { color: #4573df !important; }
-.threadStat { color: #94a3b8; }
+.threadAction { color: var(--text-tertiary-light); }
+.threadAction:hover { background: var(--bg-tertiary-light); color: #374151; }
+.threadActionActive { color: var(--ml-blue) !important; }
+.threadStat { color: var(--text-tertiary-light); }
 
 /* Empty State */
-.emptyState { background: #f9fafb; color: #64748b; }
+.emptyState { background: #f9fafb; color: var(--color-text-secondary-light); }

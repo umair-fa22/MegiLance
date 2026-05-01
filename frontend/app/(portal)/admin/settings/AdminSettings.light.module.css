@@ -1,44 +1,44 @@
 /* AI-HINT: Light theme for Enterprise Admin Settings — sidebar, content, forms, save bar */
 
-.themeWrapper { background: #f8fafc; color: #0f172a; }
-.subtitle { color: #64748b; }
+.themeWrapper { background: var(--bg-secondary-light); color: var(--text-primary-light); }
+.subtitle { color: var(--color-text-secondary-light); }
 
 /* Unsaved badge */
 .unsavedBadge { background: #fef3c7; color: #92400e; }
 
 /* Sidebar */
-.sidebar { background: #ffffff; border: 1px solid #e2e8f0; }
-.sidebarSearchInput { color: #0f172a; }
-.sidebarSearchInput::placeholder { color: #94a3b8; }
-.sidebarItem { color: #475569; }
-.sidebarItem:hover { background: #f1f5f9; }
+.sidebar { background: var(--bg-primary-light); border: 1px solid var(--border-light); }
+.sidebarSearchInput { color: var(--text-primary-light); }
+.sidebarSearchInput::placeholder { color: var(--text-tertiary-light); }
+.sidebarItem { color: var(--text-secondary-light); }
+.sidebarItem:hover { background: var(--bg-tertiary-light); }
 .sidebarItemActive { background: #eff6ff; color: #1e40af; }
-.sidebarDesc { color: #94a3b8; }
+.sidebarDesc { color: var(--text-tertiary-light); }
 
 /* Content header */
 .contentIcon { background: #eff6ff; color: #3b82f6; }
-.contentTitle { color: #0f172a; }
-.contentDesc { color: #64748b; }
+.contentTitle { color: var(--text-primary-light); }
+.contentDesc { color: var(--color-text-secondary-light); }
 
 /* Sections */
-.section { background: #ffffff; border: 1px solid #e2e8f0; }
-.sectionTitle { color: #0f172a; }
-.subsectionTitle { color: #334155; border-color: #e2e8f0; }
+.section { background: var(--bg-primary-light); border: 1px solid var(--border-light); }
+.sectionTitle { color: var(--text-primary-light); }
+.subsectionTitle { color: #334155; border-color: var(--border-light); }
 
 /* Forms */
-.input, .select, .textarea { background: #ffffff; border: 1px solid #e2e8f0; color: #0f172a; }
-.input:focus, .select:focus, .textarea:focus { border-color: #4573df; box-shadow: 0 0 0 3px rgba(69,115,223,0.08); }
-.inputSuffix { color: #64748b; }
-.inputToggle { color: #64748b; }
+.input, .select, .textarea { background: var(--bg-primary-light); border: 1px solid var(--border-light); color: var(--text-primary-light); }
+.input:focus, .select:focus, .textarea:focus { border-color: var(--ml-blue); box-shadow: 0 0 0 3px rgba(69,115,223,0.08); }
+.inputSuffix { color: var(--color-text-secondary-light); }
+.inputToggle { color: var(--color-text-secondary-light); }
 .toggleLabel { color: #334155; }
-.help { color: #64748b; }
+.help { color: var(--color-text-secondary-light); }
 
 /* Save bar */
-.saveBar { background: rgba(255,255,255,0.95); border: 1px solid #e2e8f0; box-shadow: 0 -2px 16px rgba(0,0,0,0.08); }
+.saveBar { background: rgba(255,255,255,0.95); border: 1px solid var(--border-light); box-shadow: 0 -2px 16px rgba(0,0,0,0.08); }
 
 /* Button overrides */
-.button.primary { background: #4573df; color: #ffffff; border: 1px solid rgba(0,0,0,0.12); }
-.button.secondary { background: #ffffff; color: #475569; border: 1px solid #e2e8f0; }
+.button.primary { background: var(--ml-blue); color: var(--bg-primary-light); border: 1px solid rgba(0,0,0,0.12); }
+.button.secondary { background: var(--bg-primary-light); color: var(--text-secondary-light); border: 1px solid var(--border-light); }
 
 /* Toast */
 .toast { background: rgba(255,255,255,0.95); border: 1px solid rgba(39,174,96,0.3); color: #166534; }

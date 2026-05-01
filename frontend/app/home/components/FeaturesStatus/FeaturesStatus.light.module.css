@@ -1,11 +1,11 @@
 /* @AI-HINT: Light theme styles for FeaturesStatus section */
 
 .section {
-  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  background: linear-gradient(180deg, var(--bg-primary-light) 0%, var(--bg-secondary-light) 100%);
 }
 
 .title {
-  background: linear-gradient(135deg, #1a1a1a 0%, #4573df 100%);
+  background: linear-gradient(135deg, #1a1a1a 0%, var(--ml-blue) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -25,11 +25,11 @@
 }
 
 .statValue {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .statLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .categoryCard {
@@ -43,7 +43,7 @@
 }
 
 .categoryIcon {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .categoryTitle {
@@ -68,7 +68,7 @@
 }
 
 .legendTitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .legendItem {

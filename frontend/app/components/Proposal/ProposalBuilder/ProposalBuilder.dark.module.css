@@ -1,25 +1,25 @@
 /* Dark theme for ProposalBuilder */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .templateCard {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .templateCard:hover {
-  background-color: #0f172a;
-  border-color: #4573df;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--ml-blue);
 }
 
 .tip {
@@ -29,10 +29,10 @@
 }
 
 .formSection {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .sectionTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }

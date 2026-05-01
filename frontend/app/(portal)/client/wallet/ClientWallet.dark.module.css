@@ -6,7 +6,7 @@
 .subtitle { color: #9ca3af; }
 .errorBanner { background: #2d1b1b; color: #f87171; border: 1px solid #7f1d1d; }
 
-.depositPanel { background: #181b2e; border-color: #4573df; }
+.depositPanel { background: #181b2e; border-color: var(--ml-blue); }
 .depositTitle { color: #f3f4f6; }
 .quickAmount { background: #23263a; border-color: #333752; color: #d1d5db; }
 .quickAmount:hover { background: #2a2d4a; }

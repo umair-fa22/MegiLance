@@ -1,1 +1,1 @@
-/* Light theme */ .container { background: #f8fafc; } .title { color: #1a1a2e; } .subtitle { color: #64748b; } .overallStatus { } .serviceCard { background: #ffffff; border: 1px solid #e2e8f0; } .statValue { color: #1a1a2e; }
+/* Light theme */ .container { background: var(--bg-secondary-light); } .title { color: #1a1a2e; } .subtitle { color: var(--color-text-secondary-light); } .overallStatus { } .serviceCard { background: var(--bg-primary-light); border: 1px solid var(--border-light); } .statValue { color: #1a1a2e; }

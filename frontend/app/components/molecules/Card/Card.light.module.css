@@ -4,9 +4,9 @@
   --card-bg: rgba(255, 255, 255, 0.85);
   --card-border: rgba(226, 232, 240, 0.6);
   --card-header-border: rgba(241, 245, 249, 0.8);
-  --card-icon-color: #4573df;
-  --card-title-color: #0f172a;
-  --card-content-color: #475569;
+  --card-icon-color: var(--ml-blue);
+  --card-title-color: var(--text-primary-light);
+  --card-content-color: var(--text-secondary-light);
   --card-filled-bg: rgba(248, 250, 252, 0.9);
 }
 
@@ -41,8 +41,8 @@
 }
 
 .cardTitle {
-  color: #0f172a;
-  background: linear-gradient(135deg, #0f172a 0%, #2d5cb8 50%, #334155 100%);
+  color: var(--text-primary-light);
+  background: linear-gradient(135deg, var(--text-primary-light) 0%, #2d5cb8 50%, #334155 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -50,7 +50,7 @@
 }
 
 .cardIcon {
-  color: #4573df;
+  color: var(--ml-blue);
   filter: drop-shadow(0 2px 6px rgba(69, 115, 223, 0.25));
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -101,7 +101,7 @@
 
 /* Selected state - Light */
 .card.selected {
-  border: 2px solid #4573df;
+  border: 2px solid var(--ml-blue);
   box-shadow:
     0 0 0 4px rgba(69, 115, 223, 0.1),
     0 8px 24px rgba(69, 115, 223, 0.2),

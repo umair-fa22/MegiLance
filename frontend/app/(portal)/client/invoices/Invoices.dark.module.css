@@ -4,42 +4,42 @@
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statCard {
   background: #1a1f2e;
-  border: 1px solid #1e293b;
+  border: 1px solid var(--bg-secondary-dark);
 }
 
 .statValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .filters {
   background: #1a1f2e;
-  border: 1px solid #1e293b;
+  border: 1px solid var(--bg-secondary-dark);
 }
 
 .searchInput {
   background: #0f1419;
-  color: #f1f5f9;
-  border-color: #1e293b;
+  color: var(--color-text-primary-dark);
+  border-color: var(--bg-secondary-dark);
 }
 
 .filterSelect {
   background: #0f1419;
-  color: #f1f5f9;
-  border-color: #1e293b;
+  color: var(--color-text-primary-dark);
+  border-color: var(--bg-secondary-dark);
 }
 
 .tableWrapper {
   background: #1a1f2e;
-  border: 1px solid #1e293b;
+  border: 1px solid var(--bg-secondary-dark);
 }
 
 .tableRow:hover {
@@ -48,10 +48,10 @@
 
 .table th {
   background: #141922;
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .table td {
-  color: #f1f5f9;
-  border-color: #1e293b;
+  color: var(--color-text-primary-dark);
+  border-color: var(--bg-secondary-dark);
 }

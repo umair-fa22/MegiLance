@@ -1,16 +1,16 @@
 /* @AI-HINT: User Feedback page - dark theme colors */
 
 .container {
-  background-color: #0f172a;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .submitButton {
@@ -27,14 +27,14 @@
 }
 
 .filterButton {
-  background-color: #1e293b;
-  color: #94a3b8;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  color: var(--text-tertiary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .filterButton:hover {
-  background-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .filterActive {
@@ -44,33 +44,33 @@
 }
 
 .sortSelect {
-  background-color: #1e293b;
-  border: 1px solid #334155;
-  color: #f1f5f9;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .loading {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Empty State */
 .emptyState {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .emptyTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .emptyDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Feedback Card */
 .feedbackCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .feedbackCard:hover {
@@ -79,8 +79,8 @@
 }
 
 .voteButton {
-  background-color: #334155;
-  color: #94a3b8;
+  background-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .voteButton:hover {
@@ -94,19 +94,19 @@
 }
 
 .voteCount {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .category {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .feedbackTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .feedbackDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .commentCount {
@@ -119,50 +119,50 @@
 
 /* Modal */
 .modal {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .modalHeader {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .modalTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .closeButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .closeButton:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .label {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .typeOption {
-  background-color: #0f172a;
-  color: #cbd5e1;
+  background-color: var(--bg-primary-dark);
+  color: var(--text-secondary-dark);
 }
 
 .typeOption:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .typeSelected {
   background-color: rgba(59, 130, 246, 0.15);
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .input,
 .select,
 .textarea {
-  background-color: #0f172a;
-  border: 1px solid #334155;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .input:focus,
@@ -179,11 +179,11 @@
 }
 
 .modalFooter {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .cancelBtn {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 

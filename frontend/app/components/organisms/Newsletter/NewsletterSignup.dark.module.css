@@ -1,7 +1,7 @@
 .input {
   background: rgba(30, 41, 59, 0.5);
   border-color: rgba(255, 255, 255, 0.1);
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .input:focus {
@@ -11,7 +11,7 @@
 
 .button {
   background: #4ade80;
-  color: #0f172a;
+  color: var(--bg-primary-dark);
 }
 
 .successMessage {

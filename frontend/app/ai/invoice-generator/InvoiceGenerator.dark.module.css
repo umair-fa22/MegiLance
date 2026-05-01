@@ -2,7 +2,7 @@
 
 /* Container */
 .container {
-  background: linear-gradient(135deg, #0c0f1a 0%, #0f172a 50%, #0f1724 100%);
+  background: linear-gradient(135deg, #0c0f1a 0%, var(--bg-primary-dark) 50%, #0f1724 100%);
   color: #e2e8f0;
 }
 
@@ -13,27 +13,27 @@
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Stepper */
 .stepDot {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   color: #64748b;
 }
 
 .stepDotActive {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #fff;
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.4);
 }
 
 .stepDotCompleted {
-  background: #27ae60;
+  background: var(--ml-green);
   color: #fff;
 }
 
@@ -46,11 +46,11 @@
 }
 
 .stepLine {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
 }
 
 .stepLineActive {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 /* Form Card */
@@ -61,11 +61,11 @@
 }
 
 .formTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .label {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .labelHint {
@@ -79,7 +79,7 @@
 }
 
 .textInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
 }
 
@@ -94,7 +94,7 @@
 }
 
 .textarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
 }
 
@@ -110,7 +110,7 @@
 }
 
 .select:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
 }
 
@@ -121,7 +121,7 @@
 }
 
 .numberInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
 }
 
@@ -145,7 +145,7 @@
 }
 
 .itemTotal {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .itemRemove {
@@ -165,11 +165,11 @@
 
 .addItemBtn:hover {
   background: rgba(69, 115, 223, 0.08);
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .subtotalDisplay {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 /* Template */
@@ -183,19 +183,19 @@
 }
 
 .templateCardSelected {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background: rgba(69, 115, 223, 0.1);
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.15);
 }
 
 .templateLabel {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 /* Navigation */
 .navButtonBack {
   background: rgba(30, 41, 59, 0.8);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .navButtonBack:hover:not(:disabled) {
@@ -203,7 +203,7 @@
 }
 
 .navButtonNext {
-  background: linear-gradient(135deg, #4573df, #5b88f0);
+  background: linear-gradient(135deg, var(--ml-blue), #5b88f0);
   color: #fff;
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.35);
 }
@@ -214,7 +214,7 @@
 
 /* Processing */
 .processingContainer {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .processingOrb {
@@ -222,16 +222,16 @@
 }
 
 .processingOrbInner {
-  background: linear-gradient(135deg, #4573df, #7c3aed);
+  background: linear-gradient(135deg, var(--ml-blue), #7c3aed);
   color: #fff;
 }
 
 .processingSubtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .processingStepCircle {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 /* Results */
@@ -242,15 +242,15 @@
 }
 
 .priceHeroGlow {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 .priceHeroLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .priceHeroValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .priceHeroMetaItem {
@@ -259,7 +259,7 @@
 }
 
 .invoiceHeroDate {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .invoiceHeroTemplate {
@@ -267,7 +267,7 @@
 }
 
 .invoiceHeroWords {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .resultCard {
@@ -281,7 +281,7 @@
 }
 
 .resultCardTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 /* Parties */
@@ -294,20 +294,20 @@
 }
 
 .partyName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .partyDetail {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Breakdown */
 .breakdownItemLabel {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .breakdownItemValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .breakdownItemHours {
@@ -319,31 +319,31 @@
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #4573df, #7ba0f7);
+  background: linear-gradient(90deg, var(--ml-blue), #7ba0f7);
 }
 
 /* Calculations */
 .calcRow {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
   border-bottom: 1px solid rgba(51, 65, 85, 0.4);
 }
 
 /* Timeline */
 .timelineStatValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .timelineStatLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .timelineDivider {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 /* Actions */
 .actionBtnPrimary {
-  background: linear-gradient(135deg, #4573df, #5b88f0);
+  background: linear-gradient(135deg, var(--ml-blue), #5b88f0);
   color: #fff;
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.35);
 }

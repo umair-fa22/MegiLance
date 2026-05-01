@@ -63,7 +63,7 @@
   letter-spacing: -0.03em;
   line-height: 1.1;
   margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, var(--color-primary, #4573df) 0%, var(--color-accent, #ff9800) 100%);
+  background: linear-gradient(135deg, var(--color-primary, var(--ml-blue)) 0%, var(--color-accent, var(--ml-orange)) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -98,7 +98,7 @@
   bottom: 0;
   left: 50%;
   margin-left: -2px;
-  background: linear-gradient(to bottom, var(--color-primary, #4573df), var(--color-accent, #ff9800));
+  background: linear-gradient(to bottom, var(--color-primary, var(--ml-blue)), var(--color-accent, var(--ml-orange)));
   border-radius: 4px;
   box-shadow: 0 0 20px rgba(69, 115, 223, 0.3);
 }

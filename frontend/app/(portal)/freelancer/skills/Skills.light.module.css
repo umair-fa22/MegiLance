@@ -1,33 +1,33 @@
 /* Light Theme */
-.container { background: #f8fafc; }
+.container { background: var(--bg-secondary-light); }
 .title { color: #1a1a1a; }
-.subtitle { color: #64748b; }
+.subtitle { color: var(--color-text-secondary-light); }
 
 /* Stats */
-.statCard { background: #fff; border: 1px solid #e2e8f0; }
+.statCard { background: #fff; border: 1px solid var(--border-light); }
 .statValue { color: #1a1a1a; }
-.statLabel { color: #64748b; }
+.statLabel { color: var(--color-text-secondary-light); }
 
 /* Toolbar */
-.toolbar { background: #fff; border: 1px solid #e2e8f0; }
+.toolbar { background: #fff; border: 1px solid var(--border-light); }
 .searchWrap {}
-.searchInput { background: #f1f5f9; color: #1a1a1a; }
-.searchInput:focus { border-color: #4573df; background: #fff; }
-.sortSelect { background: #f1f5f9; color: #1a1a1a; }
-.sortSelect:focus { border-color: #4573df; }
-.resultCount { color: #94a3b8; }
+.searchInput { background: var(--bg-tertiary-light); color: #1a1a1a; }
+.searchInput:focus { border-color: var(--ml-blue); background: #fff; }
+.sortSelect { background: var(--bg-tertiary-light); color: #1a1a1a; }
+.sortSelect:focus { border-color: var(--ml-blue); }
+.resultCount { color: var(--text-tertiary-light); }
 
 /* Skill Cards */
-.skillCard { background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.skillCard { background: #fff; border: 1px solid var(--border-light); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
 .skillCard:hover { border-color: #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 .skillName { color: #1a1a1a; }
-.removeBtn { color: #64748b; }
+.removeBtn { color: var(--color-text-secondary-light); }
 .removeBtn:hover { background: #fee2e2; color: #dc2626; }
-.experience { color: #64748b; }
-.endorsements { color: #4573df; }
-.progressBar { background: #e2e8f0; }
-.progressFill { background: linear-gradient(90deg, #4573df, #6b9fff); }
-.emptyFiltered { background: #f9fafb; color: #64748b; }
+.experience { color: var(--color-text-secondary-light); }
+.endorsements { color: var(--ml-blue); }
+.progressBar { background: var(--border-light); }
+.progressFill { background: linear-gradient(90deg, var(--ml-blue), #6b9fff); }
+.emptyFiltered { background: #f9fafb; color: var(--color-text-secondary-light); }
 
 /* Level Variants */
 .level_beginner { background: rgba(107, 114, 128, 0.1); color: #4b5563; }
@@ -36,21 +36,21 @@
 .level_expert { background: rgba(34, 197, 94, 0.1); color: #16a34a; }
 
 /* Trending */
-.trendingCard { background: #fff; border: 1px solid #e2e8f0; }
+.trendingCard { background: #fff; border: 1px solid var(--border-light); }
 .trendingTitle { color: #1a1a1a; }
-.trendingDesc { color: #64748b; }
-.trendingItem { border-color: #e2e8f0; }
-.trendingItem:hover { background: #f1f5f9; border-color: #cbd5e1; }
+.trendingDesc { color: var(--color-text-secondary-light); }
+.trendingItem { border-color: var(--border-light); }
+.trendingItem:hover { background: var(--bg-tertiary-light); border-color: #cbd5e1; }
 .trendingName { color: #374151; }
 
 /* Modal */
 .label { color: #374151; }
-.suggestionChip { background: #f1f5f9; color: #374151; }
-.suggestionChip:hover { background: #e2e8f0; }
+.suggestionChip { background: var(--bg-tertiary-light); color: #374151; }
+.suggestionChip:hover { background: var(--border-light); }
 .levelOption { background: #f9fafb; }
-.levelOption:hover { background: #f1f5f9; }
+.levelOption:hover { background: var(--bg-tertiary-light); }
 .levelOptionActive { background: #eef2ff; }
-.levelDesc { color: #64748b; }
+.levelDesc { color: var(--color-text-secondary-light); }
 
 /* Misc */
 .confirmText { color: #4b5563; }

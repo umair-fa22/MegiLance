@@ -1,12 +1,12 @@
 /* @AI-HINT: Dark theme styles for EmptyState using brand tokens. */
 
 .wrapper {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 .iconWrap {
   background: rgba(107,141,230,0.18);
   color: #6b8de6;
 }
-.title { color: #f8fafc; }
-.description { color: #94a3b8; }
+.title { color: var(--text-primary-dark); }
+.description { color: var(--text-tertiary-dark); }

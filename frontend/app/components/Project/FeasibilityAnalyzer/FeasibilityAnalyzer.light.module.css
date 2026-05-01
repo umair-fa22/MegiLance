@@ -1,6 +1,6 @@
 .container {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -21,7 +21,7 @@
 }
 
 .recommendations {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .headerIcon {
@@ -29,7 +29,7 @@
 }
 
 .emptyText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .scoreCard {
@@ -37,7 +37,7 @@
 }
 
 .scoreCardLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .scoreCardValueHigh {

@@ -264,7 +264,7 @@ const GigDetail: React.FC = () => {
                   </div>
                   <div className={common.sellerStats}>
                     <div className={cn(common.rating, themed.rating)}>
-                      <Star size={14} fill="#ffc107" color="#ffc107" />
+                      <Star size={14} fill="var(--ml-yellow)" color="var(--ml-yellow)" />
                       <span className={common.ratingValue}>{gig.avgRating.toFixed(1)}</span>
                       <span className={cn(common.reviewCount, themed.reviewCount)}>
                         ({gig.totalReviews})

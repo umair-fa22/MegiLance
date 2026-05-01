@@ -65,12 +65,12 @@
 }
 
 .menuItem:focus {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
 }
 
 .menuItem:focus-visible {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: -2px;
 }
 
@@ -84,7 +84,7 @@
 }
 
 .menuItemDestructive {
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
 }
 
 .menuItemDestructive:hover:not(:disabled) {

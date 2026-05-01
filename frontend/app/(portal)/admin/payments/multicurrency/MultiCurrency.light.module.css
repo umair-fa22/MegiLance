@@ -1,13 +1,13 @@
 /* @AI-HINT: Multi-Currency page light theme colors */
 
 .card {
-  border-color: #e2e8f0;
-  background-color: #ffffff;
+  border-color: var(--border-light);
+  background-color: var(--bg-primary-light);
 }
 
 .select {
   border-color: #cbd5e1;
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   color: #111827;
 }
 

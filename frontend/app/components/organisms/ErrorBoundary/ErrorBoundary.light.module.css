@@ -1,13 +1,13 @@
 /* @AI-HINT: Light theme styles for ErrorBoundary fallback */
-.container { background: #fff8f8; color: #0f172a; border-color: #fde2e2; }
+.container { background: #fff8f8; color: var(--text-primary-light); border-color: #fde2e2; }
 .icon { color: #dc2626; }
-.title { color: #0f172a; }
-.message { color: #475569; }
-.detailsSummary { background: #f1f5f9; color: #64748b; }
-.errorStack { background: #f8fafc; color: #334155; border: 1px solid #e2e8f0; }
+.title { color: var(--text-primary-light); }
+.message { color: var(--text-secondary-light); }
+.detailsSummary { background: var(--bg-tertiary-light); color: var(--color-text-secondary-light); }
+.errorStack { background: var(--bg-secondary-light); color: #334155; border: 1px solid var(--border-light); }
 
 .tryAgainButton {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #fff;
 }
 .tryAgainButton:hover {
@@ -15,17 +15,17 @@
 }
 
 .refreshButton {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #334155;
 }
 .refreshButton:hover {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .homeButton {
   background: transparent;
-  color: #4573df;
-  border: 1px solid #4573df;
+  color: var(--ml-blue);
+  border: 1px solid var(--ml-blue);
 }
 .homeButton:hover {
   background: #f0f5ff;

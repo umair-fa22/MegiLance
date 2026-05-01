@@ -1,39 +1,39 @@
 /* @AI-HINT: Public talent directory - dark theme */
 
-.main { background: linear-gradient(170deg, #0f172a 0%, #0f172a 40%, #0f1225 100%); }
-.title { color: #f1f5f9; }
-.subtitle { color: #94a3b8; }
+.main { background: linear-gradient(170deg, var(--bg-primary-dark) 0%, var(--bg-primary-dark) 40%, #0f1225 100%); }
+.title { color: var(--color-text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
 
 /* Badge */
-.badge { background: #1e293b; color: #93b4ff; }
+.badge { background: var(--bg-secondary-dark); color: #93b4ff; }
 
 /* Stats */
-.statItem { color: #f8fafc; }
+.statItem { color: var(--text-primary-dark); }
 
 /* Search */
 .searchBar { background: rgba(30,41,59,0.6); border-color: rgba(51,65,85,0.6); }
-.searchInput { background: transparent; color: #f1f5f9; }
+.searchInput { background: transparent; color: var(--color-text-primary-dark); }
 .searchInput::placeholder { color: #64748b; }
 
 /* Category pills */
-.catPill { background: #1e293b; border-color: #334155; color: #94a3b8; }
-.catPill:hover { background: #0f172a; }
-.catPillActive { background: #1e293b; color: #93b4ff; border-color: #6b8ef9; }
+.catPill { background: var(--bg-secondary-dark); border-color: var(--border-dark); color: var(--text-tertiary-dark); }
+.catPill:hover { background: var(--bg-primary-dark); }
+.catPillActive { background: var(--bg-secondary-dark); color: #93b4ff; border-color: #6b8ef9; }
 
 /* Cards */
 .card { background: rgba(30,41,59,0.5); backdrop-filter: blur(10px); border-color: rgba(51,65,85,0.5); }
 .card:hover { box-shadow: 0 8px 24px rgba(69,115,223,0.15); }
-.name { color: #f1f5f9; }
-.role { color: #94a3b8; }
-.rankBadge { background: linear-gradient(135deg, #6b8ef9, #4573df); color: #ffffff; }
-.skillTag { background-color: #0f172a; border-color: #334155; color: #cbd5e1; }
+.name { color: var(--color-text-primary-dark); }
+.role { color: var(--text-tertiary-dark); }
+.rankBadge { background: linear-gradient(135deg, #6b8ef9, var(--ml-blue)); color: #ffffff; }
+.skillTag { background-color: var(--bg-primary-dark); border-color: var(--border-dark); color: var(--text-secondary-dark); }
 .viewProfileBtn { color: #6b8ef9; }
-.emptyState { color: #94a3b8; }
+.emptyState { color: var(--text-tertiary-dark); }
 
 /* CTA box */
-.ctaBox { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 1px solid #334155; }
-.ctaTitle { color: #f8fafc; }
-.ctaDesc { color: #94a3b8; }
+.ctaBox { background: linear-gradient(135deg, var(--bg-secondary-dark) 0%, var(--bg-primary-dark) 100%); border: 1px solid var(--border-dark); }
+.ctaTitle { color: var(--text-primary-dark); }
+.ctaDesc { color: var(--text-tertiary-dark); }
 .ctaBtn { background: #6b8de6; color: #fff; }
-.ctaBtnOutline { border-color: #334155; color: #f8fafc; }
-.ctaBtnOutline:hover { background: #1e293b; }
+.ctaBtnOutline { border-color: var(--border-dark); color: var(--text-primary-dark); }
+.ctaBtnOutline:hover { background: var(--bg-secondary-dark); }

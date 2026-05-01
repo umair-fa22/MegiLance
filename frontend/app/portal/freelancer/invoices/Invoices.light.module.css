@@ -9,8 +9,8 @@
 }
 
 .createBtn {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .createBtn:hover {
@@ -24,13 +24,13 @@
 }
 
 .formCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .closeBtn {
-  border-color: #e2e8f0;
-  color: #64748b;
+  border-color: var(--border-light);
+  color: var(--color-text-secondary-light);
 }
 
 .closeBtn:hover {
@@ -43,8 +43,8 @@
 .input,
 .textarea,
 .filterSelect {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   color: #111827;
 }
 
@@ -53,13 +53,13 @@
 .textarea:focus,
 .filterSelect:focus {
   outline: none;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
 
 .addItemBtn {
-  border-color: #4573df;
-  color: #4573df;
+  border-color: var(--ml-blue);
+  color: var(--ml-blue);
 }
 
 .addItemBtn:hover {
@@ -69,8 +69,8 @@
 .lineItemDesc,
 .lineItemQty,
 .lineItemPrice {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   color: #111827;
 }
 
@@ -79,7 +79,7 @@
 }
 
 .removeItemBtn {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #ef4444;
 }
 
@@ -88,25 +88,25 @@
 }
 
 .totalRow {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .totalAmount {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .cancelBtn {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #374151;
 }
 
 .cancelBtn:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .submitBtn {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .submitBtn:hover {
@@ -115,12 +115,12 @@
 
 .loading,
 .empty {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .emptyBtn {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .emptyBtn:hover {
@@ -128,19 +128,19 @@
 }
 
 .table {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .tableElement th {
   background-color: #f9fafb;
   color: #374151;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .tableElement td {
   color: #111827;
-  border-color: #f1f5f9;
+  border-color: var(--bg-tertiary-light);
 }
 
 .tableElement tbody tr:hover {
@@ -148,7 +148,7 @@
 }
 
 .invoiceNumber {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .amount {
@@ -156,11 +156,11 @@
 }
 
 .badge {
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .badge[data-status="draft"] {
-  background-color: #94a3b8;
+  background-color: var(--text-tertiary-light);
 }
 
 .badge[data-status="sent"] {
@@ -180,14 +180,14 @@
 }
 
 .iconBtn {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #4b5563;
 }
 
 .iconBtn:hover {
   background-color: #f9fafb;
-  border-color: #4573df;
-  color: #4573df;
+  border-color: var(--ml-blue);
+  color: var(--ml-blue);
 }
 
 .iconBtn[data-action="send"] {
@@ -209,7 +209,7 @@
 }
 
 .iconBtn[data-action="delete"] {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
   border-color: #cbd5e1;
 }
 
@@ -224,15 +224,15 @@
 }
 
 .modalContent {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 
 .detailRow {
-  border-color: #f1f5f9;
+  border-color: var(--bg-tertiary-light);
 }
 
 .detailLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .detailLineItem {
@@ -240,7 +240,7 @@
 }
 
 .lineItemMeta {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .lineItemTotal {
@@ -253,7 +253,7 @@
 }
 
 .notesSection {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .notes {

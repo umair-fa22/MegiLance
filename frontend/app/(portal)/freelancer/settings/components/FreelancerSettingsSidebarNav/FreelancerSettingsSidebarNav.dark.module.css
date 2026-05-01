@@ -1,13 +1,13 @@
 ﻿.link {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .link:hover {
-  background-color: #1e293b;
-  color: #f8fafc;
+  background-color: var(--bg-secondary-dark);
+  color: var(--text-primary-dark);
 }
 
 .link.active {
-  background-color: #1e293b;
-  color: #f8fafc;
+  background-color: var(--bg-secondary-dark);
+  color: var(--text-primary-dark);
 }

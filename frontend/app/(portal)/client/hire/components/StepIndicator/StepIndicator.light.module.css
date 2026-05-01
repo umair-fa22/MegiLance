@@ -2,48 +2,48 @@
 
 .nav {
   background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .stepLink {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .indicator {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
-  color: #64748b;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--color-text-secondary-light);
 }
 
 .stepName {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .separator {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 /* State styles */
 .completed .indicator {
-  background-color: #27AE60;
-  border-color: #27AE60;
-  color: #ffffff;
+  background-color: var(--ml-green);
+  border-color: var(--ml-green);
+  color: var(--bg-primary-light);
 }
 
 .completed .stepName {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .completed + .separator {
-  background-color: #27AE60;
+  background-color: var(--ml-green);
 }
 
 .current .indicator {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background-color: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .current .stepName {
-  color: #4573df;
+  color: var(--ml-blue);
 }

@@ -14,12 +14,12 @@
 }
 
 .description {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .retryButton {
-  background: linear-gradient(135deg, #4573df 0%, #2563eb 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #2563eb 100%);
+  color: var(--bg-primary-light);
   box-shadow: 0 4px 14px rgba(69, 115, 223, 0.3);
 }
 
@@ -28,5 +28,5 @@
 }
 
 .onlineMessage {
-  color: #27AE60;
+  color: var(--ml-green);
 }

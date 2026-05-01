@@ -82,7 +82,7 @@
   width: 40px;
   height: 40px;
   border: 3px solid transparent;
-  border-top-color: var(--primary, #4573df);
+  border-top-color: var(--primary, var(--ml-blue));
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -140,12 +140,12 @@
 
 .typeProject {
   background: rgba(69, 115, 223, 0.1);
-  color: var(--primary, #4573df);
+  color: var(--primary, var(--ml-blue));
 }
 
 .typeUser {
   background: rgba(39, 174, 96, 0.1);
-  color: var(--success, #27AE60);
+  color: var(--success, var(--ml-green));
 }
 
 .srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }

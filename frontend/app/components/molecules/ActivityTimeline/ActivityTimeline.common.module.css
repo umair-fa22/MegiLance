@@ -103,7 +103,7 @@
 
 .timelineTarget:hover {
   text-decoration: underline;
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
 }
 
 .timelineTime {
@@ -127,10 +127,10 @@
 }
 
 /* Dot color variants */
-.dotSuccess { background: rgba(39, 174, 96, 0.15); color: var(--color-success, #27AE60); }
+.dotSuccess { background: rgba(39, 174, 96, 0.15); color: var(--color-success, var(--ml-green)); }
 .dotWarning { background: rgba(242, 201, 76, 0.2); color: #d4a017; }
-.dotDanger { background: rgba(232, 17, 35, 0.12); color: var(--color-error, #e81123); }
-.dotInfo { background: rgba(69, 115, 223, 0.12); color: var(--color-primary, #4573df); }
+.dotDanger { background: rgba(232, 17, 35, 0.12); color: var(--color-error, var(--ml-red)); }
+.dotInfo { background: rgba(69, 115, 223, 0.12); color: var(--color-primary, var(--ml-blue)); }
 .dotPurple { background: rgba(139, 92, 246, 0.12); color: #8b5cf6; }
 
 .emptyTimeline {

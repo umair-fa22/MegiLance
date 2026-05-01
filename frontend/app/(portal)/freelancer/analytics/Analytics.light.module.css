@@ -1,36 +1,36 @@
 ﻿/* @AI-HINT: Light theme styles for enhanced Analytics page. */
-.container { background: #f8fafc; }
-.title { color: #0f172a; }
-.subtitle { color: #64748b; }
+.container { background: var(--bg-secondary-light); }
+.title { color: var(--text-primary-light); }
+.subtitle { color: var(--color-text-secondary-light); }
 
-.select { background: #fff; border-color: #e2e8f0; color: #0f172a; }
-.select:focus { border-color: #4573df; box-shadow: 0 0 0 2px rgba(69,115,223,0.15); }
+.select { background: #fff; border-color: var(--border-light); color: var(--text-primary-light); }
+.select:focus { border-color: var(--ml-blue); box-shadow: 0 0 0 2px rgba(69,115,223,0.15); }
 
-.loadingState { color: #64748b; }
+.loadingState { color: var(--color-text-secondary-light); }
 .errorState { color: #dc2626; }
 
-.kpiCard { background: #fff; border-color: #e2e8f0; }
-.kpiLabel { color: #64748b; }
-.kpiValue { color: #0f172a; }
+.kpiCard { background: #fff; border-color: var(--border-light); }
+.kpiLabel { color: var(--color-text-secondary-light); }
+.kpiValue { color: var(--text-primary-light); }
 
 .perfRow {}
-.perfCard { background: #fff; border-color: #e2e8f0; }
-.perfValue { color: #0f172a; }
-.perfLabel { color: #64748b; }
+.perfCard { background: #fff; border-color: var(--border-light); }
+.perfValue { color: var(--text-primary-light); }
+.perfLabel { color: var(--color-text-secondary-light); }
 
-.chartCard { background: #fff; border-color: #e2e8f0; }
-.cardTitle { color: #0f172a; }
+.chartCard { background: #fff; border-color: var(--border-light); }
+.cardTitle { color: var(--text-primary-light); }
 
-.goalsCard { background: #fff; border-color: #e2e8f0; }
+.goalsCard { background: #fff; border-color: var(--border-light); }
 .goalItem {}
-.goalLabel { color: #0f172a; }
-.goalPct { color: #4573df; }
-.goalBarBg { background: #e2e8f0; }
-.goalMeta { color: #94a3b8; }
+.goalLabel { color: var(--text-primary-light); }
+.goalPct { color: var(--ml-blue); }
+.goalBarBg { background: var(--border-light); }
+.goalMeta { color: var(--text-tertiary-light); }
 
-.skillsCard { background: #fff; border-color: #e2e8f0; }
+.skillsCard { background: #fff; border-color: var(--border-light); }
 .skillDemandItem {}
-.skillRank { color: #94a3b8; }
-.skillName { color: #0f172a; }
-.skillBarBg { background: #e2e8f0; }
-.skillDemandValue { color: #0f172a; }
+.skillRank { color: var(--text-tertiary-light); }
+.skillName { color: var(--text-primary-light); }
+.skillBarBg { background: var(--border-light); }
+.skillDemandValue { color: var(--text-primary-light); }

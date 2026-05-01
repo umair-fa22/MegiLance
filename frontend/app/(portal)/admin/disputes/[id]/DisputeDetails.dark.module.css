@@ -35,7 +35,7 @@
 
 .textarea:focus,
 .select:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 

@@ -1,27 +1,27 @@
 /* @AI-HINT: Premium Dark Theme for Rank Visualizer */
 
 .radialBg {
-  stroke: #334155;
+  stroke: var(--border-dark);
 }
 
 .scoreValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .scoreLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statsGrid {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .statValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .benefitsButton {
@@ -29,7 +29,7 @@
 }
 
 .progressBarContainer {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 /* Rank-specific colors (Dark) */
@@ -39,8 +39,8 @@
 }
 
 .rankSilver {
-  --rank-color: #cbd5e1;
-  --rank-color-secondary: #94a3b8;
+  --rank-color: var(--text-secondary-dark);
+  --rank-color-secondary: var(--text-tertiary-dark);
 }
 
 .rankGold {

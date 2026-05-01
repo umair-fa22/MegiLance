@@ -1,46 +1,46 @@
 ﻿/* @AI-HINT: Light theme styles for Proposals page. */
 
 .container {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .toolbarContainer {
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
-.input { background: #ffffff; border-color: #e2e8f0; color: #0f172a; }
-.select { background: #ffffff; border-color: #e2e8f0; color: #0f172a; }
-.button { background: #4573df; color: #ffffff; }
+.input { background: var(--bg-primary-light); border-color: var(--border-light); color: var(--text-primary-light); }
+.select { background: var(--bg-primary-light); border-color: var(--border-light); color: var(--text-primary-light); }
+.button { background: var(--ml-blue); color: var(--bg-primary-light); }
 .button:hover { filter: brightness(0.95); }
 
-.tableWrap { background: #ffffff; box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.04); }
-.table thead th { background: #f8fafc; color: #0f172a; border-bottom: 1px solid #e2e8f0; }
-.table td { border-top: 1px solid #f1f5f9; }
+.tableWrap { background: var(--bg-primary-light); box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.04); }
+.table thead th { background: var(--bg-secondary-light); color: var(--text-primary-light); border-bottom: 1px solid var(--border-light); }
+.table td { border-top: 1px solid var(--bg-tertiary-light); }
 
 .emptyState {
-  background-color: #f8fafc;
-  border: 1px dashed #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border: 1px dashed var(--border-light);
 }
 
 .emptyTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .emptyText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .modalText {
-    color: #64748b;
+    color: var(--color-text-secondary-light);
 }
 
 .status { background: #eef2ff; color: #3730a3; }

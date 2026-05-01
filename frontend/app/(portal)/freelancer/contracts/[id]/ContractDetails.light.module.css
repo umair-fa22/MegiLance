@@ -1,60 +1,60 @@
 ﻿.container {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 
 .contractHeader {
-  border-bottom-color: #e2e8f0;
+  border-bottom-color: var(--border-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .client {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .metaLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .metaValue {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .sectionTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .description {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .milestone {
-  border-color: #e2e8f0;
-  background-color: #f8fafc;
+  border-color: var(--border-light);
+  background-color: var(--bg-secondary-light);
 }
 
 .milestoneTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .milestoneAmount {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .termTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .termDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .timelineLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .timelineValue {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }

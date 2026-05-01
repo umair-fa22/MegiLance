@@ -1,16 +1,16 @@
-.label { color: #f8fafc; }
+.label { color: var(--text-primary-dark); }
 
 .slider {
-  background-color: #334155;
+  background-color: var(--border-dark);
   border: 1px solid #475569;
 }
 
 .helpText {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .slider:before {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border: 1px solid #475569;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .input:checked + .slider:before {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .input:focus + .slider {

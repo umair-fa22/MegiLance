@@ -3,24 +3,24 @@
 .loginPage {
   /* Branding Panel */
   --branding-panel-bg: #f0f4ff; /* A very light, inviting blue */
-  --brand-icon-color: #4573df;
+  --brand-icon-color: var(--ml-blue);
   --brand-title-color: #1a2b4d; /* Darker blue for contrast */
   --brand-text-color: #4a5568; /* Slate gray */
 
   /* Form Panel */
-  --form-bg-color: #ffffff;
+  --form-bg-color: var(--bg-primary-light);
   --text-primary: #111827;
-  --text-secondary: #64748b;
-  --text-tertiary: #64748b;
-  --border-color: #e2e8f0;
+  --text-secondary: var(--color-text-secondary-light);
+  --text-tertiary: var(--color-text-secondary-light);
+  --border-color: var(--border-light);
   
   /* Interactive Elements */
-  --color-primary: #4573df;
+  --color-primary: var(--ml-blue);
   --color-primary-hover: #365cbf;
   --role-button-hover-bg: #f9fafb;
   --role-button-selected-bg: #eef2ff;
   
   /* States */
-  --color-error: #e81123;
+  --color-error: var(--ml-red);
   --error-bg: #fdeeee;
 }

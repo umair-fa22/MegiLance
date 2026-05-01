@@ -55,9 +55,9 @@
   font-size: 0.8125rem;
 }
 
-.statIconGreen { color: var(--color-success, #27AE60); }
-.statIconYellow { color: var(--color-warning, #F2C94C); }
-.statIconBlue { color: var(--color-primary, #4573df); }
+.statIconGreen { color: var(--color-success, var(--ml-green)); }
+.statIconYellow { color: var(--color-warning, var(--ml-yellow)); }
+.statIconBlue { color: var(--color-primary, var(--ml-blue)); }
 .statIconPurple { color: #8b5cf6; }
 
 .content {
@@ -90,7 +90,7 @@
 }
 
 .tabActive {
-  border-bottom-color: var(--color-primary, #4573df);
+  border-bottom-color: var(--color-primary, var(--ml-blue));
 }
 
 /* Loading */

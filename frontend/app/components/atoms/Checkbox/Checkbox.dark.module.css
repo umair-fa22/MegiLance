@@ -1,20 +1,20 @@
 /* @AI-HINT: Dark theme styles for the Checkbox component with enhanced visual effects aligned with 2025 design trends. */
 
 .checkboxWrapper {
-  --checkbox-bg: #1e293b;
+  --checkbox-bg: var(--bg-secondary-dark);
   --checkbox-border-color: #475569;
-  --checkbox-border-hover-color: #cbd5e1;
-  --checkbox-checked-bg: linear-gradient(135deg, #4573df 0%, #3a66c7 100%);
-  --checkbox-checked-border-color: #4573df;
+  --checkbox-border-hover-color: var(--text-secondary-dark);
+  --checkbox-checked-bg: linear-gradient(135deg, var(--ml-blue) 0%, #3a66c7 100%);
+  --checkbox-checked-border-color: var(--ml-blue);
   --checkbox-checkmark-color: #ffffff;
-  --checkbox-text-color: #cbd5e1;
-  --checkbox-text-hover-color: #f8fafc;
+  --checkbox-text-color: var(--text-secondary-dark);
+  --checkbox-text-hover-color: var(--text-primary-dark);
   --checkbox-error-color: #f87171;
   --checkbox-focus-ring-color: #60a5fa;
   --checkbox-link-color: #60a5fa;
   --checkbox-link-hover-bg: #1e3a8a;
-  --checkbox-disabled-bg: #0f172a;
-  --checkbox-disabled-border-color: #334155;
+  --checkbox-disabled-bg: var(--bg-primary-dark);
+  --checkbox-disabled-border-color: var(--border-dark);
   --checkbox-glass-bg: rgba(31, 41, 55, 0.7);
   --checkbox-glass-border: rgba(75, 85, 99, 0.5);
   --checkbox-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -25,7 +25,7 @@
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.08),
               0 2px 4px rgba(0, 0, 0, 0.3),
               0 4px 8px rgba(0, 0, 0, 0.15);
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  background: linear-gradient(135deg, var(--bg-secondary-dark) 0%, var(--bg-primary-dark) 100%);
   border: 2px solid #475569;
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
@@ -37,14 +37,14 @@
               0 6px 16px rgba(107, 147, 245, 0.25),
               0 2px 4px rgba(0, 0, 0, 0.3);
   border: 2px solid #64748b;
-  background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+  background: linear-gradient(135deg, var(--border-dark) 0%, var(--bg-secondary-dark) 100%);
   transform: translateY(-1px) scale(1.02);
   filter: brightness(1.05);
 }
 
 .checkboxInput:checked ~ .checkboxCustom {
-  background: linear-gradient(135deg, #6b93f5 0%, #7fa3f7 100%);
-  border: 2px solid #6b93f5;
+  background: linear-gradient(135deg, var(--ml-blue-light) 0%, #7fa3f7 100%);
+  border: 2px solid var(--ml-blue-light);
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.15),
               0 6px 20px rgba(107, 147, 245, 0.5),
               0 2px 4px rgba(0, 0, 0, 0.15);
@@ -71,16 +71,16 @@
 
 /* Enhanced indeterminate state */
 .checkboxCustom.indeterminate {
-  background: linear-gradient(135deg, #6b93f5 0%, #7fa3f7 100%);
-  border: 2px solid #6b93f5;
+  background: linear-gradient(135deg, var(--ml-blue-light) 0%, #7fa3f7 100%);
+  border: 2px solid var(--ml-blue-light);
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.15),
               0 4px 16px rgba(107, 147, 245, 0.35);
 }
 
 /* Enhanced disabled state */
 .checkboxInput:disabled ~ .checkboxCustom {
-  background: linear-gradient(135deg, #0f172a 0%, #0d131e 100%);
-  border: 2px solid #334155;
+  background: linear-gradient(135deg, var(--bg-primary-dark) 0%, #0d131e 100%);
+  border: 2px solid var(--border-dark);
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.04),
               0 2px 4px rgba(0, 0, 0, 0.2);
   opacity: 0.7;

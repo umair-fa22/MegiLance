@@ -2,12 +2,12 @@
 
 /* Container */
 .container {
-  background: linear-gradient(135deg, #0c0f1a 0%, #0f172a 50%, #0f1724 100%);
+  background: linear-gradient(135deg, #0c0f1a 0%, var(--bg-primary-dark) 50%, #0f1724 100%);
   color: #e2e8f0;
 }
 
 .loadingContainer {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Header */
@@ -17,27 +17,27 @@
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Stepper */
 .stepDot {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   color: #64748b;
 }
 
 .stepDotActive {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #fff;
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.4);
 }
 
 .stepDotCompleted {
-  background: #27ae60;
+  background: var(--ml-green);
   color: #fff;
 }
 
@@ -50,11 +50,11 @@
 }
 
 .stepLine {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
 }
 
 .stepLineActive {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 /* Category Card */
@@ -69,7 +69,7 @@
 }
 
 .categoryCardSelected {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background: rgba(69, 115, 223, 0.1);
   box-shadow: 0 4px 16px rgba(69, 115, 223, 0.15);
 }
@@ -80,11 +80,11 @@
 }
 
 .categoryName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .categoryDescription {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .categoryServiceCount {
@@ -102,12 +102,12 @@
 }
 
 .serviceCardSelected {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background: rgba(69, 115, 223, 0.1);
 }
 
 .serviceLabel {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .serviceRate {
@@ -141,7 +141,7 @@
 }
 
 .label {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .labelHint {
@@ -155,7 +155,7 @@
 }
 
 .textarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
 }
 
@@ -171,7 +171,7 @@
 }
 
 .select:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
 }
 
@@ -182,7 +182,7 @@
 }
 
 .numberInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
 }
 
@@ -206,7 +206,7 @@
 }
 
 .addFeatureInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .addFeatureInput::placeholder {
@@ -214,7 +214,7 @@
 }
 
 .addFeatureBtn {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #fff;
 }
 
@@ -225,7 +225,7 @@
 /* Navigation */
 .navButtonBack {
   background: rgba(30, 41, 59, 0.8);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .navButtonBack:hover:not(:disabled) {
@@ -233,7 +233,7 @@
 }
 
 .navButtonNext {
-  background: linear-gradient(135deg, #4573df, #5b88f0);
+  background: linear-gradient(135deg, var(--ml-blue), #5b88f0);
   color: #fff;
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.35);
 }
@@ -244,7 +244,7 @@
 
 /* Processing */
 .processingContainer {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .processingOrb {
@@ -252,20 +252,20 @@
 }
 
 .processingOrbInner {
-  background: linear-gradient(135deg, #4573df, #7c3aed);
+  background: linear-gradient(135deg, var(--ml-blue), #7c3aed);
   color: #fff;
 }
 
 .processingSubtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .processingStep {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .processingStepCircle {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 /* Results */
@@ -276,19 +276,19 @@
 }
 
 .priceHeroGlow {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 .priceHeroLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .priceHeroValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .priceHeroDivider {
-  color: #334155;
+  color: var(--border-dark);
 }
 
 .priceHeroMetaItem {
@@ -307,16 +307,16 @@
 }
 
 .resultCardTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 /* Breakdown */
 .breakdownItemLabel {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .breakdownItemValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .breakdownItemHours {
@@ -328,7 +328,7 @@
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #4573df, #7ba0f7);
+  background: linear-gradient(90deg, var(--ml-blue), #7ba0f7);
 }
 
 /* Market */
@@ -337,7 +337,7 @@
 }
 
 .marketTierLabel {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .marketTierBar {
@@ -345,11 +345,11 @@
 }
 
 .marketTierFill {
-  background: linear-gradient(90deg, #4573df, #7ba0f7);
+  background: linear-gradient(90deg, var(--ml-blue), #7ba0f7);
 }
 
 .marketTierValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .marketTierActive {
@@ -372,7 +372,7 @@
 }
 
 .factorVal {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .factorUp {
@@ -389,15 +389,15 @@
 
 /* Timeline */
 .timelineStatValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .timelineStatLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .timelineDivider {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 /* ROI */
@@ -411,16 +411,16 @@
 }
 
 .roiItemTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .roiItemMessage {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Actions */
 .actionBtnPrimary {
-  background: linear-gradient(135deg, #4573df, #5b88f0);
+  background: linear-gradient(135deg, var(--ml-blue), #5b88f0);
   color: #fff;
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.35);
 }
@@ -442,7 +442,7 @@
 }
 
 .countrySearchInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
 }
 
@@ -495,11 +495,11 @@
 }
 
 .regionCompareName {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .regionCompareRate {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .regionalContextItem {
@@ -507,17 +507,17 @@
 }
 
 .regionalContextTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .regionalContextMsg {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .pppContext {
   background: rgba(69, 115, 223, 0.08);
   border: 1px solid rgba(69, 115, 223, 0.2);
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .pppLabel {
@@ -541,11 +541,11 @@
 }
 
 .guidanceTipTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .guidanceTipText {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Option Impact */
@@ -578,11 +578,11 @@
 }
 
 .hoursWizardIntro {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .wizardQuestionLabel {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .wizardOption {
@@ -597,7 +597,7 @@
 
 .wizardOptionSelected {
   background: rgba(69, 115, 223, 0.1);
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   color: #7ba0f7;
 }
 
@@ -606,7 +606,7 @@
 }
 
 .wizardCalcBtn {
-  background: linear-gradient(135deg, #4573df, #5b88f0);
+  background: linear-gradient(135deg, var(--ml-blue), #5b88f0);
   color: #fff;
 }
 
@@ -624,7 +624,7 @@
 }
 
 .hoursResultRange {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .confidenceHigh {
@@ -643,7 +643,7 @@
 }
 
 .hoursBreakdownItem {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
   border-bottom-color: rgba(51, 65, 85, 0.4);
 }
 
@@ -652,7 +652,7 @@
 }
 
 .hoursApplyBtn {
-  background: #27ae60;
+  background: var(--ml-green);
   color: #fff;
 }
 
@@ -664,7 +664,7 @@
 .guideFormula {
   background: rgba(69, 115, 223, 0.08);
   border: 1px solid rgba(69, 115, 223, 0.2);
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .guideSection {
@@ -673,15 +673,15 @@
 }
 
 .guideSectionTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .guideSectionText {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .guideList {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Disclaimer */

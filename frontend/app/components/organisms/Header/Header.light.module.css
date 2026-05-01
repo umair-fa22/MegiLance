@@ -1,12 +1,14 @@
 /* @AI-HINT: Light Theme - Glassmorphism, Airy layout, Subtle shadows */
 .header {
-  background: rgba(255, 255, 255, 0.75);
-  border-color: rgba(0, 0, 0, 0.05);
+  /* Make header opaque on desktop for reliable contrast */
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(16, 24, 40, 0.04);
 }
 
 .header[data-scrolled="true"] {
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 6px 30px rgba(16, 24, 40, 0.06);
 }
 
 .brandText {
@@ -26,7 +28,7 @@
 }
 
 .featuredBtn {
-  color: #4573df;
+  color: var(--ml-blue);
   background: rgba(69, 115, 223, 0.08);
 }
 .featuredBtn:hover {
@@ -34,7 +36,7 @@
 }
 
 .megaMenuContent {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: rgba(0, 0, 0, 0.08);
 }
 
@@ -53,11 +55,11 @@
 
 .iconWrap {
   background: #f9fafb;
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .megaMenuItem:hover .iconWrap {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -73,7 +75,7 @@
 }
 
 .mobileFlyout {
-  background: #ffffff;
+  background: var(--bg-primary-light);
 }
 
 .mobileHeader {
@@ -82,8 +84,8 @@
 
 .mobileTabActive {
   opacity: 1;
-  border-color: #4573df;
-  color: #4573df;
+  border-color: var(--ml-blue);
+  color: var(--ml-blue);
 }
 
 .mobileFooter {

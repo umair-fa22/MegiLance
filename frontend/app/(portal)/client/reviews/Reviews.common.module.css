@@ -16,9 +16,9 @@
 .statCard { padding: 1rem 1.25rem; border-radius: 12px; display: flex; align-items: center; gap: 0.75rem; transition: transform 0.2s; }
 .statCard:hover { transform: translateY(-2px); }
 .statIcon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.iconPrimary { background: rgba(69,115,223,0.1); color: #4573df; }
-.iconStar { background: rgba(255,152,0,0.1); color: #ff9800; }
-.iconPositive { background: rgba(39,174,96,0.1); color: #27AE60; }
+.iconPrimary { background: rgba(69,115,223,0.1); color: var(--ml-blue); }
+.iconStar { background: rgba(255,152,0,0.1); color: var(--ml-orange); }
+.iconPositive { background: rgba(39,174,96,0.1); color: var(--ml-green); }
 .iconReply { background: rgba(155,89,182,0.1); color: #9b59b6; }
 .statInfo { display: flex; flex-direction: column; gap: 0.1rem; }
 .statLabel { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; opacity: 0.7; }
@@ -27,7 +27,7 @@
 /* Tabs */
 .tabBar { display: flex; gap: 0.25rem; margin-bottom: 1.5rem; border-bottom: 1px solid; overflow-x: auto; }
 .tabBtn { display: flex; align-items: center; gap: 0.4rem; padding: 0.75rem 1.25rem; font-size: 0.9rem; font-weight: 500; background: none; border: none; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; white-space: nowrap; }
-.tabBtnActive { border-bottom-color: #4573df; font-weight: 600; }
+.tabBtnActive { border-bottom-color: var(--ml-blue); font-weight: 600; }
 .tabCount { font-size: 0.72rem; padding: 0.1rem 0.4rem; border-radius: 10px; font-weight: 600; }
 
 /* Toolbar */
@@ -37,8 +37,8 @@
 .searchIcon { position: absolute; top: 50%; left: 12px; transform: translateY(-50%); opacity: 0.4; z-index: 1; pointer-events: none; }
 .searchWrap input { padding-left: 36px !important; }
 .filterToggle { display: flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid; font-size: 0.85rem; font-weight: 500; cursor: pointer; background: none; transition: all 0.15s; position: relative; }
-.filterToggleActive { border-color: #4573df; }
-.filterBadge { position: absolute; top: -4px; right: -4px; width: 14px; height: 14px; border-radius: 50%; background: #e81123; color: #fff; font-size: 0.6rem; display: flex; align-items: center; justify-content: center; }
+.filterToggleActive { border-color: var(--ml-blue); }
+.filterBadge { position: absolute; top: -4px; right: -4px; width: 14px; height: 14px; border-radius: 50%; background: var(--ml-red); color: #fff; font-size: 0.6rem; display: flex; align-items: center; justify-content: center; }
 
 /* Advanced Filters */
 .advancedFilters { display: flex; gap: 1rem; flex-wrap: wrap; padding: 1rem; border-radius: 10px; margin-bottom: 0.75rem; }
@@ -62,7 +62,7 @@
 .reviewsList { display: flex; flex-direction: column; gap: 0.75rem; }
 .reviewCard { display: flex; gap: 0.75rem; padding: 1.25rem; border-radius: 12px; border: 1px solid; transition: transform 0.15s, box-shadow 0.15s; }
 .reviewCard:hover { transform: translateY(-1px); }
-.reviewCardSelected { border-color: #4573df !important; }
+.reviewCardSelected { border-color: var(--ml-blue) !important; }
 .reviewSelect { padding-top: 0.25rem; }
 .reviewMain { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.6rem; }
 .reviewHeader { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
@@ -147,7 +147,7 @@
 
 .ratingValue {
   font-weight: 600;
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Modal Styles */
@@ -261,7 +261,7 @@
 .pageInfo { font-size: 0.82rem; opacity: 0.6; }
 .pageNumbers { display: flex; gap: 0.25rem; align-items: center; }
 .pageNum { width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 500; border: 1px solid transparent; cursor: pointer; background: none; transition: all 0.15s; }
-.pageNumActive { font-weight: 700; border-color: #4573df; }
+.pageNumActive { font-weight: 700; border-color: var(--ml-blue); }
 
 /* Analytics */
 .analyticsGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
@@ -281,15 +281,15 @@
 .sentimentChart { display: flex; justify-content: space-around; gap: 1rem; margin-bottom: 1.5rem; }
 .sentimentItem { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
 .sentimentCircle { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.sentimentPositive { background: rgba(39,174,96,0.12); color: #27AE60; }
-.sentimentNeutral { background: rgba(255,152,0,0.12); color: #ff9800; }
-.sentimentNegative { background: rgba(232,17,35,0.12); color: #e81123; }
+.sentimentPositive { background: rgba(39,174,96,0.12); color: var(--ml-green); }
+.sentimentNeutral { background: rgba(255,152,0,0.12); color: var(--ml-orange); }
+.sentimentNegative { background: rgba(232,17,35,0.12); color: var(--ml-red); }
 .sentimentLabel { font-size: 0.82rem; font-weight: 500; }
 .sentimentValue { font-size: 0.78rem; opacity: 0.7; }
 .sentimentBar { display: flex; height: 10px; border-radius: 5px; overflow: hidden; }
-.sentBarPositive { background: #27AE60; }
-.sentBarNeutral { background: #ff9800; }
-.sentBarNegative { background: #e81123; }
+.sentBarPositive { background: var(--ml-green); }
+.sentBarNeutral { background: var(--ml-orange); }
+.sentBarNegative { background: var(--ml-red); }
 
 /* Metrics */
 .metricsGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
@@ -311,8 +311,8 @@
 .ratingText { margin-left: 0.5rem; font-size: 0.85rem; font-weight: 500; }
 .charCount { font-size: 0.75rem; opacity: 0.5; text-align: right; display: block; margin-top: 0.25rem; }
 .submitMessage { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.88rem; }
-.submitSuccess { background: rgba(39,174,96,0.08); color: #27AE60; }
-.submitError { background: rgba(232,17,35,0.08); color: #e81123; }
+.submitSuccess { background: rgba(39,174,96,0.08); color: var(--ml-green); }
+.submitError { background: rgba(232,17,35,0.08); color: var(--ml-red); }
 .formActions { display: flex; justify-content: flex-end; }
 
 /* Responsive */

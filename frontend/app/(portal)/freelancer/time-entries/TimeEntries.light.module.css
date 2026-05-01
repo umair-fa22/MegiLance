@@ -1,21 +1,21 @@
 /* @AI-HINT: Time Entries page - light theme colors */
 
 .container {
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: var(--bg-secondary-light);
+  color: var(--text-primary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .startButton {
   background-color: #22c55e;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .startButton:hover {
@@ -28,22 +28,22 @@
 }
 
 .summaryCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .summaryLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .summaryValue {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 /* Active Timer */
 .activeTimer {
   background: linear-gradient(135deg, #22c55e, #16a34a);
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .timerProject {
@@ -51,12 +51,12 @@
 }
 
 .timerTask {
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .pauseBtn {
   background-color: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .pauseBtn:hover {
@@ -65,7 +65,7 @@
 
 .resumeBtn {
   background-color: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .resumeBtn:hover {
@@ -74,7 +74,7 @@
 
 .stopBtn {
   background-color: #ef4444;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .stopBtn:hover {
@@ -83,41 +83,41 @@
 
 /* Filters */
 .filterSelect {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  color: #0f172a;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .loading {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Empty State */
 .emptyState {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .emptyTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .emptyDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Entries */
 .dateHeader {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .dateDuration {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .entryCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .entryCard:hover {
@@ -126,11 +126,11 @@
 }
 
 .timeRange {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .duration {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .projectName {
@@ -138,12 +138,12 @@
 }
 
 .taskDesc {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .tag {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .billable {
@@ -151,41 +151,41 @@
 }
 
 .deleteBtn {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Modal */
 .modal {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .modalHeader {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .modalTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .closeButton {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .closeButton:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .label {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .input,
 .select,
 .textarea {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  color: #0f172a;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .input:focus,
@@ -198,16 +198,16 @@
 
 .input::placeholder,
 .textarea::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .addTagBtn {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .addTagBtn:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .selectedTag {
@@ -216,25 +216,25 @@
 }
 
 .checkboxText {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .modalFooter {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .cancelBtn {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .cancelBtn:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .startTimerBtn {
   background-color: #22c55e;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .startTimerBtn:hover {

@@ -1,104 +1,104 @@
 /* @AI-HINT: Search analytics light theme colors */
 
 .container {
-  background-color: #f8fafc;
-  color: #1e293b;
+  background-color: var(--bg-secondary-light);
+  color: var(--color-text-primary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .statIcon {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Stats */
 .statCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .statInfo strong {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .statInfo span {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Cards */
 .card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .card h3 {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .termItem {
-  background: #f8fafc;
+  background: var(--bg-secondary-light);
 }
 
 .rank {
-  color: #4573df;
+  color: var(--ml-blue);
   font-weight: 700;
 }
 
 .termText {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .count {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Table */
 .tableCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .table th {
-  background: #f8fafc;
-  color: #64748b;
-  border-bottom: 1px solid #e2e8f0;
+  background: var(--bg-secondary-light);
+  color: var(--color-text-secondary-light);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .table td {
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--bg-tertiary-light);
 }
 
 .table tbody tr:hover {
-  background: #f8fafc;
+  background: var(--bg-secondary-light);
 }
 
 /* Trend Cards */
 .trendCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .trendCard h3 {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .trendRank {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .trendStats strong {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .trendStats span {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Alert */

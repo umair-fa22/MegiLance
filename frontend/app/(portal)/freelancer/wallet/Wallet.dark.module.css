@@ -1,36 +1,36 @@
 ﻿/* @AI-HINT: Dark theme styles for the refactored Wallet page. */
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .balanceCard,
 .transactionsCard {
-  background-color: #0f172a;
-  border-color: #334155;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
 }
 
 .cardTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .balanceAmount {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .feeBreakdown {
-  background-color: #1e293b;
-  border-color: #334155;
-  color: #94a3b8;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .feeDivider {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .feeValueBold {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }

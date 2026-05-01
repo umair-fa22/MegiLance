@@ -5,35 +5,35 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .toolbar {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .searchIcon {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .searchInput {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   color: #111827;
 }
 
 .searchInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .searchInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 /* Filter Tabs */
 .filterTab {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .filterTab:hover {
@@ -42,19 +42,19 @@
 }
 
 .filterTabActive {
-  background-color: #ffffff;
-  color: #4573df;
+  background-color: var(--bg-primary-light);
+  color: var(--ml-blue);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
 .filterCount {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
   color: #374151;
 }
 
 .projectCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .projectCard:hover {
@@ -70,28 +70,28 @@
 }
 
 .cardDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .skillTag {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #4b5563;
 }
 
 .metaItem {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .chevron {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Sort */
-.sortWrapper { background: #f9fafb; border-color: #e2e8f0; color: #64748b; }
+.sortWrapper { background: #f9fafb; border-color: var(--border-light); color: var(--color-text-secondary-light); }
 .sortSelect { color: #374151; }
 
 /* Pagination */
-.pagination { border-top: 1px solid #e2e8f0; }
-.pageBtn { color: #374151; border-color: #e2e8f0; }
-.pageBtn:hover:not(:disabled) { background: #f1f5f9; }
-.pageInfo { color: #64748b; }
+.pagination { border-top: 1px solid var(--border-light); }
+.pageBtn { color: #374151; border-color: var(--border-light); }
+.pageBtn:hover:not(:disabled) { background: var(--bg-tertiary-light); }
+.pageInfo { color: var(--color-text-secondary-light); }

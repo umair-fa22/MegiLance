@@ -6,7 +6,7 @@
 }
 
 .palette {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -16,7 +16,7 @@
 
 .shortcutHint {
   background: rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .divider {
@@ -24,7 +24,7 @@
 }
 
 .groupLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .resultItem:hover,
@@ -42,18 +42,18 @@
 }
 
 .resultDescription {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .resultShortcut {
   background: rgba(255, 255, 255, 0.06);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .footer {
   background: rgba(0, 0, 0, 0.2);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .footerKey kbd {

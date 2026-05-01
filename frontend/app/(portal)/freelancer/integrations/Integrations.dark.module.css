@@ -1,31 +1,31 @@
 /* @AI-HINT: Integrations page - dark theme colors */
 
 .container {
-  background-color: #0f172a;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .categories {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .categoryBtn {
   background-color: transparent;
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .categoryBtn:hover {
-  background-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .categoryActive {
@@ -39,13 +39,13 @@
 }
 
 .loading {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Card */
 .integrationCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .integrationCard:hover {
@@ -58,16 +58,16 @@
 }
 
 .integrationName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .integrationDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .scope {
-  background-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .syncInfo {
@@ -92,7 +92,7 @@
 }
 
 .syncBtn {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 
@@ -101,8 +101,8 @@
 }
 
 .settingsBtn {
-  background-color: #334155;
-  color: #94a3b8;
+  background-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .settingsBtn:hover {
@@ -120,33 +120,33 @@
 
 /* Modal */
 .modal {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .modalHeader {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .modalTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .closeButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .closeButton:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .sectionTitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .permissionItem {
-  background-color: #0f172a;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .infoGrid {
@@ -154,23 +154,23 @@
 }
 
 .infoItem {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .infoLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .infoValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .modalFooter {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .closeBtn {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 

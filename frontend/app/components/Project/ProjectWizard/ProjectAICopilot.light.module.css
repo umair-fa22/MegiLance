@@ -1,17 +1,17 @@
 .container {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .inputArea {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border-color: #cbd5e1;
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .fieldValue {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   color: #334155;
 }
 
@@ -28,11 +28,11 @@
 }
 
 .poweredBy {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .closeButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .closeButton:hover {

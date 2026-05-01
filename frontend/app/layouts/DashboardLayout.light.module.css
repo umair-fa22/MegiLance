@@ -1,5 +1,5 @@
 /* @AI-HINT: Light theme colors for DashboardLayout */
 
 .layout {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }

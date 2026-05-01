@@ -27,8 +27,8 @@
   position: absolute;
   top: 4px;
   right: 4px;
-  background-color: var(--color-error, #e81123);
-  color: #ffffff;
+  background-color: var(--color-error, var(--ml-red));
+  color: var(--bg-primary-light);
   font-size: 10px;
   font-weight: 700;
   padding: 2px 5px;
@@ -44,7 +44,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--color-warning, #F2C94C);
+  background-color: var(--color-warning, var(--ml-yellow));
   animation: pulse 2s infinite;
 }
 

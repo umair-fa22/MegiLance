@@ -1,7 +1,7 @@
 /* Dark theme for ProjectStats */
 
 .statsSection {
-  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  background: linear-gradient(180deg, var(--bg-secondary-dark) 0%, var(--bg-primary-dark) 100%);
   --glow-color: rgba(69, 115, 223, 0.15);
   --grid-color: rgba(255, 255, 255, 0.03);
 }
@@ -14,11 +14,11 @@
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statCard {
@@ -44,7 +44,7 @@
 }
 
 .value {
-  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+  background: linear-gradient(135deg, #ffffff 0%, var(--text-secondary-dark) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -52,16 +52,16 @@
 }
 
 .label {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .description {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .footer {
   background: rgba(15, 23, 42, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }

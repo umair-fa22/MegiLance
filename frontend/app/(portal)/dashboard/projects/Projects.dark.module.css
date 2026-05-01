@@ -1,42 +1,42 @@
 /* AI-HINT: Dark theme overrides for Portal Projects page. */
 
 .themeWrapper {
-  background: #0f172a;
-  color: #f8fafc;
+  background: var(--bg-primary-dark);
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .input,
 .select {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #334155;
-  color: #f8fafc;
+  border: 1px solid var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .button {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .button.secondary {
   background: rgba(255, 255, 255, 0.06);
-  color: #cbd5e1;
-  border: 1px solid #334155;
+  color: var(--text-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .card {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .progressWrap {
-  background: #0f172a;
-  border-color: #334155;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
 }
 
 .progressBar {
@@ -45,8 +45,8 @@
 
 .chip {
   background: rgba(69, 115, 223, 0.18);
-  border: 1px solid #334155;
-  color: #cbd5e1;
+  border: 1px solid var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 /* Loading and Error States */

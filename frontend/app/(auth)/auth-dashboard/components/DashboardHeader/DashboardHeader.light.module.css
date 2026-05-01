@@ -40,8 +40,8 @@
 
 /* Primary Action - Gradient CTA */
 .actionButtonPrimary {
-  background: linear-gradient(135deg, #4573df 0%, #3b5fc9 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #3b5fc9 100%);
+  color: var(--bg-primary-light);
   border-color: transparent;
   box-shadow: 0 2px 8px rgba(69, 115, 223, 0.25);
 }

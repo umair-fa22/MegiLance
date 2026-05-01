@@ -50,7 +50,7 @@
 }
 
 .tabActive {
-  border-bottom-color: var(--color-primary, #4573df);
+  border-bottom-color: var(--color-primary, var(--ml-blue));
 }
 
 .badge {

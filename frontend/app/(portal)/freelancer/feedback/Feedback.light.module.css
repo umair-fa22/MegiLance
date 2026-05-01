@@ -1,21 +1,21 @@
 /* @AI-HINT: User Feedback page - light theme colors */
 
 .container {
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: var(--bg-secondary-light);
+  color: var(--text-primary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .submitButton {
   background-color: #3b82f6;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .submitButton:hover {
@@ -27,50 +27,50 @@
 }
 
 .filterButton {
-  background-color: #ffffff;
-  color: #64748b;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  color: var(--color-text-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .filterButton:hover {
-  background-color: #f1f5f9;
-  color: #0f172a;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-primary-light);
 }
 
 .filterActive {
   background-color: #3b82f6;
-  color: #ffffff;
+  color: var(--bg-primary-light);
   border-color: #3b82f6;
 }
 
 .sortSelect {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  color: #0f172a;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .loading {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Empty State */
 .emptyState {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .emptyTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .emptyDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Feedback Card */
 .feedbackCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .feedbackCard:hover {
@@ -79,34 +79,34 @@
 }
 
 .voteButton {
-  background-color: #f1f5f9;
-  color: #64748b;
+  background-color: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .voteButton:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
   color: #3b82f6;
 }
 
 .voted {
   background-color: #3b82f6;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .voteCount {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .category {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .feedbackTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .feedbackDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .commentCount {
@@ -114,55 +114,55 @@
 }
 
 .date {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Modal */
 .modal {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .modalHeader {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .modalTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .closeButton {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .closeButton:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .label {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .typeOption {
-  background-color: #f8fafc;
-  color: #475569;
+  background-color: var(--bg-secondary-light);
+  color: var(--text-secondary-light);
 }
 
 .typeOption:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .typeSelected {
   background-color: #eff6ff;
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .input,
 .select,
 .textarea {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  color: #0f172a;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .input:focus,
@@ -175,25 +175,25 @@
 
 .input::placeholder,
 .textarea::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .modalFooter {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .cancelBtn {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .cancelBtn:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .submitBtn {
   background-color: #3b82f6;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .submitBtn:hover {

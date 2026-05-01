@@ -1,15 +1,15 @@
 /* @AI-HINT: Admin Integrations - dark theme */
-.container { background: #0f172a; }
+.container { background: var(--bg-primary-dark); }
 .title { color: #f0f0f0; }
-.subtitle { color: #94a3b8; }
-.tabs { border-color: #334155; }
-.tab { color: #94a3b8; }
+.subtitle { color: var(--text-tertiary-dark); }
+.tabs { border-color: var(--border-dark); }
+.tab { color: var(--text-tertiary-dark); }
 .tab:hover { color: #f0f0f0; }
 .tabActive { color: #6b9aef; }
-.integrationCard { background: #1e293b; border-color: #334155; }
+.integrationCard { background: var(--bg-secondary-dark); border-color: var(--border-dark); }
 .integrationCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
 .cardName { color: #f0f0f0; }
-.cardDesc { color: #94a3b8; }
+.cardDesc { color: var(--text-tertiary-dark); }
 .cardStatus { color: #6b7280; }
 .emptyTitle { color: #f0f0f0; }
-.emptyDesc { color: #94a3b8; }
+.emptyDesc { color: var(--text-tertiary-dark); }

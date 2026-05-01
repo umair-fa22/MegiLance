@@ -1,5 +1,5 @@
 .page {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .title {
@@ -21,8 +21,8 @@
 }
 
 .chip[aria-pressed='true'] {
-  background-color: #4573df;
-  border-color: #4573df;
+  background-color: var(--ml-blue);
+  border-color: var(--ml-blue);
   color: #ffffff;
 }
 

@@ -54,7 +54,7 @@
   margin-bottom: var(--spacing-4);
 }
 .heroAccent {
-  background: linear-gradient(135deg, var(--color-primary, #4573df) 0%, #6b93e8 50%, var(--color-accent, #ff9800) 100%);
+  background: linear-gradient(135deg, var(--color-primary, var(--ml-blue)) 0%, #6b93e8 50%, var(--color-accent, var(--ml-orange)) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -164,7 +164,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .trendingCard:hover { transform: translateY(-3px); }
-.trendingCard:focus-visible { outline: 2px solid var(--color-primary, #4573df); outline-offset: 2px; }
+.trendingCard:focus-visible { outline: 2px solid var(--color-primary, var(--ml-blue)); outline-offset: 2px; }
 .trendingNum {
   font-family: var(--font-family-headings);
   font-size: var(--font-size-3xl);
@@ -237,7 +237,7 @@
   padding: 10px 26px;
   border-radius: var(--border-radius-full);
   border: none;
-  background: linear-gradient(135deg, var(--color-primary, #4573df), #6b93e8);
+  background: linear-gradient(135deg, var(--color-primary, var(--ml-blue)), #6b93e8);
   color: #fff;
   font-size: var(--font-size-sm);
   font-weight: 700;
@@ -255,7 +255,7 @@
 .spinner {
   width: 40px; height: 40px;
   border: 3px solid rgba(69,115,223,0.15);
-  border-top-color: var(--color-primary, #4573df);
+  border-top-color: var(--color-primary, var(--ml-blue));
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }

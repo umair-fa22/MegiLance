@@ -9,7 +9,7 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .pendingBadge {
@@ -18,12 +18,12 @@
 }
 
 .tabs {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .tab {
   background: transparent;
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tab:hover {
@@ -47,7 +47,7 @@
 }
 
 .searchInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
 }
 
@@ -62,13 +62,13 @@
 }
 
 .emptyState {
-  background: #f1f5f9;
-  color: #64748b;
+  background: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .skillCard {
   background: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .skillCard:hover {
@@ -85,25 +85,25 @@
 }
 
 .skillDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .skillMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .iconBtn {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #374151;
 }
 
 .iconBtn:hover {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .categoryCard {
   background: #fff;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .categoryCard:hover {
@@ -115,11 +115,11 @@
 }
 
 .categoryDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .categoryMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .modal {
@@ -131,17 +131,17 @@
 }
 
 .modalHeader {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #111827;
 }
 
 .closeBtn {
-  background: #f1f5f9;
-  color: #64748b;
+  background: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .closeBtn:hover {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .input,
@@ -153,7 +153,7 @@
 
 .input:focus,
 .textarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
 }
 
@@ -162,7 +162,7 @@
 }
 
 .modalFooter {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .confirmText {

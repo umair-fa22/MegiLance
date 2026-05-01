@@ -31,7 +31,7 @@
 }
 
 .templateCardSelected {
-  border-color: var(--color-primary, #4573df);
+  border-color: var(--color-primary, var(--ml-blue));
   background: rgba(69, 115, 223, 0.1);
 }
 

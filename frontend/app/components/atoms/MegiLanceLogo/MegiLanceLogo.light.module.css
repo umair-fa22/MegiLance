@@ -1,12 +1,12 @@
 /* @AI-HINT: Light theme styles for the MegiLanceLogo component. */
 .background {
-  fill: #4573DF; /* MegiLance Blue */
+  fill: var(--ml-blue); /* MegiLance Blue */
 }
 
 .foreground {
-  fill: #FFFFFF; /* White */
+  fill: var(--bg-primary-light); /* White */
 }
 
 .logo::after {
-  background: linear-gradient(45deg, #3b82f6, #4573df);
+  background: linear-gradient(45deg, #3b82f6, var(--ml-blue));
 }

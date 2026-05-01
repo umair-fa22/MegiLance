@@ -20,7 +20,7 @@
 .tableFeature { font-weight: 500; }
 .tableBrand { text-align: center; font-weight: 600; }
 .tableCompetitor { text-align: center; }
-.check { display: inline-flex; align-items: center; gap: 4px; color: #27AE60; }
+.check { display: inline-flex; align-items: center; gap: 4px; color: var(--ml-green); }
 .checkNeutral { display: inline-flex; align-items: center; gap: 4px; }
 .cross { display: inline-flex; align-items: center; gap: 4px; color: #e53935; }
 
@@ -28,7 +28,7 @@
 .switchSection { /* base */ }
 .switchGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; max-width: 700px; margin: 0 auto; }
 .switchCard { display: flex; align-items: flex-start; gap: 0.75rem; padding: 1rem; border-radius: 10px; font-size: 0.95rem; }
-.switchIcon { color: #27AE60; flex-shrink: 0; margin-top: 2px; }
+.switchIcon { color: var(--ml-green); flex-shrink: 0; margin-top: 2px; }
 
 /* FAQ */
 .faqList { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.5rem; }

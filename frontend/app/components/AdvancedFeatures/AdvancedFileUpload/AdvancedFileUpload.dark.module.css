@@ -2,21 +2,21 @@
 
 .dropzone {
   border-color: #444444;
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .dropzone:hover {
-  border-color: #4573df;
-  background-color: #1e293b;
+  border-color: var(--ml-blue);
+  background-color: var(--bg-secondary-dark);
 }
 
 .dropzoneDragging {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background-color: #2a3a4d;
 }
 
 .dropzoneIcon {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .dropzoneText {
@@ -28,18 +28,18 @@
 }
 
 .fileItem {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border-color: #475569;
 }
 
 .fileItem:hover {
-  border-color: #4573df;
-  background-color: #1e293b;
+  border-color: var(--ml-blue);
+  background-color: var(--bg-secondary-dark);
 }
 
 .fileIcon {
-  background-color: #334155;
-  color: #4573df;
+  background-color: var(--border-dark);
+  color: var(--ml-blue);
 }
 
 .fileName {
@@ -60,5 +60,5 @@
 
 .removeButton:hover {
   background-color: #450a0a;
-  color: #e81123;
+  color: var(--ml-red);
 }

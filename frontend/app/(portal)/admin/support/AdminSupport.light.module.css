@@ -1,60 +1,60 @@
 /* AI-HINT: Light theme overrides for Admin Support page. */
 
 .themeWrapper {
-  background: #f8fafc;
-  color: #0f172a;
+  background: var(--bg-secondary-light);
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .input,
 .select {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  color: #0f172a;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .button {
-  background: #4573df;
-  color: #ffffff;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
   border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .button.secondary {
-  background: #ffffff;
-  color: #475569;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  color: var(--text-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .listCard,
 .detailsCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .cardTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .item {
-  background: #f8fafc;
-  border-color: #e2e8f0;
+  background: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .meta {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .badge {
-  background: #f1f5f9;
-  border-color: #e2e8f0;
-  color: #475569;
+  background: var(--bg-tertiary-light);
+  border-color: var(--border-light);
+  color: var(--text-secondary-light);
 }
 
 .kv {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 /* Toast */

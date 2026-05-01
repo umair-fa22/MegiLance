@@ -1,84 +1,84 @@
 /* @AI-HINT: Rate Advisor – light theme colors */
 
-.container { background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%); color: #1a1f36; }
-.headerBadge { background: rgba(39,174,96,0.1); color: #27ae60; }
+.container { background: linear-gradient(135deg, var(--bg-secondary-light) 0%, #f0fdf4 100%); color: #1a1f36; }
+.headerBadge { background: rgba(39,174,96,0.1); color: var(--ml-green); }
 .title { color: #1a1f36; }
-.subtitle { color: #64748b; }
+.subtitle { color: var(--color-text-secondary-light); }
 
-.stepDot { background: #e2e8f0; color: #94a3b8; }
-.stepDotActive { background: #27ae60; color: #fff; box-shadow: 0 0 0 4px rgba(39,174,96,0.15); }
-.stepDotCompleted { background: #27ae60; color: #fff; }
-.stepLabel { color: #94a3b8; }
-.stepLabelActive { color: #27ae60; }
-.stepLine { background: #e2e8f0; }
-.stepLineActive { background: #27ae60; }
+.stepDot { background: var(--border-light); color: var(--text-tertiary-light); }
+.stepDotActive { background: var(--ml-green); color: #fff; box-shadow: 0 0 0 4px rgba(39,174,96,0.15); }
+.stepDotCompleted { background: var(--ml-green); color: #fff; }
+.stepLabel { color: var(--text-tertiary-light); }
+.stepLabelActive { color: var(--ml-green); }
+.stepLine { background: var(--border-light); }
+.stepLineActive { background: var(--ml-green); }
 
-.formCard { background: #fff; border-color: #e2e8f0; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+.formCard { background: #fff; border-color: var(--border-light); box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
 .formTitle { color: #1a1f36; }
 .label { color: #374151; }
-.labelHint { color: #94a3b8; }
-.textInput, .numberInput { background: #fafbfc; border-color: #e2e8f0; color: #1a1f36; }
-.textInput:focus, .numberInput:focus { border-color: #27ae60; box-shadow: 0 0 0 3px rgba(39,174,96,0.1); }
+.labelHint { color: var(--text-tertiary-light); }
+.textInput, .numberInput { background: #fafbfc; border-color: var(--border-light); color: #1a1f36; }
+.textInput:focus, .numberInput:focus { border-color: var(--ml-green); box-shadow: 0 0 0 3px rgba(39,174,96,0.1); }
 
-.typeCard { background: #f8fafc; border-color: #e2e8f0; color: #374151; }
-.typeCard:hover { border-color: #27ae60; background: rgba(39,174,96,0.04); }
-.typeCardSelected { background: rgba(39,174,96,0.08); border-color: #27ae60; color: #27ae60; }
+.typeCard { background: var(--bg-secondary-light); border-color: var(--border-light); color: #374151; }
+.typeCard:hover { border-color: var(--ml-green); background: rgba(39,174,96,0.04); }
+.typeCardSelected { background: rgba(39,174,96,0.08); border-color: var(--ml-green); color: var(--ml-green); }
 
-.expCard { background: #f8fafc; border-color: #e2e8f0; color: #374151; }
-.expCard:hover { border-color: #27ae60; }
-.expCardSelected { background: rgba(39,174,96,0.08); border-color: #27ae60; color: #27ae60; }
-.expDesc { color: #64748b; }
+.expCard { background: var(--bg-secondary-light); border-color: var(--border-light); color: #374151; }
+.expCard:hover { border-color: var(--ml-green); }
+.expCardSelected { background: rgba(39,174,96,0.08); border-color: var(--ml-green); color: var(--ml-green); }
+.expDesc { color: var(--color-text-secondary-light); }
 
-.platformCard { background: #f8fafc; border-color: #e2e8f0; color: #374151; }
-.platformCard:hover { border-color: #27ae60; }
-.platformCardSelected { background: rgba(39,174,96,0.08); border-color: #27ae60; color: #27ae60; }
-.platformFee { color: #64748b; }
+.platformCard { background: var(--bg-secondary-light); border-color: var(--border-light); color: #374151; }
+.platformCard:hover { border-color: var(--ml-green); }
+.platformCardSelected { background: rgba(39,174,96,0.08); border-color: var(--ml-green); color: var(--ml-green); }
+.platformFee { color: var(--color-text-secondary-light); }
 
 .processingContainer { color: #1a1f36; }
-.processingOrbInner { background: linear-gradient(135deg, #27ae60, #2ecc71); color: #fff; }
-.processingSubtitle { color: #64748b; }
-.processingStepCircle { background: rgba(39,174,96,0.1); color: #27ae60; }
+.processingOrbInner { background: linear-gradient(135deg, var(--ml-green), #2ecc71); color: #fff; }
+.processingSubtitle { color: var(--color-text-secondary-light); }
+.processingStepCircle { background: rgba(39,174,96,0.1); color: var(--ml-green); }
 
-.priceHero { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: #fff; }
+.priceHero { background: linear-gradient(135deg, var(--ml-green) 0%, #2ecc71 100%); color: #fff; }
 .priceHeroLabel { color: rgba(255,255,255,0.85); }
 .priceHeroValue { color: #fff; }
 .priceHeroMetaItem { color: rgba(255,255,255,0.8); }
 
-.resultCard { background: #fff; border-color: #e2e8f0; }
-.resultCardIcon { background: rgba(39,174,96,0.1); color: #27ae60; }
+.resultCard { background: #fff; border-color: var(--border-light); }
+.resultCardIcon { background: rgba(39,174,96,0.1); color: var(--ml-green); }
 .resultCardTitle { color: #1a1f36; }
-.calcRow { color: #374151; border-color: #f1f5f9; }
+.calcRow { color: #374151; border-color: var(--bg-tertiary-light); }
 .calcRowHighlight { background: rgba(39,174,96,0.04); }
 
 /* Income */
-.incomeRow { background: #f8fafc; }
+.incomeRow { background: var(--bg-secondary-light); }
 .incomeLabel { color: #1a1f36; }
-.incomeUtil { color: #64748b; }
+.incomeUtil { color: var(--color-text-secondary-light); }
 .incomeFigure { color: #374151; }
 
 /* Market */
 .marketBarRange { background: rgba(39,174,96,0.2); }
-.marketBarYou { background: #27ae60; }
-.marketLegendItem { color: #64748b; }
+.marketBarYou { background: var(--ml-green); }
+.marketLegendItem { color: var(--color-text-secondary-light); }
 
 /* Recommendations */
-.recItem { background: #f8fafc; }
+.recItem { background: var(--bg-secondary-light); }
 .recTitle { color: #1a1f36; }
-.recMsg { color: #64748b; }
-.rec_increase { border-left-color: #27ae60; }
-.rec_positioning { border-left-color: #4573df; }
+.recMsg { color: var(--color-text-secondary-light); }
+.rec_increase { border-left-color: var(--ml-green); }
+.rec_positioning { border-left-color: var(--ml-blue); }
 .rec_platform { border-left-color: #f39c12; }
 .rec_negotiation { border-left-color: #9b59b6; }
 .rec_value_add { border-left-color: #1abc9c; }
-.rec_caution { border-left-color: #e81123; }
+.rec_caution { border-left-color: var(--ml-red); }
 
-.navButtonBack { background: #f1f5f9; color: #374151; }
-.navButtonBack:hover { background: #e2e8f0; }
-.navButtonNext { background: #27ae60; color: #fff; }
+.navButtonBack { background: var(--bg-tertiary-light); color: #374151; }
+.navButtonBack:hover { background: var(--border-light); }
+.navButtonNext { background: var(--ml-green); color: #fff; }
 .navButtonNext:hover { background: #219a52; }
-.actionBtnPrimary { background: #27ae60; color: #fff; }
+.actionBtnPrimary { background: var(--ml-green); color: #fff; }
 .actionBtnPrimary:hover { background: #219a52; }
-.actionBtnSecondary { background: #f1f5f9; color: #374151; }
-.actionBtnSecondary:hover { background: #e2e8f0; }
+.actionBtnSecondary { background: var(--bg-tertiary-light); color: #374151; }
+.actionBtnSecondary:hover { background: var(--border-light); }
 
-.disclaimer { color: #94a3b8; border-color: #e2e8f0; }
+.disclaimer { color: var(--text-tertiary-light); border-color: var(--border-light); }

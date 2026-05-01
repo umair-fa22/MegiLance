@@ -1,52 +1,52 @@
 /* @AI-HINT: Dark theme colors for ReferralPage */
 
 .container {
-  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
-  color: #f8fafc;
+  background: linear-gradient(180deg, var(--bg-primary-dark) 0%, var(--bg-secondary-dark) 100%);
+  color: var(--text-primary-dark);
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .card {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .cardTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .linkInput {
-  background: #0f172a;
-  border-color: #334155;
+  background: var(--bg-primary-dark);
+  border-color: var(--border-dark);
   color: #e2e8f0;
 }
 
 .linkInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.25);
 }
 
 .statsCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .statItem {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
 }
 
 .statValue {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }

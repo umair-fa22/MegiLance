@@ -1,7 +1,7 @@
 /* @AI-HINT: Light theme colors for Pakistan payment options */
 
 .container {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 
 /* Testnet Banner - Purple theme for development mode */
@@ -20,21 +20,21 @@
 }
 
 .header p {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .providerCard {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .providerCard:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   border-color: #cbd5e1;
 }
 
 .providerCard.selected {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background-color: #eff6ff;
 }
 
@@ -44,25 +44,25 @@
 }
 
 .providerIcon {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .providerName {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .detailsSection {
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .feeRow {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .feeRow.total {
-  color: #1e293b;
-  border-color: #e2e8f0;
+  color: var(--color-text-primary-light);
+  border-color: var(--border-light);
 }
 
 .instructions {
@@ -72,7 +72,7 @@
 
 .connectButton {
   background-color: #f59e0b;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .connectButton:hover {
@@ -85,13 +85,13 @@
 }
 
 .addressBox {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #334155;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .copyButton {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .networkWarning {
@@ -105,8 +105,8 @@
 }
 
 .payButton {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .payButton:hover {
@@ -114,8 +114,8 @@
 }
 
 .continueButton {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .continueButton:hover {

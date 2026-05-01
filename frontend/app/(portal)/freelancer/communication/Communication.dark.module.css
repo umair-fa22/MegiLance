@@ -1,21 +1,21 @@
 /* @AI-HINT: Dark theme colors for Communication Center */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Stats */
 .statCard {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -44,7 +44,7 @@
 }
 
 .statValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .statLabel {
@@ -53,12 +53,12 @@
 
 /* Search */
 .searchBar {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .searchBar:focus-within {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .searchIcon {
@@ -66,7 +66,7 @@
 }
 
 .searchInput {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .searchInput::placeholder {
@@ -74,30 +74,30 @@
 }
 
 .clearSearch {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .clearSearch:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 /* Tabs */
 .tabs {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .tab {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tab:hover {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
   background-color: rgba(255, 255, 255, 0.05);
 }
 
 .tabActive {
   color: #ffffff;
-  background-color: #4573df;
+  background-color: var(--ml-blue);
 }
 
 .tabActive:hover {
@@ -112,18 +112,18 @@
 
 /* Loading */
 .loadingState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Message List */
 .messageList {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .listHeader {
   color: #64748b;
-  border-bottom-color: #334155;
+  border-bottom-color: var(--border-dark);
   background-color: #172033;
 }
 
@@ -145,16 +145,16 @@
 
 .selected {
   background-color: rgba(69, 115, 223, 0.15);
-  border-left: 3px solid #4573df;
+  border-left: 3px solid var(--ml-blue);
 }
 
 .avatar {
-  background-color: #334155;
-  color: #94a3b8;
+  background-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .senderName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .messageDate {
@@ -179,47 +179,47 @@
 }
 
 .messagePreview {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .attachmentBadge {
   background-color: #283548;
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Message Detail */
 .messageDetail {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .detailHeader {
-  border-bottom-color: #334155;
-  background-color: #1e293b;
+  border-bottom-color: var(--border-dark);
+  background-color: var(--bg-secondary-dark);
 }
 
 .backBtn {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .backBtn:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .detailSubject {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .detailMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .detailContent {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .detailActions {
-  border-top-color: #334155;
+  border-top-color: var(--border-dark);
   background-color: #172033;
 }
 
@@ -229,13 +229,13 @@
 
 /* Attachments */
 .attachmentTitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .attachmentItem {
   background-color: #172033;
-  border-color: #334155;
-  color: #cbd5e1;
+  border-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .attachmentItem:hover {
@@ -245,8 +245,8 @@
 
 /* Notifications */
 .notificationItem {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .notificationItem:hover {
@@ -255,7 +255,7 @@
 
 .unreadNotif {
   background-color: rgba(69, 115, 223, 0.06);
-  border-left: 3px solid #4573df;
+  border-left: 3px solid var(--ml-blue);
 }
 
 .notifIcon_success {
@@ -279,11 +279,11 @@
 }
 
 .notifTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .notifMessage {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .notifDate {
@@ -292,8 +292,8 @@
 
 /* Announcements */
 .announcementItem {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .announcementItem:hover {
@@ -305,11 +305,11 @@
 }
 
 .announcementTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .announcementContent {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .announcementMeta {
@@ -318,41 +318,41 @@
 
 /* Empty State */
 .emptyState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Modal */
 .modal {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
 .modalTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .modalClose {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .modalClose:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 /* Form */
 .formLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .input {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #f8fafc;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .input:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .input::placeholder {
@@ -360,13 +360,13 @@
 }
 
 .textarea {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #f8fafc;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .textarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .textarea::placeholder {

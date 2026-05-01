@@ -1,7 +1,7 @@
 /* @AI-HINT: Light theme colors for AuthLayout */
 
 .layout {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
   background-image:
     radial-gradient(ellipse 60% 40% at 70% 10%, rgba(69, 115, 223, 0.06), transparent),
     radial-gradient(ellipse 50% 30% at 20% 80%, rgba(155, 89, 182, 0.04), transparent);

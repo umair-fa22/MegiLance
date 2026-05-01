@@ -1,1 +1,1 @@
-.faq { background: #ffffff; color: #0f172a; }
+.faq { background: var(--bg-primary-light); color: var(--text-primary-light); }

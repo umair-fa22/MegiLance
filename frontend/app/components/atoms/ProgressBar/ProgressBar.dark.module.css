@@ -1,7 +1,7 @@
 /* AI-HINT: This file defines the dark theme styles for the ProgressBar component. It ensures high contrast and brand consistency in dark mode. */
 
 .progressBarDark .progressBarTrack {
-  background-color: #1e293b; /* Dark Gray 800 */
+  background-color: var(--bg-secondary-dark); /* Dark Gray 800 */
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 

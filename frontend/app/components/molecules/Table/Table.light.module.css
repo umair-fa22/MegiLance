@@ -1,44 +1,44 @@
 ﻿/* @AI-HINT: Light theme styles for the Table component using brand tokens with 2026 glassmorphic design. */
 
 .tableContainer {
-  border: 1px solid #e2e8f0;
-  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+  border: 1px solid var(--border-light);
+  background: linear-gradient(135deg, var(--bg-primary-light) 0%, #f9fafb 100%);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .caption {
-  background: linear-gradient(135deg, #f8fafc 0%, #f5f7fa 100%);
-  color: #0f172a;
+  background: linear-gradient(135deg, var(--bg-secondary-light) 0%, #f5f7fa 100%);
+  color: var(--text-primary-light);
 }
 
 .tableThead {
-  background: linear-gradient(135deg, #f8fafc 0%, #f5f7fa 100%);
-  border-bottom: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, var(--bg-secondary-light) 0%, #f5f7fa 100%);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .tableTh {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tableTbodyTr {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border-bottom: 1px solid #f0f2f5;
 }
 
 .tableTbodyTr:hover {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 /* Zebra striping */
 .tableTbodyTr:nth-child(odd) {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 .tableTbodyTr:nth-child(even) {
   background: linear-gradient(135deg, #f9fafc 0%, #f5f7fa 100%);
 }
 
 .tableTd {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Sticky header option (if container is scrollable) */
@@ -46,5 +46,5 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  background: linear-gradient(135deg, #f8fafc 0%, #f5f7fa 100%);
+  background: linear-gradient(135deg, var(--bg-secondary-light) 0%, #f5f7fa 100%);
 }

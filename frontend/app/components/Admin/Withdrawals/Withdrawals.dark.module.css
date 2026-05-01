@@ -1,28 +1,28 @@
 /* AI-HINT: Dark theme styles for the Withdrawals component. */
 
 .withdrawalsContainer {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .withdrawalsTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .headerTitle { 
-  color: #f8fafc; 
+  color: var(--text-primary-dark); 
 }
 
 .filterTabs { 
-  border-color: #334155; 
+  border-color: var(--border-dark); 
 }
 
 .filterTab {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .filterTab:hover {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .activeTab {
@@ -31,8 +31,8 @@
 }
 
 .requestCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
@@ -42,7 +42,7 @@
 }
 
 .freelancerName { 
-  color: #f8fafc; 
+  color: var(--text-primary-dark); 
 }
 
 .requestDate { 
@@ -50,41 +50,41 @@
 }
 
 .amount { 
-  color: #f8fafc; 
+  color: var(--text-primary-dark); 
 }
 
 .addressLabel { 
-  color: #cbd5e1; 
+  color: var(--text-secondary-dark); 
 }
 
 .address { 
-  color: #cbd5e1; 
+  color: var(--text-secondary-dark); 
 }
 
 .cardFooter { 
-  border-color: #334155; 
+  border-color: var(--border-dark); 
 }
 
 .emptyState {
-  background-color: #1e293b;
-  border: 1px dashed #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px dashed var(--border-dark);
 }
 
 .emptyStateIcon { 
-  color: #94a3b8; 
+  color: var(--text-tertiary-dark); 
 }
 
 .emptyStateTitle { 
-  color: #f8fafc; 
+  color: var(--text-primary-dark); 
 }
 
 .emptyStateText { 
-  color: #cbd5e1; 
+  color: var(--text-secondary-dark); 
 }
 
 /* Loading and Error States */
 .loadingState { 
-  color: #cbd5e1; 
+  color: var(--text-secondary-dark); 
 }
 
 .errorState { 

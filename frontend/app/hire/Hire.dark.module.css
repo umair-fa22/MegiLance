@@ -1,7 +1,7 @@
 /* @AI-HINT: Hire directory page - dark theme colors */
 
 .page {
-  background: linear-gradient(170deg, #0f172a 0%, #0f172a 40%, #0f1225 100%);
+  background: linear-gradient(170deg, var(--bg-primary-dark) 0%, var(--bg-primary-dark) 40%, #0f1225 100%);
 }
 
 .hero {
@@ -11,19 +11,19 @@
 }
 
 .heroTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .heroSubtitle {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .skillsSectionTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .categoryTitle {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .skillCard {
@@ -40,7 +40,7 @@
 }
 
 .skillName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .skillRate {
@@ -48,11 +48,11 @@
 }
 
 .industriesSection {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .industriesSectionTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .industryCard {
@@ -72,15 +72,15 @@
 }
 
 .ctaTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .ctaText {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .ctaButton {
-  background: linear-gradient(135deg, #4573df 0%, #2563eb 100%);
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #2563eb 100%);
   color: #ffffff;
   box-shadow: 0 4px 14px rgba(69, 115, 223, 0.3);
   transition: transform 0.2s ease, box-shadow 0.2s ease;

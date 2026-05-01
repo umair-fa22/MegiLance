@@ -1,0 +1,23 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-declaration-strict-value"
+  ],
+  "rules": {
+    "scale-unlimited/declaration-strict-value": [
+      ["/color/", "fill", "stroke", "background-color"],
+      {
+        "ignoreValues": ["currentColor", "transparent", "inherit", "none"],
+        "message": "Avoid using hardcoded colors. Please use CSS variables from styles/tokens.css (e.g. var(--bg-primary-light))"
+      }
+    ],
+    "color-named": "never",
+    "color-no-hex": true,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ]
+  }
+}

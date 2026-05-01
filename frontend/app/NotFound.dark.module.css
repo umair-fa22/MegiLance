@@ -1,5 +1,5 @@
 /* 404 Page Dark Theme */
 .themeWrapper {
-  background: #0f172a;
-  color: #f8fafc;
+  background: var(--bg-primary-dark);
+  color: var(--text-primary-dark);
 } 

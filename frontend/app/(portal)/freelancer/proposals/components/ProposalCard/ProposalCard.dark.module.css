@@ -1,8 +1,8 @@
 ﻿/* @AI-HINT: Dark theme styles for the ProposalCard. */
 
 .card {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
@@ -12,15 +12,15 @@
 }
 
 .cardHeader, .cardFooter {
-    border-color: #334155;
+    border-color: var(--border-dark);
 }
 
 .jobTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .clientInfo {
-    color: #94a3b8;
+    color: var(--text-tertiary-dark);
 }
 
 .icon {
@@ -28,7 +28,7 @@
 }
 
 .detailValue {
-    color: #f8fafc;
+    color: var(--text-primary-dark);
 }
 
 .detailLabel {

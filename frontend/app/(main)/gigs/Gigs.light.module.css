@@ -1,1 +1,1 @@
-.gigs { background: #ffffff; color: #0f172a; }
+.gigs { background: var(--bg-primary-light); color: var(--text-primary-light); }

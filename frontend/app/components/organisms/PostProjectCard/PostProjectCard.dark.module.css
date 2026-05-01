@@ -1,51 +1,51 @@
 /* @AI-HINT: Dark theme for PostProjectCard embed generator */
 
 .wrapper {
-  background: #0f172a;
-  border: 1px solid #1e293b;
+  background: var(--bg-primary-dark);
+  border: 1px solid var(--bg-secondary-dark);
 }
 
 .header {
-  border-bottom: 1px solid #1e293b;
+  border-bottom: 1px solid var(--bg-secondary-dark);
 }
 
-.headerTitle { color: #f8fafc; }
-.headerSub { color: #94a3b8; }
+.headerTitle { color: var(--text-primary-dark); }
+.headerSub { color: var(--text-tertiary-dark); }
 
 .controls {
-  border-bottom: 1px solid #1e293b;
+  border-bottom: 1px solid var(--bg-secondary-dark);
   padding-bottom: 1rem;
 }
 
-.controlLabel { color: #94a3b8; }
+.controlLabel { color: var(--text-tertiary-dark); }
 
 .toggleBtn {
-  background: #1e293b;
-  color: #94a3b8;
+  background: var(--bg-secondary-dark);
+  color: var(--text-tertiary-dark);
 }
-.toggleBtn:hover { background: #334155; }
+.toggleBtn:hover { background: var(--border-dark); }
 .toggleBtnActive {
-  background: #4573df !important;
+  background: var(--ml-blue) !important;
   color: #fff !important;
 }
 
-.tabBar { border-bottom-color: #1e293b; }
-.tab { color: #94a3b8; }
-.tab:hover { color: #f8fafc; }
+.tabBar { border-bottom-color: var(--bg-secondary-dark); }
+.tab { color: var(--text-tertiary-dark); }
+.tab:hover { color: var(--text-primary-dark); }
 .tabActive {
   color: #5b8aef !important;
   border-bottom-color: #5b8aef !important;
 }
 
 .previewArea {
-  background: repeating-conic-gradient(#0c1322 0% 25%, #0f172a 0% 50%) 50% / 20px 20px;
+  background: repeating-conic-gradient(#0c1322 0% 25%, var(--bg-primary-dark) 0% 50%) 50% / 20px 20px;
 }
 
-.codeArea { border: 1px solid #1e293b; }
-.codeToolbar { background: #1e293b; border-bottom: 1px solid #334155; }
-.codeLabel { color: #94a3b8; }
+.codeArea { border: 1px solid var(--bg-secondary-dark); }
+.codeToolbar { background: var(--bg-secondary-dark); border-bottom: 1px solid var(--border-dark); }
+.codeLabel { color: var(--text-tertiary-dark); }
 .copyBtn { color: #5b8aef; }
 .copyBtn:hover { background: rgba(91, 138, 239, 0.1); }
-.codeBlock { background: #0c1322; color: #cbd5e1; }
+.codeBlock { background: #0c1322; color: var(--text-secondary-dark); }
 
-.quickActions { border-top-color: #1e293b; }
+.quickActions { border-top-color: var(--bg-secondary-dark); }

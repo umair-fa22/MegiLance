@@ -5,12 +5,12 @@
 
 /* Level Badge */
 .levelSection {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .levelBadge.newSeller {
-  background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+  background: linear-gradient(135deg, var(--text-tertiary-light) 0%, var(--color-text-secondary-light) 100%);
 }
 
 .levelBadge.bronze {
@@ -34,30 +34,30 @@
 }
 
 .levelDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .jssScore {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .jssValue {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Stats */
 .statCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .statIcon {
-  background-color: #f1f5f9;
-  color: #4573df;
+  background-color: var(--bg-tertiary-light);
+  color: var(--ml-blue);
 }
 
 .statLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .statValue {
@@ -66,8 +66,8 @@
 
 /* Progress */
 .progressSection {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .progressTitle {
@@ -75,11 +75,11 @@
 }
 
 .progressNextLevel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .progressItemLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .progressItemValue {
@@ -87,11 +87,11 @@
 }
 
 .progressBar {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .progressBarFill {
-  background: linear-gradient(90deg, #4573df, #667eea);
+  background: linear-gradient(90deg, var(--ml-blue), #667eea);
 }
 
 .progressBarFill.complete {
@@ -100,8 +100,8 @@
 
 /* Benefits */
 .benefitsSection {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .benefitsTitle {
@@ -114,7 +114,7 @@
 
 .benefitIcon {
   background-color: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .benefitName {
@@ -122,13 +122,13 @@
 }
 
 .benefitValue {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Badges */
 .badgesSection {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .badgesTitle {
@@ -136,7 +136,7 @@
 }
 
 .badge {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #1f2937;
 }
 

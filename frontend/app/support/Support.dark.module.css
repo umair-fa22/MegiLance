@@ -1,25 +1,25 @@
 /* AI-HINT: Dark theme overrides for Support page. */
 
 .themeWrapper {
-  background: #0f172a;
-  color: #f8fafc;
+  background: var(--bg-primary-dark);
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .card {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .cardTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .cardDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .link {
@@ -31,7 +31,7 @@
 }
 
 .button {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -40,8 +40,8 @@
 }
 
 .buttonSecondary {
-  color: #cbd5e1;
-  border-color: #334155;
+  color: var(--text-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .buttonSecondary:hover {

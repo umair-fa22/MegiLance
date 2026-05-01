@@ -1,12 +1,12 @@
 /* @AI-HINT: Light theme for Admin Moderation */
-.container { background: #f8fafc; }
+.container { background: var(--bg-secondary-light); }
 .title { color: #1a1a2e; }
-.subtitle { color: #64748b; }
-.statCard { background: #ffffff; border: 1px solid #e2e8f0; }
-.filterBtn { background: #e2e8f0; color: #64748b; }
-.filterBtnActive { background: #4573df; color: white; }
+.subtitle { color: var(--color-text-secondary-light); }
+.statCard { background: var(--bg-primary-light); border: 1px solid var(--border-light); }
+.filterBtn { background: var(--border-light); color: var(--color-text-secondary-light); }
+.filterBtnActive { background: var(--ml-blue); color: white; }
 .itemsList { }
-.item { background: #ffffff; border: 1px solid #e2e8f0; }
+.item { background: var(--bg-primary-light); border: 1px solid var(--border-light); }
 .itemContent { color: #1a1a2e; }
 .confirmText { color: #374151; }
 .toast { background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(39, 174, 96, 0.3); color: #166534; }

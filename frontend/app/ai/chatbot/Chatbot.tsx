@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { getAuthToken } from '@/lib/api';
-import { Send, Sparkles, MoreVertical, Trash2, Settings } from 'lucide-react'
+import { Send, MoreVertical, Trash2, Settings, Mic, Volume2 } from 'lucide-react'
 import Button from '@/app/components/atoms/Button/Button';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
@@ -47,6 +47,10 @@ const Chatbot: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [recognitionAvailable, setRecognitionAvailable] = useState(false);
+  const [recognitionActive, setRecognitionActive] = useState(false);
+  const recognitionRef = useRef<any>(null);
   const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
   const scrollToBottom = useCallback(() => {
@@ -95,6 +99,103 @@ const Chatbot: React.FC = () => {
     };
     startConversation();
   }, [API_URL]);
+
+  // Setup Speech Recognition availability
+  useEffect(() => {
+    const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+    if (SpeechRecognition) {
+      setRecognitionAvailable(true);
+    }
+  }, []);
+
+  const speakText = (text: string) => {
+    if (!('speechSynthesis' in window)) return;
+    try {
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'en-US';
+      utter.onstart = () => setIsSpeaking(true);
+      utter.onend = () => setIsSpeaking(false);
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utter);
+    } catch (e) {
+      console.warn('Speech synthesis failed', e);
+    }
+  };
+
+  const startRecognition = async () => {
+    const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+    if (!SpeechRecognition) return;
+    const recog = new SpeechRecognition();
+    recog.lang = 'en-US';
+    recog.interimResults = false;
+    recog.maxAlternatives = 1;
+    recog.onstart = () => setRecognitionActive(true);
+    recog.onend = () => setRecognitionActive(false);
+    recog.onerror = (e: any) => {
+      console.warn('Speech recognition error', e);
+      setRecognitionActive(false);
+    };
+    recog.onresult = (ev: any) => {
+      const transcript = ev.results[0][0].transcript;
+      // send the transcript as a message
+      sendFromVoice(transcript);
+    };
+    recognitionRef.current = recog;
+    recog.start();
+  };
+
+  const stopRecognition = () => {
+    if (recognitionRef.current) {
+      try { recognitionRef.current.stop(); } catch {};
+      recognitionRef.current = null;
+      setRecognitionActive(false);
+    }
+  };
+
+  const sendFromVoice = async (transcript: string) => {
+    const trimmedInput = transcript.trim();
+    if (trimmedInput === '') return;
+    const userMessage: Message = { id: Date.now(), text: trimmedInput, sender: 'user', timestamp: new Date() };
+    setMessages(prev => [...prev, userMessage]);
+    setShowSuggestions(false);
+    setIsTyping(true);
+
+    try {
+      const token = getAuthToken();
+      const headers: HeadersInit = { 'Content-Type': 'application/json' };
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+
+      let currentConversationId = conversationId;
+      if (!currentConversationId) {
+        const startRes = await fetch(`${API_URL}/v1/chatbot/start`, { method: 'POST', headers, body: JSON.stringify({}) });
+        if (startRes.ok) {
+          const startData = await startRes.json();
+          currentConversationId = startData.conversation_id;
+          setConversationId(currentConversationId);
+        }
+      }
+
+      const res = await fetch(`${API_URL}/v1/chatbot/${currentConversationId}/message`, {
+        method: 'POST', headers, body: JSON.stringify({ message: trimmedInput })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const botResponse: Message = { id: Date.now() + 1, text: data.response, sender: 'bot', timestamp: new Date() };
+        setMessages(prev => [...prev, botResponse]);
+        // auto-speak
+        speakText(data.response);
+      } else {
+        const botResponse: Message = { id: Date.now() + 1, text: "Sorry, I'm having trouble connecting to the server.", sender: 'bot', timestamp: new Date() };
+        setMessages(prev => [...prev, botResponse]);
+      }
+    } catch (err) {
+      if (process.env.NODE_ENV === 'development') console.error('Failed to send voice message', err);
+      const botResponse: Message = { id: Date.now() + 1, text: "Sorry, I'm having trouble connecting to the server.", sender: 'bot', timestamp: new Date() };
+      setMessages(prev => [...prev, botResponse]);
+    } finally {
+      setIsTyping(false);
+    }
+  };
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
@@ -204,8 +305,8 @@ const Chatbot: React.FC = () => {
             {/* Header */}
             <header className={cn(commonStyles.header, themeStyles.header)}>
               <div className={commonStyles.headerLeft}>
-                <div className={cn(commonStyles.aiAvatar, themeStyles.aiAvatar)}>
-                  <Sparkles size={24} />
+                <div className={cn(commonStyles.aiAvatar, themeStyles.aiAvatar, isSpeaking && commonStyles.speaking)}>
+                  <img src="/assets/chatbot/chatbot-icon.png" alt="MegiLance AI" className={commonStyles.avatarImage} />
                 </div>
                 <div className={commonStyles.headerInfo}>
                   <h2>MegiLance AI</h2>
@@ -223,6 +324,29 @@ const Chatbot: React.FC = () => {
                   aria-label="Clear chat history"
                 >
                   <Trash2 size={18} />
+                </button>
+                {/* Voice input */}
+                {recognitionAvailable && (
+                  <button
+                    className={cn(commonStyles.iconButton, themeStyles.iconButton)}
+                    title={recognitionActive ? 'Stop voice input' : 'Start voice input'}
+                    aria-pressed={recognitionActive}
+                    onClick={() => recognitionActive ? stopRecognition() : startRecognition()}
+                  >
+                    <Mic size={18} />
+                  </button>
+                )}
+                {/* Speaker / speak latest */}
+                <button
+                  className={cn(commonStyles.iconButton, themeStyles.iconButton)}
+                  title="Speak latest response"
+                  aria-pressed={isSpeaking}
+                  onClick={() => {
+                    const lastBot = [...messages].reverse().find(m => m.sender === 'bot');
+                    if (lastBot) speakText(lastBot.text);
+                  }}
+                >
+                  <Volume2 size={18} />
                 </button>
                 <button 
                   className={cn(commonStyles.iconButton, themeStyles.iconButton)}
@@ -249,8 +373,8 @@ const Chatbot: React.FC = () => {
                     )}
                   >
                     {msg.sender === 'bot' && (
-                      <div className={cn(commonStyles.messageAvatar, themeStyles.messageAvatar)}>
-                        <Sparkles size={16} />
+                      <div className={cn(commonStyles.messageAvatar, themeStyles.messageAvatar, isSpeaking && commonStyles.speaking)}>
+                        <img src="/assets/chatbot/chatbot-icon.png" alt="AI" className={commonStyles.avatarImageSmall} />
                       </div>
                     )}
                     <div>
@@ -277,8 +401,8 @@ const Chatbot: React.FC = () => {
                     exit={{ opacity: 0, scale: 0.9 }}
                     className={cn(commonStyles.message, commonStyles.messageBot)}
                   >
-                    <div className={cn(commonStyles.messageAvatar, themeStyles.messageAvatar)}>
-                      <Sparkles size={16} />
+                    <div className={cn(commonStyles.messageAvatar, themeStyles.messageAvatar, isSpeaking && commonStyles.speaking)}>
+                      <img src="/assets/chatbot/chatbot-icon.png" alt="AI" className={commonStyles.avatarImageSmall} />
                     </div>
                     <div className={cn(commonStyles.typingIndicator, themeStyles.typingIndicator)}>
                       <div className={commonStyles.typingDots}>

@@ -6,11 +6,11 @@
 
 /* ─── Text Colors ─── */
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .greetingIcon {
@@ -40,7 +40,7 @@
 
 /* Primary Action - Gradient CTA */
 .actionButtonPrimary {
-  background: linear-gradient(135deg, #4573df 0%, #5b8aff 100%);
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #5b8aff 100%);
   color: #ffffff;
   border-color: transparent;
   box-shadow: 0 2px 12px rgba(69, 115, 223, 0.4);
@@ -52,5 +52,5 @@
 }
 
 .actionButtonPrimary:active {
-  background: linear-gradient(135deg, #3b5fc9 0%, #4573df 100%);
+  background: linear-gradient(135deg, #3b5fc9 0%, var(--ml-blue) 100%);
 }

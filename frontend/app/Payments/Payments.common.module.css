@@ -78,7 +78,7 @@
 }
 
 .balanceValueWhite {
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 /* Transactions Section */

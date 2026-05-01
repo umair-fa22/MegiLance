@@ -1,65 +1,65 @@
 /* @AI-HINT: Expense & Tax Calculator – dark theme colors */
 
-.container { background: linear-gradient(135deg, #0c0f1a 0%, #0f172a 100%); color: #f1f5f9; }
+.container { background: linear-gradient(135deg, #0c0f1a 0%, var(--bg-primary-dark) 100%); color: var(--color-text-primary-dark); }
 .headerBadge { background: rgba(69,115,223,0.15); color: #7ba0f7; }
-.title { color: #f1f5f9; }
-.subtitle { color: #94a3b8; }
+.title { color: var(--color-text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
 
 .stepDot { background: rgba(51,65,85,0.6); color: #64748b; }
-.stepDotActive { background: #4573df; color: #fff; box-shadow: 0 0 0 4px rgba(69,115,223,0.2); }
-.stepDotCompleted { background: #27ae60; color: #fff; }
+.stepDotActive { background: var(--ml-blue); color: #fff; box-shadow: 0 0 0 4px rgba(69,115,223,0.2); }
+.stepDotCompleted { background: var(--ml-green); color: #fff; }
 .stepLabel { color: #64748b; }
 .stepLabelActive { color: #7ba0f7; }
 .stepLine { background: rgba(51,65,85,0.5); }
-.stepLineActive { background: #27ae60; }
+.stepLineActive { background: var(--ml-green); }
 
 .formCard { background: rgba(30,41,59,0.6); border-color: rgba(51,65,85,0.6); }
-.formTitle { color: #f1f5f9; }
+.formTitle { color: var(--color-text-primary-dark); }
 .label { color: #e2e8f0; }
 .labelHint { color: #64748b; }
-.formHint { color: #94a3b8; }
-.numberInput { background: rgba(15,23,42,0.6); border-color: rgba(51,65,85,0.6); color: #f1f5f9; }
-.numberInput:focus { border-color: #4573df; box-shadow: 0 0 0 3px rgba(69,115,223,0.15); }
-.select { background: rgba(15,23,42,0.6); border-color: rgba(51,65,85,0.6); color: #f1f5f9; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); }
-.select:focus { border-color: #4573df; box-shadow: 0 0 0 3px rgba(69,115,223,0.15); }
+.formHint { color: var(--text-tertiary-dark); }
+.numberInput { background: rgba(15,23,42,0.6); border-color: rgba(51,65,85,0.6); color: var(--color-text-primary-dark); }
+.numberInput:focus { border-color: var(--ml-blue); box-shadow: 0 0 0 3px rgba(69,115,223,0.15); }
+.select { background: rgba(15,23,42,0.6); border-color: rgba(51,65,85,0.6); color: var(--color-text-primary-dark); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); }
+.select:focus { border-color: var(--ml-blue); box-shadow: 0 0 0 3px rgba(69,115,223,0.15); }
 
-.processingContainer { color: #f1f5f9; }
-.processingOrbInner { background: linear-gradient(135deg, #4573df, #7ba0f7); color: #fff; }
-.processingSubtitle { color: #94a3b8; }
+.processingContainer { color: var(--color-text-primary-dark); }
+.processingOrbInner { background: linear-gradient(135deg, var(--ml-blue), #7ba0f7); color: #fff; }
+.processingSubtitle { color: var(--text-tertiary-dark); }
 .processingStepCircle { background: rgba(69,115,223,0.15); color: #7ba0f7; }
 
 .priceHero { background: linear-gradient(135deg, rgba(69,115,223,0.25) 0%, rgba(107,145,232,0.15) 100%); }
 .priceHeroLabel { color: #7ba0f7; }
-.priceHeroValue { color: #f1f5f9; }
-.priceHeroMetaItem { color: #cbd5e1; }
+.priceHeroValue { color: var(--color-text-primary-dark); }
+.priceHeroMetaItem { color: var(--text-secondary-dark); }
 
 .resultCard { background: rgba(30,41,59,0.6); border-color: rgba(51,65,85,0.6); }
 .resultCardIcon { background: rgba(69,115,223,0.12); color: #7ba0f7; }
-.resultCardTitle { color: #f1f5f9; }
+.resultCardTitle { color: var(--color-text-primary-dark); }
 .bigStat { color: #7ba0f7; }
-.calcRow { color: #cbd5e1; border-color: rgba(51,65,85,0.4); }
+.calcRow { color: var(--text-secondary-dark); border-color: rgba(51,65,85,0.4); }
 
-.yoyBox { background: rgba(51,65,85,0.3); color: #cbd5e1; }
-.yoyUp { background: rgba(39,174,96,0.12); color: #27ae60; }
-.yoyDown { background: rgba(232,17,35,0.12); color: #e81123; }
+.yoyBox { background: rgba(51,65,85,0.3); color: var(--text-secondary-dark); }
+.yoyUp { background: rgba(39,174,96,0.12); color: var(--ml-green); }
+.yoyDown { background: rgba(232,17,35,0.12); color: var(--ml-red); }
 
 .recItem { background: rgba(15,23,42,0.4); }
 .recTitle { color: #e2e8f0; }
-.recMsg { color: #94a3b8; }
-.rec_deduction { border-left-color: #27ae60; }
+.recMsg { color: var(--text-tertiary-dark); }
+.rec_deduction { border-left-color: var(--ml-green); }
 .rec_savings { border-left-color: #7ba0f7; }
 .rec_warning { border-left-color: #f39c12; }
-.rec_optimization { border-left-color: #27ae60; }
+.rec_optimization { border-left-color: var(--ml-green); }
 .rec_tax_strategy { border-left-color: #7ba0f7; }
 .rec_info { border-left-color: #7ba0f7; }
 
-.navButtonBack { background: rgba(51,65,85,0.5); color: #cbd5e1; }
+.navButtonBack { background: rgba(51,65,85,0.5); color: var(--text-secondary-dark); }
 .navButtonBack:hover { background: rgba(51,65,85,0.7); }
-.navButtonNext { background: #4573df; color: #fff; }
+.navButtonNext { background: var(--ml-blue); color: #fff; }
 .navButtonNext:hover { background: #5a85e8; }
-.actionBtnPrimary { background: #4573df; color: #fff; }
+.actionBtnPrimary { background: var(--ml-blue); color: #fff; }
 .actionBtnPrimary:hover { background: #5a85e8; }
-.actionBtnSecondary { background: rgba(51,65,85,0.5); color: #cbd5e1; }
+.actionBtnSecondary { background: rgba(51,65,85,0.5); color: var(--text-secondary-dark); }
 .actionBtnSecondary:hover { background: rgba(51,65,85,0.7); }
 
 .disclaimer { color: #64748b; border-color: rgba(51,65,85,0.4); }

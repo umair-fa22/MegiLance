@@ -1,67 +1,67 @@
 /* @AI-HINT: Skill Analyzer – dark theme colors */
 
-.container { background: linear-gradient(135deg, #0c0f1a 0%, #0f172a 100%); color: #f1f5f9; }
+.container { background: linear-gradient(135deg, #0c0f1a 0%, var(--bg-primary-dark) 100%); color: var(--color-text-primary-dark); }
 .headerBadge { background: rgba(69,115,223,0.15); color: #7ba0f7; }
-.title { color: #f1f5f9; }
-.subtitle { color: #94a3b8; }
+.title { color: var(--color-text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
 
 .stepDot { background: rgba(51,65,85,0.6); color: #64748b; }
-.stepDotActive { background: #4573df; color: #fff; box-shadow: 0 0 0 4px rgba(69,115,223,0.2); }
-.stepDotCompleted { background: #27ae60; color: #fff; }
+.stepDotActive { background: var(--ml-blue); color: #fff; box-shadow: 0 0 0 4px rgba(69,115,223,0.2); }
+.stepDotCompleted { background: var(--ml-green); color: #fff; }
 .stepLabel { color: #64748b; }
 .stepLabelActive { color: #7ba0f7; }
 .stepLine { background: rgba(51,65,85,0.5); }
-.stepLineActive { background: #27ae60; }
+.stepLineActive { background: var(--ml-green); }
 
 .formCard { background: rgba(30,41,59,0.6); border-color: rgba(51,65,85,0.6); }
-.formTitle { color: #f1f5f9; }
-.formHint { color: #94a3b8; }
+.formTitle { color: var(--color-text-primary-dark); }
+.formHint { color: var(--text-tertiary-dark); }
 .label { color: #e2e8f0; }
 .labelHint { color: #64748b; }
-.textInput { background: rgba(15,23,42,0.6); border-color: rgba(51,65,85,0.6); color: #f1f5f9; }
-.textInput:focus { border-color: #4573df; box-shadow: 0 0 0 3px rgba(69,115,223,0.15); }
+.textInput { background: rgba(15,23,42,0.6); border-color: rgba(51,65,85,0.6); color: var(--color-text-primary-dark); }
+.textInput:focus { border-color: var(--ml-blue); box-shadow: 0 0 0 3px rgba(69,115,223,0.15); }
 
 .searchIcon { color: #64748b; }
-.searchInput { background: rgba(15,23,42,0.6); border-color: rgba(51,65,85,0.6); color: #f1f5f9; }
-.searchInput:focus { border-color: #4573df; box-shadow: 0 0 0 3px rgba(69,115,223,0.15); }
+.searchInput { background: rgba(15,23,42,0.6); border-color: rgba(51,65,85,0.6); color: var(--color-text-primary-dark); }
+.searchInput:focus { border-color: var(--ml-blue); box-shadow: 0 0 0 3px rgba(69,115,223,0.15); }
 
-.categoryLabel { color: #94a3b8; }
-.skillChip { background: rgba(15,23,42,0.5); border-color: rgba(51,65,85,0.5); color: #cbd5e1; }
-.skillChip:hover { border-color: #4573df; background: rgba(69,115,223,0.08); }
+.categoryLabel { color: var(--text-tertiary-dark); }
+.skillChip { background: rgba(15,23,42,0.5); border-color: rgba(51,65,85,0.5); color: var(--text-secondary-dark); }
+.skillChip:hover { border-color: var(--ml-blue); background: rgba(69,115,223,0.08); }
 .skillChipSelected { background: rgba(69,115,223,0.12); border-color: #7ba0f7; color: #7ba0f7; }
 
-.expCard { background: rgba(15,23,42,0.5); border-color: rgba(51,65,85,0.5); color: #cbd5e1; }
-.expCard:hover { border-color: #4573df; }
+.expCard { background: rgba(15,23,42,0.5); border-color: rgba(51,65,85,0.5); color: var(--text-secondary-dark); }
+.expCard:hover { border-color: var(--ml-blue); }
 .expCardSelected { background: rgba(69,115,223,0.12); border-color: #7ba0f7; color: #7ba0f7; }
-.expDesc { color: #94a3b8; }
+.expDesc { color: var(--text-tertiary-dark); }
 
 .tag { background: rgba(69,115,223,0.12); color: #7ba0f7; }
 
-.processingContainer { color: #f1f5f9; }
-.processingOrbInner { background: linear-gradient(135deg, #4573df, #7ba0f7); color: #fff; }
-.processingSubtitle { color: #94a3b8; }
+.processingContainer { color: var(--color-text-primary-dark); }
+.processingOrbInner { background: linear-gradient(135deg, var(--ml-blue), #7ba0f7); color: #fff; }
+.processingSubtitle { color: var(--text-tertiary-dark); }
 .processingStepCircle { background: rgba(69,115,223,0.15); color: #7ba0f7; }
 
 .priceHero { background: linear-gradient(135deg, rgba(69,115,223,0.25) 0%, rgba(107,145,232,0.15) 100%); }
 .priceHeroLabel { color: #7ba0f7; }
-.priceHeroValue { color: #f1f5f9; }
-.priceHeroMetaItem { color: #cbd5e1; }
+.priceHeroValue { color: var(--color-text-primary-dark); }
+.priceHeroMetaItem { color: var(--text-secondary-dark); }
 
 .resultCard { background: rgba(30,41,59,0.6); border-color: rgba(51,65,85,0.6); }
 .resultCardIcon { background: rgba(69,115,223,0.12); color: #7ba0f7; }
-.resultCardTitle { color: #f1f5f9; }
+.resultCardTitle { color: var(--color-text-primary-dark); }
 .miniTitle { color: #e2e8f0; }
-.calcRow { color: #cbd5e1; border-color: rgba(51,65,85,0.4); }
+.calcRow { color: var(--text-secondary-dark); border-color: rgba(51,65,85,0.4); }
 
 /* Skill demand */
 .skillName { color: #e2e8f0; }
-.demandBadge { background: rgba(128,128,128,0.15); color: #94a3b8; }
+.demandBadge { background: rgba(128,128,128,0.15); color: var(--text-tertiary-dark); }
 .demand_hot { background: rgba(39,174,96,0.15); color: #2ecc71; }
 .demand_high { background: rgba(69,115,223,0.15); color: #7ba0f7; }
-.demand_moderate { background: rgba(242,201,76,0.15); color: #f2c94c; }
+.demand_moderate { background: rgba(242,201,76,0.15); color: var(--ml-yellow); }
 .demand_low { background: rgba(232,17,35,0.12); color: #ff6b7a; }
 .skillBarFill { background: #7ba0f7; }
-.skillMetaItem { color: #94a3b8; }
+.skillMetaItem { color: var(--text-tertiary-dark); }
 
 /* Synergies */
 .synergyItem { background: rgba(15,23,42,0.4); }
@@ -75,16 +75,16 @@
 .gapItem { background: rgba(15,23,42,0.4); border-left-color: #7ba0f7; }
 .gapName { color: #e2e8f0; }
 .gapRoi { background: rgba(39,174,96,0.15); color: #2ecc71; }
-.gapReason { color: #94a3b8; }
+.gapReason { color: var(--text-tertiary-dark); }
 .gapMetaItem { color: #64748b; }
 
 /* Recommendations */
 .recItem { background: rgba(15,23,42,0.4); }
 .recTitle { color: #e2e8f0; }
-.recMsg { color: #94a3b8; }
-.recPriority { background: rgba(128,128,128,0.15); color: #94a3b8; }
+.recMsg { color: var(--text-tertiary-dark); }
+.recPriority { background: rgba(128,128,128,0.15); color: var(--text-tertiary-dark); }
 .priority_high { background: rgba(232,17,35,0.12); color: #ff6b7a; }
-.priority_medium { background: rgba(242,201,76,0.15); color: #f2c94c; }
+.priority_medium { background: rgba(242,201,76,0.15); color: var(--ml-yellow); }
 .priority_low { background: rgba(39,174,96,0.15); color: #2ecc71; }
 .rec_synergy_completion { border-left-color: #7ba0f7; }
 .rec_highest_roi { border-left-color: #2ecc71; }
@@ -93,13 +93,13 @@
 .rec_career_growth { border-left-color: #a78bfa; }
 .rec_regional_opportunity { border-left-color: #2dd4bf; }
 
-.navButtonBack { background: rgba(51,65,85,0.5); color: #cbd5e1; }
+.navButtonBack { background: rgba(51,65,85,0.5); color: var(--text-secondary-dark); }
 .navButtonBack:hover { background: rgba(51,65,85,0.7); }
-.navButtonNext { background: #4573df; color: #fff; }
+.navButtonNext { background: var(--ml-blue); color: #fff; }
 .navButtonNext:hover { background: #5a85e8; }
-.actionBtnPrimary { background: #4573df; color: #fff; }
+.actionBtnPrimary { background: var(--ml-blue); color: #fff; }
 .actionBtnPrimary:hover { background: #5a85e8; }
-.actionBtnSecondary { background: rgba(51,65,85,0.5); color: #cbd5e1; }
+.actionBtnSecondary { background: rgba(51,65,85,0.5); color: var(--text-secondary-dark); }
 .actionBtnSecondary:hover { background: rgba(51,65,85,0.7); }
 
 .disclaimer { color: #64748b; border-color: rgba(51,65,85,0.4); }

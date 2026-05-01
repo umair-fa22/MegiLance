@@ -7,19 +7,19 @@
 }
 
 .indicatorItem {
-  background: #ffffff;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 .indicatorItem:hover {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border-color: #27AE60;
+  border-color: var(--ml-green);
 }
 
 .indicatorIcon {
   background: rgba(39, 174, 96, 0.1);
-  color: #27AE60;
+  color: var(--ml-green);
 }
 
 .indicatorValue {
@@ -31,19 +31,19 @@
 }
 
 .badgeItem {
-  background: #f8fafc;
-  border-color: #e2e8f0;
+  background: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .badgeItem:hover {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  border-color: #27AE60;
+  border-color: var(--ml-green);
 }
 
 .badgeIcon {
   background: rgba(39, 174, 96, 0.1);
-  color: #27AE60;
+  color: var(--ml-green);
 }
 
 .badgeTitle {

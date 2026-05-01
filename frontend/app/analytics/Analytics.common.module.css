@@ -78,7 +78,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
 }
 
 .changeLabel {
@@ -87,11 +87,11 @@
 }
 
 .changePositive {
-  color: var(--color-success, #27AE60);
+  color: var(--color-success, var(--ml-green));
 }
 
 .changeNegative {
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
 }
 
 .statValue {

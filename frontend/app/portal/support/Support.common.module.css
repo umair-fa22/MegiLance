@@ -32,7 +32,7 @@
 .empty { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
 .ticketCard { padding: 1rem; border-radius: 10px; border: 1px solid; cursor: pointer; transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease; }
 .ticketCard:hover { transform: translateX(4px); }
-.ticketCard:focus-visible { outline: 2px solid var(--color-primary, #4573df); outline-offset: 2px; }
+.ticketCard:focus-visible { outline: 2px solid var(--color-primary, var(--ml-blue)); outline-offset: 2px; }
 .ticketCard.selected { border-width: 2px; }
 .ticketHeader { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; }
 .ticketInfo { flex: 1; }

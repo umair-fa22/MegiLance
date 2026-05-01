@@ -4,9 +4,9 @@
   --card-bg: rgba(30, 41, 59, 0.8);
   --card-border: rgba(255, 255, 255, 0.08);
   --card-header-border: rgba(255, 255, 255, 0.06);
-  --card-icon-color: #6b93f5;
-  --card-title-color: #f8fafc;
-  --card-content-color: #cbd5e1;
+  --card-icon-color: var(--ml-blue-light);
+  --card-title-color: var(--text-primary-dark);
+  --card-content-color: var(--text-secondary-dark);
   --card-filled-bg: rgba(15, 23, 42, 0.9);
 }
 
@@ -41,8 +41,8 @@
 }
 
 .cardTitle {
-  color: #f8fafc;
-  background: linear-gradient(135deg, #f8fafc 0%, #a5d6ff 50%, #e2e8f0 100%);
+  color: var(--text-primary-dark);
+  background: linear-gradient(135deg, var(--text-primary-dark) 0%, #a5d6ff 50%, #e2e8f0 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -50,7 +50,7 @@
 }
 
 .cardIcon {
-  color: #6b93f5;
+  color: var(--ml-blue-light);
   filter: drop-shadow(0 2px 8px rgba(69, 115, 223, 0.4));
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -101,7 +101,7 @@
 
 /* Selected state - Dark */
 .card.selected {
-  border: 2px solid #6b93f5;
+  border: 2px solid var(--ml-blue-light);
   box-shadow:
     0 0 0 4px rgba(69, 115, 223, 0.15),
     0 8px 24px rgba(69, 115, 223, 0.3),

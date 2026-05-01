@@ -14,7 +14,7 @@
 .tabBar { border-color: #e5e7eb; }
 .tabBtn { color: #6b7280; }
 .tabBtn:hover { color: #374151; background: #f3f4f6; }
-.tabBtnActive { color: #4573df; }
+.tabBtnActive { color: var(--ml-blue); }
 .tabCount { background: #e5e7eb; color: #374151; }
 
 .filterToggle { border-color: #e5e7eb; color: #374151; }
@@ -23,9 +23,9 @@
 .filterLabel { color: #6b7280; }
 .ratingBtn { border-color: #e5e7eb; color: #6b7280; }
 .ratingBtn:hover { background: #f3f4f6; }
-.ratingBtnActive { border-color: #ff9800; background: rgba(255,152,0,0.08); color: #ff9800; }
+.ratingBtnActive { border-color: var(--ml-orange); background: rgba(255,152,0,0.08); color: var(--ml-orange); }
 .sortDirBtn { border-color: #e5e7eb; color: #6b7280; }
-.bulkBar { background: #e8ecff; color: #4573df; }
+.bulkBar { background: #e8ecff; color: var(--ml-blue); }
 .selectAll { color: #6b7280; }
 .resultCount { color: #9ca3af; }
 
@@ -34,17 +34,17 @@
 .reviewFreelancer { color: #1a1a2e; }
 .reviewProject { color: #9ca3af; }
 .reviewText { color: #374151; }
-.responseBlock { background: #f9fafb; border-left-color: #4573df; }
+.responseBlock { background: #f9fafb; border-left-color: var(--ml-blue); }
 .responseText { color: #6b7280; }
 .reviewDate { color: #9ca3af; }
 .actionBtn { color: #9ca3af; }
-.actionBtn:hover { color: #4573df; background: #f3f4f6; }
+.actionBtn:hover { color: var(--ml-blue); background: #f3f4f6; }
 .emptyText { color: #9ca3af; }
 
 .pageInfo { color: #9ca3af; }
 .pageNum { color: #6b7280; }
 .pageNum:hover { background: #f3f4f6; }
-.pageNumActive { color: #4573df; background: #e8ecff; border-color: #4573df; }
+.pageNumActive { color: var(--ml-blue); background: #e8ecff; border-color: var(--ml-blue); }
 
 .analyticsCard { background: #fff; border: 1px solid #e5e7eb; }
 
@@ -59,7 +59,7 @@
 /* Detailed Ratings light */
 .detailedRatings { background-color: rgba(69, 115, 223, 0.05); }
 .ratingCategory { color: #374151; }
-.ratingValue { color: #4573df; }
+.ratingValue { color: var(--ml-blue); }
 
 /* Form elements light */
 .filterLabel { color: #6b7280; }
@@ -67,7 +67,7 @@
 .sectionTitle { color: #1a1a2e; }
 .distLabel { color: #374151; }
 .distBarWrap { background: #f3f4f6; }
-.distBar { background: #ff9800; }
+.distBar { background: var(--ml-orange); }
 .distCount { color: #1a1a2e; }
 .sentimentLabel { color: #374151; }
 .sentimentValue { color: #9ca3af; }
@@ -77,9 +77,9 @@
 
 .editorPanel { background: #fff; border: 1px solid #e5e7eb; }
 .templateBtn { border-color: #e5e7eb; color: #6b7280; }
-.templateBtn:hover { background: #f3f4f6; border-color: #4573df; color: #4573df; }
+.templateBtn:hover { background: #f3f4f6; border-color: var(--ml-blue); color: var(--ml-blue); }
 .ratingStar { color: #d1d5db; }
-.ratingStarActive { color: #ff9800; }
-.ratingText { color: #ff9800; }
+.ratingStarActive { color: var(--ml-orange); }
+.ratingText { color: var(--ml-orange); }
 .charCount { color: #9ca3af; }
 .submitMessage { }

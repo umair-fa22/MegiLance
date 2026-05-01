@@ -8,31 +8,31 @@
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .resultsCount {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .sortDropdown {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   color: #f3f4f6;
 }
 
 .sortDropdown:focus {
-  outline: 2px solid #4573df;
+  outline: 2px solid var(--ml-blue);
   outline-offset: 2px;
 }
 
 .viewButton {
-  background-color: #334155;
-  color: #94a3b8;
+  background-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .viewButton.active {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .emptyIcon {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #6b7280;
 }
 
@@ -50,26 +50,26 @@
 }
 
 .emptyDescription {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .skeletonCard {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .pageButton {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   color: #f3f4f6;
 }
 
 .pageButton:hover:not(:disabled) {
-  border-color: #4573df;
-  color: #4573df;
+  border-color: var(--ml-blue);
+  color: var(--ml-blue);
 }
 
 .pageButton.active {
-  background-color: #4573df;
-  border-color: #4573df;
+  background-color: var(--ml-blue);
+  border-color: var(--ml-blue);
   color: #ffffff;
 }

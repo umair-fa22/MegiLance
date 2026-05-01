@@ -1,57 +1,57 @@
 /* @AI-HINT: Light theme for enhanced Saved Jobs page */
-.container { background: #f8fafc; }
-.title { color: #0f172a; }
-.subtitle { color: #64748b; }
+.container { background: var(--bg-secondary-light); }
+.title { color: var(--text-primary-light); }
+.subtitle { color: var(--color-text-secondary-light); }
 
 /* Stats */
-.statCard { background: #ffffff; border-color: #e2e8f0; }
-.statValue { color: #0f172a; }
-.statLabel { color: #94a3b8; }
+.statCard { background: var(--bg-primary-light); border-color: var(--border-light); }
+.statValue { color: var(--text-primary-light); }
+.statLabel { color: var(--text-tertiary-light); }
 
 /* Toolbar */
 .toolbar { background: transparent; }
-.searchInput { background: #ffffff; border-color: #e2e8f0; color: #0f172a; }
-.sortSelect { background: #ffffff; border-color: #e2e8f0; color: #374151; }
-.filterToggle { border-color: #e2e8f0; color: #64748b; }
-.filterToggle:hover { background: #f1f5f9; }
+.searchInput { background: var(--bg-primary-light); border-color: var(--border-light); color: var(--text-primary-light); }
+.sortSelect { background: var(--bg-primary-light); border-color: var(--border-light); color: #374151; }
+.filterToggle { border-color: var(--border-light); color: var(--color-text-secondary-light); }
+.filterToggle:hover { background: var(--bg-tertiary-light); }
 
 /* Filter Panel */
-.filterPanel { background: #ffffff; border: 1px solid #e2e8f0; }
+.filterPanel { background: var(--bg-primary-light); border: 1px solid var(--border-light); }
 .filterLabel { color: #374151; }
-.filterChip { color: #64748b; }
-.filterChip:hover { background: #f1f5f9; }
-.filterChipActive { background: #4573df; color: #ffffff; }
+.filterChip { color: var(--color-text-secondary-light); }
+.filterChip:hover { background: var(--bg-tertiary-light); }
+.filterChipActive { background: var(--ml-blue); color: var(--bg-primary-light); }
 
 /* Bulk / Select */
 .bulkBar { background: #fef3c7; color: #92400e; }
-.selectAllRow { color: #64748b; }
+.selectAllRow { color: var(--color-text-secondary-light); }
 
 /* Empty */
-.emptyState { background: #f9fafb; color: #64748b; }
+.emptyState { background: #f9fafb; color: var(--color-text-secondary-light); }
 .emptyState h3 { color: #1a1a1a; }
 
 /* Cards */
 .jobCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 .jobCard:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 4px 12px rgba(69,115,223,0.1);
   transform: translateY(-1px);
 }
-.jobCardSelected { border-color: #4573df; background: #f0f4ff; }
+.jobCardSelected { border-color: var(--ml-blue); background: #f0f4ff; }
 .jobTitle { color: #1a1a1a; }
-.savedTime { color: #94a3b8; background: #f1f5f9; padding: 2px 8px; border-radius: 4px; }
-.clientName { color: #64748b; }
+.savedTime { color: var(--text-tertiary-light); background: var(--bg-tertiary-light); padding: 2px 8px; border-radius: 4px; }
+.clientName { color: var(--color-text-secondary-light); }
 .description { color: #374151; }
-.skill { background: #eef2ff; color: #4573df; }
+.skill { background: #eef2ff; color: var(--ml-blue); }
 .budget { color: #1a1a1a; }
-.budgetType { background: #f1f5f9; color: #64748b; }
-.proposals { color: #64748b; }
-.jobFooter { border-color: #e2e8f0; }
+.budgetType { background: var(--bg-tertiary-light); color: var(--color-text-secondary-light); }
+.proposals { color: var(--color-text-secondary-light); }
+.jobFooter { border-color: var(--border-light); }
 
 /* Notes */
-.noteInput { background: #ffffff; border-color: #e2e8f0; color: #0f172a; }
+.noteInput { background: var(--bg-primary-light); border-color: var(--border-light); color: var(--text-primary-light); }
 .noteDisplay { background: #fef9e7; color: #92400e; }

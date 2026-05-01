@@ -1,18 +1,18 @@
 /* @AI-HINT: Careers dark theme overrides */
 .themeWrapper { 
-  background: #0f172a;
-  color: #f8fafc;
-  --surface: #1e293b; 
-  --surface-2: #334155; 
+  background: var(--bg-primary-dark);
+  color: var(--text-primary-dark);
+  --surface: var(--bg-secondary-dark); 
+  --surface-2: var(--border-dark); 
   --border: #475569; 
-  --text-muted: #94a3b8; 
-  --brand: #4573df; 
+  --text-muted: var(--text-tertiary-dark); 
+  --brand: var(--ml-blue); 
   --elevation-sm: 0 1px 3px rgba(0,0,0,0.3);
   --elevation-md: 0 4px 12px rgba(0,0,0,0.4);
 }
 
 .roleCard:hover {
-  border-color: #6b93f5;
+  border-color: var(--ml-blue-light);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(69,115,223,0.25);
 }

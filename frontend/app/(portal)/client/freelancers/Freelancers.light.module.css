@@ -1,72 +1,72 @@
 /* @AI-HINT: Light theme for enterprise Client Freelancers talent discovery page */
 
-.page { background-color: #ffffff; }
-.title { color: #0f172a; }
-.subtitle { color: #64748b; }
+.page { background-color: var(--bg-primary-light); }
+.title { color: var(--text-primary-light); }
+.subtitle { color: var(--color-text-secondary-light); }
 
 /* Quick Stats */
-.quickStats { background: #f1f5f9; border: 1px solid #e2e8f0; }
+.quickStats { background: var(--bg-tertiary-light); border: 1px solid var(--border-light); }
 
 /* Controls */
-.controlsSection { background-color: rgba(248, 250, 252, 0.95); border: 1px solid #e2e8f0; }
-.filterToggle { color: #374151; border-color: #e2e8f0; }
-.filterToggle:hover { background: #f1f5f9; }
-.viewToggle { border-color: #e2e8f0; }
-.viewBtn { color: #94a3b8; }
-.viewBtn:hover { color: #374151; background: #f1f5f9; }
-.viewBtnActive { background: #4573df !important; color: #fff !important; }
-.sortDirBtn { color: #374151; border-color: #e2e8f0; }
-.sortDirBtn:hover { background: #f1f5f9; }
-.resultText { color: #64748b; }
-.clearBtn { color: #e81123; }
+.controlsSection { background-color: rgba(248, 250, 252, 0.95); border: 1px solid var(--border-light); }
+.filterToggle { color: #374151; border-color: var(--border-light); }
+.filterToggle:hover { background: var(--bg-tertiary-light); }
+.viewToggle { border-color: var(--border-light); }
+.viewBtn { color: var(--text-tertiary-light); }
+.viewBtn:hover { color: #374151; background: var(--bg-tertiary-light); }
+.viewBtnActive { background: var(--ml-blue) !important; color: #fff !important; }
+.sortDirBtn { color: #374151; border-color: var(--border-light); }
+.sortDirBtn:hover { background: var(--bg-tertiary-light); }
+.resultText { color: var(--color-text-secondary-light); }
+.clearBtn { color: var(--ml-red); }
 .clearBtn:hover { background: rgba(232, 17, 35, 0.08); }
 
 /* Advanced Filters */
-.advancedFilters { background: #f8fafc; border-color: #e2e8f0; }
-.filterLabel { color: #64748b; }
-.rateInput { border-color: #e2e8f0; background: #fff; color: #0f172a; }
-.rateInput:focus { border-color: #4573df; outline: none; }
-.ratingBtn { border-color: #e2e8f0; color: #64748b; background: #fff; }
-.ratingBtn:hover { background: #f1f5f9; }
-.ratingBtnActive { background: #4573df !important; color: #fff !important; border-color: #4573df !important; }
-.shortlistToggle { border-color: #e2e8f0; color: #374151; }
-.shortlistToggle:hover { background: #f1f5f9; }
-.shortlistToggleActive { background: #4573df !important; color: #fff !important; border-color: #4573df !important; }
+.advancedFilters { background: var(--bg-secondary-light); border-color: var(--border-light); }
+.filterLabel { color: var(--color-text-secondary-light); }
+.rateInput { border-color: var(--border-light); background: #fff; color: var(--text-primary-light); }
+.rateInput:focus { border-color: var(--ml-blue); outline: none; }
+.ratingBtn { border-color: var(--border-light); color: var(--color-text-secondary-light); background: #fff; }
+.ratingBtn:hover { background: var(--bg-tertiary-light); }
+.ratingBtnActive { background: var(--ml-blue) !important; color: #fff !important; border-color: var(--ml-blue) !important; }
+.shortlistToggle { border-color: var(--border-light); color: #374151; }
+.shortlistToggle:hover { background: var(--bg-tertiary-light); }
+.shortlistToggleActive { background: var(--ml-blue) !important; color: #fff !important; border-color: var(--ml-blue) !important; }
 
 /* Compare */
 .compareBar { background: rgba(69, 115, 223, 0.05); }
-.comparePanel { background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08); }
-.comparePanelTitle { color: #0f172a; }
-.closeBtn { color: #64748b; }
-.closeBtn:hover { background: #f1f5f9; }
-.compareLabelCell { background: #f8fafc; color: #64748b; border-color: #e2e8f0; }
-.compareValueCell { border-color: #f1f5f9; color: #0f172a; }
+.comparePanel { background: #fff; border: 1px solid var(--border-light); box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08); }
+.comparePanelTitle { color: var(--text-primary-light); }
+.closeBtn { color: var(--color-text-secondary-light); }
+.closeBtn:hover { background: var(--bg-tertiary-light); }
+.compareLabelCell { background: var(--bg-secondary-light); color: var(--color-text-secondary-light); border-color: var(--border-light); }
+.compareValueCell { border-color: var(--bg-tertiary-light); color: var(--text-primary-light); }
 
 /* Cards */
 .cardWrapper { }
-.actionBtn { background: rgba(255, 255, 255, 0.95); color: #64748b; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); }
-.actionBtn:hover { color: #4573df; }
-.skeletonCard { background-color: #f5f7fa; border: 1px solid #e2e8f0; }
+.actionBtn { background: rgba(255, 255, 255, 0.95); color: var(--color-text-secondary-light); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); }
+.actionBtn:hover { color: var(--ml-blue); }
+.skeletonCard { background-color: #f5f7fa; border: 1px solid var(--border-light); }
 
 /* Empty */
-.emptyState { background-color: #f8fafc; border: 1px dashed #e2e8f0; }
-.emptyState h3 { color: #0f172a; }
-.emptyState p { color: #64748b; }
-.error { color: #e81123; }
+.emptyState { background-color: var(--bg-secondary-light); border: 1px dashed var(--border-light); }
+.emptyState h3 { color: var(--text-primary-light); }
+.emptyState p { color: var(--color-text-secondary-light); }
+.error { color: var(--ml-red); }
 
 /* Pagination */
-.paginationInfo { color: #64748b; }
-.pageNum { color: #64748b; }
-.pageNum:hover { background: #f1f5f9; color: #0f172a; }
-.pageNumActive { background: #4573df !important; color: #fff !important; }
+.paginationInfo { color: var(--color-text-secondary-light); }
+.pageNum { color: var(--color-text-secondary-light); }
+.pageNum:hover { background: var(--bg-tertiary-light); color: var(--text-primary-light); }
+.pageNumActive { background: var(--ml-blue) !important; color: #fff !important; }
 
 /* Quick Skill Chips */
-.quickChips { background: #f8fafc; border: 1px solid #e2e8f0; }
-.quickChipsLabel { color: #64748b; }
-.quickChip { background: #fff; color: #475569; border-color: #e2e8f0; }
-.quickChip:hover { background: #f1f5f9; border-color: #cbd5e1; color: #1e293b; }
-.quickChipActive { background: #4573df !important; color: #fff !important; border-color: #4573df !important; }
-.activeChipsBar { border-color: #e2e8f0; }
-.activeChipsCount { color: #4573df; }
-.clearChipsBtn { color: #e81123; }
+.quickChips { background: var(--bg-secondary-light); border: 1px solid var(--border-light); }
+.quickChipsLabel { color: var(--color-text-secondary-light); }
+.quickChip { background: #fff; color: var(--text-secondary-light); border-color: var(--border-light); }
+.quickChip:hover { background: var(--bg-tertiary-light); border-color: #cbd5e1; color: var(--color-text-primary-light); }
+.quickChipActive { background: var(--ml-blue) !important; color: #fff !important; border-color: var(--ml-blue) !important; }
+.activeChipsBar { border-color: var(--border-light); }
+.activeChipsCount { color: var(--ml-blue); }
+.clearChipsBtn { color: var(--ml-red); }
 .clearChipsBtn:hover { background: rgba(232, 17, 35, 0.08); }

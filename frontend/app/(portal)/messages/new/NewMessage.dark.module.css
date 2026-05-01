@@ -1,5 +1,5 @@
 /* @AI-HINT: New Message page - dark theme */
 
 .pageContainer {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }

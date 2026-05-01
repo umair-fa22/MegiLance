@@ -7,4 +7,4 @@
 }
 
 .text { color: #333; }
-.link { color: #4573df; }
+.link { color: var(--ml-blue); }

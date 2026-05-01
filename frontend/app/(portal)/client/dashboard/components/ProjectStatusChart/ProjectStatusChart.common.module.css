@@ -45,10 +45,10 @@
 .legendIcon[data-color] {
   background-color: var(--legend-color, currentColor);
 }
-.legendIcon[data-color="var(--color-primary, #4573df)"] { background-color: var(--color-primary, #4573df); }
-.legendIcon[data-color="var(--color-success, #27AE60)"] { background-color: var(--color-success, #27AE60); }
-.legendIcon[data-color="var(--color-warning, #F2C94C)"] { background-color: var(--color-warning, #F2C94C); }
-.legendIcon[data-color="var(--color-error, #e81123)"] { background-color: var(--color-error, #e81123); }
+.legendIcon[data-color="var(--color-primary, var(--ml-blue))"] { background-color: var(--color-primary, var(--ml-blue)); }
+.legendIcon[data-color="var(--color-success, var(--ml-green))"] { background-color: var(--color-success, var(--ml-green)); }
+.legendIcon[data-color="var(--color-warning, var(--ml-yellow))"] { background-color: var(--color-warning, var(--ml-yellow)); }
+.legendIcon[data-color="var(--color-error, var(--ml-red))"] { background-color: var(--color-error, var(--ml-red)); }
 
 /* ─── Responsive ─── */
 @media (max-width: 768px) {

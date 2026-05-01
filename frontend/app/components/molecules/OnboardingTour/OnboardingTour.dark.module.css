@@ -1,36 +1,36 @@
 .modal {
-  background-color: var(--card, #1e293b);
-  border: 1px solid var(--border, #334155);
+  background-color: var(--card, var(--bg-secondary-dark));
+  border: 1px solid var(--border, var(--border-dark));
   box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
 }
 
 .imageContainer {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  border-bottom: 1px solid var(--border, #334155);
+  background: linear-gradient(135deg, var(--bg-primary-dark) 0%, var(--bg-secondary-dark) 100%);
+  border-bottom: 1px solid var(--border, var(--border-dark));
 }
 
 .closeButton {
   background: rgba(15, 23, 42, 0.8);
-  color: var(--text-secondary, #94a3b8);
-  border: 1px solid var(--border, #334155);
+  color: var(--text-secondary, var(--text-tertiary-dark));
+  border: 1px solid var(--border, var(--border-dark));
 }
 
 .closeButton:hover {
-  background: #334155;
-  color: var(--text-primary, #f8fafc);
+  background: var(--border-dark);
+  color: var(--text-primary, var(--text-primary-dark));
 }
 
 .title {
-  color: var(--text-primary, #f8fafc);
+  color: var(--text-primary, var(--text-primary-dark));
 }
 
 .description {
-  color: var(--text-secondary, #94a3b8);
+  color: var(--text-secondary, var(--text-tertiary-dark));
 }
 
 .footer {
-  border-top: 1px solid var(--border, #334155);
-  background-color: var(--background, #0f172a);
+  border-top: 1px solid var(--border, var(--border-dark));
+  background-color: var(--background, var(--bg-primary-dark));
 }
 
 .dot {
@@ -38,5 +38,5 @@
 }
 
 .dotActive {
-  background-color: var(--primary, #4573df);
+  background-color: var(--primary, var(--ml-blue));
 }

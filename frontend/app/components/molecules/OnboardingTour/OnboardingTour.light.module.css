@@ -1,36 +1,36 @@
 .modal {
-  background-color: var(--card, #ffffff);
+  background-color: var(--card, var(--bg-primary-light));
   border: 1px solid var(--border, #e5e7eb);
   box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
 }
 
 .imageContainer {
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  background: linear-gradient(135deg, var(--bg-secondary-light) 0%, var(--bg-tertiary-light) 100%);
   border-bottom: 1px solid var(--border, #e5e7eb);
 }
 
 .closeButton {
   background: rgba(255, 255, 255, 0.8);
-  color: var(--text-secondary, #64748b);
+  color: var(--text-secondary, var(--color-text-secondary-light));
   border: 1px solid var(--border, #e5e7eb);
 }
 
 .closeButton:hover {
-  background: #f1f5f9;
-  color: var(--text-primary, #0f172a);
+  background: var(--bg-tertiary-light);
+  color: var(--text-primary, var(--text-primary-light));
 }
 
 .title {
-  color: var(--text-primary, #0f172a);
+  color: var(--text-primary, var(--text-primary-light));
 }
 
 .description {
-  color: var(--text-secondary, #64748b);
+  color: var(--text-secondary, var(--color-text-secondary-light));
 }
 
 .footer {
   border-top: 1px solid var(--border, #e5e7eb);
-  background-color: var(--background, #ffffff);
+  background-color: var(--background, var(--bg-primary-light));
 }
 
 .dot {
@@ -38,5 +38,5 @@
 }
 
 .dotActive {
-  background-color: var(--primary, #4573df);
+  background-color: var(--primary, var(--ml-blue));
 }

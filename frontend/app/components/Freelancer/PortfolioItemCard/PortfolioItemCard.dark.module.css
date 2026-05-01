@@ -1,6 +1,6 @@
 ﻿.container {
-  background-color: #0f172a;
-  border-color: #334155;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
 }
 
 .container:hover {
@@ -9,14 +9,14 @@
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .description {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .footer {
-  background-color: #1e293b;
-  border-top-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-top-color: var(--border-dark);
 }

@@ -2,7 +2,7 @@
 
 .bottomNav {
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.96) 0%, rgba(30, 41, 59, 0.92) 100%);
-  border-top-color: #1e293b;
+  border-top-color: var(--bg-secondary-dark);
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 

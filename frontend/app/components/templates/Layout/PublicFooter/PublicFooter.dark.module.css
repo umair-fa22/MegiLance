@@ -1,21 +1,21 @@
 ﻿/* @AI-HINT: Dark theme styles for the PublicFooter. Premium color palette for high-contrast, brand-aligned dark mode. */
 
 .footer {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .tagline {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .newsletterLabel {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .newsletterInput {
   background: rgba(255, 255, 255, 0.04);
-  border-color: #334155;
-  color: #cbd5e1;
+  border-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .newsletterInput::placeholder {
@@ -28,7 +28,7 @@
 
 .newsletterButton {
   background: #60a5fa;
-  color: #0f172a;
+  color: var(--bg-primary-dark);
 }
 
 .newsletterButton:hover {
@@ -40,7 +40,7 @@
 }
 
 .linkItem {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .linkItem:hover {
@@ -48,7 +48,7 @@
 }
 
 .bottomBar {
-  border-top-color: #334155;
+  border-top-color: var(--border-dark);
 }
 
 .copyright {
@@ -65,4 +65,4 @@
   background: rgba(96, 165, 250, 0.08);
 }
 /* Deep gradient 2026 */
-.header, .sidebar, .footer { background: linear-gradient(180deg, #0f172a 0%, #020617 100%); border-color: rgba(255,255,255,0.1); backdrop-filter: blur(12px); }
+.header, .sidebar, .footer { background: linear-gradient(180deg, var(--bg-primary-dark) 0%, #020617 100%); border-color: rgba(255,255,255,0.1); backdrop-filter: blur(12px); }

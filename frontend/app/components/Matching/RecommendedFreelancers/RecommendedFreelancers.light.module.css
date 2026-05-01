@@ -1,8 +1,8 @@
 ﻿/* @AI-HINT: Premium RecommendedFreelancers - Light theme */
 
 .aiIcon {
-  background: linear-gradient(135deg, #4573df, #9b59b6);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue), #9b59b6);
+  color: var(--bg-primary-light);
   box-shadow: 0 8px 24px -8px rgba(69, 115, 223, 0.4);
 }
 
@@ -11,31 +11,31 @@
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .refreshButton {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #334155;
 }
 
 .refreshButton:hover {
-  background: #e2e8f0;
+  background: var(--border-light);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .card {
-  background: #ffffff;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
 .card::before {
-  background: linear-gradient(90deg, #4573df, #9b59b6);
+  background: linear-gradient(90deg, var(--ml-blue), #9b59b6);
 }
 
 .card:hover {
@@ -53,25 +53,25 @@
 }
 
 .avatar {
-  background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
-  color: #475569;
+  background: linear-gradient(135deg, var(--border-light), #cbd5e1);
+  color: var(--text-secondary-light);
 }
 
 .onlineIndicator {
-  background: #27AE60;
-  border-color: #ffffff;
+  background: var(--ml-green);
+  border-color: var(--bg-primary-light);
 }
 
 .name {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .titleRole {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .matchScoreBg {
-  stroke: #e2e8f0;
+  stroke: var(--border-light);
 }
 
 .matchScoreProgress {
@@ -79,37 +79,37 @@
 }
 
 .matchPercent {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .matchLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .statsRow {
-  border-color: #f1f5f9;
+  border-color: var(--bg-tertiary-light);
 }
 
 .stat {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .statValue {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .skill {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #334155;
 }
 
 .skill:hover {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .skillMatched {
   background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
   border: 1px solid rgba(69, 115, 223, 0.2);
 }
 
@@ -123,8 +123,8 @@
 }
 
 .primaryAction {
-  background: linear-gradient(135deg, #4573df, #2952b8);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue), var(--ml-blue-dark));
+  color: var(--bg-primary-light);
   box-shadow: 0 8px 24px -8px rgba(69, 115, 223, 0.4);
 }
 
@@ -133,30 +133,30 @@
 }
 
 .secondaryAction {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #334155;
 }
 
 .secondaryAction:hover {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .loadingSpinner {
-  border-color: #e2e8f0;
-  border-top-color: #4573df;
+  border-color: var(--border-light);
+  border-top-color: var(--ml-blue);
 }
 
 .loadingText {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .loadingSubtext {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .emptyIcon {
-  background: #f1f5f9;
-  color: #94a3b8;
+  background: var(--bg-tertiary-light);
+  color: var(--text-tertiary-light);
 }
 
 .emptyTitle {
@@ -164,5 +164,5 @@
 }
 
 .emptyDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }

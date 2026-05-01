@@ -1,22 +1,22 @@
 /* @AI-HINT: Career page dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Stats */
 .statCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -25,21 +25,21 @@
 }
 
 .statInfo span {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Skills */
 .skillCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .skillHeader h3 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .skillStats {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .skillStats strong {
@@ -47,21 +47,21 @@
 }
 
 .skillStats span {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Recommendations */
 .recsCard {
-  background: linear-gradient(135deg, #1e293b 0%, #1e3a5f 100%);
-  border: 1px solid #334155;
+  background: linear-gradient(135deg, var(--bg-secondary-dark) 0%, #1e3a5f 100%);
+  border: 1px solid var(--border-dark);
 }
 
 .recsCard h3 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .recSection h4 {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .recItem {
@@ -69,7 +69,7 @@
 }
 
 .recItem strong {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .recReason {
@@ -77,25 +77,25 @@
 }
 
 .recProvider {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Paths */
 .pathCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .pathName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .pathDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .pathMetaItem {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .pathOutlook {
@@ -110,35 +110,35 @@
 
 /* Goals */
 .emptyCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .emptyCard h3 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .emptyCard p {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .goalCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .goalHeader h3 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .goalMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Mentors */
 .mentorCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .mentorAvatar {
@@ -147,7 +147,7 @@
 }
 
 .mentorName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .mentorRating {
@@ -163,7 +163,7 @@
 }
 
 .mentorMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .mentorRate {
@@ -172,16 +172,16 @@
 
 /* Tabs */
 .tabs {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
 }
 
 .tab {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tabActive {
-  background: #334155;
-  color: #f8fafc;
+  background: var(--border-dark);
+  color: var(--text-primary-dark);
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
@@ -196,7 +196,7 @@
 
 /* Progress bar */
 .progressBarTrack {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 /* Certifications */
@@ -208,16 +208,16 @@
 
 /* Goals header */
 .goalsStats {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Milestones */
 .milestonesToggle {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .milestoneName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .milestoneDuration {
@@ -225,7 +225,7 @@
 }
 
 .milestoneItem:not(:last-child)::after {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 /* Expertise tags */
@@ -236,17 +236,17 @@
 
 /* Modal */
 .modal {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
   box-shadow: 0 20px 60px rgba(0,0,0,0.4);
 }
 
 .modalTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .modalClose {
-  background: #334155;
-  color: #94a3b8;
+  background: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .modalClose:hover {
@@ -254,19 +254,19 @@
 }
 
 .formLabel {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .formSelect {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
   border-color: #475569;
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .recItemTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .skillName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }

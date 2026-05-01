@@ -111,7 +111,7 @@
 }
 
 .toggleButton:focus-visible {
-  outline: 2px solid var(--focus-ring-color, #4573df);
+  outline: 2px solid var(--focus-ring-color, var(--ml-blue));
   outline-offset: 2px;
   box-shadow: 0 0 0 4px rgba(69, 115, 223, 0.15);
 }
@@ -140,7 +140,7 @@
 }
 
 .mobileCloseButton:focus-visible {
-  outline: 2px solid var(--focus-ring-color, #4573df);
+  outline: 2px solid var(--focus-ring-color, var(--ml-blue));
   outline-offset: 2px;
   box-shadow: 0 0 0 4px rgba(69, 115, 223, 0.15);
 }
@@ -229,7 +229,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: var(--color-success, #27AE60);
+  background-color: var(--color-success, var(--ml-green));
   border: 2px solid currentColor;
   z-index: 1;
 }

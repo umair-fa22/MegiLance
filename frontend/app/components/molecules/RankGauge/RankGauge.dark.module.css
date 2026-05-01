@@ -5,9 +5,9 @@
 }
 
 .cover {
-  background-color: #1e293b; /* gray-800 */
+  background-color: var(--bg-secondary-dark); /* gray-800 */
 }
 
 .score {
-  color: #f8fafc; /* gray-100 */
+  color: var(--text-primary-dark); /* gray-100 */
 }

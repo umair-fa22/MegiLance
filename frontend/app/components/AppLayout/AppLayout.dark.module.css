@@ -1,8 +1,8 @@
 /* @AI-HINT: Dark theme styles for AppLayout */
 
 .layoutWrapper {
-  background-color: var(--color-background-dark, #0f172a);
-  color: var(--color-text-dark, #f8fafc);
+  background-color: var(--color-background-dark, var(--bg-primary-dark));
+  color: var(--color-text-dark, var(--text-primary-dark));
 }
 
 .mainContent {

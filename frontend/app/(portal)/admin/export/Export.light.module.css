@@ -1,67 +1,67 @@
 /* @AI-HINT: Admin data export light theme colors */
 
 .container {
-  background-color: #f8fafc;
-  color: #1e293b;
+  background-color: var(--bg-secondary-light);
+  color: var(--color-text-primary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Tabs */
 .tabs {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .tab {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tab:hover {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .tabActive {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .badge {
-  background: #4573df;
-  color: #ffffff;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 /* Section */
 .section {
-  background: #ffffff;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .sectionTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 /* Templates */
 .templateCard {
-  background: #f8fafc;
-  border-color: #e2e8f0;
+  background: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .templateCard:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background: #eff6ff;
 }
 
 .templateCard h4 {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .templateCard p {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .defaultBadge {
@@ -76,24 +76,24 @@
 
 .input,
 .select {
-  background: #ffffff;
-  border-color: #e2e8f0;
-  color: #0f172a;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .input:focus,
 .select:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 .dateRange span {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Fields */
 .textBtn {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .textBtn:hover {
@@ -101,9 +101,9 @@
 }
 
 .fieldOption {
-  background: #ffffff;
-  border-color: #e2e8f0;
-  color: #475569;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--text-secondary-light);
 }
 
 .fieldOption:hover {
@@ -112,13 +112,13 @@
 
 .fieldSelected {
   background: #eff6ff;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   color: #1e40af;
 }
 
 /* Checkbox */
 .checkbox {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 /* History */
@@ -127,21 +127,21 @@
 }
 
 .emptyState {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .jobCard {
-  background: #ffffff;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .jobName {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .statusPending {
-  background: #f1f5f9;
-  color: #64748b;
+  background: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 .statusProcessing {
@@ -160,23 +160,23 @@
 }
 
 .jobMeta {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .jobDates {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .progressBar {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .progressFill {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 .progressText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .toast {

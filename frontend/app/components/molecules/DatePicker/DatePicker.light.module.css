@@ -9,7 +9,7 @@
 }
 
 .required {
-  color: #e81123;
+  color: var(--ml-red);
 }
 
 .inputContainer {
@@ -81,7 +81,7 @@
 }
 
 .today::after {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
 }
 
 .otherMonth {
@@ -108,21 +108,21 @@
 }
 
 .timeSelect:focus {
-  outline: 2px solid #4573df;
+  outline: 2px solid var(--ml-blue);
   outline-offset: 2px;
 }
 
 .errorMessage {
-  color: #e81123;
+  color: var(--ml-red);
 }
 
 /* Focus states */
 .inputContainer:focus-within {
-  border-color: #4573df;
-  outline-color: #4573df;
+  border-color: var(--ml-blue);
+  outline-color: var(--ml-blue);
 }
 
 /* Error states */
 .error {
-  border-color: #e81123;
+  border-color: var(--ml-red);
 }

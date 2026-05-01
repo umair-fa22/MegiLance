@@ -67,12 +67,12 @@
 }
 
 .tableTh.sortable:hover {
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
   filter: brightness(1.05);
 }
 
 .tableTh.sortable:focus {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: -2px;
   box-shadow: 0 0 0 4px rgba(69, 115, 223, 0.15) inset;
 }
@@ -90,7 +90,7 @@
 
 .sortIconActive {
   opacity: 1;
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
 }
 
 .tableTbodyTrLastChild {
@@ -113,7 +113,7 @@
 }
 
 .tableTbodyTr.clickable:focus {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: -2px;
   box-shadow: 0 0 0 4px rgba(69, 115, 223, 0.15) inset;
 }

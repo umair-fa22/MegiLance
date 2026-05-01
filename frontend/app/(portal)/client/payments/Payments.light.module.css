@@ -1,40 +1,40 @@
 /* AI-HINT: Light theme styles for the modernized Payments page. */
 
 .theme {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .skeletonCard {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .resultsCount {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .dateRangeFilter {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .dateInput {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border-color: #cbd5e1;
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .refundTextarea {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border-color: #cbd5e1;
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .refundTextarea::placeholder {
@@ -42,23 +42,23 @@
 }
 
 .paymentCardWrapper {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .paymentMeta {
-  background-color: #f8fafc;
-  border-top-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-top-color: var(--border-light);
 }
 
 .selectionBar {
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));
-  border-color: #e2e8f0;
-  color: #0f172a;
+  border-color: var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .selectAllCheckbox {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .selectionCount {

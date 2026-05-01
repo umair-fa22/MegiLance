@@ -1,7 +1,7 @@
 ﻿/* @AI-HINT: Dark theme styles for the JobStatusCard component. */
 .card {
-  background-color: #0f172a;
-  border-color: #334155;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
 }
 
 .card:hover {
@@ -11,23 +11,23 @@
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .client {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statusSection {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .statusLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statusValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .statusValue.completed {
@@ -41,7 +41,7 @@
 }
 
 .progressBarWrapper {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .progressBar {
@@ -49,7 +49,7 @@
 }
 
 .progressText {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .completionDate {

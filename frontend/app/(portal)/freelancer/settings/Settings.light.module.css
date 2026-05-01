@@ -1,28 +1,28 @@
 ﻿/* @AI-HINT: Light theme styles for the Settings pages. */
 
 .header {
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .section {
-  border-color: #e2e8f0;
-  background-color: #f8fafc;
+  border-color: var(--border-light);
+  background-color: var(--bg-secondary-light);
 }
 
 .sectionTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .sectionDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .input {
@@ -31,41 +31,41 @@
 }
 
 .inputHint {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .formFooter {
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--border-light);
 }
 
-.formContainer { color: #0f172a; }
-.formHeader { border-bottom-color: #e2e8f0; }
-.formTitle { color: #0f172a; }
-.formDescription { color: #64748b; }
+.formContainer { color: var(--text-primary-light); }
+.formHeader { border-bottom-color: var(--border-light); }
+.formTitle { color: var(--text-primary-light); }
+.formDescription { color: var(--color-text-secondary-light); }
 
 .switchDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .radioLabel {
-  border-color: #e2e8f0;
-  background-color: #ffffff;
+  border-color: var(--border-light);
+  background-color: var(--bg-primary-light);
 }
 
 .radioLabel:hover {
-  border-color: #4573df;
-  background-color: #f1f5f9;
+  border-color: var(--ml-blue);
+  background-color: var(--bg-tertiary-light);
 }
 
 .radioDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .accountRow {
-  border-color: #e2e8f0;
-  background-color: #ffffff;
+  border-color: var(--border-light);
+  background-color: var(--bg-primary-light);
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+  background: linear-gradient(90deg, var(--border-light) 25%, var(--bg-tertiary-light) 50%, var(--border-light) 75%);
 }

@@ -1,49 +1,49 @@
 /* AI-HINT: Light theme styles for the AdminPolicyEditor. */
 
 .editorLayout {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .sidebar {
-  background-color: #f8fafc;
-  border-right: 1px solid #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-right: 1px solid var(--border-light);
 }
 
 .sidebarTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .navItem {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .navItem:hover {
-  background-color: #f1f5f9;
-  color: #0f172a;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-primary-light);
 }
 
 .navItemActive {
   background-color: rgba(69,115,223,0.15);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .mainContent {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
 }
 
 .editorHeader {
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .editorTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .saveConfirmation {
-  color: #27AE60;
+  color: var(--ml-green);
 }
 
 .editorTextarea {
-  color: #475569;
+  color: var(--text-secondary-light);
 }

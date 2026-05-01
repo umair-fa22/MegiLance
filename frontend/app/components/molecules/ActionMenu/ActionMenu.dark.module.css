@@ -1,13 +1,13 @@
 /* AI-HINT: Dark theme styles for the ActionMenu component. */
 
 .menu {
-  background: linear-gradient(135deg, #1e293b 0%, rgba(30, 41, 59, 0.95) 100%);
-  border-color: #334155;
+  background: linear-gradient(135deg, var(--bg-secondary-dark) 0%, rgba(30, 41, 59, 0.95) 100%);
+  border-color: var(--border-dark);
   box-shadow: 0 10px 32px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .menuItem {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .menuItem:hover:not(:disabled) {
@@ -15,9 +15,9 @@
 }
 
 .itemIcon {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .separator {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }

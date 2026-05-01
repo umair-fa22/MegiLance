@@ -1,54 +1,54 @@
 /* AI-HINT: Dark theme overrides for Client Project Detail page. */
 
 .themeWrapper {
-  background: #0f172a;
-  color: #f8fafc;
+  background: var(--bg-primary-dark);
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .meta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .badge {
-  background: #1e293b;
-  border-color: #334155;
-  color: #cbd5e1;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .section {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .sectionTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .item {
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid #334155;
+  border: 1px solid var(--border-dark);
 }
 
 .button.primary {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .button.secondary {
   background: rgba(255, 255, 255, 0.06);
-  color: #cbd5e1;
-  border: 1px solid #334155;
+  color: var(--text-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .proposalCard {
   background: rgba(255, 255, 255, 0.05);
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .proposalCard:hover {
@@ -56,7 +56,7 @@
 }
 
 .emptyState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Toast */

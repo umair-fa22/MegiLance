@@ -1,46 +1,46 @@
 /* AI-HINT: Light theme styles for JobModerationQueue. Sets colors for text, backgrounds, borders, and interactive elements. */
 
 .container {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .description {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .toolbar {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   padding: 1rem;
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .jobCard {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .jobTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .metaItem {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .metaItem svg {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .description p {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .expandButton {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .expandButton:hover {
@@ -48,22 +48,22 @@
 }
 
 .cardActions {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .emptyState {
-  background-color: #ffffff;
-  border: 1px dashed #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px dashed var(--border-light);
 }
 
 .emptyState svg {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .emptyState h3 {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .emptyState p {
-  color: #475569;
+  color: var(--text-secondary-light);
 }

@@ -1,5 +1,5 @@
 /* @AI-HINT: Dark theme styles for DataToolbar. */
-.input { background: #0b1220; border-color: #1e293b; color: #e2e8f0; }
-.select { background: #0b1220; border-color: #1e293b; color: #e2e8f0; }
-.button { background: #4573df; color: #ffffff; }
+.input { background: #0b1220; border-color: var(--bg-secondary-dark); color: #e2e8f0; }
+.select { background: #0b1220; border-color: var(--bg-secondary-dark); color: #e2e8f0; }
+.button { background: var(--ml-blue); color: #ffffff; }
 .button:hover { filter: brightness(1.05); }

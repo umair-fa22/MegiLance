@@ -1,20 +1,20 @@
 /* AI-HINT: Light theme styles for the Client Settings page. */
 
 .title {
-    color: #0f172a;
+    color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .navButton {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .navButton:hover {
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: var(--bg-secondary-light);
+  color: var(--text-primary-light);
 }
 
 .navButtonActive {
@@ -28,16 +28,16 @@
 }
 
 .actionRow {
-    background-color: #f8fafc;
-    border: 1px solid #e2e8f0;
+    background-color: var(--bg-secondary-light);
+    border: 1px solid var(--border-light);
 }
 
 .actionDescription {
-    color: #475569;
+    color: var(--text-secondary-light);
 }
 
 .link {
-    color: #4573df;
+    color: var(--ml-blue);
 }
 
 .link:hover {

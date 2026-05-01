@@ -2,7 +2,7 @@
 
 .offlineIndicator {
   --offline-bg-color: rgba(242,201,76,0.10);
-  --offline-border-color: #F2C94C;
-  --offline-text-color: #F2C94C;
-  --offline-icon-color: #F2C94C;
+  --offline-border-color: var(--ml-yellow);
+  --offline-text-color: var(--ml-yellow);
+  --offline-icon-color: var(--ml-yellow);
 }

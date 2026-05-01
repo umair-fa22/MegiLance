@@ -1,33 +1,33 @@
 /* @AI-HINT: Subscription page - light theme colors */
 
 .container {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .title {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .titleIcon {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Current Plan */
 .currentPlan {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .currentPlanLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .currentPlanName {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .planIconCircle {
@@ -35,24 +35,24 @@
 }
 
 .currentPlanDetails {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .detailItem {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Quick Usage */
 .usageMeterLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .usageMeterValue {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .usageBar {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .cancelNotice {
@@ -66,46 +66,46 @@
 
 /* Tabs */
 .tabs {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .tab {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tab:hover {
-  background-color: #f1f5f9;
-  color: #1e293b;
+  background-color: var(--bg-tertiary-light);
+  color: var(--color-text-primary-light);
 }
 
 .tabActive {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 /* Plans Controls */
 .billingToggle {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .toggleOption {
   background-color: transparent;
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .toggleOption:hover {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .toggleActive {
-  background-color: #ffffff;
-  color: #1e293b;
+  background-color: var(--bg-primary-light);
+  color: var(--color-text-primary-light);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .compareBtn {
-  color: #4573df;
-  border-color: #e2e8f0;
+  color: var(--ml-blue);
+  border-color: var(--border-light);
 }
 
 .compareBtn:hover {
@@ -114,40 +114,40 @@
 
 /* Compare Table */
 .compareTable {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .compareHeader {
-  background-color: #f8fafc;
-  color: #1e293b;
-  border-bottom: 1px solid #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  color: var(--color-text-primary-light);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .comparePlanHead {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .compareRow {
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid var(--bg-tertiary-light);
 }
 
 .compareRow:nth-child(even) {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .compareFeatureLabel {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .compareCell {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 /* Plan Card */
 .planCard {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .planCard:hover {
@@ -155,45 +155,45 @@
 }
 
 .popularPlan {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 4px 20px rgba(69, 115, 223, 0.15);
 }
 
 .popularBadge {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .planTierIcon {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .planName {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .priceAmount {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .pricePeriod {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .priceOriginal {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .planLimits {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .limitItem {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .showFeatures {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .showFeatures:hover {
@@ -201,12 +201,12 @@
 }
 
 .feature {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .planButton {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .planButton:hover:not(:disabled) {
@@ -215,66 +215,66 @@
 }
 
 .currentButton {
-  background-color: #e2e8f0;
-  color: #64748b;
+  background-color: var(--border-light);
+  color: var(--color-text-secondary-light);
 }
 
 .downgradeButton {
-  background-color: #f1f5f9;
-  color: #475569;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .downgradeButton:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 /* Usage Section */
 .usageSection {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .sectionTitle {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .sectionDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .usageCard {
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
 }
 
 .usageCardIcon {
   background-color: #eff6ff;
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .usageCardTitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .usageUsed {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .usageLimit {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .usageBarLg {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .usageBarFillLg {
-  background: linear-gradient(90deg, #4573df, #60a5fa);
+  background: linear-gradient(90deg, var(--ml-blue), #60a5fa);
 }
 
 .usagePercent {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .upgradePrompt {
@@ -283,55 +283,55 @@
 }
 
 .upgradePrompt strong {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .upgradePrompt p {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 /* Billing Section */
 .billingSection {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .billingSectionHeader h3 {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .billingSectionHeader p {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .billingList {
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .billingListHeader {
-  background-color: #f8fafc;
-  color: #64748b;
-  border-bottom: 1px solid #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  color: var(--color-text-secondary-light);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .billingRow {
-  border-top-color: #f1f5f9;
+  border-top-color: var(--bg-tertiary-light);
 }
 
 .billingDate {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .billingDesc {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .billingAmount {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .invoiceLink {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .invoiceLink:hover {
@@ -339,60 +339,60 @@
 }
 
 .noInvoice {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Empty State */
 .emptyState {
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
-  color: #64748b;
+  background-color: var(--bg-secondary-light);
+  border: 1px solid var(--border-light);
+  color: var(--color-text-secondary-light);
 }
 
 .emptyState h4 {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 /* Modal */
 .modal {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
 .modalHeader {
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .modalHeader h3 {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .modalClose {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .modalClose:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .modalText {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .reasonItem {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .reasonItem:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   border-color: #cbd5e1;
 }
 
 .reasonSelected {
   background-color: #eff6ff;
-  border-color: #4573df;
-  color: #1e293b;
+  border-color: var(--ml-blue);
+  color: var(--color-text-primary-light);
 }
 
 .confirmWarning {
@@ -413,16 +413,16 @@
 }
 
 .modalFooter {
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--border-light);
 }
 
 /* Toast */
 .toast {
-  background-color: #1e293b;
-  color: #ffffff;
+  background-color: var(--color-text-primary-light);
+  color: var(--bg-primary-light);
 }
 
 .toastError {
   background-color: #dc2626;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }

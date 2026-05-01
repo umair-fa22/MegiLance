@@ -1,7 +1,7 @@
 /* @AI-HINT: Light theme colors for LinkedAccounts component */
 .section {
-  background: #ffffff;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .sectionTitle {
@@ -17,11 +17,11 @@
 }
 
 .accountEmail {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .emptyState {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .statusMessage {
@@ -37,5 +37,5 @@
 }
 
 .spinner {
-  color: #4573df;
+  color: var(--ml-blue);
 }

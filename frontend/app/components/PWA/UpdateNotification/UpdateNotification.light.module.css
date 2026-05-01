@@ -2,6 +2,6 @@
 
 .updateNotification {
   --notification-bg-color: rgba(69,115,223,0.06);
-  --notification-border-color: #4573df;
-  --notification-text-color: #4573df;
+  --notification-border-color: var(--ml-blue);
+  --notification-text-color: var(--ml-blue);
 }

@@ -1,73 +1,73 @@
 /* Dark Theme */
 .container {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statCard {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .statValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .filterBtn {
-  background: #334155;
-  color: #cbd5e1;
+  background: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .filterBtn:hover {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 .filterBtnActive {
-  background: #4573df !important;
+  background: var(--ml-blue) !important;
   color: #fff !important;
 }
 
 .loadingState,
 .emptyState {
-  background: #1e293b;
-  color: #94a3b8;
+  background: var(--bg-secondary-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .emptyState h3 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .tableWrapper {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .th {
-  background: #1e293b;
-  color: #94a3b8;
-  border-bottom: 1px solid #334155;
+  background: var(--bg-secondary-dark);
+  color: var(--text-tertiary-dark);
+  border-bottom: 1px solid var(--border-dark);
 }
 
 .td {
-  color: #cbd5e1;
-  border-bottom: 1px solid #334155;
+  color: var(--text-secondary-dark);
+  border-bottom: 1px solid var(--border-dark);
 }
 
 .tr:hover {
-  background: #1e293b;
+  background: var(--bg-secondary-dark);
 }
 
 .projectCell {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }

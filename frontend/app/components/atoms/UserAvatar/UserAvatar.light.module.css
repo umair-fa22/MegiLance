@@ -1,11 +1,11 @@
 .userAvatar {
-  background: #e2e8f0;
+  background: var(--border-light);
   color: #4a5568;
-  border-color: #ffffff;
+  border-color: var(--bg-primary-light);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .userAvatarClickable:hover {
-  border-color: #27AE60;
+  border-color: var(--ml-green);
   box-shadow: 0 4px 10px rgba(39, 174, 96, 0.2);
 }

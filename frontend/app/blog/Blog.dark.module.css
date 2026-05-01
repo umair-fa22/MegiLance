@@ -24,7 +24,7 @@
   color: #a0a0b5;
 }
 .filterChip:hover { background: rgba(69,115,223,0.12); color: #6b93e8; }
-.filterActive { background: #4573df !important; color: #fff !important; }
+.filterActive { background: var(--ml-blue) !important; color: #fff !important; }
 
 /* Trending */
 .trendingCard {

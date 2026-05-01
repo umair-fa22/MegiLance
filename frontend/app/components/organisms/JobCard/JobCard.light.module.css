@@ -5,7 +5,7 @@
 }
 
 .card:hover {
-  border-color: #4573DF;
+  border-color: var(--ml-blue);
   box-shadow: 0 8px 24px rgba(69, 115, 223, 0.1);
 }
 
@@ -62,6 +62,6 @@
 }
 
 .matchBadge {
-  background: #4573DF;
+  background: var(--ml-blue);
   color: white;
 }

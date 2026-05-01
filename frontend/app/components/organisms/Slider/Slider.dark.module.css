@@ -1,14 +1,14 @@
 .sliderTrack {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .sliderRange {
-  background-color: #4573df; /* MegiLance Blue */
+  background-color: var(--ml-blue); /* MegiLance Blue */
 }
 
 .sliderThumb {
-  background-color: #0f172a;
-  border: 2px solid #4573df; /* MegiLance Blue */
+  background-color: var(--bg-primary-dark);
+  border: 2px solid var(--ml-blue); /* MegiLance Blue */
 }
 
 .sliderThumb:focus {

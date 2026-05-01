@@ -45,12 +45,12 @@
 
 .statusEnabled {
   background: rgba(39, 174, 96, 0.1);
-  color: var(--color-success, #27AE60);
+  color: var(--color-success, var(--ml-green));
 }
 
 .statusDisabled {
   background: rgba(232, 17, 35, 0.1);
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
 }
 
 .section {
@@ -117,7 +117,7 @@
   margin-bottom: 1.5rem;
   font-family: var(--font-family-body);
   background: rgba(232, 17, 35, 0.1);
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
   border: 1px solid rgba(232, 17, 35, 0.2);
 }
 
@@ -127,7 +127,7 @@
   margin-bottom: 1.5rem;
   font-family: var(--font-family-body);
   background: rgba(39, 174, 96, 0.1);
-  color: var(--color-success, #27AE60);
+  color: var(--color-success, var(--ml-green));
   border: 1px solid rgba(39, 174, 96, 0.2);
 }
 

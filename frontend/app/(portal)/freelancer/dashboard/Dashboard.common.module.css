@@ -27,9 +27,9 @@
   gap: 0.5rem;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  border: 1px solid var(--color-error, #e81123);
+  border: 1px solid var(--color-error, var(--ml-red));
   background: rgba(232, 17, 35, 0.08);
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
   font-size: 0.875rem;
 }
 
@@ -94,8 +94,8 @@
   transition: width 0.3s;
 }
 
-.progressFillGreen { background-color: var(--color-success, #27AE60); }
-.progressFillYellow { background-color: var(--color-warning, #F2C94C); }
+.progressFillGreen { background-color: var(--color-success, var(--ml-green)); }
+.progressFillYellow { background-color: var(--color-warning, var(--ml-yellow)); }
 
 .progressLabel {
   font-size: 0.78rem;
@@ -159,7 +159,7 @@
 }
 
 .quickActionCard:focus-visible {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
 }
 
@@ -174,11 +174,11 @@
 }
 
 /* Color-coded icon backgrounds */
-.quickActionIcon-primary { background: rgba(69, 115, 223, 0.12); color: var(--color-primary, #4573df); }
-.quickActionIcon-success { background: rgba(39, 174, 96, 0.12); color: var(--color-success, #27AE60); }
+.quickActionIcon-primary { background: rgba(69, 115, 223, 0.12); color: var(--color-primary, var(--ml-blue)); }
+.quickActionIcon-success { background: rgba(39, 174, 96, 0.12); color: var(--color-success, var(--ml-green)); }
 .quickActionIcon-info    { background: rgba(59, 130, 246, 0.12); color: var(--color-primary, #3b82f6); }
 .quickActionIcon-warning { background: rgba(242, 201, 76, 0.15); color: #d4a017; }
-.quickActionIcon-danger  { background: rgba(232, 17, 35, 0.10); color: var(--color-error, #e81123); }
+.quickActionIcon-danger  { background: rgba(232, 17, 35, 0.10); color: var(--color-error, var(--ml-red)); }
 .quickActionIcon-purple  { background: rgba(139, 92, 246, 0.12); color: #8b5cf6; }
 
 .quickActionLabel {
@@ -223,8 +223,8 @@
   gap: 0.625rem;
 }
 
-.metricIconSuccess { color: var(--color-success, #27AE60); }
-.metricIconPrimary { color: var(--color-primary, #4573df); }
+.metricIconSuccess { color: var(--color-success, var(--ml-green)); }
+.metricIconPrimary { color: var(--color-primary, var(--ml-blue)); }
 .metricIconWarning { color: #d4a017; }
 
 .metricStatValue {
@@ -339,11 +339,11 @@
 
 .statusAccepted {
   background: rgba(39, 174, 96, 0.12);
-  color: #27AE60;
+  color: var(--ml-green);
 }
 .statusRejected {
   background: rgba(232, 17, 35, 0.1);
-  color: #e81123;
+  color: var(--ml-red);
 }
 .statusPending {
   background: rgba(242, 201, 76, 0.15);
@@ -351,7 +351,7 @@
 }
 .statusDefault {
   background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .metricHint {

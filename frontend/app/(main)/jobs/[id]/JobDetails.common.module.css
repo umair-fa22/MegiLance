@@ -108,7 +108,7 @@
 .error {
   text-align: center;
   padding: 4rem;
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
 }
 
 @media (max-width: 480px) {

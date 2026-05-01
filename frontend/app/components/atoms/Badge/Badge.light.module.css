@@ -3,8 +3,8 @@
 /* Default Variant - Neutral Gray */
 .badgeDefault,
 .default {
-  --badge-bg: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-  --badge-text: #475569;
+  --badge-bg: linear-gradient(135deg, var(--bg-secondary-light) 0%, var(--bg-tertiary-light) 100%);
+  --badge-text: var(--text-secondary-light);
   --badge-border: rgba(203, 213, 225, 0.5);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06),
               inset 0 1px 0 rgba(255, 255, 255, 0.6);
@@ -30,7 +30,7 @@
 .badgeSecondary,
 .secondary {
   --badge-bg: linear-gradient(135deg, #f0f4f8 0%, #e9eef5 100%);
-  --badge-text: #64748b;
+  --badge-text: var(--color-text-secondary-light);
   --badge-border: rgba(203, 213, 225, 0.4);
 }
 

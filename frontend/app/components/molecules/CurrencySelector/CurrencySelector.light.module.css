@@ -9,7 +9,7 @@
 }
 
 .toggleButton {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .toggleButton:hover {
@@ -18,29 +18,29 @@
 }
 
 .toggleButtonActive {
-  background-color: #4573df;
-  color: #ffffff;
+  background-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .selectorButton {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   color: #0a0a0a;
   border-color: #e5e5e5;
 }
 
 .selectorButton:hover:not(:disabled) {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
 
 .dropdown {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border-color: #e5e5e5;
 }
 
 .searchContainer {
   border-color: #e5e5e5;
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .searchInput {
@@ -48,7 +48,7 @@
 }
 
 .searchInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .currencyItem {
@@ -61,11 +61,11 @@
 
 .currencyItemActive {
   background-color: #eff6ff;
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .emptyState {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .conversionContainer {

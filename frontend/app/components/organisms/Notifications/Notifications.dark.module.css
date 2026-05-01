@@ -1,20 +1,20 @@
 /* Dark Theme - Notifications */
-.container { background: #0f172a; }
-.title { color: #f8fafc; }
-.subtitle { color: #94a3b8; }
-.filterBtn { background: #334155; color: #cbd5e1; }
-.filterBtn:hover { background: #334155; }
-.filterBtnActive { background: #4573df !important; color: #fff !important; }
-.filterCount { background: #334155; color: #cbd5e1; }
+.container { background: var(--bg-primary-dark); }
+.title { color: var(--text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
+.filterBtn { background: var(--border-dark); color: var(--text-secondary-dark); }
+.filterBtn:hover { background: var(--border-dark); }
+.filterBtnActive { background: var(--ml-blue) !important; color: #fff !important; }
+.filterCount { background: var(--border-dark); color: var(--text-secondary-dark); }
 .filterBtnActive .filterCount { background: rgba(255,255,255,0.2); color: #fff; }
-.notifItem { background: #1e293b; border-color: #334155; }
-.notifItem:hover { background: #1e293b; }
+.notifItem { background: var(--bg-secondary-dark); border-color: var(--border-dark); }
+.notifItem:hover { background: var(--bg-secondary-dark); }
 .unread { background: #141b2d; border-color: #1e3a6e; }
 .unread:hover { background: #182040; }
-.notifTitle { color: #f8fafc; }
-.notifMessage { color: #94a3b8; }
+.notifTitle { color: var(--text-primary-dark); }
+.notifMessage { color: var(--text-tertiary-dark); }
 .notifTime { color: #6b7280; }
-.notifTypeBadge { background: #334155; color: #94a3b8; }
+.notifTypeBadge { background: var(--border-dark); color: var(--text-tertiary-dark); }
 .iconSystem { background: #1e2a4a; color: #60a5fa; }
 .iconPayment { background: #0f2922; color: #34d399; }
 .iconProject { background: #2a2010; color: #fbbf24; }
@@ -22,12 +22,12 @@
 .iconAlert { background: #2a1215; color: #f87171; }
 .iconProposal { background: #0f2b2e; color: #22d3ee; }
 .actionBtn { color: #6b7280; }
-.actionBtn:hover { background: #334155; color: #cbd5e1; }
-.emptyState { background: #1e293b; }
-.emptyIcon { background: #334155; color: #6b7280; }
-.emptyTitle { color: #f8fafc; }
-.emptyText { color: #94a3b8; }
-.skeletonItem { background: #1e293b; }
-.skeletonIcon { background: #334155; }
-.skeletonLine { background: #334155; }
+.actionBtn:hover { background: var(--border-dark); color: var(--text-secondary-dark); }
+.emptyState { background: var(--bg-secondary-dark); }
+.emptyIcon { background: var(--border-dark); color: #6b7280; }
+.emptyTitle { color: var(--text-primary-dark); }
+.emptyText { color: var(--text-tertiary-dark); }
+.skeletonItem { background: var(--bg-secondary-dark); }
+.skeletonIcon { background: var(--border-dark); }
+.skeletonLine { background: var(--border-dark); }
 .paginationInfo { color: #6b7280; }

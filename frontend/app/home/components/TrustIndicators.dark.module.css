@@ -1,9 +1,9 @@
 .trustTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .trustSubtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .indicatorItem {
@@ -25,12 +25,12 @@
 }
 
 .indicatorValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .indicatorLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .badgeItem {
@@ -54,5 +54,5 @@
 }
 
 .badgeDescription {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }

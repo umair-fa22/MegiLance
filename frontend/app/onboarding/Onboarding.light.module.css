@@ -1,6 +1,6 @@
 /* @AI-HINT: Light theme colors for Onboarding component */
 .container {
-  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  background: linear-gradient(135deg, var(--bg-tertiary-light) 0%, var(--border-light) 100%);
 }
 
 .stepTitle {
@@ -8,19 +8,19 @@
 }
 
 .stepDescription {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .stepHeaderIcon {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .progressBarFill {
-  background: linear-gradient(90deg, #4573df 0%, #6b93f2 100%);
+  background: linear-gradient(90deg, var(--ml-blue) 0%, #6b93f2 100%);
 }
 
 .stepCounter {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .progressDot {
@@ -28,5 +28,5 @@
 }
 
 .progressDotActive {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
 }

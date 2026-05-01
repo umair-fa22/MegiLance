@@ -1,18 +1,18 @@
 .container {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .inputArea {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .fieldValue {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #cbd5e1;
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .triggerIcon {
@@ -28,15 +28,15 @@
 }
 
 .poweredBy {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .closeButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .closeButton:hover {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .checkIcon {

@@ -274,7 +274,7 @@ const PublicFreelancers: React.FC = () => {
               <input type="radio" name="rating" checked={filters.minRating === opt.id} onChange={() => handleFilterChange('minRating', opt.id)} className={common.filterRadio} />
               <span className={cn(common.filterRadioCustom, themed.filterRadioCustom, filters.minRating === opt.id && common.filterRadioActive)} />
               <span className={common.ratingOptionLabel}>
-                {opt.stars > 0 && <span className={common.starsInline}>{[...Array(opt.stars)].map((_, i) => <Star key={i} size={12} fill="#facc15" color="#facc15" />)}</span>}
+                {opt.stars > 0 && <span className={common.starsInline}>{[...Array(opt.stars)].map((_, i) => <Star key={i} size={12} fill="var(--ml-yellow)" color="var(--ml-yellow)" />)}</span>}
                 {opt.label}
               </span>
             </label>
@@ -486,7 +486,7 @@ const PublicFreelancers: React.FC = () => {
                       </div>
                       <div className={common.footer}>
                         <div className={cn(common.rate, themed.rate)}><DollarSign size={14} />${f.hourlyRate}/hr</div>
-                        <div className={cn(common.ratingWrapper, themed.ratingWrapper)}><Star size={14} fill="#facc15" color="#facc15" /><span>{f.rating.toFixed(1)}</span></div>
+                        <div className={cn(common.ratingWrapper, themed.ratingWrapper)}><Star size={14} fill="var(--ml-yellow)" color="var(--ml-yellow)" /><span>{f.rating.toFixed(1)}</span></div>
                         <div className={cn(common.locationWrapper, themed.locationWrapper)}><MapPin size={14} /><span>{f.location}</span></div>
                       </div>
                       <span className={cn(common.cardCta, themed.cardCta)}>View Profile</span>

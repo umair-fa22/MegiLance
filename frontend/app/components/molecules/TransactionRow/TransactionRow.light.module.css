@@ -22,9 +22,9 @@
 }
 
 .positive {
-  color: #27AE60 !important;
+  color: var(--ml-green) !important;
 }
 
 .negative {
-  color: #e81123 !important;
+  color: var(--ml-red) !important;
 }

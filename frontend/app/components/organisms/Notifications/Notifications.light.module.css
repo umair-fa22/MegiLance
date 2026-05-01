@@ -1,33 +1,33 @@
 /* Light Theme - Notifications */
 .container { background: #fff; }
 .title { color: #1a1a1a; }
-.subtitle { color: #64748b; }
-.filterBtn { background: #f1f5f9; color: #374151; }
-.filterBtn:hover { background: #e2e8f0; }
-.filterBtnActive { background: #4573df !important; color: #fff !important; }
-.filterCount { background: #e2e8f0; color: #374151; }
+.subtitle { color: var(--color-text-secondary-light); }
+.filterBtn { background: var(--bg-tertiary-light); color: #374151; }
+.filterBtn:hover { background: var(--border-light); }
+.filterBtnActive { background: var(--ml-blue) !important; color: #fff !important; }
+.filterCount { background: var(--border-light); color: #374151; }
 .filterBtnActive .filterCount { background: rgba(255,255,255,0.25); color: #fff; }
-.notifItem { background: #fff; border-color: #e2e8f0; }
+.notifItem { background: #fff; border-color: var(--border-light); }
 .notifItem:hover { background: #f9fafb; }
 .unread { background: #f0f4ff; border-color: #d1ddfb; }
 .unread:hover { background: #e8eeff; }
 .notifTitle { color: #1a1a1a; }
-.notifMessage { color: #64748b; }
-.notifTime { color: #94a3b8; }
-.notifTypeBadge { background: #f1f5f9; color: #64748b; }
+.notifMessage { color: var(--color-text-secondary-light); }
+.notifTime { color: var(--text-tertiary-light); }
+.notifTypeBadge { background: var(--bg-tertiary-light); color: var(--color-text-secondary-light); }
 .iconSystem { background: #eff6ff; color: #3b82f6; }
 .iconPayment { background: #ecfdf5; color: #10b981; }
 .iconProject { background: #fff7ed; color: #f59e0b; }
 .iconMessage { background: #f5f3ff; color: #8b5cf6; }
 .iconAlert { background: #fef2f2; color: #ef4444; }
 .iconProposal { background: #ecfeff; color: #06b6d4; }
-.actionBtn { color: #94a3b8; }
-.actionBtn:hover { background: #f1f5f9; color: #374151; }
+.actionBtn { color: var(--text-tertiary-light); }
+.actionBtn:hover { background: var(--bg-tertiary-light); color: #374151; }
 .emptyState { background: #f9fafb; }
-.emptyIcon { background: #f1f5f9; color: #94a3b8; }
+.emptyIcon { background: var(--bg-tertiary-light); color: var(--text-tertiary-light); }
 .emptyTitle { color: #1a1a1a; }
-.emptyText { color: #64748b; }
+.emptyText { color: var(--color-text-secondary-light); }
 .skeletonItem { background: #f9fafb; }
-.skeletonIcon { background: #e2e8f0; }
-.skeletonLine { background: #e2e8f0; }
-.paginationInfo { color: #94a3b8; }
+.skeletonIcon { background: var(--border-light); }
+.skeletonLine { background: var(--border-light); }
+.paginationInfo { color: var(--text-tertiary-light); }

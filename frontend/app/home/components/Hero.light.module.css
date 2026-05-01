@@ -1,6 +1,6 @@
 /* @AI-HINT: Premium Hero Light Theme - Soft gradients, elegant glassmorphism, elevated shadows */
 .heroContainer {
-  background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
+  background: linear-gradient(to bottom, var(--bg-primary-light) 0%, var(--bg-secondary-light) 100%);
 }
 
 .mouseGlow {
@@ -16,11 +16,11 @@
 }
 
 .mainHeadline {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .heroSubtitle {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .searchForm {
@@ -31,26 +31,26 @@
 .searchForm:focus-within {
   border-color: rgba(69, 115, 223, 0.4);
   box-shadow: 0 32px 64px rgba(69, 115, 223, 0.12), 0 0 0 4px rgba(69, 115, 223, 0.05);
-  background: #ffffff;
+  background: var(--bg-primary-light);
 }
 
 .searchIcon {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .searchForm:focus-within .searchIcon {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .searchInput {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 .searchInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .popularPrefix {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tagPill {
@@ -60,16 +60,16 @@
 }
 
 .tagPill:hover {
-  background: #ffffff;
-  color: #4573df;
+  background: var(--bg-primary-light);
+  color: var(--ml-blue);
   border-color: rgba(69, 115, 223, 0.2);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.08);
 }
 
 .metricText {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 .metricIcon {
-  color: #4573df;
+  color: var(--ml-blue);
 }

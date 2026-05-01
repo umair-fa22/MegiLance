@@ -3,18 +3,18 @@
 
 .Dashboard--dark {
   /* Premium dark theme color palette */
-  --dashboard-bg-primary: #0f172a;
-  --dashboard-bg-secondary: #1e293b;
-  --dashboard-text-primary: #f8fafc;
-  --dashboard-text-secondary: #94a3b8;
-  --dashboard-border-color: #334155;
-  --dashboard-card-bg: #1e293b;
+  --dashboard-bg-primary: var(--bg-primary-dark);
+  --dashboard-bg-secondary: var(--bg-secondary-dark);
+  --dashboard-text-primary: var(--text-primary-dark);
+  --dashboard-text-secondary: var(--text-tertiary-dark);
+  --dashboard-border-color: var(--border-dark);
+  --dashboard-card-bg: var(--bg-secondary-dark);
   --dashboard-hover-bg: rgba(255, 255, 255, 0.06);
   
   /* Premium dark theme specific styling */
   background: linear-gradient(135deg, 
-    #0f172a 0%, 
-    #1e293b 100%);
+    var(--bg-primary-dark) 0%, 
+    var(--bg-secondary-dark) 100%);
   
   /* Enhanced dark theme shadows for depth */
   --dashboard-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
@@ -22,7 +22,7 @@
   --dashboard-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
   
   /* Dark theme borders with subtle glow */
-  --dashboard-border-light: #334155;
+  --dashboard-border-light: var(--border-dark);
   --dashboard-border-medium: #475569;
   --dashboard-border-strong: #64748b;
   
@@ -36,15 +36,15 @@
   
   /* Enhanced card styling for dark mode */
   .Dashboard-section {
-    background: #1e293b;
-    border-color: #334155;
+    background: var(--bg-secondary-dark);
+    border-color: var(--border-dark);
     box-shadow: 
       0 1px 3px 0 rgba(0, 0, 0, 0.3),
       0 1px 2px 0 rgba(0, 0, 0, 0.4);
     
     &:hover {
       background: rgba(255, 255, 255, 0.06);
-      border-color: #4573df;
+      border-color: var(--ml-blue);
       box-shadow: 
         0 4px 6px -1px rgba(0, 0, 0, 0.4),
         0 2px 4px -1px rgba(0, 0, 0, 0.3),
@@ -54,14 +54,14 @@
   
   /* Premium project cards for dark mode */
   .Dashboard-project-card {
-    background: #0f172a;
-    border-color: #334155;
+    background: var(--bg-primary-dark);
+    border-color: var(--border-dark);
     box-shadow: 
       0 1px 3px 0 rgba(0, 0, 0, 0.3),
       0 1px 2px 0 rgba(0, 0, 0, 0.4);
     
     &:hover {
-      background: #1e293b;
+      background: var(--bg-secondary-dark);
       box-shadow: 
         0 4px 6px -1px rgba(0, 0, 0, 0.4),
         0 2px 4px -1px rgba(0, 0, 0, 0.3),
@@ -71,8 +71,8 @@
 }
 
 .Dashboard--dark .Dashboard-activity {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -81,20 +81,20 @@
 }
 
 .Dashboard--dark .Dashboard-activity-icon {
-  background: #0f172a;
-  color: #94a3b8;
+  background: var(--bg-primary-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .Dashboard--dark .Dashboard-activity-message {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .Dashboard--dark .Dashboard-activity-time {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .Dashboard--dark .Dashboard-activity-amount {
-  color: #27AE60;
+  color: var(--ml-green);
 }
 
 .Dashboard--dark .Dashboard-section-action:hover {
@@ -104,7 +104,7 @@
 
 /* Progress Bar Dark Theme */
 .Dashboard--dark .Dashboard-progress-bar {
-  background: #334155;
+  background: var(--border-dark);
 }
 
 .Dashboard--dark .Dashboard-progress-fill {
@@ -112,5 +112,5 @@
 }
 
 .Dashboard--dark .Dashboard-progress-text {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }

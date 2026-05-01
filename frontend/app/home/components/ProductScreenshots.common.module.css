@@ -264,7 +264,7 @@
 }
 
 .indicatorActive {
-  background: var(--color-primary, #4573df);
+  background: var(--color-primary, var(--ml-blue));
   transform: scale(1.3);
   box-shadow: 0 0 10px rgba(69, 115, 223, 0.5);
 }

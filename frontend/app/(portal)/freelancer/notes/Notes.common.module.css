@@ -341,8 +341,8 @@
 }
 
 .colorSelected {
-  border-color: #0f172a;
-  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0f172a;
+  border-color: var(--text-primary-light);
+  box-shadow: 0 0 0 2px var(--bg-primary-light), 0 0 0 4px var(--text-primary-light);
 }
 
 /* Tag Picker */

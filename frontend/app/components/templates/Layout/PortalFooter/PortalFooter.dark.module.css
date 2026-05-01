@@ -1,7 +1,7 @@
 ﻿/* @AI-HINT: Dark theme styles for enterprise PortalFooter */
 
 .footer {
-  border-top: 1px solid #1e293b;
+  border-top: 1px solid var(--bg-secondary-dark);
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.4) 0%, rgba(30, 41, 59, 0.2) 100%);
   box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
@@ -16,14 +16,14 @@
 
 .versionBadge {
   background: linear-gradient(135deg, rgba(51, 65, 85, 0.4) 0%, rgba(51, 65, 85, 0.6) 100%);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .shortcutHint {
   background: linear-gradient(135deg, rgba(51, 65, 85, 0.4) 0%, rgba(51, 65, 85, 0.6) 100%);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }

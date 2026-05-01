@@ -1,34 +1,34 @@
 /* @AI-HINT: Verification Center dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Loading */
 .loadingState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Progress Card */
 .progressCard {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .progressTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .progressSubtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tierBadge {
@@ -36,11 +36,11 @@
 }
 
 .progressBar {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #4573df, #60a5fa);
+  background: linear-gradient(90deg, var(--ml-blue), #60a5fa);
 }
 
 .progressPercent {
@@ -48,17 +48,17 @@
 }
 
 .nextTierHint {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Tiers */
 .sectionTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .tierCard {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .tierCard:hover {
@@ -66,22 +66,22 @@
 }
 
 .tierAchieved {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 2px 8px rgba(69, 115, 223, 0.2);
 }
 
 .tierName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .tierBenefit {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Verification Items */
 .verificationCard {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .verificationCard:hover {
@@ -95,7 +95,7 @@
 }
 
 .verificationName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .requiredBadge {
@@ -116,7 +116,7 @@
 }
 
 .verificationDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .verifiedDate {
@@ -130,34 +130,34 @@
 
 /* Modal */
 .modal {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .modalHeader {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .modalTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .closeButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .closeButton:hover {
-  background-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .modalDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .uploadArea {
   border-color: #475569;
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .uploadArea:hover {
@@ -183,13 +183,13 @@
 }
 
 .modalActions {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 /* Toast */
 .toast {
-  background-color: #f1f5f9;
-  color: #0f172a;
+  background-color: var(--color-text-primary-dark);
+  color: var(--bg-primary-dark);
 }
 
 .toastError {

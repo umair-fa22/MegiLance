@@ -1,7 +1,7 @@
 /* @AI-HINT: Light theme styles for Admin Calendar */
 
 .main {
-  background: #f8fafc;
+  background: var(--bg-secondary-light);
 }
 
 .title {
@@ -9,21 +9,21 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .calendar_container {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .nav_button {
-  background: #f1f5f9;
-  color: #475569;
+  background: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 .nav_button:hover {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .month_year {
@@ -31,16 +31,16 @@
 }
 
 .weekday {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .day_cell {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   color: #1a1a2e;
 }
 
 .day_cell:hover:not(.empty_cell) {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .empty_cell {
@@ -49,45 +49,45 @@
 
 .today {
   background: #4573df15;
-  color: #4573df;
-  border: 2px solid #4573df;
+  color: var(--ml-blue);
+  border: 2px solid var(--ml-blue);
 }
 
 .selected {
-  background: #4573df;
-  color: #ffffff;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 .selected.today {
-  background: #4573df;
-  color: #ffffff;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 /* Event Type Colors */
 .event_meeting {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   background: #4573df10;
 }
 
 .event_deadline {
-  border-color: #e81123;
+  border-color: var(--ml-red);
   background: #e8112310;
 }
 
 .event_review {
-  border-color: #27AE60;
+  border-color: var(--ml-green);
   background: #27AE6010;
 }
 
 .event_maintenance {
-  border-color: #ff9800;
+  border-color: var(--ml-orange);
   background: #ff980010;
 }
 
 /* Events Panel */
 .events_panel {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .panel_title {
@@ -95,15 +95,15 @@
 }
 
 .no_events {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .event_icon {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .event_time {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .event_title {
@@ -111,25 +111,25 @@
 }
 
 .event_description {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .event_type_badge {
-  background: #f1f5f9;
-  color: #475569;
+  background: var(--bg-tertiary-light);
+  color: var(--text-secondary-light);
 }
 
 /* Upcoming */
 .upcoming_item {
-  background: #f8fafc;
+  background: var(--bg-secondary-light);
 }
 
 .upcoming_item:hover {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .upcoming_date {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .upcoming_title {
@@ -138,7 +138,7 @@
 
 /* Loading and Error States */
 .loadingState {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .errorBanner {

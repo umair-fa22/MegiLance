@@ -9,5 +9,5 @@
 }
 
 .text {
-  color: #f1f5f9; /* slate-100 */
+  color: var(--color-text-primary-dark); /* slate-100 */
 }

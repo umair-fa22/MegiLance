@@ -2,31 +2,31 @@
 
 .container { background: transparent; }
 .title { color: #1a1a1a; }
-.subtitle { color: #64748b; }
+.subtitle { color: var(--color-text-secondary-light); }
 
 /* Stats */
-.statCard { background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.statCard { background: #fff; border: 1px solid var(--border-light); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
 .statCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 .statValue { color: #1a1a1a; }
-.statLabel { color: #64748b; }
+.statLabel { color: var(--color-text-secondary-light); }
 
 /* Toolbar */
-.toolbar { background: #fff; border: 1px solid #e2e8f0; }
-.searchInput { background: #f1f5f9; color: #1a1a1a; }
-.searchIcon { color: #94a3b8; }
-.filterTab { background: transparent; color: #64748b; }
-.filterTab:hover { background: #f1f5f9; color: #374151; }
-.filterTabActive { background: #4573df !important; color: #fff !important; }
+.toolbar { background: #fff; border: 1px solid var(--border-light); }
+.searchInput { background: var(--bg-tertiary-light); color: #1a1a1a; }
+.searchIcon { color: var(--text-tertiary-light); }
+.filterTab { background: transparent; color: var(--color-text-secondary-light); }
+.filterTab:hover { background: var(--bg-tertiary-light); color: #374151; }
+.filterTabActive { background: var(--ml-blue) !important; color: #fff !important; }
 
 /* Dispute Cards */
-.disputeCard { background: #fff; border: 1px solid #e2e8f0; }
+.disputeCard { background: #fff; border: 1px solid var(--border-light); }
 .disputeCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
-.disputeId { color: #4573df; }
+.disputeId { color: var(--ml-blue); }
 .disputeName { color: #1a1a1a; }
-.disputeDesc { color: #64748b; }
-.metaItem { color: #94a3b8; }
+.disputeDesc { color: var(--color-text-secondary-light); }
+.metaItem { color: var(--text-tertiary-light); }
 
 /* Detail */
-.detailLabel { color: #64748b; }
+.detailLabel { color: var(--color-text-secondary-light); }
 .detailValue { color: #1a1a1a; }
 .detailText { color: #374151; }

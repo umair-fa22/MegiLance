@@ -41,9 +41,9 @@
 }
 
 .searchInput:focus {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
-  border-color: var(--color-primary, #4573df);
+  border-color: var(--color-primary, var(--ml-blue));
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
 
@@ -213,7 +213,7 @@
 
 .savedSearchItem button:last-child:hover {
   opacity: 1;
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
 }
 
 .saveDialog {

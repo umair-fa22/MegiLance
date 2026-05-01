@@ -1,6 +1,6 @@
 /* @AI-HINT: Dark theme styles for the MegiLanceLogo component. */
 .background {
-  fill: #4573DF; /* MegiLance Blue - can be same or different */
+  fill: var(--ml-blue); /* MegiLance Blue - can be same or different */
 }
 
 .foreground {
@@ -8,5 +8,5 @@
 }
 
 .logo::after {
-  background: linear-gradient(45deg, #60a5fa, #4573df);
+  background: linear-gradient(45deg, #60a5fa, var(--ml-blue));
 }

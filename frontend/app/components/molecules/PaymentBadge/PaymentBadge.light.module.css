@@ -2,9 +2,9 @@
 
 .paymentBadge {
   --badge-paid-bg: rgba(39,174,96,0.06);
-  --badge-paid-text: #27AE60;
+  --badge-paid-text: var(--ml-green);
   --badge-pending-bg: rgba(242,201,76,0.10);
-  --badge-pending-text: #F2C94C;
+  --badge-pending-text: var(--ml-yellow);
   --badge-failed-bg: rgba(232,17,35,0.06);
-  --badge-failed-text: #e81123;
+  --badge-failed-text: var(--ml-red);
 }

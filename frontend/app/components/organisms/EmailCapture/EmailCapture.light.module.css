@@ -2,14 +2,14 @@
 .wrapper { background: #f5f7ff; }
 .card { border: 1px solid #e0e7f0; box-shadow: 0 4px 16px rgba(69,115,223,0.06); }
 .banner { background: linear-gradient(90deg, #f0f5ff, #f5f0ff); border: 1px solid #e0e7f0; }
-.iconBadge { background: rgba(69, 115, 223, 0.1); color: #4573df; }
+.iconBadge { background: rgba(69, 115, 223, 0.1); color: var(--ml-blue); }
 .headline { color: #1a1a2e; }
 .subtext { color: #666; }
 .input { background: #fff; border-color: #dde3ed; color: #1a1a2e; }
-.input:focus { border-color: #4573df; box-shadow: 0 0 0 3px rgba(69,115,223,0.1); }
+.input:focus { border-color: var(--ml-blue); box-shadow: 0 0 0 3px rgba(69,115,223,0.1); }
 .inputGroup { background: transparent; }
 .error { color: #e53935; }
 .privacy { color: #999; }
-.privacy a { color: #4573df; }
-.successState svg { color: #27AE60; }
+.privacy a { color: var(--ml-blue); }
+.successState svg { color: var(--ml-green); }
 .successText { color: #1a1a2e; }

@@ -1,1 +1,1 @@
-.status { background: #ffffff; color: #0f172a; }
+.status { background: var(--bg-primary-light); color: var(--text-primary-light); }

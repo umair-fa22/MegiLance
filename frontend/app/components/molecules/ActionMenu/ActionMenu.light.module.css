@@ -1,23 +1,23 @@
 /* AI-HINT: Light theme styles for the ActionMenu component. */
 
 .menu {
-  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
-  border-color: #e2e8f0;
+  background: linear-gradient(135deg, var(--bg-primary-light) 0%, #f9fafb 100%);
+  border-color: var(--border-light);
   box-shadow: 0 10px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .menuItem {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .menuItem:hover:not(:disabled) {
-  background: linear-gradient(135deg, #f1f5f9 0%, #e8eef8 100%);
+  background: linear-gradient(135deg, var(--bg-tertiary-light) 0%, #e8eef8 100%);
 }
 
 .itemIcon {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .separator {
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }

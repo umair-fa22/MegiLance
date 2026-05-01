@@ -1,6 +1,6 @@
 .card {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .card:hover {
@@ -9,27 +9,27 @@
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .budget {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .metaItem {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .footer {
-  border-top-color: #334155;
+  border-top-color: var(--border-dark);
 }
 
 .progressBar {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .progressText {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .link {
@@ -45,4 +45,4 @@
 .status-green { color: #86efac; background-color: rgba(22, 101, 52, 0.3); }
 .status-yellow { color: #fde047; background-color: rgba(133, 77, 14, 0.3); }
 .status-red { color: #fca5a5; background-color: rgba(153, 27, 27, 0.3); }
-.status-gray { color: #cbd5e1; background-color: rgba(75, 85, 99, 0.3); }
+.status-gray { color: var(--text-secondary-dark); background-color: rgba(75, 85, 99, 0.3); }

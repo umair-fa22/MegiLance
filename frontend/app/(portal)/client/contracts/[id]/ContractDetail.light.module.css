@@ -9,16 +9,16 @@
 }
 
 .sectionTitle {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 /* Breadcrumb */
 .breadcrumb {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .breadcrumbLink {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .breadcrumbLink:hover {
@@ -27,8 +27,8 @@
 
 /* Overview Cards */
 .overviewCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
@@ -37,7 +37,7 @@
 }
 
 .overviewLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .overviewValue {
@@ -45,13 +45,13 @@
 }
 
 .overviewSub {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Progress */
 .progressSection {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .progressTitle {
@@ -59,69 +59,69 @@
 }
 
 .progressPercent {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .progressBarLarge {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .progressFillLarge {
-  background: linear-gradient(90deg, #4573df, #6366f1);
+  background: linear-gradient(90deg, var(--ml-blue), #6366f1);
 }
 
 .progressInfo {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Sections */
 .section {
-  background: #ffffff;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 /* Milestones */
 .milestoneItem {
-  background: #f8fafc;
-  border-color: #e2e8f0;
+  background: var(--bg-secondary-light);
+  border-color: var(--border-light);
 }
 
 .milestoneItem:hover {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   border-color: #cbd5e1;
 }
 
 .milestoneNumber {
   background: #eef2ff;
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .milestoneMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Freelancer Card */
 .freelancerCard {
-  background: #f8fafc;
+  background: var(--bg-secondary-light);
 }
 
 .freelancerAvatar {
   background: #eef2ff;
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .freelancerName {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .freelancerEmail {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Details */
 .detailLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .detailValue {
@@ -135,9 +135,9 @@
 }
 
 .errorTitle {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .errorText {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }

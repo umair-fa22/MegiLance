@@ -1,8 +1,8 @@
 /* AI-HINT: Light theme styles for the FreelancerCard. */
 
 .card {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
@@ -12,31 +12,31 @@
 }
 
 .name {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .title {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .ratingValue {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .infoIcon {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .infoText {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .skillsTitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .cardFooter {
-  border-top-color: #e2e8f0;
+  border-top-color: var(--border-light);
 }
 
 .matchBadge {
@@ -46,11 +46,11 @@
 }
 
 .saveButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .saveButton:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   color: #ef4444;
 }
 

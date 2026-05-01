@@ -1,36 +1,36 @@
 ﻿/* @AI-HINT: Dark theme styles for enhanced Analytics page. */
-.container { background: #0f172a; }
-.title { color: #f8fafc; }
-.subtitle { color: #94a3b8; }
+.container { background: var(--bg-primary-dark); }
+.title { color: var(--text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
 
-.select { background: #1e293b; border-color: #334155; color: #f8fafc; }
+.select { background: var(--bg-secondary-dark); border-color: var(--border-dark); color: var(--text-primary-dark); }
 .select:focus { border-color: #60a5fa; box-shadow: 0 0 0 2px rgba(96,165,250,0.2); }
 
-.loadingState { color: #94a3b8; }
+.loadingState { color: var(--text-tertiary-dark); }
 .errorState { color: #f87171; }
 
-.kpiCard { background: #1e293b; border-color: #334155; }
-.kpiLabel { color: #94a3b8; }
-.kpiValue { color: #f8fafc; }
+.kpiCard { background: var(--bg-secondary-dark); border-color: var(--border-dark); }
+.kpiLabel { color: var(--text-tertiary-dark); }
+.kpiValue { color: var(--text-primary-dark); }
 
 .perfRow {}
-.perfCard { background: #1e293b; border-color: #334155; }
-.perfValue { color: #f8fafc; }
-.perfLabel { color: #94a3b8; }
+.perfCard { background: var(--bg-secondary-dark); border-color: var(--border-dark); }
+.perfValue { color: var(--text-primary-dark); }
+.perfLabel { color: var(--text-tertiary-dark); }
 
-.chartCard { background: #1e293b; border-color: #334155; }
-.cardTitle { color: #f8fafc; }
+.chartCard { background: var(--bg-secondary-dark); border-color: var(--border-dark); }
+.cardTitle { color: var(--text-primary-dark); }
 
-.goalsCard { background: #1e293b; border-color: #334155; }
+.goalsCard { background: var(--bg-secondary-dark); border-color: var(--border-dark); }
 .goalItem {}
-.goalLabel { color: #f8fafc; }
+.goalLabel { color: var(--text-primary-dark); }
 .goalPct { color: #60a5fa; }
-.goalBarBg { background: #334155; }
+.goalBarBg { background: var(--border-dark); }
 .goalMeta { color: #64748b; }
 
-.skillsCard { background: #1e293b; border-color: #334155; }
+.skillsCard { background: var(--bg-secondary-dark); border-color: var(--border-dark); }
 .skillDemandItem {}
 .skillRank { color: #64748b; }
-.skillName { color: #f8fafc; }
-.skillBarBg { background: #334155; }
-.skillDemandValue { color: #f8fafc; }
+.skillName { color: var(--text-primary-dark); }
+.skillBarBg { background: var(--border-dark); }
+.skillDemandValue { color: var(--text-primary-dark); }

@@ -1,40 +1,40 @@
 ﻿/* @AI-HINT: Dark theme styles for the refactored Contracts page. */
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tableContainer {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .table th {
   color: #64748b;
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .table td {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .table tbody tr {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .table tbody tr:hover {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .projectTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .value {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .link {
@@ -50,17 +50,17 @@
 }
 
 .sortBtn:hover {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .emptyState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .loadingState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .errorState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }

@@ -152,7 +152,7 @@
 .usageBarFill {
   height: 100%;
   border-radius: 3px;
-  background: linear-gradient(90deg, #4573df, #60a5fa);
+  background: linear-gradient(90deg, var(--ml-blue), #60a5fa);
   transition: width 0.6s ease;
 }
 
@@ -772,7 +772,7 @@
 }
 
 .reasonRadio {
-  accent-color: #4573df;
+  accent-color: var(--ml-blue);
 }
 
 .reasonSelected {

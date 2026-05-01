@@ -2,7 +2,7 @@
 
 .footer {
   background-color: #f9fafb;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--border-light);
 }
 
 .tagline {
@@ -22,18 +22,18 @@
 }
 
 .newsletterInput {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   color: #1a1a2e;
 }
 
 .newsletterInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .newsletterButton {
-  background: linear-gradient(135deg, #4573df 0%, #3b5998 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #3b5998 100%);
+  color: var(--bg-primary-light);
   box-shadow: 0 2px 8px rgba(69, 115, 223, 0.25);
 }
 
@@ -43,11 +43,11 @@
 
 .successState {
   background-color: rgba(39, 174, 96, 0.1);
-  color: #27ae60;
+  color: var(--ml-green);
 }
 
 .errorText {
-  color: #e81123;
+  color: var(--ml-red);
 }
 
 .linksTitle {
@@ -55,31 +55,31 @@
 }
 
 .linkItem {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .linkItem:hover {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .bottomBar {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .copyright {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .socialLink {
-  color: #64748b;
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  color: var(--color-text-secondary-light);
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .socialLink:hover {
-  color: #4573df;
-  border-color: #4573df;
+  color: var(--ml-blue);
+  border-color: var(--ml-blue);
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.15);
 }
 

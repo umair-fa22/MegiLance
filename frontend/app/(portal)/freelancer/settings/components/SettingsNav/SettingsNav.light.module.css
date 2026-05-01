@@ -1,12 +1,12 @@
 ﻿/* @AI-HINT: Light theme styles for the SettingsNav component. */
 
 .navLink {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .navLink:hover {
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: var(--bg-secondary-light);
+  color: var(--text-primary-light);
 }
 
 .active {

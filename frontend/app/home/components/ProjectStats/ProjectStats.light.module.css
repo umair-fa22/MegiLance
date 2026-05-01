@@ -1,23 +1,23 @@
 /* Light theme for ProjectStats */
 
 .statsSection {
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  background: linear-gradient(180deg, var(--bg-secondary-light) 0%, var(--bg-primary-light) 100%);
   --glow-color: rgba(69, 115, 223, 0.08);
   --grid-color: rgba(0, 0, 0, 0.03);
 }
 
 .badge {
   background: rgba(69, 115, 223, 0.1);
-  color: #4573df;
+  color: var(--ml-blue);
   border: 1px solid rgba(69, 115, 223, 0.2);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .statCard {
@@ -38,30 +38,30 @@
 }
 
 .iconBox {
-  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+  background: linear-gradient(135deg, #eff6ff 0%, var(--bg-primary-light) 100%);
   border: 1px solid #dbeafe;
-  color: #4573df;
+  color: var(--ml-blue);
   box-shadow: 0 4px 12px rgba(69, 115, 223, 0.1);
 }
 
 .value {
-  background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+  background: linear-gradient(135deg, var(--text-primary-light) 0%, #334155 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .label {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .description {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .footer {
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(226, 232, 240, 0.8);
-  color: #475569;
+  color: var(--text-secondary-light);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
 }

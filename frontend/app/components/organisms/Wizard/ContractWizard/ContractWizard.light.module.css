@@ -1,26 +1,26 @@
 /* Contract Wizard - Light Theme */
 
 .templateCard {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #cbd5e0;
   color: #2d3748;
 }
 
 .templateCard:hover {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .milestoneCard {
   background: #f7fafc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .signatureBox {
   background: #f7fafc;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .reviewSection {
   background: #f7fafc;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }

@@ -1,7 +1,7 @@
 /* @AI-HINT: Defines dark theme variables for the InstallAppBanner. These are applied to the .installAppBanner class. */
 
 .installAppBanner {
-  --banner-bg-color: #1e293b;
-  --banner-border-color: #334155;
-  --banner-text-color: #f8fafc;
+  --banner-bg-color: var(--bg-secondary-dark);
+  --banner-border-color: var(--border-dark);
+  --banner-text-color: var(--text-primary-dark);
 }

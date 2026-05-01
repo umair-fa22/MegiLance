@@ -1,21 +1,21 @@
 /* @AI-HINT: Invoice management dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Stats */
 .statCard {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .statCard:hover {
@@ -43,11 +43,11 @@
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .statValuePaid {
@@ -64,8 +64,8 @@
 
 /* Search */
 .searchBar {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .searchBar:focus-within {
@@ -77,7 +77,7 @@
 }
 
 .searchInput {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .searchInput::placeholder {
@@ -89,26 +89,26 @@
 }
 
 .clearSearch:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
 }
 
 /* Filters */
 .filters {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .filterButton {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .filterButton:hover {
-  background-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .filterActive {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -119,17 +119,17 @@
 
 /* Loading & Empty */
 .loadingState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .emptyState {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Invoice Card */
 .invoiceCard {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .invoiceCard:hover {
@@ -138,11 +138,11 @@
 }
 
 .invoiceNumber {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .invoiceAmount {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .clientName {
@@ -150,7 +150,7 @@
 }
 
 .projectTitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .invoiceDates {
@@ -175,7 +175,7 @@
 
 .statusDraft {
   background-color: rgba(100, 116, 139, 0.2);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statusCancelled {
@@ -185,20 +185,20 @@
 
 /* Action Buttons */
 .actionButton {
-  background-color: #334155;
+  background-color: var(--border-dark);
   color: #e2e8f0;
   border-color: #475569;
 }
 
 .actionButton:hover {
   background-color: #475569;
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .actionButtonPrimary {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .actionButtonPrimary:hover {
@@ -217,21 +217,21 @@
 
 /* Modal */
 .modal {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .modalTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .modalClose {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .modalClose:hover {
-  background-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 /* Form */
@@ -240,9 +240,9 @@
 }
 
 .input {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   border-color: #475569;
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .input:focus {
@@ -255,16 +255,16 @@
 
 /* Items */
 .itemsTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .itemsHeader {
-  color: #94a3b8;
-  border-color: #334155;
+  color: var(--text-tertiary-dark);
+  border-color: var(--border-dark);
 }
 
 .itemAmount {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .removeButton {
@@ -277,7 +277,7 @@
 
 .addItemButton {
   border-color: #475569;
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .addItemButton:hover {
@@ -287,27 +287,27 @@
 }
 
 .totalSection {
-  border-color: #334155;
+  border-color: var(--border-dark);
   color: #e2e8f0;
 }
 
 /* Detail */
 .detailClientName {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .detailClientEmail {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .detailMeta {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   border-radius: 8px;
   padding: 0.75rem;
 }
 
 .metaLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .detailItems {
@@ -315,18 +315,18 @@
 }
 
 .detailNotes {
-  border-color: #334155;
-  color: #94a3b8;
+  border-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .confirmText {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Toast */
 .toast {
-  background-color: #f1f5f9;
-  color: #0f172a;
+  background-color: var(--color-text-primary-dark);
+  color: var(--bg-primary-dark);
 }
 
 .toastError {

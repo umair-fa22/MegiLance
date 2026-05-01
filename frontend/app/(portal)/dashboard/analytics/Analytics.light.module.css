@@ -1,42 +1,42 @@
 /* AI-HINT: Light theme overrides for Portal Analytics page. */
 
 .themeWrapper {
-  background: #f8fafc;
-  color: #0f172a;
+  background: var(--bg-secondary-light);
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .select {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  color: #0f172a;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .kpi {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .kpiLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .kpiDelta {
-  color: #27AE60;
+  color: var(--ml-green);
 }
 
 .card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .cardTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .bar {
@@ -44,15 +44,15 @@
 }
 
 .point {
-  background: #ff9800;
+  background: var(--ml-orange);
 }
 
 .th {
-  color: #64748b;
-  border-bottom-color: #e2e8f0;
+  color: var(--color-text-secondary-light);
+  border-bottom-color: var(--border-light);
 }
 
 .td {
-  color: #0f172a;
-  border-bottom-color: #f1f5f9;
+  color: var(--text-primary-light);
+  border-bottom-color: var(--bg-tertiary-light);
 }

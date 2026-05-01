@@ -1,52 +1,52 @@
 /* @AI-HINT: Notes and tags light theme colors */
 
 .container {
-  background-color: #f8fafc;
-  color: #1e293b;
+  background-color: var(--bg-secondary-light);
+  color: var(--color-text-primary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Filter */
 .searchInput {
-  background: #ffffff;
-  border-color: #e2e8f0;
-  color: #0f172a;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .searchInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 .checkbox {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 /* Tags Filter */
 .tagsFilter {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .filterLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tagButton {
-  background: #f8fafc;
-  border-color: #e2e8f0;
-  color: #475569;
+  background: var(--bg-secondary-light);
+  border-color: var(--border-light);
+  color: var(--text-secondary-light);
 }
 
 .tagButton:hover {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .tagSelected {
@@ -54,12 +54,12 @@
 }
 
 .clearTags {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Notes */
 .sectionTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .noteCard {
@@ -89,7 +89,7 @@
 
 /* Empty State */
 .emptyState {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Modal */
@@ -98,25 +98,25 @@
 }
 
 .modalContent {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .modalHeader {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .modalHeader h2 {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .closeBtn {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .closeBtn:hover {
-  background: #f1f5f9;
-  color: #0f172a;
+  background: var(--bg-tertiary-light);
+  color: var(--text-primary-light);
 }
 
 .formGroup label {
@@ -125,53 +125,53 @@
 
 .textarea,
 .input {
-  background: #ffffff;
-  border-color: #e2e8f0;
-  color: #0f172a;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .textarea:focus,
 .input:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 /* Tags */
 .tagOption {
-  background: #f8fafc;
-  border-color: #e2e8f0;
-  color: #475569;
+  background: var(--bg-secondary-light);
+  border-color: var(--border-light);
+  color: var(--text-secondary-light);
 }
 
 .tagOption:hover {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .tagOptionSelected {
   background: #eff6ff;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   color: #1e40af;
 }
 
 .privateCheck {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .modalFooter {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 /* Tag Manager */
 .tagManagerItem {
-  background: #f8fafc;
+  background: var(--bg-secondary-light);
 }
 
 .tagName {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .tagCount {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .deleteTagBtn {

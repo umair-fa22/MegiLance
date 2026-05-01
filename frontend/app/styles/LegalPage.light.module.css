@@ -1,17 +1,17 @@
 /* @AI-HINT: Light theme colors for legal pages */
 .page {
-  background: #f8fafc;
-  color: #0f172a;
+  background: var(--bg-secondary-light);
+  color: var(--text-primary-light);
 }
 
 .page a {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .toc {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .contactBox {
-  background: #e2e8f0;
+  background: var(--border-light);
 }

@@ -1,16 +1,16 @@
 ﻿/* @AI-HINT: Admin metrics dashboard dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Toggle */
@@ -19,11 +19,11 @@
 }
 
 .toggleActive {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 .toggleLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Empty chart message */
@@ -33,21 +33,21 @@
 
 /* Service icon */
 .serviceIcon {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Metric Cards */
 .metricCard {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .metricTitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .metricValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .changeUp {
@@ -64,20 +64,20 @@
 
 /* Charts */
 .chartCard {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .chartTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .bar {
-  background: linear-gradient(180deg, #4573df 0%, #6b8de8 100%);
+  background: linear-gradient(180deg, var(--ml-blue) 0%, #6b8de8 100%);
 }
 
 .barValue {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .barLabel {
@@ -85,8 +85,8 @@
 }
 
 .point {
-  background: #4573df;
-  border: 2px solid #1e293b;
+  background: var(--ml-blue);
+  border: 2px solid var(--bg-secondary-dark);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -95,30 +95,30 @@
 }
 
 .pointValue {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Health Card */
 .healthCard,
 .activityCard {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .cardTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .healthItem {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
 }
 
 .serviceName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .latency {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .uptime {
@@ -127,11 +127,11 @@
 
 /* Activity */
 .activityItem {
-  background: #0f172a;
+  background: var(--bg-primary-dark);
 }
 
 .activityDot {
-  background: #4573df;
+  background: var(--ml-blue);
 }
 
 .activityDesc {

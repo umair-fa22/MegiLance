@@ -46,12 +46,12 @@
   height: 48px;
   border-radius: 12px;
   background: rgba(69, 115, 223, 0.1);
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
 }
 
 .statIconSuccess {
   background: rgba(39, 174, 96, 0.1);
-  color: var(--color-success, #27AE60);
+  color: var(--color-success, var(--ml-green));
 }
 
 .statIconWarning {
@@ -171,7 +171,7 @@
 
 .statussuccess {
   background: rgba(39, 174, 96, 0.1);
-  color: var(--color-success, #27AE60);
+  color: var(--color-success, var(--ml-green));
 }
 
 .statuswarning {
@@ -181,12 +181,12 @@
 
 .statusdanger {
   background: rgba(232, 17, 35, 0.1);
-  color: var(--color-error, #e81123);
+  color: var(--color-error, var(--ml-red));
 }
 
 .statusmuted {
   background: rgba(100, 116, 139, 0.1);
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .actionButtons {
@@ -215,7 +215,7 @@
 }
 
 .searchInput:focus-visible {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
 }
 

@@ -1,23 +1,23 @@
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .description {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .filterToolbar {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .itemCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -26,27 +26,27 @@
 }
 
 .identifier {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .identifier svg {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .reason {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .cardFooter {
-  border-top: 1px solid #334155;
+  border-top: 1px solid var(--border-dark);
 }
 
 .date {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .emptyState {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border: 1px dashed #475569;
 }
 
@@ -55,16 +55,16 @@
 }
 
 .emptyState h3 {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .emptyState p {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 /* Loading and Error States */
 .loadingState {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .errorState {

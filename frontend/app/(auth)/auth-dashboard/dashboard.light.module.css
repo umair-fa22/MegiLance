@@ -9,16 +9,16 @@
   /* Premium light theme color palette */
   --dashboard-bg-primary: #f9fafb;
   --dashboard-bg-secondary: #f7f7f7;
-  --dashboard-text-primary: #0f172a;
-  --dashboard-text-secondary: #64748b;
-  --dashboard-border-color: #e2e8f0;
-  --dashboard-card-bg: #f1f5f9;
-  --dashboard-hover-bg: #f1f5f9;
+  --dashboard-text-primary: var(--text-primary-light);
+  --dashboard-text-secondary: var(--color-text-secondary-light);
+  --dashboard-border-color: var(--border-light);
+  --dashboard-card-bg: var(--bg-tertiary-light);
+  --dashboard-hover-bg: var(--bg-tertiary-light);
   
   /* Premium light theme specific styling */
   background: linear-gradient(135deg, 
-    #ffffff 0%, 
-    #f1f5f9 100%);
+    var(--bg-primary-light) 0%, 
+    var(--bg-tertiary-light) 100%);
   
   /* Light theme shadows */
   --dashboard-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -26,9 +26,9 @@
   --dashboard-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   
   /* Light theme borders */
-  --dashboard-border-light: #e2e8f0;
+  --dashboard-border-light: var(--border-light);
   --dashboard-border-medium: #cbd5e1;
-  --dashboard-border-strong: #94a3b8;
+  --dashboard-border-strong: var(--text-tertiary-light);
 }
 
 /* Status Badges */
@@ -51,7 +51,7 @@
   background: linear-gradient(135deg, 
     rgba(39, 174, 96, 0.10) 0%, 
     rgba(39, 174, 96, 0.20) 100%);
-  color: #27AE60;
+  color: var(--ml-green);
   border: 1px solid rgba(39, 174, 96, 0.40);
   box-shadow: 0 1px 2px 0 rgba(39, 174, 96, 0.1);
   

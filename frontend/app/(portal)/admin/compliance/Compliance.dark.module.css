@@ -1,30 +1,30 @@
 /* @AI-HINT: Admin compliance management dark theme colors */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
   color: #e2e8f0;
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Stats */
 .statCard {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .statValue {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statWarning {
@@ -37,19 +37,19 @@
 
 /* Tabs */
 .tabs {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .tab {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tab:hover {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .tabActive {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 /* Filter */
@@ -58,29 +58,29 @@
 }
 
 .select {
-  background: #1e293b;
-  border-color: #334155;
-  color: #f8fafc;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
 }
 
 .select:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 /* Rules */
 .ruleCard {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .ruleName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .categoryBadge {
-  background: #334155;
-  color: #cbd5e1;
+  background: var(--border-dark);
+  color: var(--text-secondary-dark);
 }
 
 .statusCompliant {
@@ -99,12 +99,12 @@
 }
 
 .statusNA {
-  background: #334155;
-  color: #94a3b8;
+  background: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .ruleDesc {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .ruleNotes {
@@ -123,12 +123,12 @@
 
 /* Policies */
 .policyCard {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .policyName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .policyActive {
@@ -137,22 +137,22 @@
 }
 
 .policyInactive {
-  background: #334155;
-  color: #94a3b8;
+  background: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .policyDetails {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .detailLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Requests */
 .requestCard {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .typeAccess {
@@ -176,8 +176,8 @@
 }
 
 .statusPending {
-  background: #334155;
-  color: #94a3b8;
+  background: var(--border-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .statusInprogress {
@@ -196,7 +196,7 @@
 }
 
 .requestEmail {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .requestMeta {
@@ -205,20 +205,20 @@
 
 /* Reports */
 .reportCard {
-  background: #1e293b;
-  border-color: #334155;
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
 }
 
 .reportName {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .reportDate {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .generating {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .toast {

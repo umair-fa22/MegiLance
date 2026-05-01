@@ -12,12 +12,12 @@
 }
 
 .statCard {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border: 1px solid #e0e0e0;
 }
 
 .section {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border: 1px solid #e0e0e0;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .linkText {
-  color: #4573df;
+  color: var(--ml-blue);
   font-family: 'JetBrains Mono', monospace;
 }
 

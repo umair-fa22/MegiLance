@@ -1,21 +1,21 @@
 /* @AI-HINT: Light theme colors for Admin Blog management page */
-.container { background: #f8fafc; }
+.container { background: var(--bg-secondary-light); }
 .title { color: #1a1a2e; }
-.subtitle { color: #64748b; }
-.statCard { background: #ffffff; border: 1px solid #e8ecf1; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.subtitle { color: var(--color-text-secondary-light); }
+.statCard { background: var(--bg-primary-light); border: 1px solid #e8ecf1; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
 .statCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 .statValue { color: #1a1a2e; }
-.statLabel { color: #64748b; }
-.toolbar { background: #ffffff; border: 1px solid #e8ecf1; }
-.searchInput { background: #f1f5f9; color: #1a1a2e; }
-.searchInput::placeholder { color: #94a3b8; }
-.searchIcon { color: #94a3b8; }
-.filterTab { color: #64748b; }
+.statLabel { color: var(--color-text-secondary-light); }
+.toolbar { background: var(--bg-primary-light); border: 1px solid #e8ecf1; }
+.searchInput { background: var(--bg-tertiary-light); color: #1a1a2e; }
+.searchInput::placeholder { color: var(--text-tertiary-light); }
+.searchIcon { color: var(--text-tertiary-light); }
+.filterTab { color: var(--color-text-secondary-light); }
 .filterTab:hover { color: #1a1a2e; background: rgba(0,0,0,0.03); }
-.filterTabActive { background: #ffffff; color: #1a1a2e; }
-.postCard { background: #ffffff; border: 1px solid #e8ecf1; box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
+.filterTabActive { background: var(--bg-primary-light); color: #1a1a2e; }
+.postCard { background: var(--bg-primary-light); border: 1px solid #e8ecf1; box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
 .postCard:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
 .postTitle { color: #1a1a2e; }
-.postSlug { color: #94a3b8; }
-.postAuthor { color: #64748b; }
-.postDate { color: #94a3b8; }
+.postSlug { color: var(--text-tertiary-light); }
+.postAuthor { color: var(--color-text-secondary-light); }
+.postDate { color: var(--text-tertiary-light); }

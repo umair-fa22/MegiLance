@@ -7,5 +7,5 @@
 .hoverEffect:hover {
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 20px 40px rgba(39, 174, 96, 0.1);
-  border-color: #27AE60;
+  border-color: var(--ml-green);
 }

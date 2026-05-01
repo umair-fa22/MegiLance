@@ -1,7 +1,7 @@
 /* @AI-HINT: Light theme colors for Wallet page */
 
 .page {
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  background: linear-gradient(180deg, var(--bg-secondary-light) 0%, var(--bg-primary-light) 100%);
 }
 
 .title {
@@ -9,13 +9,13 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Balance Cards */
 .balanceCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
@@ -25,7 +25,7 @@
 }
 
 .balanceLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .balanceAmount {
@@ -33,32 +33,32 @@
 }
 
 .balanceSubtext {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Tabs */
 .tabsContainer {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .tab {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tab:hover {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #111827;
 }
 
 .tabActive {
-  background: #4573df;
-  color: #ffffff;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 /* Content */
 .content {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
@@ -69,14 +69,14 @@
 /* Action Buttons */
 .actionButton {
   background: #f9fafb;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #374151;
 }
 
 .actionButton:hover {
-  background: #f1f5f9;
-  border-color: #4573df;
-  color: #4573df;
+  background: var(--bg-tertiary-light);
+  border-color: var(--ml-blue);
+  color: var(--ml-blue);
 }
 
 /* Transactions */
@@ -85,7 +85,7 @@
 }
 
 .transactionItem:hover {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .transactionDesc {
@@ -93,7 +93,7 @@
 }
 
 .transactionDate {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .amountPositive {
@@ -121,7 +121,7 @@
 
 /* View All Button */
 .viewAllButton {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .viewAllButton:hover {
@@ -130,19 +130,19 @@
 
 /* Filter Select */
 .filterSelect {
-  background: #ffffff;
-  border-color: #e2e8f0;
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
   color: #374151;
 }
 
 .filterSelect:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 
 /* Form Styles */
 .formSubtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .formLabel {
@@ -151,41 +151,41 @@
 
 .formInput {
   background: #f9fafb;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
   color: #111827;
 }
 
 .formInput:focus {
-  border-color: #4573df;
-  background: #ffffff;
+  border-color: var(--ml-blue);
+  background: var(--bg-primary-light);
 }
 
 /* Quick Amount Buttons */
 .quickAmountBtn {
-  background: #f1f5f9;
-  border-color: #e2e8f0;
+  background: var(--bg-tertiary-light);
+  border-color: var(--border-light);
   color: #374151;
 }
 
 .quickAmountBtn:hover {
-  background: #4573df;
-  border-color: #4573df;
-  color: #ffffff;
+  background: var(--ml-blue);
+  border-color: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 /* Payout Methods */
 .payoutMethod {
   background: #f9fafb;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .payoutMethod:hover {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
 }
 
 .payoutMethodSelected {
   background: #eff6ff;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .payoutName {
@@ -193,28 +193,28 @@
 }
 
 .payoutLast4 {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Submit Button */
 .submitButton {
-  background: #4573df;
-  color: #ffffff;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
 }
 
 /* Disclaimer */
 .disclaimer {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Payment Info */
 .paymentInfo {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #374151;
 }
 
 .changeButton {
-  background: #e2e8f0;
+  background: var(--border-light);
   color: #374151;
 }
 
@@ -225,11 +225,11 @@
 /* Settings */
 .payoutMethodCard {
   background: #f9fafb;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-light);
 }
 
 .actionLink {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .actionLink:hover {
@@ -238,17 +238,17 @@
 
 .addMethodButton {
   border-color: #cbd5e1;
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .addMethodButton:hover {
-  border-color: #4573df;
-  color: #4573df;
+  border-color: var(--ml-blue);
+  color: var(--ml-blue);
   background: #eff6ff;
 }
 
 .settingsSection {
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .settingsSubtitle {
@@ -264,5 +264,5 @@
 }
 
 .settingDesc {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }

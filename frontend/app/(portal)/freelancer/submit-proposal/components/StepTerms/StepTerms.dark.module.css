@@ -1,22 +1,22 @@
 ﻿.container {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .description {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .toggleAllRow {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .toggleAllButton {
-  background-color: #1e293b;
-  color: #94a3b8;
+  background-color: var(--bg-secondary-dark);
+  color: var(--text-tertiary-dark);
 }
 
 .toggleAllButton:hover {
@@ -25,21 +25,21 @@
 }
 
 .termsSection {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .sectionHeader {
-  background-color: #0f172a;
-  color: #f8fafc;
+  background-color: var(--bg-primary-dark);
+  color: var(--text-primary-dark);
 }
 
 .sectionHeader:hover {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .sectionTitleWrapper {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .sectionIcon {
@@ -47,15 +47,15 @@
 }
 
 .sectionTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .termsList {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .termsItem {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .itemIcon {
@@ -63,8 +63,8 @@
 }
 
 .agreement {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: var(--bg-primary-dark);
+  border: 1px solid var(--border-dark);
 }
 
 .agreementAccepted {
@@ -73,7 +73,7 @@
 }
 
 .agreementLabel {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .error {

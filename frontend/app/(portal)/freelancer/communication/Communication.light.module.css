@@ -1,21 +1,21 @@
 /* @AI-HINT: Light theme colors for Communication Center */
 
 .container {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Stats */
 .statCard {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
@@ -44,50 +44,50 @@
 }
 
 .statValue {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Search */
 .searchBar {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .searchBar:focus-within {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .searchIcon {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .searchInput {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .searchInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .clearSearch {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .clearSearch:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 /* Tabs */
 .tabs {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .tab {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .tab:hover {
@@ -96,43 +96,43 @@
 }
 
 .tabActive {
-  color: #ffffff;
-  background-color: #4573df;
+  color: var(--bg-primary-light);
+  background-color: var(--ml-blue);
 }
 
 .tabActive:hover {
-  color: #ffffff;
+  color: var(--bg-primary-light);
   background-color: #3a62c4;
 }
 
 .tabBadge {
   background-color: #ef4444;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 /* Loading */
 .loadingState {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Message List */
 .messageList {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .listHeader {
-  color: #94a3b8;
-  border-bottom-color: #e2e8f0;
-  background-color: #f8fafc;
+  color: var(--text-tertiary-light);
+  border-bottom-color: var(--border-light);
+  background-color: var(--bg-secondary-light);
 }
 
 .messageItem {
-  border-bottom-color: #f1f5f9;
+  border-bottom-color: var(--bg-tertiary-light);
 }
 
 .messageItem:hover {
-  background-color: #f8fafc;
+  background-color: var(--bg-secondary-light);
 }
 
 .unread {
@@ -145,20 +145,20 @@
 
 .selected {
   background-color: #eef2ff;
-  border-left: 3px solid #4573df;
+  border-left: 3px solid var(--ml-blue);
 }
 
 .avatar {
-  background-color: #e2e8f0;
-  color: #475569;
+  background-color: var(--border-light);
+  color: var(--text-secondary-light);
 }
 
 .senderName {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .messageDate {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .starBtn {
@@ -175,43 +175,43 @@
 }
 
 .messageSubject {
-  color: #1e293b;
+  color: var(--color-text-primary-light);
 }
 
 .messagePreview {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .attachmentBadge {
-  background-color: #f1f5f9;
-  color: #64748b;
+  background-color: var(--bg-tertiary-light);
+  color: var(--color-text-secondary-light);
 }
 
 /* Message Detail */
 .messageDetail {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .detailHeader {
-  border-bottom-color: #e2e8f0;
-  background-color: #ffffff;
+  border-bottom-color: var(--border-light);
+  background-color: var(--bg-primary-light);
 }
 
 .backBtn {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .backBtn:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 .detailSubject {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .detailMeta {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .detailContent {
@@ -219,34 +219,34 @@
 }
 
 .detailActions {
-  border-top-color: #e2e8f0;
-  background-color: #f8fafc;
+  border-top-color: var(--border-light);
+  background-color: var(--bg-secondary-light);
 }
 
 .noSelection {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Attachments */
 .attachmentTitle {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .attachmentItem {
-  background-color: #f8fafc;
-  border-color: #e2e8f0;
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
   color: #334155;
 }
 
 .attachmentItem:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
   border-color: #cbd5e1;
 }
 
 /* Notifications */
 .notificationItem {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .notificationItem:hover {
@@ -254,8 +254,8 @@
 }
 
 .unreadNotif {
-  background-color: #f8fafc;
-  border-left: 3px solid #4573df;
+  background-color: var(--bg-secondary-light);
+  border-left: 3px solid var(--ml-blue);
 }
 
 .notifIcon_success {
@@ -279,21 +279,21 @@
 }
 
 .notifTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .notifMessage {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .notifDate {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Announcements */
 .announcementItem {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
 }
 
 .announcementItem:hover {
@@ -301,85 +301,85 @@
 }
 
 .announcementIcon {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .announcementTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .announcementContent {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .announcementMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Empty State */
 .emptyState {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Modal */
 .modal {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
 }
 
 .modalTitle {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .modalClose {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .modalClose:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary-light);
 }
 
 /* Form */
 .formLabel {
-  color: #475569;
+  color: var(--text-secondary-light);
 }
 
 .input {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
-  color: #0f172a;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .input:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .input::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .textarea {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
-  color: #0f172a;
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--text-primary-light);
 }
 
 .textarea:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .textarea::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 /* Toast */
 .toast {
   background-color: #166534;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }
 
 .toastError {
   background-color: #991b1b;
-  color: #ffffff;
+  color: var(--bg-primary-light);
 }

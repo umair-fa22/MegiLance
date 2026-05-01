@@ -5,7 +5,7 @@
 }
 .heroBadge {
   background: rgba(69,115,223,0.1);
-  color: #4573df;
+  color: var(--ml-blue);
 }
 .heroTitle { color: #1a1a2e; }
 .heroSubtitle { color: #555; }
@@ -24,8 +24,8 @@
   background: rgba(0,0,0,0.03);
   color: #555;
 }
-.filterChip:hover { background: rgba(69,115,223,0.08); color: #4573df; }
-.filterActive { background: #4573df !important; color: #fff !important; }
+.filterChip:hover { background: rgba(69,115,223,0.08); color: var(--ml-blue); }
+.filterActive { background: var(--ml-blue) !important; color: #fff !important; }
 
 /* Trending */
 .trendingCard {
@@ -34,8 +34,8 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.03);
 }
 .trendingCard:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
-.trendingNum { color: #4573df; }
-.seeAll { color: #4573df; }
+.trendingNum { color: var(--ml-blue); }
+.seeAll { color: var(--ml-blue); }
 
 /* Newsletter */
 .newsletter {

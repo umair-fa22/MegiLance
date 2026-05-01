@@ -1,22 +1,22 @@
 ﻿/* @AI-HINT: Dark theme styles for Assessments page */
 
 .page {
-  background-color: #0f172a;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Stat Cards */
 .statCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -45,17 +45,17 @@
 }
 
 .statLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .statValue {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 /* Assessment Cards */
 .assessmentCard {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--bg-secondary-dark);
+  border: 1px solid var(--border-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -64,15 +64,15 @@
 }
 
 .assessmentTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .assessmentDescription {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .assessmentMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Status Badges */
@@ -83,7 +83,7 @@
 
 .statusLocked {
   background-color: rgba(100, 116, 139, 0.2);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Difficulty Badges */
@@ -105,12 +105,12 @@
 /* Category Badge */
 .categoryBadge {
   background-color: rgba(100, 116, 139, 0.2);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Score Display */
 .scoreLabel {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .scoreValue {

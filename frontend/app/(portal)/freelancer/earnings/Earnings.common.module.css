@@ -70,12 +70,12 @@
   justify-content: center;
   flex-shrink: 0;
   background: rgba(69, 115, 223, 0.1);
-  color: var(--color-primary, #4573df);
+  color: var(--color-primary, var(--ml-blue));
 }
 
-.iconAvailable { background: rgba(39, 174, 96, 0.1); color: #27AE60; }
+.iconAvailable { background: rgba(39, 174, 96, 0.1); color: var(--ml-green); }
 .iconPending { background: rgba(242, 201, 76, 0.15); color: #c9a000; }
-.iconWithdrawn { background: rgba(232, 17, 35, 0.1); color: #e81123; }
+.iconWithdrawn { background: rgba(232, 17, 35, 0.1); color: var(--ml-red); }
 .iconGoal { background: rgba(155, 89, 182, 0.1); color: #9b59b6; }
 
 .statInfo { display: flex; flex-direction: column; min-width: 0; }
@@ -83,12 +83,12 @@
 .statLabel { font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
 .statValue { font-size: 1.35rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
 .statTrend { font-size: 0.75rem; display: flex; align-items: center; gap: 4px; margin-top: 2px; }
-.trendUp { color: #27AE60; }
-.trendDown { color: #e81123; }
+.trendUp { color: var(--ml-green); }
+.trendDown { color: var(--ml-red); }
 .statMeta { font-size: 0.75rem; margin-top: 2px; }
 
 .miniProgress { width: 100%; height: 4px; border-radius: 2px; margin-top: 6px; overflow: hidden; }
-.miniProgressFill { height: 100%; border-radius: 2px; background: #4573df; transition: width 0.5s ease; }
+.miniProgressFill { height: 100%; border-radius: 2px; background: var(--ml-blue); transition: width 0.5s ease; }
 
 /* Tab Bar */
 .tabBar {
@@ -142,8 +142,8 @@
 .chartLegend { display: flex; gap: 1.25rem; margin-bottom: 0.75rem; }
 .legendItem { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; }
 .legendDot { width: 10px; height: 10px; border-radius: 3px; }
-.legendEarning { background: #4573df; }
-.legendWithdrawal { background: #e81123; }
+.legendEarning { background: var(--ml-blue); }
+.legendWithdrawal { background: var(--ml-red); }
 
 .chartContainer { padding-top: 0.5rem; }
 
@@ -159,8 +159,8 @@
 .barGroup { display: flex; flex-direction: column; align-items: center; }
 .chartAmount { font-size: 0.65rem; font-weight: 600; margin-bottom: 2px; }
 .chartBar { width: 22px; border-radius: 4px 4px 0 0; transition: height 0.5s ease; min-height: 4px; }
-.earningBar { background: #4573df; }
-.withdrawalBar { background: #e81123; opacity: 0.7; }
+.earningBar { background: var(--ml-blue); }
+.withdrawalBar { background: var(--ml-red); opacity: 0.7; }
 .chartLabel { font-size: 0.75rem; font-weight: 500; }
 
 /* Sources */
@@ -210,8 +210,8 @@
 .txDate { font-size: 0.75rem; }
 .txRight { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
 .txAmount { font-size: 0.9rem; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
-.amountPositive { color: #27AE60; }
-.amountNegative { color: #e81123; }
+.amountPositive { color: var(--ml-green); }
+.amountNegative { color: var(--ml-red); }
 .emptyText { text-align: center; padding: 2rem; font-size: 0.9rem; }
 
 /* Transaction Panel */
@@ -302,9 +302,9 @@
 
 .goalBar { height: 12px; border-radius: 6px; overflow: hidden; }
 .goalFill { height: 100%; border-radius: 6px; transition: width 0.5s ease; }
-.goalComplete { background: #27AE60; }
-.goalGood { background: #4573df; }
-.goalLow { background: #ff9800; }
+.goalComplete { background: var(--ml-green); }
+.goalGood { background: var(--ml-blue); }
+.goalLow { background: var(--ml-orange); }
 
 .goalMeta { display: flex; justify-content: space-between; margin-top: 0.5rem; }
 .goalRemaining { font-size: 0.8rem; }
@@ -329,8 +329,8 @@
 
 .projLabel { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; }
 .projValue { font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; }
-.onTrack { color: #27AE60; }
-.offTrack { color: #ff9800; }
+.onTrack { color: var(--ml-green); }
+.offTrack { color: var(--ml-orange); }
 
 /* Tax Panel */
 .taxPanel { display: flex; flex-direction: column; gap: 1.5rem; }

@@ -33,7 +33,7 @@
 }
 
 .sliderThumb:focus {
-  outline: 2px solid var(--color-primary, #4573df);
+  outline: 2px solid var(--color-primary, var(--ml-blue));
   outline-offset: 2px;
   box-shadow: 0 0 0 4px rgba(69, 115, 223, 0.3);
 }

@@ -1,18 +1,18 @@
 /* AI-HINT: Dark theme overrides for portal Help page — search, categories, FAQ, tutorials, status, contact, ticket form. */
 
 .themeWrapper {
-  background: linear-gradient(170deg, #0f172a 0%, #0f172a 40%, #0f1225 100%);
-  color: #f8fafc;
+  background: linear-gradient(170deg, var(--bg-primary-dark) 0%, var(--bg-primary-dark) 40%, #0f1225 100%);
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .searchInput {
   background: rgba(30, 41, 59, 0.8);
   border-color: rgba(51, 65, 85, 0.6);
-  color: #f8fafc;
+  color: var(--text-primary-dark);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -22,7 +22,7 @@
 
 .quickLink {
   background: rgba(30, 41, 59, 0.5);
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
   border: 1px solid rgba(51, 65, 85, 0.5);
 }
 
@@ -50,11 +50,11 @@
 }
 
 .cardTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .cardDesc {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .cardMeta {
@@ -64,7 +64,7 @@
 /* FAQ */
 .faqFilter {
   background: rgba(30, 41, 59, 0.5);
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
   border-color: rgba(51, 65, 85, 0.5);
 }
 
@@ -74,9 +74,9 @@
 }
 
 .faqFilterActive {
-  background: #4573df;
+  background: var(--ml-blue);
   color: #ffffff;
-  border-color: #4573df;
+  border-color: var(--ml-blue);
 }
 
 .faqItem {
@@ -90,12 +90,12 @@
 }
 
 .faqAnswer {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 .emptyResult {
   background: rgba(30, 41, 59, 0.4);
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Tutorials */
@@ -124,7 +124,7 @@
 }
 
 .statusMeta {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }
 
 /* Contact */
@@ -151,7 +151,7 @@
 .formInput {
   background: rgba(15, 23, 42, 0.6);
   border-color: rgba(51, 65, 85, 0.6);
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .formInput::placeholder {
@@ -161,7 +161,7 @@
 .formTextarea {
   background: rgba(15, 23, 42, 0.6);
   border-color: rgba(51, 65, 85, 0.6);
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .formTextarea::placeholder {
@@ -186,7 +186,7 @@
 }
 
 .button {
-  background: linear-gradient(135deg, #4573df 0%, #2563eb 100%);
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #2563eb 100%);
   color: #ffffff;
   box-shadow: 0 4px 14px rgba(69, 115, 223, 0.3);
 }
@@ -202,8 +202,8 @@
 }
 
 .buttonSecondary {
-  color: #f8fafc;
-  border-color: #334155;
+  color: var(--text-primary-dark);
+  border-color: var(--border-dark);
   background: rgba(30, 41, 59, 0.3);
 }
 

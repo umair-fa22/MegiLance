@@ -5,12 +5,12 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .statCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -19,42 +19,42 @@
 }
 
 .statLabel {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .filters {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
 }
 
 .searchInput {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #1a1a2e;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .searchInput:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.1);
 }
 
 .filterSelect {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #1a1a2e;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .resultsBar {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .resultCount {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .projectCard {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -67,25 +67,25 @@
 }
 
 .clientName {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #4573df, #6b8cff);
+  background: linear-gradient(90deg, var(--ml-blue), #6b8cff);
 }
 
 .pageBtn {
-  background: #f1f5f9;
+  background: var(--bg-tertiary-light);
   color: #1a1a2e;
-  border-color: #e2e8f0;
+  border-color: var(--border-light);
 }
 
 .pageBtn:hover:not(:disabled) {
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .pageBtnActive {
-  background: #4573df;
-  color: #ffffff;
-  border-color: #4573df;
+  background: var(--ml-blue);
+  color: var(--bg-primary-light);
+  border-color: var(--ml-blue);
 }

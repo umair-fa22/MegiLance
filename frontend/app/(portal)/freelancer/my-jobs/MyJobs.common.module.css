@@ -59,11 +59,11 @@
   justify-content: center;
   flex-shrink: 0;
 }
-.kpiIconBlue { background: rgba(69, 115, 223, 0.12); color: #4573df; }
-.kpiIconGreen { background: rgba(39, 174, 96, 0.12); color: #27AE60; }
+.kpiIconBlue { background: rgba(69, 115, 223, 0.12); color: var(--ml-blue); }
+.kpiIconGreen { background: rgba(39, 174, 96, 0.12); color: var(--ml-green); }
 .kpiIconPurple { background: rgba(142, 68, 173, 0.12); color: #8e44ad; }
 .kpiIconOrange { background: rgba(243, 156, 18, 0.12); color: #f39c12; }
-.kpiIconAmber { background: rgba(255, 152, 0, 0.12); color: #ff9800; }
+.kpiIconAmber { background: rgba(255, 152, 0, 0.12); color: var(--ml-orange); }
 .kpiIconTeal { background: rgba(0, 188, 212, 0.12); color: #00bcd4; }
 .kpiContent { display: flex; flex-direction: column; }
 .kpiValue { font-size: 1.5rem; font-weight: 700; line-height: 1.2; }
@@ -114,7 +114,7 @@
   transition: all 0.15s ease;
 }
 .tabActive {
-  border-bottom-color: #4573df;
+  border-bottom-color: var(--ml-blue);
   font-weight: 600;
 }
 
@@ -243,9 +243,9 @@
   justify-content: center;
   flex-shrink: 0;
 }
-.ms_completed { background: rgba(39, 174, 96, 0.15); color: #27AE60; }
-.ms_in-progress { background: rgba(69, 115, 223, 0.15); color: #4573df; }
-.ms_pending { background: rgba(148, 163, 184, 0.15); color: #94a3b8; }
+.ms_completed { background: rgba(39, 174, 96, 0.15); color: var(--ml-green); }
+.ms_in-progress { background: rgba(69, 115, 223, 0.15); color: var(--ml-blue); }
+.ms_pending { background: rgba(148, 163, 184, 0.15); color: var(--text-tertiary-light); }
 .milestoneInfo { display: flex; flex-direction: column; }
 .milestoneName { font-size: 0.9rem; font-weight: 500; }
 .milestoneMeta { font-size: 0.78rem; opacity: 0.7; }
@@ -278,7 +278,7 @@
   width: 48px;
   height: 48px;
   border: 3px solid transparent;
-  border-top-color: #4573df;
+  border-top-color: var(--ml-blue);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }

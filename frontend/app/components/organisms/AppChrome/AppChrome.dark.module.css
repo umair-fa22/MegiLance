@@ -1,8 +1,8 @@
 /* @AI-HINT: Dark theme colors for AppChrome */
 
 .wrapper {
-  background-color: #0f172a;
-  color: #f8fafc;
+  background-color: var(--bg-primary-dark);
+  color: var(--text-primary-dark);
   /* Subtle top radiance for depth */
   background-image:
     radial-gradient(ellipse 80% 40% at 50% -10%, rgba(69, 115, 223, 0.04), transparent);

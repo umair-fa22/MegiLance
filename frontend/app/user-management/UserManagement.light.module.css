@@ -1,14 +1,14 @@
 /* UserManagement.light.module.css */
 .page {
-  background: linear-gradient(170deg, #f0f4ff 0%, #ffffff 40%, #faf8ff 100%);
+  background: linear-gradient(170deg, #f0f4ff 0%, var(--bg-primary-light) 40%, #faf8ff 100%);
 }
 
 .title {
-  color: #0f172a;
+  color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 /* Invite Card */
@@ -35,13 +35,13 @@
 }
 
 .roleSelect {
-  background: #ffffff;
+  background: var(--bg-primary-light);
   border-color: #cbd5e1;
   color: #111;
 }
 
 .roleSelect:focus {
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   outline: none;
 }
 

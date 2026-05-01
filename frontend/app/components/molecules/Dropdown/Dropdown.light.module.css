@@ -1,13 +1,13 @@
 .themeWrapper {
-  --dropdown-bg: #ffffff;
-  --dropdown-border-color: #e2e8f0;
+  --dropdown-bg: var(--bg-primary-light);
+  --dropdown-border-color: var(--border-light);
   --dropdown-border-color-hover: #cbd5e1;
   --dropdown-shadow-focus: 0 6px 20px rgba(69, 115, 223, 0.2);
-  --dropdown-text-color: #0f172a;
-  --dropdown-caret-color: #4573df;
-  --dropdown-option-hover-bg: #f1f5f9;
+  --dropdown-text-color: var(--text-primary-light);
+  --dropdown-caret-color: var(--ml-blue);
+  --dropdown-option-hover-bg: var(--bg-tertiary-light);
   --dropdown-option-focused-bg: rgba(69, 115, 223, 0.12);
-  --dropdown-option-focused-text: #4573df;
+  --dropdown-option-focused-text: var(--ml-blue);
   --dropdown-option-selected-bg: rgba(69, 115, 223, 0.15);
   --dropdown-disabled-bg: #f9fafb;
   --dropdown-disabled-text: #cbd5e1;

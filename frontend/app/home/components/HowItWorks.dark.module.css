@@ -1,7 +1,7 @@
 /* @AI-HINT: Dark theme styles for the How It Works section. */
 
 .howItWorks {
-  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(180deg, var(--bg-primary-dark) 0%, var(--bg-secondary-dark) 100%);
 }
 
 .tagline {
@@ -12,15 +12,15 @@
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .timeline::after {
-  background: linear-gradient(to bottom, #4573df, #ff9800);
+  background: linear-gradient(to bottom, var(--ml-blue), var(--ml-orange));
 }
 
 .timelineContent {
@@ -34,7 +34,7 @@
 
 .timelineContent:hover {
   background: rgba(30, 41, 59, 0.6);
-  border-color: #4573df;
+  border-color: var(--ml-blue);
   box-shadow: 
     0 20px 40px -5px rgba(69, 115, 223, 0.2),
     0 10px 20px -5px rgba(0, 0, 0, 0.2);
@@ -45,9 +45,9 @@
 }
 
 .stepTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .stepDescription {
-  color: #cbd5e1;
+  color: var(--text-secondary-dark);
 }

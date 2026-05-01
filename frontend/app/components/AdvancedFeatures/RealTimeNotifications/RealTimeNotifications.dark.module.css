@@ -5,16 +5,16 @@
 }
 
 .bellButton:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .dropdown {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border: 1px solid #475569;
 }
 
 .header {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   border-bottom-color: #475569;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .markAllButton {
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .markAllButton:hover {
@@ -31,21 +31,21 @@
 }
 
 .notificationItem {
-  background-color: #1e293b;
-  border-bottom-color: #334155;
+  background-color: var(--bg-secondary-dark);
+  border-bottom-color: var(--border-dark);
 }
 
 .notificationItem:hover {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .notificationUnread {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .notificationIcon {
   background-color: #2a3a4d;
-  color: #4573df;
+  color: var(--ml-blue);
 }
 
 .notificationTitle {
@@ -65,8 +65,8 @@
 }
 
 .notificationActions:hover {
-  background-color: #334155;
-  color: #e81123;
+  background-color: var(--border-dark);
+  color: var(--ml-red);
 }
 
 .emptyState {

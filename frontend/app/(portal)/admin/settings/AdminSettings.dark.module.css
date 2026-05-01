@@ -1,44 +1,44 @@
 /* AI-HINT: Dark theme for Enterprise Admin Settings — sidebar, content, forms, save bar */
 
-.themeWrapper { background: #0f172a; color: #f8fafc; }
-.subtitle { color: #94a3b8; }
+.themeWrapper { background: var(--bg-primary-dark); color: var(--text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
 
 /* Unsaved badge */
 .unsavedBadge { background: rgba(251,191,36,0.15); color: #fbbf24; }
 
 /* Sidebar */
-.sidebar { background: #1e293b; border: 1px solid #334155; }
-.sidebarSearchInput { color: #f8fafc; }
+.sidebar { background: var(--bg-secondary-dark); border: 1px solid var(--border-dark); }
+.sidebarSearchInput { color: var(--text-primary-dark); }
 .sidebarSearchInput::placeholder { color: #64748b; }
-.sidebarItem { color: #cbd5e1; }
+.sidebarItem { color: var(--text-secondary-dark); }
 .sidebarItem:hover { background: rgba(255,255,255,0.05); }
 .sidebarItemActive { background: rgba(59,130,246,0.15); color: #93c5fd; }
 .sidebarDesc { color: #64748b; }
 
 /* Content header */
 .contentIcon { background: rgba(59,130,246,0.15); color: #60a5fa; }
-.contentTitle { color: #f8fafc; }
-.contentDesc { color: #94a3b8; }
+.contentTitle { color: var(--text-primary-dark); }
+.contentDesc { color: var(--text-tertiary-dark); }
 
 /* Sections */
-.section { background: #1e293b; border: 1px solid #334155; }
-.sectionTitle { color: #f8fafc; }
-.subsectionTitle { color: #e2e8f0; border-color: #334155; }
+.section { background: var(--bg-secondary-dark); border: 1px solid var(--border-dark); }
+.sectionTitle { color: var(--text-primary-dark); }
+.subsectionTitle { color: #e2e8f0; border-color: var(--border-dark); }
 
 /* Forms */
-.input, .select, .textarea { background: rgba(255,255,255,0.05); border: 1px solid #334155; color: #f8fafc; }
+.input, .select, .textarea { background: rgba(255,255,255,0.05); border: 1px solid var(--border-dark); color: var(--text-primary-dark); }
 .input:focus, .select:focus, .textarea:focus { border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(96,165,250,0.1); }
-.inputSuffix { color: #94a3b8; }
-.inputToggle { color: #94a3b8; }
+.inputSuffix { color: var(--text-tertiary-dark); }
+.inputToggle { color: var(--text-tertiary-dark); }
 .toggleLabel { color: #e2e8f0; }
-.help { color: #94a3b8; }
+.help { color: var(--text-tertiary-dark); }
 
 /* Save bar */
-.saveBar { background: rgba(30,41,59,0.95); border: 1px solid #334155; box-shadow: 0 -2px 16px rgba(0,0,0,0.25); }
+.saveBar { background: rgba(30,41,59,0.95); border: 1px solid var(--border-dark); box-shadow: 0 -2px 16px rgba(0,0,0,0.25); }
 
 /* Button overrides */
-.button.primary { background: #4573df; color: #ffffff; border: 1px solid rgba(0,0,0,0.2); }
-.button.secondary { background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid #334155; }
+.button.primary { background: var(--ml-blue); color: #ffffff; border: 1px solid rgba(0,0,0,0.2); }
+.button.secondary { background: rgba(255,255,255,0.06); color: var(--text-secondary-dark); border: 1px solid var(--border-dark); }
 
 /* Toast */
 .toast { background: rgba(30,41,59,0.95); border: 1px solid rgba(39,174,96,0.4); color: #4ade80; }

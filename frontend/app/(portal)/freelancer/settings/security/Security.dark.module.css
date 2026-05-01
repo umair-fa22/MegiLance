@@ -1,33 +1,33 @@
 /* @AI-HINT: Security settings dark theme */
 
 .container {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .loading {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .title {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Tabs */
 .tabs {
-  border-color: #334155;
+  border-color: var(--border-dark);
 }
 
 .tab {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .tab:hover {
-  color: #f1f5f9;
-  background-color: #1e293b;
+  color: var(--color-text-primary-dark);
+  background-color: var(--bg-secondary-dark);
 }
 
 .activeTab {
@@ -36,16 +36,16 @@
 
 /* Card */
 .card {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .cardTitle {
-  color: #f1f5f9;
+  color: var(--color-text-primary-dark);
 }
 
 .cardDescription {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Status Badge */
@@ -61,7 +61,7 @@
 
 /* Buttons */
 .primaryButton {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
@@ -76,7 +76,7 @@
 }
 
 .secondaryButton:hover {
-  background-color: #334155;
+  background-color: var(--border-dark);
 }
 
 .dangerButton {
@@ -107,14 +107,14 @@
 
 /* Step Number */
 .stepNumber {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
 /* QR Container */
 .qrContainer {
   background-color: #ffffff;
-  border: 1px solid #334155;
+  border: 1px solid var(--border-dark);
 }
 
 .qrPlaceholder {
@@ -124,15 +124,15 @@
 
 /* Secret Code */
 .secretCode {
-  background-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 /* Code Input */
 .codeInput {
   border-color: #475569;
-  background-color: #0f172a;
-  color: #f1f5f9;
+  background-color: var(--bg-primary-dark);
+  color: var(--color-text-primary-dark);
 }
 
 .codeInput:focus {
@@ -146,22 +146,22 @@
 }
 
 .modalContent {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .backupCode {
-  background-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--border-dark);
+  color: var(--color-text-primary-dark);
 }
 
 /* Session Item */
 .sessionItem {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 .sessionItem:hover {
-  background-color: #1e293b;
+  background-color: var(--bg-secondary-dark);
 }
 
 .currentSession {
@@ -170,12 +170,12 @@
 }
 
 .currentBadge {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
   color: #ffffff;
 }
 
 .sessionMeta {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .sessionTime {
@@ -193,7 +193,7 @@
 
 /* Alert Item */
 .alertItem {
-  background-color: #0f172a;
+  background-color: var(--bg-primary-dark);
 }
 
 /* Toggle */
@@ -202,11 +202,11 @@
 }
 
 .toggle input:checked + .toggleSlider {
-  background-color: #4573df;
+  background-color: var(--ml-blue);
 }
 
 .mutedText {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 /* Toast */

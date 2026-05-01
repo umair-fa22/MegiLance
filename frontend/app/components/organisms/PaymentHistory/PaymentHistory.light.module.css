@@ -5,9 +5,9 @@
 }
 
 .searchContainer {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border-color: #e5e5e5;
-  color: #64748b;
+  color: var(--color-text-secondary-light);
 }
 
 .searchInput {
@@ -15,11 +15,11 @@
 }
 
 .searchInput::placeholder {
-  color: #94a3b8;
+  color: var(--text-tertiary-light);
 }
 
 .select {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   color: #0a0a0a;
   border-color: #e5e5e5;
 }
@@ -38,11 +38,11 @@
 
 .error {
   background-color: #fef2f2;
-  color: #e81123;
+  color: var(--ml-red);
 }
 
 .paymentCard {
-  background-color: #ffffff;
+  background-color: var(--bg-primary-light);
   border-color: #e5e5e5;
 }
 

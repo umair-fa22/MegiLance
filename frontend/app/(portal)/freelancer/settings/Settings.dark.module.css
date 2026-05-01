@@ -1,28 +1,28 @@
 ﻿/* @AI-HINT: Dark theme styles for the Settings pages. */
 
 .header {
-  border-bottom: 1px solid #334155;
+  border-bottom: 1px solid var(--border-dark);
 }
 
 .title {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .section {
-  border-color: #334155;
-  background-color: #0f172a;
+  border-color: var(--border-dark);
+  background-color: var(--bg-primary-dark);
 }
 
 .sectionTitle {
-  color: #f8fafc;
+  color: var(--text-primary-dark);
 }
 
 .sectionDescription {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .input {
@@ -35,21 +35,21 @@
 }
 
 .formFooter {
-  border-top: 1px solid #334155;
+  border-top: 1px solid var(--border-dark);
 }
 
-.formContainer { color: #f8fafc; }
-.formHeader { border-bottom-color: #334155; }
-.formTitle { color: #f8fafc; }
-.formDescription { color: #94a3b8; }
+.formContainer { color: var(--text-primary-dark); }
+.formHeader { border-bottom-color: var(--border-dark); }
+.formTitle { color: var(--text-primary-dark); }
+.formDescription { color: var(--text-tertiary-dark); }
 
 .switchDescription {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .radioLabel {
-  border-color: #334155;
-  background-color: #1e293b;
+  border-color: var(--border-dark);
+  background-color: var(--bg-secondary-dark);
 }
 
 .radioLabel:hover {
@@ -58,14 +58,14 @@
 }
 
 .radioDescription {
-  color: #94a3b8;
+  color: var(--text-tertiary-dark);
 }
 
 .accountRow {
-  border-color: #334155;
-  background-color: #1e293b;
+  border-color: var(--border-dark);
+  background-color: var(--bg-secondary-dark);
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+  background: linear-gradient(90deg, var(--bg-secondary-dark) 25%, var(--border-dark) 50%, var(--bg-secondary-dark) 75%);
 }
