@@ -18,7 +18,7 @@ export function setAuthToken(token: string | null) {
     try {
       if (token) {
         sessionStorage.setItem(TOKEN_STORAGE_KEY, token);
-        const maxAge = 35 * 60;
+        const maxAge = 30 * 60;
         const isProduction = window.location.protocol === 'https:';
         const secureFlag = isProduction ? '; Secure' : '';
         document.cookie = `auth_token=${token}; path=/; SameSite=Lax; Max-Age=${maxAge}${secureFlag}`;

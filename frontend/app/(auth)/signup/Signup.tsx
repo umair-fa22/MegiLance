@@ -64,9 +64,9 @@ const Signup: React.FC = () => {
   useEffect(() => {
     const urlRole = searchParams.get('role');
     if (urlRole === 'client' || urlRole === 'freelancer') {
-      setSelectedRole(urlRole);
-    } else {
-      // Check localStorage fallback only on client after mount
+      if (selectedRole !== urlRole) setSelectedRole(urlRole);
+    } else if (selectedRole === 'freelancer') {
+      // Only check localStorage if we're still on the default role
       try {
         const storedRole = window.localStorage.getItem('signup_role');
         if (storedRole === 'client' || storedRole === 'freelancer') {
@@ -75,7 +75,7 @@ const Signup: React.FC = () => {
         }
       } catch { /* localStorage unavailable in private browsing */ }
     }
-  }, [searchParams]);
+  }, [searchParams, selectedRole]);
   
   const [formData, setFormData] = useState({
     fullName: '',

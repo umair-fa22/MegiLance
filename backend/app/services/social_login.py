@@ -115,6 +115,16 @@ class SocialLoginService:
 
     # ── OAuth Flow ───────────────────────────────────────────────────────
 
+    def _cleanup_expired_states(self) -> None:
+        """Remove expired OAuth states from in-memory store."""
+        now = datetime.now(timezone.utc)
+        expired_keys = [
+            key for key, data in self._oauth_states.items()
+            if datetime.fromisoformat(data.get('expires_at', now.isoformat())) < now
+        ]
+        for key in expired_keys:
+            del self._oauth_states[key]
+
     async def start_oauth(
         self,
         provider: SocialProvider,
@@ -124,6 +134,7 @@ class SocialLoginService:
         intent: Optional[str] = None,  # "login" | "register" | "link"
     ) -> Dict[str, Any]:
         """Start OAuth flow - generate authorization URL."""
+        self._cleanup_expired_states()
         config = self.get_oauth_config(provider)
         settings = get_settings()
 
