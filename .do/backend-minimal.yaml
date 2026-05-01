@@ -68,6 +68,10 @@ services:
   - key: STRIPE_WEBHOOK_SECRET
     scope: RUN_TIME
     type: SECRET
+  # AI Service (set in DigitalOcean dashboard)
+  - key: DO_AI_API_KEY
+    scope: RUN_TIME
+    type: SECRET
   # Monitoring (set in DigitalOcean dashboard)
   - key: SENTRY_DSN
     scope: RUN_TIME
