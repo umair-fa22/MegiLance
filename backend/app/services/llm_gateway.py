@@ -26,7 +26,7 @@ class LLMGateway:
     
     def __init__(self):
         # High-performance DigitalOcean AI configuration as primary
-          self.do_api_key = os.getenv("DO_AI_API_KEY", "")
+        self.do_api_key = os.getenv("DO_AI_API_KEY")
         self.do_api_base = os.getenv("DO_AI_API_BASE", "https://inference.do-ai.run/v1")
         self.do_model = os.getenv("DO_AI_MODEL", "llama3.3-70b-instruct")
         

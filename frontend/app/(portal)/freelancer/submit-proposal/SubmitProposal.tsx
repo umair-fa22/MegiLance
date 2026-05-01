@@ -17,7 +17,7 @@ import {
   Home,
 } from "lucide-react";
 
-import { APIError, apiFetch } from "@/lib/api";
+import api, { APIError, apiFetch } from "@/lib/api";
 import { proposalsApi } from "@/lib/api/projects";
 import { ProposalData, ProposalErrors } from "./SubmitProposal.types";
 
