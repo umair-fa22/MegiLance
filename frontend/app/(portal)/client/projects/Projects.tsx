@@ -9,7 +9,6 @@ import {
   PlusCircle,
   Download,
   Search,
-  AlertTriangle,
   SearchX,
   Briefcase,
   CheckCircle2,
@@ -29,8 +28,10 @@ import Select from "@/app/components/molecules/Select/Select";
 import Button from "@/app/components/atoms/Button/Button";
 import Pagination from "@/app/components/molecules/Pagination/Pagination";
 import EmptyState from "@/app/components/molecules/EmptyState/EmptyState";
+import ErrorBanner from "@/app/components/molecules/ErrorBanner/ErrorBanner";
+import Loading from "@/app/components/atoms/Loading/Loading";
+import { useToast } from "@/app/components/molecules/Toast/use-toast";
 import {
-  errorAlertAnimation,
   searchingAnimation,
 } from "@/app/components/Animations/LottieAnimation";
 import common from "./Projects.common.module.css";
@@ -75,6 +76,8 @@ const Projects: React.FC = () => {
   const themed = resolvedTheme === "dark" ? dark : light;
   const router = useRouter();
   const { projects: rawProjects, loading, error } = useClientData();
+  const { toast } = useToast();
+  const [dismissedError, setDismissedError] = useState(false);
   const projects = useMemo(
     () => transformProjectData(rawProjects || []),
     [rawProjects],
@@ -173,8 +176,18 @@ const Projects: React.FC = () => {
           projectsApi.update(id, { status: newStatus.toLowerCase() }),
         ),
       );
+      toast({
+        title: "Success",
+        description: `${ids.length} project(s) status updated`,
+        variant: "success",
+      });
       window.location.reload();
     } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to update project status. Please try again.",
+        variant: "danger",
+      });
       if (process.env.NODE_ENV === "development") {
         console.error("Bulk status change failed:", error);
       }
@@ -195,8 +208,18 @@ const Projects: React.FC = () => {
       await Promise.all(
         ids.map((id) => projectsApi.update(id, { status: "cancelled" })),
       );
+      toast({
+        title: "Success",
+        description: `${ids.length} project(s) archived`,
+        variant: "success",
+      });
       window.location.reload();
     } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to archive projects. Please try again.",
+        variant: "danger",
+      });
       if (process.env.NODE_ENV === "development") {
         console.error("Bulk archive failed:", error);
       }
@@ -213,26 +236,23 @@ const Projects: React.FC = () => {
     return { total, active, completed, totalBudget };
   }, [projects]);
 
-  if (error) {
+  if (error && !dismissedError) {
     return (
-      <EmptyState
-        title="Unable to Load Projects"
-        description="We couldn't connect to the server. Please check your connection and try again."
-        icon={<AlertTriangle size={48} />}
-        animationData={errorAlertAnimation}
-        animationWidth={120}
-        animationHeight={120}
-        action={
-          <Button
-            variant="primary"
-            size="sm"
-            onClick={() => window.location.reload()}
-          >
-            Try Again
-          </Button>
-        }
+      <ErrorBanner
+        title="Failed to load projects"
+        message="We couldn't load your projects. Check your connection and try again."
+        onRetry={() => {
+          setDismissedError(false);
+          window.location.reload();
+        }}
+        onDismiss={() => setDismissedError(true)}
+        showGoHome={true}
       />
     );
+  }
+
+  if (loading) {
+    return <Loading text="Loading projects..." />;
   }
 
   return (

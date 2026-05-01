@@ -18,6 +18,7 @@ import { useUnreadCounts } from "@/contexts/UnreadCountContext";
 import Button from "@/app/components/atoms/Button/Button";
 import Loading from "@/app/components/atoms/Loading/Loading";
 import EmptyState from "@/app/components/molecules/EmptyState/EmptyState";
+import ErrorBanner from "@/app/components/molecules/ErrorBanner/ErrorBanner";
 import ActivityTimeline, {
   TimelineEvent,
 } from "@/app/components/molecules/ActivityTimeline/ActivityTimeline";
@@ -77,6 +78,7 @@ const ClientDashboard: React.FC = () => {
   const { user } = useAuth();
   const { counts } = useUnreadCounts();
   const [showWelcomeBanner, setShowWelcomeBanner] = useState(false);
+  const [dismissedError, setDismissedError] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -481,19 +483,17 @@ const ClientDashboard: React.FC = () => {
           </motion.div>
         </section>
 
-        {error && (
-          <div className={commonStyles.errorBanner} role="alert">
-            <AlertCircle size={16} />
-            <div>
-              <p>Something went wrong loading your dashboard data.</p>
-              <button
-                onClick={() => window.location.reload()}
-                className={commonStyles.retryButton}
-              >
-                Try Again
-              </button>
-            </div>
-          </div>
+        {error && !dismissedError && (
+          <ErrorBanner
+            title="Failed to load dashboard"
+            message="We couldn't load your dashboard data. Check your connection and try again."
+            onRetry={() => {
+              setDismissedError(false);
+              window.location.reload();
+            }}
+            onDismiss={() => setDismissedError(true)}
+            showGoHome={false}
+          />
         )}
 
         {/* Alerts & Pending Actions */}

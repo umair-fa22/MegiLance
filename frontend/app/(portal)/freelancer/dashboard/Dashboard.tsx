@@ -15,6 +15,8 @@ import { apiFetch } from "@/lib/api/core";
 import Button from "@/app/components/atoms/Button/Button";
 import Loading from "@/app/components/atoms/Loading/Loading";
 import EmptyState from "@/app/components/molecules/EmptyState/EmptyState";
+import ErrorBanner from "@/app/components/molecules/ErrorBanner/ErrorBanner";
+import { useToast } from "@/app/components/molecules/Toast/use-toast";
 import {
   searchingAnimation,
   emptyBoxAnimation,
@@ -115,7 +117,9 @@ const Dashboard: React.FC = () => {
   const { analytics, recommendedJobs, proposals, loading, error } =
     useFreelancerData();
   const { user } = useAuth();
+  const { toast } = useToast();
   const [showWelcomeBanner, setShowWelcomeBanner] = useState(false);
+  const [dismissedError, setDismissedError] = useState(false);
   const [sellerStats, setSellerStats] = useState<SellerStatsData | null>(null);
   const [earningsData, setEarningsData] = useState<
     { month: string; amount: number }[]
@@ -398,13 +402,17 @@ const Dashboard: React.FC = () => {
         themeStyles.dashboardContainer,
       )}
     >
-      {error && (
-        <div
-          className={cn(commonStyles.errorBanner, themeStyles.errorBanner)}
-          role="alert"
-        >
-          <AlertCircle size={16} /> {error}
-        </div>
+      {error && !dismissedError && (
+        <ErrorBanner
+          title="Failed to load dashboard"
+          message="We couldn't load your dashboard data. Check your connection and try again."
+          onRetry={() => {
+            setDismissedError(false);
+            window.location.reload();
+          }}
+          onDismiss={() => setDismissedError(true)}
+          showGoHome={false}
+        />
       )}
       {/* Header Section */}
       <div className={commonStyles.headerSection}>

@@ -1,0 +1,38 @@
+/* ConfirmationDialog dark theme */
+.dialog {
+  background-color: #1f2937;
+  border: 1px solid #374151;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+  color: #f3f4f6;
+}
+
+.description {
+  color: #d1d5db;
+}
+
+.danger .iconWrapper {
+  background-color: #7f1d1d;
+}
+
+.danger .icon {
+  color: #fecaca;
+}
+
+.warning .iconWrapper {
+  background-color: #78350f;
+}
+
+.warning .icon {
+  color: #fcd34d;
+}
+
+.info .iconWrapper {
+  background-color: #0c2d48;
+}
+
+.info .icon {
+  color: #7dd3fc;
+}

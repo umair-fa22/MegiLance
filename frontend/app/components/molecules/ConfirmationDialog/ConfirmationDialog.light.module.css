@@ -1,0 +1,38 @@
+/* ConfirmationDialog light theme */
+.dialog {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  color: #111827;
+}
+
+.description {
+  color: #6b7280;
+}
+
+.danger .iconWrapper {
+  background-color: #fee2e2;
+}
+
+.danger .icon {
+  color: #dc2626;
+}
+
+.warning .iconWrapper {
+  background-color: #fef3c7;
+}
+
+.warning .icon {
+  color: #d97706;
+}
+
+.info .iconWrapper {
+  background-color: #dbeafe;
+}
+
+.info .icon {
+  color: #0284c7;
+}

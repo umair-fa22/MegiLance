@@ -1,0 +1,29 @@
+/* ErrorBanner dark theme */
+.banner {
+  background-color: #7f1d1d;
+  border-color: #dc2626;
+}
+
+.iconWrapper {
+  background-color: #991b1b;
+}
+
+.icon {
+  color: #fecaca;
+}
+
+.title {
+  color: #fecaca;
+}
+
+.message {
+  color: #fee2e2;
+}
+
+.dismissBtn {
+  color: #fecaca;
+}
+
+.dismissBtn:hover {
+  background-color: rgba(252, 165, 165, 0.1);
+}
