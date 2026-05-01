@@ -307,11 +307,15 @@ function FileVersionsPage() {
           </>
         )}
         {toast && (
-          <div style={{
-            position: 'fixed', bottom: 24, right: 24, padding: '12px 24px',
-            borderRadius: 8, color: '#fff', zIndex: 9999, fontSize: 14,
-            backgroundColor: toast.type === 'success' ? '#27AE60' : '#e81123',
-          }}>
+          <div
+            className={cn(
+              commonStyles.toast,
+              themeStyles.toast,
+              toast.type === 'success' ? themeStyles.toastSuccess : themeStyles.toastError,
+            )}
+            role="status"
+            aria-live="polite"
+          >
             {toast.message}
           </div>
         )}

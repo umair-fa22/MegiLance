@@ -1,0 +1,23 @@
+/* @AI-HINT: Dark-theme color styles for freelancer video-call page. */
+
+.page {
+  color: var(--text-primary-dark);
+}
+
+.kicker {
+  color: #93c5fd;
+}
+
+.title {
+  color: var(--text-primary-dark);
+}
+
+.description {
+  color: var(--text-tertiary-dark);
+}
+
+.callSurface {
+  background: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}

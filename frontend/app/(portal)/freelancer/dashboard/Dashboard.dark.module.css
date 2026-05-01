@@ -7,6 +7,41 @@
 .welcomeText h1 { color: var(--text-primary-dark); }
 .welcomeText p   { color: var(--text-tertiary-dark); }
 
+/* ── Welcome Banner ─────────────────── */
+.welcomeBanner {
+  background: linear-gradient(135deg, #325fc7 0%, #4e7ee7 100%);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(69, 115, 223, 0.35);
+}
+
+.welcomeBannerTitle,
+.welcomeBannerText {
+  color: #ffffff;
+}
+
+.welcomeBannerText {
+  opacity: 0.92;
+}
+
+.welcomeBannerPrimaryAction {
+  background: #f8fbff;
+  color: #254da8;
+}
+
+.welcomeBannerPrimaryAction:hover {
+  background: #eaf2ff;
+}
+
+.welcomeBannerDismissAction {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.welcomeBannerDismissAction:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
 /* ── Availability & Progress ────────── */
 .availabilityBadge { background-color: rgba(39,174,96,0.2); color: #4ade80; }
 .progressTrack { background-color: rgba(128,128,128,0.3); }

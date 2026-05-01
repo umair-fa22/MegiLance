@@ -1,21 +1,21 @@
 // @AI-HINT: Post-social-signup role selection. New OAuth users land here to choose
 // Client or Freelancer before proceeding. Calls selectRole API to update their
 // account and issue fresh JWT tokens with the chosen role.
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useTheme } from 'next-themes';
-import { cn } from '@/lib/utils';
-import { Briefcase, User, Check } from 'lucide-react';
-import api, { setAuthToken, setRefreshToken } from '@/lib/api';
-import Button from '@/app/components/atoms/Button/Button';
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
+import { cn } from "@/lib/utils";
+import { Briefcase, User, Check } from "lucide-react";
+import api, { setAuthToken, setRefreshToken } from "@/lib/api";
+import Button from "@/app/components/atoms/Button/Button";
 
-import commonStyles from './RoleSelect.common.module.css';
-import lightStyles from './RoleSelect.light.module.css';
-import darkStyles from './RoleSelect.dark.module.css';
+import commonStyles from "./RoleSelect.common.module.css";
+import lightStyles from "./RoleSelect.light.module.css";
+import darkStyles from "./RoleSelect.dark.module.css";
 
-type Role = 'client' | 'freelancer';
+type Role = "client" | "freelancer";
 
 interface RoleSelectResponse {
   access_token?: string;
@@ -28,17 +28,24 @@ interface RoleSelectResponse {
   };
 }
 
-const roles: { id: Role; name: string; description: string; icon: React.ElementType }[] = [
+const roles: {
+  id: Role;
+  name: string;
+  description: string;
+  icon: React.ElementType;
+}[] = [
   {
-    id: 'client',
-    name: 'I want to hire',
-    description: 'Post projects, review proposals, and collaborate with skilled freelancers.',
+    id: "client",
+    name: "I want to hire",
+    description:
+      "Post projects, review proposals, and collaborate with skilled freelancers.",
     icon: Briefcase,
   },
   {
-    id: 'freelancer',
-    name: 'I want to work',
-    description: 'Browse projects, submit proposals, and get paid for your expertise.',
+    id: "freelancer",
+    name: "I want to work",
+    description:
+      "Browse projects, submit proposals, and get paid for your expertise.",
     icon: User,
   },
 ];
@@ -48,18 +55,20 @@ const RoleSelect: React.FC = () => {
   const router = useRouter();
   const [selected, setSelected] = useState<Role | null>(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
-  const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
+  const themeStyles = resolvedTheme === "dark" ? darkStyles : lightStyles;
 
   const handleContinue = async () => {
     if (!selected) return;
 
     setLoading(true);
-    setError('');
+    setError("");
 
     try {
-      const response = await api.socialAuth.selectRole(selected) as RoleSelectResponse;
+      const response = (await api.socialAuth.selectRole(
+        selected,
+      )) as RoleSelectResponse;
 
       // Store fresh tokens with updated role
       if (response.access_token) {
@@ -69,20 +78,27 @@ const RoleSelect: React.FC = () => {
         setRefreshToken(response.refresh_token);
       }
       if (response.user) {
-        localStorage.setItem('user', JSON.stringify(response.user));
+        localStorage.setItem("user", JSON.stringify(response.user));
       }
 
-      localStorage.setItem('portal_area', selected);
+      localStorage.setItem("portal_area", selected);
 
-      if (selected === 'freelancer') {
+      if (selected === "freelancer") {
         // Freelancers proceed to full profile onboarding
-        router.push('/onboarding');
+        router.push("/onboarding");
       } else {
-        // Clients go straight to dashboard
-        router.push('/client/dashboard');
+        // New clients go through onboarding before reaching the dashboard
+        const onboardingDone =
+          localStorage.getItem("onboarding_complete") === "true";
+        router.push(
+          onboardingDone ? "/client/dashboard" : "/onboarding/client",
+        );
       }
     } catch (err: unknown) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to set role. Please try again.';
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : "Failed to set role. Please try again.";
       setError(errorMessage);
     } finally {
       setLoading(false);
@@ -93,14 +109,18 @@ const RoleSelect: React.FC = () => {
     <div className={cn(commonStyles.container, themeStyles.container)}>
       <div className={cn(commonStyles.card, themeStyles.card)}>
         <div className={commonStyles.header}>
-          <h1 className={cn(commonStyles.title, themeStyles.title)}>How will you use MegiLance?</h1>
+          <h1 className={cn(commonStyles.title, themeStyles.title)}>
+            How will you use MegiLance?
+          </h1>
           <p className={cn(commonStyles.subtitle, themeStyles.subtitle)}>
             Choose your primary role. You can always update this later.
           </p>
         </div>
 
         {error && (
-          <div className={cn(commonStyles.error, themeStyles.error)}>{error}</div>
+          <div className={cn(commonStyles.error, themeStyles.error)}>
+            {error}
+          </div>
         )}
 
         <div className={commonStyles.roles}>
@@ -121,12 +141,22 @@ const RoleSelect: React.FC = () => {
                 aria-pressed={isSelected}
                 aria-label={`Select ${role.name}`}
               >
-                <div className={cn(commonStyles.roleIcon, themeStyles.roleIcon)}>
+                <div
+                  className={cn(commonStyles.roleIcon, themeStyles.roleIcon)}
+                >
                   <Icon size={24} />
                 </div>
                 <div className={commonStyles.roleInfo}>
-                  <div className={cn(commonStyles.roleName, themeStyles.roleName)}>{role.name}</div>
-                  <div className={cn(commonStyles.roleDesc, themeStyles.roleDesc)}>{role.description}</div>
+                  <div
+                    className={cn(commonStyles.roleName, themeStyles.roleName)}
+                  >
+                    {role.name}
+                  </div>
+                  <div
+                    className={cn(commonStyles.roleDesc, themeStyles.roleDesc)}
+                  >
+                    {role.description}
+                  </div>
                 </div>
                 <div
                   className={cn(

@@ -1,38 +1,66 @@
 // @AI-HINT: Onboarding flow — guides new users through profile setup with multi-step form, Zod validation, and animated transitions.
-'use client';
+"use client";
 
-import React, { useState, useCallback, useRef } from 'react';
-import { useTheme } from 'next-themes';
-import { cn } from '@/lib/utils';
-import { motion, AnimatePresence } from 'framer-motion';
-import { z } from 'zod';
-import { User, Briefcase, ChevronRight, ChevronLeft, CheckCircle } from 'lucide-react'
-import Button from '@/app/components/atoms/Button/Button';
-import Input from '@/app/components/atoms/Input/Input';
-import Textarea from '@/app/components/atoms/Textarea/Textarea';
-import TagsInput from '@/app/components/atoms/TagsInput/TagsInput';
-import Select from '@/app/components/molecules/Select/Select';
-import FileUpload from '@/app/components/molecules/FileUpload/FileUpload';
-import { PageTransition } from '@/app/components/Animations/PageTransition';
-import { LottieAnimation, welcomeWaveAnimation, walletAnimation } from '@/app/components/Animations/LottieAnimation'
-import api from '@/lib/api';
+import React, { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
+import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
+import { z } from "zod";
+import {
+  User,
+  Briefcase,
+  ChevronRight,
+  ChevronLeft,
+  CheckCircle,
+} from "lucide-react";
+import Button from "@/app/components/atoms/Button/Button";
+import Input from "@/app/components/atoms/Input/Input";
+import Textarea from "@/app/components/atoms/Textarea/Textarea";
+import TagsInput from "@/app/components/atoms/TagsInput/TagsInput";
+import Select from "@/app/components/molecules/Select/Select";
+import FileUpload from "@/app/components/molecules/FileUpload/FileUpload";
+import { PageTransition } from "@/app/components/Animations/PageTransition";
+import {
+  LottieAnimation,
+  welcomeWaveAnimation,
+  walletAnimation,
+} from "@/app/components/Animations/LottieAnimation";
+import api from "@/lib/api";
 
-import commonStyles from './Onboarding.common.module.css';
-import lightStyles from './Onboarding.light.module.css';
-import darkStyles from './Onboarding.dark.module.css';
+import commonStyles from "./Onboarding.common.module.css";
+import lightStyles from "./Onboarding.light.module.css";
+import darkStyles from "./Onboarding.dark.module.css";
 
 // === Validation Schemas ===
 
 const profileSchema = z.object({
-  title: z.string().min(3, 'Professional title must be at least 3 characters').max(100, 'Title must be under 100 characters'),
-  bio: z.string().min(50, 'Bio must be at least 50 characters — tell clients about yourself!').max(2000, 'Bio must be under 2000 characters'),
-  location: z.string().min(2, 'Please enter your location'),
+  title: z
+    .string()
+    .min(3, "Professional title must be at least 3 characters")
+    .max(100, "Title must be under 100 characters"),
+  bio: z
+    .string()
+    .min(
+      50,
+      "Bio must be at least 50 characters — tell clients about yourself!",
+    )
+    .max(2000, "Bio must be under 2000 characters"),
+  location: z.string().min(2, "Please enter your location"),
 });
 
 const skillsSchema = z.object({
-  skills: z.array(z.string()).min(3, 'Add at least 3 skills to help clients find you'),
-  experienceLevel: z.string().min(1, 'Select your experience level'),
-  hourlyRate: z.string().refine((val) => !val || parseFloat(val) > 0, 'Hourly rate must be greater than 0').optional(),
+  skills: z
+    .array(z.string())
+    .min(3, "Add at least 3 skills to help clients find you"),
+  experienceLevel: z.string().min(1, "Select your experience level"),
+  hourlyRate: z
+    .string()
+    .refine(
+      (val) => !val || parseFloat(val) > 0,
+      "Hourly rate must be greater than 0",
+    )
+    .optional(),
 });
 
 const stepSchemas = [null, profileSchema, skillsSchema, null]; // welcome + wallet steps have no validation
@@ -43,17 +71,17 @@ const slideVariants = {
   enter: (dir: number) => ({
     x: dir > 0 ? 60 : -60,
     opacity: 0,
-    filter: 'blur(4px)',
+    filter: "blur(4px)",
   }),
   center: {
     x: 0,
     opacity: 1,
-    filter: 'blur(0px)',
+    filter: "blur(0px)",
   },
   exit: (dir: number) => ({
     x: dir > 0 ? -60 : 60,
     opacity: 0,
-    filter: 'blur(4px)',
+    filter: "blur(4px)",
   }),
 };
 
@@ -70,26 +98,44 @@ interface OnboardingData {
 const TOTAL_STEPS = 4;
 
 const Onboarding: React.FC = () => {
+  const router = useRouter();
   const { resolvedTheme } = useTheme();
   const [step, setStep] = useState(1);
   const [direction, setDirection] = useState(1);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [shakeError, setShakeError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [completedSteps, setCompletedSteps] = useState<Set<number>>(new Set());
   const contentRef = useRef<HTMLDivElement>(null);
 
   const [data, setData] = useState<OnboardingData>({
-    title: '',
-    bio: '',
-    location: '',
+    title: "",
+    bio: "",
+    location: "",
     skills: [],
-    experienceLevel: '',
-    hourlyRate: '',
-    avatarUrl: '',
+    experienceLevel: "",
+    hourlyRate: "",
+    avatarUrl: "",
   });
 
-  const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
+  // Restore saved progress on mount
+  useEffect(() => {
+    try {
+      const savedStep = localStorage.getItem("freelancer_onboarding_step");
+      const savedData = localStorage.getItem("freelancer_onboarding_data");
+      if (savedStep) setStep(parseInt(savedStep, 10));
+      if (savedData) setData(JSON.parse(savedData));
+    } catch {}
+  }, []);
+
+  // Persist progress on every step / data change
+  useEffect(() => {
+    try {
+      localStorage.setItem("freelancer_onboarding_step", String(step));
+      localStorage.setItem("freelancer_onboarding_data", JSON.stringify(data));
+    } catch {}
+  }, [step, data]);
+
+  const themeStyles = resolvedTheme === "dark" ? darkStyles : lightStyles;
 
   const clearFieldError = (field: string) => {
     setErrors((prev) => {
@@ -122,7 +168,7 @@ const Onboarding: React.FC = () => {
 
     const newErrors: Record<string, string> = {};
     for (const issue of result.error.issues) {
-      const key = issue.path.join('.');
+      const key = issue.path.join(".");
       if (!newErrors[key]) newErrors[key] = issue.message;
     }
     setErrors(newErrors);
@@ -133,12 +179,14 @@ const Onboarding: React.FC = () => {
 
   const goNext = () => {
     if (!validateStep()) return;
-    setCompletedSteps((prev) => new Set([...prev, step]));
     if (step < TOTAL_STEPS) {
       setDirection(1);
       setErrors({});
       setStep((s) => s + 1);
-      contentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      contentRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
     }
   };
 
@@ -150,6 +198,18 @@ const Onboarding: React.FC = () => {
     }
   };
 
+  const skipStep = () => {
+    if (step < TOTAL_STEPS) {
+      setDirection(1);
+      setErrors({});
+      setStep((s) => s + 1);
+      contentRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }
+  };
+
   const finishOnboarding = async () => {
     setLoading(true);
     try {
@@ -158,7 +218,7 @@ const Onboarding: React.FC = () => {
         title: data.title,
         bio: data.bio,
         location: data.location,
-        skills: data.skills.join(', '),
+        skills: data.skills.join(", "),
         hourly_rate: data.hourlyRate ? parseFloat(data.hourlyRate) : undefined,
         profile_image_url: data.avatarUrl || undefined,
         experience_level: data.experienceLevel || undefined,
@@ -168,19 +228,26 @@ const Onboarding: React.FC = () => {
       // Continue even if API fails — user can update profile later
     }
 
-    localStorage.setItem('onboarding_complete', 'true');
-    window.location.href = '/freelancer/dashboard';
+    localStorage.setItem("onboarding_complete", "true");
+    localStorage.removeItem("freelancer_onboarding_step");
+    localStorage.removeItem("freelancer_onboarding_data");
+    router.push("/freelancer/dashboard");
   };
 
   const progress = (step / TOTAL_STEPS) * 100;
 
   return (
-    <PageTransition className={cn(commonStyles.container, themeStyles.container)}>
+    <PageTransition
+      className={cn(commonStyles.container, themeStyles.container)}
+    >
       <div className={commonStyles.innerContainer}>
         {/* Progress bar */}
         <div className={commonStyles.progressBar}>
           <motion.div
-            className={cn(commonStyles.progressBarFill, themeStyles.progressBarFill)}
+            className={cn(
+              commonStyles.progressBarFill,
+              themeStyles.progressBarFill,
+            )}
             initial={false}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
@@ -190,7 +257,10 @@ const Onboarding: React.FC = () => {
         {/* Step content */}
         <div
           ref={contentRef}
-          className={cn(commonStyles.stepWrapper, shakeError && commonStyles.shakeError)}
+          className={cn(
+            commonStyles.stepWrapper,
+            shakeError && commonStyles.shakeError,
+          )}
         >
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
@@ -201,7 +271,7 @@ const Onboarding: React.FC = () => {
               animate="center"
               exit="exit"
               transition={{
-                x: { type: 'spring', stiffness: 280, damping: 28 },
+                x: { type: "spring", stiffness: 280, damping: 28 },
                 opacity: { duration: 0.2 },
                 filter: { duration: 0.25 },
               }}
@@ -216,9 +286,22 @@ const Onboarding: React.FC = () => {
                     ariaLabel="Welcome wave"
                     className="mx-auto mb-6"
                   />
-                  <h2 className={cn(commonStyles.stepTitle, themeStyles.stepTitle)}>Welcome to MegiLance!</h2>
-                  <p className={cn(commonStyles.stepDescription, themeStyles.stepDescription)}>
-                    Let&apos;s set up your professional profile so clients can find and hire you. This only takes a couple of minutes.
+                  <h2
+                    className={cn(
+                      commonStyles.stepTitle,
+                      themeStyles.stepTitle,
+                    )}
+                  >
+                    Welcome to MegiLance!
+                  </h2>
+                  <p
+                    className={cn(
+                      commonStyles.stepDescription,
+                      themeStyles.stepDescription,
+                    )}
+                  >
+                    Let&apos;s set up your professional profile so clients can
+                    find and hire you. This only takes a couple of minutes.
                   </p>
                   <Button onClick={goNext} variant="primary" size="lg">
                     Get Started <ChevronRight size={18} />
@@ -229,9 +312,35 @@ const Onboarding: React.FC = () => {
               {step === 2 && (
                 <div className={commonStyles.formStep}>
                   <div className={commonStyles.stepHeader}>
-                    <User size={28} className={cn(commonStyles.stepHeaderIcon, themeStyles.stepHeaderIcon)} />
-                    <h2 className={cn(commonStyles.stepTitle, themeStyles.stepTitle)}>Your Profile</h2>
-                    <p className={cn(commonStyles.stepDescription, themeStyles.stepDescription)}>
+                    <User
+                      size={28}
+                      className={cn(
+                        commonStyles.stepHeaderIcon,
+                        themeStyles.stepHeaderIcon,
+                      )}
+                    />
+                    <p
+                      className={cn(
+                        commonStyles.stepCounter,
+                        themeStyles.stepCounter,
+                      )}
+                    >
+                      Step 2 of {TOTAL_STEPS}
+                    </p>
+                    <h2
+                      className={cn(
+                        commonStyles.stepTitle,
+                        themeStyles.stepTitle,
+                      )}
+                    >
+                      Your Profile
+                    </h2>
+                    <p
+                      className={cn(
+                        commonStyles.stepDescription,
+                        themeStyles.stepDescription,
+                      )}
+                    >
                       Tell clients who you are and what you do.
                     </p>
                   </div>
@@ -242,14 +351,19 @@ const Onboarding: React.FC = () => {
                       accept="image/*"
                       maxSize={5}
                       uploadType="avatar"
-                      onUploadComplete={(url) => setData({ ...data, avatarUrl: url })}
+                      onUploadComplete={(url) =>
+                        setData({ ...data, avatarUrl: url })
+                      }
                     />
                     <Input
                       name="title"
                       label="Professional Title"
                       placeholder="e.g., Full Stack Developer, UI/UX Designer"
                       value={data.title}
-                      onChange={(e) => { setData({ ...data, title: e.target.value }); clearFieldError('title'); }}
+                      onChange={(e) => {
+                        setData({ ...data, title: e.target.value });
+                        clearFieldError("title");
+                      }}
                       error={errors.title}
                     />
                     <Textarea
@@ -257,7 +371,10 @@ const Onboarding: React.FC = () => {
                       label="Professional Bio"
                       placeholder="Describe your experience, expertise, and what makes you stand out..."
                       value={data.bio}
-                      onChange={(e) => { setData({ ...data, bio: e.target.value }); clearFieldError('bio'); }}
+                      onChange={(e) => {
+                        setData({ ...data, bio: e.target.value });
+                        clearFieldError("bio");
+                      }}
                       error={errors.bio}
                       rows={5}
                       helpText={`${data.bio.length}/2000 characters (minimum 50)`}
@@ -267,7 +384,10 @@ const Onboarding: React.FC = () => {
                       label="Location"
                       placeholder="e.g., Lahore, Pakistan"
                       value={data.location}
-                      onChange={(e) => { setData({ ...data, location: e.target.value }); clearFieldError('location'); }}
+                      onChange={(e) => {
+                        setData({ ...data, location: e.target.value });
+                        clearFieldError("location");
+                      }}
                       error={errors.location}
                     />
                   </div>
@@ -277,9 +397,35 @@ const Onboarding: React.FC = () => {
               {step === 3 && (
                 <div className={commonStyles.formStep}>
                   <div className={commonStyles.stepHeader}>
-                    <Briefcase size={28} className={cn(commonStyles.stepHeaderIcon, themeStyles.stepHeaderIcon)} />
-                    <h2 className={cn(commonStyles.stepTitle, themeStyles.stepTitle)}>Skills & Experience</h2>
-                    <p className={cn(commonStyles.stepDescription, themeStyles.stepDescription)}>
+                    <Briefcase
+                      size={28}
+                      className={cn(
+                        commonStyles.stepHeaderIcon,
+                        themeStyles.stepHeaderIcon,
+                      )}
+                    />
+                    <p
+                      className={cn(
+                        commonStyles.stepCounter,
+                        themeStyles.stepCounter,
+                      )}
+                    >
+                      Step 3 of {TOTAL_STEPS}
+                    </p>
+                    <h2
+                      className={cn(
+                        commonStyles.stepTitle,
+                        themeStyles.stepTitle,
+                      )}
+                    >
+                      Skills & Experience
+                    </h2>
+                    <p
+                      className={cn(
+                        commonStyles.stepDescription,
+                        themeStyles.stepDescription,
+                      )}
+                    >
                       Help us match you with the right projects.
                     </p>
                   </div>
@@ -290,20 +436,29 @@ const Onboarding: React.FC = () => {
                       label="Your Skills (Add at least 3)"
                       placeholder="e.g., React, Python, Figma"
                       tags={data.skills}
-                      onTagsChange={(skills) => { setData({ ...data, skills }); clearFieldError('skills'); }}
+                      onTagsChange={(skills) => {
+                        setData({ ...data, skills });
+                        clearFieldError("skills");
+                      }}
                       error={errors.skills}
                     />
                     <Select
                       id="experienceLevel"
                       label="Experience Level"
                       value={data.experienceLevel}
-                      onChange={(e) => { setData({ ...data, experienceLevel: e.target.value }); clearFieldError('experienceLevel'); }}
+                      onChange={(e) => {
+                        setData({ ...data, experienceLevel: e.target.value });
+                        clearFieldError("experienceLevel");
+                      }}
                       error={errors.experienceLevel}
                       options={[
-                        { value: '', label: 'Select your level' },
-                        { value: 'ENTRY', label: 'Entry Level (0-2 years)' },
-                        { value: 'INTERMEDIATE', label: 'Intermediate (2-5 years)' },
-                        { value: 'EXPERT', label: 'Expert (5+ years)' },
+                        { value: "", label: "Select your level" },
+                        { value: "ENTRY", label: "Entry Level (0-2 years)" },
+                        {
+                          value: "INTERMEDIATE",
+                          label: "Intermediate (2-5 years)",
+                        },
+                        { value: "EXPERT", label: "Expert (5+ years)" },
                       ]}
                     />
                     <Input
@@ -312,7 +467,10 @@ const Onboarding: React.FC = () => {
                       label="Hourly Rate (PKR) — Optional"
                       placeholder="e.g., 3000"
                       value={data.hourlyRate}
-                      onChange={(e) => { setData({ ...data, hourlyRate: e.target.value }); clearFieldError('hourlyRate'); }}
+                      onChange={(e) => {
+                        setData({ ...data, hourlyRate: e.target.value });
+                        clearFieldError("hourlyRate");
+                      }}
                       error={errors.hourlyRate}
                       helpText="You can always change this later"
                     />
@@ -329,13 +487,40 @@ const Onboarding: React.FC = () => {
                     ariaLabel="All set"
                     className="mx-auto mb-6"
                   />
-                  <h2 className={cn(commonStyles.stepTitle, themeStyles.stepTitle)}>You&apos;re All Set!</h2>
-                  <p className={cn(commonStyles.stepDescription, themeStyles.stepDescription)}>
-                    Your profile is ready. Connect your wallet for payments, or head straight to your dashboard.
+                  <h2
+                    className={cn(
+                      commonStyles.stepTitle,
+                      themeStyles.stepTitle,
+                    )}
+                  >
+                    You&apos;re All Set!
+                  </h2>
+                  <p
+                    className={cn(
+                      commonStyles.stepDescription,
+                      themeStyles.stepDescription,
+                    )}
+                  >
+                    Your profile is ready. You can jump straight to your
+                    dashboard and complete the rest of your profile whenever you
+                    like.
                   </p>
                   <div className={commonStyles.finalActions}>
-                    <Button onClick={finishOnboarding} variant="primary" size="lg" isLoading={loading}>
+                    <Button
+                      onClick={finishOnboarding}
+                      variant="primary"
+                      size="lg"
+                      isLoading={loading}
+                    >
                       <CheckCircle size={18} /> Go to Dashboard
+                    </Button>
+                    <Button
+                      onClick={finishOnboarding}
+                      variant="ghost"
+                      size="lg"
+                      disabled={loading}
+                    >
+                      Complete Profile Later
                     </Button>
                   </div>
                 </>
@@ -350,12 +535,23 @@ const Onboarding: React.FC = () => {
             <Button variant="ghost" onClick={goBack} disabled={loading}>
               <ChevronLeft size={16} /> Back
             </Button>
-            <span className={cn(commonStyles.stepCounter, themeStyles.stepCounter)}>
-              {step} of {TOTAL_STEPS}
-            </span>
             <Button variant="primary" onClick={goNext} disabled={loading}>
               Continue <ChevronRight size={16} />
             </Button>
+          </div>
+        )}
+
+        {/* Skip link for steps 2 and 3 */}
+        {(step === 2 || step === 3) && (
+          <div className={commonStyles.skipRow}>
+            <button
+              type="button"
+              onClick={skipStep}
+              className={cn(commonStyles.skipButton, themeStyles.skipButton)}
+              aria-label="Skip this step"
+            >
+              Skip for now &rarr;
+            </button>
           </div>
         )}
 
@@ -368,10 +564,10 @@ const Onboarding: React.FC = () => {
                 commonStyles.progressDot,
                 themeStyles.progressDot,
                 step >= i + 1 && commonStyles.progressDotActive,
-                step >= i + 1 && themeStyles.progressDotActive
+                step >= i + 1 && themeStyles.progressDotActive,
               )}
               animate={{ scale: step === i + 1 ? 1.3 : 1 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             />
           ))}
         </div>

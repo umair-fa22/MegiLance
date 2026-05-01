@@ -1,0 +1,59 @@
+/* @AI-HINT: Structural styles for freelancer video-call page layout and spacing. */
+
+.page {
+  min-height: calc(100dvh - var(--header-height, 72px));
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(1rem, 2vw, 1.5rem);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.description {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  max-width: 62ch;
+}
+
+.callSurface {
+  flex: 1;
+  min-height: 0;
+  border-radius: 16px;
+  padding: clamp(0.5rem, 1.4vw, 0.875rem);
+  border: 1px solid transparent;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 0.875rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .description {
+    font-size: 0.875rem;
+  }
+}

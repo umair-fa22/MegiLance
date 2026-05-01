@@ -6,6 +6,10 @@
   color: #1a1a2e;
 }
 
+.errorText {
+  color: var(--color-error, #e81123);
+}
+
 /* ============ HEADER ============ */
 .header {
   background-color: var(--bg-primary-light);

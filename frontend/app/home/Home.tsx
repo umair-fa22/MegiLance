@@ -23,50 +23,50 @@ const Home: React.FC = () => {
 
   return (
     <div className={cn(commonStyles.homePage, themeStyles.homePage)}>
-        <div className={commonStyles.pageContent}>
+        <main id="main-content" className={commonStyles.pageContent}>
           {/* Hero Section */}
-          <div data-testid="hero-section">
+          <section data-testid="hero-section" aria-labelledby="hero-title">
             <ScrollReveal width="100%" direction="none" duration={0.8}>
               <Hero />
             </ScrollReveal>
-          </div>
+          </section>
 
           {/* Trust Indicators */}
-          <div className={commonStyles.homeSection}>
+          <section className={commonStyles.homeSection} aria-label="Trust indicators">
             <div className={commonStyles.sectionContainer}>
               <ScrollReveal width="100%" delay={0.2}>
                 <TrustIndicators />
               </ScrollReveal>
             </div>
-          </div>
+          </section>
 
           {/* Features */}
-          <div className={commonStyles.homeSection}>
+          <section id="features" className={commonStyles.homeSection} aria-label="Platform features">
             <div className={commonStyles.sectionContainer}>
               <ScrollReveal width="100%" direction="right">
                 <Features />
               </ScrollReveal>
             </div>
-          </div>
+          </section>
 
           {/* How It Works */}
-          <div className={commonStyles.homeSection}>
+          <section id="how-it-works" className={commonStyles.homeSection} aria-label="How it works">
             <div className={commonStyles.sectionContainer}>
               <ScrollReveal width="100%" direction="left">
                 <HowItWorks />
               </ScrollReveal>
             </div>
-          </div>
+          </section>
 
           {/* Testimonials */}
-          <div className={commonStyles.homeSection}>
+          <section id="testimonials" className={commonStyles.homeSection} aria-label="User testimonials">
             <div className={commonStyles.sectionContainer}>
               <ScrollReveal width="100%" direction="up">
                 <Testimonials />
               </ScrollReveal>
             </div>
-          </div>
-        </div>
+          </section>
+        </main>
     </div>
   );
 };

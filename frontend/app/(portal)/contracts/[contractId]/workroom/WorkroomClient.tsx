@@ -238,7 +238,7 @@ export default function WorkroomClient({ contractId }: WorkroomClientProps) {
     return (
       <main className={cn(commonStyles.page, themeStyles.page)}>
         <div className={commonStyles.loadingContainer}>
-          <p style={{ marginBottom: '1rem', color: 'var(--color-error, #e81123)' }}>{error}</p>
+          <p className={cn(commonStyles.errorText, themeStyles.errorText)}>{error}</p>
           <Button variant="primary" onClick={fetchData}>Retry</Button>
         </div>
       </main>
@@ -262,11 +262,11 @@ export default function WorkroomClient({ contractId }: WorkroomClientProps) {
     done: tasks.filter(t => t.status === 'done'),
   };
 
-  const columns: { key: TaskStatus; label: string; color: string }[] = [
-    { key: 'todo', label: 'To Do', color: '#94a3b8' },
-    { key: 'in_progress', label: 'In Progress', color: '#3b82f6' },
-    { key: 'review', label: 'In Review', color: '#f59e0b' },
-    { key: 'done', label: 'Done', color: '#22c55e' },
+  const columns: { key: TaskStatus; label: string }[] = [
+    { key: 'todo', label: 'To Do' },
+    { key: 'in_progress', label: 'In Progress' },
+    { key: 'review', label: 'In Review' },
+    { key: 'done', label: 'Done' },
   ];
 
   return (
@@ -330,7 +330,7 @@ export default function WorkroomClient({ contractId }: WorkroomClientProps) {
                       onDrop={() => handleDrop(col.key)}
                     >
                       <div className={commonStyles.columnHeader}>
-                        <span className={commonStyles.columnDot} style={{ backgroundColor: col.color }}></span>
+                        <span className={cn(commonStyles.columnDot, commonStyles[`columnDot_${col.key}`])}></span>
                         <h3 className={themeStyles.columnTitle}>{col.label}</h3>
                         <span className={themeStyles.columnCount}>{tasksByStatus[col.key].length}</span>
                       </div>

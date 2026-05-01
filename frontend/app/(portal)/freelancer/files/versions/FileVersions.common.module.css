@@ -297,6 +297,18 @@
     opacity 0.2s ease;
 }
 
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  z-index: 9999;
+  font-size: 0.875rem;
+  font-weight: 500;
+  max-width: min(520px, calc(100vw - 32px));
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .container {
@@ -392,6 +404,14 @@
 
   .emptyIcon {
     font-size: 3rem;
+  }
+
+  .toast {
+    right: 12px;
+    left: 12px;
+    bottom: 12px;
+    max-width: none;
+    padding: 10px 14px;
   }
 }
 

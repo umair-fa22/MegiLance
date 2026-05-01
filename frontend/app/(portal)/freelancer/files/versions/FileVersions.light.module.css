@@ -170,3 +170,16 @@
 .previewButton:hover {
   background-color: #dbeafe;
 }
+
+.toast {
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+}
+
+.toastSuccess {
+  background-color: #27AE60;
+}
+
+.toastError {
+  background-color: #e81123;
+}

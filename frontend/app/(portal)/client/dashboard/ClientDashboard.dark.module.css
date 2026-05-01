@@ -7,6 +7,41 @@
 .welcomeText h1 { color: var(--color-text-primary-dark); }
 .welcomeText p   { color: var(--text-tertiary-dark); }
 
+/* ── Welcome Banner ─────────────────── */
+.welcomeBanner {
+  background: linear-gradient(135deg, #1f8b4e 0%, #2fa861 100%);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(31, 139, 78, 0.35);
+}
+
+.welcomeBannerTitle,
+.welcomeBannerText {
+  color: #ffffff;
+}
+
+.welcomeBannerText {
+  opacity: 0.92;
+}
+
+.welcomeBannerPrimaryAction {
+  background: #f8fff9;
+  color: #196f3f;
+}
+
+.welcomeBannerPrimaryAction:hover {
+  background: #eaffef;
+}
+
+.welcomeBannerDismissAction {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.welcomeBannerDismissAction:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
 /* ── Section titles & links ─────────── */
 .sectionTitle { color: var(--color-text-primary-dark); }
 .viewAllLink  { color: #60a5fa; }

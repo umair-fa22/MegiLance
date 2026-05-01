@@ -1,0 +1,23 @@
+/* @AI-HINT: Light-theme color styles for freelancer video-call page. */
+
+.page {
+  color: var(--text-primary-light);
+}
+
+.kicker {
+  color: #1d4ed8;
+}
+
+.title {
+  color: var(--text-primary-light);
+}
+
+.description {
+  color: var(--color-text-secondary-light);
+}
+
+.callSurface {
+  background: var(--bg-primary-light);
+  border-color: var(--border-light);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}

@@ -86,6 +86,11 @@
   position: relative;
 }
 
+.tab:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
+}
+
 .tabActive { font-weight: 600; }
 
 .tabBadge {
@@ -307,6 +312,11 @@
   border-radius: 0.75rem;
   text-decoration: none;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.quickAction:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
 }
 
 .quickAction:hover { transform: translateY(-1px); }
@@ -561,6 +571,11 @@
   transition: background 0.15s ease;
 }
 
+.alertActionBtn:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
+}
+
 .alertsViewAll { margin-top: auto; padding-top: 0.5rem; }
 
 /* ── Main Content Grid ──────────────────────────────────── */
@@ -586,6 +601,12 @@
   font-size: 0.8125rem;
   font-weight: 500;
   text-decoration: none;
+}
+
+.viewAllLink:focus-visible {
+  outline: 2px solid var(--color-primary, #4573df);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
 .viewAllLink:hover { text-decoration: underline; }

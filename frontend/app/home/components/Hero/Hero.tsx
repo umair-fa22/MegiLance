@@ -41,7 +41,7 @@ export default function Hero({ stats = defaultStats }) {
           </span>
         </div>
 
-        <h1 className={cn(commonStyles.title, themeStyles.title)}>
+        <h1 id="hero-title" className={cn(commonStyles.title, themeStyles.title)}>
           Hire the best talent. <br />
           <span className={cn(commonStyles.highlight, themeStyles.highlight)}>Zero commission.</span>
         </h1>
@@ -52,15 +52,15 @@ export default function Hero({ stats = defaultStats }) {
         </p>
 
         <div className={cn(commonStyles.actions, themeStyles.actions)}>
-          <Link href="/freelancers" className="btn btn-primary btn-lg">
+          <Link href="/freelancers" className={cn(commonStyles.ctaButton, commonStyles.ctaPrimary, themeStyles.ctaPrimary)}>
             Find Talent
           </Link>
-          <Link href="/explore" className="btn btn-outline btn-lg">
+          <Link href="/explore" className={cn(commonStyles.ctaButton, commonStyles.ctaSecondary, themeStyles.ctaSecondary)}>
             Find Work
           </Link>
         </div>
 
-        <div className={cn(commonStyles.stats, themeStyles.stats)}>
+        <div className={cn(commonStyles.stats, themeStyles.stats)} aria-label="Platform statistics">
           {stats.map((stat, i) => (
             <div key={i} className={cn(commonStyles.statItem, themeStyles.statItem)}>
               <span className={cn(commonStyles.statValue, themeStyles.statValue)}>{stat.value}</span>

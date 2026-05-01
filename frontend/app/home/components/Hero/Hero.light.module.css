@@ -36,3 +36,24 @@
 .statLabel {
   color: var(--color-text-secondary-light);
 }
+
+.ctaPrimary {
+  background: linear-gradient(135deg, var(--ml-blue) 0%, #5b84e8 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(69, 115, 223, 0.25);
+}
+
+.ctaPrimary:hover {
+  box-shadow: 0 14px 30px rgba(69, 115, 223, 0.32);
+}
+
+.ctaSecondary {
+  background: #ffffff;
+  color: var(--text-primary-light);
+  border-color: var(--border-light);
+}
+
+.ctaSecondary:hover {
+  background: var(--bg-tertiary-light);
+  border-color: #cfd9e7;
+}

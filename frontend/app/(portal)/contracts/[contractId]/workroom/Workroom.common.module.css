@@ -13,6 +13,12 @@
   min-height: 400px;
 }
 
+.errorText {
+  margin: 0 0 1rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
 .loadingSpinner {
   width: 40px;
   height: 40px;
@@ -119,6 +125,22 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
+}
+
+.columnDot_todo {
+  background-color: #94a3b8;
+}
+
+.columnDot_in_progress {
+  background-color: #3b82f6;
+}
+
+.columnDot_review {
+  background-color: #f59e0b;
+}
+
+.columnDot_done {
+  background-color: #22c55e;
 }
 
 .taskList {

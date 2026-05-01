@@ -60,6 +60,72 @@
   flex-shrink: 0;
 }
 
+/* ── Welcome Banner ────────────────────────────── */
+.welcomeBanner {
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.welcomeBannerContent {
+  min-width: 0;
+}
+
+.welcomeBannerTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+}
+
+.welcomeBannerText {
+  font-size: 0.875rem;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.welcomeBannerActions {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.welcomeBannerPrimaryAction,
+.welcomeBannerDismissAction {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.welcomeBannerPrimaryAction {
+  font-weight: 700;
+}
+
+.welcomeBannerDismissAction {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.welcomeBannerPrimaryAction:hover,
+.welcomeBannerDismissAction:hover {
+  transform: translateY(-1px);
+}
+
+.welcomeBannerPrimaryAction:focus-visible,
+.welcomeBannerDismissAction:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
 /* ── Stats Grid ─────────────────────────────────── */
 .statsGrid {
   display: grid;
@@ -546,6 +612,22 @@
   .dashboardContainer {
     gap: 1.25rem;
   }
+
+  .welcomeBanner {
+    padding: 1rem;
+  }
+
+  .welcomeBannerActions {
+    width: 100%;
+  }
+
+  .welcomeBannerPrimaryAction,
+  .welcomeBannerDismissAction {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
   .headerSection {
     flex-direction: column;
     align-items: flex-start;
@@ -594,6 +676,14 @@
 @media (max-width: 380px) {
   .dashboardContainer {
     gap: 1rem;
+  }
+
+  .welcomeBannerTitle {
+    font-size: 1rem;
+  }
+
+  .welcomeBannerText {
+    font-size: 0.8rem;
   }
   
   .welcomeText h1 {

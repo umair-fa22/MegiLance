@@ -1,32 +1,40 @@
 /* @AI-HINT: Light theme colors for Onboarding component */
 .container {
-  background: linear-gradient(135deg, var(--bg-tertiary-light) 0%, var(--border-light) 100%);
+    background: linear-gradient(
+        135deg,
+        var(--bg-tertiary-light) 0%,
+        var(--border-light) 100%
+    );
 }
 
 .stepTitle {
-  color: #111827;
+    color: #111827;
 }
 
 .stepDescription {
-  color: var(--color-text-secondary-light);
+    color: var(--color-text-secondary-light);
 }
 
 .stepHeaderIcon {
-  color: var(--ml-blue);
+    color: var(--ml-blue);
 }
 
 .progressBarFill {
-  background: linear-gradient(90deg, var(--ml-blue) 0%, #6b93f2 100%);
+    background: linear-gradient(90deg, var(--ml-blue) 0%, #6b93f2 100%);
 }
 
 .stepCounter {
-  color: var(--color-text-secondary-light);
+    color: var(--ml-blue);
+}
+
+.skipButton {
+    color: var(--color-text-secondary-light);
 }
 
 .progressDot {
-  background-color: #cbd5e1;
+    background-color: #cbd5e1;
 }
 
 .progressDotActive {
-  background-color: var(--ml-blue);
+    background-color: var(--ml-blue);
 }

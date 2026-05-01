@@ -42,7 +42,13 @@
 /* ============================================= */
 /*   SMOOTH THEME TRANSITIONS                   */
 /* ============================================= */
-* {
+body,
+a,
+button,
+input,
+textarea,
+select,
+[role='button'] {
   transition-property: background-color, border-color, color, fill, stroke;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

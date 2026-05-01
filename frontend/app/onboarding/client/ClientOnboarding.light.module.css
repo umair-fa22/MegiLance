@@ -1,0 +1,85 @@
+/* @AI-HINT: Light theme color overrides for ClientOnboarding. Only colors here — structure lives
+   in ClientOnboarding.common.module.css. Follows MegiLance 3-file CSS module pattern. */
+
+/* ─── Container gradient background ─── */
+.container {
+  background: linear-gradient(135deg, var(--bg-tertiary-light) 0%, var(--border-light) 100%);
+}
+
+/* ─── Card ─── */
+.card {
+  background: var(--bg-primary-light);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.07),
+    0 20px 48px rgba(0, 0, 0, 0.05);
+}
+
+/* ─── Step header ─── */
+.stepHeaderIcon {
+  color: var(--ml-blue);
+}
+
+/* ─── Typography ─── */
+.stepTitle {
+  color: #111827;
+}
+
+.stepDescription {
+  color: var(--color-text-secondary-light);
+}
+
+/* ─── Progress bar fill ─── */
+.progressBarFill {
+  background: linear-gradient(90deg, var(--ml-blue) 0%, #6b93f2 100%);
+}
+
+/* ─── Step counter text ─── */
+.stepCounter {
+  color: var(--color-text-secondary-light);
+}
+
+/* ─── Navigation divider ─── */
+.navigation {
+  border-top-color: var(--border-light);
+}
+
+/* ─── Progress dots ─── */
+.progressDot {
+  background-color: #cbd5e1;
+}
+
+.progressDotActive {
+  background-color: var(--ml-blue);
+}
+
+/* ─── Chip label ─── */
+.chipLabel {
+  color: #374151;
+}
+
+/* ─── Chip buttons ─── */
+.chip {
+  background-color: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #475569;
+}
+
+.chip:hover {
+  background-color: #eef2ff;
+  border-color: #93a8e8;
+  color: var(--ml-blue);
+}
+
+/* ─── Selected chip ─── */
+.chipSelected {
+  background-color: #eef2ff;
+  border-color: var(--ml-blue);
+  color: var(--ml-blue);
+  font-weight: 600;
+}
+
+/* ─── Chip error message ─── */
+.chipError {
+  color: #dc2626;
+}

@@ -13,7 +13,6 @@ import ActivityTimeline, { type TimelineEvent } from '@/app/components/molecules
 import ProgressRing from '@/app/components/atoms/ProgressRing/ProgressRing';
 import { PageTransition } from '@/app/components/Animations/PageTransition';
 import { ScrollReveal } from '@/app/components/Animations/ScrollReveal';
-import { StaggerContainer, StaggerItem } from '@/app/components/Animations/StaggerContainer';
 import {
   Users,
   DollarSign,
@@ -474,6 +473,8 @@ const AdminDashboard: React.FC = () => {
                 key={tab}
                 role="tab"
                 aria-selected={activeTab === tab}
+                aria-controls={`admin-tabpanel-${tab}`}
+                id={`admin-tab-${tab}`}
                 className={cn(commonStyles.tab, themeStyles.tab, activeTab === tab && commonStyles.tabActive, activeTab === tab && themeStyles.tabActive)}
                 onClick={() => setActiveTab(tab)}
               >
@@ -488,11 +489,12 @@ const AdminDashboard: React.FC = () => {
       {/* ═══ OVERVIEW TAB ═══ */}
       {activeTab === 'overview' && (
         <ScrollReveal delay={0.2}>
+          <section id="admin-tabpanel-overview" role="tabpanel" aria-labelledby="admin-tab-overview">
           {/* KPI Stats Grid */}
           <section aria-label="Key performance indicators">
-            <motion.div variants={containerVariants} initial="hidden" animate="show" className={commonStyles.motionWrapper} >
+            <motion.div variants={containerVariants} initial="hidden" animate="show" className={cn(commonStyles.motionWrapper, commonStyles.statsGrid)} >
               {stats.map((stat, idx) => (
-                <motion.div variants={itemVariants} className={commonStyles.cardHover} >
+                <motion.div key={`${stat.title}-${idx}`} variants={itemVariants} className={commonStyles.cardHover} >
                   <StatCard {...stat} themeStyles={themeStyles} />
                 </motion.div>
               ))}
@@ -548,9 +550,9 @@ const AdminDashboard: React.FC = () => {
           {/* Quick Actions */}
           <section aria-label="Quick actions">
             <h2 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Quick Actions</h2>
-            <motion.div variants={containerVariants} initial="hidden" animate="show" className={commonStyles.motionWrapper} >
+            <motion.div variants={containerVariants} initial="hidden" animate="show" className={cn(commonStyles.motionWrapper, commonStyles.quickActionsGrid)} >
               {quickActions.map((action, idx) => (
-                <motion.div variants={itemVariants} className={commonStyles.cardHover} >
+                <motion.div key={`${action.label}-${idx}`} variants={itemVariants} className={commonStyles.cardHover} >
                   <QuickAction {...action} themeStyles={themeStyles} />
                 </motion.div>
               ))}
@@ -602,12 +604,14 @@ const AdminDashboard: React.FC = () => {
               </div>
             </div>
           </div>
+          </section>
         </ScrollReveal>
       )}
 
       {/* ═══ SYSTEM HEALTH TAB ═══ */}
       {activeTab === 'health' && (
         <ScrollReveal delay={0.2}>
+          <section id="admin-tabpanel-health" role="tabpanel" aria-labelledby="admin-tab-health">
           {/* Service Status Grid */}
           <div className={cn(commonStyles.healthPanel, themeStyles.healthPanel)}>
             <div className={commonStyles.healthPanelHeader}>
@@ -685,12 +689,14 @@ const AdminDashboard: React.FC = () => {
               </div>
             </div>
           </div>
+          </section>
         </ScrollReveal>
       )}
 
       {/* ═══ SECURITY TAB ═══ */}
       {activeTab === 'security' && (
         <ScrollReveal delay={0.2}>
+          <section id="admin-tabpanel-security" role="tabpanel" aria-labelledby="admin-tab-security">
           {/* Security Overview */}
           <div className={commonStyles.securityRow}>
             <div className={cn(commonStyles.securityCard, themeStyles.securityCard)}>
@@ -765,6 +771,7 @@ const AdminDashboard: React.FC = () => {
             </div>
             <FlaggedFraudList />
           </div>
+          </section>
         </ScrollReveal>
       )}
     </div>

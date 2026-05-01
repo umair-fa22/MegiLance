@@ -230,7 +230,7 @@ const Wallet: React.FC = () => {
               <div className={styles.feeBreakdown} role="region" aria-label="Fee information">
                 <div className={styles.feeRow}>
                   <span className={styles.feeLabel}>
-                    <Info size={13} aria-hidden="true" style={{ opacity: 0.6 }} />
+                    <Info size={13} aria-hidden="true" className={styles.feeIcon} />
                     Platform Commission
                   </span>
                   <span className={styles.feeValue}>{commissionRate}%</span>

@@ -1,29 +1,39 @@
 // @AI-HINT: Redesigned Freelancer Dashboard with modern UI/UX, quick actions, seller stats, sparklines, timeline, progress rings
-'use client';
+"use client";
 
-import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import { motion } from "framer-motion";
-import Link from 'next/link';
-import { useTheme } from 'next-themes';
-import { cn } from '@/lib/utils';
-import { useFreelancerData } from '@/hooks/useFreelancer';
-import { useAuth } from '@/hooks/useAuth';
-import { apiFetch } from '@/lib/api/core';
-import Button from '@/app/components/atoms/Button/Button';
-import Loading from '@/app/components/atoms/Loading/Loading';
-import EmptyState from '@/app/components/molecules/EmptyState/EmptyState';
-import { searchingAnimation, emptyBoxAnimation } from '@/app/components/Animations/LottieAnimation';
-import StatCard from '@/app/components/molecules/StatCard/StatCard';
-import SellerStats, { SellerStatsData } from '@/app/components/organisms/SellerStats/SellerStats';
-import ActivityTimeline, { type TimelineEvent } from '@/app/components/molecules/ActivityTimeline/ActivityTimeline';
-import ProgressRing from '@/app/components/atoms/ProgressRing/ProgressRing';
-import ProfileCompleteness from '@/app/components/organisms/ProfileCompleteness/ProfileCompleteness';
-import EarningsChart from './components/EarningsChart/EarningsChart';
-import JobCard from './components/JobCard';
-import { 
-  Briefcase, 
-  DollarSign, 
-  FileText, 
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+} from "react";
+import Link from "next/link";
+import { useTheme } from "next-themes";
+import { cn } from "@/lib/utils";
+import { useFreelancerData } from "@/hooks/useFreelancer";
+import { useAuth } from "@/hooks/useAuth";
+import { apiFetch } from "@/lib/api/core";
+import Button from "@/app/components/atoms/Button/Button";
+import Loading from "@/app/components/atoms/Loading/Loading";
+import EmptyState from "@/app/components/molecules/EmptyState/EmptyState";
+import {
+  searchingAnimation,
+  emptyBoxAnimation,
+} from "@/app/components/Animations/LottieAnimation";
+import StatCard from "@/app/components/molecules/StatCard/StatCard";
+import SellerStats, {
+  SellerStatsData,
+} from "@/app/components/organisms/SellerStats/SellerStats";
+import ActivityTimeline, {
+  type TimelineEvent,
+} from "@/app/components/molecules/ActivityTimeline/ActivityTimeline";
+import ProgressRing from "@/app/components/atoms/ProgressRing/ProgressRing";
+import ProfileCompleteness from "@/app/components/organisms/ProfileCompleteness/ProfileCompleteness";
+import EarningsChart from "./components/EarningsChart/EarningsChart";
+import JobCard from "./components/JobCard";
+import {
+  Briefcase,
+  DollarSign,
+  FileText,
   Eye,
   Search,
   ArrowRight,
@@ -36,36 +46,37 @@ import {
   Zap,
   Star,
   TrendingUp,
-  AlertCircle
-} from 'lucide-react';
+  AlertCircle,
+} from "lucide-react";
 
-import commonStyles from './Dashboard.common.module.css';
-import lightStyles from './Dashboard.light.module.css';
-import darkStyles from './Dashboard.dark.module.css';
+import commonStyles from "./Dashboard.common.module.css";
+import lightStyles from "./Dashboard.light.module.css";
+import darkStyles from "./Dashboard.dark.module.css";
 
 const LEVEL_DESCRIPTIONS: Record<string, string> = {
-  new_seller: 'Welcome! Complete orders and build your reputation to level up.',
-  bronze: 'Rising seller with a proven track record.',
-  silver: 'Experienced seller delivering great results.',
-  gold: 'Top-rated seller with an outstanding reputation.',
-  platinum: 'Elite seller — among the very best on the platform.',
+  new_seller: "Welcome! Complete orders and build your reputation to level up.",
+  bronze: "Rising seller with a proven track record.",
+  silver: "Experienced seller delivering great results.",
+  gold: "Top-rated seller with an outstanding reputation.",
+  platinum: "Elite seller — among the very best on the platform.",
 };
 
 const BASE_COMMISSION = 20;
 
 /** Map flat backend /seller-stats/me response → SellerStatsData expected by <SellerStats>. */
 function transformSellerStats(raw: Record<string, unknown>): SellerStatsData {
-  const level = (raw.level as string) || 'new_seller';
+  const level = (raw.level as string) || "new_seller";
   const benefits = (raw.benefits ?? {}) as Record<string, unknown>;
   const levelProgress = raw.level_progress as Record<string, unknown> | null;
 
   return {
     userId: raw.user_id as number,
     level: {
-      level: level as SellerStatsData['level']['level'],
+      level: level as SellerStatsData["level"]["level"],
       jssScore: (raw.jss_score as number) ?? 0,
       benefits: {
-        commissionRate: BASE_COMMISSION - ((benefits.reduced_fees as number) ?? 0),
+        commissionRate:
+          BASE_COMMISSION - ((benefits.reduced_fees as number) ?? 0),
         featuredGigs: (benefits.featured_gigs as number) ?? 0,
         prioritySupport: (benefits.priority_support as boolean) ?? false,
         badges: (raw.badges as string[]) ?? (benefits.badges as string[]) ?? [],
@@ -75,7 +86,10 @@ function transformSellerStats(raw: Record<string, unknown>): SellerStatsData {
         ? {
             levelProgress: {
               nextLevel: levelProgress.next_level as string,
-              requirements: levelProgress.requirements as Record<string, { current: number; required: number; percent: number }>,
+              requirements: levelProgress.requirements as Record<
+                string,
+                { current: number; required: number; percent: number }
+              >,
             },
           }
         : {}),
@@ -95,24 +109,24 @@ function transformSellerStats(raw: Record<string, unknown>): SellerStatsData {
     repeatClientRate: (raw.repeat_client_rate as number) ?? 0,
   };
 }
-const containerVariants = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } } };
-const itemVariants = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 24 } } };
-
-
 const Dashboard: React.FC = () => {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const { analytics, recommendedJobs, proposals, loading, error } = useFreelancerData();
+  const { analytics, recommendedJobs, proposals, loading, error } =
+    useFreelancerData();
   const { user } = useAuth();
+  const [showWelcomeBanner, setShowWelcomeBanner] = useState(false);
   const [sellerStats, setSellerStats] = useState<SellerStatsData | null>(null);
-  const [earningsData, setEarningsData] = useState<{ month: string; amount: number }[]>([]);
+  const [earningsData, setEarningsData] = useState<
+    { month: string; amount: number }[]
+  >([]);
 
   useEffect(() => {
     setMounted(true);
-    
+
     const fetchSellerStats = async () => {
       try {
-        const data = await apiFetch('/seller-stats/me');
+        const data = await apiFetch("/seller-stats/me");
         setSellerStats(transformSellerStats(data as Record<string, unknown>));
       } catch {
         // Seller stats are optional - don't block dashboard
@@ -121,20 +135,35 @@ const Dashboard: React.FC = () => {
 
     const fetchEarnings = async () => {
       try {
-        const data = await apiFetch('/portal/freelancer/earnings/monthly?months=6') as { earnings?: { month: string; amount: number }[] };
+        const data = (await apiFetch(
+          "/portal/freelancer/earnings/monthly?months=6",
+        )) as { earnings?: { month: string; amount: number }[] };
         const earningsArray = data.earnings || [];
-        
+
         // Show chart even with no data (will display empty state)
         if (earningsArray.length === 0) {
           // Generate empty months for past 6 months
-          const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+          const monthNames = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ];
           const now = new Date();
           const emptyData = [];
           for (let i = 5; i >= 0; i--) {
             const date = new Date(now.getFullYear(), now.getMonth() - i, 1);
             emptyData.push({
               month: monthNames[date.getMonth()],
-              amount: 0
+              amount: 0,
             });
           }
           setEarningsData(emptyData);
@@ -143,78 +172,118 @@ const Dashboard: React.FC = () => {
         }
       } catch {
         // Show empty chart on error
-        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const monthNames = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
         const now = new Date();
         const emptyData = [];
         for (let i = 5; i >= 0; i--) {
           const date = new Date(now.getFullYear(), now.getMonth() - i, 1);
           emptyData.push({
             month: monthNames[date.getMonth()],
-            amount: 0
+            amount: 0,
           });
         }
         setEarningsData(emptyData);
       }
     };
-    
+
     fetchSellerStats();
     fetchEarnings();
   }, []);
 
-  const themeStyles = mounted && resolvedTheme === 'dark' ? darkStyles : lightStyles;
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const isNewUser = !localStorage.getItem("onboarding_complete");
+    setShowWelcomeBanner(isNewUser);
+  }, []);
 
-  const metrics = useMemo(() => ({
-    earnings: analytics?.totalEarnings || '$0',
-    earningsNum: parseFloat(String(analytics?.totalEarnings || '0').replace(/[$,]/g, '')),
-    activeJobs: analytics?.activeProjects || 0,
-    proposalsSent: analytics?.pendingProposals || 0,
-    profileViews: analytics?.profileViews || 0,
-    completionRate: sellerStats?.completionRate ?? 100,
-    responseRate: sellerStats?.responseRate ?? 100,
-    onTimeRate: sellerStats?.onTimeDeliveryRate ?? 100,
-    jssScore: sellerStats?.level.jssScore ?? 0,
-    profileCompleteness: analytics?.profileCompleteness ?? 0,
-  }), [analytics, sellerStats]);
+  const themeStyles =
+    mounted && resolvedTheme === "dark" ? darkStyles : lightStyles;
+
+  const metrics = useMemo(
+    () => ({
+      earnings: analytics?.totalEarnings || "$0",
+      earningsNum: parseFloat(
+        String(analytics?.totalEarnings || "0").replace(/[$,]/g, ""),
+      ),
+      activeJobs: analytics?.activeProjects || 0,
+      proposalsSent: analytics?.pendingProposals || 0,
+      profileViews: analytics?.profileViews || 0,
+      completionRate: sellerStats?.completionRate ?? 100,
+      responseRate: sellerStats?.responseRate ?? 100,
+      onTimeRate: sellerStats?.onTimeDeliveryRate ?? 100,
+      jssScore: sellerStats?.level.jssScore ?? 0,
+      profileCompleteness: analytics?.profileCompleteness ?? 0,
+    }),
+    [analytics, sellerStats],
+  );
 
   // Generate sparkline data from earnings history
   const earningsSparkline = useMemo(() => {
     if (earningsData.length === 0) return [0, 0, 0, 0, 0, 0];
-    return earningsData.slice(-7).map(d => d.amount);
+    return earningsData.slice(-7).map((d) => d.amount);
   }, [earningsData]);
 
   // Generate activity timeline from proposals
   const recentActivity = useMemo((): TimelineEvent[] => {
     const events: TimelineEvent[] = [];
-    
+
     if (proposals) {
-      proposals.slice(0, 3).forEach(p => {
+      proposals.slice(0, 3).forEach((p) => {
         const statusLower = p.status.toLowerCase();
         events.push({
           id: `proposal-${p.id}`,
-          actor: 'You',
-          action: statusLower === 'accepted' ? 'got accepted on' : statusLower === 'rejected' ? 'proposal declined for' : 'submitted proposal for',
+          actor: "You",
+          action:
+            statusLower === "accepted"
+              ? "got accepted on"
+              : statusLower === "rejected"
+                ? "proposal declined for"
+                : "submitted proposal for",
           target: p.projectTitle,
-          targetHref: '/freelancer/proposals',
+          targetHref: "/freelancer/proposals",
           timestamp: p.sentDate || new Date().toISOString(),
-          type: statusLower === 'accepted' ? 'success' : statusLower === 'rejected' ? 'danger' : 'info',
+          type:
+            statusLower === "accepted"
+              ? "success"
+              : statusLower === "rejected"
+                ? "danger"
+                : "info",
         });
       });
     }
-    
+
     if (recommendedJobs && recommendedJobs.length > 0) {
       events.push({
-        id: 'match-1',
-        actor: 'AI',
+        id: "match-1",
+        actor: "AI",
         action: `found ${recommendedJobs.length} new job matches`,
-        target: 'based on your skills',
-        targetHref: '/jobs',
+        target: "based on your skills",
+        targetHref: "/jobs",
         timestamp: new Date().toISOString(),
-        type: 'purple',
+        type: "purple",
         badge: `${recommendedJobs.length} jobs`,
       });
     }
 
-    return events.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()).slice(0, 5);
+    return events
+      .sort(
+        (a, b) =>
+          new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
+      )
+      .slice(0, 5);
   }, [proposals, recommendedJobs]);
   // Generate performance alerts
   const performanceAlerts = useMemo(() => {
@@ -222,41 +291,41 @@ const Dashboard: React.FC = () => {
 
     if (metrics.jssScore < 70) {
       alerts.push({
-        id: 'jss-score',
-        type: 'warning' as const,
-        title: 'Low Job Success Score',
+        id: "jss-score",
+        type: "warning" as const,
+        title: "Low Job Success Score",
         message: `Your JSS is ${metrics.jssScore}%. Focus on on-time delivery and client satisfaction.`,
-        action: { label: 'View My Contracts', href: '/freelancer/contracts' }
+        action: { label: "View My Contracts", href: "/freelancer/contracts" },
       });
     }
 
     if (metrics.completionRate < 85) {
       alerts.push({
-        id: 'completion-rate',
-        type: 'warning' as const,
-        title: 'Low Completion Rate',
+        id: "completion-rate",
+        type: "warning" as const,
+        title: "Low Completion Rate",
         message: `Your completion rate is ${metrics.completionRate}%. Avoid cancellations to maintain your reputation.`,
-        action: { label: 'View My Active Jobs', href: '/freelancer/my-jobs' }
+        action: { label: "View My Active Jobs", href: "/freelancer/my-jobs" },
       });
     }
 
     if (metrics.responseRate < 90) {
       alerts.push({
-        id: 'response-rate',
-        type: 'info' as const,
-        title: 'Response Rate Below Target',
+        id: "response-rate",
+        type: "info" as const,
+        title: "Response Rate Below Target",
         message: `Clients expect responses within 24 hours. Current rate: ${metrics.responseRate}%.`,
-        action: { label: 'Check Messages', href: '/freelancer/messages' }
+        action: { label: "Check Messages", href: "/freelancer/messages" },
       });
     }
 
     if (metrics.profileCompleteness < 70) {
       alerts.push({
-        id: 'profile-completeness',
-        type: 'info' as const,
-        title: 'Complete Your Profile',
+        id: "profile-completeness",
+        type: "info" as const,
+        title: "Complete Your Profile",
         message: `Your profile is ${metrics.profileCompleteness}% complete. Add more details to attract clients.`,
-        action: { label: 'Complete Profile', href: '/freelancer/profile' }
+        action: { label: "Complete Profile", href: "/freelancer/profile" },
       });
     }
 
@@ -265,26 +334,75 @@ const Dashboard: React.FC = () => {
 
   // Quick actions for the grid
   const quickActions = [
-    { label: 'Find Work', href: '/jobs', icon: Search, color: 'primary' as const, desc: 'Browse jobs' },
-    { label: 'My Gigs', href: '/freelancer/gigs', icon: Package, color: 'success' as const, desc: 'Manage offerings' },
-    { label: 'Proposals', href: '/freelancer/proposals', icon: FileText, color: 'info' as const, desc: `${metrics.proposalsSent} sent` },
-    { label: 'Messages', href: '/freelancer/messages', icon: MessageSquare, color: 'purple' as const, desc: 'Chat with clients' },
-    { label: 'Analytics', href: '/freelancer/analytics', icon: BarChart3, color: 'warning' as const, desc: 'View insights' },
-    { label: 'Profile', href: '/freelancer/profile', icon: User, color: 'danger' as const, desc: `${metrics.profileCompleteness}% complete` },
+    {
+      label: "Find Work",
+      href: "/jobs",
+      icon: Search,
+      color: "primary" as const,
+      desc: "Browse jobs",
+    },
+    {
+      label: "My Gigs",
+      href: "/freelancer/gigs",
+      icon: Package,
+      color: "success" as const,
+      desc: "Manage offerings",
+    },
+    {
+      label: "Proposals",
+      href: "/freelancer/proposals",
+      icon: FileText,
+      color: "info" as const,
+      desc: `${metrics.proposalsSent} sent`,
+    },
+    {
+      label: "Messages",
+      href: "/freelancer/messages",
+      icon: MessageSquare,
+      color: "purple" as const,
+      desc: "Chat with clients",
+    },
+    {
+      label: "Analytics",
+      href: "/freelancer/analytics",
+      icon: BarChart3,
+      color: "warning" as const,
+      desc: "View insights",
+    },
+    {
+      label: "Profile",
+      href: "/freelancer/profile",
+      icon: User,
+      color: "danger" as const,
+      desc: `${metrics.profileCompleteness}% complete`,
+    },
   ];
 
   if (!mounted) {
     return (
-      <div className={cn(commonStyles.dashboardContainer, commonStyles.loadingContainer)}>
+      <div
+        className={cn(
+          commonStyles.dashboardContainer,
+          commonStyles.loadingContainer,
+        )}
+      >
         <Loading />
       </div>
     );
   }
 
   return (
-    <div className={cn(commonStyles.dashboardContainer, themeStyles.dashboardContainer)}>
+    <div
+      className={cn(
+        commonStyles.dashboardContainer,
+        themeStyles.dashboardContainer,
+      )}
+    >
       {error && (
-        <div className={cn(commonStyles.errorBanner, themeStyles.errorBanner)} role="alert">
+        <div
+          className={cn(commonStyles.errorBanner, themeStyles.errorBanner)}
+          role="alert"
+        >
           <AlertCircle size={16} /> {error}
         </div>
       )}
@@ -292,9 +410,17 @@ const Dashboard: React.FC = () => {
       <div className={commonStyles.headerSection}>
         <div className={cn(commonStyles.welcomeText, themeStyles.welcomeText)}>
           <div className={commonStyles.welcomeRow}>
-            <h1>Welcome back{user?.name ? `, ${user.name.split(' ')[0]}` : ''}</h1>
-            {analytics?.availabilityStatus === 'available' && (
-              <span className={cn(commonStyles.availabilityBadge, themeStyles.availabilityBadge)} aria-label="Status: Available">
+            <h1>
+              Welcome back{user?.name ? `, ${user.name.split(" ")[0]}` : ""}
+            </h1>
+            {analytics?.availabilityStatus === "available" && (
+              <span
+                className={cn(
+                  commonStyles.availabilityBadge,
+                  themeStyles.availabilityBadge,
+                )}
+                aria-label="Status: Available"
+              >
                 <Circle size={8} fill="#27AE60" aria-hidden="true" /> Available
               </span>
             )}
@@ -304,46 +430,110 @@ const Dashboard: React.FC = () => {
           ) : (
             <p>You have new job matches waiting for you.</p>
           )}
-          {analytics?.profileCompleteness != null && analytics.profileCompleteness < 80 && (
-            <div className={commonStyles.profileProgressRow}>
-              <div
-                className={cn(commonStyles.progressTrack, themeStyles.progressTrack)}
-                role="progressbar"
-                aria-valuenow={analytics.profileCompleteness || 0}
-                aria-valuemin={0}
-                aria-valuemax={100}
-                aria-label={`Profile ${analytics.profileCompleteness}% complete`}
-              >
+          {analytics?.profileCompleteness != null &&
+            analytics.profileCompleteness < 80 && (
+              <div className={commonStyles.profileProgressRow}>
                 <div
-                  className={cn(commonStyles.progressFill, analytics.profileCompleteness >= 60 ? commonStyles.progressFillGreen : commonStyles.progressFillYellow)}
-                  // NOSONAR
-                  style={{ width: `${analytics.profileCompleteness}%` }}
-                />
+                  className={cn(
+                    commonStyles.progressTrack,
+                    themeStyles.progressTrack,
+                  )}
+                  role="progressbar"
+                  aria-valuenow={analytics.profileCompleteness || 0}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-label={`Profile ${analytics.profileCompleteness}% complete`}
+                >
+                  <div
+                    className={cn(
+                      commonStyles.progressFill,
+                      analytics.profileCompleteness >= 60
+                        ? commonStyles.progressFillGreen
+                        : commonStyles.progressFillYellow,
+                    )}
+                    // NOSONAR
+                    style={{ width: `${analytics.profileCompleteness}%` }}
+                  />
+                </div>
+                <span
+                  className={cn(
+                    commonStyles.progressLabel,
+                    themeStyles.progressLabel,
+                  )}
+                >
+                  Profile {analytics.profileCompleteness}% complete
+                </span>
+                <Link
+                  href="/freelancer/profile"
+                  className={cn(
+                    commonStyles.progressLink,
+                    themeStyles.progressLink,
+                  )}
+                >
+                  Complete it <ArrowRight size={12} aria-hidden="true" />
+                </Link>
               </div>
-              <span className={cn(commonStyles.progressLabel, themeStyles.progressLabel)}>Profile {analytics.profileCompleteness}% complete</span>
-              <Link href="/freelancer/profile" className={cn(commonStyles.progressLink, themeStyles.progressLink)}>
-                Complete it <ArrowRight size={12} aria-hidden="true" />
-              </Link>
-            </div>
-          )}
+            )}
         </div>
         <div className={commonStyles.headerActions}>
           <Link href="/freelancer/gigs">
-            <Button variant="outline" size="lg" iconBefore={<Package size={18} />}>
+            <Button
+              variant="outline"
+              size="lg"
+              iconBefore={<Package size={18} />}
+            >
               My Gigs
             </Button>
           </Link>
           <Link href="/jobs">
-            <Button variant="primary" size="lg" iconBefore={<Search size={18} />}>
+            <Button
+              variant="primary"
+              size="lg"
+              iconBefore={<Search size={18} />}
+            >
               Find Work
             </Button>
           </Link>
         </div>
       </div>
 
+      {/* Welcome Banner — shown only to new users who haven't completed onboarding */}
+      {showWelcomeBanner && (
+        <div className={cn(commonStyles.welcomeBanner, themeStyles.welcomeBanner)}>
+          <div className={commonStyles.welcomeBannerContent}>
+            <h3 className={cn(commonStyles.welcomeBannerTitle, themeStyles.welcomeBannerTitle)}>
+              🎉 Welcome to MegiLance,{" "}
+              {user?.name?.split(" ")[0] || "Freelancer"}!
+            </h3>
+            <p className={cn(commonStyles.welcomeBannerText, themeStyles.welcomeBannerText)}>
+              Complete your profile to get discovered by top clients and land
+              your first project.
+            </p>
+          </div>
+          <div className={commonStyles.welcomeBannerActions}>
+            <Link href="/onboarding" className={cn(commonStyles.welcomeBannerPrimaryAction, themeStyles.welcomeBannerPrimaryAction)}>
+              Complete Profile
+            </Link>
+            <button
+              onClick={() => {
+                localStorage.setItem("onboarding_complete", "dismissed");
+                setShowWelcomeBanner(false);
+              }}
+              className={cn(commonStyles.welcomeBannerDismissAction, themeStyles.welcomeBannerDismissAction)}
+              type="button"
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Performance Alerts Section */}
       {performanceAlerts.length > 0 && (
-        <section aria-label="Performance alerts" className={commonStyles.alertsSection}>
+        <section
+          aria-label="Performance alerts"
+          className={commonStyles.alertsSection}
+        >
           <div className={commonStyles.alertsGrid}>
             {performanceAlerts.map((alert) => (
               <div
@@ -352,21 +542,32 @@ const Dashboard: React.FC = () => {
                   commonStyles.alertCard,
                   themeStyles.alertCard,
                   commonStyles[`alertCard-${alert.type}`],
-                  themeStyles[`alertCard-${alert.type}`]
+                  themeStyles[`alertCard-${alert.type}`],
                 )}
                 role="status"
                 aria-live="polite"
               >
                 <div className={commonStyles.alertContent}>
-                  <AlertCircle size={18} className={commonStyles.alertIcon} aria-hidden="true" />
+                  <AlertCircle
+                    size={18}
+                    className={commonStyles.alertIcon}
+                    aria-hidden="true"
+                  />
                   <div className={commonStyles.alertText}>
                     <h3 className={commonStyles.alertTitle}>{alert.title}</h3>
                     <p className={commonStyles.alertMessage}>{alert.message}</p>
                   </div>
                 </div>
                 {alert.action && (
-                  <Link href={alert.action.href} className={cn(commonStyles.alertAction, themeStyles.alertAction)}>
-                    {alert.action.label} <ArrowRight size={14} aria-hidden="true" />
+                  <Link
+                    href={alert.action.href}
+                    className={cn(
+                      commonStyles.alertAction,
+                      themeStyles.alertAction,
+                    )}
+                  >
+                    {alert.action.label}{" "}
+                    <ArrowRight size={14} aria-hidden="true" />
                   </Link>
                 )}
               </div>
@@ -380,96 +581,203 @@ const Dashboard: React.FC = () => {
 
       {/* Stats Grid — with sparklines */}
       <section aria-label="Performance statistics">
-      <div className={commonStyles.statsGrid}>
-        <StatCard 
-          title="Total Earnings" 
-          value={metrics.earnings} 
-          icon={DollarSign}
-          sparklineData={earningsSparkline}
-          sparklineColor="success"
-          href="/freelancer/earnings"
-        />
-        <StatCard 
-          title="Active Jobs" 
-          value={metrics.activeJobs.toString()} 
-          icon={Briefcase}
-          sparklineColor="primary"
-        />
-        <StatCard 
-          title="Proposals Sent" 
-          value={metrics.proposalsSent.toString()} 
-          icon={FileText}
-          href="/freelancer/proposals"
-        />
-        <StatCard 
-          title="Profile Views" 
-          value={metrics.profileViews.toString()} 
-          icon={Eye}
-          sparklineColor="warning"
-          href="/freelancer/analytics"
-        />
-      </div>
+        <div className={commonStyles.statsGrid}>
+          <StatCard
+            title="Total Earnings"
+            value={metrics.earnings}
+            icon={DollarSign}
+            sparklineData={earningsSparkline}
+            sparklineColor="success"
+            href="/freelancer/earnings"
+          />
+          <StatCard
+            title="Active Jobs"
+            value={metrics.activeJobs.toString()}
+            icon={Briefcase}
+            sparklineColor="primary"
+          />
+          <StatCard
+            title="Proposals Sent"
+            value={metrics.proposalsSent.toString()}
+            icon={FileText}
+            href="/freelancer/proposals"
+          />
+          <StatCard
+            title="Profile Views"
+            value={metrics.profileViews.toString()}
+            icon={Eye}
+            sparklineColor="warning"
+            href="/freelancer/analytics"
+          />
+        </div>
       </section>
 
       {/* Performance Metrics — Progress Rings */}
       <section aria-label="Performance metrics">
-      <div className={commonStyles.metricsRow}>
-        <div className={cn(commonStyles.metricCard, themeStyles.metricCard)}>
-          <ProgressRing value={metrics.completionRate} label="Completion Rate" size="lg" color="success" />
-          <span className={cn(commonStyles.metricHint, themeStyles.metricHint)}>% of orders delivered vs. total accepted</span>
-        </div>
-        <div className={cn(commonStyles.metricCard, themeStyles.metricCard)}>
-          <ProgressRing value={metrics.responseRate} label="Response Rate" size="lg" color="primary" />
-          <span className={cn(commonStyles.metricHint, themeStyles.metricHint)}>% of messages responded to within 24h</span>
-        </div>
-        <div className={cn(commonStyles.metricCard, themeStyles.metricCard)}>
-          <ProgressRing value={metrics.onTimeRate} label="On-Time Delivery" size="lg" color="warning" />
-          <span className={cn(commonStyles.metricHint, themeStyles.metricHint)}>% of orders delivered before deadline</span>
-        </div>
-        <div className={cn(commonStyles.metricCard, themeStyles.metricCard)}>
-          <div className={commonStyles.metricStats}>
-            <div className={commonStyles.metricStatItem}>
-              <Star size={16} className={commonStyles.metricIconWarning} />
-              <span className={cn(commonStyles.metricStatValue, themeStyles.metricStatValue)}>{sellerStats?.averageRating?.toFixed(1) ?? '—'}</span>
-              <span className={cn(commonStyles.metricStatLabel, themeStyles.metricStatLabel)}>Rating</span>
-            </div>
-            <div className={commonStyles.metricStatItem}>
-              <TrendingUp size={16} className={commonStyles.metricIconSuccess} />
-              <span className={cn(commonStyles.metricStatValue, themeStyles.metricStatValue)}>{metrics.jssScore}%</span>
-              <span className={cn(commonStyles.metricStatLabel, themeStyles.metricStatLabel)} title="Job Success Score (0-100) — updated weekly based on completion, on-time delivery, and client ratings">JSS Score</span>
-            </div>
-            <div className={commonStyles.metricStatItem}>
-              <Zap size={16} className={commonStyles.metricIconPrimary} />
-              <span className={cn(commonStyles.metricStatValue, themeStyles.metricStatValue)}>{sellerStats?.totalOrders ?? 0}</span>
-              <span className={cn(commonStyles.metricStatLabel, themeStyles.metricStatLabel)}>Total Orders</span>
+        <div className={commonStyles.metricsRow}>
+          <div className={cn(commonStyles.metricCard, themeStyles.metricCard)}>
+            <ProgressRing
+              value={metrics.completionRate}
+              label="Completion Rate"
+              size="lg"
+              color="success"
+            />
+            <span
+              className={cn(commonStyles.metricHint, themeStyles.metricHint)}
+            >
+              % of orders delivered vs. total accepted
+            </span>
+          </div>
+          <div className={cn(commonStyles.metricCard, themeStyles.metricCard)}>
+            <ProgressRing
+              value={metrics.responseRate}
+              label="Response Rate"
+              size="lg"
+              color="primary"
+            />
+            <span
+              className={cn(commonStyles.metricHint, themeStyles.metricHint)}
+            >
+              % of messages responded to within 24h
+            </span>
+          </div>
+          <div className={cn(commonStyles.metricCard, themeStyles.metricCard)}>
+            <ProgressRing
+              value={metrics.onTimeRate}
+              label="On-Time Delivery"
+              size="lg"
+              color="warning"
+            />
+            <span
+              className={cn(commonStyles.metricHint, themeStyles.metricHint)}
+            >
+              % of orders delivered before deadline
+            </span>
+          </div>
+          <div className={cn(commonStyles.metricCard, themeStyles.metricCard)}>
+            <div className={commonStyles.metricStats}>
+              <div className={commonStyles.metricStatItem}>
+                <Star size={16} className={commonStyles.metricIconWarning} />
+                <span
+                  className={cn(
+                    commonStyles.metricStatValue,
+                    themeStyles.metricStatValue,
+                  )}
+                >
+                  {sellerStats?.averageRating?.toFixed(1) ?? "—"}
+                </span>
+                <span
+                  className={cn(
+                    commonStyles.metricStatLabel,
+                    themeStyles.metricStatLabel,
+                  )}
+                >
+                  Rating
+                </span>
+              </div>
+              <div className={commonStyles.metricStatItem}>
+                <TrendingUp
+                  size={16}
+                  className={commonStyles.metricIconSuccess}
+                />
+                <span
+                  className={cn(
+                    commonStyles.metricStatValue,
+                    themeStyles.metricStatValue,
+                  )}
+                >
+                  {metrics.jssScore}%
+                </span>
+                <span
+                  className={cn(
+                    commonStyles.metricStatLabel,
+                    themeStyles.metricStatLabel,
+                  )}
+                  title="Job Success Score (0-100) — updated weekly based on completion, on-time delivery, and client ratings"
+                >
+                  JSS Score
+                </span>
+              </div>
+              <div className={commonStyles.metricStatItem}>
+                <Zap size={16} className={commonStyles.metricIconPrimary} />
+                <span
+                  className={cn(
+                    commonStyles.metricStatValue,
+                    themeStyles.metricStatValue,
+                  )}
+                >
+                  {sellerStats?.totalOrders ?? 0}
+                </span>
+                <span
+                  className={cn(
+                    commonStyles.metricStatLabel,
+                    themeStyles.metricStatLabel,
+                  )}
+                >
+                  Total Orders
+                </span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </section>
 
       {/* Earnings Chart - Always show, displays empty state if no data */}
       <div className={commonStyles.sectionContainer}>
-        <h2 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Monthly Earnings</h2>
+        <h2 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>
+          Monthly Earnings
+        </h2>
         <EarningsChart data={earningsData} />
       </div>
 
       {/* Quick Actions */}
       <section aria-label="Quick actions">
-      <div className={commonStyles.quickActionsSection}>
-        <h2 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Quick Actions</h2>
-        <div className={commonStyles.quickActionsGrid}>
-          {quickActions.map((action) => (
-            <Link key={action.label} href={action.href} className={cn(commonStyles.quickActionCard, themeStyles.quickActionCard)} aria-label={`${action.label}: ${action.desc}`}>
-              <div className={cn(commonStyles.quickActionIcon, commonStyles[`quickActionIcon-${action.color}`])} aria-hidden="true">
-                <action.icon size={20} />
-              </div>
-              <span className={cn(commonStyles.quickActionLabel, themeStyles.quickActionLabel)}>{action.label}</span>
-              <span className={cn(commonStyles.quickActionDesc, themeStyles.quickActionDesc)}>{action.desc}</span>
-            </Link>
-          ))}
+        <div className={commonStyles.quickActionsSection}>
+          <h2
+            className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}
+          >
+            Quick Actions
+          </h2>
+          <div className={commonStyles.quickActionsGrid}>
+            {quickActions.map((action) => (
+              <Link
+                key={action.label}
+                href={action.href}
+                className={cn(
+                  commonStyles.quickActionCard,
+                  themeStyles.quickActionCard,
+                )}
+                aria-label={`${action.label}: ${action.desc}`}
+              >
+                <div
+                  className={cn(
+                    commonStyles.quickActionIcon,
+                    commonStyles[`quickActionIcon-${action.color}`],
+                  )}
+                  aria-hidden="true"
+                >
+                  <action.icon size={20} />
+                </div>
+                <span
+                  className={cn(
+                    commonStyles.quickActionLabel,
+                    themeStyles.quickActionLabel,
+                  )}
+                >
+                  {action.label}
+                </span>
+                <span
+                  className={cn(
+                    commonStyles.quickActionDesc,
+                    themeStyles.quickActionDesc,
+                  )}
+                >
+                  {action.desc}
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
       </section>
 
       {/* Main Content Grid */}
@@ -477,29 +785,41 @@ const Dashboard: React.FC = () => {
         {/* Left Column */}
         <div className={commonStyles.sectionContainer}>
           <div className={commonStyles.sectionHeader}>
-            <h2 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Recommended Jobs</h2>
-            <Link href="/jobs" className={cn(commonStyles.viewAllLink, themeStyles.viewAllLink)}>
+            <h2
+              className={cn(
+                commonStyles.sectionTitle,
+                themeStyles.sectionTitle,
+              )}
+            >
+              Recommended Jobs
+            </h2>
+            <Link
+              href="/jobs"
+              className={cn(commonStyles.viewAllLink, themeStyles.viewAllLink)}
+            >
               View All <ArrowRight size={16} />
             </Link>
           </div>
-          
+
           <div className={commonStyles.jobList}>
             {loading ? (
               <Loading />
             ) : recommendedJobs && recommendedJobs.length > 0 ? (
-              recommendedJobs.slice(0, 3).map((job: any) => (
-                <JobCard key={job.id} job={job} />
-              ))
+              recommendedJobs
+                .slice(0, 3)
+                .map((job: any) => <JobCard key={job.id} job={job} />)
             ) : (
               <EmptyState
                 title="No matching jobs found"
-                description="We couldn&apos;t find jobs matching your skills yet. Update your profile to improve AI matching accuracy."
+                description="We couldn't find jobs matching your skills yet. Update your profile to improve AI matching accuracy."
                 animationData={searchingAnimation}
                 animationWidth={120}
                 animationHeight={120}
                 action={
                   <Link href="/freelancer/profile">
-                    <Button variant="outline" size="sm">Update Skills & Profile</Button>
+                    <Button variant="outline" size="sm">
+                      Update Skills & Profile
+                    </Button>
                   </Link>
                 }
               />
@@ -507,17 +827,43 @@ const Dashboard: React.FC = () => {
           </div>
 
           {/* Activity Timeline */}
-          <div className={cn(commonStyles.timelineSection, themeStyles.timelineSection)}>
-            <h3 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Recent Activity</h3>
-            <ActivityTimeline events={recentActivity} maxItems={5} emptyMessage="No recent activity" />
+          <div
+            className={cn(
+              commonStyles.timelineSection,
+              themeStyles.timelineSection,
+            )}
+          >
+            <h3
+              className={cn(
+                commonStyles.sectionTitle,
+                themeStyles.sectionTitle,
+              )}
+            >
+              Recent Activity
+            </h3>
+            <ActivityTimeline
+              events={recentActivity}
+              maxItems={5}
+              emptyMessage="No recent activity"
+            />
           </div>
         </div>
 
         {/* Right Column */}
         <div className={commonStyles.sectionContainer}>
           <div className={commonStyles.sectionHeader}>
-            <h2 className={cn(commonStyles.sectionTitle, themeStyles.sectionTitle)}>Recent Proposals</h2>
-            <Link href="/freelancer/proposals" className={cn(commonStyles.viewAllLink, themeStyles.viewAllLink)}>
+            <h2
+              className={cn(
+                commonStyles.sectionTitle,
+                themeStyles.sectionTitle,
+              )}
+            >
+              Recent Proposals
+            </h2>
+            <Link
+              href="/freelancer/proposals"
+              className={cn(commonStyles.viewAllLink, themeStyles.viewAllLink)}
+            >
               View All
             </Link>
           </div>
@@ -526,22 +872,45 @@ const Dashboard: React.FC = () => {
             {proposals && proposals.length > 0 ? (
               proposals.slice(0, 5).map((proposal) => {
                 const statusLower = proposal.status.toLowerCase();
-                const statusColorClass = statusLower === 'accepted' ? commonStyles.statusAccepted
-                  : statusLower === 'rejected' || statusLower === 'declined' ? commonStyles.statusRejected
-                  : statusLower === 'pending' ? commonStyles.statusPending
-                  : commonStyles.statusDefault;
+                const statusColorClass =
+                  statusLower === "accepted"
+                    ? commonStyles.statusAccepted
+                    : statusLower === "rejected" || statusLower === "declined"
+                      ? commonStyles.statusRejected
+                      : statusLower === "pending"
+                        ? commonStyles.statusPending
+                        : commonStyles.statusDefault;
                 return (
-                <div key={proposal.id} className={cn(commonStyles.proposalCard, themeStyles.proposalCard)}>
-                  <div className={commonStyles.proposalInfo}>
-                    <h4 className={cn(themeStyles.proposalTitle)}>{proposal.projectTitle}</h4>
-                    <span className={cn(commonStyles.proposalDate, themeStyles.proposalDate)}>
-                      {new Date(proposal.sentDate).toLocaleDateString()}
+                  <div
+                    key={proposal.id}
+                    className={cn(
+                      commonStyles.proposalCard,
+                      themeStyles.proposalCard,
+                    )}
+                  >
+                    <div className={commonStyles.proposalInfo}>
+                      <h4 className={cn(themeStyles.proposalTitle)}>
+                        {proposal.projectTitle}
+                      </h4>
+                      <span
+                        className={cn(
+                          commonStyles.proposalDate,
+                          themeStyles.proposalDate,
+                        )}
+                      >
+                        {new Date(proposal.sentDate).toLocaleDateString()}
+                      </span>
+                    </div>
+                    <span
+                      className={cn(
+                        commonStyles.proposalStatus,
+                        themeStyles.proposalStatus,
+                        statusColorClass,
+                      )}
+                    >
+                      {proposal.status}
                     </span>
                   </div>
-                  <span className={cn(commonStyles.proposalStatus, themeStyles.proposalStatus, statusColorClass)}>
-                    {proposal.status}
-                  </span>
-                </div>
                 );
               })
             ) : (
@@ -553,7 +922,13 @@ const Dashboard: React.FC = () => {
                 animationHeight={100}
                 action={
                   <Link href="/jobs">
-                    <Button variant="primary" size="sm" iconBefore={<Search size={14} />}>Browse Projects</Button>
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      iconBefore={<Search size={14} />}
+                    >
+                      Browse Projects
+                    </Button>
                   </Link>
                 }
               />
