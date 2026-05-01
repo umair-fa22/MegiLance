@@ -3,7 +3,7 @@
 
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Card from '@/app/components/Card/Card';
+import Card from '@/app/components/molecules/Card/Card';
 
 // Mock next-themes since it relies on React Context
 jest.mock('next-themes', () => ({

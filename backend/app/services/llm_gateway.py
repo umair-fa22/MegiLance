@@ -11,13 +11,13 @@ try:
     # Prevent extensive litellm logging in dev
     litellm.suppress_debug_info = True
     LITELLM_AVAILABLE = True
-except ImportError:
+except Exception as e:
     LITELLM_AVAILABLE = False
 
 try:
     from gradient import Gradient
     GRADIENT_AVAILABLE = True
-except ImportError:
+except Exception as e:
     GRADIENT_AVAILABLE = False
 
 

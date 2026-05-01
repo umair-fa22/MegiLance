@@ -115,6 +115,8 @@ async def lifespan(app: FastAPI):
 
     except Exception as e:
         logger.error(f"startup.database_failed error={e}")
+        # Always fail fast if DB is unreachable to prevent healthy-looking broken app
+        raise RuntimeError("Database startup failed. Halting application.")
     yield
     # Shutdown — clean up caches and resources
     try:

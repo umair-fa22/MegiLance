@@ -69,5 +69,14 @@ module.exports = {
   testPathIgnorePatterns: [
     '/node_modules/',
     '/e2e/',
+    '/.next/',
   ],
+
+  modulePathIgnorePatterns: [
+    '<rootDir>/.next/',
+    '<rootDir>/build/',
+  ],
+  haste: {
+    throwOnModuleCollision: false,
+  },
 };

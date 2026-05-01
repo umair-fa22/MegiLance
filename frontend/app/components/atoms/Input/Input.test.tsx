@@ -4,7 +4,7 @@
 
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Input from '@/app/components/Input/Input';
+import Input from '@/app/components/atoms/Input/Input';
 
 // Mock next-themes since it relies on React Context
 jest.mock('next-themes', () => ({
@@ -31,7 +31,7 @@ describe('Input Component', () => {
   });
 
   test('renders with initial value', () => {
-    render(<Input value="test@example.com" />);
+    render(<Input defaultValue="test@example.com" />);
     
     const input = screen.getByDisplayValue('test@example.com');
     expect(input).toBeInTheDocument();
@@ -63,7 +63,7 @@ describe('Input Component', () => {
   });
 
   test('shows character counter when characterLimit is set', () => {
-    render(<Input characterLimit={100} value="Test input" />);
+    render(<Input characterLimit={100} value="Test input" readOnly />);
     
     const characterCounter = screen.getByText('10/100');
     expect(characterCounter).toBeInTheDocument();

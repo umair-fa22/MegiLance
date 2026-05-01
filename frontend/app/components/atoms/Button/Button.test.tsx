@@ -5,7 +5,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Button from '@/app/components/Button/Button';
+import Button from '@/app/components/atoms/Button/Button';
 
 describe('Button Component', () => {
   test('renders with default variant and children', () => {
@@ -24,12 +24,12 @@ describe('Button Component', () => {
     expect(button).toHaveClass('secondary');
   });
 
-  test('renders with destructive variant', () => {
-    render(<Button variant="destructive">Delete</Button>);
+  test('renders with danger variant', () => {
+    render(<Button variant="danger">Delete</Button>);
     
     const button = screen.getByRole('button', { name: /delete/i });
     expect(button).toBeInTheDocument();
-    expect(button).toHaveClass('destructive');
+    expect(button).toHaveClass('danger');
   });
 
   test('renders with outline variant', () => {

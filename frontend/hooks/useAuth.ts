@@ -6,7 +6,6 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import api, { setAuthToken, clearAuthData, getAuthToken, APIError } from '@/lib/api';
-import { AUTH } from '@/lib/constants';
 
 export interface User {
   id: number;
@@ -78,22 +77,6 @@ function normalizeUser(userData: UserApiResponse): User {
   };
 }
 
-/**
- * Set auth cookie with secure flags
- * Best practice: Use SameSite=Lax, Secure in production
- */
-function setAuthCookie(token: string) {
-  const secure = window.location.protocol === 'https:' ? '; Secure' : '';
-  document.cookie = `${AUTH.TOKEN_KEY}=${token}; path=/; max-age=${AUTH.COOKIE_MAX_AGE}; SameSite=Lax${secure}`;
-}
-
-/**
- * Clear auth cookie
- */
-function clearAuthCookie() {
-  document.cookie = `${AUTH.TOKEN_KEY}=; path=/; max-age=0; SameSite=Lax`;
-}
-
 export function useAuth(): UseAuthReturn {
   const router = useRouter();
   const pathname = usePathname();
@@ -137,8 +120,6 @@ export function useAuth(): UseAuthReturn {
             setUser(null);
             setError(null);
           }
-          sessionStorage.removeItem(AUTH.USER_KEY);
-          sessionStorage.removeItem(AUTH.TOKEN_KEY);
         }
       }
     };
@@ -146,28 +127,12 @@ export function useAuth(): UseAuthReturn {
     return () => window.removeEventListener('storage', handleStorageChange);
   }, []);
 
-  // Load user from storage on mount
+  // Load user on mount. Browser sessions rely on backend httpOnly cookies.
   useEffect(() => {
     const loadUser = async () => {
       try {
-        const token = getAuthToken();
-        if (!token) {
-          if (isMounted.current) setIsLoading(false);
-          return;
-        }
-
-        // Try to get user from sessionStorage first for quick render
-        const cachedUser = sessionStorage.getItem(AUTH.USER_KEY);
-        if (cachedUser) {
-          try {
-            const parsed = JSON.parse(cachedUser);
-            if (isMounted.current) setUser(parsed);
-          } catch {
-            // Invalid cache, ignore
-          }
-        }
-
-        // Verify token and get fresh user data
+        // Verify session and get fresh user data. This works with either
+        // an in-memory bearer token or the backend-managed httpOnly cookie.
         const userData = await api.auth.me();
         const normalized = normalizeUser(userData);
 
@@ -175,7 +140,6 @@ export function useAuth(): UseAuthReturn {
           setUser(normalized);
           setError(null);
         }
-        sessionStorage.setItem(AUTH.USER_KEY, JSON.stringify(normalized));
 
         // Set up token refresh interval on page reload (refresh every 25 minutes)
         if (refreshIntervalRef.current) clearInterval(refreshIntervalRef.current);
@@ -184,7 +148,6 @@ export function useAuth(): UseAuthReturn {
             const refreshed = await api.auth.refreshToken();
             if (refreshed?.access_token) {
               setAuthToken(refreshed.access_token);
-              setAuthCookie(refreshed.access_token);
             }
           } catch {
             // Reactive refresh on 401 will handle this
@@ -193,11 +156,8 @@ export function useAuth(): UseAuthReturn {
       } catch (err) {
         console.error('Failed to load user:', err);
         if (err instanceof APIError && err.status === 401) {
-          // Token expired, clear all auth data including localStorage 
+          // Token expired, clear all auth data
           clearAuthData();
-          clearAuthCookie();
-          sessionStorage.removeItem(AUTH.USER_KEY);
-          localStorage.removeItem(AUTH.USER_KEY); // Clean up legacy
           if (isMounted.current) setUser(null);
         }
         if (isMounted.current) {
@@ -227,11 +187,7 @@ export function useAuth(): UseAuthReturn {
       const normalized = normalizeUser(response.user);
 
       if (isMounted.current) setUser(normalized);
-      sessionStorage.setItem(AUTH.USER_KEY, JSON.stringify(normalized));
       setAuthToken(response.access_token);
-
-      // Set cookie for middleware (secure)
-      setAuthCookie(response.access_token);
 
       // Set up token refresh interval (refresh every 25 minutes, token expires in 30)
       if (refreshIntervalRef.current) clearInterval(refreshIntervalRef.current);
@@ -240,7 +196,6 @@ export function useAuth(): UseAuthReturn {
           const refreshed = await api.auth.refreshToken();
           if (refreshed?.access_token) {
             setAuthToken(refreshed.access_token);
-            setAuthCookie(refreshed.access_token);
           }
         } catch {
           // Reactive refresh on 401 will handle this
@@ -281,10 +236,6 @@ export function useAuth(): UseAuthReturn {
     } catch { /* best effort */ }
     
     clearAuthData();
-    clearAuthCookie();
-    sessionStorage.removeItem(AUTH.USER_KEY);
-    localStorage.removeItem(AUTH.USER_KEY); // Clean up legacy
-    localStorage.removeItem(AUTH.REFRESH_TOKEN_KEY);
     // Broadcast logout to other tabs via localStorage (StorageEvent mechanism)
     localStorage.setItem('auth_logout_broadcast', 'true');
     localStorage.removeItem('auth_logout_broadcast');
@@ -301,7 +252,6 @@ export function useAuth(): UseAuthReturn {
       const normalized = normalizeUser(userData);
 
       if (isMounted.current) setUser(normalized);
-      sessionStorage.setItem(AUTH.USER_KEY, JSON.stringify(normalized));
     } catch (err) {
       console.error('Failed to refresh user:', err);
       throw err;
@@ -336,18 +286,7 @@ export function useAuth(): UseAuthReturn {
  */
 export function hasValidAuthToken(): boolean {
   if (typeof window === 'undefined') return false;
-  const token = document.cookie
-    .split('; ')
-    .find(c => c.startsWith(`${AUTH.TOKEN_KEY}=`));
-  if (!token) return false;
-  try {
-    const jwt = token.split('=')[1];
-    const base64 = jwt.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
-    const payload = JSON.parse(atob(base64));
-    return payload.exp > Date.now() / 1000;
-  } catch {
-    return false;
-  }
+  return Boolean(getAuthToken());
 }
 
 export default useAuth;

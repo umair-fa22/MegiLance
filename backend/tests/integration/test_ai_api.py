@@ -7,7 +7,7 @@ Skipped: requires running AI service on port 7860
 import pytest
 from httpx import AsyncClient
 
-pytestmark = pytest.mark.skip(reason="Requires running AI service")
+# pytestmark = pytest.mark.skip(reason="Requires running AI service")
 
 
 @pytest.mark.asyncio

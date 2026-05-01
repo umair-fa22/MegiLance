@@ -66,6 +66,32 @@ MAX_EMAIL_LENGTH = 254
 ALLOWED_USER_TYPES = {'client', 'freelancer'}  # admin accounts are created internally only
 
 
+def _set_auth_cookies(response: JSONResponse, access_token: str, refresh_token: str | None = None) -> JSONResponse:
+    """Attach httpOnly auth cookies for browser clients while keeping JSON tokens for API clients."""
+    settings = get_settings()
+    is_production = settings.environment == "production"
+    response.set_cookie(
+        key="auth_token",
+        value=access_token,
+        httponly=True,
+        secure=is_production,
+        samesite="lax",
+        path="/",
+        max_age=settings.access_token_expire_minutes * 60,
+    )
+    if refresh_token:
+        response.set_cookie(
+            key="refresh_token",
+            value=refresh_token,
+            httponly=True,
+            secure=is_production,
+            samesite="lax",
+            path="/api/auth/refresh",
+            max_age=settings.refresh_token_expire_minutes * 60,
+        )
+    return response
+
+
 def validate_email(email: str) -> bool:
     """Validate email format and length."""
     if not email or len(email) > MAX_EMAIL_LENGTH:
@@ -278,11 +304,13 @@ def register_user(request: Request, payload: UserCreate):
         joined_at=user_data.get("joined_at")
     )
 
-    return AuthResponse(
+    auth_response = AuthResponse(
         access_token=access_token,
         refresh_token=refresh_token,
         user=user_read
     )
+    response = JSONResponse(status_code=status.HTTP_201_CREATED, content=auth_response.model_dump(mode='json'))
+    return _set_auth_cookies(response, access_token, refresh_token)
 
 
 @router.post("/login", response_model=AuthResponse)
@@ -382,20 +410,8 @@ def login_user(request: Request, credentials: LoginRequest):
         user=user_data,
     )
     
-    # Set refresh token as httpOnly cookie (XSS-resistant)
     response = JSONResponse(content=auth_response.model_dump(mode='json'))
-    settings = get_settings()
-    is_production = settings.environment == "production"
-    response.set_cookie(
-        key="refresh_token",
-        value=refresh_token,
-        httponly=True,
-        secure=is_production,
-        samesite="lax",
-        path="/api/auth/refresh",
-        max_age=settings.refresh_token_expire_minutes * 60,
-    )
-    return response
+    return _set_auth_cookies(response, access_token, refresh_token)
 
 
 @router.post("/refresh", response_model=Token)
@@ -454,20 +470,8 @@ def refresh_token(request: Request, body: RefreshTokenRequest = None):
     
     token_response = Token(access_token=access_token, refresh_token=new_refresh_token)
     
-    # Set new refresh token as httpOnly cookie
     response = JSONResponse(content=token_response.model_dump(mode='json'))
-    settings = get_settings()
-    is_production = settings.environment == "production"
-    response.set_cookie(
-        key="refresh_token",
-        value=new_refresh_token,
-        httponly=True,
-        secure=is_production,
-        samesite="lax",
-        path="/api/auth/refresh",
-        max_age=settings.refresh_token_expire_minutes * 60,
-    )
-    return response
+    return _set_auth_cookies(response, access_token, new_refresh_token)
 
 
 @router.post("/logout")
@@ -477,6 +481,7 @@ def logout(
     current_user: User = Depends(get_current_active_user),
 ):
     """Logout user: blacklist access token and clear refresh cookie"""
+    token = token or request.cookies.get("auth_token")
     if token:
         try:
             payload = decode_token(token)
@@ -502,6 +507,13 @@ def logout(
     settings = get_settings()
     is_production = settings.environment == "production"
     response = JSONResponse(content={"message": "Logged out successfully"})
+    response.delete_cookie(
+        key="auth_token",
+        httponly=True,
+        secure=is_production,
+        samesite="lax",
+        path="/",
+    )
     response.delete_cookie(
         key="refresh_token",
         httponly=True,

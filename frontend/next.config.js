@@ -51,15 +51,6 @@ const withPWA = withPWAInit({
         expiration: { maxEntries: 32, maxAgeSeconds: 24 * 60 * 60 },
       },
     },
-    {
-      urlPattern: /\/api\/.*$/i,
-      handler: 'NetworkFirst',
-      options: {
-        cacheName: 'api-cache',
-        expiration: { maxEntries: 16, maxAgeSeconds: 60 },
-        networkTimeoutSeconds: 10,
-      },
-    },
   ],
 });
 

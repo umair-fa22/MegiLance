@@ -28,7 +28,7 @@ jest.mock('@/app/components/Animations/StaggerContainer', () => ({
 
 // Mock API
 jest.mock('@/lib/api/core', () => ({
-  apiFetch: jest.fn().mockResolvedValue([]),
+  apiFetch: jest.fn(() => new Promise(() => {})),
 }));
 
 // Mock hooks

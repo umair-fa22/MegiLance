@@ -12,7 +12,7 @@ import logging
 import time
 import threading
 
-from fastapi import Depends, HTTPException, status
+from fastapi import Depends, HTTPException, Request, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from passlib.context import CryptContext
@@ -219,7 +219,12 @@ def is_token_blacklisted(token: str) -> bool:
     return _check(token)
 
 
-def get_current_user(token: str = Depends(oauth2_scheme)) -> Union[User, UserProxy]:
+def _token_from_request(request: Request, bearer_token: Optional[str]) -> Optional[str]:
+    """Prefer Authorization bearer tokens, then fall back to the httpOnly browser cookie."""
+    return bearer_token or request.cookies.get("auth_token")
+
+
+def get_current_user(request: Request, token: str = Depends(oauth2_scheme)) -> Union[User, UserProxy]:
     """Get current authenticated user from JWT token.
     
     Returns a UserProxy (lightweight dict wrapper) from Turso queries,
@@ -230,6 +235,8 @@ def get_current_user(token: str = Depends(oauth2_scheme)) -> Union[User, UserPro
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
+
+    token = _token_from_request(request, token)
 
     if not token:
         raise credentials_exception
@@ -303,13 +310,15 @@ def get_current_user(token: str = Depends(oauth2_scheme)) -> Union[User, UserPro
         )
 
 
-def get_current_user_from_token(token: str = Depends(oauth2_scheme)) -> dict:
+def get_current_user_from_token(request: Request, token: str = Depends(oauth2_scheme)) -> dict:
     """Get user info directly from token without database lookup"""
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
+
+    token = _token_from_request(request, token)
 
     if not token:
         raise credentials_exception
@@ -334,13 +343,15 @@ def get_current_user_from_token(token: str = Depends(oauth2_scheme)) -> dict:
         raise credentials_exception
 
 
-def get_current_user_optional(token: str = Depends(oauth2_scheme)) -> Optional[dict]:
+def get_current_user_optional(request: Request, token: str = Depends(oauth2_scheme)) -> Optional[dict]:
     """Get user info from token, but don't fail if not provided - returns None if no valid token"""
+    token = _token_from_request(request, token)
+
     if not token:
         return None
     
     try:
-        return get_current_user_from_token(token)
+        return get_current_user_from_token(request, token)
     except HTTPException:
         return None
 
@@ -455,5 +466,4 @@ def validate_password_strength(password: str) -> tuple[bool, list[str]]:
         errors.append("Password is too common. Please choose a stronger password.")
     
     return (len(errors) == 0, errors)
-
 

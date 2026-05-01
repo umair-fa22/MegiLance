@@ -25,9 +25,11 @@ const Home: React.FC = () => {
     <div className={cn(commonStyles.homePage, themeStyles.homePage)}>
         <div className={commonStyles.pageContent}>
           {/* Hero Section */}
-          <ScrollReveal width="100%" direction="none" duration={0.8}>
-            <Hero />
-          </ScrollReveal>
+          <div data-testid="hero-section">
+            <ScrollReveal width="100%" direction="none" duration={0.8}>
+              <Hero />
+            </ScrollReveal>
+          </div>
 
           {/* Trust Indicators */}
           <div className={commonStyles.homeSection}>

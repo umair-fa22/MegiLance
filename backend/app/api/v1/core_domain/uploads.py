@@ -4,8 +4,11 @@ Handles uploading of user files (avatars, portfolio images, documents)
 Enhanced with path traversal protection and content validation
 """
 from fastapi import APIRouter, Depends, File, UploadFile, HTTPException, status, Request
+from io import BytesIO
 from app.core.security import get_current_user
 from app.core.rate_limit import api_rate_limit
+from app.core.config import get_settings
+from app.core.s3 import get_s3_client
 from app.services.uploads_service import get_user_avatar_url, update_user_avatar, clear_user_avatar
 import logging
 import os
@@ -174,10 +177,65 @@ def validate_file(file: UploadFile, allowed_types: set, max_size: int) -> bytes:
     return file_content
 
 
-def save_uploaded_file(file_content: bytes, original_filename: str, directory: Path) -> str:
-    """Save uploaded file and return file path"""
-    # Sanitize filename
+def delete_uploaded_file(file_url: str):
+    """Delete a previously uploaded file from local storage or S3"""
+    if not file_url:
+        return
+        
+    settings = get_settings()
+    
+    # Check if it's an S3 URL (simple heuristic based on bucket name)
+    if getattr(settings, 'aws_bucket_name', None) and settings.aws_bucket_name in file_url:
+        try:
+            s3 = get_s3_client()
+            # Extract object name (e.g., 'avatars/filename.jpg')
+            # assuming URL format is something like https://.../avatars/filename.jpg
+            parts = file_url.split('/')
+            if len(parts) >= 2:
+                object_name = f"{parts[-2]}/{parts[-1]}"
+                s3.delete_file(settings.aws_bucket_name, object_name)
+        except Exception as e:
+            logger.error(f"Failed to delete S3 file {file_url}: {e}")
+    else:
+        # Local file deletion fallback
+        try:
+            local_path = file_url
+            if local_path.startswith('/uploads/'):
+                local_path = local_path[len('/uploads/'):]
+            elif local_path.startswith('uploads/'):
+                local_path = local_path[len('uploads/'):]
+                
+            old_path = validate_path(local_path, UPLOAD_DIR)
+            if old_path.exists() and old_path.is_file():
+                old_path.unlink()
+        except HTTPException:
+            pass  # Ignore invalid paths
+        except Exception as e:
+            logger.error(f"Failed to delete local file {file_url}: {e}")
+
+
+def save_uploaded_file(file_content: bytes, original_filename: str, directory_mapping: str, content_type: str = None) -> str:
+    """Save uploaded file and return URL or file path"""
     safe_filename = sanitize_filename(original_filename)
+    
+    settings = get_settings()
+    
+    # Check if S3 environment variables are provided
+    if getattr(settings, 'aws_access_key_id', None) and getattr(settings, 'aws_bucket_name', None):
+        s3 = get_s3_client()
+        object_name = f"{directory_mapping}/{safe_filename}"
+        url = s3.upload_file(
+            file_obj=BytesIO(file_content),
+            bucket_name=settings.aws_bucket_name,
+            object_name=object_name,
+            content_type=content_type
+        )
+        if url:
+            return url
+            
+    # Fallback local directory
+    directory = UPLOAD_DIR / directory_mapping
+    directory.mkdir(parents=True, exist_ok=True)
     file_path = directory / safe_filename
     
     # Ensure path is within allowed directory
@@ -187,8 +245,8 @@ def save_uploaded_file(file_content: bytes, original_filename: str, directory: P
     with open(file_path, "wb") as buffer:
         buffer.write(file_content)
     
-    # Return relative path for storage in database
-    return str(file_path.relative_to(UPLOAD_DIR))
+    # Return relative path for storage in database or frontend
+    return f"/uploads/{str(file_path.relative_to(UPLOAD_DIR))}"
 
 
 @router.post("/avatar", status_code=status.HTTP_201_CREATED)
@@ -212,23 +270,18 @@ async def upload_avatar(
     # Get current avatar
     old_avatar = get_user_avatar_url(current_user['id'])
     
-    # Delete old avatar if exists (with path validation)
+    # Delete old avatar if exists (with S3 support)
     if old_avatar:
-        try:
-            old_path = validate_path(old_avatar, UPLOAD_DIR)
-            if old_path.exists() and old_path.is_file():
-                old_path.unlink()
-        except HTTPException:
-            pass  # Ignore invalid paths
+        delete_uploaded_file(old_avatar)
     
     # Save new avatar
-    relative_path = save_uploaded_file(file_content, file.filename or "avatar.jpg", AVATAR_DIR)
+    file_url = save_uploaded_file(file_content, file.filename or "avatar.jpg", "avatars", file.content_type)
     
     # Update user profile
-    update_user_avatar(current_user['id'], relative_path)
+    update_user_avatar(current_user['id'], file_url)
     
     return {
-        "url": f"/uploads/{relative_path}",
+        "url": file_url,
         "message": "Avatar uploaded successfully"
     }
 
@@ -252,10 +305,10 @@ async def upload_portfolio_image(
     file_content = validate_file(file, ALLOWED_IMAGE_TYPES, MAX_PORTFOLIO_SIZE)
     
     # Save portfolio image
-    relative_path = save_uploaded_file(file_content, file.filename or "portfolio.jpg", PORTFOLIO_DIR)
+    file_url = save_uploaded_file(file_content, file.filename or "portfolio.jpg", "portfolio", file.content_type)
     
     return {
-        "url": f"/uploads/{relative_path}",
+        "url": file_url,
         "message": "Portfolio image uploaded successfully"
     }
 
@@ -282,10 +335,10 @@ async def upload_document(
     safe_display_name = sanitize_filename(file.filename or "document")
     
     # Save document
-    relative_path = save_uploaded_file(file_content, file.filename or "document.pdf", DOCUMENT_DIR)
+    file_url = save_uploaded_file(file_content, file.filename or "document.pdf", "documents", file.content_type)
     
     return {
-        "url": f"/uploads/{relative_path}",
+        "url": file_url,
         "filename": safe_display_name,
         "message": "Document uploaded successfully"
     }

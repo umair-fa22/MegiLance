@@ -33,7 +33,7 @@ jest.mock('@/lib/api', () => ({
   __esModule: true,
   default: {
     contracts: {
-      list: jest.fn().mockResolvedValue({ items: [] }),
+      list: jest.fn(() => new Promise(() => {})),
     },
   },
 }));

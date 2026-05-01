@@ -7,46 +7,13 @@ export type ResourceId = string | number;
 // In local dev: /api is proxied via next.config.js rewrites
 const API_BASE_URL = '/api';
 
-const TOKEN_STORAGE_KEY = 'auth_token';
-const REFRESH_TOKEN_STORAGE_KEY = 'refresh_token';
-
 let authToken: string | null = null;
 
 export function setAuthToken(token: string | null) {
   authToken = token;
-  if (typeof window !== 'undefined') {
-    try {
-      if (token) {
-        sessionStorage.setItem(TOKEN_STORAGE_KEY, token);
-        const maxAge = 30 * 60;
-        const isProduction = window.location.protocol === 'https:';
-        const secureFlag = isProduction ? '; Secure' : '';
-        document.cookie = `auth_token=${token}; path=/; SameSite=Lax; Max-Age=${maxAge}${secureFlag}`;
-      } else {
-        sessionStorage.removeItem(TOKEN_STORAGE_KEY);
-        localStorage.removeItem(REFRESH_TOKEN_STORAGE_KEY);
-        document.cookie = 'auth_token=; path=/; Max-Age=0; SameSite=Lax';
-      }
-    } catch (e) {
-      console.warn('Storage unavailable:', e);
-    }
-  }
 }
 
 export function getAuthToken(): string | null {
-  if (authToken) return authToken;
-  if (typeof window !== 'undefined') {
-    try {
-      authToken = sessionStorage.getItem(TOKEN_STORAGE_KEY) || localStorage.getItem(TOKEN_STORAGE_KEY);
-      // Fallback: read from cookie if not in storage (e.g. after page refresh)
-      if (!authToken) {
-        const match = document.cookie.match(new RegExp(`(?:^|; )${TOKEN_STORAGE_KEY}=([^;]*)`));
-        if (match) authToken = match[1];
-      }
-    } catch (e) {
-      console.warn('Storage unavailable:', e);
-    }
-  }
   return authToken;
 }
 
@@ -64,14 +31,15 @@ export function clearAuthData() {
   authToken = null;
   if (typeof window !== 'undefined') {
     try {
-      sessionStorage.removeItem(TOKEN_STORAGE_KEY);
-      localStorage.removeItem(TOKEN_STORAGE_KEY);
-      localStorage.removeItem(REFRESH_TOKEN_STORAGE_KEY);
+      // Clean up any legacy tokens
+      sessionStorage.removeItem('auth_token');
+      localStorage.removeItem('auth_token');
+      localStorage.removeItem('refresh_token');
       localStorage.removeItem('access_token');
       localStorage.removeItem('user');
       localStorage.removeItem('portal_area');
+      // Drop JS-accessible auth cookies
       document.cookie = 'auth_token=; path=/; max-age=0; SameSite=Lax';
-      document.cookie = 'refresh_token=; path=/api/auth/refresh; max-age=0; SameSite=Lax';
     } catch (e) {
       console.warn('Storage unavailable:', e);
     }
@@ -240,6 +208,12 @@ export async function apiFetch<T = unknown>(
   skipCache = false
 ): Promise<T> {
   const method = (options.method || 'GET').toUpperCase();
+  const token = getAuthToken();
+  const isPublicAuthEndpoint =
+    endpoint.includes('/auth/login') ||
+    endpoint.includes('/auth/register') ||
+    endpoint.includes('/auth/refresh');
+  const shouldUseResponseCache = method === 'GET' && !skipCache && !token && isPublicAuthEndpoint;
 
   // Offline check
   if (!isOnline()) {
@@ -247,7 +221,7 @@ export async function apiFetch<T = unknown>(
   }
 
   // Check GET cache before making request
-  if (method === 'GET' && !skipCache) {
+  if (shouldUseResponseCache) {
     const cached = getCachedResponse<T>(endpoint);
     if (cached !== null) return cached;
   }
@@ -274,7 +248,6 @@ export async function apiFetch<T = unknown>(
         await sleep(delay);
       }
 
-      const token = getAuthToken();
       const headers: Record<string, string> = {
         ...(options.headers as Record<string, string> || {}),
       };
@@ -318,7 +291,7 @@ export async function apiFetch<T = unknown>(
         }
 
         // 401 — attempt token refresh
-        if (response.status === 401 && token && !endpoint.includes('/auth/refresh') && !endpoint.includes('/auth/login')) {
+        if (response.status === 401 && !endpoint.includes('/auth/refresh') && !endpoint.includes('/auth/login')) {
           if (!isRefreshing) {
             isRefreshing = true;
             const newToken = await attemptTokenRefresh();
@@ -386,7 +359,7 @@ export async function apiFetch<T = unknown>(
         const data = await response.json();
 
         // Cache successful GET responses
-        if (method === 'GET') {
+        if (shouldUseResponseCache) {
           setCachedResponse(endpoint, data);
         }
 

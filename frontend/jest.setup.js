@@ -86,12 +86,26 @@ global.IntersectionObserver = class IntersectionObserver {
 // Mock framer-motion to render plain elements in tests
 jest.mock('framer-motion', () => {
   const React = require('react');
+  const createMotionComponent = (component) => React.forwardRef((props, ref) => {
+    const {
+      initial,
+      animate,
+      exit,
+      whileHover,
+      whileTap,
+      whileInView,
+      transition,
+      variants,
+      layout,
+      style,
+      ...rest
+    } = props;
+    return React.createElement(component, { ...rest, ref, style });
+  });
   const motion = new Proxy({}, {
     get: (_target, prop) => {
-      return React.forwardRef((props, ref) => {
-        const { initial, animate, exit, whileHover, whileTap, whileInView, transition, variants, style, ...rest } = props;
-        return React.createElement(prop, { ...rest, ref, style });
-      });
+      if (prop === 'create') return createMotionComponent;
+      return createMotionComponent(prop);
     },
   });
   return {

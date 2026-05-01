@@ -146,7 +146,12 @@ const Chatbot: React.FC = () => {
 
   const stopRecognition = () => {
     if (recognitionRef.current) {
-      try { recognitionRef.current.stop(); } catch {};
+      try {
+        recognitionRef.current.stop();
+      } catch (err) {
+        console.warn('Failed to stop recognition', err);
+        recognitionRef.current = null;
+      }
       recognitionRef.current = null;
       setRecognitionActive(false);
     }
