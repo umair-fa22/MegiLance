@@ -1,18 +1,31 @@
 // @AI-HINT: Enhanced StepScope with real-time validation, character/word counts, accessibility, and smart suggestions
-'use client';
+"use client";
 
-import React, { useMemo, useState, useCallback } from 'react';
-import { useTheme } from 'next-themes';
-import { cn } from '@/lib/utils';
-import { motion, AnimatePresence } from 'framer-motion';
-import { AlertCircle, CheckCircle, Lightbulb, Info, Sparkles, Loader2 } from 'lucide-react';
-import Textarea from '@/app/components/atoms/Textarea/Textarea';
-import TagsInput from '@/app/components/atoms/TagsInput/TagsInput';
-import { PostJobData, PostJobErrors } from '../../PostJob.types';
+import React, { useMemo, useState, useCallback } from "react";
+import { useTheme } from "next-themes";
+import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  AlertCircle,
+  CheckCircle,
+  Lightbulb,
+  Info,
+  Sparkles,
+  Loader2,
+  Users,
+} from "lucide-react";
+import Textarea from "@/app/components/atoms/Textarea/Textarea";
+import TagsInput from "@/app/components/atoms/TagsInput/TagsInput";
+import Select from "@/app/components/molecules/Select/Select";
+import {
+  PostJobData,
+  PostJobErrors,
+  ExperienceLevel,
+} from "../../PostJob.types";
 
-import common from './StepScope.common.module.css';
-import light from './StepScope.light.module.css';
-import dark from './StepScope.dark.module.css';
+import common from "./StepScope.common.module.css";
+import light from "./StepScope.light.module.css";
+import dark from "./StepScope.dark.module.css";
 
 interface StepScopeProps {
   data: PostJobData;
@@ -30,27 +43,43 @@ const RECOMMENDED_SKILLS = 5;
 
 // Popular skills suggestions based on category (would be fetched from API in production)
 const SKILL_SUGGESTIONS = [
-  'JavaScript', 'TypeScript', 'React', 'Node.js', 'Python', 'PostgreSQL',
-  'AWS', 'Docker', 'GraphQL', 'REST API', 'Git', 'Agile', 'UI/UX', 'Figma'
+  "JavaScript",
+  "TypeScript",
+  "React",
+  "Node.js",
+  "Python",
+  "PostgreSQL",
+  "AWS",
+  "Docker",
+  "GraphQL",
+  "REST API",
+  "Git",
+  "Agile",
+  "UI/UX",
+  "Figma",
 ];
 
 const StepScope: React.FC<StepScopeProps> = ({ data, updateData, errors }) => {
   const { resolvedTheme } = useTheme();
-  const themed = resolvedTheme === 'dark' ? dark : light;
+  const themed = resolvedTheme === "dark" ? dark : light;
   const [showTips, setShowTips] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
   const handleGenerateAI = async () => {
     try {
       setIsGenerating(true);
-      const { aiWritingApi } = await import('@/lib/api/ai');
+      const { aiWritingApi } = await import("@/lib/api/ai");
       const res = await aiWritingApi.generateProjectDescription({
-        project_type: data.title || data.category || 'General Freelance Project',
-        key_features: data.skills.length > 0 ? data.skills : ['Standard project deliverables'],
+        project_type:
+          data.title || data.category || "General Freelance Project",
+        key_features:
+          data.skills.length > 0
+            ? data.skills
+            : ["Standard project deliverables"],
       });
       updateData({ description: res.content });
     } catch (e) {
-      console.error('AI generation failed', e);
+      console.error("AI generation failed", e);
     } finally {
       setIsGenerating(false);
     }
@@ -59,13 +88,25 @@ const StepScope: React.FC<StepScopeProps> = ({ data, updateData, errors }) => {
   // Calculate description metrics
   const descriptionMetrics = useMemo(() => {
     const charCount = data.description.length;
-    const wordCount = data.description.trim() ? data.description.trim().split(/\s+/).length : 0;
+    const wordCount = data.description.trim()
+      ? data.description.trim().split(/\s+/).length
+      : 0;
     const isMinMet = charCount >= MIN_DESCRIPTION_LENGTH;
     const isRecommendedMet = charCount >= RECOMMENDED_DESCRIPTION_LENGTH;
     const isNearMax = charCount >= MAX_DESCRIPTION_LENGTH * 0.9;
-    const progress = Math.min((charCount / RECOMMENDED_DESCRIPTION_LENGTH) * 100, 100);
-    
-    return { charCount, wordCount, isMinMet, isRecommendedMet, isNearMax, progress };
+    const progress = Math.min(
+      (charCount / RECOMMENDED_DESCRIPTION_LENGTH) * 100,
+      100,
+    );
+
+    return {
+      charCount,
+      wordCount,
+      isMinMet,
+      isRecommendedMet,
+      isNearMax,
+      progress,
+    };
   }, [data.description]);
 
   // Calculate skills metrics
@@ -74,27 +115,42 @@ const StepScope: React.FC<StepScopeProps> = ({ data, updateData, errors }) => {
     const isMinMet = count >= MIN_SKILLS;
     const isRecommendedMet = count >= RECOMMENDED_SKILLS;
     const isMaxReached = count >= MAX_SKILLS;
-    
+
     return { count, isMinMet, isRecommendedMet, isMaxReached };
   }, [data.skills]);
 
   // Filter suggestions based on what's already selected
   const filteredSuggestions = useMemo(() => {
     return SKILL_SUGGESTIONS.filter(
-      skill => !data.skills.some(s => s.toLowerCase() === skill.toLowerCase())
+      (skill) =>
+        !data.skills.some((s) => s.toLowerCase() === skill.toLowerCase()),
     ).slice(0, 6);
   }, [data.skills]);
 
   // Handle quick add skill
-  const handleQuickAddSkill = useCallback((skill: string) => {
-    if (data.skills.length < MAX_SKILLS && !data.skills.includes(skill)) {
-      updateData({ skills: [...data.skills, skill] });
-    }
-  }, [data.skills, updateData]);
+  const handleQuickAddSkill = useCallback(
+    (skill: string) => {
+      if (data.skills.length < MAX_SKILLS && !data.skills.includes(skill)) {
+        updateData({ skills: [...data.skills, skill] });
+      }
+    },
+    [data.skills, updateData],
+  );
 
   // Validation status indicator
-  const ValidationStatus = ({ isValid, message }: { isValid: boolean; message: string }) => (
-    <div className={cn(common.validationStatus, isValid ? common.valid : common.invalid)}>
+  const ValidationStatus = ({
+    isValid,
+    message,
+  }: {
+    isValid: boolean;
+    message: string;
+  }) => (
+    <div
+      className={cn(
+        common.validationStatus,
+        isValid ? common.valid : common.invalid,
+      )}
+    >
       {isValid ? <CheckCircle size={14} /> : <AlertCircle size={14} />}
       <span>{message}</span>
     </div>
@@ -113,19 +169,27 @@ const StepScope: React.FC<StepScopeProps> = ({ data, updateData, errors }) => {
       <div className={common.headerRow}>
         <div>
           <h2 className={cn(common.title, themed.title)}>Define the Scope</h2>
-          <p className={cn(common.subtitle, themed.subtitle)}>Provide a detailed description and the skills required.</p>
+          <p className={cn(common.subtitle, themed.subtitle)}>
+            Provide a detailed description and the skills required.
+          </p>
         </div>
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
+        <div style={{ display: "flex", gap: "0.5rem" }}>
           <button
             type="button"
             className={cn(common.tipButton, themed.tipButton)}
             onClick={handleGenerateAI}
             disabled={isGenerating}
-            style={{ color: '#4573df', background: 'rgba(69, 115, 223, 0.1)' }}
+            style={{ color: "#4573df", background: "rgba(69, 115, 223, 0.1)" }}
             aria-label="Generate Description using AI"
           >
-            {isGenerating ? <Loader2 size={18} className="animate-spin" /> : <Sparkles size={18} />}
-            <span>{isGenerating ? 'Generating...' : 'Auto-Generate Details'}</span>
+            {isGenerating ? (
+              <Loader2 size={18} className="animate-spin" />
+            ) : (
+              <Sparkles size={18} />
+            )}
+            <span>
+              {isGenerating ? "Generating..." : "Auto-Generate Details"}
+            </span>
           </button>
           <button
             type="button"
@@ -145,11 +209,13 @@ const StepScope: React.FC<StepScopeProps> = ({ data, updateData, errors }) => {
           <motion.div
             id="scope-tips"
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className={cn(common.tipsBox, themed.tipsBox)}
           >
-            <h4><Info size={16} /> Writing Tips</h4>
+            <h4>
+              <Info size={16} /> Writing Tips
+            </h4>
             <ul>
               <li>Be specific about project deliverables and expectations</li>
               <li>Include any technical requirements or constraints</li>
@@ -174,43 +240,52 @@ const StepScope: React.FC<StepScopeProps> = ({ data, updateData, errors }) => {
           showCharacterCount
           aria-describedby="description-help description-metrics"
         />
-        
+
         {/* Description metrics and validation */}
         <div id="description-metrics" className={common.metricsRow}>
           <div className={common.metrics}>
-            <span className={cn(
-              common.metricItem,
-              descriptionMetrics.isNearMax && common.warning
-            )}>
-              {descriptionMetrics.charCount.toLocaleString()} / {MAX_DESCRIPTION_LENGTH.toLocaleString()} characters
+            <span
+              className={cn(
+                common.metricItem,
+                descriptionMetrics.isNearMax && common.warning,
+              )}
+            >
+              {descriptionMetrics.charCount.toLocaleString()} /{" "}
+              {MAX_DESCRIPTION_LENGTH.toLocaleString()} characters
             </span>
             <span className={common.metricDivider}>•</span>
             <span className={common.metricItem}>
               {descriptionMetrics.wordCount} words
             </span>
           </div>
-          
+
           <div className={common.validationRow}>
-            <ValidationStatus 
-              isValid={descriptionMetrics.isMinMet} 
-              message={`Min ${MIN_DESCRIPTION_LENGTH} chars`} 
+            <ValidationStatus
+              isValid={descriptionMetrics.isMinMet}
+              message={`Min ${MIN_DESCRIPTION_LENGTH} chars`}
             />
             {descriptionMetrics.isMinMet && (
-              <ValidationStatus 
-                isValid={descriptionMetrics.isRecommendedMet} 
-                message={`Recommended ${RECOMMENDED_DESCRIPTION_LENGTH}+ chars`} 
+              <ValidationStatus
+                isValid={descriptionMetrics.isRecommendedMet}
+                message={`Recommended ${RECOMMENDED_DESCRIPTION_LENGTH}+ chars`}
               />
             )}
           </div>
         </div>
 
         {/* Progress bar */}
-        <div className={common.progressBar} role="progressbar" aria-valuenow={descriptionMetrics.progress} aria-valuemin={0} aria-valuemax={100}>
-          <motion.div 
+        <div
+          className={common.progressBar}
+          role="progressbar"
+          aria-valuenow={descriptionMetrics.progress}
+          aria-valuemin={0}
+          aria-valuemax={100}
+        >
+          <motion.div
             className={cn(
               common.progressFill,
               themed.progressFill,
-              descriptionMetrics.isRecommendedMet && common.progressComplete
+              descriptionMetrics.isRecommendedMet && common.progressComplete,
             )}
             initial={{ width: 0 }}
             animate={{ width: `${descriptionMetrics.progress}%` }}
@@ -224,33 +299,49 @@ const StepScope: React.FC<StepScopeProps> = ({ data, updateData, errors }) => {
           id="job-skills"
           label="Required Skills"
           tags={data.skills}
-          onTagsChange={(newSkills) => updateData({ skills: newSkills.slice(0, MAX_SKILLS) })}
-          placeholder={skillsMetrics.isMaxReached ? `Maximum ${MAX_SKILLS} skills reached` : "Add a skill and press Enter"}
+          onTagsChange={(newSkills) =>
+            updateData({ skills: newSkills.slice(0, MAX_SKILLS) })
+          }
+          placeholder={
+            skillsMetrics.isMaxReached
+              ? `Maximum ${MAX_SKILLS} skills reached`
+              : "Add a skill and press Enter"
+          }
           error={errors.skills}
           disabled={skillsMetrics.isMaxReached}
           aria-describedby="skills-help skills-metrics"
         />
-        
+
         {/* Skills metrics */}
         <div id="skills-metrics" className={common.metricsRow}>
-          <span className={cn(
-            common.metricItem,
-            skillsMetrics.isMaxReached && common.warning
-          )}>
+          <span
+            className={cn(
+              common.metricItem,
+              skillsMetrics.isMaxReached && common.warning,
+            )}
+          >
             {skillsMetrics.count} / {MAX_SKILLS} skills
           </span>
-          <ValidationStatus 
-            isValid={skillsMetrics.isMinMet} 
-            message={`Add at least ${MIN_SKILLS} skill`} 
+          <ValidationStatus
+            isValid={skillsMetrics.isMinMet}
+            message={`Add at least ${MIN_SKILLS} skill`}
           />
         </div>
 
         {/* Quick add suggestions */}
         {filteredSuggestions.length > 0 && !skillsMetrics.isMaxReached && (
           <div className={common.suggestionsSection}>
-            <span className={cn(common.suggestionsLabel, themed.suggestionsLabel)}>Popular skills:</span>
-            <div className={common.suggestionsList} role="list" aria-label="Suggested skills">
-              {filteredSuggestions.map(skill => (
+            <span
+              className={cn(common.suggestionsLabel, themed.suggestionsLabel)}
+            >
+              Popular skills:
+            </span>
+            <div
+              className={common.suggestionsList}
+              role="list"
+              aria-label="Suggested skills"
+            >
+              {filteredSuggestions.map((skill) => (
                 <button
                   key={skill}
                   type="button"
@@ -266,8 +357,65 @@ const StepScope: React.FC<StepScopeProps> = ({ data, updateData, errors }) => {
         )}
 
         <p id="skills-help" className={cn(common.help, themed.help)}>
-          These skills will be used to match you with the best freelancers. Add {RECOMMENDED_SKILLS}+ skills for optimal matching.
+          These skills will be used to match you with the best freelancers. Add{" "}
+          {RECOMMENDED_SKILLS}+ skills for optimal matching.
         </p>
+      </div>
+
+      {/* Experience Level — Bug 2 fix */}
+      <div className={common.form_group}>
+        <div className={cn(common.experienceHeader)}>
+          <Users size={16} />
+          <span>Experience Level Required</span>
+        </div>
+        <div
+          className={common.experienceOptions}
+          role="radiogroup"
+          aria-label="Required experience level"
+        >
+          {(
+            [
+              {
+                value: "entry",
+                label: "Entry Level",
+                desc: "Looking for new talent with basic skills",
+              },
+              {
+                value: "intermediate",
+                label: "Intermediate",
+                desc: "Proven experience with solid portfolio",
+              },
+              {
+                value: "expert",
+                label: "Expert",
+                desc: "Top talent with deep domain expertise",
+              },
+            ] as { value: ExperienceLevel; label: string; desc: string }[]
+          ).map((opt) => (
+            <button
+              key={opt.value}
+              type="button"
+              role="radio"
+              aria-checked={data.experienceLevel === opt.value}
+              className={cn(
+                common.experienceCard,
+                themed.experienceCard,
+                data.experienceLevel === opt.value &&
+                  common.experienceCardActive,
+                data.experienceLevel === opt.value &&
+                  themed.experienceCardActive,
+              )}
+              onClick={() => updateData({ experienceLevel: opt.value })}
+            >
+              <span className={common.experienceLabel}>{opt.label}</span>
+              <span
+                className={cn(common.experienceDesc, themed.experienceDesc)}
+              >
+                {opt.desc}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
     </motion.div>
   );

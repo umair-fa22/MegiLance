@@ -1,55 +1,75 @@
 /* AI-HINT: Light theme styles for the enhanced StepScope component. */
 
 .container {
-  background-color: var(--bg-primary-light);
-  border-color: var(--border-light);
+    background-color: var(--bg-primary-light);
+    border-color: var(--border-light);
 }
 
 .title {
-  color: var(--text-primary-light);
+    color: var(--text-primary-light);
 }
 
 .subtitle {
-  color: var(--color-text-secondary-light);
+    color: var(--color-text-secondary-light);
 }
 
 .tipButton {
-  background-color: #f0f9ff;
-  border-color: #bae6fd;
-  color: #0369a1;
+    background-color: #f0f9ff;
+    border-color: #bae6fd;
+    color: #0369a1;
 }
 
 .tipButton:hover {
-  background-color: #e0f2fe;
-  border-color: #7dd3fc;
+    background-color: #e0f2fe;
+    border-color: #7dd3fc;
 }
 
 .tipsBox {
-  background-color: #fefce8;
-  border-color: #fde047;
-  color: #713f12;
+    background-color: #fefce8;
+    border-color: #fde047;
+    color: #713f12;
 }
 
 .progressFill {
-  background: linear-gradient(90deg, var(--ml-blue) 0%, #60a5fa 100%);
+    background: linear-gradient(90deg, var(--ml-blue) 0%, #60a5fa 100%);
 }
 
 .suggestionsLabel {
-  color: var(--color-text-secondary-light);
+    color: var(--color-text-secondary-light);
 }
 
 .suggestionChip {
-  background-color: var(--bg-secondary-light);
-  border-color: #cbd5e1;
-  color: var(--text-secondary-light);
+    background-color: var(--bg-secondary-light);
+    border-color: #cbd5e1;
+    color: var(--text-secondary-light);
 }
 
 .suggestionChip:hover {
-  background-color: var(--bg-tertiary-light);
-  border-color: var(--ml-blue);
-  color: var(--ml-blue);
+    background-color: var(--bg-tertiary-light);
+    border-color: var(--ml-blue);
+    color: var(--ml-blue);
 }
 
 .help {
-  color: var(--text-tertiary-light);
+    color: var(--text-tertiary-light);
+}
+
+/* Experience Level */
+.experienceCard {
+    background-color: var(--bg-secondary-light);
+    border-color: var(--border-light);
+    color: var(--text-primary-light);
+}
+
+.experienceCard:hover {
+    border-color: #93c5fd;
+    background-color: #eff6ff;
+}
+
+.experienceCardActive {
+    background-color: #eff6ff;
+}
+
+.experienceDesc {
+    color: var(--color-text-secondary-light);
 }

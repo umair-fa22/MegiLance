@@ -1,281 +1,346 @@
 /* AI-HINT: Common styles for the enhanced StepScope component with metrics, validation, and tips. */
 
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
-  padding: 1.5rem;
-  border-radius: var(--rounded-lg);
-  border-width: 1px;
-  border-style: solid;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    padding: 1.5rem;
+    border-radius: var(--rounded-lg);
+    border-width: 1px;
+    border-style: solid;
 }
 
 .headerRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
-  flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin: 0;
 }
 
 .subtitle {
-  margin-top: 0.25rem;
-  font-size: 1rem;
+    margin-top: 0.25rem;
+    font-size: 1rem;
 }
 
 .tipButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.5rem 0.875rem;
-  border-radius: var(--rounded-md);
-  font-size: 0.875rem;
-  font-weight: 500;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    color 0.2s ease,
-    opacity 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 0.875rem;
+    border-radius: var(--rounded-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        color 0.2s ease,
+        opacity 0.2s ease;
 }
 
 .tipButton:hover {
-  transform: translateY(-1px);
+    transform: translateY(-1px);
 }
 
 .tipButton:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
 }
 
 .tipsBox {
-  padding: 1rem;
-  border-radius: var(--rounded-md);
-  border: 1px solid transparent;
-  overflow: hidden;
+    padding: 1rem;
+    border-radius: var(--rounded-md);
+    border: 1px solid transparent;
+    overflow: hidden;
 }
 
 .tipsBox h4 {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  margin: 0 0 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem;
 }
 
 .tipsBox ul {
-  margin: 0;
-  padding-left: 1.25rem;
-  font-size: 0.875rem;
-  line-height: 1.7;
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1.7;
 }
 
 .tipsBox li {
-  margin-bottom: 0.25rem;
+    margin-bottom: 0.25rem;
 }
 
 .form_group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .metricsRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  font-size: 0.8125rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-size: 0.8125rem;
 }
 
 .metrics {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .metricItem {
-  opacity: 0.8;
+    opacity: 0.8;
 }
 
 .metricItem.warning {
-  color: var(--warning-500, #f59e0b);
-  font-weight: 500;
+    color: var(--warning-500, #f59e0b);
+    font-weight: 500;
 }
 
 .metricDivider {
-  opacity: 0.4;
+    opacity: 0.4;
 }
 
 .validationRow {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .validationStatus {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-size: 0.75rem;
-  font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
 }
 
 .validationStatus.valid {
-  color: var(--success-500, #22c55e);
+    color: var(--success-500, #22c55e);
 }
 
 .validationStatus.invalid {
-  color: var(--gray-400, #9ca3af);
+    color: var(--gray-400, #9ca3af);
 }
 
 .progressBar {
-  height: 4px;
-  border-radius: 2px;
-  background: rgba(128, 128, 128, 0.2);
-  overflow: hidden;
-  margin-top: 0.25rem;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(128, 128, 128, 0.2);
+    overflow: hidden;
+    margin-top: 0.25rem;
 }
 
 .progressFill {
-  height: 100%;
-  border-radius: 2px;
-  transition: width 0.3s ease;
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.3s ease;
 }
 
 .progressComplete {
-  background: var(--success-500, #22c55e) !important;
+    background: var(--success-500, #22c55e) !important;
 }
 
 .suggestionsSection {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 .suggestionsLabel {
-  font-size: 0.8125rem;
-  font-weight: 500;
+    font-size: 0.8125rem;
+    font-weight: 500;
 }
 
 .suggestionsList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .suggestionChip {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.375rem 0.75rem;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  border-radius: 9999px;
-  border: 1px dashed;
-  cursor: pointer;
-  transition: transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    color 0.2s ease,
-    opacity 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    border: 1px dashed;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        color 0.2s ease,
+        opacity 0.2s ease;
 }
 
 .suggestionChip:hover {
-  transform: translateY(-1px);
+    transform: translateY(-1px);
 }
 
 .suggestionChip:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
 }
 
 .help {
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-  opacity: 0.8;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    opacity: 0.8;
+}
+
+/* ─── Experience Level Selector ─── */
+.experienceHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.experienceOptions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+}
+
+.experienceCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    padding: 0.875rem 1rem;
+    border-radius: var(--rounded-md);
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-align: left;
+    transition:
+        border-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+    background: none;
+}
+
+.experienceCard:hover {
+    transform: translateY(-2px);
+}
+
+.experienceCard:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.experienceCardActive {
+    border-color: var(--ml-blue, #4573df) !important;
+    box-shadow: 0 0 0 3px rgba(69, 115, 223, 0.15);
+}
+
+.experienceLabel {
+    font-size: 0.9375rem;
+    font-weight: 600;
+}
+
+.experienceDesc {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+    .experienceOptions {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ─── Responsive ─── */
 @media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-    gap: 1.25rem;
-  }
+    .container {
+        padding: 1rem;
+        gap: 1.25rem;
+    }
 
-  .title {
-    font-size: 1.25rem;
-  }
+    .title {
+        font-size: 1.25rem;
+    }
 
-  .metricsRow {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    .metricsRow {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 @media (max-width: 380px) {
-  .container {
-    padding: 0.75rem;
-    gap: 1rem;
-  }
+    .container {
+        padding: 0.75rem;
+        gap: 1rem;
+    }
 
-  .title {
-    font-size: 1.125rem;
-  }
+    .title {
+        font-size: 1.125rem;
+    }
 
-  .tipsBox {
-    padding: 0.75rem;
-  }
+    .tipsBox {
+        padding: 0.75rem;
+    }
 
-  .headerRow {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    .headerRow {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-  .tipButton {
-    width: 100%;
-    justify-content: center;
-  }
+    .tipButton {
+        width: 100%;
+        justify-content: center;
+    }
 
-  .validationRow {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+    .validationRow {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 
-  .suggestionsList {
-    flex-direction: column;
-  }
+    .suggestionsList {
+        flex-direction: column;
+    }
 
-  .suggestionChip {
-    width: 100%;
-    justify-content: center;
-  }
+    .suggestionChip {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 320px) {
-  .title {
-    font-size: 1rem;
-  }
-  
-  .metrics {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
-  }
-  
-  .metricDivider {
-    display: none;
-  }
+    .title {
+        font-size: 1rem;
+    }
+
+    .metrics {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+
+    .metricDivider {
+        display: none;
+    }
 }

@@ -145,11 +145,11 @@ const availableIntegrations: Omit<Integration, 'id' | 'status'>[] = [
   },
 ];
 
-const statusConfig: Record<string, { label: string; color: string }> = {
-  connected: { label: 'Connected', color: '#22c55e' },
-  disconnected: { label: 'Not Connected', color: '#6b7280' },
-  pending: { label: 'Pending', color: '#f59e0b' },
-  error: { label: 'Error', color: '#ef4444' },
+const statusConfig: Record<Integration['status'], { label: string }> = {
+  connected: { label: 'Connected' },
+  disconnected: { label: 'Not Connected' },
+  pending: { label: 'Pending' },
+  error: { label: 'Error' },
 };
 
 export default function IntegrationsPage() {
@@ -329,8 +329,11 @@ export default function IntegrationsPage() {
                           {integration.name}
                         </h3>
                         <span
-                          className={commonStyles.statusBadge}
-                          style={{ backgroundColor: status.color }}
+                          className={cn(
+                            commonStyles.statusBadge,
+                            commonStyles[`status_${integration.status}`],
+                            themeStyles[`status_${integration.status}`],
+                          )}
                         >
                           {status.label}
                         </span>
@@ -452,8 +455,12 @@ export default function IntegrationsPage() {
                     <div className={commonStyles.infoItem}>
                       <span className={commonStyles.infoLabel}>Status</span>
                       <span
-                        className={commonStyles.infoValue}
-                        style={{ color: statusConfig[showSettings.status].color }}
+                        className={cn(
+                          commonStyles.infoValue,
+                          commonStyles.infoValueStatus,
+                          commonStyles[`status_${showSettings.status}`],
+                          themeStyles[`status_${showSettings.status}`],
+                        )}
                       >
                         {statusConfig[showSettings.status].label}
                       </span>
