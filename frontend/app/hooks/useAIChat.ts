@@ -230,8 +230,8 @@ What would you like to know more about?`,
 
 export function useAIChat(options: UseAIChatOptions = {}): UseAIChatReturn {
   const {
-    apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api',
-    aiServiceUrl = process.env.NEXT_PUBLIC_AI_SERVICE_URL || 'http://localhost:7860',
+    apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || '/api',
+    aiServiceUrl = process.env.NEXT_PUBLIC_AI_SERVICE_URL || '',
     enableOfflineMode = true,
     autoReconnect = true,
     reconnectInterval = 30000,
@@ -311,28 +311,30 @@ export function useAIChat(options: UseAIChatOptions = {}): UseAIChatReturn {
     return false;
   }, [apiBaseUrl, updateStatus]);
 
-  // Ping AI service
+  // Ping AI service (skipped if no URL configured — chatbot uses backend directly)
   const pingAIService = useCallback(async (): Promise<boolean> => {
+    if (!aiServiceUrl) {
+      updateStatus({ aiServiceAvailable: false });
+      return false;
+    }
     try {
       const response = await fetch(`${aiServiceUrl}/health`, {
         method: 'GET',
         signal: AbortSignal.timeout(5000),
       });
-      
+
       if (response.ok) {
-        const data = await response.json();
+        await response.json();
         updateStatus({
           aiServiceAvailable: true,
           error: null,
         });
         return true;
       }
-    } catch (error) {
-      if (process.env.NODE_ENV === 'development') {
-        console.warn('AI service ping failed:', error);
-      }
+    } catch {
+      // External AI service is optional; fail silently to avoid log spam
     }
-    
+
     updateStatus({ aiServiceAvailable: false });
     return false;
   }, [aiServiceUrl, updateStatus]);
@@ -373,7 +375,7 @@ export function useAIChat(options: UseAIChatOptions = {}): UseAIChatReturn {
     }
 
     try {
-      const response = await fetch(`${apiBaseUrl}/v1/chatbot/start`, {
+      const response = await fetch(`${apiBaseUrl}/chatbot/start`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({}),
@@ -455,7 +457,7 @@ export function useAIChat(options: UseAIChatOptions = {}): UseAIChatReturn {
 
       // Try backend chatbot
       if (status.backendAvailable && conversationId && !conversationId.startsWith('offline')) {
-        const response = await fetch(`${apiBaseUrl}/v1/chatbot/${conversationId}/message`, {
+        const response = await fetch(`${apiBaseUrl}/chatbot/${conversationId}/message`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message: content }),

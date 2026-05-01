@@ -47,24 +47,34 @@ class FAQSearchRequest(BaseModel):
     limit: int = 5
 
 
+def _extract_user_id(current_user) -> Optional[int]:
+    """Extract user id whether get_current_user_optional returned a User, dict, or None."""
+    if current_user is None:
+        return None
+    if isinstance(current_user, dict):
+        uid = current_user.get("id") or current_user.get("user_id")
+        return int(uid) if uid is not None else None
+    return getattr(current_user, "id", None)
+
+
 # Endpoints
 @router.post("/start")
 async def start_conversation(
     request: Optional[StartConversationRequest] = None,
     current_user: Optional[User] = Depends(get_current_user_optional),
-    
+
 ):
     """Start a new chatbot conversation."""
     service = get_chatbot_service()
-    
-    user_id = current_user.id if current_user else None
+
+    user_id = _extract_user_id(current_user)
     context = request.context if request else None
-    
+
     result = await service.start_conversation(
         user_id=user_id,
         context=context
     )
-    
+
     return result
 
 
@@ -73,12 +83,12 @@ async def send_message(
     conversation_id: str,
     request: SendMessageRequest,
     current_user: Optional[User] = Depends(get_current_user_optional),
-    
+
 ):
     """Send a message in a chatbot conversation."""
     service = get_chatbot_service()
-    
-    user_id = current_user.id if current_user else None
+
+    user_id = _extract_user_id(current_user)
     
     result = await service.send_message(
         conversation_id=conversation_id,
