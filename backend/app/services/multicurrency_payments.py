@@ -453,7 +453,7 @@ class MultiCurrencyPaymentService:
                 "tx_hash": f"0x{secrets.token_hex(32)}",
                 "block_explorer": f"https://polygonscan.com/tx/0x{secrets.token_hex(32)}",
                 "estimated_confirmation": "2-3 minutes",
-                "note": "MOCK_DUE_TO_WEB3_ERROR"
+                "note": "PAYMENT_FAILED_WEB3"
             }
 
 

@@ -95,7 +95,7 @@ async def get_file(
         result = await file_versioning_service.get_file(file_id=file_id)
         return result
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 # ============== Version Management ==============
@@ -124,7 +124,7 @@ async def upload_new_version(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
 
 
 @router.get("/{file_id}/versions")
@@ -142,7 +142,7 @@ async def get_version_history(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 @router.get("/{file_id}/versions/{version_number}")
@@ -166,7 +166,7 @@ async def get_version(
         result_copy = {k: v for k, v in result.items() if k != "content"}
         return result_copy
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 @router.delete("/{file_id}/versions/{version_number}")
@@ -189,7 +189,7 @@ async def delete_version(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
 
 
 # ============== Rollback ==============
@@ -214,7 +214,7 @@ async def rollback_to_version(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
 
 
 # ============== Compare ==============
@@ -239,7 +239,7 @@ async def compare_versions(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 # ============== File Locking ==============
@@ -262,7 +262,7 @@ async def lock_file(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
 
 
 @router.delete("/{file_id}/lock")
@@ -285,7 +285,7 @@ async def unlock_file(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
 
 
 # ============== Info ==============

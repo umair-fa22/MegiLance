@@ -75,7 +75,7 @@ def create_stripe_customer(
     except stripe.error.StripeError as e:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(e)
+            detail="Internal server error"
         )
 
 
@@ -149,7 +149,7 @@ def create_payment_intent(
     except stripe.error.StripeError as e:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(e)
+            detail="Internal server error"
         )
 
 
@@ -209,7 +209,7 @@ def confirm_payment_intent(
     except stripe.error.StripeError as e:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(e)
+            detail="Internal server error"
         )
 
 
@@ -247,7 +247,7 @@ def capture_payment_intent(
     except stripe.error.StripeError as e:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(e)
+            detail="Internal server error"
         )
 
 
@@ -272,7 +272,7 @@ def cancel_payment_intent(
     except stripe.error.StripeError as e:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(e)
+            detail="Internal server error"
         )
 
 
@@ -310,7 +310,7 @@ def create_refund(
     except stripe.error.StripeError as e:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(e)
+            detail="Internal server error"
         )
 
 
@@ -369,7 +369,7 @@ def attach_payment_method(
     except stripe.error.StripeError as e:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(e)
+            detail="Internal server error"
         )
 
 
@@ -403,7 +403,7 @@ def create_subscription(
     except stripe.error.StripeError as e:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(e)
+            detail="Internal server error"
         )
 
 
@@ -431,7 +431,7 @@ def cancel_subscription(
     except stripe.error.StripeError as e:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(e)
+            detail="Internal server error"
         )
 
 

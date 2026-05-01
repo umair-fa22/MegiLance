@@ -16,12 +16,19 @@ settings = get_settings()
 
 class S3Client:
     def __init__(self):
-        self.s3_client = boto3.client(
-            's3',
-            region_name=settings.aws_region,
-            aws_access_key_id=settings.aws_access_key_id,
-            aws_secret_access_key=settings.aws_secret_access_key
-        ) if settings.aws_access_key_id else boto3.client('s3', region_name=settings.aws_region)
+        client_kwargs = {
+            'service_name': 's3',
+            'region_name': settings.aws_region or 'auto', # R2 typically defaults to 'auto'
+        }
+        
+        if settings.aws_access_key_id:
+            client_kwargs['aws_access_key_id'] = settings.aws_access_key_id
+            client_kwargs['aws_secret_access_key'] = settings.aws_secret_access_key
+            
+        if getattr(settings, 'aws_endpoint_url', None):
+            client_kwargs['endpoint_url'] = settings.aws_endpoint_url
+            
+        self.s3_client = boto3.client(**client_kwargs)
         
     def upload_file(
         self,
@@ -54,7 +61,15 @@ class S3Client:
                 ExtraArgs=extra_args
             )
             
-            url = f"https://{bucket_name}.s3.{settings.aws_region}.amazonaws.com/{object_name}"
+            if getattr(settings, 'aws_custom_domain', None):
+                domain = settings.aws_custom_domain.rstrip('/')
+                url = f"{domain}/{object_name}"
+            elif getattr(settings, 'aws_endpoint_url', None):
+                endpoint = settings.aws_endpoint_url.rstrip('/')
+                url = f"{endpoint}/{bucket_name}/{object_name}"
+            else:
+                url = f"https://{bucket_name}.s3.{settings.aws_region}.amazonaws.com/{object_name}"
+                
             logger.info(f"File uploaded successfully to {url}")
             return url
             

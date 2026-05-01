@@ -144,7 +144,7 @@ async def create_activity(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
 
 
 @router.delete("/activities/{activity_id}")
@@ -161,7 +161,7 @@ async def delete_activity(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 # ============== Social Endpoints ==============
@@ -180,7 +180,7 @@ async def follow_user(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
 
 
 @router.delete("/follow/{user_id}")
@@ -279,7 +279,7 @@ async def like_activity(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 @router.delete("/activities/{activity_id}/like")
@@ -296,7 +296,7 @@ async def unlike_activity(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 @router.post("/activities/{activity_id}/comments")
@@ -315,7 +315,7 @@ async def comment_on_activity(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 # ============== Privacy Endpoints ==============
@@ -354,7 +354,7 @@ async def update_privacy_settings(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
 
 
 # ============== Analytics Endpoints ==============

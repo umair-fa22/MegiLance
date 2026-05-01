@@ -87,7 +87,7 @@ async def update_tag(
     try:
         return tags_service.update_tag(tag_id, update_data)
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
 
 
 @router.delete("/{tag_id}", status_code=status.HTTP_204_NO_CONTENT)

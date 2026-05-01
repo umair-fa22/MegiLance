@@ -105,7 +105,7 @@ async def create_api_key(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
 
 
 @router.get("")
@@ -177,7 +177,7 @@ async def update_api_key(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 @router.delete("/{key_id}")
@@ -198,7 +198,7 @@ async def revoke_api_key(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 @router.post("/{key_id}/rotate")
@@ -222,7 +222,7 @@ async def rotate_api_key(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 # ============== Usage & Statistics ==============
@@ -249,7 +249,7 @@ async def get_key_usage(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 # ============== Validation Endpoint ==============

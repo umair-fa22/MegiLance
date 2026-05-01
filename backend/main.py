@@ -388,19 +388,41 @@ def health_ready():
         "python_version": sys.version.split()[0],
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
     }
+    
+    status_dict = {"status": "ready", "db": "ok", "components": {}}
+    
     try:
+        # Check Database
         if engine is not None:
             with engine.connect() as conn:
                 conn.execute(text("SELECT 1"))
-            return {"status": "ready", "db": "ok", "driver": "sqlalchemy", **base_info}
+            status_dict["components"]["db"] = "ok"
+            status_dict["driver"] = "sqlalchemy"
         else:
             # Using Turso HTTP API
             from app.db.turso_http import execute_query
             result = execute_query("SELECT 1")
             if result is not None:
-                return {"status": "ready", "db": "ok", "driver": "turso_http", **base_info}
+                status_dict["components"]["db"] = "ok"
+                status_dict["driver"] = "turso_http"
             else:
-                return JSONResponse(status_code=503, content={"status": "degraded", "db_error": "Turso HTTP query failed", **base_info})
+                raise Exception("Turso HTTP query returned None")
+                
+        # Check External Storage Integration (S3/Cloudflare R2)
+        if getattr(settings, 'aws_access_key_id', None) and getattr(settings, 'aws_bucket_name', None):
+            status_dict["components"]["storage"] = "configured"
+        else:
+            status_dict["components"]["storage"] = "missing_configuration"
+            
+        # Check SMTP configuration
+        if getattr(settings, 'smtp_server', None) and getattr(settings, 'smtp_username', None):
+            status_dict["components"]["email"] = "configured"
+        else:
+            status_dict["components"]["email"] = "missing_configuration"
+            
+        status_dict.update(base_info)
+        return status_dict
+        
     except Exception as e:
         logger.error(f"health.ready_failed error={e}")
         # SECURITY: Don't leak database error details in production

@@ -106,7 +106,7 @@ async def schedule_interview(
         }
         
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
     except Exception as e:
         logger.error(f"Schedule interview error: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to schedule interview")
@@ -184,7 +184,7 @@ async def reschedule_interview(
         return result
         
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
     except Exception as e:
         logger.error(f"Reschedule error: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to reschedule interview")
@@ -209,7 +209,7 @@ async def cancel_interview(
         return result
         
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
     except Exception as e:
         logger.error(f"Cancel error: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to cancel interview")
@@ -248,7 +248,7 @@ async def join_video_room(
         return result
         
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
     except Exception as e:
         logger.error(f"Join room error: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to join room")
@@ -300,7 +300,7 @@ async def send_signaling_message(
         return result
         
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
     except Exception as e:
         logger.error(f"Signaling error: {str(e)}")
         raise HTTPException(status_code=500, detail="Signaling failed")
@@ -347,7 +347,7 @@ async def toggle_media(
         return result
         
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
     except Exception as e:
         logger.error(f"Toggle media error: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to toggle media")
@@ -379,7 +379,7 @@ async def start_recording(
         return result
         
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
     except Exception as e:
         logger.error(f"Start recording error: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to start recording")
@@ -402,7 +402,7 @@ async def stop_recording(
         return result
         
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
     except Exception as e:
         logger.error(f"Stop recording error: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to stop recording")
@@ -434,7 +434,7 @@ async def submit_feedback(
         return result
         
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
     except Exception as e:
         logger.error(f"Submit feedback error: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to submit feedback")

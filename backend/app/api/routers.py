@@ -21,7 +21,7 @@ from .v1.core_domain import audit
 from .v1.core_domain import availability_calendar
 from .v1.core_domain import backup_restore
 from .v1.core_domain import blog
-from .v1.core_domain import bulk_operations
+
 from .v1.core_domain import client
 from .v1.core_domain import community
 from .v1.core_domain import compliance
@@ -63,7 +63,7 @@ from .v1.core_domain import portfolio_builder
 from .v1.core_domain import price_estimator
 from .v1.core_domain import proposal_templates
 from .v1.core_domain import proposal_writer
-from .v1.core_domain import public_clients
+
 from .v1.core_domain import public_profiles
 from .v1.core_domain import push_notifications
 from .v1.core_domain import rate_advisor
@@ -269,7 +269,7 @@ api_router.include_router(moderation.router, prefix="/moderation", tags=["modera
 api_router.include_router(newsletter.router, tags=["newsletter"])
 
 # Bulk Operations - Batch processing
-api_router.include_router(bulk_operations.router, prefix="/bulk", tags=["bulk-operations"])
+
 
 # Saved Searches - Persistent search queries
 api_router.include_router(saved_searches.router, prefix="/saved-searches", tags=["saved-searches"])
@@ -432,7 +432,7 @@ api_router.include_router(pakistan_payments.router, prefix="/pk-payments", tags=
 api_router.include_router(blog.router, prefix="/blog", tags=["blog"])
 
 # Public clients showcase (no auth required)
-api_router.include_router(public_clients.router, tags=["public-clients"])
+
 
 # Public freelancer profiles (no auth required - shareable profiles)
 api_router.include_router(public_profiles.router, prefix="/freelancers", tags=["public-profiles"])

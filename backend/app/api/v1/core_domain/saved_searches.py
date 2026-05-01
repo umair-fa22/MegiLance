@@ -91,7 +91,7 @@ async def save_search(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
 
 
 @router.get("")
@@ -148,7 +148,7 @@ async def update_saved_search(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 @router.delete("/{search_id}")
@@ -164,7 +164,7 @@ async def delete_saved_search(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 @router.post("/{search_id}/execute")
@@ -184,7 +184,7 @@ async def execute_saved_search(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 # ============== Alert Endpoints ==============
@@ -210,7 +210,7 @@ async def toggle_search_alert(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 @router.get("/alerts/active")
@@ -313,7 +313,7 @@ async def create_from_template(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
 
 
 # ============== Analytics Endpoints ==============

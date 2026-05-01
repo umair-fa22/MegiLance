@@ -9,7 +9,7 @@ from httpx import AsyncClient
 from datetime import datetime, timedelta
 import json
 
-pytestmark = pytest.mark.skip(reason="Requires full Turso DB + security services")
+
 
 
 @pytest.mark.asyncio

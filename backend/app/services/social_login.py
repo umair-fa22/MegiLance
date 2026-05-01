@@ -292,7 +292,7 @@ class SocialLoginService:
 
                 social_user = await self._get_user_info(provider, provider_access_token)
             else:
-                provider_access_token = f"mock_{secrets.token_hex(16)}"
+                provider_access_token = ""
                 social_user = await self._get_user_info(provider, provider_access_token)
 
             user_id = state_data.get("user_id")

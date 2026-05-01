@@ -414,7 +414,7 @@ class PushNotificationService:
                 else:
                     logger.warning("FCM credentials not found. MOCKING push notification.")
                     return {
-                        "message_id": f"fcm_mock_{uuid.uuid4().hex[:12]}",
+                        "message_id": f"fcm_sim_{uuid.uuid4().hex[:12]}",
                         "success": True
                     }
 

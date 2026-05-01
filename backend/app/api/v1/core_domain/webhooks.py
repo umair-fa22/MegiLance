@@ -75,7 +75,7 @@ async def create_webhook(
     except ValueError as e:
         raise HTTPException(
             status_code=400,
-            detail=f"Invalid event type: {str(e)}"
+            detail="Internal server error"
         )
     
     if not events:
@@ -142,7 +142,7 @@ async def update_webhook(
         except ValueError as e:
             raise HTTPException(
                 status_code=400,
-                detail=f"Invalid event type: {str(e)}"
+                detail="Internal server error"
             )
     
     webhook = await service.update_webhook(

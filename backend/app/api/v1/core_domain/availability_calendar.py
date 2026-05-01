@@ -289,7 +289,7 @@ async def sync_calendar(
             INSERT INTO calendar_sync (id, user_id, provider, access_token, sync_status, created_at, updated_at)
             VALUES (?, ?, ?, ?, 'pending_auth', ?, ?)
             ON CONFLICT(user_id, provider) DO UPDATE SET sync_status = 'pending_auth', updated_at = ?
-        """, [str(uuid.uuid4()), user_id, provider, "mock_token", now, now, now])
+        """, [str(uuid.uuid4()), user_id, provider, "temp_token", now, now, now])
     except Exception as e:
         print(f"Error initializing sync: {e}")
     

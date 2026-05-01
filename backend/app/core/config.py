@@ -59,11 +59,13 @@ class Settings(BaseSettings):
     # Account Security
     account_lockout_threshold: int = 10  # Lock account after this many failed attempts
 
-    # AWS S3 Configuration
+    # AWS S3 / Cloudflare R2 Configuration
     aws_region: Optional[str] = "us-east-1"
     aws_access_key_id: Optional[str] = None
     aws_secret_access_key: Optional[str] = None
     aws_bucket_name: Optional[str] = None
+    aws_endpoint_url: Optional[str] = None  # Crucial for Cloudflare R2, e.g., https://<account_id>.r2.cloudflarestorage.com
+    aws_custom_domain: Optional[str] = None  # Public URL (e.g., https://pub-xxxxxxxx.r2.dev or a custom domain)
     account_lockout_duration_minutes: int = 30  # How long to lock the account
     session_absolute_timeout_hours: int = 24  # Force re-login after this many hours
     

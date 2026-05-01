@@ -131,7 +131,7 @@ async def create_field_definition(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
 
 
 @router.get("/definitions")
@@ -149,7 +149,7 @@ async def get_field_definitions(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
 
 
 @router.get("/definitions/{field_id}")
@@ -185,7 +185,7 @@ async def update_field_definition(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 @router.delete("/definitions/{field_id}")
@@ -205,7 +205,7 @@ async def delete_field_definition(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
 
 
 # ============== Field Value Endpoints ==============
@@ -229,7 +229,7 @@ async def set_field_value(
         )
         return result
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
 
 
 @router.put("/values/{entity_type}/{entity_id}")

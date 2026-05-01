@@ -184,8 +184,10 @@ def delete_uploaded_file(file_url: str):
         
     settings = get_settings()
     
-    # Check if it's an S3 URL (simple heuristic based on bucket name)
-    if getattr(settings, 'aws_bucket_name', None) and settings.aws_bucket_name in file_url:
+    # Check if it's an external URL (S3/R2) vs local path
+    is_external = file_url.startswith('http://') or file_url.startswith('https://')
+    
+    if is_external and getattr(settings, 'aws_access_key_id', None) and getattr(settings, 'aws_bucket_name', None):
         try:
             s3 = get_s3_client()
             # Extract object name (e.g., 'avatars/filename.jpg')
@@ -196,7 +198,7 @@ def delete_uploaded_file(file_url: str):
                 s3.delete_file(settings.aws_bucket_name, object_name)
         except Exception as e:
             logger.error(f"Failed to delete S3 file {file_url}: {e}")
-    else:
+    elif not is_external:
         # Local file deletion fallback
         try:
             local_path = file_url

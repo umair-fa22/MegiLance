@@ -362,7 +362,7 @@ async def connect_wallet(
     except ValueError as e:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(e)
+            detail="Internal server error"
         )
 
 
@@ -497,7 +497,7 @@ async def verify_payment(
     except ValueError as e:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=str(e)
+            detail="Internal server error"
         )
 
 

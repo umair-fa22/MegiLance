@@ -134,7 +134,7 @@ async def start_assessment(
             **result
         }
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Internal server error")
 
 
 # ============================================================================

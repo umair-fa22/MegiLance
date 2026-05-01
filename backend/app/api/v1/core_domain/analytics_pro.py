@@ -148,7 +148,7 @@ async def get_churn_predictions(
         return predictions
         
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail="Internal server error")
     except Exception as e:
         logger.error(f"Churn prediction error: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to get predictions")
