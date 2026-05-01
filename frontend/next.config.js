@@ -261,6 +261,11 @@ const nextConfig = {
   
   async redirects() {
     return [
+      {
+        source: '/api/auth/callback/:provider',
+        destination: '/callback',
+        permanent: false,
+      },
       // Redirect www to non-www
       {
         source: '/:path*',

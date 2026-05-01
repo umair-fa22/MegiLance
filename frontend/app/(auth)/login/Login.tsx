@@ -265,11 +265,11 @@ const Login: React.FC = () => {
   const handleSocialLogin = async (provider: 'google' | 'github') => {
     setLoading(true);
     try {
-      const redirectUri = `${window.location.origin}/callback`;
+      const redirectUri = `${window.location.origin}/api/auth/callback/${provider}`;
       try { window.localStorage.setItem('portal_area', selectedRole); } catch { /* localStorage unavailable in private browsing */ }
-      
+        
       const response = await api.socialAuth.start(provider, redirectUri, selectedRole, 'login') as { authorization_url?: string };
-      
+        
       if (response.authorization_url) {
         window.location.href = response.authorization_url;
       } else {

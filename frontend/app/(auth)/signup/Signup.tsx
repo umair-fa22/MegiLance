@@ -193,7 +193,7 @@ const Signup: React.FC = () => {
     
     setLoading(true);
     try {
-      const redirectUri = `${window.location.origin}/callback`;
+const redirectUri = `${window.location.origin}/api/auth/callback/${provider}`;
       try { window.localStorage.setItem('portal_area', selectedRole); } catch { /* localStorage unavailable in private browsing */ }
       
       const response = await api.socialAuth.start(provider, redirectUri, selectedRole, 'register') as { authorization_url?: string };

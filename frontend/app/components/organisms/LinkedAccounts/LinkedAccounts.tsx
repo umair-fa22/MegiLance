@@ -62,7 +62,7 @@ const LinkedAccounts: React.FC = () => {
     setActionLoading(provider);
     setMessage(null);
     try {
-      const redirectUri = `${window.location.origin}/callback`;
+      const redirectUri = `${window.location.origin}/api/auth/callback/${provider}`;
       const response = await api.socialAuth.start(provider, redirectUri, undefined, 'link') as { authorization_url?: string };
       if (response.authorization_url) {
         window.location.href = response.authorization_url;
