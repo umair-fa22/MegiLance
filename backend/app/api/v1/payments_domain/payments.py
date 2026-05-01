@@ -292,6 +292,24 @@ def create_payment(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Recipient account is not active"
             )
+
+        # Verify contract access (crucial security fix)
+        if payment.contract_id:
+            contract_check = turso.fetch_one(
+                "SELECT client_id, freelancer_id FROM contracts WHERE id = ?",
+                [payment.contract_id]
+            )
+            if not contract_check:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail="Contract not found"
+                )
+            client_id, freelancer_id = contract_check
+            if current_user.id != client_id or payment.to_user_id != freelancer_id:
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="Payment does not match contract parties"
+                )
         
         now = datetime.now(timezone.utc).isoformat()
         payment_type = (payment.payment_type or "milestone").lower()
