@@ -1,0 +1,129 @@
+{
+  "total": 20,
+  "passed": 20,
+  "failed": 0,
+  "errors": [],
+  "timestamp": "2026-05-02T10:56:38.571619",
+  "tests": [
+    {
+      "name": "Homepage Loads",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:56:41.984288",
+      "message": "Title: MegiLance - Freelancer Website | Hire Freelance Web Developers, Designers & Experts Online"
+    },
+    {
+      "name": "Navigation Visible",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:56:42.496303",
+      "message": ""
+    },
+    {
+      "name": "Hero Section Visible",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:56:43.022937",
+      "message": "Found 25 buttons"
+    },
+    {
+      "name": "Login Page Accessible",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:56:45.935360",
+      "message": ""
+    },
+    {
+      "name": "Signup Page Accessible",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:56:49.307055",
+      "message": "Found 1 input fields"
+    },
+    {
+      "name": "Theme Toggle Exists",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:56:49.931727",
+      "message": "Found 1 theme buttons"
+    },
+    {
+      "name": "Responsive Design (Tablet)",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:56:52.136141",
+      "message": ""
+    },
+    {
+      "name": "Features Section Visible",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:56:56.541153",
+      "message": ""
+    },
+    {
+      "name": "Pricing Page Loads",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:56:59.662512",
+      "message": ""
+    },
+    {
+      "name": "Contact Page Accessible",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:57:02.429809",
+      "message": ""
+    },
+    {
+      "name": "Form Validation Works",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:57:06.784354",
+      "message": "Form submission attempted successfully"
+    },
+    {
+      "name": "Footer Visible",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:57:10.658292",
+      "message": "Footer with 388 characters"
+    },
+    {
+      "name": "Footer Content Present",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:57:12.182190",
+      "message": "Found 28 footer links"
+    },
+    {
+      "name": "Accessibility Landmarks",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:57:12.709611",
+      "message": "Found main, nav, and 29 headings"
+    },
+    {
+      "name": "Page Performance",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:57:14.086095",
+      "message": "Load time: 0.34s"
+    },
+    {
+      "name": "Error Page Handling",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:57:17.066141",
+      "message": "404 page displays correctly"
+    },
+    {
+      "name": "Page Elements Load",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:57:21.007176",
+      "message": "Found 0 images, 265 divs, 19 buttons"
+    },
+    {
+      "name": "Animation Elements",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:57:24.001382",
+      "message": "Found 0 animated elements"
+    },
+    {
+      "name": "LocalStorage Works",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:57:24.515373",
+      "message": ""
+    },
+    {
+      "name": "Console Errors",
+      "status": "PASS",
+      "timestamp": "2026-05-02T10:57:28.308671",
+      "message": "Development mode - normal for Next.js apps"
+    }
+  ]
+}
