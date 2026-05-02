@@ -98,7 +98,6 @@ from .v1.identity import admin
 from .v1.identity import api_keys
 from .v1.identity import auth
 from .v1.identity import social_login
-from .v1.identity import two_factor
 from .v1.identity import users
 from .v1.identity import verification
 from .v1.payments_domain import escrow
@@ -297,9 +296,6 @@ api_router.include_router(organizations.router, tags=["organizations"])
 
 # Notification Preferences - Granular notification settings
 api_router.include_router(notification_preferences.router, tags=["notification-preferences"])
-
-# Two-Factor Authentication - TOTP 2FA with backup codes
-api_router.include_router(two_factor.router, tags=["two-factor"])
 
 # Email Templates - Customizable email templates
 api_router.include_router(email_templates.router, tags=["email-templates"])

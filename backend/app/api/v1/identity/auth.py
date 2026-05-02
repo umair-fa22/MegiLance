@@ -1,4 +1,4 @@
-# @AI-HINT: Auth endpoints - register, login, 2FA, email verification, password reset
+# @AI-HINT: Auth endpoints - register, login, email verification, password reset
 # Uses Turso HTTP API directly - NO SQLite fallback
 
 import logging
@@ -31,14 +31,7 @@ from app.services import auth_service
 from app.models.user import User
 from app.schemas.auth import AuthResponse, LoginRequest, RefreshTokenRequest, Token
 from app.schemas.user import UserCreate, UserRead, UserUpdate
-from app.schemas.two_factor import (
-    TwoFactorSetupResponse,
-    TwoFactorVerifyRequest,
-    TwoFactorLoginRequest,
-    TwoFactorStatusResponse,
-    TwoFactorDisableRequest,
-    TwoFactorRegenerateBackupCodesResponse,
-)
+
 from app.schemas.email_verification import (
     EmailVerificationRequest,
     EmailVerificationResponse,
@@ -317,11 +310,9 @@ def register_user(request: Request, payload: UserCreate):
 @auth_rate_limit()
 def login_user(request: Request, credentials: LoginRequest):
     """
-    User login endpoint with 2FA support
+    Standard user login endpoint.
     
-    If user has 2FA enabled, returns requires_2fa=True and a temporary token.
-    Uses Turso HTTP API directly - no SQLAlchemy session needed.
-    Sets refresh token as httpOnly cookie for security.
+    Takes email + password, returns access token, refresh token, and user details.
     """
     logger.info("Login attempt for email=%s", credentials.email)
 
@@ -344,42 +335,7 @@ def login_user(request: Request, credentials: LoginRequest):
         except (json.JSONDecodeError, ValueError):
             pass
 
-    # Check if 2FA is enabled
-    if hasattr(user, 'two_factor_enabled') and user.two_factor_enabled:
-        # Create temporary token for 2FA verification
-        temp_claims = {"user_id": user.id, "temp_2fa": True}
-        temp_token = create_access_token(
-            subject=_safe_str(user.email),
-            custom_claims=temp_claims,
-            expires_delta_minutes=5
-        )
-        
-        user_data = UserRead(
-            id=user.id,
-            email=_safe_str(user.email),
-            is_active=bool(user.is_active),
-            name=_safe_str(user.name),
-            user_type=_safe_str(user.user_type),
-            role=_safe_str(getattr(user, 'role', None)) or _safe_str(user.user_type),
-            bio=_safe_str(user.bio),
-            skills=_safe_str(user.skills),
-            hourly_rate=float(user.hourly_rate) if user.hourly_rate else None,
-            profile_image_url=_safe_str(user.profile_image_url),
-            location=_safe_str(user.location),
-            title=profile_data.get("title"),
-            portfolio_url=profile_data.get("portfolio_url"),
-            joined_at=user.joined_at
-        )
-        
-        return AuthResponse(
-            access_token=temp_token,
-            refresh_token="",
-            user=user_data,
-            requires_2fa=True,
-            message="Two-factor authentication required."
-        )
-
-    # No 2FA - proceed with normal login
+    # Proceed with normal login
     email_str = _safe_str(user.email)
     user_type_str = _safe_str(user.user_type) or ""
     
@@ -668,196 +624,6 @@ def update_user_me(
         title=_safe_str(user_data.get("title")),
         portfolio_url=_safe_str(user_data.get("portfolio_url")),
         joined_at=user_data.get("joined_at")
-    )
-
-
-# ===== Two-Factor Authentication Endpoints =====
-
-@router.post("/2fa/setup", response_model=TwoFactorSetupResponse)
-def setup_2fa(current_user: User = Depends(get_current_active_user)):
-    """Initialize 2FA setup for the current user"""
-    if hasattr(current_user, 'two_factor_enabled') and current_user.two_factor_enabled:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Two-factor authentication is already enabled"
-        )
-    
-    # Import here to avoid circular imports
-    from app.services.two_factor_service import two_factor_service
-    
-    # Generate setup data
-    setup_data = two_factor_service.setup_2fa_for_user_turso(current_user)
-    
-    return TwoFactorSetupResponse(
-        secret=setup_data["secret"],
-        qr_code=setup_data["qr_code"],
-        backup_codes=setup_data["backup_codes"],
-        provisioning_uri=setup_data["provisioning_uri"]
-    )
-
-
-@router.post("/2fa/enable", status_code=status.HTTP_200_OK)
-def enable_2fa(
-    request: TwoFactorVerifyRequest,
-    current_user: User = Depends(get_current_active_user),
-):
-    """Enable 2FA after setup by verifying a TOTP token"""
-    if hasattr(current_user, 'two_factor_enabled') and current_user.two_factor_enabled:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Two-factor authentication is already enabled"
-        )
-    
-    if not hasattr(current_user, 'two_factor_secret') or not current_user.two_factor_secret:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Please initialize 2FA setup first by calling /auth/2fa/setup"
-        )
-    
-    from app.services.two_factor_service import two_factor_service
-    success = two_factor_service.enable_2fa_turso(current_user, request.token)
-    
-    if not success:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid verification code. Please try again."
-        )
-    
-    return {"message": "Two-factor authentication enabled successfully"}
-
-
-@router.post("/2fa/verify", response_model=AuthResponse)
-def verify_2fa_login(
-    request: TwoFactorLoginRequest,
-    current_user: User = Depends(get_current_active_user),
-):
-    """Complete login with 2FA verification"""
-    if not hasattr(current_user, 'two_factor_enabled') or not current_user.two_factor_enabled:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Two-factor authentication is not enabled for this account"
-        )
-    
-    from app.services.two_factor_service import two_factor_service
-    success = two_factor_service.verify_2fa_login_turso(
-        current_user, 
-        request.token,
-        is_backup_code=request.is_backup_code
-    )
-    
-    if not success:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid authentication code"
-        )
-    
-    # 2FA verified - issue full access tokens
-    email_str = _safe_str(current_user.email)
-    user_type_str = _safe_str(current_user.user_type) or ""
-    
-    custom_claims: Dict[str, Any] = {"user_id": current_user.id, "role": user_type_str}
-    access_token = create_access_token(subject=email_str, custom_claims=custom_claims)
-    refresh_token = create_refresh_token(subject=email_str, custom_claims=custom_claims)
-    
-    # Parse profile data
-    profile_data = {}
-    if current_user.profile_data:
-        try:
-            profile_data = json.loads(current_user.profile_data)
-        except (json.JSONDecodeError, ValueError):
-            pass
-
-    return AuthResponse(
-        access_token=access_token,
-        refresh_token=refresh_token,
-        user=UserRead(
-            id=current_user.id,
-            email=email_str,
-            is_active=bool(current_user.is_active),
-            name=_safe_str(current_user.name),
-            user_type=user_type_str,
-            bio=_safe_str(current_user.bio),
-            skills=_safe_str(current_user.skills),
-            hourly_rate=float(current_user.hourly_rate) if current_user.hourly_rate else None,
-            profile_image_url=_safe_str(current_user.profile_image_url),
-            location=_safe_str(current_user.location),
-            title=profile_data.get("title"),
-            portfolio_url=profile_data.get("portfolio_url"),
-            joined_at=current_user.joined_at
-        ),
-        message="Login successful"
-    )
-
-
-@router.get("/2fa/status", response_model=TwoFactorStatusResponse)
-def get_2fa_status(current_user: User = Depends(get_current_active_user)):
-    """Get current user's 2FA status"""
-    backup_codes_count = 0
-    two_factor_enabled = hasattr(current_user, 'two_factor_enabled') and current_user.two_factor_enabled
-    
-    if two_factor_enabled and hasattr(current_user, 'two_factor_backup_codes') and current_user.two_factor_backup_codes:
-        try:
-            codes = json.loads(current_user.two_factor_backup_codes)
-            backup_codes_count = len(codes)
-        except (json.JSONDecodeError, TypeError):
-            pass
-    
-    return TwoFactorStatusResponse(
-        enabled=two_factor_enabled,
-        has_backup_codes=backup_codes_count > 0,
-        backup_codes_remaining=backup_codes_count if two_factor_enabled else None
-    )
-
-
-@router.post("/2fa/disable", status_code=status.HTTP_200_OK)
-def disable_2fa(
-    request: TwoFactorDisableRequest,
-    current_user: User = Depends(get_current_active_user),
-):
-    """Disable 2FA for current user (requires password confirmation)"""
-    if not hasattr(current_user, 'two_factor_enabled') or not current_user.two_factor_enabled:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Two-factor authentication is not enabled"
-        )
-    
-    # Verify password
-    if not verify_password(request.password, current_user.hashed_password):
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect password"
-        )
-    
-    from app.services.two_factor_service import two_factor_service
-    two_factor_service.disable_2fa_turso(current_user)
-    
-    return {"message": "Two-factor authentication disabled successfully"}
-
-
-@router.post("/2fa/regenerate-backup-codes", response_model=TwoFactorRegenerateBackupCodesResponse)
-def regenerate_backup_codes(current_user: User = Depends(get_current_active_user)):
-    """Regenerate backup codes (invalidates old codes)"""
-    if not hasattr(current_user, 'two_factor_enabled') or not current_user.two_factor_enabled:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Two-factor authentication is not enabled"
-        )
-    
-    from app.services.two_factor_service import two_factor_service
-    plain_codes, hashed_codes = two_factor_service.generate_backup_codes()
-    
-    # Update in Turso
-    update_result = auth_service.update_backup_codes(current_user.id, json.dumps(hashed_codes))
-    
-    if not update_result:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to save backup codes"
-        )
-    
-    return TwoFactorRegenerateBackupCodesResponse(
-        backup_codes=plain_codes,
-        message="Your old backup codes have been invalidated. Save these new codes in a secure location."
     )
 
 

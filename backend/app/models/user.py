@@ -30,11 +30,6 @@ class User(Base):
     name: Mapped[str] = mapped_column(String(255), nullable=True)  # Display name — may duplicate first_name+last_name; kept for frontend compat
     role: Mapped[str] = mapped_column(String(50), nullable=False, default="client")  # Canonical auth field — use get_user_role() for access
     
-    # Two-Factor Authentication fields
-    two_factor_enabled: Mapped[bool] = mapped_column(Boolean, default=False)
-    two_factor_secret: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
-    two_factor_backup_codes: Mapped[Optional[str]] = mapped_column(Text, nullable=True)  # JSON array of codes
-    
     # Password reset fields
     password_reset_token: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     password_reset_expires: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)

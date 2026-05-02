@@ -33,5 +33,4 @@ class TokenPayload(BaseModel):
 
 class AuthResponse(Token):
     user: UserRead
-    requires_2fa: bool = False
     message: Optional[str] = None
