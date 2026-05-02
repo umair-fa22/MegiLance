@@ -97,5 +97,3 @@
   background: var(--bg-secondary-dark);
   border-color: rgba(255, 255, 255, 0.1);
 }
-/* Deep gradient 2026 */
-.sidebar, .footer { background: linear-gradient(180deg, var(--bg-primary-dark) 0%, #020617 100%); border-color: rgba(255,255,255,0.1); backdrop-filter: blur(12px); }
