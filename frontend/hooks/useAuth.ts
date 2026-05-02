@@ -150,6 +150,8 @@ export function useAuth(): UseAuthReturn {
         if (isMounted.current) {
           setUser(normalized);
           setError(null);
+          // CRITICAL: Sync user to localStorage for immediate layout recognition
+          localStorage.setItem("user", JSON.stringify(normalized));
         }
 
         // Set up token refresh interval on page reload (refresh every 25 minutes)
@@ -173,7 +175,10 @@ export function useAuth(): UseAuthReturn {
         if (err instanceof APIError && err.status === 401) {
           // Token expired, clear all auth data
           clearAuthData();
-          if (isMounted.current) setUser(null);
+          if (isMounted.current) {
+            setUser(null);
+            localStorage.removeItem("user");
+          }
         }
         if (isMounted.current) {
           setError(err instanceof Error ? err.message : "Failed to load user");

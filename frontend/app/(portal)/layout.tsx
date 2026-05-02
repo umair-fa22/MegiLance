@@ -21,21 +21,34 @@ const RealTimeNotifications = dynamic(
 export default function PortalLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const router = useRouter();
   const pathname = usePathname();
-  const { user, isAuthenticated: useAuthIsAuthed, isLoading: authLoading } = useAuth();
+  const { user: hookUser, isAuthenticated: useAuthIsAuthed, isLoading: authLoading } = useAuth();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // If hook is still loading and hasn't settled, don't interrupt
-    if (authLoading) return;
+    // 1. Try to get user from hook, fallback to localStorage for immediate layout check during redirect/refresh
+    let user = hookUser;
+    if (!user && typeof window !== 'undefined') {
+      try {
+        const stored = localStorage.getItem('user');
+        if (stored) user = JSON.parse(stored);
+      } catch (e) {
+        console.warn('Failed to parse stored user', e);
+      }
+    }
 
-    if (!useAuthIsAuthed || !user) {
+    const isAuthed = !!user;
+
+    // If hook is still loading and we have no cached user, wait
+    if (authLoading && !isAuthed) return;
+
+    if (!isAuthed) {
       const currentPath = pathname || '/client/dashboard';
       setIsAuthenticated(false);
       router.replace(`/login?returnTo=${encodeURIComponent(currentPath)}`);
       return;
     }
 
-    const role = (user.user_type || user.role || 'client').toLowerCase();
+    const role = (user!.user_type || user!.role || 'client').toLowerCase();
     
     // Check role-based access
     if (pathname?.startsWith('/admin') && role !== 'admin') {
@@ -54,10 +67,11 @@ export default function PortalLayout({ children }: Readonly<{ children: React.Re
     // Ensure session properties match
     window.localStorage.setItem('portal_area', role);
     setIsAuthenticated(true);
-  }, [pathname, router, useAuthIsAuthed, authLoading, user]);
+  }, [pathname, router, useAuthIsAuthed, authLoading, hookUser]);
 
   // Show loading while checking authentication
-  if (authLoading || isAuthenticated === null) {
+  const hasUser = !!hookUser || (typeof window !== 'undefined' && !!localStorage.getItem('user'));
+  if ((authLoading && !hasUser) || isAuthenticated === null) {
     return <Loading size="lg" text="Verifying authentication..." fullscreen />;
   }
 
@@ -65,6 +79,8 @@ export default function PortalLayout({ children }: Readonly<{ children: React.Re
   if (!isAuthenticated) {
     return null;
   }
+
+  const user = hookUser || (typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('user') || 'null') : null);
 
   return (
     <UnreadCountProvider>

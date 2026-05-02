@@ -24,7 +24,13 @@ export default function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const [mounted, setMounted] = useState(false);
   const themeStyles = resolvedTheme === 'dark' ? darkStyles : lightStyles;
+
+  // Initialize mounted state
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -46,7 +52,7 @@ export default function LanguageSwitcher() {
 
   const currentLang = LANGUAGES.find(l => l.code === locale) || LANGUAGES[0];
 
-  if (!resolvedTheme) return null;
+  if (!mounted || !resolvedTheme) return null;
 
   return (
     <div className={commonStyles.container} >
