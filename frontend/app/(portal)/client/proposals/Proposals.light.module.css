@@ -1,0 +1,61 @@
+.page { background-color: var(--bg-primary-light); }
+.title { color: var(--text-primary-light); }
+.subtitle { color: var(--color-text-secondary-light); }
+
+.kpiCard {
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
+}
+.kpiLabel { color: var(--color-text-secondary-light); }
+.kpiValue { color: var(--text-primary-light); }
+.kpiIcon { background-color: rgba(69, 115, 223, 0.1); color: var(--ml-blue); }
+
+.searchInput {
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
+  color: var(--text-primary-light);
+}
+.searchInput::placeholder { color: var(--color-text-secondary-light); }
+
+.tabBar {
+  background-color: var(--bg-secondary-light);
+  border-color: var(--border-light);
+}
+.tab { color: var(--color-text-secondary-light); }
+.tab:hover { background-color: var(--bg-primary-light); color: var(--text-primary-light); }
+.tabActive { background-color: var(--bg-primary-light); color: var(--text-primary-light); }
+.tabCount { background-color: var(--border-light); color: var(--color-text-secondary-light); }
+.tabCountActive { background-color: var(--ml-blue); color: white; }
+
+.projectGroup { background-color: var(--bg-secondary-light); border-color: var(--border-light); }
+.projectGroupHeader { background-color: var(--bg-secondary-light); }
+.projectGroupHeader:hover { background-color: var(--bg-primary-light); }
+.projectGroupTitle { color: var(--text-primary-light); }
+.projectGroupMeta { color: var(--color-text-secondary-light); }
+
+.proposalRow { border-top-color: var(--border-light); }
+.proposalRow:hover { background-color: var(--bg-primary-light); }
+.proposalAvatar { background-color: var(--ml-blue); color: white; }
+.proposalName { color: var(--text-primary-light); }
+.proposalPreview { color: var(--color-text-secondary-light); }
+.proposalBid { color: var(--text-primary-light); }
+.proposalDate { color: var(--color-text-secondary-light); }
+
+.modalContent { background-color: var(--bg-secondary-light); }
+.modalLabel { color: var(--color-text-secondary-light); }
+.modalValue { color: var(--text-primary-light); }
+.modalActions { border-top-color: var(--border-light); }
+
+.rejectTextarea {
+  background-color: var(--bg-primary-light);
+  border-color: var(--border-light);
+  color: var(--text-primary-light);
+}
+
+.statusPending { background-color: rgba(234, 179, 8, 0.15); color: #a16207; }
+.statusAccepted { background-color: rgba(34, 197, 94, 0.15); color: #15803d; }
+.statusRejected { background-color: rgba(239, 68, 68, 0.15); color: #b91c1c; }
+.statusDefault { background-color: var(--bg-primary-light); color: var(--color-text-secondary-light); }
+
+.emptyTitle { color: var(--text-primary-light); }
+.emptyText { color: var(--color-text-secondary-light); }

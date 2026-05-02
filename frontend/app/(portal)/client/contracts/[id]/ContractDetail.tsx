@@ -255,7 +255,25 @@ export default function ContractDetail({ contractId }: ContractDetailProps) {
               </div>
             </div>
             <div className={commonStyles.headerActions}>
-              <Button variant="secondary" size="md" iconBefore={<MessageSquare size={16} />}>
+              <Button
+                variant="primary"
+                size="md"
+                iconBefore={<DollarSign size={16} />}
+                onClick={() => router.push(`/client/escrow?contractId=${contract.id}`)}
+              >
+                Fund Escrow
+              </Button>
+              <Button
+                variant="secondary"
+                size="md"
+                iconBefore={<Briefcase size={16} />}
+                onClick={() => router.push(`/workroom?contractId=${contract.id}`)}
+              >
+                Workroom
+              </Button>
+              <Button variant="secondary" size="md" iconBefore={<MessageSquare size={16} />}
+                onClick={() => router.push(`/messages?userId=${contract.freelancer_id}`)}
+              >
                 Message
               </Button>
               <Button variant="secondary" size="md" iconBefore={<Download size={16} />}>

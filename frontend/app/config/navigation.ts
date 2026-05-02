@@ -75,6 +75,7 @@ export const clientNavItems: NavItem[] = [
   { label: 'Dashboard', href: '/client/dashboard', icon: 'LayoutDashboard', section: 'Overview' },
   { label: 'Post a Project', href: '/client/post-job', icon: 'TrendingUp' },
   { label: 'My Projects', href: '/client/projects', icon: 'Briefcase', section: 'Projects' },
+  { label: 'Proposals', href: '/client/proposals', icon: 'Inbox' },
   { label: 'Contracts', href: '/client/contracts', icon: 'FileText' },
   { label: 'Messages', href: '/client/messages', icon: 'MessageSquare', section: 'Communication' },
   { label: 'Notifications', href: '/client/notifications', icon: 'Bell' },
@@ -205,6 +206,7 @@ export const breadcrumbConfig: Record<string, string[]> = {
   // ── Client breadcrumbs ──────────────────────────────────────
   '/client/dashboard': ['Client', 'Dashboard'],
   '/client/projects': ['Client', 'Projects'],
+  '/client/proposals': ['Client', 'Proposals'],
   '/client/post-job': ['Client', 'Post Job'],
   '/client/contracts': ['Client', 'Contracts'],
   '/client/payments': ['Client', 'Payments'],

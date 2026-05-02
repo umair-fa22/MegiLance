@@ -3,7 +3,7 @@
 # Enhanced with input validation, security measures, and standardized responses
 # Auto-creates contracts when proposals are accepted
 
-from fastapi import APIRouter, Body, Depends, HTTPException, Query, status
+from fastapi import APIRouter, BackgroundTasks, Body, Depends, HTTPException, Query, status
 from typing import List, Optional
 import logging
 
@@ -20,6 +20,7 @@ from app.services.profile_validation import is_profile_complete, get_missing_pro
 from app.services import proposals_service
 from app.services.db_utils import sanitize_text, paginate_params
 from app.api.v1.core_domain.utils import moderate_content
+from app.api.v1.core_domain.realtime_notifications import notify_user
 
 router = APIRouter()
 
@@ -195,6 +196,7 @@ def get_proposal(
 @router.post("", response_model=ProposalRead, status_code=status.HTTP_201_CREATED)
 def create_proposal(
     proposal: ProposalCreate,
+    background_tasks: BackgroundTasks,
     current_user: User = Depends(get_current_active_user)
 ):
     """Create a new proposal"""
@@ -263,6 +265,21 @@ def create_proposal(
     
     if not result:
         raise HTTPException(status_code=500, detail="Failed to create proposal")
+
+    # Notify the project owner that a new proposal arrived
+    client_id = proposals_service.get_project_client_id(proposal.project_id)
+    if client_id:
+        freelancer_name = getattr(current_user, 'full_name', None) or getattr(current_user, 'username', 'A freelancer')
+        background_tasks.add_task(
+            notify_user,
+            user_id=client_id,
+            notification_type="proposal",
+            title="New Proposal Received",
+            content=f"{freelancer_name} submitted a proposal for your project.",
+            data={"proposal_id": result.get("id") if isinstance(result, dict) else getattr(result, "id", None),
+                  "project_id": proposal.project_id},
+        )
+
     return result
 
 
@@ -326,6 +343,7 @@ def delete_proposal(
 @router.post("/{proposal_id}/accept", response_model=ProposalRead)
 def accept_proposal(
     proposal_id: int,
+    background_tasks: BackgroundTasks,
     current_user: User = Depends(get_current_active_user)
 ):
     """Client accepts a proposal - creates a contract automatically"""
@@ -359,12 +377,27 @@ def accept_proposal(
     result = proposals_service.accept_proposal(proposal_id, details, current_user.id)
     if not result:
         raise HTTPException(status_code=500, detail="Failed to retrieve updated proposal")
+
+    # Notify the freelancer their proposal was accepted
+    freelancer_id = details.get("freelancer_id")
+    project_title = details.get("_project_title", "your project")
+    if freelancer_id:
+        background_tasks.add_task(
+            notify_user,
+            user_id=freelancer_id,
+            notification_type="proposal",
+            title="Proposal Accepted 🎉",
+            content=f"Your proposal for '{project_title}' was accepted. A contract has been created.",
+            data={"proposal_id": proposal_id, "project_id": details.get("project_id")},
+        )
+
     return result
 
 
 @router.post("/{proposal_id}/reject", response_model=ProposalRead)
 def reject_proposal(
     proposal_id: int,
+    background_tasks: BackgroundTasks,
     reason: Optional[str] = Body(None, embed=True, max_length=1000),
     current_user: User = Depends(get_current_active_user)
 ):
@@ -392,6 +425,22 @@ def reject_proposal(
     result = proposals_service.reject_proposal(proposal_id, reason=sanitize_text(reason) if reason else None)
     if not result:
         raise HTTPException(status_code=500, detail="Failed to retrieve updated proposal")
+
+    # Notify the freelancer their proposal was rejected
+    freelancer_id = existing.get("freelancer_id")
+    if freelancer_id:
+        msg = f"Your proposal was not selected this time."
+        if reason:
+            msg += f" Reason: {reason}"
+        background_tasks.add_task(
+            notify_user,
+            user_id=freelancer_id,
+            notification_type="proposal",
+            title="Proposal Update",
+            content=msg,
+            data={"proposal_id": proposal_id, "project_id": existing.get("project_id")},
+        )
+
     return result
 
 

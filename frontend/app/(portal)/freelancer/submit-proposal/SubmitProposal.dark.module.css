@@ -2,6 +2,30 @@
   background-color: var(--bg-secondary-dark);
 }
 
+.jobBanner {
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
+}
+
+.jobBannerTitle {
+  color: var(--text-primary-dark);
+}
+
+.jobBannerClient {
+  color: var(--text-tertiary-dark);
+}
+
+.jobBannerBadge {
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-tertiary-dark);
+}
+
+.jobBannerDesc {
+  color: var(--text-tertiary-dark);
+}
+
 .progressBar {
   background-color: var(--bg-secondary-dark);
 }

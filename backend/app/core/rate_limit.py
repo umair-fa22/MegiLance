@@ -22,13 +22,18 @@ def get_real_client_ip(request: Request) -> str:
     return get_remote_address(request)
 
 
+import os
+
+# Disable rate limiting in test environments so fixtures can create many users quickly
+_testing = os.getenv("TESTING", "").lower() in ("1", "true", "yes")
+
 # Initialize limiter
 # Uses real client IP as the key for rate limiting
 limiter = Limiter(
     key_func=get_real_client_ip,
     default_limits=["200/minute"],  # Global default: 200 requests per minute
     storage_uri="memory://",  # In-memory storage (use Redis in production)
-    enabled=True,
+    enabled=not _testing,  # Disabled when TESTING=1
     headers_enabled=True,  # Include X-RateLimit-* response headers
 )
 

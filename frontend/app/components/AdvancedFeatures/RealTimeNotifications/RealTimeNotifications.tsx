@@ -96,17 +96,19 @@ export default function RealTimeNotifications({
 
       websocket.onmessage = (event) => {
         try {
-          const data = JSON.parse(event.data);
-          if (data.type === 'notification') {
+          const msg = JSON.parse(event.data);
+          if (msg.type === 'notification') {
+            // Backend wraps payload in msg.data; fall back to flat structure for compatibility
+            const payload = msg.data || msg;
             const newNotification: Notification = {
-              id: data.id || Date.now().toString(),
-              type: data.notification_type || 'system',
-              title: data.title,
-              message: data.message,
-              timestamp: new Date(data.timestamp || Date.now()),
+              id: payload.id || msg.id || Date.now().toString(),
+              type: payload.type || payload.notification_type || 'system',
+              title: payload.title || 'New notification',
+              message: payload.content || payload.message || '',
+              timestamp: new Date(msg.timestamp || payload.timestamp || Date.now()),
               read: false,
-              actionUrl: data.action_url,
-              data: data.data,
+              actionUrl: payload.action_url,
+              data: payload.data,
             };
             setNotifications((prev) => [newNotification, ...prev].slice(0, 50)); // Keep last 50
             

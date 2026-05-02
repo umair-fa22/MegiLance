@@ -42,6 +42,8 @@ export default function ChatbotAgent() {
   const [isTyping, setIsTyping] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
   const [isOfflineMode, setIsOfflineMode] = useState(false);
+  // 'online' = fully connected; 'degraded' = backend up but LLM unavailable; 'offline' = network down
+  const [chatStatus, setChatStatus] = useState<'online' | 'degraded' | 'offline'>('online');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -119,17 +121,43 @@ export default function ChatbotAgent() {
         sentiment: 'positive',
         suggestedActions: ['How do I get started?', 'Find freelancers', 'Post a project']
       }]);
-    } catch (error) {
-      // Enter offline mode - allow local responses
+    } catch (error: any) {
+      // Distinguish: network error (offline) vs server error (backend up but LLM not configured)
+      const isNetworkError = !error?.status && (error instanceof TypeError || error?.message?.includes('fetch'));
+      const isDegraded = error?.status === 503 || error?.status === 500 || error?.status === 422;
       setIsOfflineMode(true);
-      setConversationId('offline-' + Date.now()); // Set a fake ID to enable input
-      setMessages([{ 
-        id: 1, 
-        text: 'Hello! I\'m MegiBot, your AI assistant. I\'m currently in offline mode, but I can still help with basic questions. How can I assist you today?', 
-        sender: 'bot',
-        timestamp: new Date(),
-        sentiment: 'neutral'
-      }]);
+      setConversationId('offline-' + Date.now());
+      if (isNetworkError) {
+        setChatStatus('offline');
+        setMessages([{
+          id: 1,
+          text: "I can't reach the server right now. Check your connection — I can still answer basic questions in the meantime.",
+          sender: 'bot',
+          timestamp: new Date(),
+          sentiment: 'neutral',
+          suggestedActions: ['How do I get started?', 'Find freelancers', 'Post a project'],
+        }]);
+      } else if (isDegraded) {
+        setChatStatus('degraded');
+        setMessages([{
+          id: 1,
+          text: "Hi! I'm MegiBot. The AI assistant is temporarily limited — I'll answer what I can with built-in responses. How can I help?",
+          sender: 'bot',
+          timestamp: new Date(),
+          sentiment: 'neutral',
+          suggestedActions: ['How do I get started?', 'Find freelancers', 'Post a project'],
+        }]);
+      } else {
+        setChatStatus('degraded');
+        setMessages([{
+          id: 1,
+          text: "Hi! I'm MegiBot. The AI service is temporarily limited but I can still help with basic questions.",
+          sender: 'bot',
+          timestamp: new Date(),
+          sentiment: 'neutral',
+          suggestedActions: ['How do I get started?', 'Find freelancers', 'Post a project'],
+        }]);
+      }
     } finally {
       setIsLoading(false);
       setIsTyping(false);
@@ -167,7 +195,10 @@ export default function ChatbotAgent() {
       return { text: "Quick tips for success:\n• Complete your profile 100%\n• Add a professional portfolio\n• Respond to messages within 24 hours\n• Ask clarifying questions before bidding\n• Deliver quality work on time!", sentiment: 'positive' };
     }
     
-    return { text: "I'm currently in offline mode with limited capabilities. For full assistance, please ensure the backend server is running or try again later. Is there anything basic I can help with?", sentiment: 'neutral' };
+    const limitedMsg = chatStatus === 'offline'
+      ? "I'm not connected to the server right now — I can only answer basic questions. Try again once your connection is restored."
+      : "I don't have a specific answer for that in limited mode. Try asking about getting started, payments, or finding freelancers!";
+    return { text: limitedMsg, sentiment: 'neutral', suggestedActions: ['How do I get started?', 'Find freelancers', 'Post a project'] };
   };
 
   const handleSendMessage = async (e: React.FormEvent) => {
@@ -232,8 +263,13 @@ export default function ChatbotAgent() {
       if (!isOpen) {
         setUnreadCount(prev => prev + 1);
       }
-    } catch {
-      // Fall back to offline mode on error
+    } catch (err: any) {
+      // On any send failure, flip to offline mode and surface a helpful response
+      const isNetworkErr = !err?.status && (err instanceof TypeError || err?.message?.includes('fetch'));
+      if (!isOfflineMode) {
+        setIsOfflineMode(true);
+        setChatStatus(isNetworkErr ? 'offline' : 'degraded');
+      }
       const offlineData = getOfflineResponse(userText);
       const errorMessage: Message = {
         id: Date.now() + 1,
@@ -293,8 +329,33 @@ export default function ChatbotAgent() {
               <div className={commonStyles.headerInfo}>
                 <h3>MegiBot AI</h3>
                 <span className={cn(commonStyles.headerStatus, themeStyles.headerStatus)}>
-                  <span className={cn(commonStyles.statusDot, themeStyles.statusDot, isOfflineMode && commonStyles.statusDotOffline)} />
-                  {isTyping ? 'Typing...' : isOfflineMode ? 'Offline Mode' : 'Online'}
+                  <span className={cn(
+                    commonStyles.statusDot,
+                    themeStyles.statusDot,
+                    chatStatus === 'offline' && commonStyles.statusDotOffline,
+                    chatStatus === 'degraded' && commonStyles.statusDotDegraded,
+                  )} />
+                  {isTyping
+                    ? 'Typing…'
+                    : chatStatus === 'offline'
+                    ? 'No connection'
+                    : chatStatus === 'degraded'
+                    ? 'Limited mode'
+                    : 'Online'}
+                  {isOfflineMode && (
+                    <button
+                      className={commonStyles.retryBtn}
+                      onClick={() => {
+                        setIsOfflineMode(false);
+                        setChatStatus('online');
+                        setMessages([]);
+                        setConversationId(null);
+                        startConversation();
+                      }}
+                      title="Retry connection"
+                      aria-label="Retry connection"
+                    >↺</button>
+                  )}
                 </span>
               </div>
             </div>

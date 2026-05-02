@@ -1,9 +1,12 @@
 # @AI-HINT: Pytest configuration and fixtures for backend testing
 # Provides test database, client, and common fixtures
 
+import os
+# Disable rate limiting before any app imports
+os.environ.setdefault("TESTING", "1")
+
 import pytest
 import sys
-import os
 from typing import Generator
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine

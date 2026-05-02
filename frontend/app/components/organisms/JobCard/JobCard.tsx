@@ -122,9 +122,9 @@ const JobCard: React.FC<JobCardProps> = ({
         </div>
 
         <div className={common.actions}>
-          <button 
+          <button
             className={cn(
-              common.saveButton, 
+              common.saveButton,
               themeStyles.saveButton,
               isSaved && themeStyles.saveButtonActive
             )}
@@ -134,7 +134,10 @@ const JobCard: React.FC<JobCardProps> = ({
             <Heart size={18} fill={isSaved ? "currentColor" : "none"} />
           </button>
           <Link href={`/jobs/${id}`}>
-            <Button variant="primary" size="sm">View Details</Button>
+            <Button variant="outline" size="sm">View Details</Button>
+          </Link>
+          <Link href={`/freelancer/submit-proposal?jobId=${id}`}>
+            <Button variant="primary" size="sm">Apply Now</Button>
           </Link>
         </div>
       </div>

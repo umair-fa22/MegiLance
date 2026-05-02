@@ -15,10 +15,13 @@ import {
   Loader2,
   Briefcase,
   Home,
+  DollarSign,
+  Clock,
+  Tag,
 } from "lucide-react";
 
 import api, { APIError, apiFetch } from "@/lib/api";
-import { proposalsApi } from "@/lib/api/projects";
+import { proposalsApi, projectsApi } from "@/lib/api/projects";
 import { ProposalData, ProposalErrors } from "./SubmitProposal.types";
 
 import Button from "@/app/components/atoms/Button/Button";
@@ -32,6 +35,18 @@ import { ScrollReveal } from "@/app/components/Animations/ScrollReveal";
 import common from "./SubmitProposal.common.module.css";
 import light from "./SubmitProposal.light.module.css";
 import dark from "./SubmitProposal.dark.module.css";
+
+interface JobDetails {
+  id: number;
+  title: string;
+  description: string;
+  budget_min?: number;
+  budget_max?: number;
+  budget_type?: string;
+  estimated_duration?: string;
+  skills?: string[];
+  client_name?: string;
+}
 
 const STEPS = ["Details", "Terms", "Review"] as const;
 type Step = (typeof STEPS)[number];
@@ -67,6 +82,34 @@ const SubmitProposal: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [isSaved, setIsSaved] = useState(false);
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
+  const [job, setJob] = useState<JobDetails | null>(null);
+  const [jobLoading, setJobLoading] = useState(true);
+  const [jobError, setJobError] = useState<string>("");
+
+  // Fetch job details and validate jobId on mount
+  useEffect(() => {
+    if (!jobIdParam) {
+      router.replace("/freelancer/jobs");
+      return;
+    }
+    (async () => {
+      setJobLoading(true);
+      try {
+        const result: any = await projectsApi.get(parseInt(jobIdParam));
+        if (!result || !result.id) throw new Error("not_found");
+        setJob(result);
+      } catch (err: any) {
+        const status = err?.status ?? 0;
+        if (status === 404 || err?.message === "not_found") {
+          setJobError("This job is no longer available.");
+        } else {
+          setJobError("Failed to load job details. Please try again.");
+        }
+      } finally {
+        setJobLoading(false);
+      }
+    })();
+  }, [jobIdParam, router]);
 
   // Calculate progress percentage
   const progressPercentage = useMemo(() => {
@@ -234,6 +277,41 @@ const SubmitProposal: React.FC = () => {
     }
   };
 
+  if (jobLoading) {
+    return (
+      <div className={cn(common.centered_container, themed.centered_container)}>
+        <Loader2 className={common.spinner} size={36} aria-label="Loading job details…" />
+      </div>
+    );
+  }
+
+  if (jobError || !job) {
+    return (
+      <PageTransition>
+        <div className={cn(common.centered_container, themed.centered_container)}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className={cn(common.result_card, themed.result_card)}
+            role="alert"
+          >
+            <AlertTriangle className={cn(common.result_icon, common.error_icon, themed.error_icon)} size={56} />
+            <h2 className={cn(common.result_title, themed.result_title)}>Job Not Found</h2>
+            <p className={cn(common.result_message, themed.result_message)}>
+              {jobError || "This job is no longer available."}
+            </p>
+            <div className={cn(common.result_actions, themed.result_actions)}>
+              <Button variant="primary" onClick={() => router.push("/freelancer/jobs")}>
+                <Briefcase size={18} />
+                Browse Jobs
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </PageTransition>
+    );
+  }
+
   if (submissionState === "success") {
     return (
       <PageTransition>
@@ -347,6 +425,51 @@ const SubmitProposal: React.FC = () => {
               animate={{ width: `${progressPercentage}%` }}
               transition={{ duration: 0.3 }}
             />
+          </div>
+
+          {/* Job summary banner */}
+          <div className={cn(common.jobBanner, themed.jobBanner)}>
+            <div className={common.jobBannerContent}>
+              <h2 className={cn(common.jobBannerTitle, themed.jobBannerTitle)}>
+                <Briefcase size={16} />
+                {job.title}
+              </h2>
+              {job.client_name && (
+                <span className={cn(common.jobBannerClient, themed.jobBannerClient)}>by {job.client_name}</span>
+              )}
+            </div>
+            <div className={common.jobBannerMeta}>
+              {(job.budget_min || job.budget_max) && (
+                <span className={cn(common.jobBannerBadge, themed.jobBannerBadge)}>
+                  <DollarSign size={13} />
+                  {job.budget_min && job.budget_max
+                    ? `$${job.budget_min.toLocaleString()} – $${job.budget_max.toLocaleString()}`
+                    : job.budget_max
+                    ? `Up to $${job.budget_max.toLocaleString()}`
+                    : `$${job.budget_min!.toLocaleString()}+`}
+                </span>
+              )}
+              {job.estimated_duration && (
+                <span className={cn(common.jobBannerBadge, themed.jobBannerBadge)}>
+                  <Clock size={13} />
+                  {job.estimated_duration.replace(/_/g, " ")}
+                </span>
+              )}
+              {job.skills && job.skills.length > 0 && (
+                <span className={cn(common.jobBannerBadge, themed.jobBannerBadge)}>
+                  <Tag size={13} />
+                  {job.skills.slice(0, 3).join(", ")}
+                  {job.skills.length > 3 && ` +${job.skills.length - 3}`}
+                </span>
+              )}
+            </div>
+            {job.description && (
+              <p className={cn(common.jobBannerDesc, themed.jobBannerDesc)}>
+                {job.description.length > 200
+                  ? job.description.slice(0, 200) + "…"
+                  : job.description}
+              </p>
+            )}
           </div>
 
           <ScrollReveal>

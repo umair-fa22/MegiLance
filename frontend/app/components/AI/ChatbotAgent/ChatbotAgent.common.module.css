@@ -54,6 +54,10 @@
 .headerInfo h3 { margin: 0; font-family: var(--font-heading, "Poppins", sans-serif); font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
 .headerStatus { display: flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; opacity: 0.8; font-weight: 500; }
 .statusDot { width: 6px; height: 6px; border-radius: 50%; animation: pulse 2s infinite; }
+.statusDotOffline { background: #ef4444 !important; animation: none; }
+.statusDotDegraded { background: #f59e0b !important; }
+.retryBtn { background: none; border: none; cursor: pointer; font-size: 0.85rem; padding: 0 0.25rem; opacity: 0.7; line-height: 1; vertical-align: middle; }
+.retryBtn:hover { opacity: 1; }
 .closeButton { background: none; border: none; cursor: pointer; padding: 0.5rem; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; min-width: 40px; min-height: 40px; transition: all 0.2s ease; }
 .closeButton:hover { transform: scale(1.05); }
 

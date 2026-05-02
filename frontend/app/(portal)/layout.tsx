@@ -10,6 +10,13 @@ import { getAuthToken, clearAuthData } from '@/lib/api';
 import { useAuth } from '@/hooks/useAuth';
 import { UnreadCountProvider } from '@/contexts/UnreadCountContext';
 import Loading from '@/app/components/atoms/Loading/Loading';
+import dynamic from 'next/dynamic';
+
+// Lazy-load notification bell so it doesn't block initial auth render
+const RealTimeNotifications = dynamic(
+  () => import('@/app/components/AdvancedFeatures/RealTimeNotifications/RealTimeNotifications'),
+  { ssr: false }
+);
 
 export default function PortalLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const router = useRouter();
@@ -63,6 +70,14 @@ export default function PortalLayout({ children }: Readonly<{ children: React.Re
     <UnreadCountProvider>
       <AppLayout>
         {children}
+        {/* Global real-time notification bell — mounts once for the entire portal */}
+        {user?.id && (
+          <RealTimeNotifications
+            userId={String(user.id)}
+            maxDisplayed={8}
+            autoMarkAsRead={false}
+          />
+        )}
       </AppLayout>
     </UnreadCountProvider>
   );

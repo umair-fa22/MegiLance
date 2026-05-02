@@ -11,6 +11,60 @@
   gap: 2rem;
 }
 
+/* Job summary banner */
+.jobBanner {
+  border-radius: var(--border-radius-md);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px solid;
+}
+
+.jobBannerContent {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.jobBannerTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.jobBannerClient {
+  font-size: 0.8125rem;
+  opacity: 0.7;
+}
+
+.jobBannerMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.jobBannerBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid;
+}
+
+.jobBannerDesc {
+  font-size: 0.8125rem;
+  margin: 0;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
 /* Progress Bar */
 .progressBar {
   height: 4px;

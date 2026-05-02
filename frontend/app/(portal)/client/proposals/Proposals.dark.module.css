@@ -1,0 +1,61 @@
+.page { background-color: var(--bg-secondary-dark); }
+.title { color: var(--text-primary-dark); }
+.subtitle { color: var(--text-tertiary-dark); }
+
+.kpiCard {
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+}
+.kpiLabel { color: var(--text-tertiary-dark); }
+.kpiValue { color: var(--text-primary-dark); }
+.kpiIcon { background-color: rgba(107, 141, 230, 0.15); color: #6b8de6; }
+
+.searchInput {
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
+}
+.searchInput::placeholder { color: var(--text-tertiary-dark); }
+
+.tabBar {
+  background-color: var(--bg-primary-dark);
+  border-color: var(--border-dark);
+}
+.tab { color: var(--text-tertiary-dark); }
+.tab:hover { background-color: var(--bg-secondary-dark); color: var(--text-primary-dark); }
+.tabActive { background-color: var(--bg-secondary-dark); color: var(--text-primary-dark); }
+.tabCount { background-color: var(--border-dark); color: var(--text-tertiary-dark); }
+.tabCountActive { background-color: #6b8de6; color: white; }
+
+.projectGroup { background-color: var(--bg-primary-dark); border-color: var(--border-dark); }
+.projectGroupHeader { background-color: var(--bg-primary-dark); }
+.projectGroupHeader:hover { background-color: var(--bg-secondary-dark); }
+.projectGroupTitle { color: var(--text-primary-dark); }
+.projectGroupMeta { color: var(--text-tertiary-dark); }
+
+.proposalRow { border-top-color: var(--border-dark); }
+.proposalRow:hover { background-color: var(--bg-secondary-dark); }
+.proposalAvatar { background-color: #6b8de6; color: white; }
+.proposalName { color: var(--text-primary-dark); }
+.proposalPreview { color: var(--text-tertiary-dark); }
+.proposalBid { color: var(--text-primary-dark); }
+.proposalDate { color: var(--text-tertiary-dark); }
+
+.modalContent { background-color: var(--bg-primary-dark); }
+.modalLabel { color: var(--text-tertiary-dark); }
+.modalValue { color: var(--text-primary-dark); }
+.modalActions { border-top-color: var(--border-dark); }
+
+.rejectTextarea {
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
+  color: var(--text-primary-dark);
+}
+
+.statusPending { background-color: rgba(234, 179, 8, 0.2); color: #fde047; }
+.statusAccepted { background-color: rgba(34, 197, 94, 0.2); color: #4ade80; }
+.statusRejected { background-color: rgba(239, 68, 68, 0.2); color: #f87171; }
+.statusDefault { background-color: var(--bg-secondary-dark); color: var(--text-tertiary-dark); }
+
+.emptyTitle { color: var(--text-primary-dark); }
+.emptyText { color: var(--text-tertiary-dark); }
